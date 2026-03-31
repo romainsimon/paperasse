@@ -59,12 +59,10 @@
         "Les provisions courantes trimestrielles sont de 7 000 EUR au total",
         "Le fonds de travaux trimestriel est de 350 EUR au total",
         "L'appel travaux ravalement est de 5 000 EUR (15 000 / 3)",
-        "Chaque copropriétaire paie au prorata de ses tantièmes / 10 000",
-        "L'écriture comptable 411/701 est indiquée pour les provisions courantes",
-        "L'écriture comptable 414/105 est indiquée pour le fonds de travaux",
-        "L'écriture comptable 412/702 est indiquée pour les travaux votés",
+        "Chaque copropriétaire paie au prorata de ses tantièmes",
+        "Les écritures comptables sont indiquées (comptes 411/701 pour provisions courantes, 414/105 pour fonds travaux, 412/702 pour travaux votés)",
         "La date d'exigibilité (1er avril) est précisée",
-        "Le template appel-de-fonds.md est utilisé ou proposé"
+        "L'appel est présenté de façon structurée avec le détail par copropriétaire ou par lot"
       ]
     },
     {

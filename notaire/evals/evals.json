@@ -9,16 +9,16 @@
       "files": [],
       "assertions": [
         "Le skill identifie l'opération comme un achat immobilier dans l'ancien",
-        "Le taux DMTO du Rhône (69) est vérifié dans data/dmto-departements.json",
-        "La taxe départementale est calculée avec le taux du Rhône lu dans data/dmto-departements.json",
+        "Le taux de taxe départementale du Rhône est utilisé pour le calcul DMTO",
         "La taxe communale est calculée (1,20% de 280 000 = 3 360 EUR)",
         "Le prélèvement pour l'État est calculé (2,37% de la taxe départementale)",
-        "Les émoluments du notaire sont calculés par tranche (3,945%, 1,627%, 1,085%, 0,814%)",
+        "Les émoluments du notaire sont calculés par tranche (barème proportionnel dégressif en 4 tranches)",
         "La TVA sur les émoluments est appliquée (20%)",
         "La CSI est calculée (0,10% de 280 000 = 280 EUR)",
         "Les débours sont estimés",
-        "Le total est présenté avec le format structuré (frais de notaire)",
-        "Le pourcentage par rapport au prix de vente est indiqué"
+        "Le total est présenté de façon structurée avec le détail de chaque poste",
+        "Le pourcentage total par rapport au prix de vente est indiqué",
+        "L'analyse suit une structure faits / hypothèses / calculs / résultat"
       ]
     },
     {
@@ -29,7 +29,6 @@
       "files": [],
       "assertions": [
         "Le skill identifie l'opération comme une succession",
-        "Le skill collecte le contexte : père décédé veuf, 2 enfants, pas de testament",
         "L'assurance-vie est traitée séparément, hors succession (art. L132-12 Code des assurances)",
         "L'actif net de succession est de 530 000 EUR (450 000 + 80 000)",
         "Chaque enfant reçoit 1/2 soit 265 000 EUR",
@@ -38,8 +37,9 @@
         "Les droits sont calculés par tranche avec le barème en ligne directe (5%, 10%, 15%, 20%)",
         "L'assurance-vie bénéficie de l'abattement de 152 500 EUR par bénéficiaire (art. 990 I CGI)",
         "L'assurance-vie est exonérée car 75 000 EUR < 152 500 EUR d'abattement",
+        "Le montant total des droits de succession par enfant est calculé avec le détail par tranche",
         "Les émoluments notaire sont estimés",
-        "Le total des droits de succession est présenté de façon détaillée"
+        "L'analyse distingue clairement le régime fiscal de la succession et celui de l'assurance-vie"
       ]
     },
     {
@@ -55,7 +55,7 @@
         "Les conditions du don familial sont vérifiées (donateur < 80 ans, donataire > 18 ans)",
         "La base taxable est calculée après les deux abattements",
         "Les droits sont calculés par tranche avec le barème en ligne directe",
-        "L'absence de donations antérieures (< 15 ans) est prise en compte",
+        "L'absence de donations antérieures (< 15 ans) est prise en compte pour la disponibilité des abattements",
         "Le skill mentionne l'obligation de déclaration (formulaire 2735)"
       ]
     },
@@ -63,7 +63,7 @@
       "id": 4,
       "name": "plus-value-immobiliere-residence-secondaire",
       "prompt": "Je vends ma résidence secondaire achetée il y a 12 ans pour 180 000 EUR. Je la vends 320 000 EUR. Je n'ai pas fait de travaux. Combien je vais payer d'impôt sur la plus-value ?",
-      "expected_output": "Le skill calcule la plus-value immobilière. Prix d'acquisition majoré du forfait frais (7,5%) et forfait travaux (15% si > 5 ans). Plus-value brute. Abattements pour durée de détention (12 ans) : IR 6%/an de la 6e à la 21e année = 42%, PS 1,65%/an de la 6e à la 21e année = 11,55%. IR 19% + PS 17,2% sur les montants nets. Pas de surtaxe si PV nette IR < 50 000 EUR.",
+      "expected_output": "Le skill calcule la plus-value immobilière. Prix d'acquisition majoré du forfait frais (7,5%) et forfait travaux (15% si > 5 ans). Plus-value brute. Abattements pour durée de détention (12 ans). IR 19% + PS 17,2%.",
       "files": [],
       "assertions": [
         "Le skill identifie que ce n'est pas une résidence principale (pas d'exonération)",
@@ -75,7 +75,8 @@
         "L'IR (19%) est calculé sur la plus-value nette IR",
         "Les PS (17,2%) sont calculés sur la plus-value nette PS",
         "La surtaxe est vérifiée (applicable si PV nette IR > 50 000 EUR)",
-        "Le total de l'impôt est présenté avec le format structuré"
+        "Le montant total de l'impôt est présenté (IR + PS + surtaxe éventuelle)",
+        "L'analyse suit une structure claire avec chaque étape de calcul détaillée"
       ]
     }
   ]

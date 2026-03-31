@@ -3,67 +3,78 @@
   "evals": [
     {
       "id": 1,
-      "name": "setup-nom-societe",
-      "prompt": "Je veux configurer ma comptabilité pour ma société DevStudio",
-      "expected_output": "Le skill lance le setup guidé : recherche 'DevStudio' via l'API SIRENE, affiche les résultats trouvés et demande à l'utilisateur de confirmer. Puis enchaîne les étapes : régime TVA, banque, Stripe. Génère company.json à la fin avec toutes les infos.",
+      "name": "config-company-json",
+      "prompt": "Je veux configurer Paperasse pour ma société DevStudio. C'est une SASU de développement web (NAF 6201Z), SIREN 123456789, siège au 5 rue de la Paix 75002 Paris, capital 1000 EUR, exercice du 01/01 au 31/12, je suis en franchise de TVA. Génère le company.json correspondant.",
+      "expected_output": "Le skill génère un company.json structuré avec tous les champs obligatoires, déduit le régime IS de la forme SASU, et applique le format attendu par Paperasse.",
       "files": [],
       "assertions": [
-        "Le skill détecte l'absence de company.json et lance le setup guidé",
-        "Le script fetch_company.py est exécuté avec le nom de la société",
-        "Le skill affiche les résultats de l'API SIRENE et demande confirmation",
-        "Le skill demande le régime TVA (franchise / simplifié / normal)",
-        "Le skill demande si l'utilisateur utilise Qonto",
-        "Le skill demande si l'utilisateur utilise Stripe",
-        "Le skill génère un fichier company.json avec les champs obligatoires (name, legal_form, siren, fiscal_year, tax)",
-        "Le skill affiche un récapitulatif final avec possibilité de corriger"
+        "Le company.json contient le nom 'DevStudio'",
+        "La forme juridique SASU est présente",
+        "Le SIREN 123456789 est présent",
+        "Le régime d'imposition IS est déduit de la forme SASU",
+        "Le régime TVA franchise est configuré",
+        "Les dates d'exercice (01/01 au 31/12) sont présentes",
+        "Le capital social 1000 EUR est présent",
+        "Le code NAF 6201Z est présent"
       ]
     },
     {
       "id": 2,
-      "name": "setup-avec-integrations",
-      "prompt": "Je veux configurer Paperasse pour ma société. On s'appelle NovaTech, on est une SAS à Lyon. On utilise Qonto et on a un compte Stripe pour notre SaaS.",
-      "expected_output": "Le skill lance le setup, recherche NovaTech, configure Qonto (demande les clés API QONTO_ID et QONTO_API_SECRET), configure Stripe (demande la clé secrète), écrit les clés dans .env, teste les connexions, et génère company.json.",
+      "name": "config-integrations",
+      "prompt": "Ma société NovaTech (SAS, Lyon, SIREN 987654321) utilise Qonto et Stripe pour son SaaS. Comment configurer company.json et le fichier .env pour les intégrations bancaires ? Montre-moi les fichiers complets.",
+      "expected_output": "Le skill montre la configuration company.json avec les intégrations Qonto et Stripe activées, et le fichier .env avec les clés API séparées. Le régime IS est déduit de la forme SAS.",
       "files": [],
       "assertions": [
-        "Le skill détecte l'absence de company.json et lance le setup",
-        "Le skill recherche 'NovaTech' via fetch_company.py",
-        "Le régime d'imposition IS est déduit automatiquement de la forme SAS",
-        "Le skill demande les identifiants API Qonto (QONTO_ID et QONTO_API_SECRET)",
-        "Le skill demande la clé secrète Stripe",
-        "Les clés API sont écrites dans un fichier .env (pas dans company.json)",
-        "Le skill tente de tester la connexion Qonto et/ou Stripe",
-        "company.json contient qonto.enabled: true",
-        "company.json contient au moins une entrée dans stripe_accounts"
+        "Le company.json contient qonto.enabled: true (ou équivalent)",
+        "Le company.json contient une section stripe_accounts",
+        "Les clés API Qonto (QONTO_ID, QONTO_API_SECRET) sont dans .env et pas dans company.json",
+        "La clé secrète Stripe (STRIPE_SECRET_KEY) est dans .env",
+        "Le régime IS est mentionné ou déduit pour une SAS",
+        "Les scripts npm run fetch:qonto et fetch:stripe sont mentionnés",
+        "La structure du company.json suit le format Paperasse (name, legal_form, siren, fiscal_year, tax, integrations)"
       ]
     },
     {
       "id": 3,
-      "name": "cloture-complete",
-      "prompt": "Je veux faire la clôture de l'exercice 2025 pour TechFlow. Les transactions Qonto sont dans data/transactions/qonto-main.json et les transactions Stripe dans data/transactions/stripe-saas.json.",
-      "expected_output": "Le skill suit le workflow de clôture en 12 étapes : catégorisation des transactions (PCG), rapprochement bancaire Qonto/Stripe (payouts vs crédits), écritures d'inventaire (amortissement MacBook, PCA pour l'abonnement annuel Client F oct-sept), calcul IS, génération du journal, des états financiers et du FEC.",
+      "name": "cloture-categorisation",
+      "prompt": "Je veux commencer la clôture de l'exercice 2025 pour TechFlow. Pour l'instant, catégorise les transactions et fais le rapprochement bancaire. Les transactions Qonto sont dans data/transactions/qonto-main.json et les transactions Stripe dans data/transactions/stripe-saas.json.",
+      "expected_output": "Le skill catégorise chaque transaction avec le bon compte PCG, enregistre le CA Stripe en brut avec frais séparés, traite le remboursement, et croise les payouts Stripe avec les crédits Qonto.",
       "files": [
         "evals/files/company-techflow.json",
         "evals/files/qonto-transactions.json",
         "evals/files/stripe-transactions.json"
       ],
       "assertions": [
-        "Le skill lit company.json et ne lance pas le setup",
-        "Le skill vérifie les échéances fiscales en cours",
+        "Le skill lit company.json et identifie TechFlow",
         "Chaque transaction Qonto est associée à un compte PCG (Hetzner → 6135, GitHub → 6135, OVH domaine → 651, frais bancaires → 627, MacBook → 2183)",
         "Le CA Stripe est enregistré en brut (706) et les frais Stripe en charges (6278)",
-        "Le remboursement Stripe (txn_009) est comptabilisé correctement",
+        "Le remboursement Stripe (txn_009) est comptabilisé correctement (avoir ou extourne)",
         "Le rapprochement bancaire croise les payouts Stripe avec les crédits Qonto",
-        "Le MacBook à 599 EUR est immobilisé (>500 EUR) et amorti sur 3 ans avec prorata temporis (oct-déc = 92 jours)",
-        "Un PCA est calculé pour l'abonnement annuel Client F (290 EUR, oct 2025 à sept 2026, part N+1 = 273/365 * 290)",
         "Le remboursement du compte courant associé (200 EUR) est enregistré au compte 455",
-        "L'IS est calculé avec le taux réduit 15% (résultat < 42 500 EUR)",
-        "Un fichier journal-entries.json est créé dans data/",
-        "Les scripts generate-statements.js et generate-fec.js sont exécutés",
-        "Le bilan est équilibré (actif = passif)"
+        "Les écritures sont présentées dans un format structuré avec date, journal, comptes, libellé, montants"
       ]
     },
     {
       "id": 4,
+      "name": "cloture-inventaire-is",
+      "prompt": "Suite de la clôture TechFlow 2025. Les transactions sont catégorisées. Maintenant fais les écritures d'inventaire (amortissements, PCA), calcule l'IS, et génère le journal d'écritures. Les données sont dans data/transactions/.",
+      "expected_output": "Le skill calcule l'amortissement du MacBook avec prorata, identifie le PCA sur l'abonnement annuel, calcule l'IS au taux réduit, et génère le journal et les états financiers.",
+      "files": [
+        "evals/files/company-techflow.json",
+        "evals/files/qonto-transactions.json",
+        "evals/files/stripe-transactions.json"
+      ],
+      "assertions": [
+        "Le MacBook à 599 EUR est immobilisé (>500 EUR) et amorti sur 3 ans avec prorata temporis",
+        "Un PCA est calculé pour l'abonnement annuel Client F (290 EUR, oct 2025 à sept 2026)",
+        "L'IS est calculé avec le taux réduit 15% (résultat < 42 500 EUR)",
+        "Le bilan est équilibré (actif = passif)",
+        "Les écritures d'inventaire sont datées au 31/12/2025",
+        "Le résultat net est correctement calculé (produits - charges - IS)"
+      ]
+    },
+    {
+      "id": 5,
       "name": "cloture-premier-exercice",
       "prompt": "Ma société TechFlow a été créée le 25/02/2025. Je veux faire la clôture de mon premier exercice (25/02/2025 au 31/12/2025). Les transactions sont dans data/transactions/.",
       "expected_output": "Le skill gère les spécificités du premier exercice : prorata temporis pour les amortissements (309 jours au lieu de 365), prorata du seuil IS à taux réduit (42500 * 309/365), vérification du seuil franchise TVA sur la période courte.",
@@ -73,11 +84,11 @@
         "evals/files/stripe-transactions.json"
       ],
       "assertions": [
-        "L'exercice est identifié comme premier exercice (309 jours)",
-        "Le prorata temporis est appliqué aux amortissements (MacBook : 599/3 * 92/365, pas 309/365 car mis en service en octobre)",
-        "Le seuil IS à taux réduit est proratisé (42 500 * 309/365 = ~35 950 EUR)",
+        "L'exercice est identifié comme premier exercice (durée inférieure à 12 mois)",
+        "Le prorata temporis est appliqué aux amortissements du MacBook (mis en service en octobre, prorata oct-déc)",
+        "Le seuil IS à taux réduit est proratisé sur la durée de l'exercice",
         "Le seuil de franchise TVA est surveillé sur la période courte",
-        "Les dépenses antérieures à la création ne sont pas incluses (aucune transaction avant le 25/02)"
+        "Les dépenses antérieures à la création (25/02/2025) ne sont pas incluses"
       ]
     }
   ]

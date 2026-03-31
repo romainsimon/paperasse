@@ -1,0 +1,8 @@
+[project]
+name = "paperasse-evals"
+version = "0.1.0"
+description = "Eval runner for paperasse skills — with/without skill comparison"
+requires-python = ">=3.12"
+dependencies = [
+    "pyyaml>=6.0.3",
+]

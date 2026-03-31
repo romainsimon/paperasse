@@ -1,0 +1,27 @@
+workspace: evals-workspace
+model: claude-sonnet-4-6
+grading_model: claude-haiku-4-5-20251001  # haiku is fast + cheap for PASS/FAIL grading
+
+# baseline_prompt: what a user would reasonably type without the skill
+# tools: tools available during skill runs (Read for file access)
+skills:
+  commissaire-aux-comptes:
+    path: commissaire-aux-comptes
+    baseline_prompt: "Tu es un auditeur financier. Analyse les données comptables fournies et donne ton opinion."
+    tools: "Read"
+  controleur-fiscal:
+    path: controleur-fiscal
+    baseline_prompt: "Tu es un inspecteur des impôts. Analyse ces données fiscales et identifie les anomalies."
+    tools: "Read"
+  notaire:
+    path: notaire
+    baseline_prompt: "Tu es un notaire expérimenté en droit français. Réponds à cette question avec les calculs détaillés."
+    tools: "Read"
+  comptable:
+    path: comptable
+    baseline_prompt: "Tu es un expert-comptable. Aide avec cette question de comptabilité française."
+    tools: "Read,Bash"
+  syndic:
+    path: syndic
+    baseline_prompt: "Tu es un gestionnaire de copropriété expérimenté en droit français. Aide avec cette question."
+    tools: "Read"

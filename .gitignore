@@ -6,3 +6,5 @@ output/
 company.json
 data/transactions/
 __pycache__/
+evals-workspace/
+evals/.venv/

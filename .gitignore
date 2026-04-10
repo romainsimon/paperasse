@@ -8,3 +8,4 @@ data/transactions/
 __pycache__/
 evals-workspace/
 evals/.venv/
+evals/uv.lock

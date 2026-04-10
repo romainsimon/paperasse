@@ -181,7 +181,7 @@ Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fic
 
 ## Evals
 
-Chaque skill est évalué automatiquement avec et sans le SKILL.md pour mesurer sa valeur ajoutée. Le runner utilise `claude --bare` en isolation, un grading LLM-as-judge, et une exécution parallèle (~20 min pour la suite complète).
+Chaque skill est évalué automatiquement avec et sans le SKILL.md pour mesurer sa valeur ajoutée. Le runner utilise `claude --bare` en isolation, un grading LLM-as-judge, une exécution parallèle (~20 min pour la suite complète), et un cache adressé par contenu pour réutiliser les runs inchangés d'une itération à l'autre.
 
 ```bash
 # Lancer les evals
@@ -190,9 +190,17 @@ uv run --project evals python evals/run_evals.py
 # Un seul skill
 uv run --project evals python evals/run_evals.py --skill notaire
 
+# Réutiliser le cache inter-itérations
+uv run --project evals python evals/run_evals.py --reuse-cache
+
+# Ne lancer que les skills impactés par la branche courante
+uv run --project evals python evals/run_evals.py --changed-only --reuse-cache
+
 # Voir les résultats dans le navigateur
 python evals/generate_review.py evals-workspace/iteration-xxx/
 ```
+
+Pour les PRs, un workflow GitHub Actions `Evals Smoke` résout les skills impactés par rapport à la branche de base, restaure le cache `evals-workspace/cache`, et exécute uniquement la sélection nécessaire.
 
 **Derniers résultats** (claude-sonnet-4-6, grading haiku) :
 

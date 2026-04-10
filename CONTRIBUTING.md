@@ -57,6 +57,16 @@ includes:
 
 Chaque skill devrait avoir des evals qui vérifient les réponses de l'agent. Format : un fichier `evals.json` avec des cas de test (question + critères de validation). Voir `comptable/evals/` pour un exemple complet.
 
+Boucle de validation recommandée :
+
+```bash
+# Planifier uniquement les skills impactés par la branche
+uv run --project evals python evals/run_evals.py --changed-only --plan-only
+
+# Exécuter les evals concernées en réutilisant le cache
+uv run --project evals python evals/run_evals.py --changed-only --reuse-cache
+```
+
 ## Licence
 
 En contribuant, vous acceptez que votre contribution soit publiée sous licence MIT.

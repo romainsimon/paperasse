@@ -1,20 +1,21 @@
 """Paperasse skill eval runner.
 
 Automates skill assessment: run skills with/without SKILL.md framework, grade
-outputs with LLM-as-judge, produce benchmarks. Uses claude --bare for clean-room
-isolation.
+outputs with LLM-as-judge, and produce benchmarks. Uses `claude --bare` for
+clean-room isolation.
 
-Optimized for speed:
+Optimized for contributor workflows:
   - Parallel execution (--workers N, default 8)
-  - Haiku for grading by default (--grading-model)
-  - Pipeline: grade each run as soon as it completes
+  - Content-addressed cache for runs and grading (--reuse-cache)
+  - Changed-skill selection against a git base ref (--changed-only)
+  - Planning mode for CI and local review (--plan-only)
 
 Usage:
-  uv run --project evals run_evals.py                       # run all (parallel)
-  uv run --project evals run_evals.py --skill notaire        # one skill
-  uv run --project evals run_evals.py --workers 4            # limit concurrency
-  uv run --project evals run_evals.py --grade-only           # re-grade existing
-  uv run --project evals run_evals.py --skip-grading         # collect only
+  uv run --project evals python evals/run_evals.py
+  uv run --project evals python evals/run_evals.py --skill notaire
+  uv run --project evals python evals/run_evals.py --changed-only --reuse-cache
+  uv run --project evals python evals/run_evals.py --grade-only --reuse-cache
+  uv run --project evals python evals/run_evals.py --plan-only --selection-json eval-plan.json
 """
 
 from __future__ import annotations
@@ -24,8 +25,10 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -51,8 +54,13 @@ GRADING_FILE = "grading.json"
 BENCHMARK_FILE = "benchmark.json"
 RUNS_DIR = "runs"
 
+CACHE_SCHEMA_VERSION = 1
+CACHE_DIR = "cache"
+RUN_CACHE_DIR = "runs"
+GRADING_CACHE_DIR = "gradings"
+CACHE_METADATA_FILE = "cache-metadata.json"
+
 # Lock for thread-safe printing
-import threading
 _print_lock = threading.Lock()
 
 
@@ -87,6 +95,24 @@ def _require_within(path: Path, parent: Path, label: str) -> Path:
     return resolved
 
 
+def _normalize_path_pattern(pattern: str) -> str:
+    normalized = pattern.strip().lstrip("./")
+    if normalized in ("", "."):
+        return ""
+    return normalized
+
+
+def _path_matches_pattern(file_path: str, pattern: str) -> bool:
+    file_path = _normalize_path_pattern(file_path)
+    pattern = _normalize_path_pattern(pattern)
+    if not file_path or not pattern:
+        return False
+    if pattern.endswith("/"):
+        bare = pattern.rstrip("/")
+        return file_path == bare or file_path.startswith(pattern)
+    return file_path == pattern or file_path.startswith(pattern + "/")
+
+
 def load_config(config_path: Path, args: argparse.Namespace) -> dict[str, Any]:
     try:
         with open(config_path) as f:
@@ -104,8 +130,14 @@ def load_config(config_path: Path, args: argparse.Namespace) -> dict[str, Any]:
         config["grading_model"] = args.grading_model
 
     _require_within(REPO_ROOT / config["workspace"], REPO_ROOT, "workspace")
+
+    for pattern in config.get("global_paths", []):
+        _require_within(REPO_ROOT / _normalize_path_pattern(pattern), REPO_ROOT, f"global path '{pattern}'")
+
     for name, skill in config.get("skills", {}).items():
         _require_within(REPO_ROOT / skill["path"], REPO_ROOT, f"skill '{name}' path")
+        for pattern in skill.get("shared_paths", []):
+            _require_within(REPO_ROOT / _normalize_path_pattern(pattern), REPO_ROOT, f"skill '{name}' shared path '{pattern}'")
 
     return config
 
@@ -113,7 +145,10 @@ def load_config(config_path: Path, args: argparse.Namespace) -> dict[str, Any]:
 def _run_git(*args: str, timeout: int = GIT_TIMEOUT) -> subprocess.CompletedProcess[str]:
     result = subprocess.run(
         ["git", *args],
-        capture_output=True, text=True, cwd=REPO_ROOT, timeout=timeout,
+        capture_output=True,
+        text=True,
+        cwd=REPO_ROOT,
+        timeout=timeout,
     )
     if result.returncode != 0:
         raise RuntimeError(f"git {args[0]} failed: {result.stderr.strip()}")
@@ -124,8 +159,11 @@ def get_iteration_id() -> tuple[str, bool]:
     try:
         shorthash = _run_git("rev-parse", "--short", "HEAD").stdout.strip()
         skill_dirs = [
-            "commissaire-aux-comptes/", "controleur-fiscal/",
-            "notaire/", "comptable/", "syndic/",
+            "commissaire-aux-comptes/",
+            "controleur-fiscal/",
+            "notaire/",
+            "comptable/",
+            "syndic/",
         ]
         unstaged = _run_git("diff", "--name-only", "--", *skill_dirs).stdout.strip()
         staged = _run_git("diff", "--cached", "--name-only", "--", *skill_dirs).stdout.strip()
@@ -187,6 +225,241 @@ def _load_file_contents(skill_path: Path, files: list[str]) -> str:
     return "\n\n--- Donnees de test ---" + "".join(parts) + "\n--- Fin des donnees ---\n"
 
 
+def _resolve_base_ref(explicit_ref: str | None) -> str:
+    if explicit_ref:
+        candidates = [explicit_ref]
+    else:
+        env_base = os.environ.get("GITHUB_BASE_REF")
+        candidates = []
+        if env_base:
+            candidates.extend([f"origin/{env_base}", env_base])
+        candidates.extend(["origin/master", "origin/main", "upstream/master", "upstream/main", "master", "main"])
+
+    seen: set[str] = set()
+    for candidate in candidates:
+        if not candidate or candidate in seen:
+            continue
+        seen.add(candidate)
+        try:
+            _run_git("rev-parse", "--verify", candidate)
+            return candidate
+        except RuntimeError:
+            continue
+
+    print(
+        "ERROR: could not resolve a base ref for --changed-only. "
+        "Pass --base-ref explicitly (for example origin/master).",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+
+
+def _get_changed_files(base_ref: str) -> list[str]:
+    try:
+        committed = _run_git("diff", "--name-only", f"{base_ref}...HEAD")
+        unstaged = _run_git("diff", "--name-only")
+        staged = _run_git("diff", "--cached", "--name-only")
+        untracked = _run_git("ls-files", "--others", "--exclude-standard")
+    except RuntimeError as e:
+        print(f"ERROR: failed to compute changed files against {base_ref}: {e}", file=sys.stderr)
+        sys.exit(1)
+    changed = {
+        line.strip()
+        for result in (committed, unstaged, staged, untracked)
+        for line in result.stdout.splitlines()
+        if line.strip()
+    }
+    return sorted(changed)
+
+
+def _resolve_changed_skills(
+    config: dict[str, Any],
+    selected_skill_names: list[str],
+    changed_files: list[str],
+) -> list[str]:
+    global_paths = config.get("global_paths", [])
+    if any(_path_matches_pattern(path, pattern) for path in changed_files for pattern in global_paths):
+        return selected_skill_names
+
+    changed_set = set(changed_files)
+    resolved: list[str] = []
+
+    for skill_name in selected_skill_names:
+        skill_config = config["skills"][skill_name]
+        skill_patterns = [skill_config["path"], *skill_config.get("shared_paths", [])]
+        if any(_path_matches_pattern(path, pattern) for path in changed_set for pattern in skill_patterns):
+            resolved.append(skill_name)
+
+    return resolved
+
+
+def build_selection(
+    config: dict[str, Any],
+    requested_skill_names: list[str],
+    scenario_filters: list[str] | None,
+    *,
+    changed_only: bool,
+    base_ref: str | None,
+) -> tuple[dict[str, list[dict[str, Any]]], dict[str, Any]]:
+    selected_skill_names = requested_skill_names
+    changed_files: list[str] = []
+    resolved_base_ref: str | None = None
+
+    if changed_only:
+        resolved_base_ref = _resolve_base_ref(base_ref)
+        changed_files = _get_changed_files(resolved_base_ref)
+        selected_skill_names = _resolve_changed_skills(config, requested_skill_names, changed_files)
+
+    skill_scenarios: dict[str, list[dict[str, Any]]] = {}
+    for skill_name in selected_skill_names:
+        skill_scenarios[skill_name] = _get_scenarios(config["skills"][skill_name], scenario_filters)
+
+    scenario_count = sum(len(scenarios) for scenarios in skill_scenarios.values())
+    run_count = scenario_count * len(MODES)
+
+    selection = {
+        "changed_only": changed_only,
+        "base_ref": resolved_base_ref,
+        "changed_files": changed_files,
+        "skills": selected_skill_names,
+        "skill_count": len(selected_skill_names),
+        "scenario_count": scenario_count,
+        "run_count": run_count,
+    }
+    return skill_scenarios, selection
+
+
+def write_selection(selection_path: Path, selection: dict[str, Any]) -> None:
+    selection_path.parent.mkdir(parents=True, exist_ok=True)
+    selection_path.write_text(json.dumps(selection, indent=2) + "\n")
+
+
+def print_selection(selection: dict[str, Any]) -> None:
+    print(
+        "Selection: "
+        f"{selection['skill_count']} skill(s), "
+        f"{selection['scenario_count']} scenario(s), "
+        f"{selection['run_count']} run(s)"
+    )
+    if selection["changed_only"]:
+        print(f"Base ref: {selection['base_ref']}")
+        print(f"Changed files: {len(selection['changed_files'])}")
+        for path in selection["changed_files"][:20]:
+            print(f"  - {path}")
+        if len(selection["changed_files"]) > 20:
+            print(f"  ... and {len(selection['changed_files']) - 20} more")
+    if selection["skills"]:
+        print("Skills:")
+        for skill in selection["skills"]:
+            print(f"  - {skill}")
+
+
+def _stable_json(value: Any) -> str:
+    return json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+
+
+def _hash_text(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _hash_file(file_path: Path) -> str:
+    try:
+        return hashlib.sha256(file_path.read_bytes()).hexdigest()
+    except FileNotFoundError:
+        return "missing"
+
+
+def _cache_entry_dir(base_dir: Path, cache_key: str) -> Path:
+    return base_dir / cache_key[:2] / cache_key
+
+
+def _copy_cache_files(src_dir: Path, dst_dir: Path, files: list[str]) -> None:
+    dst_dir.mkdir(parents=True, exist_ok=True)
+    for name in files:
+        shutil.copy2(src_dir / name, dst_dir / name)
+
+
+def _restore_cache_entry(cache_dir: Path, output_dir: Path, files: list[str]) -> bool:
+    if not cache_dir.exists():
+        return False
+    if any(not (cache_dir / name).exists() for name in files):
+        return False
+    _copy_cache_files(cache_dir, output_dir, files)
+    return True
+
+
+def _store_cache_entry(cache_dir: Path, source_dir: Path, files: list[str], metadata: dict[str, Any]) -> None:
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    _copy_cache_files(source_dir, cache_dir, files)
+    (cache_dir / CACHE_METADATA_FILE).write_text(json.dumps(metadata, indent=2) + "\n")
+
+
+def _mark_cached_run_timing(output_dir: Path) -> None:
+    timing_path = output_dir / TIMING_FILE
+    try:
+        timing = json.loads(timing_path.read_text())
+    except (FileNotFoundError, json.JSONDecodeError):
+        return
+
+    timing["cache_hit"] = True
+    timing["source_input_tokens"] = timing.get("input_tokens", 0)
+    timing["source_output_tokens"] = timing.get("output_tokens", 0)
+    timing["source_total_cost_usd"] = timing.get("total_cost_usd", 0)
+    timing["source_duration_ms"] = timing.get("duration_ms", 0)
+    timing["source_duration_api_ms"] = timing.get("duration_api_ms", 0)
+    timing["input_tokens"] = 0
+    timing["output_tokens"] = 0
+    timing["total_cost_usd"] = 0
+    timing["duration_ms"] = 0
+    timing["duration_api_ms"] = 0
+
+    timing_path.write_text(json.dumps(timing, indent=2) + "\n")
+
+
+def _build_run_cache_spec(
+    skill_config: dict[str, Any],
+    scenario: dict[str, Any],
+    mode: str,
+    model: str,
+) -> dict[str, Any]:
+    skill_path = REPO_ROOT / skill_config["path"]
+    files = scenario.get("files", [])
+    baseline = skill_config.get("baseline_prompt", "") if mode == "without_skill" else ""
+    tools = "" if mode == "without_skill" else skill_config.get("tools", "")
+    system_prompt_hash = None
+    if mode == "with_skill":
+        system_prompt_hash = _hash_file(skill_path / "SKILL.md")
+
+    return {
+        "schema_version": CACHE_SCHEMA_VERSION,
+        "kind": "run",
+        "mode": mode,
+        "model": model,
+        "tools": tools,
+        "baseline_prompt": baseline,
+        "prompt": scenario["prompt"],
+        "fixture_files": [
+            {"path": file_rel, "sha256": _hash_file(skill_path / file_rel)}
+            for file_rel in files
+        ],
+        "system_prompt_sha256": system_prompt_hash,
+    }
+
+
+def _build_grading_cache_spec(output_text: str, expectations: list[str], model: str) -> dict[str, Any]:
+    return {
+        "schema_version": CACHE_SCHEMA_VERSION,
+        "kind": "grading",
+        "grading_model": model,
+        "output_sha256": _hash_text(output_text),
+        "expectations": expectations,
+    }
+
+
+def _cache_key(spec: dict[str, Any]) -> str:
+    return hashlib.sha256(_stable_json(spec).encode("utf-8")).hexdigest()
+
+
 def run_claude(
     prompt: str,
     model: str,
@@ -195,10 +468,14 @@ def run_claude(
 ) -> dict[str, Any]:
     """Run claude --bare -p and return parsed JSON response."""
     cmd = [
-        "claude", "--bare",
-        "-p", prompt,
-        "--model", model,
-        "--output-format", "json",
+        "claude",
+        "--bare",
+        "-p",
+        prompt,
+        "--model",
+        model,
+        "--output-format",
+        "json",
         "--no-session-persistence",
     ]
     if tools:
@@ -208,8 +485,11 @@ def run_claude(
 
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True,
-            cwd=REPO_ROOT, timeout=CLAUDE_TIMEOUT,
+            cmd,
+            capture_output=True,
+            text=True,
+            cwd=REPO_ROOT,
+            timeout=CLAUDE_TIMEOUT,
         )
     except subprocess.TimeoutExpired:
         return {"_error": "timeout"}
@@ -252,80 +532,13 @@ def _parse_json_response(text: str) -> dict[str, Any] | None:
     return None
 
 
-# ---------------------------------------------------------------------------
-# Single-run task: execute one (skill, scenario, mode) and optionally grade
-# ---------------------------------------------------------------------------
-
-def _run_single(
-    skill_name: str,
-    skill_config: dict[str, Any],
-    scenario: dict[str, Any],
-    mode: str,
-    iteration_path: Path,
-    model: str,
-    grading_model: str | None,
-) -> dict[str, Any]:
-    """Execute a single run (one mode of one scenario) and optionally grade it.
-
-    Returns a result dict for progress tracking.
-    """
-    name = scenario["name"]
-    skill_path = REPO_ROOT / skill_config["path"]
-    output_dir = iteration_path / RUNS_DIR / skill_name / name / mode
-    label = f"{skill_name}/{name}/{mode}"
-
-    # Skip if already done
-    if (output_dir / OUTPUT_FILE).exists():
-        result_info = {"label": label, "status": "skipped"}
-        # Still grade if needed
-        if grading_model and not (output_dir / GRADING_FILE).exists():
-            g = _grade_single(output_dir, scenario["expectations"], grading_model)
-            result_info["grading"] = g
-        return result_info
-
-    # Build prompt
-    file_contents = _load_file_contents(skill_path, scenario.get("files", []))
-    prompt = scenario["prompt"]
-    prompt_with_data = prompt + file_contents if file_contents else prompt
-
-    if mode == "without_skill":
-        baseline = skill_config.get("baseline_prompt", "")
-        run_prompt = f"{baseline}\n\n{prompt_with_data}" if baseline else prompt_with_data
-        tools = ""
-        spf = None
-    else:
-        run_prompt = prompt_with_data
-        tools = skill_config.get("tools", "")
-        spf = skill_path / "SKILL.md"
-
-    # Run
-    tprint(f"  >> {label} ...")
-    t0 = time.time()
-    response = run_claude(run_prompt, model=model, tools=tools, system_prompt_file=spf)
-    elapsed = time.time() - t0
-
-    if "_error" in response:
-        tprint(f"  << {label} ERROR: {response['_error']} ({elapsed:.0f}s)")
-        return {"label": label, "status": "error", "error": response["_error"]}
-
-    save_run(output_dir, response)
-    cost = response.get("total_cost_usd", 0)
-    tprint(f"  << {label} done ({elapsed:.0f}s, ${cost:.3f})")
-
-    result_info: dict[str, Any] = {"label": label, "status": "ok", "cost": cost, "elapsed": elapsed}
-
-    # Pipeline: grade immediately if requested
-    if grading_model:
-        g = _grade_single(output_dir, scenario["expectations"], grading_model)
-        result_info["grading"] = g
-
-    return result_info
-
-
 def _grade_single(
     output_dir: Path,
     expectations: list[str],
     model: str,
+    *,
+    cache_root: Path | None = None,
+    reuse_cache: bool = False,
 ) -> dict[str, Any] | None:
     """Grade a single run's output against its expectations."""
     output_file = output_dir / OUTPUT_FILE
@@ -336,6 +549,20 @@ def _grade_single(
 
     if not output_text.strip():
         return None
+
+    cache_hit = False
+    cache_key = None
+    cache_dir = None
+    if cache_root is not None:
+        grading_spec = _build_grading_cache_spec(output_text, expectations, model)
+        cache_key = _cache_key(grading_spec)
+        cache_dir = _cache_entry_dir(cache_root, cache_key)
+        if reuse_cache and _restore_cache_entry(cache_dir, output_dir, [GRADING_FILE]):
+            cache_hit = True
+            grading = json.loads((output_dir / GRADING_FILE).read_text())
+            label = str(output_dir.relative_to(output_dir.parent.parent.parent.parent))
+            tprint(f"     grading {label} cache hit ({cache_key[:12]})")
+            return {"grading": grading, "cache_hit": True, "cache_key": cache_key}
 
     numbered = "\n".join(f"{i}. {a}" for i, a in enumerate(expectations, start=1))
 
@@ -372,14 +599,136 @@ def _grade_single(
 
     (output_dir / GRADING_FILE).write_text(json.dumps(grading, indent=2) + "\n")
 
+    if cache_dir is not None and cache_key is not None:
+        _store_cache_entry(
+            cache_dir,
+            output_dir,
+            [GRADING_FILE],
+            {
+                "cache_key": cache_key,
+                "cache_hit": cache_hit,
+                "created_at": time.time(),
+            },
+        )
+
     s = grading.get("summary", {})
     tprint(f"     grading {label} => {s.get('passed', '?')}/{s.get('total', '?')}")
-    return grading
+    return {"grading": grading, "cache_hit": False, "cache_key": cache_key}
 
 
-# ---------------------------------------------------------------------------
-# Aggregation and reporting (unchanged)
-# ---------------------------------------------------------------------------
+def _run_single(
+    skill_name: str,
+    skill_config: dict[str, Any],
+    scenario: dict[str, Any],
+    mode: str,
+    iteration_path: Path,
+    model: str,
+    grading_model: str | None,
+    *,
+    cache_root: Path | None = None,
+    reuse_cache: bool = False,
+) -> dict[str, Any]:
+    """Execute a single run (one mode of one scenario) and optionally grade it."""
+    name = scenario["name"]
+    skill_path = REPO_ROOT / skill_config["path"]
+    output_dir = iteration_path / RUNS_DIR / skill_name / name / mode
+    label = f"{skill_name}/{name}/{mode}"
+
+    # Skip if already done in this iteration.
+    if (output_dir / OUTPUT_FILE).exists():
+        result_info: dict[str, Any] = {"label": label, "status": "skipped"}
+        if grading_model and not (output_dir / GRADING_FILE).exists():
+            grading_cache_root = None if cache_root is None else cache_root / GRADING_CACHE_DIR
+            g = _grade_single(
+                output_dir,
+                scenario["expectations"],
+                grading_model,
+                cache_root=grading_cache_root,
+                reuse_cache=reuse_cache,
+            )
+            result_info["grading"] = g
+            result_info["grading_cache_hit"] = bool(g and g.get("cache_hit"))
+        return result_info
+
+    file_contents = _load_file_contents(skill_path, scenario.get("files", []))
+    prompt = scenario["prompt"]
+    prompt_with_data = prompt + file_contents if file_contents else prompt
+
+    if mode == "without_skill":
+        baseline = skill_config.get("baseline_prompt", "")
+        run_prompt = f"{baseline}\n\n{prompt_with_data}" if baseline else prompt_with_data
+        tools = ""
+        spf = None
+    else:
+        run_prompt = prompt_with_data
+        tools = skill_config.get("tools", "")
+        spf = skill_path / "SKILL.md"
+
+    run_cache_key = None
+    run_cache_hit = False
+    run_cache_dir = None
+    if cache_root is not None:
+        run_cache_spec = _build_run_cache_spec(skill_config, scenario, mode, model)
+        run_cache_key = _cache_key(run_cache_spec)
+        run_cache_dir = _cache_entry_dir(cache_root / RUN_CACHE_DIR, run_cache_key)
+        if reuse_cache and _restore_cache_entry(run_cache_dir, output_dir, [OUTPUT_FILE, TIMING_FILE]):
+            _mark_cached_run_timing(output_dir)
+            run_cache_hit = True
+            tprint(f"  << {label} cache hit ({run_cache_key[:12]})")
+
+    if not run_cache_hit:
+        tprint(f"  >> {label} ...")
+        t0 = time.time()
+        response = run_claude(run_prompt, model=model, tools=tools, system_prompt_file=spf)
+        elapsed = time.time() - t0
+
+        if "_error" in response:
+            tprint(f"  << {label} ERROR: {response['_error']} ({elapsed:.0f}s)")
+            return {"label": label, "status": "error", "error": response["_error"]}
+
+        save_run(output_dir, response)
+        cost = response.get("total_cost_usd", 0)
+        tprint(f"  << {label} done ({elapsed:.0f}s, ${cost:.3f})")
+
+        if run_cache_dir is not None and run_cache_key is not None:
+            _store_cache_entry(
+                run_cache_dir,
+                output_dir,
+                [OUTPUT_FILE, TIMING_FILE],
+                {
+                    "cache_key": run_cache_key,
+                    "label": label,
+                    "created_at": time.time(),
+                },
+            )
+
+    try:
+        timing = json.loads((output_dir / TIMING_FILE).read_text())
+        cost = timing.get("total_cost_usd", 0)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cost = 0
+
+    result_info: dict[str, Any] = {
+        "label": label,
+        "status": "cached" if run_cache_hit else "ok",
+        "cost": cost,
+        "run_cache_hit": run_cache_hit,
+    }
+
+    if grading_model:
+        grading_cache_root = None if cache_root is None else cache_root / GRADING_CACHE_DIR
+        g = _grade_single(
+            output_dir,
+            scenario["expectations"],
+            grading_model,
+            cache_root=grading_cache_root,
+            reuse_cache=reuse_cache,
+        )
+        result_info["grading"] = g
+        result_info["grading_cache_hit"] = bool(g and g.get("cache_hit"))
+
+    return result_info
+
 
 def aggregate(iteration_path: Path, config: dict[str, Any]) -> dict[str, Any]:
     iteration_name = iteration_path.name.replace("iteration-", "")
@@ -392,7 +741,10 @@ def aggregate(iteration_path: Path, config: dict[str, Any]) -> dict[str, Any]:
         "grading_model": config["grading_model"],
         "skill_content_hashes": {},
         "skills": {},
-        "aggregate": {mode: {"total_passed": 0, "total_assertions": 0, "total_cost_usd": 0} for mode in MODES},
+        "aggregate": {
+            mode: {"total_passed": 0, "total_assertions": 0, "total_cost_usd": 0}
+            for mode in MODES
+        },
     }
 
     runs_dir = iteration_path / RUNS_DIR
@@ -438,7 +790,8 @@ def aggregate(iteration_path: Path, config: dict[str, Any]) -> dict[str, Any]:
             if all(m in scenario_results for m in MODES):
                 scenario_results["delta"] = round(
                     scenario_results["with_skill"]["pass_rate"]
-                    - scenario_results["without_skill"]["pass_rate"], 2
+                    - scenario_results["without_skill"]["pass_rate"],
+                    2,
                 )
             skill_results[name] = scenario_results
 
@@ -452,7 +805,8 @@ def aggregate(iteration_path: Path, config: dict[str, Any]) -> dict[str, Any]:
 
     agg = benchmark["aggregate"]
     agg["delta"] = round(
-        agg["with_skill"]["mean_pass_rate"] - agg["without_skill"]["mean_pass_rate"], 2
+        agg["with_skill"]["mean_pass_rate"] - agg["without_skill"]["mean_pass_rate"],
+        2,
     )
     (iteration_path / BENCHMARK_FILE).write_text(json.dumps(benchmark, indent=2) + "\n")
     return benchmark
@@ -464,7 +818,7 @@ def print_summary(benchmark: dict[str, Any]) -> None:
     model = benchmark["model"]
     grading_model = benchmark["grading_model"]
 
-    print(f"\nPaperasse Skill Evals — {iteration}{dirty}")
+    print(f"\nPaperasse Skill Evals - {iteration}{dirty}")
     print(f"  model: {model}  grading: {grading_model}")
     print("=" * 78)
     print(f"{'Skill':<26} {'Scenario':<28} {'With':>7} {'Without':>7} {'Delta':>7}")
@@ -500,8 +854,16 @@ def print_summary(benchmark: dict[str, Any]) -> None:
     print("-" * 58)
 
     for skill_name, scenarios in sorted(benchmark["skills"].items()):
-        with_rates = [r.get("with_skill", {}).get("pass_rate", 0) for r in scenarios.values() if r.get("with_skill")]
-        without_rates = [r.get("without_skill", {}).get("pass_rate", 0) for r in scenarios.values() if r.get("without_skill")]
+        with_rates = [
+            r.get("with_skill", {}).get("pass_rate", 0)
+            for r in scenarios.values()
+            if r.get("with_skill")
+        ]
+        without_rates = [
+            r.get("without_skill", {}).get("pass_rate", 0)
+            for r in scenarios.values()
+            if r.get("without_skill")
+        ]
 
         avg_with = sum(with_rates) / len(with_rates) if with_rates else 0
         avg_without = sum(without_rates) / len(without_rates) if without_rates else 0
@@ -509,9 +871,17 @@ def print_summary(benchmark: dict[str, Any]) -> None:
     print()
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
+def _require_api_key() -> None:
+    load_dotenv(SCRIPT_DIR / ".env")
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        for alt_key in ("WIN_ANTHROPIC_API_KEY",):
+            if os.environ.get(alt_key):
+                os.environ["ANTHROPIC_API_KEY"] = os.environ[alt_key]
+                break
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        print("ERROR: ANTHROPIC_API_KEY not set. Add it to evals/.env or export it.", file=sys.stderr)
+        sys.exit(1)
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run paperasse skill evals")
@@ -528,20 +898,17 @@ def main() -> None:
     parser.add_argument("--model", help="Override assessment model")
     parser.add_argument("--grading-model", help="Override grading model")
     parser.add_argument("--config", type=Path, default=SCRIPT_DIR / "config.yaml")
+    parser.add_argument("--reuse-cache", action="store_true", help="Reuse cached runs and gradings across iterations")
+    parser.add_argument("--changed-only", action="store_true", help="Run only skills affected versus a git base ref")
+    parser.add_argument("--base-ref", help="Git ref used with --changed-only (default: origin/master or detected base)")
+    parser.add_argument("--plan-only", action="store_true", help="Print the resolved selection and exit")
+    parser.add_argument("--selection-json", type=Path, help="Write selection metadata to a JSON file")
     args = parser.parse_args()
-
-    load_dotenv(SCRIPT_DIR / ".env")
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        for alt_key in ("WIN_ANTHROPIC_API_KEY",):
-            if os.environ.get(alt_key):
-                os.environ["ANTHROPIC_API_KEY"] = os.environ[alt_key]
-                break
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("ERROR: ANTHROPIC_API_KEY not set. Add it to evals/.env or export it.", file=sys.stderr)
-        sys.exit(1)
 
     config = load_config(args.config, args)
     workspace = REPO_ROOT / config["workspace"]
+    cache_root = workspace / CACHE_DIR
+    _require_within(cache_root, workspace, "cache root")
 
     if args.iteration:
         iteration_id = args.iteration
@@ -557,7 +924,7 @@ def main() -> None:
     iteration_path = workspace / f"iteration-{iteration_id}"
     _require_within(iteration_path, workspace, "iteration path")
 
-    if not args.grade_only and iteration_path.exists() and not args.force:
+    if not args.grade_only and iteration_path.exists() and not args.force and not args.plan_only:
         print(
             f"ERROR: {iteration_path.relative_to(REPO_ROOT)} already exists. "
             "Use --force to overwrite.",
@@ -565,21 +932,42 @@ def main() -> None:
         )
         sys.exit(1)
 
-    # Filter skills
-    skill_names = args.skills or list(config["skills"].keys())
-    for name in skill_names:
+    requested_skill_names = args.skills or list(config["skills"].keys())
+    for name in requested_skill_names:
         if name not in config["skills"]:
             print(f"ERROR: unknown skill '{name}'", file=sys.stderr)
             sys.exit(1)
 
-    # Load scenarios
-    skill_scenarios: dict[str, list[dict[str, Any]]] = {}
-    for skill_name in skill_names:
-        skill_scenarios[skill_name] = _get_scenarios(config["skills"][skill_name], args.scenarios)
+    skill_scenarios, selection = build_selection(
+        config,
+        requested_skill_names,
+        args.scenarios,
+        changed_only=args.changed_only,
+        base_ref=args.base_ref,
+    )
 
-    # Build work items: list of (skill, scenario, mode) tuples
+    if args.selection_json:
+        selection_path = args.selection_json
+        if not selection_path.is_absolute():
+            selection_path = REPO_ROOT / selection_path
+        write_selection(selection_path, selection)
+
+    print_selection(selection)
+    print()
+
+    if args.plan_only:
+        return
+
+    if selection["skill_count"] == 0:
+        print("No skills matched the current selection. Nothing to run.")
+        return
+
+    if args.grade_only and not iteration_path.exists():
+        print(f"ERROR: iteration not found: {iteration_path.relative_to(REPO_ROOT)}", file=sys.stderr)
+        sys.exit(1)
+
     work_items: list[tuple[str, dict[str, Any], dict[str, Any], str]] = []
-    for skill_name in skill_names:
+    for skill_name in selection["skills"]:
         for scenario in skill_scenarios[skill_name]:
             for mode in MODES:
                 work_items.append((skill_name, config["skills"][skill_name], scenario, mode))
@@ -588,54 +976,93 @@ def main() -> None:
     grading_model = None if args.skip_grading else config["grading_model"]
     workers = min(args.workers, total) if total > 0 else 1
 
-    print(f"Plan: {len(skill_names)} skills, {sum(len(s) for s in skill_scenarios.values())} scenarios, {total} runs")
+    print(f"Plan: {selection['skill_count']} skills, {selection['scenario_count']} scenarios, {total} runs")
     print(f"Workers: {workers}  Model: {config['model']}  Grading: {grading_model or 'skip'}")
+    print(f"Cache reuse: {'on' if args.reuse_cache else 'off'}")
     print()
 
-    t0 = time.time()
-
     if args.grade_only:
-        # Grade-only mode: just grade existing outputs in parallel
         grade_items = []
-        for skill_name in skill_names:
+        for skill_name in selection["skills"]:
             for scenario in skill_scenarios[skill_name]:
                 for mode in MODES:
                     output_dir = iteration_path / RUNS_DIR / skill_name / scenario["name"] / mode
                     if (output_dir / OUTPUT_FILE).exists() and not (output_dir / GRADING_FILE).exists():
                         grade_items.append((output_dir, scenario["expectations"], config["grading_model"]))
 
+        if not grade_items:
+            print("No ungraded runs found in the selected iteration.")
+            return
+
+    elif total == 0:
+        print("No scenarios matched the current selection. Nothing to run.")
+        return
+
+    _require_api_key()
+
+    t0 = time.time()
+
+    if args.grade_only:
         print(f"Grading {len(grade_items)} runs...")
-        with ThreadPoolExecutor(max_workers=workers) as pool:
-            futures = {pool.submit(_grade_single, *item): item for item in grade_items}
+        grading_cache_root = cache_root / GRADING_CACHE_DIR
+        with ThreadPoolExecutor(max_workers=min(args.workers, len(grade_items))) as pool:
+            futures = {
+                pool.submit(
+                    _grade_single,
+                    output_dir,
+                    expectations,
+                    config["grading_model"],
+                    cache_root=grading_cache_root,
+                    reuse_cache=args.reuse_cache,
+                ): output_dir
+                for output_dir, expectations, _ in grade_items
+            }
             for future in as_completed(futures):
-                future.result()  # propagate exceptions
+                future.result()
     else:
-        # Full run: execute + grade in parallel pipeline
+        run_cache_hits = 0
+        grading_cache_hits = 0
+        errors = 0
+
         with ThreadPoolExecutor(max_workers=workers) as pool:
             futures = {
                 pool.submit(
                     _run_single,
-                    skill_name, skill_config, scenario, mode,
-                    iteration_path, config["model"], grading_model,
+                    skill_name,
+                    skill_config,
+                    scenario,
+                    mode,
+                    iteration_path,
+                    config["model"],
+                    grading_model,
+                    cache_root=cache_root,
+                    reuse_cache=args.reuse_cache,
                 ): f"{skill_name}/{scenario['name']}/{mode}"
                 for skill_name, skill_config, scenario, mode in work_items
             }
 
             done = 0
-            errors = 0
             for future in as_completed(futures):
                 done += 1
                 result = future.result()
                 if result.get("status") == "error":
                     errors += 1
+                if result.get("run_cache_hit"):
+                    run_cache_hits += 1
+                if result.get("grading_cache_hit"):
+                    grading_cache_hits += 1
                 if done % 10 == 0 or done == total:
                     elapsed = time.time() - t0
-                    tprint(f"\n  Progress: {done}/{total} ({errors} errors, {elapsed:.0f}s elapsed)\n")
+                    tprint(
+                        "\n"
+                        f"  Progress: {done}/{total} ({errors} errors, "
+                        f"{run_cache_hits} run cache hits, {grading_cache_hits} grading cache hits, "
+                        f"{elapsed:.0f}s elapsed)\n"
+                    )
 
     total_elapsed = time.time() - t0
     print(f"\nTotal time: {total_elapsed:.0f}s ({total_elapsed/60:.1f}min)")
 
-    # Aggregate and summarize
     benchmark = aggregate(iteration_path, config)
     print_summary(benchmark)
 

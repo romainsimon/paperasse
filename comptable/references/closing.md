@@ -155,7 +155,7 @@ Annuité = Valeur brute / Durée
 **Prorata temporis:** Première et dernière année au prorata.
 
 ```
-Annuité N = (Valeur / Durée) × (Jours utilisés / 360)
+Annuité N = (Valeur / Durée) × (Jours utilisés / 365)
 ```
 
 #### Dégressif (Option)

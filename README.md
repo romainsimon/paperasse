@@ -138,6 +138,7 @@ npm run closing    # Génère tout d'un coup (états financiers + FEC + PDFs)
 
 | Script / Template | Génère |
 |-------------------|--------|
+| `calc.js` | Calculs déterministes (CCA, amortissements, IS, TVA simplifiée, prorata) |
 | `generate-statements.js` | Bilan, Compte de résultat, Balance |
 | `generate-fec.js` | FEC 18 colonnes (art. L. 47 A-I LPF) |
 | `generate-pdfs.js` | PDFs professionnels avec en-tête société |

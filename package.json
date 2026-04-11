@@ -4,6 +4,8 @@
   "description": "Skills et outils pour la comptabilité française",
   "private": true,
   "scripts": {
+    "calc": "node scripts/calc.js",
+    "test:calc": "node scripts/test-deterministic-calculations.js",
     "fec": "node scripts/generate-fec.js",
     "statements": "node scripts/generate-statements.js",
     "pdfs": "node scripts/generate-pdfs.js",

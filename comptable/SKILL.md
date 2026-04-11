@@ -140,9 +140,12 @@ Consulter selon le besoin :
 |--------|-------|
 | `scripts/fetch_company.py <SIREN>` | Recherche info entreprise via API |
 | `scripts/update_data.py` | Vérifier fraîcheur des données et télécharger MAJ |
+| `scripts/calc.js` | Calculs déterministes (CCA, amortissement, IS, acomptes TVA simplifié, prorata) |
 | `scripts/generate-statements.js` | Générer Bilan, Compte de résultat, Balance |
 | `scripts/generate-fec.js` | Générer le FEC |
 | `scripts/generate-pdfs.js` | Convertir les états financiers en PDFs |
+
+Règle de calcul : pour tout calcul chiffré (TVA, IS, amortissement, prorata, CCA), utiliser `node scripts/calc.js` plutôt qu'un calcul mental.
 
 ## Templates
 

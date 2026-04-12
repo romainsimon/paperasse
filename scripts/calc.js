@@ -95,8 +95,7 @@ function parseRateToBps(value, name) {
   if (!/^-?\d+(\.\d+)?$/.test(raw)) fail("taux invalide pour --" + name + ": " + value);
   const num = Number(raw);
   if (Number.isNaN(num)) fail("taux invalide pour --" + name + ": " + value);
-  const percent = Math.abs(num) <= 1 ? num * 100 : num;
-  return Math.round(percent * 100); // 1% = 100 bps
+  return BigInt(Math.round(num * 100)); // 1% = 100 bps
 }
 
 function roundDivSigned(numer, denom) {
@@ -214,7 +213,7 @@ function cmdIS(args) {
   const rows = [["Resultat fiscal", formatCents(resultatFiscal)]];
 
   if (args.taux !== undefined) {
-    const tauxBps = BigInt(parseRateToBps(args.taux, "taux"));
+    const tauxBps = parseRateToBps(args.taux, "taux");
     totalIS = roundDivSigned(resultatFiscal * tauxBps, 10000n);
     mode = "taux unique";
     rows.push(["Mode", mode]);
@@ -225,8 +224,8 @@ function cmdIS(args) {
     args["taux-normal"] !== undefined ||
     args.plafond !== undefined
   ) {
-    const tauxReduitBps = BigInt(parseRateToBps(args["taux-reduit"] ?? 15, "taux-reduit"));
-    const tauxNormalBps = BigInt(parseRateToBps(args["taux-normal"] ?? 25, "taux-normal"));
+    const tauxReduitBps = parseRateToBps(args["taux-reduit"] ?? 15, "taux-reduit");
+    const tauxNormalBps = parseRateToBps(args["taux-normal"] ?? 25, "taux-normal");
     const plafondAnnuel = parseAmountToCents(args.plafond ?? 42500, "plafond");
     const joursExercice = args["jours-exercice"] !== undefined
       ? BigInt(parseIntStrict(args["jours-exercice"], "jours-exercice"))
@@ -317,4 +316,19 @@ function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  cmdAmortissementLineaire,
+  cmdCCA,
+  cmdIS,
+  cmdProrata,
+  cmdTVAAcomptesRS,
+  formatCents,
+  parseAmountToCents,
+  parseRateToBps,
+  prorateAnnualThreshold,
+  roundDivSigned,
+};

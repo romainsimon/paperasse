@@ -153,6 +153,7 @@ Annuité = Valeur brute / Durée
 ```
 
 **Prorata temporis:** Première et dernière année au prorata.
+Base civile retenue ici : 365 jours, conforme à la pratique fiscale usuelle pour l'amortissement des immobilisations.
 
 ```
 Annuité N = (Valeur / Durée) × (Jours utilisés / 365)

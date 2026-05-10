@@ -9,7 +9,7 @@ includes:
   - integrations/**
   - company.example.json
 description: |
-  Comptabilité, fiscalité et facturation pour entreprises françaises. Gère écritures PCG, déclarations TVA, IS/IR, clôture annuelle, liasse fiscale (2033/2065), FEC, états financiers, et chaîne facturation (mentions obligatoires, numérotation, Factur-X/UBL/CII, plateformes agréées PDP/PA, e-reporting, réforme 2026, PEPPOL). Utiliser dès qu'une question porte sur comptabilité française, TVA, impôts, bilan, compte de résultat, amortissement, PCA, clôture, facture, avoir, devis, acompte, facturation électronique, ou e-invoicing.
+  Comptabilité, fiscalité et facturation pour entreprises françaises. Gère écritures PCG, déclarations TVA, IS/IR, clôture annuelle, liasse fiscale (2033/2065), FEC, états financiers, et chaîne facturation (mentions obligatoires, numérotation, Factur-X/UBL/CII, plateformes agréées (PA) et solutions compatibles (SC), e-reporting, réforme 2026, PEPPOL). Utiliser dès qu'une question porte sur comptabilité française, TVA, impôts, bilan, compte de résultat, amortissement, PCA, clôture, facture, avoir, devis, acompte, facturation électronique, ou e-invoicing.
 ---
 
 # Expert-Comptable IA
@@ -33,8 +33,10 @@ Pour toute demande liée à une facture ou à la conformité e-facturation, vér
 invoicing.prefix              → Format de numérotation (ex: "F")
 invoicing.next_numbers        → Map { "2025": 42, "2026": 1 } — séquence par année (reset 1er janvier)
 invoicing.avoir_prefix        → Préfixe des avoirs (ex: "AV")
-einvoicing.pa                 → Plateforme agréée choisie
+einvoicing.type               → "pa" (PA directe) ou "sc" (Solution Compatible adossée à une PA)
+einvoicing.pa                 → ID PA (directe, ou PA partenaire si type="sc")
 einvoicing.pa_name            → Nom de la PA
+einvoicing.sc_name            → Nom du logiciel SC en texte libre, vide si type="pa" (ex: "Superindep", "Dolibarr") — pas de référentiel d'IDs pour les SC
 einvoicing.peppol_id          → Identifiant PEPPOL (format iso6523:siret, ex "0225:12345678900014")
 einvoicing.reception_ready    → Prête à recevoir (sept. 2026)
 einvoicing.emission_ready     → Prête à émettre
@@ -72,6 +74,7 @@ Sources de vérification :
 - https://www.service-public.fr/professionnels-entreprises
 - https://www.impots.gouv.fr/professionnel/je-passe-la-facturation-electronique
 - https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
+- https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/fe_presentation-des-labels.pdf (PDF DGFiP — labels PA, SC, OD)
 
 ## Workflow
 
@@ -105,7 +108,7 @@ Si l'échéance approche et `einvoicing.reception_ready` est `false`, afficher :
 
 ```
 🔴 FACTURATION ÉLECTRONIQUE — Réception obligatoire le 01/09/2026
-   Plateforme agréée non configurée.
+   Plateforme agréée ou Solution Compatible non configurée.
    → Voir references/facturation/setup-facturation.md
 ```
 
@@ -268,7 +271,7 @@ OBLIGATIONS FACTURATION ÉLECTRONIQUE
 🔴/🟡/🟢 Réception e-factures : [statut] (échéance 1er sept. 2026)
 🔴/🟡/🟢 Émission e-factures : [statut] (échéance 1er sept. 2026 ou 2027)
 🔴/🟡/🟢 E-reporting : [statut] (même échéance que l'émission)
-🔴/🟡/🟢 Plateforme agréée : [choisie / à choisir]
+🔴/🟡/🟢 Plateforme agréée ou Logiciel facturation compatible (Solution Compatible) : [choisie / à choisir]
 ```
 
 Couleurs : 🔴 Échéance < 3 mois, non conforme — 🟠 Échéance < 6 mois, non conforme — 🟡 Conforme mais à vérifier — 🟢 Conforme.
@@ -284,7 +287,7 @@ Pour déterminer la taille de l'entreprise et l'échéance d'émission : [refere
 | Réforme 2026, calendrier, obligations | [references/facturation/reforme-2026.md](references/facturation/reforme-2026.md) |
 | Mentions obligatoires (factures, avoirs) | [references/facturation/mentions-obligatoires.md](references/facturation/mentions-obligatoires.md) |
 | Formats : Factur-X, UBL, CII | [references/facturation/formats-facturx.md](references/facturation/formats-facturx.md) |
-| Plateformes agréées, choix, comparatif | [references/facturation/plateformes-agreees.md](references/facturation/plateformes-agreees.md) |
+| PA et SC (Solutions Compatibles), choix, comparatif | [references/facturation/plateformes-agreees.md](references/facturation/plateformes-agreees.md) |
 | E-reporting (B2C, international, paiements) | [references/facturation/e-reporting.md](references/facturation/e-reporting.md) |
 | Numérotation, conservation, archivage | [references/facturation/numerotation-conservation.md](references/facturation/numerotation-conservation.md) |
 | Setup facturation (première utilisation) | [references/facturation/setup-facturation.md](references/facturation/setup-facturation.md) |
@@ -295,7 +298,7 @@ Faits à remonter systématiquement dès qu'ils sont pertinents — pièges fré
 
 - **Validation facture** : "description", "quantité" et "prix unitaire" sont **trois mentions distinctes obligatoires**. Une description correcte ne vaut pas pour les deux autres. Flagger chacune séparément.
 - **Nouvelles mentions obligatoires 2026** (factures B2B domestiques) : **SIREN du client** ET **catégorie d'opération** (biens / services / mixte). Ce sont **deux obligations distinctes**, à citer séparément. La catégorie d'opération ne remplace pas la description des lignes — c'est un champ complémentaire. Toujours vérifier les deux pour les factures émises à partir du 1er septembre 2026.
-- **PPF (Portail Public de Facturation)** : depuis octobre 2024, le PPF **ne sert plus à émettre ni recevoir** de factures. Il ne reste qu'annuaire central + concentrateur d'e-reporting. Toute entreprise assujettie TVA doit passer par une PA.
+- **PPF (Portail Public de Facturation)** : depuis octobre 2024, le PPF **ne sert plus à émettre ni recevoir** de factures. Il ne reste qu'annuaire central + concentrateur d'e-reporting. Toute entreprise assujettie TVA doit passer par une PA — soit directement, soit via une **Solution Compatible (SC)** adossée à une PA partenaire (ex: Superindep pour les micro-entrepreneurs).
 - **E-reporting** : ne concerne **pas les ventes B2B domestiques entre assujettis** (déjà transmises via e-facturation). Il couvre uniquement B2C, international et encaissements. Un e-commerçant 100% B2B FR n'a donc pas d'e-reporting séparé.
 
 ### Détails opérationnels

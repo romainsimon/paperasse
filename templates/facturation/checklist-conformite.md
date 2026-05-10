@@ -18,12 +18,14 @@ Taille : {{taille}} (micro / PME / ETI / GE)
 - [ ] E-reporting : même date que l'émission
 ```
 
-## Étape 1 : Choix de la PA (à faire maintenant)
+## Étape 1 : Choix de la PA ou de la Solution Compatible (à faire maintenant)
 
 ```
-- [ ] Identifier la PA adaptée (voir arbre de décision)
-- [ ] Vérifier sur impots.gouv.fr que la PA est bien immatriculée
-- [ ] Créer un compte sur la PA
+- [ ] Identifier la voie de conformité : PA directe OU Solution Compatible (SC) adossée à une PA partenaire
+- [ ] Si PA directe : choisir une PA (voir arbre de décision)
+- [ ] Si SC : confirmer la PA partenaire utilisée par la SC (ex: Superindep)
+- [ ] Vérifier sur impots.gouv.fr que la PA (directe ou partenaire) est bien immatriculée
+- [ ] Créer un compte sur la PA (directement ou via la SC)
 - [ ] Renseigner les informations entreprise (SIREN, TVA, adresse)
 ```
 

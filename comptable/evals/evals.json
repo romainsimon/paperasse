@@ -95,7 +95,7 @@
       "id": 6,
       "name": "facturation-diagnostic-conformite-2026",
       "prompt": "Ma société WebCraft est une SASU en franchise en base de TVA. Suis-je concernée par la facturation électronique obligatoire en 2026 ? Que dois-je faire et quand ?",
-      "expected_output": "Le skill identifie que l'entreprise est assujettie à la TVA (même en franchise), détermine la taille (micro/PME), donne les échéances (réception sept. 2026, émission sept. 2027), recommande de choisir une PA, et mentionne les nouvelles mentions obligatoires.",
+      "expected_output": "Le skill identifie que l'entreprise est assujettie à la TVA (même en franchise), détermine la taille (micro/PME), donne les échéances (réception sept. 2026, émission sept. 2027), recommande de choisir une PA ou une SC, et mentionne les nouvelles mentions obligatoires.",
       "files": [
         "evals/files/company-webdev.json"
       ],
@@ -103,8 +103,8 @@
         "Le skill identifie que WebCraft est assujettie à la TVA même en franchise en base",
         "L'échéance de réception est mentionnée : 1er septembre 2026",
         "L'échéance d'émission est mentionnée : 1er septembre 2027 (car PME/micro)",
-        "Le skill recommande de choisir une plateforme agréée (PA)",
-        "Au moins une PA gratuite est mentionnée (Qonto, Indy, Pennylane ou Dext)",
+        "Le skill recommande une PA ou une Solution Compatible (SC)",
+        "Au moins une PA gratuite (Qonto, Indy, Pennylane, Dext) ou une SC gratuite (ex: Superindep) est mentionnée",
         "Les nouvelles mentions obligatoires 2026 sont citées (SIREN client, catégorie d'opération)",
         "L'e-reporting est mentionné comme obligation complémentaire",
         "Le skill mentionne que le PPF ne sert plus à émettre/recevoir des factures"
@@ -137,13 +137,13 @@
       "id": 8,
       "name": "facturation-choix-pa-auto-entrepreneur",
       "prompt": "Je suis auto-entrepreneur en services informatiques, je facture environ 5 clients par mois, tous en France. Je n'ai pas de compte Qonto. Quelle plateforme agréée me recommandes-tu pour la facturation électronique ?",
-      "expected_output": "Le skill recommande une PA gratuite adaptée au profil (auto-entrepreneur, faible volume, B2B France), compare les options, et justifie le choix.",
+      "expected_output": "Le skill recommande une solution gratuite adaptée au profil (auto-entrepreneur, faible volume, B2B France), compare PA et SC pertinentes, et justifie le choix.",
       "files": [],
       "assertions": [
-        "Au moins deux PA gratuites sont comparées",
+        "Au moins deux solutions gratuites sont comparées (PA et/ou SC)",
         "Les critères de comparaison incluent le coût (gratuit), la facilité d'utilisation, et le public cible",
         "La recommandation est justifiée par le profil (auto-entrepreneur, faible volume)",
-        "Le skill mentionne de vérifier que la PA est bien immatriculée sur impots.gouv.fr",
+        "Le skill mentionne de vérifier que la PA (directe ou partenaire de la SC) est bien immatriculée sur impots.gouv.fr",
         "L'échéance de réception (sept. 2026) est rappelée",
         "L'e-reporting est abordé (ventes B2B → pas de reporting spécifique, géré par la facturation électronique)"
       ]
@@ -184,6 +184,20 @@
         "Le rôle de la PA dans la transmission est mentionné",
         "L'amende pour défaut de transmission est mentionnée (250 EUR par transmission)",
         "L'échéance est correcte (1er septembre 2027 pour PME/micro)"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "facturation-solution-compatible-superindep",
+      "prompt": "Je suis micro-entrepreneur, je facture déjà avec Superindep. Suis-je conforme à la réforme 2026 ? Que me manque-t-il ?",
+      "expected_output": "Le skill identifie Superindep comme une Solution Compatible (SC), explique qu'une SC est conforme dès lors qu'elle est adossée à une PA partenaire, propose de vérifier sur le site de Superindep que la fonction facturation électronique est bien compatible et activée sur son compte, et rappelle les échéances applicables aux micro-entrepreneurs.",
+      "files": [],
+      "assertions": [
+        "Le skill reconnaît Superindep comme Solution Compatible (SC) plutôt que comme PA",
+        "Le skill explique qu'une SC s'adosse à une PA pour la transmission",
+        "Le skill renvoie vers le site de la SC pour vérifier la compatibilité et l'activation",
+        "Les échéances 2026 (réception) et 2027 (émission/e-reporting micro-entreprise) sont rappelées",
+        "Le skill propose une action concrète (vérifier la compatibilité de Superindep et la PA partenaire utilisée)"
       ]
     }
   ]

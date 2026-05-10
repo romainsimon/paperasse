@@ -26,7 +26,7 @@
 
 <b>Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [Codex](https://openai.com/codex/), [Mistral Vibe](https://vibe.mistral.ai), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat)) spécialisés dans la comptabilité, la fiscalité, la facturation, le notariat et l'audit des entreprises françaises.</b>
 
-Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : comptabilité (PCG, TVA, IS, clôture annuelle, FEC, liasse fiscale), facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées, e-reporting), contrôle fiscal, audit CAC, fiscalité des particuliers (IR, IFI, PFU, PEA, AV, LMNP, RSU, BSPCE, crypto, PER), droit notarial (immobilier, succession, donation), et gestion de copropriété (AG, charges, travaux, impayés). Il connaît les textes (CGI, BOFiP, NEP, loi 1965), les formulaires, les échéances, et ne se trompe pas de case dans la liasse fiscale.
+Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : comptabilité (PCG, TVA, IS, clôture annuelle, FEC, liasse fiscale), facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées et solutions compatibles, e-reporting), contrôle fiscal, audit CAC, fiscalité des particuliers (IR, IFI, PFU, PEA, AV, LMNP, RSU, BSPCE, crypto, PER), droit notarial (immobilier, succession, donation), et gestion de copropriété (AG, charges, travaux, impayés). Il connaît les textes (CGI, BOFiP, NEP, loi 1965), les formulaires, les échéances, et ne se trompe pas de case dans la liasse fiscale.
 
 Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable de lire des fichiers. Paperasse inclut aussi des connecteurs pour récupérer automatiquement vos transactions bancaires (Qonto) et paiements (Stripe).
 
@@ -63,7 +63,7 @@ L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui v
 
 | Skill | Rôle | Ce qu'il fait |
 |-------|------|---------------|
-| **`comptable`** | Expert-Comptable | Écritures comptables (800+ comptes PCG), TVA, IS/IR, clôture annuelle complète en 12 étapes, FEC, liasse fiscale, PDFs, rapprochement bancaire, facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées, Factur-X, e-reporting) |
+| **`comptable`** | Expert-Comptable | Écritures comptables (800+ comptes PCG), TVA, IS/IR, clôture annuelle complète en 12 étapes, FEC, liasse fiscale, PDFs, rapprochement bancaire, facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées et solutions compatibles, Factur-X, e-reporting) |
 | **`controleur-fiscal`** | Contrôleur Fiscal | Simulation de contrôle DGFIP sur 8 axes, chefs de redressement avec base légale et montants |
 | **`commissaire-aux-comptes`** | Commissaire aux Comptes | Audit NEP en 7 phases, validation croisée bilan/CR/liasse, opinion motivée |
 | **`fiscaliste`** | Fiscaliste Particuliers | Fiscalité personnelle : IR (barème, QF, décote, plafonnement), IFI, PFU vs barème, PEA, assurance-vie, LMNP (micro/réel), RSU/BSPCE/stock-options, crypto (PAMC), PER, quotient revenus exceptionnels, CEHR |

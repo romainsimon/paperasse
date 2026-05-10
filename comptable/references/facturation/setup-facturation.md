@@ -36,21 +36,41 @@ Configurer dans company.json :
 }
 ```
 
-### Étape 3 : Plateforme agréée
+### Étape 3 : Plateforme Agréée (PA) ou Solution Compatible (SC)
 
-> Avez-vous déjà choisi une **plateforme agréée** pour la facturation électronique ?
+> Avez-vous déjà un logiciel de facturation ou de comptabilité que vous voulez conserver ?
 
-Si non, guider le choix (voir [plateformes-agreees.md](plateformes-agreees.md)) :
+Trois cas (voir [plateformes-agreees.md](plateformes-agreees.md) pour le détail) :
+
+**Cas A — Pas de logiciel ou prêt à changer** : recommander une PA ou SC gratuite.
 - Si Qonto → recommander Qonto
-- Si auto-entrepreneur → recommander Indy
+- Si auto-entrepreneur → recommander Superindep / Indy
 - Sinon → recommander Pennylane ou Indy
+
+**Cas B — Logiciel existant qui est lui-même PA** (ex: Pennylane, Indy si déjà utilisés) : rien à changer côté outil, configurer la PA dans company.json.
+
+**Cas C — Logiciel existant qui est SC** (ex: Superindep pour les micro-entrepreneurs, Dolibarr/Odoo comme solutions opensource, Sage/Cegid/EBP en mode compatible) : confirmer la PA partenaire utilisée pour la transmission, et la valider sur la liste officielle DGFiP.
 
 Configurer dans company.json :
 
-```json
+```jsonc
+// Cas A ou B (PA directe) :
 "einvoicing": {
+  "type": "pa",
   "pa": "qonto",
   "pa_name": "Qonto",
+  "sc_name": "",
+  "reception_ready": false,
+  "emission_ready": false,
+  "ereporting_ready": false
+}
+
+// Cas C (SC adossée à une PA) :
+"einvoicing": {
+  "type": "sc",
+  "pa": "<id PA partenaire>",
+  "pa_name": "<nom PA partenaire>",
+  "sc_name": "Superindep",
   "reception_ready": false,
   "emission_ready": false,
   "ereporting_ready": false
@@ -103,14 +123,14 @@ Afficher le résumé de la configuration facturation :
 ```
 Configuration facturation :
   Numérotation : F-YYYY-NNN (prochain : F-2026-001)
-  Plateforme agréée : [PA choisie]
+  PA / SC : [PA directe choisie] OU [SC + PA partenaire]
   Délai paiement : [délai]
   Moyens de paiement : [moyens]
   Pénalités retard : [taux]% + 40 EUR forfaitaire
   IBAN sur facture : [oui/non]
 
   Conformité e-facturation :
-  ⬜ Réception : à configurer sur [PA]
+  ⬜ Réception : à configurer sur [PA / via SC + PA partenaire]
   ⬜ Émission : échéance [date]
   ⬜ E-reporting : échéance [date]
 ```

@@ -86,6 +86,8 @@ Entreprise A ──→ PA émettrice ──→ PA réceptrice ──→ Entrepri
                          DGFiP
 ```
 
+> Note : « Entreprise A » peut utiliser une **Solution Compatible (SC)** qui produit la facture au bon format, puis s'appuie sur une PA partenaire pour la transmission. La PA reste donc le maillon obligatoire dans la chaîne, qu'on l'utilise directement ou via une SC ; côté utilisateur de la SC, l'interaction avec la PA est gérée en arrière-plan par le logiciel.
+
 ### Portail Public de Facturation (PPF)
 
 Le PPF devait initialement servir de plateforme d'émission/réception gratuite pour tous. **Ce rôle a été abandonné en octobre 2024.** Le PPF ne sert plus qu'à :
@@ -103,7 +105,11 @@ Les PA sont des opérateurs privés immatriculés par la DGFiP. Elles assurent :
 - La conformité des formats (Factur-X, UBL, CII)
 - Le suivi des statuts de traitement des factures
 
-**Toute entreprise doit choisir une PA** pour émettre et recevoir des factures électroniques. Voir [plateformes-agreees.md](plateformes-agreees.md) pour le comparatif.
+### Solutions Compatibles (SC)
+
+Une **Solution Compatible** est un logiciel de facturation/comptabilité traditionnel qui produit les factures au bon format (Factur-X / UBL / CII) mais **s'appuie sur une PA partenaire pour la transmission**. Une SC seule ne suffit pas : elle doit être adossée à une PA immatriculée. Cas typique : conserver son logiciel actuel (ex: Superindep pour les micro-entrepreneurs) plutôt que migrer vers une PA.
+
+**Toute entreprise doit s'équiper soit d'une PA, soit d'une SC adossée à une PA**, pour émettre et recevoir des factures électroniques. Voir [plateformes-agreees.md](plateformes-agreees.md) pour le comparatif et la distinction PA/SC.
 
 ### PEPPOL
 

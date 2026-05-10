@@ -57,13 +57,15 @@
     "_comment": "Format: F-2026-001. next_numbers par annee (reset au 1er janvier). Modifier prefix et separateur selon besoins."
   },
   "einvoicing": {
+    "type": "",
     "pa": "",
     "pa_name": "",
+    "sc_name": "",
     "peppol_id": "",
     "reception_ready": false,
     "emission_ready": false,
     "ereporting_ready": false,
-    "_comment": "Plateforme agreee (ex: qonto, indy, pennylane, dext). peppol_id format iso6523:siret, ex '0225:12345678900014'. reception_ready obligatoire a partir de sept. 2026."
+    "_comment": "type='pa' (PA directe: qonto, indy, pennylane, dext) ou type='sc' (Solution Compatible adossee a une PA partenaire, ex: Superindep pour micro-entrepreneurs, Dolibarr opensource). Si type='sc', renseigner sc_name (texte libre, pas de referentiel d'IDs) et indiquer la PA partenaire dans pa/pa_name. peppol_id format iso6523:siret, ex '0225:12345678900014'. reception_ready obligatoire a partir de sept. 2026."
   },
   "payment": {
     "default_terms": "net_30",

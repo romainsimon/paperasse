@@ -20,9 +20,9 @@ Conformité e-facturation — {{company.name}}
 - [ ] Vérifier statut : assujettie TVA (même en franchise)
 - [ ] Déterminer taille entreprise (GE / ETI / PME / micro)
 - [ ] Identifier échéances (réception : sept. 2026 / émission : sept. 2026 ou 2027)
-- [ ] Choisir une plateforme agréée (PA)
-- [ ] Créer un compte sur la PA choisie
-- [ ] Configurer la réception des factures sur la PA
+- [ ] Choisir : une PA directe **ou** une Solution Compatible (SC) adossée à une PA partenaire
+- [ ] Créer un compte sur la PA (ou activer la fonction e-facturation de la SC)
+- [ ] Configurer la réception des factures sur la PA (directement ou via la SC)
 - [ ] Tester la réception d'une facture de test
 - [ ] Informer les fournisseurs de votre PA de réception
 - [ ] Mettre à jour les mentions sur les factures émises (SIREN client, catégorie)
@@ -153,15 +153,17 @@ Un `refund` Stripe → **avoir** (note de crédit) côté facturation française
 
 ## Réception des e-factures (obligation 1er septembre 2026)
 
-**Toute entreprise assujettie TVA (y compris en franchise)** doit pouvoir recevoir des factures électroniques via une PA au 1er septembre 2026.
+**Toute entreprise assujettie TVA (y compris en franchise)** doit pouvoir recevoir des factures électroniques via une PA au 1er septembre 2026 — soit via une PA directe, soit via une SC adossée à une PA.
 
 Checklist réception :
 
-- [ ] `einvoicing.pa` défini dans `company.json`
-- [ ] Compte actif sur la PA choisie
+- [ ] `einvoicing.type` défini dans `company.json` (`"pa"` ou `"sc"`)
+- [ ] `einvoicing.pa` défini (PA directe ou PA partenaire de la SC)
+- [ ] Si SC : `einvoicing.sc_name` renseigné et PA partenaire confirmée
+- [ ] Compte actif sur la PA (directement ou via la SC)
 - [ ] `einvoicing.reception_ready: true` dans `company.json`
 - [ ] Fournisseurs informés de l'identifiant PEPPOL (`einvoicing.peppol_id`)
 - [ ] Workflow de rapprochement des factures entrantes défini (PA → comptabilité → règlement)
 - [ ] Format de lecture : Factur-X (PDF/A-3 + XML), UBL ou CII
 
-Voir [setup-facturation.md](setup-facturation.md) pour la configuration et [plateformes-agreees.md](plateformes-agreees.md) pour le choix d'une PA.
+Voir [setup-facturation.md](setup-facturation.md) pour la configuration et [plateformes-agreees.md](plateformes-agreees.md) pour le choix entre PA directe et SC.

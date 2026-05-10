@@ -2,7 +2,7 @@
 
 ## Définition
 
-L'e-reporting est la transmission de données de transaction et de paiement à l'administration fiscale (DGFiP), via la PA choisie, pour les opérations **non couvertes** par la facturation électronique B2B domestique.
+L'e-reporting est la transmission de données de transaction et de paiement à l'administration fiscale (DGFiP), via une PA (atteinte directement ou via une Solution Compatible adossée à une PA), pour les opérations **non couvertes** par la facturation électronique B2B domestique.
 
 L'e-reporting ne concerne pas les factures B2B entre assujettis en France (celles-ci sont déjà transmises via la facturation électronique). Il couvre les "angles morts" : B2C, international, encaissements.
 
@@ -86,13 +86,15 @@ Auto-entrepreneur en franchise qui vend à des particuliers :
 
 ## En pratique
 
-La PA choisie gère la transmission des données d'e-reporting. L'entreprise doit :
+La PA gère la transmission des données d'e-reporting. L'entreprise doit :
 
-1. **Saisir ou importer** les données de ventes B2C et internationales dans sa PA
+1. **Saisir ou importer** les données de ventes B2C et internationales dans sa PA (ou dans la SC, qui les pousse ensuite vers la PA partenaire)
 2. **Confirmer** les données avant chaque transmission
 3. **Vérifier** que la PA transmet dans les délais
 
-Pour les utilisateurs de Stripe : certaines PA proposent des connecteurs Stripe qui importent automatiquement les données de transaction. Vérifier lors du choix de PA.
+Cas SC (Solution Compatible) : la SC produit les données de transaction au bon format, puis les transmet à la PA partenaire qui les pousse au PPF. Vérifier auprès de l'éditeur de la SC quelle PA est utilisée et que les délais légaux sont respectés.
+
+Pour les utilisateurs de Stripe : certaines PA ou SC proposent des connecteurs Stripe qui importent automatiquement les données de transaction. Vérifier lors du choix de PA ou SC.
 
 ## Sanctions
 

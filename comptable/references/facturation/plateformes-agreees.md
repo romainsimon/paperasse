@@ -1,13 +1,25 @@
-# Plateformes Agréées (PA)
+# Plateformes Agréées (PA) et Solutions Compatibles (SC)
 
-## Contexte
+## Deux voies de conformité
 
-Depuis l'abandon du PPF comme plateforme d'émission/réception (octobre 2024), toute entreprise assujettie à la TVA **doit choisir une PA** pour émettre et recevoir des factures électroniques.
+Depuis l'abandon du PPF comme plateforme d'émission/réception (octobre 2024), il existe **deux chemins** pour se mettre en conformité avec la facturation électronique. Une entreprise assujettie à la TVA doit pouvoir émettre/recevoir via une PA, **soit directement, soit via une SC adossée à une PA partenaire**.
 
-170+ PA sont immatriculées par la DGFiP. Liste officielle :
+| Voie | Définition | Rôle | Exemples |
+|------|-----------|------|----------|
+| **Plateforme Agréée (PA)** | Opérateur immatriculé par la DGFiP | Émet, reçoit *et* transmet les factures (formats Factur-X / UBL / CII) ; gère l'e-reporting ; archive | Qonto, Indy, Pennylane, Dext (170+ PA immatriculées) |
+| **Solution Compatible (SC)** | Logiciel de facturation traditionnel labellisé compatible | Produit la facture au bon format ; **s'appuie sur une PA partenaire pour la transmission** | Superindep (micro-entrepreneurs), Dolibarr ou Odoo (opensource), nombreux logiciels de comptabilité/facturation classiques |
+
+**Important** : une SC seule ne suffit pas. Elle doit être adossée à une PA pour que la facture soit effectivement transmise au destinataire et à la DGFiP. Beaucoup de SC ont une PA partenaire intégrée par défaut — toujours vérifier ce point avant de s'engager. Il n'y a pas de liste officielle de SC.
+
+Si un logiciel de facturation est déjà utilisé, il vaut mieux vérifier si il est SC pour bénéficier de l'intégration, souvent gratuite.
+
+Source officielle (logos et définitions des labels DGFiP) :
+https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/fe_presentation-des-labels.pdf
+
+Liste officielle des PA :
 https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
 
-## PA avec offre gratuite pour TPE/PME
+## Plateformes Agréées (PA) : offres gratuites pour TPE/PME
 
 Plusieurs PA proposent des offres gratuites (modèle freemium : facturation gratuite, upsell sur la comptabilité).
 
@@ -55,45 +67,84 @@ Plusieurs PA proposent des offres gratuites (modèle freemium : facturation grat
 - **Intérêt** : gratuit + PEPPOL + forte extraction documentaire (OCR/IA)
 - **Limite** : stockage 500 MB, upsell extraction/compta
 
-## Arbre de décision : quelle PA choisir ?
+## Solutions Compatibles (SC) : conserver son logiciel de facturation existant
+
+Si l'entreprise utilise déjà un logiciel de facturation/comptabilité qu'elle souhaite conserver, vérifier s'il est labellisé **Solution Compatible**. Une SC produit les factures au format conforme (Factur-X / UBL / CII) et les transmet via une **PA partenaire** (souvent intégrée par défaut, parfois à choisir).
+
+### Superindep
+
+- **PA partenaire** : SuperPDP
+- **PEPPOL** : oui
+- **Gratuit** : oui (sans CB, sans engagement)
+- **Émission/réception** : oui
+- **Formats** : Factur-X
+- **E-reporting** : oui
+- **Intérêt** : gratuit + reste un logiciel de facturation (UX simple, ciblée micro-entrepreneurs et artistes-auteurs)
+- **Limite** : upsell vers compta payante
+
+### Dolibarr
+
+- **PA partenaire** : Esalink / SuperPDP via PDP Libre
+- **PEPPOL** : oui
+- **Gratuit** : oui si selfhost
+- **Émission/réception** : oui
+- **Formats** : Factur-X
+- **E-reporting** : oui
+- **Intérêt** : opensource, contrôle de ses données
+- **Limite** : nécessite selfhost ou infogérance
+
+### Autres SC
+
+De nombreux logiciels de facturation et de comptabilité historiques (Sage, Cegid, EBP, etc.) proposent ou proposeront un mode compatible avec une PA partenaire. **Toujours vérifier** :
+- Le logiciel produit-il un format conforme (Factur-X / UBL / CII) ?
+- Quelle PA partenaire transmet les factures ?
+- Cette PA est-elle bien immatriculée par la DGFiP ?
+
+## Arbre de décision : PA, SC ou nouveau choix ?
 
 ```
-Déjà client Qonto ?
-  ├── OUI → Qonto (zéro friction, déjà intégré)
-  └── NON
-       ├── Besoin PEPPOL (clients UE) ?
-       │    ├── OUI → Indy ou Dext
-       │    └── NON
-       │         ├── Besoin compta intégrée ?
-       │         │    ├── OUI → Pennylane ou Indy
-       │         │    └── NON → Indy (le plus simple, gratuit)
-       │         └── Besoin API ?
-       │              └── OUI → Pennylane (API publique documentée)
-       └── Auto-entrepreneur ?
-            └── Indy (spécialisé indépendants, gratuit)
+Avez-vous déjà un logiciel de facturation/comptabilité que vous voulez conserver ?
+  ├── OUI → Vérifier le statut du logiciel
+  │         ├── Le logiciel est lui-même PA → rien à changer (ex: Pennylane si déjà utilisé)
+  │         ├── Le logiciel est SC → identifier la PA partenaire et la valider
+  │         │   (ex: Superindep + sa PA partenaire)
+  │         └── Le logiciel n'est ni PA ni SC → migrer vers une PA OU attendre une mise à jour
+  └── NON → Choisir une PA gratuite
+            ├── Déjà client Qonto ?
+            │    └── OUI → Qonto (zéro friction, déjà intégré)
+            ├── Besoin PEPPOL (clients UE) ?
+            │    └── OUI → Indy ou Dext
+            ├── Besoin compta intégrée ?
+            │    └── OUI → Pennylane ou Indy
+            ├── Besoin API ?
+            │    └── OUI → Pennylane (API publique documentée)
+            └── Auto-entrepreneur ?
+                 └── Indy (spécialisé indépendants, gratuit) — ou Superindep (SC)
 ```
 
 ## Questions à poser à l'utilisateur
 
-Pour recommander une PA, demander :
+Pour recommander une solution adaptée, demander :
 
-1. **Quelle banque professionnelle utilisez-vous ?** (si Qonto → recommander Qonto)
-2. **Avez-vous des clients dans l'UE ?** (si oui → recommander PA avec PEPPOL)
-3. **Utilisez-vous déjà un logiciel de comptabilité ?** (si oui → vérifier s'il est PA)
+1. **Utilisez-vous déjà un logiciel de facturation/comptabilité que vous voulez conserver ?**
+   - Oui → vérifier s'il est PA, SC, ou ni l'un ni l'autre (et si SC, quelle PA partenaire)
+   - Non → recommander une PA gratuite après avoir vérifié sa banque
+2. **Quelle banque professionnelle utilisez-vous ?** (si Qonto → recommander Qonto comme PA)
+3. **Avez-vous des clients dans l'UE ?** (si oui → recommander une PA avec PEPPOL)
 4. **Quel volume de factures par mois ?** (les offres gratuites couvrent les volumes TPE/PME)
 5. **Avez-vous besoin d'une API ?** (si oui → Pennylane)
 
-## Ce que fait une PA
+## Ce que fait une PA (vs ce que fait une SC)
 
-| Fonction | Détail |
-|----------|--------|
-| Émission | Génère ou reçoit la facture, la transmet à la PA du client |
-| Réception | Reçoit les factures des fournisseurs, les met à disposition |
-| Routage | Utilise l'annuaire PPF pour identifier la PA du destinataire |
-| Conformité | Vérifie le format (Factur-X, UBL, CII) et les mentions obligatoires |
-| Statuts | Gère le cycle de vie (émise, reçue, acceptée, rejetée, payée) |
-| E-reporting | Transmet les données de facturation, transaction et paiement au PPF |
-| Conservation | Archive les factures 6 ans minimum |
+| Fonction | PA | SC |
+|----------|----|----|
+| Génération du format conforme (Factur-X / UBL / CII) | Oui | **Oui** |
+| Transmission via le réseau interopérable | Oui | Via PA partenaire |
+| Routage via l'annuaire PPF | Oui | Via PA partenaire |
+| Vérification des mentions obligatoires | Oui | Souvent oui |
+| Gestion des statuts du cycle de vie | Oui | Via PA partenaire |
+| E-reporting (B2C, international, encaissements) | Oui | Via PA partenaire |
+| Conservation 6 ans | Souvent oui | Souvent oui |
 
 ## Devenir PA
 
@@ -107,3 +158,10 @@ https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
 La liste distingue :
 1. **Immatriculées définitivement** : tests d'interopérabilité réussis
 2. **En attente** : dossier complet, tests en cours
+
+Pour une SC : vérifier également le label/compatibilité revendiquée par l'éditeur, et confirmer la PA partenaire qui assurera la transmission (cette PA doit être immatriculée).
+
+## Pour aller plus loin
+
+- **PDF DGFiP — Présentation des labels** (PA, SC, OD…) : https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/fe_presentation-des-labels.pdf
+- **Association PDP Libre** — ressource communautaire (à but non lucratif) avec un *awesome list* de pointeurs sur la facturation électronique : https://github.com/PDP-Libre/awesome-facturation-electronique. Utile pour comparer les acteurs, suivre l'écosystème et obtenir de l'aide.

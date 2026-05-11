@@ -18,18 +18,20 @@ Le régime des particuliers s'applique aux cessions **occasionnelles** d'actifs 
 |-----------|-------------|
 | Achat crypto contre € / USD | Non |
 | Cession crypto contre € / USD | **Oui** |
+| Cession crypto contre stablecoin (USDC, USDT…) | **Non** (stablecoins traités comme crypto-actifs) |
+| Cession stablecoin contre € / USD | **Oui** (passage en fiat = fait générateur) |
 | Paiement en crypto (biens/services) | **Oui** (cession déguisée) |
 | Échange crypto-to-crypto (BTC → ETH) | **Non** (sursis, art. 150 VH bis) |
-| Staking / mining / airdrop | Selon contexte — souvent BNC ou BIC, pas PV mobilière |
+| Staking / mining / airdrop | Voir section dédiée ci-dessous |
 
-**Règle du sursis crypto-to-crypto** : les échanges entre crypto-actifs ne déclenchent pas l'imposition. Seul le passage en monnaie fiat (ou en biens/services) est taxable.
+**Règle du sursis crypto-to-crypto** : les échanges entre crypto-actifs (y compris vers des stablecoins) ne déclenchent pas l'imposition. Seul le passage en monnaie fiat (€, USD…) ou en biens/services est taxable.
 
 ## Méthode PAMC (Prix d'Acquisition Moyen Pondéré en Continu)
 
 **Formule officielle** :
 
 ```
-plus_value_cession = prix_cession − (valeur_totale_portefeuille × montant_cession / valeur_portefeuille_avant_cession)
+plus_value_cession = prix_cession − (prix_total_acquisition_portefeuille × prix_cession / valeur_portefeuille_avant_cession)
 ```
 
 **Conséquences pratiques** :
@@ -41,9 +43,11 @@ plus_value_cession = prix_cession − (valeur_totale_portefeuille × montant_ces
 
 ## Taux d'imposition
 
-### Régime par défaut : PFU 30%
+### Régime par défaut : PFU 31,4%
 
-- 12,8% IR + 17,2% PS
+- 12,8% IR + 18,6% PS
+- 18,6% applicable aux revenus du patrimoine réalisés dès 2025 (déclarés en 2026) — LFSS 2026 adoptée le 16/12/2025
+- 17,2% maintenu pour certains revenus limitativement énumérés (art. L136-8 IV CSS)
 - Application sur la plus-value nette annuelle (après compensation des moins-values de l'année)
 
 ### Option barème (depuis revenus 2023)
@@ -86,13 +90,35 @@ Déclaration obligatoire détaillant **chaque cession** :
 
 | Activité | Régime probable |
 |----------|----------------|
-| Staking occasionnel | BNC non professionnel ou PV mobilière selon cas |
+| Staking occasionnel | BNC non professionnel (deux méthodes, voir ci-dessous) |
 | Mining | BIC |
 | Staking/lending professionnel | BIC |
 | Airdrop reçu passivement | Non imposable à la réception, PV au moment de la cession |
 | Rewards actifs (tâches à accomplir) | BNC ou salaire |
 
-**Zone grise** : la doctrine DGFIP évolue. Vérifier les dernières positions BOFiP.
+### Staking occasionnel — deux méthodes de déclaration
+
+**Méthode 1 : BNC à la réception** (position DGFIP, recommandée par Waltio)
+
+Les rewards sont imposés chaque année à la valeur fiat au jour de réception.
+
+- Formulaire **2042 C PRO**, case **5HQ** (micro-BNC) ou **5HG** (réel)
+- Micro-BNC : abattement forfaitaire **34%** → base imposable = rewards bruts × 66%
+- Exonération totale si rewards annuels ≤ **305 €**
+- Soumis au barème progressif IR + **17,2% PS** (revenus 2025)
+- Le prix de revient des crypto reçus = valeur déclarée en BNC (évite la double imposition lors de la vente)
+
+**Méthode 2 : imposition à la vente en fiat** (pratique alternative, flou juridique)
+
+Les rewards ne sont pas déclarés à la réception. Lors de la vente en fiat, prix de revient = 0 → l'intégralité du produit de cession est imposée via le **formulaire 2086**, PFU 30%.
+
+- Avantageuse si TMI > 30% (flat tax < barème + PS)
+- Avantageuse si la vente est lointaine (report de l'imposition)
+- Risque : position non confirmée par BOFiP, potentiel redressement
+
+→ TMI 11% : **BNC avantageux**. TMI 30% et au-delà : **PFU avantageux**.
+
+**Zone grise** : la doctrine DGFIP évolue. Vérifier les dernières positions BOFiP avant de choisir la méthode 2.
 
 ## Documentation à conserver
 
@@ -101,6 +127,7 @@ Pour 6 ans minimum (délai de reprise) :
 - Preuves des dates et prix d'acquisition
 - Détail des échanges crypto-to-crypto (même non imposables)
 - Transferts entre wallets (pour prouver la continuité du portefeuille)
+- Pour le staking : export des rewards avec valorisation fiat à chaque date de réception
 
 ## Références CGI / BOFiP
 
@@ -108,4 +135,5 @@ Pour 6 ans minimum (délai de reprise) :
 - Activité habituelle (BIC) : art. 34 CGI
 - Méthode PAMC : art. 150 VH bis-II CGI
 - Sursis échange crypto-crypto : art. 150 VH bis-I-2 CGI
-- BOFiP : BOI-RPPM-PVBMC-30
+- Staking / BNC : BOI-RPPM-PVBMC-20-10-20-40
+- BOFiP PV crypto : BOI-RPPM-PVBMC-30

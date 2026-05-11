@@ -252,7 +252,9 @@ Des forks par juridiction maintenus par la communauté :
 
 - 🇹🇳 [**paperasse-tn**](https://github.com/YassineAta/paperasse-tn) (Tunisie) — skills pour la paperasse tunisienne (IRPP, BCT/forex, RNE/NAT, SUARL). Trois skills : `mo7aseb`, `bct-shield`, `3adel-ichhad`.
 
-Ces forks ne sont **pas maintenus par paperasse** : la fraîcheur des références fiscales et juridiques est de la responsabilité de leurs auteurs. Ouvrez une issue ici si vous voulez ajouter votre fork à cette liste.
+Ces forks ne sont **pas maintenus par paperasse** : la fraîcheur des références fiscales et juridiques est de la responsabilité de leurs auteurs.
+
+La liste complète et le template pour ajouter votre fork : [ECOSYSTEM.md](ECOSYSTEM.md).
 
 ---
 

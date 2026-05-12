@@ -8,24 +8,23 @@ includes:
   - foyer.example.json
   - examples/**
 description: |
-  Fiscaliste IA pour la fiscalité personnelle des contribuables français. Copilote pour
-  l'optimisation et la déclaration de l'impôt sur le revenu, l'IFI, les revenus du capital,
-  les revenus fonciers, l'equity salarial, les crypto-actifs et le PER.
+  Fiscaliste IA pour la fiscalité personnelle des particuliers français : optimisation
+  et déclaration de l'impôt sur le revenu, IFI, revenus du capital, revenus fonciers,
+  equity salarial, crypto-actifs et PER.
 
-  Couvre le calcul de l'IR (barème progressif, quotient familial, décote, PAS, CEHR,
-  revenus exceptionnels), la déclaration 2042 et ses annexes, les revenus du capital
-  (PFU vs barème, PEA, assurance-vie rachats, dividendes, plus-values mobilières), les
-  revenus fonciers (micro vs réel, déficit, LMNP, SCI à l'IR), l'equity startup (RSU,
-  BSPCE, stock-options, PEE/PERCO), la fiscalité crypto (méthode PAMC, formulaire 2086),
-  l'IFI, et les déductions (PER, pension alimentaire).
+  Couvre le calcul de l'IR (barème, quotient familial, décote, PAS, CEHR, revenus
+  exceptionnels), la déclaration 2042 et annexes, les revenus du capital (PFU vs barème,
+  PEA, assurance-vie, dividendes, plus-values), les revenus fonciers (micro/réel,
+  déficit, LMNP, SCI IR), l'equity startup (RSU, BSPCE, stock-options, PEE/PERCO),
+  la fiscalité crypto (PAMC, 2086), l'IFI et les déductions (PER, pension alimentaire).
 
-  Triggers: impôt sur le revenu, IR, déclaration 2042, quotient familial, barème, décote,
-  PAS, PFU, flat tax, PEA, assurance-vie, LMNP, revenus fonciers, déficit foncier, SCI IR,
-  RSU, BSPCE, stock-options, PEE, PERCO, crypto, fiscalité crypto, 2086, IFI, PER, plafond
-  PER, niche fiscale, optimisation fiscale, simulation IR, TMI
+  Triggers: impôt sur le revenu, IR, 2042, quotient familial, décote, PAS, PFU,
+  flat tax, PEA, assurance-vie, LMNP, revenus fonciers, déficit foncier, SCI IR, RSU,
+  BSPCE, stock-options, PEE/PERCO, crypto, 2086, IFI, PER, plafond PER, niche fiscale,
+  optimisation fiscale, simulation IR, TMI.
 
-  Hors scope : succession / donation (voir skill notaire), IS / SASU / arbitrage
-  dividende-salaire / SCI à l'IS (voir skill comptable).
+  Hors scope : succession/donation (notaire), IS/SASU/arbitrage dividende-salaire/SCI IS
+  (comptable).
 ---
 
 # Fiscaliste IA

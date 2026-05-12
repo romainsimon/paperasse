@@ -57,25 +57,11 @@ Lance ensuite le setup pour la gestion de toute ma paperasse
 
 L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui vous posera quelques questions (nom de votre société, régime TVA, comptes bancaires) pour configurer votre environnement.
 
-#### Attention aux ressources partagées
+#### Installation manuelle
 
-Certains skills dépendent de fichiers partagés à la racine du repo via des liens symboliques. C'est notamment le cas de `comptable`, `controleur-fiscal` et `commissaire-aux-comptes`, qui référencent `../data`, `../company.example.json`, et pour `comptable` également `../scripts`, `../templates` et `../integrations`.
-
-Si votre agent ou votre installateur télécharge les dossiers de skills un par un via l'API GitHub, vérifiez qu'il préserve ou reconstruit ces liens. Sinon, les liens peuvent devenir de petits fichiers texte contenant seulement `../data`, `../scripts`, etc. Le skill semble alors installé, mais les workflows qui lisent les données, scripts, templates ou intégrations échouent ensuite.
-
-Pour une installation manuelle dans Codex, gardez les dossiers partagés au même niveau que les dossiers de skills :
-
-```bash
-mkdir -p ~/.codex/skills
-cp -R comptable controleur-fiscal commissaire-aux-comptes fiscaliste notaire syndic ~/.codex/skills/
-cp -R data scripts templates integrations company.example.json ~/.codex/skills/
-```
-
-Après installation, vérifiez que les chemins partagés sont bien des liens symboliques ou de vrais dossiers, pas des fichiers texte :
-
-```bash
-ls -l ~/.codex/skills/comptable/data ~/.codex/skills/comptable/scripts ~/.codex/skills/comptable/templates ~/.codex/skills/comptable/integrations
-```
+Si vous n'utilisez ni agentskill.sh ni un clone Git complet, attention aux liens symboliques vers les ressources partagées (`data`, `scripts`, `templates`, `integrations`).
+Certains installateurs qui téléchargent les dossiers un par un via l'API GitHub les transforment en petits fichiers texte.
+Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex et les vérifications.
 
 ---
 

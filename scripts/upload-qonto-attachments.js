@@ -130,6 +130,13 @@ async function generateSummaryPdf(payout, invoices, productName, company, output
     `<tr><td>${inv.number}</td><td>${inv.date}</td><td>${(inv.client || '').slice(0, 35)}</td><td>${inv.total.toFixed(2)} EUR</td></tr>`
   ).join('');
 
+  // Identification belge : BCE (0xxx.xxx.xxx) + TVA (BE0xxxxxxxxx)
+  const bce = company.bce || company.siren || '';
+  const tva = company.tva || company.tva_intracom || '';
+  const bceLabel = bce ? 'BCE : ' + bce : '';
+  const tvaLabel = tva ? 'TVA : ' + tva : '';
+  const identLine = [bceLabel, tvaLabel].filter(Boolean).join(' &middot; ');
+
   const html = `<!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8"><title>Recapitulatif payout ${payout.id}</title>
 <style>
@@ -157,8 +164,8 @@ tbody td:last-child { text-align: right; }
 <div class="header">
   <div>
     <div class="company-name">${company.name}</div>
-    <div class="company">${company.legal_form} au capital de ${company.capital} EUR<br>
-    ${company.address}<br>SIRET : ${company.siret} &middot; RCS ${company.rcs}</div>
+    <div class="company">${company.legal_form ? company.legal_form + (company.capital ? ' au capital de ' + company.capital + ' EUR' : '') + '<br>' : ''}
+    ${company.address}<br>${identLine}</div>
   </div>
 </div>
 
@@ -181,7 +188,7 @@ tbody td:last-child { text-align: right; }
   <tr class="net"><td>Net vers\u00e9</td><td>${payoutAmount} EUR</td></tr>
 </table></div>
 
-<div class="footer">${company.name} &middot; SIRET ${company.siret} &middot; G\u00e9n\u00e9r\u00e9 le ${new Date().toISOString().slice(0, 10)}</div>
+<div class="footer">${company.name} &middot; ${identLine} &middot; G\u00e9n\u00e9r\u00e9 le ${new Date().toISOString().slice(0, 10)}</div>
 
 </body></html>`;
 

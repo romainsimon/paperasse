@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
 /**
- * Calculateur comptable/fiscal deterministe.
+ * Calculateur comptable/fiscal deterministe (droit belge).
  *
  * Objectif:
  * - Eviter les calculs "a la main" par le LLM
- * - Centraliser les formules utilisees dans le skill comptable
+ * - Centraliser les formules utilisees dans le skill comptable belge
+ *
+ * Referentiel legal : CIR 92 (Code des Impots sur les Revenus 1992),
+ * loi du 17 juillet 1975 sur la comptabilite des entreprises.
  *
  * Usage:
  *   node scripts/calc.js <commande> [--param valeur]
@@ -22,10 +25,10 @@
  *     [--jours-utilises 200]
  *     [--base-jours 365]
  *
- *   is
+ *   isoc
  *     --resultat-fiscal 50000
- *     [--taux 25]                          // taux unique (%)
- *     [--taux-reduit 15 --plafond 42500 --taux-normal 25]
+ *     [--taux 25]                           // taux unique (%)
+ *     [--taux-reduit 20 --plafond 100000 --taux-normal 25]
  *     [--jours-exercice 365]
  *
  *   tva-acomptes-rs
@@ -128,6 +131,9 @@ function printResult(title, rows) {
 }
 
 function cmdCCA(args) {
+  // Compte Courant d'Associé (art. 55 CIR 92 — intérêts déductibles belge)
+  // Le taux d'intérêt déductible sur CCA est plafonné chaque année par arrêté royal
+  // (art. 55 CIR 92 : taux du marché au moment de l'attribution).
   const total = parseAmountToCents(args.total, "total");
   const joursN1 = BigInt(parseIntStrict(args["jours-n-plus-1"], "jours-n-plus-1"));
   const joursTotaux = BigInt(parseIntStrict(args["jours-totaux"], "jours-totaux"));
@@ -135,7 +141,7 @@ function cmdCCA(args) {
   if (joursTotaux <= 0n) fail("--jours-totaux doit etre > 0");
 
   const cca = roundDivSigned(total * joursN1, joursTotaux);
-  printResult("Calcul CCA", [
+  printResult("Calcul Compte Courant d'Associe (art. 55 CIR 92)", [
     ["Formule", "CCA = Montant total x (Jours N+1 / Jours totaux)"],
     ["Montant total", formatCents(total)],
     ["Jours N+1", String(joursN1)],
@@ -198,35 +204,40 @@ function cmdAmortissementLineaire(args) {
   printResult("Calcul Amortissement Lineaire", rows);
 }
 
-function cmdIS(args) {
+function cmdISOC(args) {
+  // ISOC — Impôt des Sociétés belge (art. 215 CIR 92)
+  // Taux normal : 25% (art. 215 al. 1 CIR 92)
+  // Taux réduit : 20% sur la première tranche de 100 000 EUR (art. 215 al. 2 CIR 92)
+  // Conditions taux réduit : PME, rémunération dirigeant >= 45 000 EUR ou égale au résultat fiscal
   const resultatFiscal = parseAmountToCents(args["resultat-fiscal"], "resultat-fiscal");
   if (resultatFiscal <= 0n) {
-    printResult("Calcul IS", [
+    printResult("Calcul ISOC (art. 215 CIR 92)", [
       ["Resultat fiscal", formatCents(resultatFiscal)],
-      ["IS", "0,00 EUR (resultat fiscal <= 0)"],
+      ["ISOC", "0,00 EUR (resultat fiscal <= 0)"],
     ]);
     return;
   }
 
-  let totalIS = 0n;
+  let totalISOC = 0n;
   let mode = "";
   const rows = [["Resultat fiscal", formatCents(resultatFiscal)]];
 
   if (args.taux !== undefined) {
     const tauxBps = parseRateToBps(args.taux, "taux");
-    totalIS = roundDivSigned(resultatFiscal * tauxBps, 10000n);
+    totalISOC = roundDivSigned(resultatFiscal * tauxBps, 10000n);
     mode = "taux unique";
     rows.push(["Mode", mode]);
     rows.push(["Taux", args.taux + " %"]);
-    rows.push(["Formule", "IS = Resultat fiscal x Taux"]);
+    rows.push(["Formule", "ISOC = Resultat fiscal x Taux"]);
   } else if (
     args["taux-reduit"] !== undefined ||
     args["taux-normal"] !== undefined ||
     args.plafond !== undefined
   ) {
-    const tauxReduitBps = parseRateToBps(args["taux-reduit"] ?? 15, "taux-reduit");
+    // Taux réduit belge : 20% (art. 215 al. 2 CIR 92), plafond 100 000 EUR
+    const tauxReduitBps = parseRateToBps(args["taux-reduit"] ?? 20, "taux-reduit");
     const tauxNormalBps = parseRateToBps(args["taux-normal"] ?? 25, "taux-normal");
-    const plafondAnnuel = parseAmountToCents(args.plafond ?? 42500, "plafond");
+    const plafondAnnuel = parseAmountToCents(args.plafond ?? 100000, "plafond");
     const joursExercice = args["jours-exercice"] !== undefined
       ? BigInt(parseIntStrict(args["jours-exercice"], "jours-exercice"))
       : null;
@@ -234,10 +245,10 @@ function cmdIS(args) {
 
     const trancheReduite = resultatFiscal < plafond ? resultatFiscal : plafond;
     const trancheNormale = resultatFiscal > plafond ? (resultatFiscal - plafond) : 0n;
-    const isReduit = roundDivSigned(trancheReduite * tauxReduitBps, 10000n);
-    const isNormal = roundDivSigned(trancheNormale * tauxNormalBps, 10000n);
-    totalIS = isReduit + isNormal;
-    mode = "deux tranches";
+    const isocReduit = roundDivSigned(trancheReduite * tauxReduitBps, 10000n);
+    const isocNormal = roundDivSigned(trancheNormale * tauxNormalBps, 10000n);
+    totalISOC = isocReduit + isocNormal;
+    mode = "deux tranches (art. 215 al. 2 CIR 92)";
 
     rows.push(["Mode", mode]);
     rows.push(["Plafond annuel taux reduit", formatCents(plafondAnnuel)]);
@@ -245,44 +256,51 @@ function cmdIS(args) {
       rows.push(["Jours exercice", String(joursExercice)]);
     }
     rows.push(["Plafond taux reduit applique", formatCents(plafond)]);
-    rows.push(["Taux reduit", String(args["taux-reduit"] ?? 15) + " %"]);
-    rows.push(["Taux normal", String(args["taux-normal"] ?? 25) + " %"]);
+    rows.push(["Taux reduit (art. 215 al. 2 CIR 92)", String(args["taux-reduit"] ?? 20) + " %"]);
+    rows.push(["Taux normal (art. 215 al. 1 CIR 92)", String(args["taux-normal"] ?? 25) + " %"]);
     rows.push(["Tranche reduite", formatCents(trancheReduite)]);
     rows.push(["Tranche normale", formatCents(trancheNormale)]);
-    rows.push(["IS tranche reduite", formatCents(isReduit)]);
-    rows.push(["IS tranche normale", formatCents(isNormal)]);
+    rows.push(["ISOC tranche reduite", formatCents(isocReduit)]);
+    rows.push(["ISOC tranche normale", formatCents(isocNormal)]);
   } else {
-    fail("pour la commande is, fournir --taux OU (--taux-reduit/--taux-normal/--plafond)");
+    fail("pour la commande isoc, fournir --taux OU (--taux-reduit/--taux-normal/--plafond)");
   }
 
-  rows.push(["IS total", formatCents(totalIS)]);
-  printResult("Calcul IS", rows);
+  rows.push(["ISOC total", formatCents(totalISOC)]);
+  printResult("Calcul ISOC (art. 215 CIR 92)", rows);
 }
 
 function cmdTVAAcomptesRS(args) {
+  // Note Belgique : la TVA belge se déclare via Intervat (portail SPF Finances)
+  // selon un régime mensuel ou trimestriel — il n'existe pas d'acompte simplifié
+  // annuel équivalent au régime simplifié français.
+  // Cette fonction calcule des acomptes indicatifs (55%/40%) à titre de simulation.
+  // En pratique, les assujettis belges déposent leurs déclarations périodiques via
+  // https://intervat.minfin.fgov.be
   const tvaN1 = parseAmountToCents(args["tva-n-1"], "tva-n-1");
   const a1 = roundDivSigned(tvaN1 * 55n, 100n);
   const a2 = roundDivSigned(tvaN1 * 40n, 100n);
   const total = a1 + a2;
 
-  printResult("Calcul Acomptes TVA Regime Simplifie", [
+  printResult("Calcul Acomptes TVA (indicatif — Belgique : declarations via Intervat)", [
     ["TVA N-1", formatCents(tvaN1)],
-    ["Acompte juillet (55%)", formatCents(a1)],
-    ["Acompte decembre (40%)", formatCents(a2)],
-    ["Total acomptes", formatCents(total)],
+    ["Acompte indicatif periode 1 (55%)", formatCents(a1)],
+    ["Acompte indicatif periode 2 (40%)", formatCents(a2)],
+    ["Total acomptes indicatifs", formatCents(total)],
+    ["Note", "En Belgique, declarations periodiques via Intervat (pas d'acompte simplifie)"],
   ]);
 }
 
 function help() {
-  console.log("Calculateur comptable/fiscal deterministe");
+  console.log("Calculateur comptable/fiscal deterministe (droit belge — CIR 92)");
   console.log("");
   console.log("Usage: node scripts/calc.js <commande> [--param valeur]");
   console.log("");
   console.log("Commandes:");
-  console.log("  cca");
+  console.log("  cca                  Compte Courant d'Associe (art. 55 CIR 92)");
   console.log("  amortissement-lineaire");
-  console.log("  is");
-  console.log("  tva-acomptes-rs");
+  console.log("  isoc                 Impot des Societes belge (art. 215 CIR 92)");
+  console.log("  tva-acomptes-rs      Acomptes TVA indicatifs (declarations via Intervat)");
   console.log("  prorata");
 }
 
@@ -302,8 +320,12 @@ function main() {
     case "amortissement-lineaire":
       cmdAmortissementLineaire(args);
       break;
+    case "isoc":
+      cmdISOC(args);
+      break;
     case "is":
-      cmdIS(args);
+      // Alias "is" vers "isoc" pour compatibilite ascendante
+      cmdISOC(args);
       break;
     case "tva-acomptes-rs":
       cmdTVAAcomptesRS(args);
@@ -323,7 +345,7 @@ if (require.main === module) {
 module.exports = {
   cmdAmortissementLineaire,
   cmdCCA,
-  cmdIS,
+  cmdISOC,
   cmdProrata,
   cmdTVAAcomptesRS,
   formatCents,

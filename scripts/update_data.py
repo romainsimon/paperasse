@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
 """
-Update all data sources and check freshness of skills.
+Verifie la fraicheur des donnees fiscales et comptables belges.
+Met a jour les fichiers data/ si necessaire.
 
-Usage:
-    python scripts/update_data.py              # Check freshness + update data
-    python scripts/update_data.py --check      # Check only, no downloads
-    python scripts/update_data.py --force      # Force re-download everything
+Utilisation :
+    python scripts/update_data.py              # Verifier + mise a jour
+    python scripts/update_data.py --check      # Verifier uniquement, sans telechargement
+    python scripts/update_data.py --force      # Forcer le re-telechargement
 
-Downloads:
-    - PCG (Plan Comptable Général) JSON from GitHub/Arrhes
-    - Nomenclature fiscale CSV from data.gouv.fr
+Sources belges :
+    - Bareme IPP : finances.belgium.be (annuel)
+    - PCMN       : cnc-cbn.be (modifications rares)
+    - ISOC 275   : finances.belgium.be (annuel)
+    - Precompte mobilier : fisconetplus.be (annuel)
+    - Coefficient indexation RC : finances.belgium.be (annuel)
 
-Checks:
-    - SKILL.md frontmatter last_updated dates (warns if > 6 months)
-    - Data files last_fetched dates (warns if > 1 year for annual, > 6 months for others)
-    - Availability of remote sources (HTTP HEAD check)
+Note sur les telechargements automatiques :
+    Le PCMN (Plan Comptable Minimum Normalise) est publie par la CNC-CBN
+    (Commission des Normes Comptables / Commissie voor Boekhoudkundige Normen).
+    Il evolue rarement — les modifications sont rares et font l'objet d'avis officiels.
+    Les baremes IPP et ISOC sont fixes annuellement par la loi-programme ou la LF belge.
+    Ce script verifie la fraicheur et rappelle les actions manuelles necessaires.
 """
 
 import json
@@ -27,15 +33,15 @@ from datetime import datetime, date
 from pathlib import Path
 
 # ──────────────────────────────────────────────
-# Config
+# Configuration
 # ──────────────────────────────────────────────
 
 REPO_ROOT = Path(__file__).parent.parent
 DATA_DIR = REPO_ROOT / "data"
 SOURCES_FILE = DATA_DIR / "sources.json"
-SKILL_MAX_AGE_DAYS = 180  # 6 months
-DATA_ANNUAL_MAX_AGE_DAYS = 400  # ~13 months for annual sources
-DATA_OTHER_MAX_AGE_DAYS = 180  # 6 months for others
+SKILL_MAX_AGE_DAYS = 180         # 6 mois
+DATA_ANNUAL_MAX_AGE_DAYS = 400   # ~13 mois pour les sources annuelles
+DATA_OTHER_MAX_AGE_DAYS = 180    # 6 mois pour les autres
 
 # ANSI
 RED = "\033[91m"
@@ -48,11 +54,11 @@ RESET = "\033[0m"
 
 
 # ──────────────────────────────────────────────
-# Skill freshness
+# Fraicheur des skills
 # ──────────────────────────────────────────────
 
 def find_skills():
-    """Find all SKILL.md files in the repo."""
+    """Trouve tous les fichiers SKILL.md dans le depot."""
     skills = []
     for item in REPO_ROOT.iterdir():
         if item.is_dir() and (item / "SKILL.md").exists():
@@ -60,9 +66,9 @@ def find_skills():
     return sorted(skills, key=lambda p: p.name)
 
 
-def parse_skill_date(skill_path):
-    """Extract last_updated from SKILL.md frontmatter."""
-    content = (skill_path / "SKILL.md").read_text()
+def parse_skill_date(skill_path: Path) -> date | None:
+    """Extrait la date last_updated du frontmatter SKILL.md."""
+    content = (skill_path / "SKILL.md").read_text(encoding="utf-8")
     match = re.search(r"last_updated:\s*(\d{4}-\d{2}-\d{2})", content)
     if match:
         return datetime.strptime(match.group(1), "%Y-%m-%d").date()
@@ -70,13 +76,13 @@ def parse_skill_date(skill_path):
 
 
 def check_skills():
-    """Check freshness of all skills."""
+    """Verifie la fraicheur de tous les skills."""
     print(f"\n{BOLD}1. SKILLS{RESET}")
     print("=" * 60)
 
     skills = find_skills()
     if not skills:
-        print(f"  {YELLOW}Aucun skill trouvé{RESET}")
+        print(f"  {YELLOW}Aucun skill trouve{RESET}")
         return []
 
     issues = []
@@ -87,39 +93,39 @@ def check_skills():
         last_updated = parse_skill_date(skill_path)
 
         if not last_updated:
-            print(f"  {YELLOW}⚪ {name:<35}{RESET} pas de date last_updated")
+            print(f"  {YELLOW}o {name:<35}{RESET} pas de date last_updated")
             issues.append(("skill", name, "no_date"))
             continue
 
         age = (today - last_updated).days
 
         if age > SKILL_MAX_AGE_DAYS:
-            print(f"  {RED}🔴 {name:<35}{RESET} {last_updated} ({age}j) OBSOLETE")
+            print(f"  {RED}[OBSOLETE] {name:<30}{RESET} {last_updated} ({age}j)")
             issues.append(("skill", name, "stale"))
         elif age > SKILL_MAX_AGE_DAYS // 2:
-            print(f"  {YELLOW}🟠 {name:<35}{RESET} {last_updated} ({age}j)")
+            print(f"  {YELLOW}[AVERTIS.] {name:<30}{RESET} {last_updated} ({age}j)")
             issues.append(("skill", name, "warning"))
         else:
-            print(f"  {GREEN}🟢 {name:<35}{RESET} {last_updated} ({age}j)")
+            print(f"  {GREEN}[OK]       {name:<30}{RESET} {last_updated} ({age}j)")
 
     return issues
 
 
 # ──────────────────────────────────────────────
-# Data sources
+# Sources de donnees
 # ──────────────────────────────────────────────
 
-def load_sources():
-    """Load sources.json manifest."""
+def load_sources() -> list:
+    """Charge le manifeste sources.json."""
     if not SOURCES_FILE.exists():
         print(f"  {RED}sources.json introuvable{RESET}")
         return []
-    with open(SOURCES_FILE) as f:
+    with open(SOURCES_FILE, encoding="utf-8") as f:
         return json.load(f)["sources"]
 
 
 def check_data_sources():
-    """Check freshness of data files."""
+    """Verifie la fraicheur des fichiers de donnees declares dans sources.json."""
     print(f"\n{BOLD}2. DONNEES{RESET}")
     print("=" * 60)
 
@@ -133,191 +139,160 @@ def check_data_sources():
         last_fetched = src.get("last_fetched")
         freq = src.get("update_frequency", "unknown")
 
-        # Determine max age based on frequency
-        if freq == "annual":
+        # Age maximal selon la frequence
+        if freq in ("annual", "rare"):
             max_age = DATA_ANNUAL_MAX_AGE_DAYS
         else:
             max_age = DATA_OTHER_MAX_AGE_DAYS
 
-        # No local file (API only)
+        # Source API sans fichier local
         if not file_name:
-            print(f"  {DIM}  {name:<35}{RESET} {DIM}(API, pas de fichier local){RESET}")
+            print(f"  {DIM}  {name:<40}{RESET} {DIM}(API, pas de fichier local){RESET}")
             continue
 
         file_path = DATA_DIR / file_name
 
-        # File missing?
+        # Fichier manquant
         if not file_path.exists():
-            print(f"  {RED}🔴 {name:<35}{RESET} fichier manquant: {file_name}")
+            print(f"  {RED}[MANQUANT] {name:<35}{RESET} {file_name}")
             issues.append(("data", name, "missing"))
             continue
 
-        # Check age
+        # Verifier l'age
         if last_fetched:
             fetched_date = datetime.strptime(last_fetched, "%Y-%m-%d").date()
             age = (today - fetched_date).days
 
             if age > max_age:
-                print(f"  {RED}🔴 {name:<35}{RESET} {last_fetched} ({age}j) OBSOLETE")
+                print(f"  {RED}[OBSOLETE] {name:<35}{RESET} {last_fetched} ({age}j)")
                 issues.append(("data", name, "stale"))
             elif age > max_age // 2:
-                print(f"  {YELLOW}🟠 {name:<35}{RESET} {last_fetched} ({age}j)")
+                print(f"  {YELLOW}[AVERTIS.] {name:<35}{RESET} {last_fetched} ({age}j)")
                 issues.append(("data", name, "warning"))
             else:
                 size = file_path.stat().st_size
                 size_str = f"{size/1024:.0f}KB" if size > 1024 else f"{size}B"
-                print(f"  {GREEN}🟢 {name:<35}{RESET} {last_fetched} ({age}j) [{size_str}]")
+                print(f"  {GREEN}[OK]       {name:<35}{RESET} {last_fetched} ({age}j) [{size_str}]")
         else:
-            print(f"  {YELLOW}⚪ {name:<35}{RESET} pas de date last_fetched")
+            print(f"  {YELLOW}[?]        {name:<35}{RESET} pas de date last_fetched")
             issues.append(("data", name, "no_date"))
 
     return issues
 
 
-def update_pcg(sources, force=False):
-    """Download latest PCG JSON."""
-    pcg_src = next((s for s in sources if s["id"] == "pcg"), None)
-    if not pcg_src:
-        return
+def update_pcmn(sources: list, force: bool = False) -> bool:
+    """
+    Verifie la disponibilite du PCMN (Plan Comptable Minimum Normalise belge).
 
-    current_year = date.today().year
-    url = pcg_src["source_url"].format(year=current_year)
-    file_path = DATA_DIR / f"pcg_{current_year}.json"
+    Le PCMN est publie par la CNC-CBN (Commission des Normes Comptables).
+    Il n'existe pas de flux automatique officiel — les mises a jour sont rares
+    et publiees sous forme d'avis sur https://www.cnc-cbn.be.
 
-    # Check if we need to update
-    if file_path.exists() and not force:
-        last_fetched = pcg_src.get("last_fetched", "")
-        if last_fetched:
-            fetched_date = datetime.strptime(last_fetched, "%Y-%m-%d").date()
-            age = (date.today() - fetched_date).days
-            if age < DATA_ANNUAL_MAX_AGE_DAYS:
-                print(f"  {DIM}PCG {current_year}: a jour, skip{RESET}")
-                return
-
-    print(f"  Telechargement PCG {current_year}... ", end="", flush=True)
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "paperasse/1.0"})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = resp.read()
-
-        # Validate JSON
-        parsed = json.loads(data)
-        account_count = len(parsed.get("flat", []))
-
-        # Remove old versions
-        for old in DATA_DIR.glob("pcg_*.json"):
-            if old.name != f"pcg_{current_year}.json":
-                old.unlink()
-                print(f"\n    Supprime {old.name}", end="")
-
-        file_path.write_bytes(data)
-
-        # Update sources.json
-        pcg_src["file"] = f"pcg_{current_year}.json"
-        pcg_src["version"] = str(current_year)
-        pcg_src["last_fetched"] = date.today().isoformat()
-        pcg_src["source_url"] = pcg_src["source_url"]  # keep template
-
-        print(f"{GREEN}OK{RESET} ({account_count} comptes, {len(data)/1024:.0f}KB)")
-        return True
-
-    except (urllib.error.URLError, json.JSONDecodeError) as e:
-        print(f"{RED}ERREUR{RESET}: {e}")
-        # Try previous year as fallback
-        if current_year > 2023:
-            prev_url = pcg_src["source_url"].format(year=current_year - 1)
-            print(f"  Fallback PCG {current_year - 1}... ", end="", flush=True)
-            try:
-                req = urllib.request.Request(prev_url, headers={"User-Agent": "paperasse/1.0"})
-                with urllib.request.urlopen(req, timeout=30) as resp:
-                    data = resp.read()
-                fallback_path = DATA_DIR / f"pcg_{current_year - 1}.json"
-                fallback_path.write_bytes(data)
-                pcg_src["file"] = f"pcg_{current_year - 1}.json"
-                pcg_src["version"] = str(current_year - 1)
-                pcg_src["last_fetched"] = date.today().isoformat()
-                print(f"{GREEN}OK{RESET}")
-                return True
-            except Exception as e2:
-                print(f"{RED}ERREUR{RESET}: {e2}")
-        return False
-
-
-def update_nomenclature(sources, force=False):
-    """Download nomenclature fiscale CSV."""
-    src = next((s for s in sources if s["id"] == "nomenclature-liasse"), None)
+    Cette fonction verifie uniquement que le fichier pcmn.json existe
+    et est a jour. Elle ne tente pas de telechargement automatique.
+    """
+    src = next((s for s in sources if s["id"] in ("pcmn", "pcg")), None)
     if not src:
-        return
+        print(f"  {DIM}PCMN : non configure dans sources.json{RESET}")
+        return False
 
-    file_path = DATA_DIR / src["file"]
+    file_name = src.get("file", "")
+    file_path = DATA_DIR / file_name if file_name else None
 
-    if file_path.exists() and not force:
-        last_fetched = src.get("last_fetched", "")
-        if last_fetched:
-            fetched_date = datetime.strptime(last_fetched, "%Y-%m-%d").date()
-            age = (date.today() - fetched_date).days
-            if age < DATA_OTHER_MAX_AGE_DAYS:
-                print(f"  {DIM}Nomenclature liasse: a jour, skip{RESET}")
-                return
-
-    url = src["source_url"]
-    print(f"  Telechargement nomenclature liasse... ", end="", flush=True)
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "paperasse/1.0"})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = resp.read()
-
-        file_path.write_bytes(data)
-        line_count = data.count(b"\n")
-        src["last_fetched"] = date.today().isoformat()
-        print(f"{GREEN}OK{RESET} ({line_count} lignes)")
+    if file_path and file_path.exists():
+        size = file_path.stat().st_size
+        last = src.get("last_fetched", "?")
+        print(f"  {GREEN}PCMN{RESET} : {file_name} ({size/1024:.0f}KB), last_fetched={last}")
+        print(
+            f"  {DIM}  -> Pour mettre a jour : verifier https://www.cnc-cbn.be/fr/avis{RESET}"
+        )
         return True
-
-    except urllib.error.URLError as e:
-        print(f"{RED}ERREUR{RESET}: {e}")
+    else:
+        print(f"  {YELLOW}PCMN{RESET} : fichier manquant ou non configure")
+        print(
+            f"  {DIM}  -> Source : https://www.cnc-cbn.be (Plan Comptable Minimum Normalise){RESET}"
+        )
         return False
 
 
-def check_remote_availability(sources):
-    """Quick HEAD check on remote sources."""
+def update_nomenclature_isoc(sources: list, force: bool = False) -> bool:
+    """
+    Verifie la disponibilite de la nomenclature ISOC 275 (formulaire belge).
+
+    Cette nomenclature est publiee annuellement par le SPF Finances belge.
+    Elle n'est pas disponible sous forme de fichier CSV automatiquement
+    telechargeable — elle est incluse dans les instructions du formulaire 275.
+
+    Source officielle : https://finances.belgium.be (formulaire 275 / ISOC)
+    """
+    src = next(
+        (s for s in sources if s["id"] in ("nomenclature-isoc", "nomenclature-liasse")),
+        None,
+    )
+    if not src:
+        print(f"  {DIM}Nomenclature ISOC : non configure dans sources.json{RESET}")
+        return False
+
+    file_name = src.get("file", "")
+    file_path = DATA_DIR / file_name if file_name else None
+
+    if file_path and file_path.exists():
+        last = src.get("last_fetched", "?")
+        size = file_path.stat().st_size
+        print(f"  {GREEN}Nomenclature ISOC{RESET} : {file_name} ({size/1024:.0f}KB), last_fetched={last}")
+    else:
+        print(f"  {YELLOW}Nomenclature ISOC{RESET} : fichier manquant ou non configure")
+        print(
+            f"  {DIM}  -> Source : https://finances.belgium.be "
+            f"(formulaire 275 / instructions ISOC){RESET}"
+        )
+
+    return bool(file_path and file_path.exists())
+
+
+def check_remote_availability(sources: list):
+    """Verifie rapidement la disponibilite des sources distantes (HEAD)."""
     print(f"\n{BOLD}3. SOURCES DISTANTES{RESET}")
     print("=" * 60)
 
     urls_to_check = []
     for src in sources:
-        if src.get("source_url"):
-            url = src["source_url"]
-            if "{year}" in url:
-                url = url.format(year=date.today().year)
-            urls_to_check.append((src["name"], url))
-        if src.get("api_json"):
-            urls_to_check.append((src["name"] + " (API)", src["api_json"]))
-        if src.get("alt_api"):
-            urls_to_check.append((src["name"] + " (API alt)", src["alt_api"]))
+        for cle in ("source_url", "api_json", "alt_api", "api_url"):
+            url = src.get(cle)
+            if url and "{year}" not in url:
+                label = src["name"]
+                if cle != "source_url":
+                    label += f" ({cle})"
+                urls_to_check.append((label, url))
+                break  # Un seul URL par source suffit
 
     for name, url in urls_to_check:
         try:
-            req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "paperasse/1.0"})
+            req = urllib.request.Request(
+                url,
+                method="HEAD",
+                headers={"User-Agent": "paperasse-be/1.0"},
+            )
             with urllib.request.urlopen(req, timeout=10) as resp:
                 status = resp.status
                 if status == 200:
-                    print(f"  {GREEN}✓ {name:<40}{RESET} {DIM}{url[:60]}{RESET}")
+                    print(f"  {GREEN}OK  {name:<45}{RESET} {DIM}{url[:55]}{RESET}")
                 else:
-                    print(f"  {YELLOW}? {name:<40}{RESET} HTTP {status}")
+                    print(f"  {YELLOW}?   {name:<45}{RESET} HTTP {status}")
         except Exception as e:
-            short_err = str(e)[:50]
-            print(f"  {RED}✗ {name:<40}{RESET} {short_err}")
+            short_err = str(e)[:60]
+            print(f"  {RED}NOK {name:<45}{RESET} {short_err}")
 
 
-def save_sources(sources):
-    """Write updated sources.json."""
-    with open(SOURCES_FILE, "w") as f:
+def save_sources(sources: list):
+    """Ecrit le manifeste sources.json mis a jour."""
+    with open(SOURCES_FILE, "w", encoding="utf-8") as f:
         json.dump({"sources": sources}, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
 
 # ──────────────────────────────────────────────
-# Main
+# Principal
 # ──────────────────────────────────────────────
 
 def main():
@@ -325,38 +300,30 @@ def main():
     force = "--force" in sys.argv
 
     print(f"\n{BOLD}{'='*60}{RESET}")
-    print(f"{BOLD}  PAPERASSE — Verification des donnees{RESET}")
+    print(f"{BOLD}  PAPERASSE-BE — Verification des donnees belges{RESET}")
     print(f"{BOLD}  {date.today().isoformat()}{RESET}")
     print(f"{BOLD}{'='*60}{RESET}")
 
-    # 1. Check skills
+    # 1. Fraicheur des skills
     skill_issues = check_skills()
 
-    # 2. Check data
+    # 2. Fraicheur des donnees
     data_issues = check_data_sources()
 
-    # 3. Update data (unless --check)
+    # 3. Verification locale PCMN + nomenclature ISOC (sans telechargement auto)
     if not check_only:
         sources = load_sources()
 
-        print(f"\n{BOLD}MISE A JOUR{RESET}")
+        print(f"\n{BOLD}VERIFICATION FICHIERS BELGES{RESET}")
         print("=" * 60)
+        update_pcmn(sources, force)
+        update_nomenclature_isoc(sources, force)
 
-        updated = False
-        if update_pcg(sources, force):
-            updated = True
-        if update_nomenclature(sources, force):
-            updated = True
-
-        if updated:
-            save_sources(sources)
-            print(f"\n  {GREEN}sources.json mis a jour{RESET}")
-
-    # 4. Check remote availability
+    # 4. Disponibilite des sources distantes
     sources = load_sources()
     check_remote_availability(sources)
 
-    # Summary
+    # Resume
     all_issues = skill_issues + data_issues
     stale = [i for i in all_issues if i[2] in ("stale", "missing")]
     warnings = [i for i in all_issues if i[2] in ("warning", "no_date")]
@@ -368,21 +335,26 @@ def main():
         print(f"  {GREEN}Tout est a jour.{RESET}")
     else:
         if stale:
-            print(f"  {RED}🔴 {len(stale)} element(s) obsolete(s) ou manquant(s){RESET}")
+            print(f"  {RED}[OBSOLETE/MANQUANT] {len(stale)} element(s){RESET}")
             for typ, name, _ in stale:
                 print(f"     - [{typ}] {name}")
         if warnings:
-            print(f"  {YELLOW}🟠 {len(warnings)} avertissement(s){RESET}")
+            print(f"  {YELLOW}[AVERTISSEMENT] {len(warnings)} element(s){RESET}")
 
     if stale:
-        print(f"\n  {BOLD}Actions:{RESET}")
-        print("  - Verifier les seuils/taux sur impots.gouv.fr et urssaf.fr")
-        print("  - Mettre a jour metadata.last_updated dans les SKILL.md concernes")
-        print("  - Relancer: python scripts/update_data.py --force")
+        print(f"\n  {BOLD}Actions necessaires :{RESET}")
+        print("  - Bareme IPP      : https://finances.belgium.be")
+        print("  - ISOC 275        : https://finances.belgium.be (formulaire 275)")
+        print("  - Precompte mob.  : https://fisconetplus.be")
+        print("  - PCMN / CNC-CBN  : https://www.cnc-cbn.be/fr/avis")
+        print("  - Coeff. index RC : https://finances.belgium.be")
+        print("  - BCE / KBO       : https://kbopub.economie.fgov.be")
+        print("  - Apres maj, mettre a jour last_updated dans les SKILL.md concernes")
+        print("  - Relancer : python scripts/update_data.py --force")
 
     print()
 
-    # Exit code
+    # Code de retour
     if stale:
         sys.exit(2)
     elif warnings:

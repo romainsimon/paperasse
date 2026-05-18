@@ -1,34 +1,31 @@
 #!/usr/bin/env python3
 """
-Récupération de données ouvertes pour le skill notaire.
+Récupération de données ouvertes pour le skill notaire belge.
 
 Utilisation :
-    # Géocoder une adresse (retourne coordonnées, code INSEE)
-    python scripts/fetch_notaire_data.py geocode "12 rue de Rivoli, Paris"
+    # Géocoder une adresse belge
+    python scripts/fetch_notaire_data.py geocode "Rue de la Loi 16, 1000 Bruxelles"
 
-    # Chercher des transactions DVF dans une commune
-    python scripts/fetch_notaire_data.py dvf --code-insee 75101 --nature Vente --limit 20
+    # Obtenir les parcelles cadastrales (AGDP)
+    python scripts/fetch_notaire_data.py cadastre --commune "Ixelles" --section A --numero 0012
 
-    # Obtenir les parcelles cadastrales
-    python scripts/fetch_notaire_data.py cadastre --code-insee 75101 --section AB --numero 0012
+    # Vérifier le zonage urbanistique (selon région)
+    python scripts/fetch_notaire_data.py urbanisme --lat 50.8503 --lon 4.3517 --region bruxelles
 
-    # Vérifier les risques d'un emplacement (Géorisques)
-    python scripts/fetch_notaire_data.py risques --lat 48.8566 --lon 2.3522
+    # Rechercher une entreprise (BCE)
+    python scripts/fetch_notaire_data.py entreprise "SRL Les Oliviers"
 
-    # Vérifier le zonage PLU (GPU)
-    python scripts/fetch_notaire_data.py urbanisme --lat 48.8566 --lon 2.3522
-
-    # Rechercher une personne décédée (MatchID)
-    python scripts/fetch_notaire_data.py deces --nom "Dupont" --prenom "Jean" --date-naissance "1930-01-01"
-
-    # Rechercher une entreprise (Annuaire Entreprises)
-    python scripts/fetch_notaire_data.py entreprise "SCI Les Oliviers"
-
-    # Rapport immobilier complet (enchaîne toutes les APIs)
-    python scripts/fetch_notaire_data.py rapport "12 rue de Rivoli, Paris"
+    # Rapport immobilier belge
+    python scripts/fetch_notaire_data.py rapport "Rue de la Loi 16, 1000 Bruxelles"
 
     # Rapport immobilier au format markdown
-    python scripts/fetch_notaire_data.py rapport "12 rue de Rivoli, Paris" --markdown
+    python scripts/fetch_notaire_data.py rapport "Rue de la Loi 16, 1000 Bruxelles" --markdown
+
+APIs utilisées:
+    - Géocodage: api.bosa.be ou Nominatim (OpenStreetMap) en fallback
+    - Cadastre: AGDP (Administration générale de la Documentation Patrimoniale)
+    - Urbanisme: Geopunt (Flandre), WalOnMap (Wallonie), UrbIS (Bruxelles)
+    - Entreprises: BCE/KBO (kbopub.economie.fgov.be)
 """
 
 import argparse
@@ -39,418 +36,787 @@ import urllib.parse
 import urllib.error
 
 
+# ---------------------------------------------------------------------------
+# Utilitaires BCE (dupliques depuis fetch_company.py pour autonomie)
+# ---------------------------------------------------------------------------
+
+def format_bce(raw: str) -> str:
+    """
+    Normalise un numero BCE vers le format standard 0xxx.xxx.xxx.
+
+    Accepte :
+      - "0123456789"      (10 chiffres)
+      - "0123.456.789"    (format pointe)
+      - "BE0123456789"    (prefixe TVA)
+    """
+    clean = raw.strip().upper()
+    if clean.startswith("BE"):
+        clean = clean[2:]
+    clean = clean.replace(".", "").replace(" ", "").replace("-", "")
+    if not clean.isdigit():
+        raise ValueError(f"Numero BCE invalide : {raw!r}")
+    if len(clean) != 10:
+        raise ValueError(f"Numero BCE invalide : {raw!r} (attendu 10 chiffres, obtenu {len(clean)})")
+    return f"{clean[0:4]}.{clean[4:7]}.{clean[7:10]}"
+
+
+def bce_to_tva(bce: str) -> str:
+    """Convertit un numero BCE vers le numero TVA belge (BE0xxxxxxxxx)."""
+    clean = format_bce(bce).replace(".", "")
+    return f"BE{clean}"
+
+
+# ---------------------------------------------------------------------------
+# URLs de base
+# ---------------------------------------------------------------------------
+
 BASE_URLS = {
-    "ban": "https://api-adresse.data.gouv.fr/search/",
-    "dvf": "https://apidf-preprod.cerema.fr/dvf_opendata/mutations/",
-    "cadastre": "https://apicarto.ign.fr/api/cadastre/parcelle",
-    "georisques": "https://www.georisques.gouv.fr/api/v1/resultats_rapport_risque",
-    "gpu": "https://apicarto.ign.fr/api/gpu/zone-urba",
-    "entreprise": "https://recherche-entreprises.api.gouv.fr/search",
-    "matchid": "https://deces.matchid.io/deces/api/v1/search",
+    # Géocodage BOSA (Belgium Open Source Architects)
+    # Documentation : https://api.bosa.be
+    "bosa_geocode": "https://api.bosa.be/address-match/match",
+
+    # Nominatim OpenStreetMap — fallback géocodage
+    "nominatim": "https://nominatim.openstreetmap.org/search",
+
+    # BCE/KBO — entreprises belges
+    "bce_search": "https://kbopub.economie.fgov.be/kbopublic/api/search.json",
+    "bce_enterprise": "https://kbopub.economie.fgov.be/kbopublic/api/enterprise",
+
+    # Geopunt (Flandre) — géocodage, cartographie, données patrimoniales
+    "geopunt_geocode": "https://loc.geopunt.be/geolocation/location",
+    "geopunt_parcel": "https://geo.api.vlaanderen.be/OGCAPI/collections/Perceel/items",
+
+    # UrbIS (Bruxelles) — géocodage et données urbaines
+    "urbis_geocode": "https://geoservices.irisnet.be/localization/Rest/Localize/getaddresses",
+
+    # WalOnMap / Géoportail Wallon — pas d'API REST publique unifiée pour le zonage
+    # Source manuelle : https://geoportail.wallonie.be
+    # SPW Open Data : https://opendata.wallonie.be
+    "spw_wfs": "https://geoservices.wallonie.be/arcgis/services/SOL_SOUS_SOL/CADMAP/MapServer/WFSServer",
+
+    # AGDP (patrimoniale) — pas d'API publique directe ; accès via MyMinfin
+    # Source manuelle : https://finances.belgium.be/fr/particuliers/habitation/cadastre
 }
 
 
-def fetch_json(url, method="GET", data=None, content_type=None):
-    """Récupère du JSON depuis une URL."""
-    headers = {"Accept": "application/json"}
-    if content_type:
-        headers["Content-Type"] = content_type
+# ---------------------------------------------------------------------------
+# Utilitaires HTTP
+# ---------------------------------------------------------------------------
 
-    if data and isinstance(data, dict):
-        data = json.dumps(data).encode("utf-8")
-
-    req = urllib.request.Request(url, data=data, headers=headers, method=method)
+def _fetch_json(url: str, timeout: int = 20) -> dict | None:
+    """Effectue une requête GET JSON. Retourne None en cas d'erreur non fatale."""
+    headers = {
+        "Accept": "application/json",
+        "User-Agent": "paperasse-be/1.0",
+    }
+    req = urllib.request.Request(url, headers=headers)
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8", errors="replace")
-        print(f"Erreur HTTP {e.code} : {body[:500]}", file=sys.stderr)
-        sys.exit(1)
+        print(f"Erreur HTTP {e.code} ({url}) : {body[:300]}", file=sys.stderr)
+        return None
     except urllib.error.URLError as e:
-        print(f"Erreur de connexion : {e.reason}", file=sys.stderr)
+        print(f"Erreur de connexion ({url}) : {e.reason}", file=sys.stderr)
+        return None
+
+
+def _fetch_json_fatal(url: str, timeout: int = 20) -> dict:
+    """Comme _fetch_json mais quitte le programme en cas d'échec."""
+    data = _fetch_json(url, timeout)
+    if data is None:
+        print(f"Impossible de récupérer les données depuis : {url}", file=sys.stderr)
         sys.exit(1)
-
-
-def geocode(address):
-    """Géocode une adresse via l'API BAN. Retourne coordonnées et code INSEE."""
-    params = urllib.parse.urlencode({"q": address, "limit": 1})
-    url = f"{BASE_URLS['ban']}?{params}"
-    data = fetch_json(url)
-
-    if not data.get("features"):
-        print(f"Adresse non trouvée : {address}", file=sys.stderr)
-        sys.exit(1)
-
-    feature = data["features"][0]
-    props = feature["properties"]
-    coords = feature["geometry"]["coordinates"]  # [lon, lat]
-
-    result = {
-        "adresse": props.get("label"),
-        "score": props.get("score"),
-        "code_insee": props.get("citycode"),
-        "code_postal": props.get("postcode"),
-        "commune": props.get("city"),
-        "latitude": coords[1],
-        "longitude": coords[0],
-    }
-    return result
-
-
-def search_dvf(code_insee, nature="Vente", limit=20):
-    """Recherche des transactions DVF dans une commune."""
-    params = {
-        "code_insee": code_insee,
-        "page_size": limit,
-        "ordering": "-datemut",
-    }
-    if nature:
-        params["libnatmut"] = nature
-
-    url = f"{BASE_URLS['dvf']}?{urllib.parse.urlencode(params)}"
-    data = fetch_json(url)
-
-    results = data.get("results", [])
-    transactions = []
-    for tx in results:
-        transactions.append({
-            "date": tx.get("datemut"),
-            "nature": tx.get("libnatmut"),
-            "valeur_fonciere": tx.get("valeurfonc"),
-            "type_bien": tx.get("libtypbien"),
-            "surface_bati": tx.get("sbati"),
-            "surface_terrain": tx.get("sterr"),
-            "parcelles": tx.get("l_idpar", []),
-            "vefa": tx.get("vefa"),
-            "nb_locaux": tx.get("nblocmut"),
-        })
-
-    return {
-        "code_insee": code_insee,
-        "count": data.get("count", 0),
-        "transactions": transactions,
-    }
-
-
-def search_cadastre(code_insee, section=None, numero=None):
-    """Recherche des parcelles cadastrales."""
-    params = {"code_insee": code_insee}
-    if section:
-        params["section"] = section
-    if numero:
-        params["numero"] = numero
-
-    url = f"{BASE_URLS['cadastre']}?{urllib.parse.urlencode(params)}"
-    data = fetch_json(url)
-
-    parcelles = []
-    for feature in data.get("features", []):
-        props = feature["properties"]
-        parcelles.append({
-            "commune": props.get("nom_com"),
-            "section": props.get("section"),
-            "numero": props.get("numero"),
-            "contenance": props.get("contenance"),
-            "code_arr": props.get("code_arr"),
-        })
-
-    return {"code_insee": code_insee, "parcelles": parcelles}
-
-
-def check_risques(lat, lon):
-    """Vérifie les risques d'un emplacement via l'API Géorisques."""
-    url = f"{BASE_URLS['georisques']}?latlon={lon},{lat}"
-    data = fetch_json(url)
     return data
 
 
-def check_urbanisme(lat, lon):
-    """Vérifie le zonage PLU via l'API GPU (nécessite un point GeoJSON)."""
-    geojson = {
-        "type": "Point",
-        "coordinates": [lon, lat]
+# ---------------------------------------------------------------------------
+# 1. Géocodage
+# ---------------------------------------------------------------------------
+
+def geocode(address: str) -> dict:
+    """
+    Géocode une adresse belge.
+
+    Essaie d'abord l'API BOSA (Belgium), puis Nominatim/OpenStreetMap en fallback.
+    Retourne : adresse normalisée, latitude, longitude, code postal, commune, région.
+    """
+    # Tentative 1 : BOSA address-match
+    result = _geocode_bosa(address)
+    if result:
+        return result
+
+    # Tentative 2 : Geopunt (adresses flamandes)
+    result = _geocode_geopunt(address)
+    if result:
+        return result
+
+    # Tentative 3 : UrbIS (adresses bruxelloises)
+    result = _geocode_urbis(address)
+    if result:
+        return result
+
+    # Fallback : Nominatim avec restriction Belgique
+    result = _geocode_nominatim(address)
+    if result:
+        return result
+
+    print(f"Adresse non trouvée : {address}", file=sys.stderr)
+    sys.exit(1)
+
+
+def _geocode_bosa(address: str) -> dict | None:
+    """Géocodage via l'API BOSA (service fédéral belge)."""
+    params = urllib.parse.urlencode({
+        "query": address,
+        "language": "fr",
+        "limit": 1,
+    })
+    url = f"{BASE_URLS['bosa_geocode']}?{params}"
+    data = _fetch_json(url)
+
+    if not data:
+        return None
+
+    # Formats possibles de la réponse BOSA
+    hits = data.get("result") or data.get("results") or data.get("addresses") or []
+    if isinstance(hits, dict):
+        hits = [hits]
+    if not hits:
+        return None
+
+    hit = hits[0]
+    # Extraction des coordonnées (WGS84 ou Lambert)
+    lat = hit.get("lat") or hit.get("latitude") or hit.get("y_wgs84")
+    lon = hit.get("lon") or hit.get("longitude") or hit.get("x_wgs84")
+
+    if not lat or not lon:
+        return None
+
+    return {
+        "adresse": hit.get("formattedAddress") or hit.get("formatted_address") or address,
+        "score": hit.get("score", 1.0),
+        "code_postal": str(hit.get("zipCode") or hit.get("postalCode") or hit.get("postal_code") or ""),
+        "commune": hit.get("municipality") or hit.get("commune") or "",
+        "region": _detecter_region(str(hit.get("zipCode") or hit.get("postalCode") or "")),
+        "latitude": float(lat),
+        "longitude": float(lon),
+        "source": "BOSA",
     }
-    url = f"{BASE_URLS['gpu']}?geom={urllib.parse.quote(json.dumps(geojson))}"
-    data = fetch_json(url)
+
+
+def _geocode_geopunt(address: str) -> dict | None:
+    """Géocodage via Geopunt (Flandre)."""
+    params = urllib.parse.urlencode({
+        "q": address,
+        "c": 1,
+        "srs": "EPSG:4326",
+    })
+    url = f"{BASE_URLS['geopunt_geocode']}?{params}"
+    data = _fetch_json(url)
+
+    if not data:
+        return None
+
+    locations = data.get("LocationResult", [])
+    if not locations:
+        return None
+
+    loc = locations[0]
+    lat = loc.get("Location", {}).get("Lat_WGS84")
+    lon = loc.get("Location", {}).get("Lon_WGS84")
+
+    if not lat or not lon:
+        return None
+
+    cp = str(loc.get("Address", {}).get("Zipcode") or "")
+    return {
+        "adresse": loc.get("FormattedAddress", address),
+        "score": 1.0,
+        "code_postal": cp,
+        "commune": loc.get("Address", {}).get("Municipality", ""),
+        "region": _detecter_region(cp),
+        "latitude": float(lat),
+        "longitude": float(lon),
+        "source": "Geopunt (Flandre)",
+    }
+
+
+def _geocode_urbis(address: str) -> dict | None:
+    """Géocodage via UrbIS (Bruxelles)."""
+    params = urllib.parse.urlencode({
+        "spatialReference": 4326,
+        "language": "FR",
+        "address": address,
+    })
+    url = f"{BASE_URLS['urbis_geocode']}?{params}"
+    data = _fetch_json(url)
+
+    if not data:
+        return None
+
+    results = data.get("result") or []
+    if not results:
+        return None
+
+    r = results[0]
+    point = r.get("adPoint") or {}
+    lat = point.get("y")
+    lon = point.get("x")
+
+    if not lat or not lon:
+        return None
+
+    return {
+        "adresse": r.get("address", {}).get("street", {}).get("name", address),
+        "score": 1.0,
+        "code_postal": str(r.get("address", {}).get("postal", {}).get("code", "")),
+        "commune": r.get("address", {}).get("municipality", {}).get("name", ""),
+        "region": "bruxelles",
+        "latitude": float(lat),
+        "longitude": float(lon),
+        "source": "UrbIS (Bruxelles)",
+    }
+
+
+def _geocode_nominatim(address: str) -> dict | None:
+    """Géocodage via Nominatim/OpenStreetMap, restreint à la Belgique."""
+    params = urllib.parse.urlencode({
+        "q": address,
+        "format": "jsonv2",
+        "limit": 1,
+        "countrycodes": "be",
+        "addressdetails": 1,
+    })
+    url = f"{BASE_URLS['nominatim']}?{params}"
+    data = _fetch_json(url)
+
+    if not data or not isinstance(data, list) or not data:
+        return None
+
+    hit = data[0]
+    addr = hit.get("address", {})
+    cp = addr.get("postcode", "")
+
+    return {
+        "adresse": hit.get("display_name", address),
+        "score": float(hit.get("importance", 0.5)),
+        "code_postal": cp,
+        "commune": addr.get("city") or addr.get("town") or addr.get("village") or "",
+        "region": _detecter_region(cp),
+        "latitude": float(hit.get("lat", 0)),
+        "longitude": float(hit.get("lon", 0)),
+        "source": "Nominatim/OpenStreetMap",
+    }
+
+
+def _detecter_region(code_postal: str) -> str:
+    """
+    Détermine la région belge à partir d'un code postal.
+
+    Règles approximatives (non exhaustives) :
+      1000-1299 : Bruxelles
+      1300-1499 : Brabant wallon
+      1500-1999 : Brabant flamand
+      2000-2999 : Anvers
+      3000-3499 : Brabant flamand
+      3500-3999 : Limbourg
+      4000-4999 : Liège
+      5000-5999 : Namur
+      6000-6999 : Hainaut
+      7000-7999 : Hainaut
+      8000-8999 : Flandre-Occidentale
+      9000-9999 : Flandre-Orientale
+    """
+    try:
+        cp = int(code_postal)
+    except (ValueError, TypeError):
+        return "inconnu"
+
+    if 1000 <= cp <= 1299:
+        return "bruxelles"
+    if 1300 <= cp <= 1499:
+        return "wallonie"
+    if 1500 <= cp <= 1999:
+        return "flandre"
+    if 2000 <= cp <= 3499:
+        return "flandre"
+    if 3500 <= cp <= 3999:
+        return "flandre"
+    if 4000 <= cp <= 7999:
+        return "wallonie"
+    if 8000 <= cp <= 9999:
+        return "flandre"
+    return "inconnu"
+
+
+# ---------------------------------------------------------------------------
+# 2. Cadastre (AGDP)
+# ---------------------------------------------------------------------------
+
+def search_cadastre(commune: str, section: str = None, numero: str = None) -> dict:
+    """
+    Recherche des parcelles cadastrales belges.
+
+    Note : l'AGDP (Administration générale de la Documentation Patrimoniale)
+    ne dispose pas d'une API REST publique directement accessible.
+
+    Pour les parcelles flamandes, Geopunt propose un accès WFS.
+    Pour Wallonie et Bruxelles, les données sont disponibles via MyMinfin
+    ou les portails régionaux (WalOnMap, UrbIS).
+
+    Cette fonction interroge l'API Geopunt pour la Flandre ; pour les autres
+    régions, elle retourne un stub avec les références manuelles appropriées.
+    """
+    # Tentative via Geopunt (Flandre uniquement)
+    result = _cadastre_geopunt(commune, section, numero)
+    if result is not None:
+        return result
+
+    # Pour Wallonie et Bruxelles : stub avec instructions manuelles
+    return {
+        "commune": commune,
+        "section": section,
+        "numero": numero,
+        "parcelles": [],
+        "stub": True,
+        "message": (
+            "Le cadastre belge n'est pas accessible via une API publique unifiée. "
+            "Pour consulter les parcelles : "
+            "(1) Flandre : https://geo.api.vlaanderen.be/ | Geopunt.be ; "
+            "(2) Wallonie : https://geoportail.wallonie.be (WalOnMap) ; "
+            "(3) Bruxelles : https://urbis.irisnet.be ; "
+            "(4) Toutes régions (données patrimoniales officielles) : "
+            "https://finances.belgium.be/fr/particuliers/habitation/cadastre "
+            "(MyMinfin, accès avec eID ou itsme)."
+        ),
+    }
+
+
+def _cadastre_geopunt(commune: str, section: str = None, numero: str = None) -> dict | None:
+    """Requête WFS Geopunt pour les parcelles cadastrales flamandes."""
+    params = {
+        "service": "WFS",
+        "version": "2.0.0",
+        "request": "GetFeature",
+        "typeName": "AGIV:Perceel",
+        "outputFormat": "application/json",
+        "CQL_FILTER": f"GemeenteNaam LIKE '%{commune}%'",
+        "maxFeatures": "20",
+    }
+    if section:
+        params["CQL_FILTER"] += f" AND AfdNaam LIKE '%{section}%'"
+
+    url = f"https://geo.api.vlaanderen.be/AGIV/wfs?{urllib.parse.urlencode(params)}"
+    data = _fetch_json(url, timeout=15)
+
+    if not data or "features" not in data:
+        return None
+
+    parcelles = []
+    for feat in data.get("features", []):
+        props = feat.get("properties", {})
+        parcelles.append({
+            "commune": props.get("GemeenteNaam") or commune,
+            "section": props.get("AfdelingCode") or section,
+            "numero": props.get("PerceelNummer") or numero,
+            "contenance": props.get("CadastraleOppervlakte"),
+            "identifiant": props.get("CaPaKey") or props.get("PerceelId"),
+        })
+
+    return {
+        "commune": commune,
+        "section": section,
+        "numero": numero,
+        "parcelles": parcelles,
+        "source": "Geopunt / AGIV (Flandre)",
+    }
+
+
+# ---------------------------------------------------------------------------
+# 3. Urbanisme / zonage
+# ---------------------------------------------------------------------------
+
+def check_urbanisme(lat: float, lon: float, region: str = None) -> dict:
+    """
+    Vérifie le zonage urbanistique d'un point en Belgique.
+
+    L'API dépend de la région :
+      - Bruxelles : UrbIS / BruGIS
+      - Flandre   : Geopunt / Omgevingsloket
+      - Wallonie  : WalOnMap (pas d'API REST publique directe)
+
+    Si la région n'est pas précisée, elle est déduite des coordonnées.
+    """
+    if region is None:
+        region = _region_depuis_coords(lat, lon)
+
+    if region == "bruxelles":
+        return _urbanisme_bruxelles(lat, lon)
+    elif region == "flandre":
+        return _urbanisme_flandre(lat, lon)
+    else:
+        # Wallonie : stub — pas d'API REST publique générale
+        return {
+            "latitude": lat,
+            "longitude": lon,
+            "region": "wallonie",
+            "zones": [],
+            "stub": True,
+            "message": (
+                "Le zonage urbanistique wallon (Plan de Secteur, PCAR, PCAD) n'est pas "
+                "accessible via une API REST publique unifiée. "
+                "Consultez manuellement : "
+                "(1) WalOnMap : https://www.walonmap.be "
+                "(couche 'Plan de secteur') ; "
+                "(2) Portail open data SPW : https://opendata.wallonie.be ; "
+                "(3) Service du Fonctionnaire délégué de votre commune."
+            ),
+        }
+
+
+def _region_depuis_coords(lat: float, lon: float) -> str:
+    """
+    Estimation grossière de la région belge à partir des coordonnées.
+    Utilise Nominatim pour une détection précise.
+    """
+    params = urllib.parse.urlencode({
+        "lat": lat,
+        "lon": lon,
+        "format": "jsonv2",
+        "zoom": 10,
+    })
+    url = f"https://nominatim.openstreetmap.org/reverse?{params}"
+    data = _fetch_json(url)
+
+    if not data:
+        return "inconnu"
+
+    addr = data.get("address", {})
+    state = (addr.get("state") or addr.get("region") or "").lower()
+
+    if "bruxelles" in state or "brussels" in state or "brussel" in state:
+        return "bruxelles"
+    if "flandre" in state or "flanders" in state or "vlaanderen" in state:
+        return "flandre"
+    if "wallonie" in state or "wallonia" in state or "wallonische" in state:
+        return "wallonie"
+
+    return "inconnu"
+
+
+def _urbanisme_flandre(lat: float, lon: float) -> dict:
+    """
+    Zonage via Geopunt (Omgevingsloket / Bestemmingsplan Vlaanderen).
+    """
+    # Utilisation du service WFS Geopunt pour le plan de destination flamand
+    params = urllib.parse.urlencode({
+        "service": "WFS",
+        "version": "2.0.0",
+        "request": "GetFeature",
+        "typeName": "RUIMTEINFO:RuimtelijkeUitvoeringsplannen",
+        "outputFormat": "application/json",
+        "CQL_FILTER": f"INTERSECTS(SHAPE, POINT({lon} {lat}))",
+        "maxFeatures": "10",
+    })
+    url = f"https://geo.api.vlaanderen.be/RUIMTEINFO/wfs?{params}"
+    data = _fetch_json(url)
+
+    if not data or not data.get("features"):
+        # Fallback : stub avec instructions manuelles
+        return {
+            "latitude": lat,
+            "longitude": lon,
+            "region": "flandre",
+            "zones": [],
+            "stub": True,
+            "message": (
+                "Zonage flamand non disponible via l'API. "
+                "Consultez : https://omgevingsloket.be (bestemming) "
+                "ou https://geopunt.be"
+            ),
+        }
 
     zones = []
-    for feature in data.get("features", []):
-        props = feature["properties"]
+    for feat in data.get("features", []):
+        props = feat.get("properties", {})
         zones.append({
-            "libelle": props.get("libelle"),
-            "libelong": props.get("libelong"),
-            "typezone": props.get("typezone"),
-            "destdomi": props.get("destdomi"),
-            "partition": props.get("partition"),
+            "libelle": props.get("NAAM") or props.get("naam"),
+            "type_zone": props.get("BESTEMMINGSKLASSE") or props.get("KLEURCODE"),
+            "description": props.get("OMSCHRIJVING"),
+            "partition": props.get("IDENTIFICATOR"),
         })
 
-    return {"latitude": lat, "longitude": lon, "zones": zones}
+    return {
+        "latitude": lat,
+        "longitude": lon,
+        "region": "flandre",
+        "zones": zones,
+        "source": "Geopunt / Omgevingsloket (Flandre)",
+    }
 
 
-def search_deces(nom, prenom=None, date_naissance=None):
-    """Recherche de personnes décédées via l'API MatchID."""
-    params = {"q": nom}
-    if prenom:
-        params["q"] = f"{prenom} {nom}"
-    if date_naissance:
-        params["birthDate"] = date_naissance
+def _urbanisme_bruxelles(lat: float, lon: float) -> dict:
+    """
+    Zonage via UrbIS / BruGIS (Région de Bruxelles-Capitale).
+    Le PRAS (Plan Régional d'Affectation du Sol) est disponible via WMS/WFS.
+    """
+    params = urllib.parse.urlencode({
+        "SERVICE": "WFS",
+        "VERSION": "1.1.0",
+        "REQUEST": "GetFeature",
+        "TYPENAME": "UrbIS:PRAS",
+        "OUTPUTFORMAT": "application/json",
+        "CQL_FILTER": f"INTERSECTS(SHAPE, POINT({lon} {lat}))",
+        "MAXFEATURES": "5",
+    })
+    url = f"https://geoservices.irisnet.be/arcgis/services/Urbanism/PRAS/MapServer/WFSServer?{params}"
+    data = _fetch_json(url)
 
-    url = f"{BASE_URLS['matchid']}?{urllib.parse.urlencode(params)}"
-    data = fetch_json(url)
+    if not data or not data.get("features"):
+        return {
+            "latitude": lat,
+            "longitude": lon,
+            "region": "bruxelles",
+            "zones": [],
+            "stub": True,
+            "message": (
+                "Zonage bruxellois (PRAS) non disponible via l'API. "
+                "Consultez : https://myurbanisme.brussels (permis & urbanisme) "
+                "ou https://urbis.irisnet.be"
+            ),
+        }
 
-    persons = []
-    for hit in data.get("response", {}).get("persons", []):
-        persons.append({
-            "nom": hit.get("name", {}).get("last", [None])[0],
-            "prenoms": hit.get("name", {}).get("first", []),
-            "date_naissance": hit.get("birth", {}).get("date"),
-            "lieu_naissance": hit.get("birth", {}).get("location", {}).get("city"),
-            "date_deces": hit.get("death", {}).get("date"),
-            "lieu_deces": hit.get("death", {}).get("location", {}).get("city"),
+    zones = []
+    for feat in data.get("features", []):
+        props = feat.get("properties", {})
+        zones.append({
+            "libelle": props.get("LIBELLE_FR") or props.get("LIBELLE_NL"),
+            "type_zone": props.get("CATEGORIE"),
+            "description": props.get("DESCRIPTION_FR"),
         })
 
-    return {"count": len(persons), "persons": persons[:10]}
+    return {
+        "latitude": lat,
+        "longitude": lon,
+        "region": "bruxelles",
+        "zones": zones,
+        "source": "UrbIS / PRAS (Bruxelles)",
+    }
 
 
-def search_entreprise(query):
-    """Recherche d'informations sur une entreprise via l'Annuaire Entreprises."""
-    params = {"q": query, "page": 1, "per_page": 5}
-    url = f"{BASE_URLS['entreprise']}?{urllib.parse.urlencode(params)}"
-    data = fetch_json(url)
+# ---------------------------------------------------------------------------
+# 4. Entreprises (BCE/KBO)
+# ---------------------------------------------------------------------------
 
+def search_entreprise(query: str) -> dict:
+    """
+    Recherche une entreprise belge via la BCE (Banque-Carrefour des Entreprises).
+    Délègue vers le module fetch_company.py si disponible, sinon appel direct.
+    """
+    encoded = urllib.parse.quote(query)
+    url = f"{BASE_URLS['bce_search']}?q={encoded}"
+    data = _fetch_json(url)
+
+    if data is None:
+        return {
+            "query": query,
+            "count": 0,
+            "results": [],
+            "stub": True,
+            "message": (
+                "L'API BCE/KBO n'a pas répondu. "
+                "Recherche manuelle : https://kbopub.economie.fgov.be/kbopublic/"
+            ),
+        }
+
+    entries = data if isinstance(data, list) else data.get("results", data.get("enterprises", []))
     results = []
-    for r in data.get("results", []):
+    for entry in entries[:5]:
+        bce_raw = (
+            entry.get("enterpriseNumber")
+            or entry.get("enterprise_number")
+            or entry.get("number")
+            or ""
+        )
+        denominations = entry.get("denominations", [])
+        nom = None
+        for d in denominations:
+            if isinstance(d, dict) and d.get("language") in ("FR", "2", 2):
+                nom = d.get("denomination") or d.get("name")
+                break
+        if not nom and denominations:
+            first = denominations[0]
+            nom = (first.get("denomination") or first.get("name")) if isinstance(first, dict) else str(first)
+        if not nom:
+            nom = entry.get("name") or entry.get("denomination")
+
         results.append({
-            "siren": r.get("siren"),
-            "nom": r.get("nom_complet"),
-            "nature_juridique": r.get("nature_juridique"),
-            "siege": r.get("siege", {}).get("adresse"),
-            "date_creation": r.get("date_creation"),
-            "dirigeants": r.get("dirigeants", []),
-            "nombre_etablissements": r.get("nombre_etablissements"),
+            "bce": bce_raw,
+            "nom": nom,
+            "forme_juridique": entry.get("juridicalForm", {}).get("labelFR") if isinstance(entry.get("juridicalForm"), dict) else entry.get("juridicalForm"),
+            "statut": entry.get("enterpriseStatus") or entry.get("status"),
         })
 
-    return {"query": query, "count": data.get("total_results", 0), "results": results}
+    return {
+        "query": query,
+        "count": len(results),
+        "results": results,
+    }
 
 
-def rapport_complet(address):
-    """Rapport immobilier complet : géocodage puis DVF, cadastre, risques, urbanisme."""
-    print(f"[1/5] Géocodage : {address}", file=sys.stderr)
+# ---------------------------------------------------------------------------
+# 5. Rapport immobilier belge
+# ---------------------------------------------------------------------------
+
+def rapport_complet(address: str) -> dict:
+    """
+    Rapport immobilier belge : géocode l'adresse puis enchaîne
+    les données disponibles (cadastre, urbanisme, entreprise si pertinent).
+    """
+    print(f"[1/3] Géocodage : {address}", file=sys.stderr)
     geo = geocode(address)
-    print(f"       → {geo['commune']} (INSEE : {geo['code_insee']}), lat={geo['latitude']}, lon={geo['longitude']}", file=sys.stderr)
+    region = geo.get("region", "inconnu")
+    print(
+        f"       -> {geo.get('commune')} ({geo.get('code_postal')}), "
+        f"region={region}, lat={geo.get('latitude')}, lon={geo.get('longitude')}",
+        file=sys.stderr,
+    )
 
-    print(f"[2/5] DVF : transactions récentes...", file=sys.stderr)
-    dvf = search_dvf(geo["code_insee"], limit=10)
-    print(f"       → {dvf['count']} transactions trouvées", file=sys.stderr)
+    print(f"[2/3] Cadastre (AGDP)...", file=sys.stderr)
+    commune = geo.get("commune") or ""
+    cadastre = search_cadastre(commune)
+    if cadastre.get("stub"):
+        print(f"       -> STUB (pas d'API publique)", file=sys.stderr)
+    else:
+        print(f"       -> {len(cadastre.get('parcelles', []))} parcelle(s)", file=sys.stderr)
 
-    print(f"[3/5] Cadastre...", file=sys.stderr)
-    try:
-        cadastre = search_cadastre(geo["code_insee"])
-        print(f"       → {len(cadastre['parcelles'])} parcelles", file=sys.stderr)
-    except SystemExit:
-        cadastre = {"error": "Cadastre non disponible pour cette commune"}
-        print(f"       → Non disponible", file=sys.stderr)
-
-    print(f"[4/5] Risques (Géorisques)...", file=sys.stderr)
-    try:
-        risques = check_risques(geo["latitude"], geo["longitude"])
-    except SystemExit:
-        risques = {"error": "Géorisques non disponible"}
-        print(f"       → Non disponible", file=sys.stderr)
-
-    print(f"[5/5] Urbanisme (GPU)...", file=sys.stderr)
-    try:
-        urbanisme = check_urbanisme(geo["latitude"], geo["longitude"])
-        print(f"       → {len(urbanisme['zones'])} zones trouvées", file=sys.stderr)
-    except SystemExit:
-        urbanisme = {"error": "GPU non disponible"}
-        print(f"       → Non disponible", file=sys.stderr)
+    print(f"[3/3] Zonage urbanistique ({region})...", file=sys.stderr)
+    urbanisme = check_urbanisme(geo["latitude"], geo["longitude"], region)
+    if urbanisme.get("stub"):
+        print(f"       -> STUB (voir message)", file=sys.stderr)
+    else:
+        print(f"       -> {len(urbanisme.get('zones', []))} zone(s)", file=sys.stderr)
 
     return {
         "adresse": geo,
-        "dvf": dvf,
         "cadastre": cadastre,
-        "risques": risques,
         "urbanisme": urbanisme,
     }
 
 
-def format_rapport_markdown(data):
-    """Formate un rapport immobilier en markdown structuré."""
+def format_rapport_markdown(data: dict) -> str:
+    """Formate un rapport immobilier belge en markdown structuré."""
     geo = data["adresse"]
-    dvf = data["dvf"]
     cadastre = data["cadastre"]
-    risques = data["risques"]
     urbanisme = data["urbanisme"]
 
     lines = []
-    lines.append(f"# Rapport Immobilier")
-    lines.append(f"")
-    lines.append(f"**Adresse** : {geo['adresse']}")
-    lines.append(f"**Commune** : {geo['commune']} ({geo['code_postal']})")
-    lines.append(f"**Code INSEE** : {geo['code_insee']}")
-    lines.append(f"**Coordonnées** : {geo['latitude']}, {geo['longitude']}")
-    lines.append(f"")
-    lines.append(f"---")
-    lines.append(f"")
-
-    # DVF
-    lines.append(f"## Transactions Comparables (DVF)")
-    lines.append(f"")
-    if dvf.get("error"):
-        lines.append(f"*{dvf['error']}*")
-    else:
-        lines.append(f"**{dvf['count']}** transactions enregistrées dans la commune.")
-        lines.append(f"")
-        ventes = [t for t in dvf.get("transactions", []) if t.get("valeur_fonciere")]
-        if ventes:
-            lines.append(f"| Date | Type | Surface bâtie | Valeur foncière |")
-            lines.append(f"|------|------|:-------------:|:---------------:|")
-            for tx in ventes[:15]:
-                date = tx.get("date", "?")
-                type_bien = tx.get("type_bien", "?")
-                surface = tx.get("surface_bati", "?")
-                valeur = tx.get("valeur_fonciere", "?")
-                try:
-                    valeur_fmt = f"{float(valeur):,.0f} EUR".replace(",", " ")
-                except (ValueError, TypeError):
-                    valeur_fmt = str(valeur)
-                try:
-                    surface_fmt = f"{float(surface):,.0f} m²".replace(",", " ")
-                except (ValueError, TypeError):
-                    surface_fmt = str(surface)
-                lines.append(f"| {date} | {type_bien} | {surface_fmt} | {valeur_fmt} |")
-
-            # Statistiques de prix
-            prices = []
-            for tx in ventes:
-                try:
-                    v = float(tx["valeur_fonciere"])
-                    s = float(tx.get("surface_bati", 0))
-                    if v > 0 and s > 0:
-                        prices.append(v / s)
-                except (ValueError, TypeError, KeyError):
-                    pass
-            if prices:
-                lines.append(f"")
-                avg = sum(prices) / len(prices)
-                lines.append(f"**Prix moyen au m²** (sur {len(prices)} transactions avec surface) : **{avg:,.0f} EUR/m²**".replace(",", " "))
-        else:
-            lines.append(f"*Aucune transaction avec valeur foncière trouvée.*")
-    lines.append(f"")
-    lines.append(f"---")
-    lines.append(f"")
+    lines.append("# Rapport Immobilier (Belgique)")
+    lines.append("")
+    lines.append(f"**Adresse** : {geo.get('adresse', 'N/A')}")
+    lines.append(f"**Commune** : {geo.get('commune', 'N/A')} ({geo.get('code_postal', 'N/A')})")
+    lines.append(f"**Region** : {geo.get('region', 'N/A').title()}")
+    lines.append(f"**Coordonnees** : {geo.get('latitude')}, {geo.get('longitude')}")
+    lines.append(f"**Source geocodage** : {geo.get('source', 'N/A')}")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
 
     # Cadastre
-    lines.append(f"## Cadastre")
-    lines.append(f"")
-    if cadastre.get("error"):
-        lines.append(f"*{cadastre['error']}*")
+    lines.append("## Cadastre (AGDP)")
+    lines.append("")
+    if cadastre.get("stub"):
+        lines.append(f"*{cadastre['message']}*")
     elif cadastre.get("parcelles"):
-        lines.append(f"| Commune | Section | Parcelle | Contenance |")
-        lines.append(f"|---------|---------|----------|:----------:|")
+        lines.append("| Commune | Section | Parcelle | Contenance |")
+        lines.append("|---------|---------|----------|:----------:|")
         for p in cadastre["parcelles"][:20]:
-            lines.append(f"| {p.get('commune', '?')} | {p.get('section', '?')} | {p.get('numero', '?')} | {p.get('contenance', '?')} m² |")
+            lines.append(
+                f"| {p.get('commune', '?')} | {p.get('section', '?')} "
+                f"| {p.get('numero', '?')} | {p.get('contenance', '?')} m2 |"
+            )
+        lines.append(f"")
+        lines.append(f"*Source : {cadastre.get('source', 'N/A')}*")
     else:
-        lines.append(f"*Aucune parcelle trouvée.*")
-    lines.append(f"")
-    lines.append(f"---")
-    lines.append(f"")
-
-    # Risques
-    lines.append(f"## Risques (Géorisques)")
-    lines.append(f"")
-    if risques.get("error"):
-        lines.append(f"*{risques['error']}*")
-    else:
-        has_risks = False
-        for key in ["risques_naturels", "risques_technologiques", "radon", "installations_classees"]:
-            if key in risques and risques[key]:
-                has_risks = True
-                lines.append(f"### {key.replace('_', ' ').title()}")
-                lines.append(f"")
-                if isinstance(risques[key], list):
-                    for r in risques[key][:10]:
-                        if isinstance(r, dict):
-                            lines.append(f"- {r.get('libelle', r.get('libelle_risque', json.dumps(r)))}")
-                        else:
-                            lines.append(f"- {r}")
-                else:
-                    lines.append(f"```json")
-                    lines.append(json.dumps(risques[key], indent=2, ensure_ascii=False)[:500])
-                    lines.append(f"```")
-                lines.append(f"")
-        if not has_risks:
-            lines.append(f"Données brutes (clés) : {', '.join(risques.keys())}")
-            lines.append(f"")
-            lines.append(f"*Consulter https://www.georisques.gouv.fr pour le rapport complet.*")
-    lines.append(f"")
-    lines.append(f"---")
-    lines.append(f"")
+        lines.append("*Aucune parcelle trouvee.*")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
 
     # Urbanisme
-    lines.append(f"## Urbanisme (PLU)")
-    lines.append(f"")
-    if urbanisme.get("error"):
-        lines.append(f"*{urbanisme['error']}*")
+    lines.append("## Zonage Urbanistique")
+    lines.append("")
+    lines.append(f"**Region** : {urbanisme.get('region', 'N/A').title()}")
+    lines.append("")
+    if urbanisme.get("stub"):
+        lines.append(f"*{urbanisme['message']}*")
     elif urbanisme.get("zones"):
-        lines.append(f"| Zone | Description | Type |")
-        lines.append(f"|------|-------------|------|")
+        lines.append("| Zone | Type | Description |")
+        lines.append("|------|------|-------------|")
         for z in urbanisme["zones"]:
-            lines.append(f"| {z.get('libelle', '?')} | {z.get('libelong', '?')} | {z.get('typezone', '?')} |")
+            lines.append(
+                f"| {z.get('libelle', '?')} | {z.get('type_zone', '?')} "
+                f"| {z.get('description', '')} |"
+            )
+        lines.append(f"")
+        lines.append(f"*Source : {urbanisme.get('source', 'N/A')}*")
     else:
-        lines.append(f"*Aucune zone PLU trouvée. Le PLU peut ne pas être numérisé pour cette commune.*")
-    lines.append(f"")
-    lines.append(f"---")
-    lines.append(f"")
-    lines.append(f"*Rapport généré automatiquement. Les données proviennent de sources publiques (BAN, DVF, IGN, Géorisques). Vérifier auprès des services compétents pour un dossier officiel.*")
+        lines.append("*Aucun zonage disponible.*")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append(
+        "*Rapport genere automatiquement. Donnees issues de sources publiques belges "
+        "(BOSA, Geopunt, UrbIS, Nominatim). "
+        "Verifier aupres des services competents (notaire, commune, SPF Finances) "
+        "pour un dossier officiel.*"
+    )
 
     return "\n".join(lines)
 
 
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
+
 def main():
-    parser = argparse.ArgumentParser(description="Récupération de données ouvertes pour le skill notaire")
-    subparsers = parser.add_subparsers(dest="command", help="Commande à exécuter")
+    parser = argparse.ArgumentParser(
+        description="Recuperation de donnees ouvertes pour le skill notaire belge"
+    )
+    subparsers = parser.add_subparsers(dest="command", help="Commande a executer")
 
     # geocode
-    p_geo = subparsers.add_parser("geocode", help="Géocoder une adresse")
-    p_geo.add_argument("address", help="Adresse à géocoder")
-
-    # dvf
-    p_dvf = subparsers.add_parser("dvf", help="Chercher des transactions DVF")
-    p_dvf.add_argument("--code-insee", required=True, help="Code INSEE de la commune")
-    p_dvf.add_argument("--nature", default="Vente", help="Nature de la transaction")
-    p_dvf.add_argument("--limit", type=int, default=20, help="Nombre max de résultats")
+    p_geo = subparsers.add_parser("geocode", help="Geocoder une adresse belge")
+    p_geo.add_argument("address", help="Adresse a geocoder")
 
     # cadastre
-    p_cad = subparsers.add_parser("cadastre", help="Chercher des parcelles cadastrales")
-    p_cad.add_argument("--code-insee", required=True, help="Code INSEE")
-    p_cad.add_argument("--section", help="Section cadastrale")
-    p_cad.add_argument("--numero", help="Numéro de parcelle")
-
-    # risques
-    p_risk = subparsers.add_parser("risques", help="Vérifier les risques d'un emplacement")
-    p_risk.add_argument("--lat", type=float, required=True, help="Latitude")
-    p_risk.add_argument("--lon", type=float, required=True, help="Longitude")
+    p_cad = subparsers.add_parser("cadastre", help="Chercher des parcelles cadastrales (AGDP)")
+    p_cad.add_argument("--commune", required=True, help="Nom de la commune")
+    p_cad.add_argument("--section", default=None, help="Section cadastrale (ex: A)")
+    p_cad.add_argument("--numero", default=None, help="Numero de parcelle (ex: 0012)")
 
     # urbanisme
-    p_urb = subparsers.add_parser("urbanisme", help="Vérifier le zonage PLU")
-    p_urb.add_argument("--lat", type=float, required=True, help="Latitude")
-    p_urb.add_argument("--lon", type=float, required=True, help="Longitude")
-
-    # deces
-    p_dec = subparsers.add_parser("deces", help="Rechercher une personne décédée")
-    p_dec.add_argument("--nom", required=True, help="Nom de famille")
-    p_dec.add_argument("--prenom", help="Prénom")
-    p_dec.add_argument("--date-naissance", help="Date de naissance (AAAA-MM-JJ)")
+    p_urb = subparsers.add_parser(
+        "urbanisme",
+        help="Verifier le zonage urbanistique selon la region",
+    )
+    p_urb.add_argument("--lat", type=float, required=True, help="Latitude (WGS84)")
+    p_urb.add_argument("--lon", type=float, required=True, help="Longitude (WGS84)")
+    p_urb.add_argument(
+        "--region",
+        choices=["bruxelles", "flandre", "wallonie"],
+        default=None,
+        help="Region (detectee automatiquement si absent)",
+    )
 
     # entreprise
-    p_ent = subparsers.add_parser("entreprise", help="Rechercher une entreprise")
-    p_ent.add_argument("query", help="Nom de l'entreprise à rechercher")
+    p_ent = subparsers.add_parser("entreprise", help="Rechercher une entreprise (BCE/KBO)")
+    p_ent.add_argument("query", help="Nom ou numero BCE de l'entreprise")
 
     # rapport
-    p_rap = subparsers.add_parser("rapport", help="Rapport immobilier complet")
+    p_rap = subparsers.add_parser("rapport", help="Rapport immobilier belge complet")
     p_rap.add_argument("address", help="Adresse du bien")
     p_rap.add_argument("--markdown", action="store_true", help="Sortie au format markdown")
 
@@ -462,16 +828,10 @@ def main():
 
     if args.command == "geocode":
         result = geocode(args.address)
-    elif args.command == "dvf":
-        result = search_dvf(args.code_insee, args.nature, args.limit)
     elif args.command == "cadastre":
-        result = search_cadastre(args.code_insee, args.section, args.numero)
-    elif args.command == "risques":
-        result = check_risques(args.lat, args.lon)
+        result = search_cadastre(args.commune, args.section, args.numero)
     elif args.command == "urbanisme":
-        result = check_urbanisme(args.lat, args.lon)
-    elif args.command == "deces":
-        result = search_deces(args.nom, args.prenom, args.date_naissance)
+        result = check_urbanisme(args.lat, args.lon, args.region)
     elif args.command == "entreprise":
         result = search_entreprise(args.query)
     elif args.command == "rapport":
@@ -479,6 +839,9 @@ def main():
         if args.markdown:
             print(format_rapport_markdown(result))
             return
+    else:
+        parser.print_help()
+        sys.exit(1)
 
     print(json.dumps(result, indent=2, ensure_ascii=False))
 

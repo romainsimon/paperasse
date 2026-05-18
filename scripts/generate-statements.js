@@ -30,12 +30,20 @@ function loadCompany() {
   return JSON.parse(fs.readFileSync(p, 'utf8'));
 }
 
-function loadPCG() {
-  const pcgFiles = fs.readdirSync(path.join(ROOT, 'data')).filter(f => f.match(/^pcg_\d{4}\.json$/));
-  if (pcgFiles.length === 0) return {};
-  const pcg = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', pcgFiles[pcgFiles.length - 1]), 'utf8'));
+function loadPCMN() {
+  // Charger le Plan Comptable Minimum Normalisé belge (PCMN)
+  const dataDir = path.join(ROOT, 'data');
+  if (!fs.existsSync(dataDir)) return {};
+
+  // Chercher pcmn_*.json d'abord, puis pcg_*.json (compatibilite)
+  const pcmnFiles = fs.readdirSync(dataDir).filter(f => f.match(/^pcmn_\d{4}\.json$/));
+  const pcgFiles = fs.readdirSync(dataDir).filter(f => f.match(/^pcg_\d{4}\.json$/));
+  const files = pcmnFiles.length > 0 ? pcmnFiles : pcgFiles;
+
+  if (files.length === 0) return {};
+  const pcmn = JSON.parse(fs.readFileSync(path.join(dataDir, files[files.length - 1]), 'utf8'));
   const map = {};
-  for (const entry of (pcg.flat || [])) {
+  for (const entry of (pcmn.flat || [])) {
     map[String(entry.number)] = entry.label;
   }
   return map;
@@ -116,6 +124,10 @@ function generatePL(accounts, company, pcgNames) {
   const period = formatPeriod(company);
   const firstYear = company.fiscal_year.is_first_year ? ' (premier exercice)' : '';
 
+  // Compte de résultat selon le PCMN belge (Plan Comptable Minimum Normalisé)
+  // Comptes de charges : classe 6 (PCMN belge, similaire au PCG français mais différent dans le détail)
+  // Comptes de produits : classe 7
+  // ISOC (695x) : Impôt des Sociétés belge (art. 215 CIR 92)
   let md = '# Compte de Resultat\n\n';
   md += 'Exercice : ' + period + firstYear + '\n\n';
   md += '---\n\n';
@@ -212,7 +224,7 @@ function generatePL(accounts, company, pcgNames) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
 
-      // Track IS separately
+      // Suivi ISOC séparément (compte 695x — Impôt des Sociétés belge, art. 215 CIR 92)
       if (acct.startsWith('695')) isAmount = amount;
     }
 
@@ -233,9 +245,9 @@ function generatePL(accounts, company, pcgNames) {
   md += '| | Montant |\n';
   md += '|--|--------:|\n';
   md += '| Total produits | ' + fmt(totalProduits) + ' |\n';
-  md += '| Total charges (hors IS) | ' + fmt(round2(totalCharges - isAmount)) + ' |\n';
+  md += '| Total charges (hors ISOC) | ' + fmt(round2(totalCharges - isAmount)) + ' |\n';
   md += '| **Resultat avant impot** | **' + fmt(resultatExploitation) + '** |\n';
-  md += '| Impot sur les societes (695) | ' + fmt(isAmount) + ' |\n';
+  md += '| ISOC (695 — art. 215 CIR 92) | ' + fmt(isAmount) + ' |\n';
   md += '| **Resultat net** | **' + fmt(resultatNet) + '** |\n';
 
   return { md, totalProduits, totalCharges, resultatExploitation, isAmount, resultatNet };
@@ -407,7 +419,7 @@ function generateBilan(accounts, company, pcgNames, plData) {
     .filter(([a]) => {
       if (a.startsWith('16')) return true; // Emprunts
       if (a.startsWith('40')) return true; // Fournisseurs
-      if (a === '455') return true; // Compte courant associe
+      if (a === '455') return true; // Compte courant associe (art. 55 CIR 92)
       if (a.startsWith('43')) return true; // Organismes sociaux
       if (a.startsWith('44') && !a.startsWith('445') && !a.startsWith('4456')) return true; // Etat (IS, TVA collectee)
       if (a === '487') return true; // PCA
@@ -511,7 +523,7 @@ function generateBalance(accounts, company, pcgNames) {
 
 function main() {
   const company = loadCompany();
-  const pcgNames = loadPCG();
+  const pcgNames = loadPCMN();
 
   let outputDir = path.join(ROOT, 'output');
   const args = process.argv.slice(2);
@@ -554,7 +566,7 @@ function main() {
   console.log('\nResume :');
   console.log('  Produits : ' + fmt(plResult.totalProduits) + ' EUR');
   console.log('  Charges  : ' + fmt(plResult.totalCharges) + ' EUR');
-  console.log('  IS       : ' + fmt(plResult.isAmount) + ' EUR');
+  console.log('  ISOC     : ' + fmt(plResult.isAmount) + ' EUR');
   console.log('  Resultat : ' + fmt(plResult.resultatNet) + ' EUR');
   console.log('  Actif    : ' + fmt(bilanResult.totalActif) + ' EUR');
   console.log('  Passif   : ' + fmt(bilanResult.totalPassif) + ' EUR');

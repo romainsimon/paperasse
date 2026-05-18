@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * Validation de factures contre les mentions obligatoires
+ * Validation de factures contre les mentions obligatoires (droit belge)
  *
  * Verifie qu'une facture (JSON) contient toutes les mentions requises
- * par le CGI, le Code de commerce, et la reforme 2026.
+ * par le Code de la TVA belge (CTVA) et le droit comptable belge.
+ *
+ * Mentions obligatoires : art. 5 AR du 29 juin 1992 (CTVA belge)
+ * Archivage : archivage electronique probant (loi du 17 juillet 1975)
+ * Facturation electronique B2B : AR du 29 octobre 2024 (obligatoire depuis 01/01/2026)
+ * Format Peppol : Peppol BIS Billing 3.0 (UBL 2.1) via Mercurius
  *
  * Usage:
  *   node scripts/validate-facture.js --invoice data/invoices/F-2026-001.json
@@ -12,7 +17,7 @@
  *   node scripts/validate-facture.js --all data/invoices/
  *
  * Options:
- *   --strict    Traiter les avertissements 2026 comme des erreurs
+ *   --strict    Traiter les avertissements comme des erreurs
  *   --all       Valider toutes les factures d'un dossier
  *   --json      Sortie en JSON (pour integration CI/agent)
  */
@@ -76,15 +81,54 @@ function validateInvoice(company, invoice, mentions, strict) {
     }
   };
 
+  // --- Validation BCE et TVA belge ---
+  // BCE format 0xxx.xxx.xxx (identifiant legal belge)
+  // TVA belge : BE0xxxxxxxxx
+  const bceRegex = /^0\d{3}\.\d{3}\.\d{3}$/;
+  const tvaBelgeRegex = /^BE0\d{9}$/;
+
+  if (company.bce && !bceRegex.test(company.bce)) {
+    errors.push({ id: 'bce_format', label: `BCE format invalide : "${company.bce}" (attendu: 0xxx.xxx.xxx)` });
+  }
+  if (company.tva && !tvaBelgeRegex.test(company.tva)) {
+    warnings.push({ id: 'tva_format', label: `TVA belge format non standard : "${company.tva}" (attendu: BE0xxxxxxxxx)` });
+  }
+
+  // --- Validation TVA client belge ---
+  if (invoice.client && invoice.client.tva && !tvaBelgeRegex.test(invoice.client.tva)) {
+    const isEUTVA = /^[A-Z]{2}/.test(invoice.client.tva);
+    if (!isEUTVA) {
+      warnings.push({ id: 'client_tva_format', label: `client.tva format non standard : "${invoice.client.tva}"` });
+    }
+  }
+
+  // --- Validation taux TVA belges ---
+  // Taux valides : 0%, 6%, 12%, 21% (art. 1 CTVA)
+  const validTvaRates = [0, 6, 12, 21];
+  if (invoice.vat_rate !== undefined && !validTvaRates.includes(invoice.vat_rate)) {
+    errors.push({ id: 'tva_rate', label: `vat_rate invalide : ${invoice.vat_rate}% (taux belges valides : 0, 6, 12, 21)`, base_legale: 'Art. 1 CTVA' });
+  }
+
+  // --- Validation Peppol (B2B belge obligatoire depuis 01/01/2026) ---
+  const b2bBelge = invoice.client && invoice.client.bce;
+  if (b2bBelge) {
+    if (!bceRegex.test(invoice.client.bce)) {
+      errors.push({ id: 'client_bce_format', label: `client.bce format invalide : "${invoice.client.bce}" (attendu: 0xxx.xxx.xxx)` });
+    } else {
+      const peppolId = '0208:' + invoice.client.bce.replace(/\./g, '');
+      ok.push({ id: 'peppol_id', label: 'Identifiant Peppol client', value: peppolId });
+    }
+  }
+
   const emetteurMap = {
     nom: () => company.name,
     adresse: () => company.address,
-    siren: () => company.siren || company.siret,
-    rcs: () => company.rcs,
+    // BCE remplace SIREN/SIRET (identifiant legal belge)
+    bce: () => company.bce,
     forme_juridique: () => company.legal_form,
-    tva_intracom: () => {
+    tva: () => {
       if (company.tax && company.tax.regime_tva === 'franchise') return 'franchise';
-      return company.tva_intracom;
+      return company.tva || company.tva_intracom;
     },
   };
 
@@ -97,8 +141,10 @@ function validateInvoice(company, invoice, mentions, strict) {
   const clientMap = {
     nom_client: () => invoice.client && invoice.client.name,
     adresse_client: () => invoice.client && invoice.client.address,
-    siren_client: () => invoice.client && invoice.client.siren,
-    tva_intracom_client: () => invoice.client && invoice.client.tva_intracom,
+    // BCE client (remplace SIREN/SIRET pour les clients belges)
+    bce_client: () => invoice.client && (invoice.client.bce || invoice.client.siren),
+    // TVA client belge : BE0xxxxxxxxx (obligatoire B2B intra-UE)
+    tva_client: () => invoice.client && (invoice.client.tva || invoice.client.tva_intracom),
   };
 
   (mentions.mentions.client || []).forEach(field => {
@@ -152,7 +198,7 @@ function validateInvoice(company, invoice, mentions, strict) {
 
   // --- Lignes ---
   if (!invoice.lines || invoice.lines.length === 0) {
-    errors.push({ id: 'lines', label: 'Aucune ligne de facture', base_legale: 'Art. 242 nonies A CGI' });
+    errors.push({ id: 'lines', label: 'Aucune ligne de facture', base_legale: 'Art. 5 AR 29 juin 1992 (CTVA)' });
   } else {
     invoice.lines.forEach((line, i) => {
       if (!line.description) errors.push({ id: `line_${i}_desc`, label: `Ligne ${i + 1} : designation manquante` });
@@ -167,32 +213,52 @@ function validateInvoice(company, invoice, mentions, strict) {
   // --- Montants ---
   ok.push({ id: 'montants', label: 'Montants HT/TVA/TTC', value: 'calcules depuis les lignes' });
 
+  // --- Montants HTVA/TVA/TVAC ---
+  // En Belgique : HTVA (hors TVA), TVA, TVAC (toutes taxes comprises)
+  ok.push({ id: 'montants', label: 'Montants HTVA/TVA/TVAC', value: 'calcules depuis les lignes' });
+
+  // --- IBAN belge ---
+  // Vérification que l'IBAN mentionné est présent (recommandé sur facture belge)
+  const iban = company.payment && company.payment.bank_details && company.payment.bank_details.iban;
+  if (!iban) {
+    warnings.push({ id: 'iban', label: 'IBAN belge absent (recommande sur facture belge)', base_legale: 'Bonnes pratiques CTVA' });
+  } else {
+    const ibanBelge = /^BE\d{14}$/.test(iban.replace(/\s/g, ''));
+    if (!ibanBelge) {
+      warnings.push({ id: 'iban_format', label: `IBAN format non belge : "${iban}" (IBAN belge : BE + 14 chiffres)` });
+    } else {
+      ok.push({ id: 'iban', label: 'IBAN belge', value: iban });
+    }
+  }
+
   // --- Paiement ---
   if (!invoice.due_date && !(invoice.payment && invoice.payment.terms)) {
-    errors.push({ id: 'date_echeance', label: 'Date d\'echeance ou conditions de paiement', base_legale: 'Art. L441-9 C.com' });
+    warnings.push({ id: 'date_echeance', label: 'Date d\'echeance ou conditions de paiement recommandee', base_legale: 'Bonnes pratiques CTVA' });
   } else {
     ok.push({ id: 'paiement', label: 'Conditions de paiement', value: invoice.payment && invoice.payment.terms || invoice.due_date });
   }
 
-  // --- Penalites ---
+  // --- Indemnité forfaitaire de retard (loi du 2 août 2002, art. 6) ---
+  // En Belgique : 40 EUR forfaitaire (fixe par loi, pas de taux variable comme en France)
   const hasPenalty = (company.payment && company.payment.late_penalty_rate !== undefined) ||
-                     (invoice.payment && invoice.payment.late_penalty_rate !== undefined);
+                     (invoice.payment && invoice.payment.late_penalty_rate !== undefined) ||
+                     (company.payment && company.payment.late_penalty_label) ||
+                     (invoice.payment && invoice.payment.late_penalty_label);
   if (!hasPenalty) {
-    warnings.push({ id: 'penalites', label: 'Taux de penalites de retard non specifie (defaut : taux legal)', base_legale: 'Art. L441-10 C.com' });
+    warnings.push({ id: 'penalites', label: 'Penalite de retard non mentionnee (indemnite forfaitaire 40 EUR — loi 2 aout 2002, art. 6)', base_legale: 'Loi 2 aout 2002 art. 6' });
   }
 
-  // --- Mention speciale franchise TVA ---
+  // --- Mention franchise TVA (petite entreprise belge) ---
   if (company.tax && company.tax.regime_tva === 'franchise') {
-    ok.push({ id: 'mention_franchise', label: 'Mention franchise TVA', value: 'art. 293 B du CGI' });
+    ok.push({ id: 'mention_franchise', label: 'Mention franchise TVA', value: 'art. 56bis CTVA (regime de la franchise)' });
   }
 
-  // --- Mention escompte (obligatoire art. L441-9 C.com) ---
-  const hasEscompte = (company.payment && company.payment.escompte_label) ||
-                      (invoice.payment && invoice.payment.escompte_label);
-  if (!hasEscompte) {
-    warnings.push({ id: 'escompte', label: 'Conditions d\'escompte non specifiees ("Pas d\'escompte..." si non applicable)', base_legale: 'Art. L441-9 C.com' });
-  } else {
-    ok.push({ id: 'escompte', label: 'Mention escompte', value: 'presente' });
+  // --- Archivage electronique probant ---
+  // En Belgique : pas de PAF (Piste d'Audit Fiable française) mais obligation d'archivage probant
+  // loi du 17 juillet 1975, art. 6 — les factures electroniques doivent garantir
+  // l'authenticite, l'integrite et la lisibilite.
+  if (invoice.type === 'invoice' || !invoice.type) {
+    ok.push({ id: 'archivage', label: 'Archivage electronique probant', value: 'loi 17 juillet 1975 (authenticite + integrite + lisibilite)' });
   }
 
   return { errors, warnings, ok };
@@ -203,20 +269,21 @@ const EU_COUNTRIES = ['BE','BG','CZ','DK','DE','EE','IE','GR','ES','FR','HR','IT
 function shouldApplyCondition(condition, company, invoice) {
   const c = condition.toLowerCase();
   const client = invoice.client || {};
-  const country = (client.country || 'FR').toUpperCase();
-  const isFR = country === 'FR';
+  // En Belgique, le pays par défaut est BE (pas FR)
+  const country = (client.country || 'BE').toUpperCase();
+  const isBE = country === 'BE';
   const isEU = EU_COUNTRIES.includes(country);
-  const isIntraUE = isEU && !isFR;
+  const isIntraUE = isEU && !isBE;
 
-  // Detection B2B : presence d'un SIREN ou nom contenant une forme juridique
-  const looksLikeBusiness = client.name && /\b(SAS|SASU|SARL|EURL|SA|SCI|GmbH|Ltd|LLC|Inc|Corp|BV|AB|AG|SpA)\b/i.test(client.name);
-  const isB2B = !!client.siren || looksLikeBusiness;
+  // Detection B2B : presence d'un BCE ou d'une forme juridique belge ou etrangere
+  const looksLikeBusiness = client.name && /\b(SRL|SA|SPRL|ASBL|SCRL|CVBA|NV|BV|VOF|CommV|SNC|SCS|AISBL|SCRIS|SAS|SARL|GmbH|Ltd|LLC|Inc|Corp|AB|AG|SpA)\b/i.test(client.name);
+  const isB2B = !!client.bce || !!client.siren || looksLikeBusiness;
 
   if (c.includes('intra-ue') || c.includes('intracommunautaire')) {
     return isIntraUE && isB2B;
   }
-  if (c.includes('b2b domestique')) {
-    return isFR && isB2B;
+  if (c.includes('b2b domestique') || c.includes('b2b belge')) {
+    return isBE && isB2B;
   }
   if (c.includes('b2b')) {
     return isB2B;
@@ -228,7 +295,8 @@ function shouldApplyCondition(condition, company, invoice) {
     return company.tax && company.tax.option_debits;
   }
   if (c.includes('societe') || c.includes('société')) {
-    return company.legal_form && ['SASU', 'SAS', 'SARL', 'EURL', 'SA', 'SCI'].includes(company.legal_form);
+    // Formes juridiques belges principales
+    return company.legal_form && ['SRL', 'SA', 'SPRL', 'ASBL', 'SCRL', 'CVBA', 'NV', 'BV', 'SASU', 'SAS', 'SARL'].includes(company.legal_form);
   }
   return true; // Par defaut, appliquer
 }

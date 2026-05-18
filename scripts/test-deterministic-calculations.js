@@ -35,38 +35,46 @@ function testAmortissementLineaire() {
   assert.match(output, /Dotation periode: 547,95 EUR/);
 }
 
-function testISTauxUnique() {
-  const output = runCalc(["is", "--resultat-fiscal=10000", "--taux=25"]);
-  assert.match(output, /IS total: 2500,00 EUR/);
+function testISOCTauxUnique() {
+  // ISOC taux normal 25% (art. 215 al. 1 CIR 92)
+  const output = runCalc(["isoc", "--resultat-fiscal=10000", "--taux=25"]);
+  assert.match(output, /ISOC total: 2500,00 EUR/);
 }
 
-function testISTauxOneMeansOnePercent() {
-  const output = runCalc(["is", "--resultat-fiscal=1000", "--taux=1"]);
-  assert.match(output, /IS total: 10,00 EUR/);
+function testISOCTauxOneMeansOnePercent() {
+  const output = runCalc(["isoc", "--resultat-fiscal=1000", "--taux=1"]);
+  assert.match(output, /ISOC total: 10,00 EUR/);
 }
 
-function testISNegative() {
-  const output = runCalc(["is", "--resultat-fiscal=-1000", "--taux=25"]);
-  assert.match(output, /IS: 0,00 EUR \(resultat fiscal <= 0\)/);
+function testISOCNegative() {
+  const output = runCalc(["isoc", "--resultat-fiscal=-1000", "--taux=25"]);
+  assert.match(output, /ISOC: 0,00 EUR \(resultat fiscal <= 0\)/);
 }
 
-function testISProratedReducedRate() {
+function testISOCProratedReducedRate() {
+  // ISOC belge taux réduit 20% (art. 215 al. 2 CIR 92), plafond 100 000 EUR
+  // Exercice proraté 182 jours : plafond proraté = 100000 * 182/365 = 49863,01 EUR
+  // Sur 50000 EUR : tranche réduite = 49863,01 EUR @ 20% = 9972,60 EUR
+  //                 tranche normale = 136,99 EUR @ 25% = 34,25 EUR
+  //                 total ISOC = 10006,85 EUR
   const output = runCalc([
-    "is",
+    "isoc",
     "--resultat-fiscal=50000",
-    "--taux-reduit=15",
+    "--taux-reduit=20",
     "--taux-normal=25",
     "--jours-exercice=182",
   ]);
 
-  assert.match(output, /Plafond taux reduit applique: 21191,78 EUR/);
-  assert.match(output, /IS total: 10380,83 EUR/);
+  assert.match(output, /Plafond taux reduit applique: 49863,01 EUR/);
+  assert.match(output, /ISOC total: 10006,85 EUR/);
 }
 
 function testTVAAcomptesRS() {
+  // Note : en Belgique, les déclarations TVA se font via Intervat (mensuel/trimestriel)
+  // Cette commande calcule des acomptes indicatifs (simulation)
   const output = runCalc(["tva-acomptes-rs", "--tva-n-1=12000"]);
-  assert.match(output, /Acompte juillet \(55%\): 6600,00 EUR/);
-  assert.match(output, /Total acomptes: 11400,00 EUR/);
+  assert.match(output, /Acompte indicatif periode 1 \(55%\): 6600,00 EUR/);
+  assert.match(output, /Total acomptes indicatifs: 11400,00 EUR/);
 }
 
 function testProrata() {
@@ -77,13 +85,13 @@ function testProrata() {
 function main() {
   testCCA();
   testAmortissementLineaire();
-  testISTauxUnique();
-  testISTauxOneMeansOnePercent();
-  testISNegative();
-  testISProratedReducedRate();
+  testISOCTauxUnique();
+  testISOCTauxOneMeansOnePercent();
+  testISOCNegative();
+  testISOCProratedReducedRate();
   testTVAAcomptesRS();
   testProrata();
-  console.log("Deterministic calculation tests passed.");
+  console.log("Deterministic calculation tests passed (droit belge — CIR 92).");
 }
 
 main();

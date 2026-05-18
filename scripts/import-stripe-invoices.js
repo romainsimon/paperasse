@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * Import des factures Stripe vers le format Paperasse
+ * Import des factures Stripe vers le format Paperasse (Belgique)
  *
  * Recupere les invoices Stripe d'une periode et les convertit en JSON
- * compatibles avec generate-facturx.js. Numerotation automatique a partir
+ * compatibles avec generate-peppol.js. Numerotation automatique a partir
  * de invoicing.next_numbers[year] dans company.json.
  *
  * Usage:
@@ -136,6 +136,50 @@ function detectCategory(invoice) {
   return 'services';
 }
 
+/**
+ * Tente d'extraire le BCE (0xxx.xxx.xxx) depuis les métadonnées Stripe.
+ * En Belgique, le BCE remplace le SIREN/SIRET comme identifiant légal.
+ * Convention : stocker le BCE dans customer.metadata.bce ou metadata.vat_number.
+ */
+function extractBCE(cust) {
+  if (!cust || !cust.metadata) return '';
+  const meta = cust.metadata;
+  // Chercher dans les champs courants
+  const candidates = [meta.bce, meta.BCE, meta.company_number, meta.enterprise_number];
+  for (const c of candidates) {
+    if (c && /^0\d{3}[\.\s]?\d{3}[\.\s]?\d{3}$/.test(c.trim())) {
+      // Normaliser au format 0xxx.xxx.xxx
+      const digits = c.replace(/[\.\s]/g, '');
+      return digits.slice(0, 4) + '.' + digits.slice(4, 7) + '.' + digits.slice(7, 10);
+    }
+  }
+  return '';
+}
+
+/**
+ * Tente d'extraire et valider un numéro de TVA belge depuis les métadonnées Stripe.
+ * Format attendu : BE0xxxxxxxxx
+ */
+function extractTVABelge(cust) {
+  if (!cust || !cust.metadata) return '';
+  const meta = cust.metadata;
+  const candidates = [meta.vat_number, meta.tva, meta.TVA, meta.tax_id];
+  for (const c of candidates) {
+    if (c && /^BE0\d{9}$/i.test(c.replace(/[\s\.]/g, ''))) {
+      return c.replace(/[\s\.]/g, '').toUpperCase();
+    }
+  }
+  // Stripe tax_ids (expand: ['customer.tax_ids']) si disponible
+  if (cust.tax_ids && Array.isArray(cust.tax_ids.data)) {
+    for (const tid of cust.tax_ids.data) {
+      if (tid.type === 'eu_vat' && /^BE0\d{9}$/i.test((tid.value || '').replace(/[\s\.]/g, ''))) {
+        return (tid.value || '').replace(/[\s\.]/g, '').toUpperCase();
+      }
+    }
+  }
+  return '';
+}
+
 function getClientFromInvoice(invoice) {
   const customer = invoice.customer;
   const cust = (customer && typeof customer === 'object') ? customer : {};
@@ -144,6 +188,10 @@ function getClientFromInvoice(invoice) {
   const name = cust.name || invoice.customer_name || invoice.customer_email || 'Client';
   const email = cust.email || invoice.customer_email || '';
   const address = cust.address || invoice.customer_address || {};
+
+  // Extraction BCE et TVA belge depuis les métadonnées Stripe
+  const bce = extractBCE(cust);
+  const tva = extractTVABelge(cust);
 
   return {
     name,
@@ -154,7 +202,12 @@ function getClientFromInvoice(invoice) {
     city: address.city || '',
     state: address.state || '',
     country: address.country || '',
-    siren: '', // Stripe ne stocke pas le SIREN par defaut
+    // BCE (identifiant légal belge) — à renseigner dans Stripe metadata.bce
+    bce: bce || '',
+    // TVA belge BE0xxxxxxxxx — à renseigner dans Stripe metadata.vat_number ou tax_ids
+    tva: tva || '',
+    // Compatibilité : siren vide (pas de SIREN/SIRET en Belgique)
+    siren: '',
   };
 }
 
@@ -203,6 +256,12 @@ function convertInvoice(stripeInvoice, accountName, company, year) {
         unit_price: eurAmount,
       }];
 
+  // Taux TVA belge : 21% par defaut (taux standard belge)
+  // Adapter si le produit bénéficie d'un taux réduit (6% ou 12%)
+  const vatRate = stripeInvoice.default_tax_rates && stripeInvoice.default_tax_rates.length > 0
+    ? stripeInvoice.default_tax_rates[0].percentage
+    : 21; // Taux standard belge (art. 1 CTVA)
+
   const result = {
     number,
     date,
@@ -212,6 +271,8 @@ function convertInvoice(stripeInvoice, accountName, company, year) {
     category: detectCategory(stripeInvoice),
     client,
     lines,
+    // Taux TVA belge : 0, 6, 12 ou 21 (art. 1 CTVA)
+    vat_rate: vatRate,
     payment: {
       terms: '30 jours date de facture',
       method: 'carte bancaire (Stripe)',

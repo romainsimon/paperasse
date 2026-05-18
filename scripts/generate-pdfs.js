@@ -188,14 +188,25 @@ const CSS = `
 // ---------------------------------------------------------------------------
 
 function buildHeader(company) {
-  const form = company.legal_form + ' au capital de ' + company.capital.toLocaleString('fr-FR') + ' \u20ac';
+  // Identification belge : BCE (0xxx.xxx.xxx) + TVA (BE0xxxxxxxxx)
+  const bce = company.bce || company.siren || '';
+  const tva = company.tva || company.tva_intracom || '';
+  const form = company.legal_form
+    ? (company.capital
+        ? company.legal_form + ' au capital de ' + Number(company.capital).toLocaleString('fr-BE') + ' \u20ac'
+        : company.legal_form)
+    : '';
+  const bceLabel = bce ? 'BCE ' + bce : '';
+  const tvaLabel = tva ? 'TVA ' + tva : '';
+  const identLine = [bceLabel, tvaLabel].filter(Boolean).join(' &middot; ');
+
   return `
     <div class="doc-header">
       <div class="company-name">${company.name}</div>
       <div class="company-details">
-        ${form}<br>
+        ${form ? form + '<br>' : ''}
         ${company.address}<br>
-        SIREN ${company.siren} &middot; ${company.rcs}
+        ${identLine}
       </div>
     </div>`;
 }
@@ -316,9 +327,17 @@ async function main() {
   });
 
   const footerFont = "'Helvetica Neue', Helvetica, Arial, sans-serif";
+  // Pied de page belge : BCE (0xxx.xxx.xxx) + TVA (BE0xxxxxxxxx)
+  const bce = company.bce || company.siren || '';
+  const tva = company.tva || company.tva_intracom || '';
+  const footerIdent = [
+    bce ? 'BCE ' + bce : '',
+    tva ? 'TVA ' + tva : '',
+  ].filter(Boolean).join(' &middot; ');
+
   const footerHtml = `
     <div style="width:100%; text-align:center; font-size:7.5px; color:#888; font-family:${footerFont}; padding:0 20mm;">
-      ${company.name} &middot; SIREN ${company.siren} &middot; ${company.rcs}
+      ${company.name} &middot; ${footerIdent}
       <span style="margin-left:16px;">Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
     </div>`;
 
@@ -369,7 +388,9 @@ async function main() {
       let html = fs.readFileSync(confTemplatePath, 'utf-8');
       // Replace placeholders with company data
       html = html.replace(/\{\{company\.name\}\}/g, company.name);
-      html = html.replace(/\{\{company\.rcs\}\}/g, company.siren.replace(/\s/g, ' ') + ' ' + company.rcs);
+      // Compatibilite : remplacer {{company.rcs}} par BCE belge si present
+      const bceForTemplate = company.bce || company.siren || '';
+      html = html.replace(/\{\{company\.rcs\}\}/g, 'BCE ' + bceForTemplate);
       html = html.replace(/\{\{company\.president\}\}/g,
         company.president.civility + ' ' + company.president.first_name + ' ' + company.president.last_name + ', ' + company.president.title
       );

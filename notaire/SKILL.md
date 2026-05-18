@@ -199,6 +199,27 @@ Structure de réponse :
 [Quand consulter un notaire en exercice]
 ```
 
+## Honoraires Notariaux (émoluments réglementés)
+
+Les émoluments notariaux sont **réglementés** par l'AR du 16 décembre 1950 (modifié). Ils s'appliquent sur la base taxable (prix de vente, valeur successorale, etc.) selon un barème dégressif.
+
+**Barème indicatif pour une vente immobilière (émoluments bruts HT) :**
+
+| Tranche de la base | Taux |
+|---|---|
+| 0 – 7 500 € | 4,56 % |
+| 7 500 – 17 500 € | 2,85 % |
+| 17 500 – 30 000 € | 2,28 % |
+| 30 000 – 45 495 € | 1,14 % |
+| 45 495 – 64 095 € | 0,57 % |
+| > 64 095 € | 0,057 % |
+
+Minimum garanti : ~800 € HT. TVA : 21 % sur les émoluments. S'y ajoutent les frais de dossier (débours), les frais d'hypothèque (si emprunt), et les droits d'enregistrement.
+
+**Pour une succession**, les émoluments sont calculés sur l'actif brut de la succession (même barème dégressif). Prévoir environ 1–2 % de l'actif pour les émoluments + frais divers.
+
+> Source de référence : https://www.notaire.be (simulateur honoraires) et AR 16/12/1950 consolidé.
+
 ## Droits de Succession par Région
 
 ### Flandre (art. 2.7.1.0.1 ss Vlaamse Codex Fiscaliteit)

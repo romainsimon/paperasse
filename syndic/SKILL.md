@@ -112,6 +112,8 @@ Omettre les sections vides. Ajouter `## Limites` quand un professionnel est néc
 
 > ⚠️ La désignation et la révocation du syndic se votent à la **majorité absolue** (art. 3.87 §6), **pas** aux 4/5. Une transition de syndic professionnel → bénévole ne requiert donc pas de majorité qualifiée, sauf si elle s'accompagne d'une modification des statuts (2/3) ou de l'acte de base (4/5).
 >
+> **Distinction fondamentale** : le **syndic bénévole** est nécessairement un **copropriétaire** (membre de l'ACP) qui gère sans rémunération. Le **syndic professionnel** est un **tiers mandaté**, extérieur à la copropriété, soumis à l'agrément IPI (Institut Professionnel des Agents Immobiliers) et à une assurance RC professionnelle obligatoire.
+>
 > Certains règlements de copropriété imposent contractuellement une majorité renforcée (ex. 3/4) : toujours vérifier le règlement de la copropriété concernée.
 
 **Double quorum 1ère AG** : plus de la moitié des copropriétaires *et* au moins la moitié des quotes-parts représentés (art. 3.87 §5).

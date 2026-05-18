@@ -208,6 +208,37 @@
         "La réduction finale est calculée correctement",
         "Le skill distingue les quotités exemptées belges du quotient familial français (mécanisme différent)"
       ]
+    },
+    {
+      "id": 15,
+      "name": "reserve-liquidation-art-184quater",
+      "prompt": "Je suis gérant-associé d'une PME SRL rentable. Mon comptable me parle de constituer une 'réserve de liquidation' (art. 184quater CIR 92) plutôt que de distribuer des dividendes ordinaires. Est-ce avantageux ? Quels sont les taux de précompte mobilier selon le moment de la distribution ?",
+      "expected_output": "La réserve de liquidation (art. 184quater CIR 92) est un mécanisme belge spécifique pour les PME : la société paie une cotisation distincte de 10% à la constitution. À la liquidation : PM 0% additionnel (déjà payé). Distribution > 5 ans après constitution : PM 5% additionnel (coût total : 10% + 5% = 15%). Distribution < 5 ans : PM 20% additionnel (coût total 30% = pas d'avantage). Comparaison : VVPR bis taux 15% sans délai si conditions remplies. La réserve de liquidation est surtout intéressante si on prévoit de liquider la société ou de distribuer après 5 ans.",
+      "files": [],
+      "assertions": [
+        "Le mécanisme de la réserve de liquidation (art. 184quater CIR 92) est correctement expliqué",
+        "La cotisation distincte de 10% prélevée lors de la mise en réserve est mentionnée",
+        "Le PM 0% additionnel à la liquidation (résultat : 10% total) est indiqué",
+        "Le PM 5% additionnel pour une distribution > 5 ans après constitution est mentionné (coût total 15%)",
+        "Le PM 20% additionnel pour une distribution < 5 ans est mentionné (coût total 30%, aucun avantage)",
+        "La comparaison avec les dividendes VVPR bis (15% PM sans cotisation préalable) est faite",
+        "La condition PME (art. 215 al. 2 CIR 92) pour bénéficier du régime est mentionnée"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "pm-spontane-dividendes-etrangers-sans-intermediaire",
+      "prompt": "J'ai un compte-titres en Belgique chez un courtier belge, plus un compte direct chez un courtier américain (Interactive Brokers). Les deux comptes reçoivent des dividendes d'actions étrangères. Comment est traité le précompte mobilier dans les deux cas ? Dois-je déclarer quelque chose en Belgique ?",
+      "expected_output": "Pour le courtier belge : PM retenu à la source par l'intermédiaire belge, libératoire, pas d'obligation de déclaration IPP. Pour le courtier étranger (Interactive Brokers) : pas de retenue belge → le contribuable doit déclarer ces revenus mobiliers dans sa déclaration IPP et payer lui-même le PM via Tax-on-web (PM 'spontané', cadre VII de la déclaration). La retenue étrangère (US 15% en vertu de la convention fiscale BE-US) est imputable sur le PM belge de 30%. Risque : oubli de déclaration = infraction fiscale.",
+      "files": [],
+      "assertions": [
+        "La distinction est faite entre intermédiaire belge (PM retenu = libératoire) et intermédiaire étranger (PM non retenu = obligation déclarative)",
+        "L'obligation de déclarer les revenus mobiliers étrangers reçus sans retenue belge est expliquée (PM spontané, cadre VII déclaration IPP)",
+        "Le taux PM belge standard de 30% s'applique aussi aux dividendes étrangers",
+        "La retenue étrangère (ex. 15% US en vertu de la convention BE-US) est imputable sur le PM belge de 30% (PM net belge = 15%)",
+        "Le risque d'infraction fiscale en cas de non-déclaration est mentionné",
+        "Tax-on-web est mentionné comme outil pour le paiement du PM spontané"
+      ]
     }
   ]
 }

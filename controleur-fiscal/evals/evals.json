@@ -55,6 +55,36 @@
         "Les conditions de déductibilité (art. 49 CIR 92) sont mentionnées",
         "Les risques de redressement sont quantifiés avec le montant des droits rappelés potentiels et accroissements (art. 444 CIR 92)"
       ]
+    },
+    {
+      "id": 4,
+      "name": "franchise-tva-annualisation-premier-exercice",
+      "prompt": "Simule un contrôle fiscal (SPF Finances) d'une SRL de conseil créée le 1er juillet 2025. L'exercice comptable est du 01/07/2025 au 31/12/2025 (184 jours). Le chiffre d'affaires facturé sur ce premier semestre est de 13 200 EUR. La société a appliqué la franchise de la taxe (art. 56bis CTVA) et n'a facturé aucune TVA à ses clients. Le vérificateur doit-il identifier un chef de redressement TVA ?",
+      "expected_output": "Le vérificateur applique la règle d'annualisation pour un premier exercice < 12 mois (art. 56bis §2 CTVA). CA annualisé = 13 200 × (365/184) ≈ 26 195 EUR, soit au-dessus du seuil de 25 000 EUR. La franchise ne s'appliquait pas. Chef de redressement : TVA de 21% due sur 13 200 EUR = 2 772 EUR + pénalités art. 70 §1 CTVA.",
+      "files": [],
+      "assertions": [
+        "La règle d'annualisation pour un exercice < 12 mois est appliquée (art. 56bis §2 CTVA ou circulaire TVA)",
+        "Le CA annualisé est calculé : 13 200 × (365 / 184) ≈ 26 195 EUR",
+        "Ce CA annualisé dépasse le seuil de 25 000 EUR → la franchise de la taxe ne s'appliquait pas",
+        "Un chef de redressement TVA est identifié (TVA 21% due sur les 13 200 EUR de CA)",
+        "La TVA rappelée est chiffrée (13 200 × 21% = 2 772 EUR)",
+        "La base légale est citée (art. 56bis CTVA et/ou circulaire administrative)"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "taux-reduit-pme-condition-remuneration-dirigeant",
+      "prompt": "Simule un contrôle fiscal (AGFisc) de TechSRL pour l'exercice 2025. La société a un seul associé-gérant (100% des parts). Elle a déclaré l'ISOC au taux réduit PME de 20% sur un résultat fiscal de 90 000 EUR. La rémunération brute annuelle du gérant pour 2025 est de 36 000 EUR. Le vérificateur doit-il identifier un chef de redressement ?",
+      "expected_output": "L'art. 215 al. 2 CIR 92 exige que la rémunération du dirigeant le mieux payé soit au moins égale au plus petit des montants suivants : 45 000 EUR ou le résultat imposable. Ici : résultat imposable (90 000 EUR) > 36 000 EUR < 45 000 EUR → condition non remplie → taux standard 25% applicable. Redressement : 5% × 90 000 EUR = 4 500 EUR supplémentaires.",
+      "files": [],
+      "assertions": [
+        "La condition de rémunération minimale du dirigeant pour le taux réduit PME est identifiée (art. 215 al. 2 CIR 92)",
+        "Le seuil de 45 000 EUR (ou résultat imposable si inférieur) est correctement appliqué",
+        "La rémunération de 36 000 EUR est inférieure au seuil de 45 000 EUR et inférieure au résultat fiscal de 90 000 EUR → condition non remplie",
+        "Un chef de redressement est établi : le taux standard de 25% s'applique à la place du taux réduit de 20%",
+        "Le montant du redressement est calculé : (25% - 20%) × 90 000 EUR = 4 500 EUR",
+        "La base légale est citée (art. 215 al. 2 CIR 92)"
+      ]
     }
   ]
 }

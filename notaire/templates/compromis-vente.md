@@ -1,6 +1,10 @@
-# Compromis de Vente (Promesse Synallagmatique de Vente)
+# Compromis de Vente (Avant-Contrat)
 
 [PROJET — À SOUMETTRE AU NOTAIRE INSTRUMENTAIRE]
+
+---
+
+> **Note importante** : En droit belge, le compromis de vente est un **contrat ferme et définitif**. Dès la signature du compromis, la vente est parfaite (art. 1:8 Cc belge — force obligatoire des conventions). Il n'existe **pas** de délai de rétractation légal en Belgique pour la vente immobilière entre particuliers. Le notaire instrumentant est chargé de vérifier les renseignements urbanistiques, le dossier d'intervention ultérieure (DIU), l'attestation sol, le certificat PEB et toutes les charges et servitudes.
 
 ---
 
@@ -20,13 +24,13 @@ Ci-après dénommé « le Vendeur »,
 
 ### L'ACQUÉREUR
 
-**Nom** : {{acquereur.nom}}
-**Prénom** : {{acquereur.prenom}}
-**Né(e) le** : {{acquereur.date_naissance}} à {{acquereur.lieu_naissance}}
-**Nationalité** : {{acquereur.nationalite}}
-**Demeurant** : {{acquereur.adresse}}
-**Situation matrimoniale** : {{acquereur.situation_matrimoniale}}
-**Régime matrimonial** : {{acquereur.regime_matrimonial}}
+**Nom** : {{acquéreur.nom}}
+**Prénom** : {{acquéreur.prenom}}
+**Né(e) le** : {{acquéreur.date_naissance}} à {{acquéreur.lieu_naissance}}
+**Nationalité** : {{acquéreur.nationalite}}
+**Demeurant** : {{acquéreur.adresse}}
+**Situation matrimoniale** : {{acquéreur.situation_matrimoniale}}
+**Régime matrimonial** : {{acquéreur.regime_matrimonial}}
 
 Ci-après dénommé « l'Acquéreur »,
 
@@ -36,83 +40,87 @@ Ci-après dénommé « l'Acquéreur »,
 
 ### ARTICLE 1 — OBJET
 
-Le Vendeur s'engage à vendre à l'Acquéreur, qui s'engage à acquérir, le bien immobilier ci-après désigné, aux prix, charges et conditions ci-après.
+Le Vendeur s'engage à vendre à l'Acquéreur, qui s'engage à acquérir, le bien immobilier ci-après désigné, aux prix, charges et conditions ci-après. Conformément à l'article 1:8 du Code civil belge, le présent compromis vaut vente ferme et définitive dès sa signature.
 
 ### ARTICLE 2 — DÉSIGNATION DU BIEN
 
-**Nature** : {{bien.nature}} (appartement / maison / terrain / local commercial)
+**Nature** : {{bien.nature}} (appartement / maison / terrain / immeuble)
 **Adresse** : {{bien.adresse}}
 **Commune** : {{bien.commune}} ({{bien.code_postal}})
-**Département** : {{bien.departement}}
-**Étage** : {{bien.etage}} (si applicable)
+**Région** : {{bien.region}} *(Région wallonne / Région flamande / Région de Bruxelles-Capitale)*
 **Références cadastrales** : Section {{bien.section}}, parcelle n°{{bien.parcelle}}, lieudit {{bien.lieudit}}
 **Contenance cadastrale** : {{bien.contenance}} m²
 **Surface habitable** : {{bien.surface_habitable}} m²
-**Surface loi Carrez** : {{bien.surface_carrez}} m² (si copropriété)
 **Nombre de pièces** : {{bien.nb_pieces}}
-
-**Désignation des lots de copropriété** (si applicable) :
-- Lot n°{{lot.numero}} : {{lot.description}}, {{lot.tantiemes}}/{{copropriete.tantiemes_total}} tantièmes
 
 **Annexes et dépendances incluses** :
 - {{bien.annexes}} (cave, parking, garage, jardin, etc.)
 
 ### ARTICLE 3 — ORIGINE DE PROPRIÉTÉ
 
-Le Vendeur est propriétaire du bien pour l'avoir acquis de {{origine.vendeur_precedent}} aux termes d'un acte reçu par Maître {{origine.notaire}} le {{origine.date}}, publié au service de la publicité foncière de {{origine.spf}} le {{origine.date_publication}}, volume {{origine.volume}}, numéro {{origine.numero}}.
+Le Vendeur est propriétaire du bien pour l'avoir acquis de {{origine.vendeur_precedent}} aux termes d'un acte reçu par Maître {{origine.notaire}} le {{origine.date}}, transcrit à la Conservation des Hypothèques / Bureau de la Sécurité Juridique de {{origine.bureau}} le {{origine.date_publication}}.
 
 ### ARTICLE 4 — PRIX
 
-Le présent bien est vendu au prix de **{{prix.montant}} EUR** ({{prix.montant_lettres}} euros).
+Le présent bien est vendu au prix de **{{prix}} EUR** ({{prix_lettres}} euros).
 
-Ce prix sera payé comptant le jour de la signature de l'acte authentique, par virement bancaire sur le compte séquestre du notaire.
+Ce prix sera payé le jour de la signature de l'acte authentique, par virement bancaire sur le compte séquestre du notaire.
 
-### ARTICLE 5 — DÉPÔT DE GARANTIE
+### ARTICLE 5 — DROITS D'ENREGISTREMENT
 
-L'Acquéreur verse ce jour au Vendeur (ou au notaire séquestre) un dépôt de garantie de **{{depot_garantie.montant}} EUR** ({{depot_garantie.pourcentage}}% du prix), qui s'imputera sur le prix le jour de la vente.
+Les droits d'enregistrement applicables dépendent de la région dans laquelle le bien est situé :
 
-Ce dépôt de garantie sera :
-- Conservé par Maître {{notaire.nom}}, notaire à {{notaire.ville}}, en qualité de séquestre
-- Restitué à l'Acquéreur en cas de rétractation dans le délai légal ou de non-réalisation d'une condition suspensive
-- Acquis au Vendeur à titre de dommages et intérêts forfaitaires en cas de défaillance de l'Acquéreur
+| Région | Taux applicable |
+|--------|:---------------:|
+| **Région flamande** | **3%** (tarif réduit, sous conditions — art. 46bis C. enr.) |
+| **Région wallonne** | **12,5%** (sous réserve d'abattements applicables) |
+| **Région de Bruxelles-Capitale** | **12,5%** (abattement sur la première tranche de 200 000 EUR — art. 46bis C. enr.) |
 
-### ARTICLE 6 — CONDITIONS SUSPENSIVES
+Les droits d'enregistrement, frais et émoluments de l'acte authentique sont à la charge de l'Acquéreur, conformément à l'usage.
+
+### ARTICLE 6 — ACOMPTE
+
+L'Acquéreur verse ce jour à Maître {{notaire.nom}}, notaire à {{notaire.commune}}, en qualité de séquestre, un acompte de **{{acompte.montant}} EUR** ({{acompte.pourcentage}}% du prix), qui s'imputera sur le prix le jour de la signature de l'acte authentique.
+
+Cet acompte sera :
+- Conservé par le notaire séquestre jusqu'à la réalisation de la vente
+- Restitué à l'Acquéreur en cas de non-réalisation d'une condition suspensive
+- Acquis au Vendeur à titre de dommages et intérêts forfaitaires en cas de défaillance fautive de l'Acquéreur
+
+### ARTICLE 7 — CONDITIONS SUSPENSIVES
 
 La présente vente est consentie sous les conditions suspensives suivantes :
 
-**6.1. Obtention de prêt**
+**7.1. Obtention d'un crédit hypothécaire**
 
-L'Acquéreur déclare avoir l'intention de recourir à un ou plusieurs emprunts pour financer l'acquisition.
+L'Acquéreur déclare avoir l'intention de recourir à un crédit hypothécaire pour financer l'acquisition.
 
-Caractéristiques du prêt recherché :
-- Montant maximum : {{pret.montant}} EUR
-- Durée maximum : {{pret.duree}} ans
-- Taux d'intérêt maximum (hors assurance) : {{pret.taux_max}}%
+Caractéristiques du crédit recherché :
+- Montant maximum : {{credit.montant}} EUR
+- Durée maximum : {{credit.duree}} ans
+- Taux d'intérêt maximum (hors assurance) : {{credit.taux_max}}%
 
-L'Acquéreur s'engage à déposer une ou plusieurs demandes de prêt dans un délai de **10 jours** à compter de la signature des présentes. La condition suspensive d'obtention de prêt doit être réalisée au plus tard le **{{pret.date_limite}}**.
+L'Acquéreur s'engage à déposer une ou plusieurs demandes de crédit auprès d'établissements de crédit dans les meilleurs délais. La condition suspensive d'obtention du crédit hypothécaire doit être réalisée au plus tard le **{{credit.date_limite}}** *(délai standard : 3 semaines à compter de la signature)*.
 
-En cas de non-obtention du prêt, l'Acquéreur devra produire une ou plusieurs attestations de refus.
+En cas de refus de crédit, l'Acquéreur devra produire une ou plusieurs attestations de refus émanant d'établissements de crédit agréés.
 
-**6.2. Absence de préemption**
+**7.2. Absence de préemption**
 
 La vente est subordonnée à la non-exercice du droit de préemption par :
-- La commune au titre du droit de préemption urbain
-- La SAFER (si applicable)
-- Le locataire en place (si applicable)
+- La commune ou la Région au titre de leur droit de préemption
+- Le locataire en place (si applicable — droit de préemption du preneur)
 
-**6.3. Absence de servitude non révélée**
+**7.3. Absence de servitudes cachées**
 
-La vente est subordonnée à l'absence de servitude d'urbanisme ou d'utilité publique non révélée par le Vendeur et de nature à rendre le bien impropre à sa destination.
+La vente est subordonnée à l'absence de servitude d'urbanisme ou de droit privé non révélée par le Vendeur et de nature à rendre le bien impropre à sa destination.
 
-**6.4. Situation hypothécaire**
+**7.4. Conformité urbanistique**
 
-La vente est subordonnée à ce que l'état hypothécaire ne révèle pas d'inscription ou de charge grevant le bien et non susceptible d'être levée au jour de la signature de l'acte authentique.
+La vente est subordonnée à la confirmation, par les renseignements urbanistiques officiels, de la conformité du bien aux autorisations délivrées et de l'absence d'infraction urbanistique non régularisée.
 
-### ARTICLE 7 — DÉLAI DE RÉTRACTATION
+**7.5. État hypothécaire**
 
-Conformément à l'article L271-1 du Code de la construction et de l'habitation, l'Acquéreur dispose d'un délai de **dix jours** à compter du lendemain de la notification des présentes pour exercer sa faculté de rétractation.
-
-La rétractation doit être notifiée au Vendeur par lettre recommandée avec accusé de réception. L'Acquéreur n'a pas à motiver sa décision. Le dépôt de garantie lui sera restitué dans un délai de vingt-et-un jours.
+La vente est subordonnée à ce que l'état hypothécaire ne révèle pas d'inscription ou de sûreté grevant le bien et non susceptible d'être purgée au jour de la signature de l'acte authentique.
 
 ### ARTICLE 8 — JOUISSANCE
 
@@ -127,55 +135,58 @@ Le Vendeur déclare qu'à sa connaissance, le bien n'est affecté d'aucun vice c
 ### ARTICLE 10 — CHARGES ET CONDITIONS
 
 Le bien est vendu :
-- Libre de toute location (ou : avec le bail consenti à {{locataire.nom}}, en date du {{locataire.date_bail}})
+- Libre de toute location *(ou : avec le bail consenti à {{locataire.nom}}, en date du {{locataire.date_bail}})*
 - Libre de toute occupation
 - Avec les servitudes actives et passives y attachées
 
 ### ARTICLE 11 — URBANISME
 
 Le Vendeur déclare :
-- Que le bien se situe en zone **{{urbanisme.zone}}** du PLU de la commune
-- Qu'aucun arrêté de péril ou d'insalubrité n'a été pris
+- Que le bien se situe en zone **{{urbanisme.zone}}** du plan d'aménagement applicable
 - Qu'aucune procédure d'expropriation n'est en cours
-- Que les travaux réalisés ont fait l'objet des autorisations nécessaires
+- Que les travaux réalisés ont fait l'objet des permis et autorisations nécessaires
+- Qu'à sa connaissance, aucun arrêté de péril ou d'insalubrité n'a été pris
 
-### ARTICLE 12 — DIAGNOSTICS TECHNIQUES
+Le notaire instrumentant procède à la vérification des renseignements urbanistiques auprès des autorités compétentes *(commune, Région)*.
 
-Le Dossier de Diagnostic Technique (DDT) est annexé aux présentes et comprend :
-- [ ] DPE (Diagnostic de Performance Énergétique)
-- [ ] Amiante (si construction avant 01/07/1997)
-- [ ] Plomb — CREP (si construction avant 01/01/1949)
-- [ ] Électricité (si installation > 15 ans)
-- [ ] Gaz (si installation > 15 ans)
-- [ ] Termites (si zone déclarée)
-- [ ] ERP (État des Risques et Pollutions)
-- [ ] Assainissement (si non raccordé)
-- [ ] Bruit (si zone PEB)
-- [ ] Surface loi Carrez (si copropriété)
-- [ ] Audit énergétique (si DPE E, F ou G et maison)
+### ARTICLE 12 — CERTIFICATIONS ET ATTESTATIONS TECHNIQUES
 
-### ARTICLE 13 — FRAIS
+Les documents suivants sont annexés aux présentes ou seront obtenus avant la signature de l'acte authentique :
 
-Tous les frais, droits et émoluments de l'acte authentique sont à la charge de l'Acquéreur, conformément à l'usage.
+**Obligatoires :**
+- [ ] Certificat PEB (Performance Énergétique des Bâtiments) — obligatoire pour toute vente
+- [ ] Attestation sol *(BDES en Wallonie / OVAM en Flandre / registre bruxellois)* — informations sur la qualité des sols
+- [ ] Rapport sur l'installation électrique conforme au RGIE (Règlement Général sur les Installations Électriques)
+- [ ] Attestation de conformité de l'installation de mazout *(si citerne à mazout)*
 
-### ARTICLE 14 — DATE LIMITE DE SIGNATURE
+**Si applicable :**
+- [ ] Asbestattest / attestation amiante *(obligatoire en Région flamande pour tout bien à usage résidentiel construit avant le 1er janvier 2001 — depuis 2022)*
+- [ ] Dossier d'Intervention Ultérieure (DIU) *(si travaux ont été effectués avec intervention d'un coordinateur sécurité-santé)*
+- [ ] Attestation de conformité des installations de gaz
+- [ ] Certificat de contrôle de la citerne à mazout
 
-L'acte authentique de vente devra être signé au plus tard le **{{date_limite_acte}}** devant Maître {{notaire.nom}}, notaire à {{notaire.ville}}.
+**En copropriété :**
+- [ ] Documents de la copropriété (art. 577-11 Cc belge) : procès-verbaux des 3 dernières AG, décompte des charges, état des appels de fonds, dettes de l'immeuble
 
-### ARTICLE 15 — ÉLECTION DE DOMICILE
+### ARTICLE 13 — DATE LIMITE DE SIGNATURE DE L'ACTE AUTHENTIQUE
 
-Pour l'exécution des présentes, les parties font élection de domicile en l'étude de Maître {{notaire.nom}}, notaire à {{notaire.ville}}, {{notaire.adresse}}.
+L'acte authentique de vente devra être signé au plus tard le **{{date_acte_authentique}}** devant Maître {{notaire.nom}}, notaire à {{notaire.commune}}.
+
+### ARTICLE 14 — ÉLECTION DE DOMICILE
+
+Pour l'exécution des présentes, les parties font élection de domicile en l'étude de Maître {{notaire.nom}}, notaire à {{notaire.commune}}, {{notaire.adresse}}.
+
+En cas de litige, les parties conviennent de la compétence du **Tribunal de Première Instance (TPI)** du ressort du bien vendu.
 
 ---
 
-Fait à {{lieu_signature}}, le {{date_signature}}, en {{nb_exemplaires}} exemplaires originaux.
+Fait à {{lieu_signature}}, le {{date_signature}}, en deux exemplaires originaux.
 
-**Le Vendeur** : _________________________ (signature précédée de la mention "Lu et approuvé")
+**Le Vendeur** : _________________________ (signature précédée de la mention « Lu et approuvé »)
 
-**L'Acquéreur** : _________________________ (signature précédée de la mention "Lu et approuvé")
+**L'Acquéreur** : _________________________ (signature précédée de la mention « Lu et approuvé »)
 
 ---
 
 ⚠️ **CE DOCUMENT EST UN PROJET DE TRAVAIL.**
-Il ne constitue pas un acte authentique. Seul un notaire en exercice peut instrumenter la vente.
-Les parties sont invitées à faire vérifier ce document par leur notaire avant signature.
+Il ne constitue pas un acte authentique. En Belgique, le compromis de vente est un contrat ferme et définitif. Il n'existe pas de délai de rétractation légal pour l'acquéreur particulier en droit belge. Seul un notaire en exercice peut instrumenter l'acte authentique de vente. Les parties sont invitées à faire vérifier ce document par leur notaire avant signature.

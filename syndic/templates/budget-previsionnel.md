@@ -3,15 +3,18 @@
 **{{copro.name}}**
 {{copro.address}}
 
+**Association des Copropriétaires (ACP)**
 **Exercice** : du {{date_debut}} au {{date_fin}}
 **Soumis au vote de l'AG du** : {{date_ag}}
 
 ---
 
-## Charges courantes
+## Budget ordinaire (charges récurrentes)
 
-| N | Poste | Réalisé N-1 | Budget N | Écart | Observations |
-|---|-------|------------:|---------:|------:|-------------|
+*Comptes établis conformément au plan comptable ACP belge (CNC-CBN) — charges classe 6, produits classe 7*
+
+| N° | Poste | Réalisé N-1 | Budget N | Écart | Observations |
+|----|-------|------------:|---------:|------:|-------------|
 | 1 | **Nettoyage parties communes** | {{reel}} | {{budget}} | {{ecart}}% | {{obs}} |
 | 2 | **Espaces verts** | {{reel}} | {{budget}} | {{ecart}}% | {{obs}} |
 | 3 | **Chauffage collectif** | {{reel}} | {{budget}} | {{ecart}}% | {{obs}} |
@@ -30,20 +33,25 @@
 | 11 | **Frais postaux / administratifs** | {{reel}} | {{budget}} | {{ecart}}% | {{obs}} |
 | 12 | **Frais bancaires** | {{reel}} | {{budget}} | {{ecart}}% | {{obs}} |
 | 13 | **Imprévus** (2-5%) | {{reel}} | {{budget}} | — | Marge de sécurité |
-| | **TOTAL CHARGES** | **{{total_reel}}** | **{{total_budget}}** | **{{ecart_total}}%** | |
+| | **TOTAL BUDGET ORDINAIRE** | **{{total_reel}}** | **{{total_budget}}** | **{{ecart_total}}%** | |
 
-## Fonds de travaux (art. 14-2 loi 1965)
+## Fonds de réserve (art. 3.89 §1 Cc belge)
+
+Conformément à l'article 3.89 §1 du Code civil belge, la cotisation annuelle au fonds de réserve ne peut être inférieure à **5% du budget ordinaire**.
 
 | | Montant |
 |--|--------:|
-| Budget prévisionnel | {{total_budget}} EUR |
-| Cotisation minimum (5%) | {{minimum_5pct}} EUR |
-| **Cotisation proposée** | **{{cotisation_proposee}} EUR** |
+| Budget ordinaire | {{total_budget}} EUR |
+| Cotisation minimum légale (5%) | {{minimum_5pct}} EUR |
+| **Cotisation proposée au fonds de réserve** | **{{cotisation_proposee}} EUR** |
+| Solde actuel du fonds de réserve | {{solde_fonds_reserve}} EUR |
+
+*Le fonds de réserve est géré sur un compte bancaire séparé au nom de l'ACP (art. 3.89 §2 Cc belge).*
 
 ## Synthèse par copropriétaire (clé de répartition principale)
 
-| Lot | Tantièmes | Quote-part annuelle | Provision trimestrielle | Fonds travaux/trim. |
-|-----|----------:|--------------------:|------------------------:|--------------------:|
+| Lot | Tantièmes | Quote-part annuelle (charges) | Provision trimestrielle | Fonds réserve/trim. |
+|-----|----------:|------------------------------:|------------------------:|--------------------:|
 | {{lot}} | {{tantièmes}} | {{qp_annuelle}} EUR | {{qp_trimestrielle}} EUR | {{fonds_trim}} EUR |
 | ... | ... | ... | ... | ... |
 | **Total** | **{{total_tantièmes}}** | **{{total_budget}} EUR** | — | **{{total_fonds}} EUR** |
@@ -66,4 +74,4 @@
 ---
 
 *Budget préparé par le syndic et soumis à l'avis du conseil syndical le {{date_avis_cs}}.*
-*Vote en AG à la majorité de l'article 24 de la loi du 10 juillet 1965.*
+*Vote en AG à la majorité simple (art. 3.84 Cc belge).*

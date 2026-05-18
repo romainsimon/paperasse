@@ -4,10 +4,10 @@
 
 ---
 
-**Base légale** : articles 970 à 972 du Code civil
+**Base légale** : articles 4.50 et suivants du Code civil belge (testaments olographes)
 
-**Conditions de validité** (les 3 sont cumulatives, à peine de nullité) :
-1. **Écrit entièrement de la main du testateur** (pas de machine, pas de tiers)
+**Conditions de validité** (les 3 sont cumulatives, à peine de nullité — art. 4.50 Cc belge) :
+1. **Écrit entièrement de la main du testateur** (pas de machine, pas d'intervention de tiers)
 2. **Daté** (jour, mois, année)
 3. **Signé** par le testateur
 
@@ -84,6 +84,8 @@ Si {{legataire.nom}} venait à décéder avant moi ou à renoncer au bénéfice 
 
 Je lègue à mon conjoint/ma conjointe, **{{conjoint.nom}} {{conjoint.prenom}}**, l'usufruit de la totalité de mes biens, à charge pour lui/elle de les conserver et de les rendre à son décès à mes héritiers en nue-propriété.
 
+*(La valeur de l'usufruit est calculée conformément à la table de l'art. 745bis du Code civil belge.)*
+
 ### Clause de charge
 
 Le legs ci-dessus est consenti à la charge pour le légataire de :
@@ -96,7 +98,7 @@ Le legs ci-dessus est consenti à la charge pour le légataire de :
 
 Je désigne **{{executeur.nom}} {{executeur.prenom}}** comme exécuteur testamentaire, avec la mission de veiller à la bonne exécution de mes volontés.
 
-*(L'exécuteur testamentaire peut être saisi de tout ou partie de la succession pendant un an, art. 1025 à 1034 C. civ.)*
+*(L'exécuteur testamentaire est régi par les articles 4.68 et suivants du Code civil belge.)*
 
 ---
 
@@ -123,26 +125,28 @@ entièrement écrit, daté et signé de ma main.
 
 ## GUIDE DE RÉDACTION
 
-**Pour que le testament soit valable :**
+**Pour que le testament soit valable (art. 4.50 Cc belge) :**
 
-1. Le testateur doit le recopier **intégralement à la main** (pas d'impression)
-2. Écrire la date en toutes lettres (ex: "le quinze mars deux mille vingt-six")
+1. Le testateur doit le recopier **intégralement à la main** (pas d'impression, pas de dactylo)
+2. Écrire la date en toutes lettres (ex : « le quinze mars deux mille vingt-six »)
 3. Signer à la fin
 4. Ne pas raturer sans parapher les ratures
 5. Numéroter les pages si plusieurs feuilles
 
 **Dépôt recommandé :**
-- Chez un notaire (coût : 31,25 EUR TTC), inscription au FCDDV
+- Chez un notaire, avec inscription au **Registre Central des Testaments (RCT)** géré par Fednot (Fédération Royale du Notariat Belge)
 - Ou conservé par le testateur (risque de perte ou de non-découverte)
 
 **Rappels importants :**
-- Le testament ne peut pas porter atteinte à la **réserve héréditaire** des descendants (art. 912 C. civ.)
-- Le testateur doit être **sain d'esprit** (art. 901 C. civ.)
+- Le testament ne peut pas porter atteinte à la **réserve héréditaire** des descendants (art. 4.153 Cc belge)
+- **Réserve héréditaire en droit belge** (réforme 2019) : **1/2 de la succession** en ligne directe, **quel que soit le nombre d'enfants** *(différence avec le droit français : en France la réserve varie de 1/2 à 3/4 selon le nombre d'enfants ; en Belgique depuis 2019, elle est fixée uniformément à 1/2)*
+- **Quotité disponible** : **1/2 de la succession**, librement testamentée
+- Le testateur doit être **sain d'esprit** (art. 4.50 Cc belge)
 - Le testament est **révocable** à tout moment par un nouveau testament ou par acte de révocation
-- Les legs au profit du **concubin** (non marié, non pacsé) sont taxés à **60%**
-- Les legs au profit du **conjoint ou partenaire de PACS** sont **exonérés** de droits de succession
+- Les legs au profit du **cohabitant de fait** (ni marié, ni cohabitant légal) sont taxés aux taux les plus élevés selon la région — il est conseillé de vérifier le taux applicable
+- Les legs au profit du **conjoint marié ou du cohabitant légal** bénéficient des taux préférentiels selon la région
 
 ---
 
 ⚠️ **CE DOCUMENT EST UN MODÈLE DE RÉDACTION.**
-Il ne constitue pas un acte authentique. Pour garantir la validité et la découverte du testament, il est fortement recommandé de le déposer chez un notaire.
+Il ne constitue pas un acte authentique. Pour garantir la validité et la découverte du testament, il est fortement recommandé de le déposer chez un notaire avec inscription au Registre Central des Testaments (RCT).

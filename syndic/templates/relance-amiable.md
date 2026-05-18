@@ -5,6 +5,8 @@
 **{{copro.name}}**
 {{copro.address}}
 
+Association des Copropriétaires (ACP)
+
 ---
 
 {{ville}}, le {{date}}
@@ -20,7 +22,7 @@
 
 Madame, Monsieur,
 
-Nous nous permettons de vous informer que votre compte copropriétaire présente un solde impayé de **{{montant_total}} EUR** à ce jour.
+Nous nous permettons de vous informer que votre compte copropriétaire auprès de l'**Association des Copropriétaires (ACP)** de l'immeuble {{copro.name}} présente un solde impayé de **{{montant_total}} EUR** à ce jour.
 
 | Période | Nature | Montant |
 |---------|--------|--------:|
@@ -31,8 +33,9 @@ Nous nous permettons de vous informer que votre compte copropriétaire présente
 
 Nous vous saurions gré de bien vouloir régulariser cette situation dans les meilleurs délais.
 
-**Virement bancaire** :
+**Virement bancaire — Compte courant ACP** :
 - IBAN : {{iban}}
+- BIC : {{bic}}
 - Référence : {{lot}}-REL-{{date}}
 
 Si vous rencontrez des difficultés, n'hésitez pas à nous contacter afin de convenir d'un échéancier.
@@ -44,4 +47,4 @@ Le syndic,
 
 ---
 
-*Ce courrier est un simple rappel. En l'absence de régularisation, une mise en demeure formelle sera adressée par lettre recommandée.*
+*Ce courrier est un simple rappel amiable. En l'absence de régularisation, une mise en demeure formelle sera adressée par lettre recommandée avec accusé de réception. En cas de non-paiement persistant, l'ACP se réserve le droit d'introduire une procédure devant le Juge de Paix compétent (art. 3.90 Cc belge) et de faire valoir l'hypothèque légale sur votre lot (art. 3.93 Cc belge). Des intérêts légaux seront réclamés à compter de l'échéance de chaque appel de fonds.*

@@ -1,18 +1,19 @@
-# Fiche Synthétique de la Copropriété
+# Synthèse de la Copropriété
 
-*Établie en application de l'article 8-2 de la loi n65-557 du 10 juillet 1965*
+*Document informatif — établi à titre volontaire par le syndic*
+*La fiche synthétique est obligatoire en droit français (art. 8-2 loi 1965) mais **n'existe pas en tant qu'obligation légale en droit belge**. Ce document est produit à titre de bonne pratique de gestion et peut être communiqué à tout copropriétaire qui en fait la demande, ou annexé à la convocation à l'AG annuelle.*
 
 ---
 
-## 1. Identification du syndicat
+## 1. Identification de l'ACP
 
 | | |
 |--|--|
 | **Nom** | {{copro.name}} |
 | **Adresse** | {{copro.address}} |
-| **N d'immatriculation RNC** | {{immatriculation}} |
-| **Date de création du syndicat** | {{date_creation}} |
+| **Date de l'acte de base** | {{date_acte_base}} |
 | **Date du règlement de copropriété** | {{date_reglement}} |
+| **Date du règlement d'ordre intérieur (ROI)** | {{date_roi}} |
 
 ## 2. Organisation juridique
 
@@ -20,6 +21,8 @@
 |--|--|
 | **Type de syndic** | {{professionnel / bénévole / coopératif}} |
 | **Identité du syndic** | {{nom_syndic}} |
+| **Numéro IPI (si syndic professionnel)** | {{syndic.ipi}} |
+| **Numéro BCE (si syndic professionnel)** | {{syndic.bce}} |
 | **Date de début du mandat** | {{date_debut_mandat}} |
 | **Date de fin du mandat** | {{date_fin_mandat}} |
 | **Président du conseil syndical** | {{president_cs}} |
@@ -43,38 +46,37 @@
 
 | | Montant |
 |--|--------:|
-| **Budget prévisionnel** | {{budget}} EUR |
+| **Budget prévisionnel (charges ordinaires)** | {{budget}} EUR |
 | **Charges réelles de l'exercice clos** | {{charges_reelles}} EUR |
 | **Charges moyennes par lot principal** | {{charges_par_lot}} EUR |
-| **Fonds de travaux** | {{solde_fonds_travaux}} EUR |
+| **Fonds de réserve (solde au {{date}})** | {{solde_fonds_reserve}} EUR |
 | **Total impayés copropriétaires** | {{total_impayes}} EUR |
 | **Ratio impayés / budget** | {{ratio_impayes}}% |
-| **Emprunts en cours** | {{emprunts}} EUR |
-| **Dettes fournisseurs** | {{dettes_fournisseurs}} EUR |
 
-## 5. Données sur le bâti
+*Comptes courant et fonds de réserve tenus sur deux comptes bancaires séparés au nom de l'ACP (art. 3.89 §2 Cc belge).*
 
-| Diagnostic | Réalisé | Date | Résultat |
-|-----------|---------|------|----------|
-| DPE collectif | {{oui/non}} | {{date}} | Classe {{classe}} |
-| Diagnostic amiante | {{oui/non}} | {{date}} | {{resultat}} |
-| Diagnostic plomb (CREP) | {{oui/non}} | {{date}} | {{resultat}} |
-| DTG (Diagnostic Technique Global) | {{oui/non}} | {{date}} | — |
-| Audit énergétique | {{oui/non}} | {{date}} | — |
+## 5. Assurances
 
-## 6. Travaux et opérations en cours
+| Type | Compagnie | Numéro de police | Échéance |
+|------|-----------|-----------------|---------|
+| Assurance multirisques immeuble | {{compagnie}} | {{police}} | {{echeance}} |
+| RC syndic | {{compagnie}} | {{police}} | {{echeance}} |
 
-| Description | Montant voté | Date vote | État |
-|-------------|------------:|-----------|------|
-| {{travaux}} | {{montant}} EUR | AG {{date}} | {{en cours / terminé / à lancer}} |
+*Sinistres dégâts des eaux traités selon la Convention ASSURALIA.*
+
+## 6. Travaux récents et prévus
+
+| Description | Montant | Date vote AG | État |
+|-------------|--------:|-------------|------|
+| {{travaux}} | {{montant}} EUR | {{date}} | {{terminé / en cours / à lancer}} |
 
 ## 7. Procédures en cours
 
 | Type | Objet | État |
 |------|-------|------|
-| {{contentieux/sinistre}} | {{description}} | {{en cours / clôturé}} |
+| {{contentieux / sinistre}} | {{description}} | {{en cours / clôturé}} |
 
 ---
 
-*Fiche mise à jour le {{date_maj}} par {{syndic_nom}}.*
-*Cette fiche est mise à la disposition de tout copropriétaire qui en fait la demande.*
+*Document mis à jour le {{date_maj}} par {{syndic_nom}}.*
+*Ce document est produit à titre informatif. Il ne constitue pas un audit comptable ni un état daté au sens notarial.*

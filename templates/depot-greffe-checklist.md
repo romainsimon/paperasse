@@ -1,64 +1,69 @@
-# Dépôt au Greffe du Tribunal de Commerce — Checklist
+# Dépôt des Comptes Annuels BNB — Checklist
 
-**{{company.name}}** — Exercice clos le {{company.fiscal_year.end_formatted}}
+**{{company.name}}** — BCE {{company.bce}} — Exercice clos le {{company.fiscal_year.end_formatted}}
 
 ---
 
 ## Délais
 
-| Étape | Délai | Date limite |
+| Étape | Base légale | Délai | Date limite |
+|---|---|---|---|
+| Assemblée Générale annuelle (approbation des comptes) | Art. 5:141 CSA (SRL) / art. 7:183 CSA (SA) | 6 mois après la clôture | {{deadline_approbation}} |
+| Dépôt à la Banque Nationale de Belgique (BNB) | Art. 3:10 CSA | 30 jours après approbation (max 7 mois après clôture) | {{deadline_depot_bnb}} |
+| Déclaration ISOC 275 (Tax-on-web) | Art. 310 CIR 92 | 7 mois après la clôture | {{deadline_isoc}} |
+
+---
+
+## Schéma de dépôt applicable
+
+La BNB distingue trois schémas selon la taille de la société (art. 3:10 § 2 CSA) :
+
+| Schéma | Conditions (dépasser 2/3 des critères) | Documents requis |
 |---|---|---|
-| Approbation des comptes | 6 mois après la clôture | {{deadline_approbation}} |
-| Dépôt au greffe | 30 jours après l'approbation | {{deadline_depot}} |
-| Déclaration IS (2065) | 2e jour ouvré suivant le 1er mai | {{deadline_is}} |
-| Paiement IS | 15 mai | {{deadline_paiement_is}} |
+| **Schéma complet** | CA ≥ 9 M EUR, bilan ≥ 4,5 M EUR, effectif ≥ 50 | Comptes annuels complets, rapport de gestion, rapport du réviseur |
+| **Schéma abrégé** | En dessous des seuils ci-dessus | Comptes annuels abrégés, rapport de gestion simplifié |
+| **Micro-schéma** | CA < 700 000 EUR, bilan < 350 000 EUR, effectif < 10 | Comptes annuels micro, rapport de gestion facultatif |
+
+- [ ] Schéma applicable identifié : ______________________
 
 ---
 
-## Documents à déposer au greffe
+## Documents à déposer à la BNB
 
-### Obligatoires
+### Obligatoires pour tous les schémas
 
-- [ ] **Comptes annuels** (Bilan + Compte de résultat + Annexe)
-- [ ] **Décision d'affectation du résultat** (décision de l'associé unique ou PV d'AG selon la forme juridique)
-- [ ] **Rapport de gestion** (obligatoire sauf micro-entreprise)
+- [ ] **Comptes annuels approuvés** (bilan, compte de résultats, annexes — PCMN)
+- [ ] **Affectation du résultat** (approuvée par l'AG ou l'associé unique)
+- [ ] **Rapport du conseil d'administration / rapport de gestion** (sauf micro-schéma avec exemption)
 
-### Optionnels selon situation
+### Selon situation
 
-- [ ] **Déclaration de confidentialité** (si petite entreprise, art. L. 232-25 C. com.)
-  - Empêche la publication du compte de résultat
-  - Conditions : ne pas dépasser 2 des 3 seuils (bilan 7,5 M, CA 15 M, 50 salariés)
-- [ ] **Rapport du commissaire aux comptes** (si obligatoire ou volontaire)
+- [ ] **Rapport du réviseur d'entreprises** (si nommé — obligatoire au-delà des seuils schéma complet, ou si statuts l'exigent)
+- [ ] **Rapport de rémunérations** (sociétés cotées uniquement)
 
-### À déposer au SIE (Service des Impôts des Entreprises)
+### À transmettre à l'administration fiscale (SPF Finances / Tax-on-web)
 
-- [ ] **Liasse fiscale** (2065-SD + annexes 2033-A à 2033-G ou 2050 à 2059-G)
-- [ ] **FEC** (Fichier des Écritures Comptables, art. L. 47 A-I LPF)
-  - Format : SirenFECAAAAMMJJ.txt
-  - À conserver et à fournir sur demande en cas de contrôle
+- [ ] **Déclaration ISOC 275** encodée via https://www.tax-on-web.be
+- [ ] **Fiches 281** (rémunérations, avantages en nature — transmises via Belcotax-on-web)
 
 ---
 
-## Modes de dépôt
+## Mode de dépôt
 
-### Greffe (comptes annuels)
-
-| Méthode | Détails |
-|---|---|
-| **Infogreffe** | https://www.infogreffe.fr — dépôt en ligne (recommandé) |
-| **Guichet unique** | https://procedures.inpi.fr — dépôt via le guichet INPI |
-| **Courrier** | Envoi recommandé au greffe du tribunal de commerce |
-
-**Coût** : environ 45 EUR (dépôt annuel comptes) + 10 EUR (déclaration de confidentialité).
-
-### SIE (liasse fiscale)
+### BNB — Centrale des Bilans
 
 | Méthode | Détails |
 |---|---|
-| **impots.gouv.fr** | Espace professionnel, téléprocédure EDI-TDFC |
-| **Logiciel comptable** | Via un logiciel agréé pour la téléprocédure |
+| **Dépôt en ligne (recommandé)** | https://cri.nbb.be — Centrale des Bilans de la BNB |
+| **Dépôt via expert-comptable** | Le comptable ou réviseur peut déposer pour le compte de la société |
 
-> **Attention** : La liasse fiscale doit être télétransmise (pas de dépôt papier depuis 2019).
+> **Attention** : le dépôt se fait exclusivement à la Banque Nationale de Belgique. Il n'existe pas de dépôt séparé au greffe du tribunal pour les comptes annuels annuels (contrairement à la France). Les actes constitutifs et modifications statutaires sont publiés au Moniteur belge via le Tribunal de l'Entreprise (TRE).
+
+**Coût** : tarif BNB selon le schéma (environ 80–120 EUR pour les sociétés hors micro).
+
+### BCE — Banque-Carrefour des Entreprises
+
+L'inscription BCE est gérée via le TRE (Tribunal de l'Entreprise) uniquement pour les actes constitutifs et les modifications statutaires. Il n'y a pas de dépôt annuel séparé à la BCE pour les comptes.
 
 ---
 
@@ -66,24 +71,31 @@
 
 ### Cohérence des documents
 
-- [ ] Le résultat du bilan correspond au résultat du compte de résultat
-- [ ] Le résultat de la liasse correspond au résultat des comptes annuels
-- [ ] L'affectation du résultat correspond au montant du résultat net
-- [ ] La réserve légale est correctement dotée (5% du bénéfice, max 10% du capital)
-- [ ] Le FEC est équilibré (total débits = total crédits)
-- [ ] Le FEC contient toutes les écritures de l'exercice
+- [ ] Total actif bilan = total passif bilan
+- [ ] Résultat du compte de résultats = résultat bilan (rubrique 14)
+- [ ] Affectation du résultat correspond au résultat net approuvé
+- [ ] Réserve légale correctement dotée (5% du bénéfice jusqu'à 10% du capital pour les SA ; selon statuts pour les SRL)
+- [ ] Comptes annuels établis conformément au PCMN (Plan Comptable Minimum Normalisé)
+- [ ] Schéma de dépôt conforme aux seuils de taille
 
-### Signatures
+### Approbation
 
-- [ ] Décision d'approbation des comptes signée et datée
-- [ ] Déclaration de confidentialité signée et datée
-- [ ] Rapport de gestion signé (si applicable)
+- [ ] PV de l'AG ordinaire (ou décision de l'associé unique) daté et signé
+- [ ] Comptes annuels signés par le(s) administrateur(s) / gérant(s)
+- [ ] Rapport du réviseur signé (si applicable)
+
+### Délais
+
+- [ ] AG tenue dans les 6 mois après la clôture
+- [ ] Dépôt BNB effectué dans les 30 jours après l'AG (et au plus tard 7 mois après la clôture)
+- [ ] Déclaration ISOC 275 transmise dans les 7 mois après la clôture
 
 ---
 
 ## Après le dépôt
 
-- [ ] Conserver l'accusé de réception du greffe
-- [ ] Conserver l'accusé de réception du SIE
-- [ ] Archiver tous les documents de l'exercice (7 ans minimum, 10 ans recommandé)
-- [ ] Préparer les écritures d'ouverture de l'exercice suivant (extournes CCA, PCA, CAP, PAR)
+- [ ] Conserver l'accusé de réception de la BNB (Centrale des Bilans)
+- [ ] Conserver la confirmation de transmission Tax-on-web (déclaration ISOC 275)
+- [ ] Archiver tous les documents comptables de l'exercice (10 ans — loi du 17 juillet 1975 sur la comptabilité des entreprises)
+- [ ] Préparer les écritures d'ouverture de l'exercice suivant (régularisations, extournes)
+- [ ] Vérifier les versements anticipés (VA) pour l'exercice en cours afin d'éviter l'accroissement ISOC (art. 218 CIR 92)

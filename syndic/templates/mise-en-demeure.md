@@ -33,28 +33,28 @@ Malgré nos précédentes relances {{en date(s) du {{dates_relances}}}}, nous co
 {{/pour}}
 | | **TOTAL** | **{{montant_total}} EUR** |
 
-Conformément aux dispositions de l'article 10 de la loi n65-557 du 10 juillet 1965, les charges de copropriété sont des obligations légales auxquelles chaque copropriétaire est tenu à proportion de ses tantièmes.
+Conformément aux articles 3.79 et 3.90 du Code civil belge, chaque copropriétaire est tenu de contribuer aux charges de la copropriété à proportion de ses tantièmes.
 
 Par la présente, **nous vous mettons en demeure de régler la somme de {{montant_total}} EUR dans un délai de 30 jours** à compter de la réception de ce courrier.
+
+Des intérêts au taux légal belge sont dus de plein droit à compter de l'échéance de chaque appel de fonds, conformément à l'article 5 de la loi du 2 août 2002 concernant la lutte contre le retard de paiement dans les transactions commerciales (taux légal belge applicable).
 
 ## Conséquences en cas de non-paiement
 
 À défaut de règlement dans le délai imparti, nous serons contraints de :
 
-1. **Rendre exigibles** l'ensemble des provisions non encore échues de l'exercice en cours, conformément à l'article 19-2 de la loi du 10 juillet 1965 (déchéance du terme)
-2. **Engager une procédure judiciaire** de recouvrement (injonction de payer ou assignation devant le tribunal judiciaire)
-3. **Les frais de recouvrement** (frais d'huissier, frais de procédure, honoraires d'avocat) seront à votre charge exclusive, conformément à l'article 10-1 de la loi du 10 juillet 1965
+1. **Engager une procédure judiciaire** de recouvrement devant le **Juge de Paix** compétent (art. 3.90 Cc belge), notamment par voie d'injonction de payer ou d'assignation
+2. **Les frais de recouvrement** (frais d'huissier, frais de procédure, honoraires d'avocat) seront à votre charge exclusive
+3. **Faire valoir l'hypothèque légale** dont bénéficie l'ACP sur votre lot pour le recouvrement des charges impayées (art. 3.93 Cc belge)
 
-Nous vous rappelons que le syndicat des copropriétaires bénéficie d'un **privilège immobilier spécial** sur votre lot, garantissant le recouvrement des charges (article 19-2 de la loi du 10 juillet 1965).
+Nous vous rappelons que l'**ACP bénéficie d'une hypothèque légale** sur le lot de tout copropriétaire défaillant, garantissant le recouvrement des charges et des frais exposés (art. 3.93 Cc belge).
 
 ## Modalités de règlement
 
-**Virement bancaire** :
+**Virement bancaire — Compte courant ACP** :
 - IBAN : {{iban}}
 - BIC : {{bic}}
 - Référence : {{lot}}-MED-{{date}}
-
-**Chèque** à l'ordre de : Syndicat des copropriétaires {{copro.name}}
 
 Si vous traversez des difficultés financières, nous vous invitons à prendre contact avec nous dans les meilleurs délais afin de convenir d'un échéancier de paiement.
 

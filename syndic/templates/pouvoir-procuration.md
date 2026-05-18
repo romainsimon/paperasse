@@ -1,10 +1,10 @@
 # Pouvoir / Procuration
 
-*Conforme à l'article 22 de la loi du 10 juillet 1965*
+*Conforme à l'article 3.85 §5 du Code civil belge — les mandats doivent être écrits*
 
 ---
 
-**SYNDICAT DES COPROPRIÉTAIRES**
+**ASSOCIATION DES COPROPRIÉTAIRES (ACP)**
 **{{copro.name}}**
 
 ---
@@ -23,28 +23,28 @@ donne pouvoir à :
 **Nom du mandataire** : {{nom_mandataire}}
 **Adresse** : {{adresse_mandataire}}
 
-pour me représenter à l'Assemblée Générale {{type}} du syndicat des copropriétaires de la copropriété {{copro.name}}, qui se tiendra le {{date_ag}} à {{heure}} au {{lieu}}.
+pour me représenter à l'Assemblée Générale {{type}} de l'Association des Copropriétaires de l'immeuble {{copro.name}}, qui se tiendra le {{date_ag}} à {{heure}} au {{lieu}}.
 
 ## Étendue du mandat
 
-☐ **Mandat général** : le mandataire vote en mon nom sur toutes les résolutions inscrites à l'ordre du jour, y compris les résolutions ajoutées en séance.
+☐ **Mandat général** : le mandataire vote en mon nom sur toutes les résolutions inscrites à l'ordre du jour, y compris les points éventuellement ajoutés en séance, selon son appréciation.
 
 ☐ **Mandat avec instructions de vote** : le mandataire vote selon les instructions ci-dessous :
 
-| N | Résolution | Pour | Contre | Abstention | Libre |
-|---|-----------|:----:|:------:|:----------:|:-----:|
+| N° | Résolution | OUI | NON | Abstention | Libre |
+|----|-----------|:---:|:---:|:----------:|:-----:|
 {{#pour chaque résolution}}
 | {{n}} | {{objet}} | ☐ | ☐ | ☐ | ☐ |
 {{/pour}}
 
 *"Libre" : le mandataire vote selon son appréciation.*
 
-## Rappel légal
+## Rappel légal (droit belge)
 
-- Un mandataire ne peut recevoir **plus de 3 mandats**, sauf si le total des voix dont il dispose (les siennes + celles de ses mandants) ne dépasse pas **10% des voix** du syndicat (art. 22 loi 1965).
-- Le **syndic**, son conjoint, et ses préposés **ne peuvent pas être mandataires** (art. 22 al. 4).
+- En droit belge, **il n'existe pas de limite légale** au nombre de mandats qu'un mandataire peut détenir, sauf disposition contraire du règlement d'ordre intérieur (ROI) de la copropriété (art. 3.85 §5 Cc belge).
+- Le mandat doit être **écrit** (art. 3.85 §5 Cc belge).
 - Ce pouvoir est **révocable** jusqu'à l'ouverture de l'AG.
-- En cas de **vote par correspondance** sur les mêmes résolutions, le vote en séance (via le mandataire) prime.
+- En droit belge, il n'existe pas de vote par correspondance légalement encadré (contrairement au droit français). La procuration constitue le seul mécanisme de représentation à l'AG.
 
 ---
 

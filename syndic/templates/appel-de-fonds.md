@@ -11,7 +11,7 @@
 
 Madame, Monsieur {{nom_coproprietaire}},
 
-Conformément au budget prévisionnel voté lors de l'Assemblée Générale du {{date_ag}}, nous vous prions de bien vouloir trouver ci-dessous le détail de votre appel de fonds pour le {{trimestre}} trimestre {{année}}.
+Conformément au budget prévisionnel voté lors de l'Assemblée Générale du {{date_ag}}, l'**Association des Copropriétaires (ACP)** vous adresse ci-dessous le détail de votre appel de fonds pour le {{trimestre}} trimestre {{année}}, conformément à l'article 3.79 du Code civil belge.
 
 ## Détail de l'appel
 
@@ -20,8 +20,8 @@ Conformément au budget prévisionnel voté lors de l'Assemblée Générale du {
 
 | Poste | Montant |
 |-------|--------:|
-| Provisions sur charges courantes | {{montant_provisions}} EUR |
-| Cotisation fonds de travaux (art. 14-2) | {{montant_fonds_travaux}} EUR |
+| Quote-part charges ordinaires (budget courant) | {{montant_provisions}} EUR |
+| Cotisation fonds de réserve (art. 3.89 §1 Cc belge) | {{montant_fonds_reserve}} EUR |
 {{#si travaux_votes}}
 | Appel travaux : {{description_travaux}} | {{montant_travaux}} EUR |
 {{/si}}
@@ -31,12 +31,17 @@ Conformément au budget prévisionnel voté lors de l'Assemblée Générale du {
 
 **Date d'exigibilité** : {{date_exigibilite}}
 
-**Virement bancaire** (mode privilégié) :
-- IBAN : {{iban}}
-- BIC : {{bic}}
+**Virement bancaire — Compte courant ACP** (charges ordinaires) :
+- IBAN : {{iban_courant}}
+- BIC : {{bic_courant}}
 - Référence : {{lot}}-T{{trimestre}}-{{année}}
 
-**Chèque** à l'ordre de : Syndicat des copropriétaires {{copro.name}}
+**Virement bancaire — Compte fonds de réserve ACP** (si appel fonds de réserve séparé) :
+- IBAN : {{iban_reserve}}
+- BIC : {{bic_reserve}}
+- Référence : {{lot}}-FR-T{{trimestre}}-{{année}}
+
+*En cas de retard de paiement, des intérêts au taux légal belge seront dus de plein droit à compter de l'échéance (loi du 2 août 2002 sur les retards de paiement).*
 
 ## Situation de votre compte
 
@@ -48,7 +53,7 @@ Conformément au budget prévisionnel voté lors de l'Assemblée Générale du {
 | **Solde à ce jour** | **{{solde_actuel}} EUR** |
 
 {{#si solde_debiteur}}
-⚠️ Votre compte présente un solde débiteur. Nous vous invitons à régulariser votre situation dans les meilleurs délais.
+Votre compte présente un solde débiteur. Nous vous invitons à régulariser votre situation dans les meilleurs délais afin d'éviter une procédure de recouvrement.
 {{/si}}
 
 ---

@@ -4,26 +4,26 @@
 
 ---
 
-**Base légale** : articles 1536 à 1543 du Code civil
+**Base légale** : Livre 2 du Code civil belge — art. 2.3.19 et suivants (régime légal : communauté réduite aux acquêts) ; art. 2.3.65 et suivants (séparation de biens) ; art. 2.3.75 et suivants (communauté universelle)
 
 ---
 
 ## L'AN {{annee}}, LE {{date}}
 
-Devant Maître {{notaire.nom}}, notaire à {{notaire.ville}} ({{notaire.departement}}), soussigné,
+Devant Maître {{notaire.nom}}, notaire à {{notaire.commune}} ({{notaire.arrondissement}}), soussigné,
 
 ## ONT COMPARU
 
 ### FUTUR ÉPOUX
 
-**{{epoux.civilite}} {{epoux.nom}} {{epoux.prenom}}**, né le {{epoux.date_naissance}} à {{epoux.lieu_naissance}} ({{epoux.departement_naissance}}),
+**{{epoux.civilite}} {{epoux.nom}} {{epoux.prenom}}**, né le {{epoux.date_naissance}} à {{epoux.lieu_naissance}},
 de nationalité {{epoux.nationalite}},
 demeurant {{epoux.adresse}},
 exerçant la profession de {{epoux.profession}}.
 
 ### FUTURE ÉPOUSE
 
-**{{epouse.civilite}} {{epouse.nom}} {{epouse.prenom}}**, née le {{epouse.date_naissance}} à {{epouse.lieu_naissance}} ({{epouse.departement_naissance}}),
+**{{epouse.civilite}} {{epouse.nom}} {{epouse.prenom}}**, née le {{epouse.date_naissance}} à {{epouse.lieu_naissance}},
 de nationalité {{epouse.nationalite}},
 demeurant {{epouse.adresse}},
 exerçant la profession de {{epouse.profession}}.
@@ -34,9 +34,9 @@ Ci-après dénommés « les Futurs Époux ».
 
 ## EXPOSÉ
 
-Les Futurs Époux déclarent vouloir se marier le {{mariage.date}} à la mairie de {{mariage.lieu}} et souhaitent, préalablement à leur union, régler leur régime matrimonial.
+Les Futurs Époux déclarent vouloir se marier le {{mariage.date}} à la maison communale de {{mariage.lieu}} et souhaitent, préalablement à leur union, régler leur régime matrimonial.
 
-Après mûre réflexion et après avoir été informés par le notaire des conséquences de leur choix, les Futurs Époux ont décidé d'adopter le régime de la **séparation de biens**.
+Après mûre réflexion et après avoir été informés par le notaire des conséquences de leur choix, notamment comparées au régime légal de la communauté réduite aux acquêts (art. 2.3.19 Cc belge), les Futurs Époux ont décidé d'adopter le régime de la **séparation de biens**.
 
 ---
 
@@ -44,7 +44,7 @@ Après mûre réflexion et après avoir été informés par le notaire des cons�
 
 ### ARTICLE 1 — Adoption du régime de séparation de biens
 
-Les Futurs Époux déclarent adopter le régime de la **séparation de biens** tel qu'il est établi par les articles 1536 et suivants du Code civil.
+Les Futurs Époux déclarent adopter le régime de la **séparation de biens** tel qu'il est établi par les articles 2.3.65 et suivants du Code civil belge.
 
 ### ARTICLE 2 — Séparation des patrimoines
 
@@ -56,7 +56,7 @@ Chacun des époux reste seul tenu de ses dettes personnelles, nées avant ou pen
 
 Chaque époux peut prouver, par tous moyens, qu'il a la propriété exclusive d'un bien.
 
-Les biens sur lesquels aucun des époux ne peut justifier d'une propriété exclusive sont réputés leur appartenir **indivisément par moitié** (art. 1538 al. 3 C. civ.).
+Les biens sur lesquels aucun des époux ne peut justifier d'une propriété exclusive sont présumés leur appartenir **en indivision par moitié** (art. 2.3.67 Cc belge).
 
 ---
 
@@ -64,35 +64,45 @@ Les biens sur lesquels aucun des époux ne peut justifier d'une propriété excl
 
 ### ARTICLE 4 — Charges du mariage
 
-Chaque époux contribue aux charges du mariage en proportion de ses facultés respectives (art. 214 C. civ.).
-
-*(Variante : contribution à parts égales / proportionnelle aux revenus / l'un des époux assume la totalité du logement, etc.)*
+Chaque époux contribue aux charges du mariage en proportion de ses facultés respectives (art. 1.2.1 et suivants Cc belge).
 
 Les Futurs Époux conviennent que cette contribution s'effectuera de la manière suivante :
 
 {{charges.modalites}}
 
+*(Exemples : contribution à parts égales, proportionnelle aux revenus, l'un des époux assume la totalité du logement, etc.)*
+
 ### ARTICLE 5 — Compte joint
 
-Les époux pourront ouvrir un ou plusieurs comptes joints pour les dépenses du ménage. Les fonds déposés sur ces comptes sont réputés appartenir à chacun par moitié.
+Les époux pourront ouvrir un ou plusieurs comptes joints pour les dépenses du ménage. Les fonds déposés sur ces comptes sont présumés appartenir à chacun par moitié, sauf preuve contraire.
 
 ---
 
 ## TITRE III — LOGEMENT DE LA FAMILLE
 
-### ARTICLE 6 — Protection du logement
+### ARTICLE 6 — Protection du logement familial
 
-Conformément à l'article 215 alinéa 3 du Code civil, les époux ne peuvent l'un sans l'autre disposer des droits par lesquels est assuré le logement de la famille, ni des meubles meublants dont il est garni.
-
-Cette disposition est d'ordre public et s'applique quel que soit le régime matrimonial.
+Conformément aux dispositions d'ordre public du Code civil belge, les époux ne peuvent l'un sans le consentement de l'autre disposer du logement familial ni des meubles meublants qui le garnissent, quel que soit le régime matrimonial adopté.
 
 ---
 
 ## TITRE IV — CLAUSES OPTIONNELLES
 
-### ARTICLE 7 — Clause de préciput
+### ARTICLE 7 — Clause de tontine / clause de survie
 
-*(Permet au conjoint survivant de prélever certains biens avant le partage de la succession)*
+*(La tontine ou clause d'accroissement est une stipulation permettant d'attribuer au survivant la pleine propriété d'un bien acquis en commun.)*
+
+☐ **Sans clause de tontine** (option par défaut)
+
+☐ **Avec clause de tontine** : Les époux conviennent que le bien suivant sera acquis sous régime de tontine et attribué de plein droit au survivant au moment du décès du prémourant :
+
+{{tontine.biens}}
+
+*(Exemples : la résidence principale, un immeuble de rapport, etc. La tontine produit ses effets au moment du décès et n'est pas soumise aux droits de succession mais aux droits d'enregistrement / de partage selon le cas.)*
+
+### ARTICLE 8 — Clause de préciput
+
+*(Permet au conjoint survivant de prélever certains biens avant le partage de la succession, dans les limites de la quotité disponible.)*
 
 ☐ **Sans clause de préciput** (option par défaut)
 
@@ -100,11 +110,9 @@ Cette disposition est d'ordre public et s'applique quel que soit le régime matr
 
 {{preciput.biens}}
 
-*(Exemples : le logement commun, les meubles meublants, un véhicule, une somme d'argent, etc.)*
+*(Exemples : le logement familial, les meubles meublants, un véhicule, etc.)*
 
-Cette clause est révocable par changement de régime matrimonial.
-
-### ARTICLE 8 — Clause de société d'acquêts
+### ARTICLE 9 — Société d'acquêts
 
 *(Crée une petite communauté au sein de la séparation de biens)*
 
@@ -114,15 +122,13 @@ Cette clause est révocable par changement de régime matrimonial.
 
 {{societe_acquets.biens}}
 
-*(Exemples : la résidence principale, les revenus d'épargne pendant le mariage, etc.)*
-
-Les biens de la société d'acquêts sont régis par les règles de la communauté réduite aux acquêts.
+Les biens de la société d'acquêts sont régis par les règles applicables à la communauté réduite aux acquêts (art. 2.3.19 ss Cc belge).
 
 ---
 
 ## TITRE V — DÉCLARATIONS
 
-### ARTICLE 9 — État du patrimoine des Futurs Époux
+### ARTICLE 10 — État du patrimoine des Futurs Époux
 
 **Patrimoine de {{epoux.nom}} {{epoux.prenom}} :**
 
@@ -142,12 +148,12 @@ Les biens de la société d'acquêts sont régis par les règles de la communaut
 | | **Passif** | | |
 | 1 | {{epouse.dette_1}} | {{epouse.nature_dette_1}} | {{epouse.montant_dette_1}} EUR |
 
-### ARTICLE 10 — Déclarations diverses
+### ARTICLE 11 — Déclarations diverses
 
 Les Futurs Époux déclarent :
-- Avoir été informés par le notaire de la portée de chaque clause du présent contrat
+- Avoir été informés par le notaire de la portée de chaque clause du présent contrat et notamment des effets du régime légal auquel ils dérogent
 - N'avoir consenti aucune donation l'un à l'autre préalablement au mariage
-- N'être liés par aucun PACS (ou : être liés par un PACS qui sera automatiquement dissous par le mariage)
+- Ne pas être actuellement liés par une cohabitation légale avec un tiers *(ou : être liés par une cohabitation légale qui sera automatiquement dissoute par le mariage)*
 
 ---
 
@@ -155,15 +161,13 @@ Les Futurs Époux déclarent :
 
 Les frais des présentes sont à la charge des Futurs Époux par moitié chacun.
 
-**Émolument fixe** : 193,10 EUR HT + TVA 20% = 231,72 EUR TTC.
-
-*(Émolument fixe pour un contrat de mariage sans apport immobilier. En cas d'apport immobilier, émolument proportionnel en sus.)*
+*(Émolument notarié conforme au tarif légal belge — art. 36 de l'arrêté royal du 16 décembre 1950 fixant le tarif des actes notariés.)*
 
 ---
 
 Dont acte sur {{nb_pages}} pages.
 
-Fait et passé à {{notaire.ville}}, en l'étude du notaire soussigné.
+Fait et passé à {{notaire.commune}}, en l'étude du notaire soussigné.
 
 Et après lecture, les Futurs Époux ont signé avec le notaire.
 
@@ -178,11 +182,12 @@ Et après lecture, les Futurs Époux ont signé avec le notaire.
 ## RAPPELS IMPORTANTS
 
 - Le contrat de mariage doit être signé **avant** le mariage
-- Il peut être modifié après 2 ans de mariage (art. 1397 C. civ.), par acte notarié, avec homologation judiciaire si présence d'enfants mineurs
-- Le contrat est mentionné en marge de l'acte de mariage
-- En l'absence de contrat, le régime légal est la **communauté réduite aux acquêts** (art. 1400 C. civ.)
+- Le contrat de mariage peut être **modifié après 1 an de mariage** par acte notarié (art. 1.2.1 ss Cc belge — aucun délai minimum spécifique n'est requis en droit belge depuis la réforme de 2018 ; plus de délai de 2 ans comme en France ni d'homologation judiciaire systématique)
+- Le contrat est mentionné en marge de l'acte de mariage et est opposable aux tiers par cette mention
+- **En l'absence de contrat**, le régime légal est la **communauté réduite aux acquêts** (art. 2.3.19 Cc belge)
+- Les régimes alternatifs disponibles sont : la communauté réduite aux acquêts (régime légal), la séparation de biens (présent contrat), la communauté universelle (art. 2.3.75 Cc belge) ou tout régime conventionnel dans les limites de l'ordre public
 
 ---
 
 ⚠️ **CE DOCUMENT EST UN PROJET DE TRAVAIL.**
-Il ne constitue pas un acte authentique. Seul un notaire en exercice peut recevoir un contrat de mariage.
+Il ne constitue pas un acte authentique. Seul un notaire en exercice peut recevoir un contrat de mariage en droit belge.

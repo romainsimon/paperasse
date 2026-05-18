@@ -15,13 +15,15 @@
 {{nom_coproprietaire}}
 {{adresse_coproprietaire}}
 
-**Objet : Notification des décisions de l'Assemblée Générale {{type}} du {{date_ag}}**
+**Objet : Communication des décisions de l'Assemblée Générale {{type}} du {{date_ag}}**
 
 ---
 
 Madame, Monsieur,
 
-Conformément à l'article 18 du décret n67-223 du 17 mars 1967, nous avons l'honneur de vous notifier les décisions prises lors de l'Assemblée Générale {{type: ordinaire/extraordinaire}} de la copropriété {{copro.name}}, qui s'est tenue le {{date_ag}}.
+Conformément à l'article 3.85 du Code civil belge, l'**Association des Copropriétaires (ACP)** de l'immeuble {{copro.name}} a l'honneur de vous communiquer les décisions prises lors de l'Assemblée Générale {{type: ordinaire/extraordinaire}} qui s'est tenue le {{date_ag}}.
+
+Cette communication intervient dans le délai de 30 jours suivant la tenue de l'assemblée, tel que prévu par l'article 3.85 du Code civil belge.
 
 {{#si absent}}
 Vous étiez absent(e) et non représenté(e) lors de cette assemblée.
@@ -39,10 +41,10 @@ Vous vous êtes abstenu(e) lors du vote {{de la/des}} résolution(s) mentionnée
 
 {{Pour chaque résolution :}}
 
-### Résolution n{{n}} — {{objet}}
+### Résolution n°{{n}} — {{objet}}
 
-**Majorité** : article {{24/25/26}} de la loi du 10 juillet 1965
-**Résultat** : {{ADOPTÉE / REJETÉE}} ({{voix_pour}} voix pour, {{voix_contre}} contre, {{voix_abstention}} abstentions)
+**Majorité appliquée** : {{majorité simple / 4/5 / unanimité}} (art. 3.84 Cc belge)
+**Résultat** : {{ADOPTÉE / REJETÉE}} ({{tant_oui}} tantièmes pour, {{tant_non}} contre, {{tant_abstention}} abstentions)
 
 {{Description succincte de la décision}}
 
@@ -50,7 +52,7 @@ Vous vous êtes abstenu(e) lors du vote {{de la/des}} résolution(s) mentionnée
 
 ## Voies de recours
 
-Conformément à l'article 42, alinéa 2, de la loi n65-557 du 10 juillet 1965, les actions en contestation des décisions d'Assemblée Générale doivent être introduites devant le tribunal judiciaire dans un **délai de deux mois** à compter de la notification du présent procès-verbal.
+Conformément à l'article 3.84 §7 du Code civil belge, toute action en contestation d'une décision de l'Assemblée Générale doit être introduite devant le **Juge de Paix** compétent dans un **délai de 4 mois** à compter de la communication du procès-verbal.
 
 Ce délai court à compter de la réception de la présente lettre recommandée.
 

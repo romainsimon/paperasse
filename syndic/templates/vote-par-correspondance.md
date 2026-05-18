@@ -1,51 +1,66 @@
-# Formulaire de Vote par Correspondance
+# Procuration pour l'Assemblée Générale
 
-*Conforme à l'article 17-1A de la loi du 10 juillet 1965 et au décret du 2 juillet 2020*
+*Le vote par correspondance n'est **pas prévu par le droit belge** (contrairement au droit français, loi ELAN). En droit belge, la procuration à un mandataire présent à l'AG constitue le seul mécanisme de représentation légalement encadré (art. 3.85 §5 Cc belge). Ce formulaire remplace donc le vote par correspondance.*
+
+*Pour toute procuration, utiliser également le template : pouvoir-procuration.md*
 
 ---
 
-**SYNDICAT DES COPROPRIÉTAIRES**
+**ASSOCIATION DES COPROPRIÉTAIRES (ACP)**
 **{{copro.name}}**
 {{copro.address}}
 
 ---
 
-## Assemblée Générale du {{date_ag}}
+## Procuration — Assemblée Générale du {{date_ag}}
 
-**Copropriétaire** : {{nom_coproprietaire}}
+**Copropriétaire mandant** : {{nom_coproprietaire}}
 **Lot(s)** : {{lots}}
 **Tantièmes** : {{tantiemes}} / {{total_tantiemes}}
 
 ---
 
-**IMPORTANT** : Ce formulaire doit parvenir au syndic **au plus tard 3 jours francs avant la date de l'AG**, soit avant le {{date_limite}}.
+Je soussigné(e), **{{nom_coproprietaire}}**, copropriétaire du (des) lot(s) {{lots}}, dans l'impossibilité d'assister à l'Assemblée Générale du {{date_ag}}, donne procuration à :
 
-Envoi par : LRAR, remise en main propre contre récépissé, ou voie électronique (si accord express).
+**Nom du mandataire** : {{nom_mandataire}}
+**Adresse** : {{adresse_mandataire}}
+
+pour me représenter et voter en mon nom lors de ladite assemblée.
 
 ---
 
-## Votes
+## Instructions de vote
 
-Pour chaque résolution, cocher **une seule case**. Toute résolution sans vote sera considérée comme une abstention.
+☐ **Mandat général** : le mandataire vote selon son appréciation sur toutes les résolutions.
 
-| N | Résolution | Pour | Contre | Abstention |
-|---|-----------|:----:|:------:|:----------:|
+☐ **Mandat avec instructions** : le mandataire vote conformément aux instructions ci-dessous :
+
+| N° | Résolution | OUI | NON | Abstention | Libre |
+|----|-----------|:---:|:---:|:----------:|:-----:|
 {{#pour chaque résolution}}
-| {{n}} | {{objet}} ({{majorite}}) | ☐ | ☐ | ☐ |
+| {{n}} | {{objet}} | ☐ | ☐ | ☐ | ☐ |
 {{/pour}}
 
----
-
-## Mentions obligatoires
-
-- Le copropriétaire ayant voté par correspondance est considéré comme **présent** pour le calcul du quorum et des majorités.
-- En cas de **vote par correspondance et de présence physique** (ou mandat), seul le vote en séance est pris en compte.
-- En cas d'**amendement d'une résolution** en séance, le vote par correspondance sur cette résolution est sans objet et n'est pas comptabilisé.
-- Le formulaire est **personnel**. Un copropriétaire ne peut pas voter par correspondance au nom d'un mandant.
+*"Libre" : le mandataire vote selon son appréciation pour cette résolution.*
 
 ---
 
-**Signature** : _________________________
+**IMPORTANT** : Ce formulaire doit parvenir au syndic ou au mandataire **avant la date de l'AG**, soit avant le {{date_limite}}.
+
+Envoi par : lettre recommandée avec accusé de réception, remise en main propre contre récépissé, ou voie électronique (si prévu par le ROI).
+
+---
+
+## Rappels légaux (droit belge)
+
+- Le mandat doit être **écrit** (art. 3.85 §5 Cc belge).
+- En droit belge, il n'existe **pas de limite légale** au nombre de mandats qu'un mandataire peut détenir, sauf disposition contraire du ROI.
+- Ce pouvoir est **révocable** jusqu'à l'ouverture de l'AG.
+- Si le mandataire est lui-même absent, le mandat est sans effet, sauf substitution expressément prévue.
+
+---
+
+**Signature du mandant** : _________________________
 
 **Date** : {{date}}
 
@@ -53,4 +68,4 @@ Pour chaque résolution, cocher **une seule case**. Toute résolution sans vote 
 
 ---
 
-*À retourner à : {{syndic_nom}}, {{syndic_adresse}} avant le {{date_limite}}*
+*À remettre au mandataire ou à envoyer au syndic avant le {{date_limite}} : {{syndic_nom}}, {{syndic_adresse}}*

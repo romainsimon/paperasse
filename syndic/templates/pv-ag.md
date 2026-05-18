@@ -2,11 +2,9 @@
 
 ## En-tête
 
-**SYNDICAT DES COPROPRIÉTAIRES**
+**ASSOCIATION DES COPROPRIÉTAIRES (ACP)**
 **{{copro.name}}**
 {{copro.address}}
-
-Immatriculation RNC : {{immatriculation}}
 
 ---
 
@@ -17,7 +15,18 @@ Immatriculation RNC : {{immatriculation}}
 **Lieu** : {{lieu}}
 
 **Convoquée par** : {{syndic_nom}}, syndic en exercice
-**Convocations envoyées le** : {{date_envoi_convocations}} par LRAR
+**Convocations envoyées le** : {{date_envoi_convocations}} par LRAR (au moins 15 jours avant l'AG — art. 3.85 §3 Cc belge)
+
+---
+
+## Vérification du quorum
+
+Conformément à l'article 3.85 §2 du Code civil belge, l'AG délibère valablement si :
+- Plus de la moitié des copropriétaires sont présents ou représentés, **ET**
+- Ils représentent plus de la moitié des quotes-parts de l'immeuble.
+
+☐ **Quorum atteint** — l'assemblée peut valablement délibérer.
+☐ **Quorum non atteint** — la présente assemblée est ajournée. Une seconde assemblée sera convoquée et délibérera sans condition de quorum.
 
 ---
 
@@ -28,8 +37,7 @@ Immatriculation RNC : {{immatriculation}}
 | Statut | Copropriétaires | Tantièmes |
 |--------|----------------|-----------|
 | Présents | {{nb_presents}} | {{tantièmes_presents}} |
-| Représentés | {{nb_representes}} | {{tantièmes_representes}} |
-| Votes par correspondance | {{nb_correspondance}} | {{tantièmes_correspondance}} |
+| Représentés (procuration) | {{nb_representes}} | {{tantièmes_representes}} |
 | **Total participants** | **{{total}}** | **{{total_tantièmes}}** |
 | Absents non représentés | {{nb_absents}} | {{tantièmes_absents}} |
 | **Total copropriétaires** | **{{total_copro}}** | **{{total_tantièmes_copro}}** |
@@ -50,27 +58,26 @@ Le président de séance déclare l'assemblée régulièrement constituée et ou
 
 ## Résolutions
 
-### Résolution n1 — {{objet}}
+### Résolution n°{{n}} — {{objet}}
 
-**Majorité requise** : article {{24/25/26}} de la loi du 10 juillet 1965
+**Majorité requise** : {{majorité simple (1/2 voix + quotes-parts des présents et représentés) / 4/5 des quotes-parts de l'immeuble (modifications statutaires) / unanimité (aliénations nécessaires)}} — art. 3.84 Cc belge
 
 *Exposé : {{description de la résolution}}*
 
 Après délibération, l'assemblée générale :
 
-| | Voix | Copropriétaires |
-|--|-----:|----------------:|
-| **Pour** | {{voix_pour}} | {{nb_pour}} |
-| **Contre** | {{voix_contre}} | {{nb_contre}} |
-| **Abstention** | {{voix_abstention}} | {{nb_abstention}} |
+| | OUI | NON | ABSTENTION |
+|--|----:|----:|-----------:|
+| **Tantièmes** | {{tant_oui}} | {{tant_non}} | {{tant_abstention}} |
+| **Copropriétaires** | {{nb_oui}} | {{nb_non}} | {{nb_abstention}} |
 
-**Ont voté contre ou se sont abstenus :**
-- {{nom_copro}} (lot n{{lot}}, {{tantièmes}} tantièmes) — {{contre/abstention}}
+**Ont voté NON ou se sont abstenus :**
+- {{nom_copro}} (lot n°{{lot}}, {{tantièmes}} tantièmes) — {{NON / ABSTENTION}}
 
 **La résolution est {{ADOPTÉE / REJETÉE}}.**
 
-{{Si rejetée et art. 25, préciser si passerelle art. 25-1 applicable :}}
-*La résolution ayant recueilli au moins un tiers des voix de tous les copropriétaires ({{voix_pour}} voix sur un tiers requis de {{seuil_tiers}}), l'assemblée procède immédiatement à un second vote à la majorité de l'article 24.*
+{{Si rejetée et si l'on envisage une seconde AG :}}
+*La résolution ayant été rejetée faute de quorum ou de majorité suffisante, une seconde Assemblée Générale sera convoquée conformément à l'art. 3.85 Cc belge (2e AG). Celle-ci délibérera sans condition de quorum.*
 
 ---
 
@@ -82,7 +89,9 @@ Après délibération, l'assemblée générale :
 
 L'ordre du jour étant épuisé et plus personne ne demandant la parole, le président déclare la séance levée à {{heure_fin}}.
 
-Le présent procès-verbal est établi et signé par les membres du bureau.
+Le présent procès-verbal est établi et signé par les membres du bureau. Il sera communiqué à l'ensemble des copropriétaires dans les **30 jours** suivant l'assemblée (art. 3.85 Cc belge).
+
+Tout copropriétaire souhaitant contester une décision de la présente assemblée dispose d'un délai de **4 mois** à compter de la communication du procès-verbal pour introduire un recours devant le Juge de Paix compétent (art. 3.84 §7 Cc belge).
 
 ---
 

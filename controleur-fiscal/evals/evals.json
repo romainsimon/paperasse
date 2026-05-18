@@ -3,57 +3,57 @@
   "evals": [
     {
       "id": 1,
-      "name": "controle-fec-charges-455",
-      "prompt": "Simule un contrôle fiscal de WebAgency (SASU, développement web) pour l'exercice 2025. Concentre-toi sur les axes FEC, charges déductibles et compte courant associé 455. Le company.json est en place. Le FEC est dans data/fec-2025.txt.",
-      "expected_output": "Le skill contrôle le FEC, analyse les charges suspectes (Netflix, bureau domicile), et vérifie les mouvements du compte 455.",
+      "name": "controle-livre-journal-charges-455",
+      "prompt": "Simule un contrôle fiscal (SPF Finances / AGFisc) de WebAgency (SRL, développement web) pour l'exercice 2025. Concentre-toi sur les axes livre-journal, charges déductibles et compte courant associé 455. Le company.json est en place. Le livre-journal est dans evals/files/livre-journal-webagency.csv.",
+      "expected_output": "Le skill contrôle le livre-journal belge, analyse les charges suspectes (Netflix, bureau domicile), et vérifie les mouvements du compte 455.",
       "files": [
         "evals/files/company-webagency.json",
-        "evals/files/fec-webagency.txt"
+        "evals/files/livre-journal-webagency.csv"
       ],
       "assertions": [
         "Le skill lit company.json pour obtenir le contexte automatiquement",
-        "Axe 1 (FEC) : le FEC est contrôlé pour la conformité de format",
-        "Axe 3 (Charges) : Netflix (15,99 EUR) est identifié comme charge personnelle non déductible",
+        "Axe 1 (Livre-journal) : le fichier CSV belge est contrôlé pour la conformité de format (colonnes Date;Journal;Référence;Libellé;CompteDebit;CompteCredit;Montant;Devise)",
+        "Axe 3 (Charges) : Netflix (15,99 EUR, compte 6120) est identifié comme charge personnelle non déductible",
         "Axe 3 (Charges) : le bureau domicile (250 EUR, un seul mois) est questionné sur la quote-part et la régularité",
         "Axe 4 (455) : le remboursement de 350 EUR sur le compte courant est vérifié",
-        "Les chefs de redressement identifiés incluent la base légale (article CGI ou BOFiP)",
+        "Les chefs de redressement identifiés incluent la base légale (article CIR 92 ou Fisconetplus.be)",
         "Chaque anomalie est classée par niveau de risque (élevé, moyen, faible)"
       ]
     },
     {
       "id": 2,
-      "name": "controle-revenus-tva-is",
-      "prompt": "Simule un contrôle fiscal de WebAgency pour l'exercice 2025. Concentre-toi sur les axes revenus, TVA, IS et immobilisations. Le company.json est en place. Le FEC est dans data/fec-2025.txt.",
-      "expected_output": "Le skill vérifie l'exhaustivité des revenus, le seuil de franchise TVA, recalcule l'IS, et contrôle les immobilisations.",
+      "name": "controle-revenus-tva-isoc",
+      "prompt": "Simule un contrôle fiscal SPF Finances de WebAgency pour l'exercice 2025. Concentre-toi sur les axes revenus, TVA, ISOC et immobilisations. Le company.json est en place. Le livre-journal est dans evals/files/livre-journal-webagency.csv.",
+      "expected_output": "Le skill vérifie l'exhaustivité des revenus, le seuil de franchise TVA belge (art. 56bis CTVA), recalcule l'ISOC, et contrôle les immobilisations.",
       "files": [
         "evals/files/company-webagency.json",
-        "evals/files/fec-webagency.txt"
+        "evals/files/livre-journal-webagency.csv"
       ],
       "assertions": [
-        "Axe 2 (IS) : le résultat fiscal est recalculé, le taux réduit PME est vérifié",
-        "Axe 5 (Revenus) : l'abonnement annuel Client Alpha (12 000 EUR) est identifié comme PCA potentiel",
+        "Axe 2 (ISOC) : le résultat fiscal est recalculé, le taux réduit PME 20% (art. 215 al. 2 CIR 92) est vérifié",
+        "Axe 5 (Revenus) : l'abonnement annuel Client Alpha (12 000 EUR en décembre) est identifié comme PCA potentiel",
         "Axe 5 (Revenus) : le CA total est recoupé avec les payouts Stripe",
-        "Axe 6 (TVA) : le seuil franchise en base (36 800 EUR) est vérifié contre le CA total",
-        "Axe 7 (Immobilisations) : le MacBook Pro (1 800 EUR) est vérifié pour usage professionnel",
-        "Un rapport est produit avec des chefs de redressement au format standardisé",
-        "La synthèse inclut le total des droits rappelés potentiels"
+        "Axe 6 (TVA) : le seuil franchise en base (25.000 EUR, art. 56bis CTVA) est vérifié contre le CA total",
+        "Axe 7 (Immobilisations) : le MacBook Pro (1 800 EUR, compte 2430) est vérifié pour usage professionnel",
+        "Un rapport est produit avec des chefs de redressement au format standardisé belge (SPF Finances)",
+        "La synthèse inclut le total des droits rappelés potentiels avec les accroissements éventuels (art. 444 CIR 92)"
       ]
     },
     {
       "id": 3,
       "name": "analyse-deductibilite-charges",
-      "prompt": "J'ai une SASU de développement web. Voici mes charges de l'année : MacBook Pro 1800 EUR, abonnement Netflix 192 EUR (12 mois à 15,99), bureau à domicile 3000 EUR (250 EUR/mois), Google Ads 5400 EUR, abonnement Heroku 348 EUR, billet avion Nantes-Paris 289 EUR pour un RDV client. Quelles charges sont déductibles et lesquelles risquent un redressement ?",
-      "expected_output": "Le skill analyse chaque charge selon les 4 conditions de déductibilité (art. 39-1 CGI). MacBook : immobilisation, déductible via amortissement 3 ans. Netflix : non déductible (charge personnelle). Bureau domicile : déductible si convention. Google Ads : déductible. Heroku : déductible. Billet avion : déductible si justifié.",
+      "prompt": "J'ai une SRL de développement web. Voici mes charges de l'année : MacBook Pro 1800 EUR, abonnement Netflix 192 EUR (12 mois à 15,99), bureau à domicile 3000 EUR (250 EUR/mois), Google Ads 5400 EUR, abonnement Heroku 348 EUR, billet avion Liège-Amsterdam 289 EUR pour un RDV client. Quelles charges sont déductibles et lesquelles risquent un redressement ?",
+      "expected_output": "Le skill analyse chaque charge selon les conditions de déductibilité (art. 49 CIR 92). MacBook : immobilisation > 500 EUR, déductible via amortissement. Netflix : charge personnelle, non déductible. Bureau domicile : déductible si convention. Google Ads : déductible. Heroku : déductible. Billet avion : déductible si justifié.",
       "files": [],
       "assertions": [
         "Le MacBook est identifié comme immobilisation (> 500 EUR) et non comme charge directe",
         "Netflix est qualifié de charge personnelle, non déductible, risque de redressement",
-        "Le bureau domicile est conditionné à une convention et une quote-part justifiée (surface pro/totale)",
+        "Le bureau domicile est conditionné à une convention et une quote-part justifiée (surface pro/totale, circulaire AGFisc)",
         "Google Ads est accepté comme charge déductible (publicité professionnelle)",
         "Heroku est accepté comme charge déductible (outil nécessaire à l'activité)",
         "Le billet avion est accepté sous condition de justificatif du RDV client",
-        "Les 4 conditions de déductibilité (art. 39-1 CGI) sont mentionnées",
-        "Les risques de redressement sont quantifiés avec le montant des droits rappelés potentiels"
+        "Les conditions de déductibilité (art. 49 CIR 92) sont mentionnées",
+        "Les risques de redressement sont quantifiés avec le montant des droits rappelés potentiels et accroissements (art. 444 CIR 92)"
       ]
     }
   ]

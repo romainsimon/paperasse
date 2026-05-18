@@ -1,8 +1,7 @@
 {
   "slug": "les-oliviers",
   "name": "Les Oliviers",
-  "address": "12 avenue des Oliviers, 13008 Marseille",
-  "immatriculation": "AA-0001234",
+  "address": "12 avenue des Oliviers, 4000 Liège",
   "date_creation": "1975-03-15",
   "lots": {
     "total": 54,
@@ -22,14 +21,14 @@
     "mandat_fin": "2027-06-15"
   },
   "conseil_syndical": [
-    { "nom": "Mme Claire Martin", "role": "Présidente", "lot": 5 },
+    { "nom": "Mme Claire Martin", "role": "Président", "lot": 5 },
     { "nom": "M. Jean Lefebvre", "role": "Membre", "lot": 12 },
     { "nom": "Mme Sophie Bernard", "role": "Membre", "lot": 18 }
   ],
   "compte_bancaire": {
-    "banque": "Crédit Agricole",
-    "iban": "FR76 1234 5678 9012 3456 7890 123",
-    "bic": "AGRIFRPP"
+    "banque": "BNP Paribas Fortis",
+    "iban": "BE71 0000 0000 0047",
+    "bic": "GEBABEBB"
   },
   "qonto": {
     "enabled": false,
@@ -50,7 +49,7 @@
   "chauffage": "collectif gaz",
   "ascenseur": false,
   "gardien": false,
-  "dpe": {
+  "peb": {
     "classe": "D",
     "date": "2023-09-15"
   },

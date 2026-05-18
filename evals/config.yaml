@@ -8,9 +8,9 @@ global_paths:
 # baseline_prompt: what a user would reasonably type without the skill
 # tools: tools available during skill runs (Read for file access)
 skills:
-  commissaire-aux-comptes:
-    path: commissaire-aux-comptes
-    baseline_prompt: "Tu es un auditeur financier. Analyse les données comptables fournies et donne ton opinion."
+  reviseur-entreprises:
+    path: reviseur-entreprises
+    baseline_prompt: "Tu es un réviseur d'entreprises (IRE). Analyse les données comptables fournies et donne ton opinion d'audit."
     tools: "Read"
     shared_paths:
       - data/
@@ -24,14 +24,14 @@ skills:
       - company.example.json
   notaire:
     path: notaire
-    baseline_prompt: "Tu es un notaire expérimenté en droit français. Réponds à cette question avec les calculs détaillés."
+    baseline_prompt: "Tu es un notaire expérimenté en droit belge. Réponds à cette question avec les calculs détaillés."
     tools: "Read"
     shared_paths:
       - scripts/fetch_notaire_data.py
       - scripts/test_fetch_notaire_data.py
   comptable:
     path: comptable
-    baseline_prompt: "Tu es un expert-comptable. Aide avec cette question de comptabilité française."
+    baseline_prompt: "Tu es un expert-comptable belge. Aide avec cette question de comptabilité belge."
     tools: "Read,Bash"
     shared_paths:
       - data/
@@ -41,11 +41,11 @@ skills:
       - company.example.json
   syndic:
     path: syndic
-    baseline_prompt: "Tu es un gestionnaire de copropriété expérimenté en droit français. Aide avec cette question."
+    baseline_prompt: "Tu es un syndic de copropriété expérimenté en droit belge (ACP). Aide avec cette question."
     tools: "Read"
   fiscaliste:
     path: fiscaliste
-    baseline_prompt: "Tu es un fiscaliste spécialisé en fiscalité des particuliers français. Réponds à cette question avec les calculs détaillés."
+    baseline_prompt: "Tu es un fiscaliste spécialisé en fiscalité des particuliers belges. Réponds à cette question avec les calculs détaillés."
     tools: "Read"
     shared_paths:
       - fiscaliste/foyer.example.json

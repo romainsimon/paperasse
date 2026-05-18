@@ -4,21 +4,20 @@
     {
       "id": 1,
       "name": "setup-copropriete",
-      "prompt": "Je veux configurer la gestion de ma copropriété Les Oliviers à Marseille. C'est un immeuble de 24 lots principaux et 30 lots annexes. Le syndic actuel est un professionnel (Cabinet Martin) mais on veut passer en syndic bénévole.",
-      "expected_output": "Le skill détecte l'absence du répertoire copros/ et lance le setup guidé. Il demande combien de copropriétés seront gérées. Il collecte les informations : nom, adresse complète, nombre de lots (54 total), exercice comptable, type de syndic actuel. Il pose les questions sur le conseil syndical, le compte bancaire séparé, le budget prévisionnel. Il génère copros/les-oliviers.json et affiche un récapitulatif.",
+      "prompt": "Je veux configurer la gestion de ma copropriété Les Oliviers à Liège. C'est un immeuble de 24 lots principaux et 30 lots annexes. Le syndic actuel est un professionnel (Cabinet Martin) mais on veut passer en syndic bénévole.",
+      "expected_output": "Le skill détecte l'absence du répertoire copros/ et lance le setup guidé. Il demande combien de copropriétés seront gérées. Il collecte les informations : nom, adresse complète, nombre de lots (54 total), exercice comptable, type de syndic actuel. Il pose les questions sur le conseil de copropriété, le compte bancaire séparé obligatoire au nom de l'ACP (art. 3.89 §3 Cc belge), le budget prévisionnel. Il génère copros/les-oliviers.json et affiche un récapitulatif.",
       "files": [],
       "assertions": [
         "Le skill détecte l'absence du répertoire copros/ et lance le setup guidé",
         "Le skill demande combien de copropriétés seront gérées",
         "Le skill demande l'adresse complète de la copropriété",
-        "Le skill demande le numéro d'immatriculation RNC",
         "Le skill identifie 24 lots principaux et 30 lots annexes (54 total)",
         "Le skill demande les dates de l'exercice comptable",
         "Le skill demande le type de syndic actuel et note la transition souhaitée",
-        "Le skill demande la composition du conseil syndical",
-        "Le skill demande les informations du compte bancaire séparé (art. 26-7 décret 1967)",
+        "Le skill demande la composition du conseil de copropriété (obligatoire si l'immeuble compte au moins 20 lots, droit belge)",
+        "Le skill demande les informations du compte bancaire séparé obligatoire au nom de l'ACP (art. 3.89 §3 Cc belge)",
         "Le skill génère copros/les-oliviers.json avec tous les champs obligatoires",
-        "Le skill mentionne la nécessité de voter le changement de syndic en AG (art. 25)",
+        "Le skill mentionne que le changement de syndic doit être voté en AG à la majorité absolue (art. 3.87 §6 Cc belge), et non aux 4/5",
         "Le skill propose de configurer une autre copropriété"
       ]
     },
@@ -26,61 +25,59 @@
       "id": 2,
       "name": "convocation-ag-annuelle",
       "prompt": "Je dois convoquer l'AG annuelle pour Les Oliviers. L'exercice s'est clôturé au 31 décembre. Je veux voter le budget, approuver les comptes, et voter des travaux de ravalement pour 45 000 EUR (3 devis obtenus). Le syndic bénévole actuel veut aussi renouveler son mandat.",
-      "expected_output": "Le skill prépare la convocation complète : vérifie le délai de 21 jours, rédige l'ordre du jour avec toutes les résolutions dans le bon ordre, identifie les majorités requises pour chaque résolution (art. 24 pour comptes et budget, art. 25 pour syndic, art. 24 pour travaux de ravalement obligatoire). Liste les documents à joindre obligatoirement.",
+      "expected_output": "Le skill prépare la convocation complète : vérifie le délai de 15 jours (art. 3.87 §2 Cc belge), rédige l'ordre du jour avec toutes les résolutions dans le bon ordre, identifie les majorités requises pour chaque résolution (majorité absolue pour comptes, budget et renouvellement du syndic ; majorité absolue pour travaux conservatoires/urgents ; 2/3 si modification des statuts). Liste les documents à joindre obligatoirement.",
       "files": [
         "evals/files/copro-oliviers.json"
       ],
       "assertions": [
         "Le skill identifie la copropriété Les Oliviers et charge copros/les-oliviers.json",
         "Le skill vérifie le calendrier et les échéances",
-        "Le délai de 21 jours minimum est rappelé (art. 9-1 décret 1967)",
+        "Le délai de 15 jours minimum est rappelé (art. 3.87 §2 Cc belge)",
         "L'ordre du jour contient la désignation du bureau en premier",
-        "L'approbation des comptes est à la majorité de l'art. 24",
-        "Le vote du budget prévisionnel est à la majorité de l'art. 24",
-        "Le renouvellement du syndic est à la majorité de l'art. 25",
-        "Le ravalement (travaux de conservation imposé) est à la majorité de l'art. 24",
-        "Les 3 devis doivent être joints à la convocation (art. 11 décret 1967)",
-        "Les 5 annexes comptables doivent être jointes",
-        "Le projet de contrat de syndic doit être joint (renouvellement)",
-        "Le formulaire de vote par correspondance est mentionné",
-        "L'envoi par LRAR est précisé",
+        "L'approbation des comptes est à la majorité absolue des voix présents/représentés (art. 3.87 §6 Cc belge)",
+        "Le vote du budget prévisionnel est à la majorité absolue",
+        "Le renouvellement du syndic est à la majorité absolue (art. 3.87 §6 Cc belge), et non aux 4/5",
+        "Les 3 devis doivent être joints à la convocation",
+        "Les comptes annuels ACP doivent être joints à la convocation",
+        "Le projet de contrat ou de mission du syndic doit être joint",
+        "La procuration ou vote par correspondance est mentionné",
+        "L'envoi par courrier recommandé ou voie électronique avec accusé est précisé",
         "Le template convocation-ag.md est utilisé ou proposé"
       ]
     },
     {
       "id": 3,
       "name": "appel-de-fonds-trimestriel",
-      "prompt": "Je dois envoyer les appels de fonds du 2e trimestre. Le budget prévisionnel voté est de 28 000 EUR. Le fonds de travaux est fixé à 5% (1 400 EUR/an). Il y a aussi un appel spécial de 15 000 EUR pour le ravalement, payable en 3 fois. Nous avons 20 lots principaux et 10 000 tantièmes au total.",
-      "expected_output": "Le skill calcule les appels individuels : provisions courantes = 28 000 / 4 = 7 000 EUR par trimestre, fonds de travaux = 1 400 / 4 = 350 EUR par trimestre, travaux ravalement = 15 000 / 3 = 5 000 EUR par appel. Chaque copropriétaire paie au prorata de ses tantièmes. Le skill vérifie les écritures comptables associées.",
+      "prompt": "Je dois envoyer les appels de fonds du 2e trimestre. Le budget prévisionnel voté est de 28 000 EUR. Le fonds de réserve est fixé à 5% (1 400 EUR/an). Il y a aussi un appel spécial de 15 000 EUR pour le ravalement, payable en 3 fois. Nous avons 20 lots principaux et 10 000 tantièmes au total.",
+      "expected_output": "Le skill calcule les appels individuels selon le plan comptable ACP belge : provisions courantes = 28 000 / 4 = 7 000 EUR par trimestre, fonds de réserve = 1 400 / 4 = 350 EUR par trimestre (art. 3.89 §1 Cc belge, min 5%), travaux ravalement = 15 000 / 3 = 5 000 EUR par appel. Chaque copropriétaire paie au prorata de ses tantièmes.",
       "files": [
         "evals/files/copro-oliviers.json"
       ],
       "assertions": [
         "Les provisions courantes trimestrielles sont de 7 000 EUR au total",
-        "Le fonds de travaux trimestriel est de 350 EUR au total",
+        "Le fonds de réserve trimestriel est de 350 EUR au total (art. 3.89 §1 Cc belge)",
         "L'appel travaux ravalement est de 5 000 EUR (15 000 / 3)",
         "Chaque copropriétaire paie au prorata de ses tantièmes",
-        "Les écritures comptables sont indiquées (comptes 411/701 pour provisions courantes, 414/105 pour fonds travaux, 412/702 pour travaux votés)",
+        "Les écritures comptables ACP belges sont indiquées",
         "La date d'exigibilité (1er avril) est précisée",
-        "L'appel est présenté de façon structurée avec le détail par copropriétaire ou par lot"
+        "L'appel est présenté de façon structurée avec le détail par lot"
       ]
     },
     {
       "id": 4,
       "name": "recouvrement-impayes",
       "prompt": "Un copropriétaire (lot n°7, 650 tantièmes sur 10 000) n'a pas payé ses charges depuis 6 mois. Il doit 2 800 EUR. Je lui ai déjà envoyé un email de rappel il y a 2 mois sans réponse. Que dois-je faire ?",
-      "expected_output": "Le skill recommande la procédure de recouvrement : 1. Mise en demeure par LRAR (obligatoire avant toute procédure, avec détail des sommes et articles de loi). 2. Si pas de réponse sous 30 jours : déchéance du terme (art. 19-2, toutes les provisions de l'exercice deviennent exigibles). 3. Injonction de payer (< 5 000 EUR, requête au tribunal). 4. Rappel que les frais sont à la charge du débiteur (art. 10-1). 5. Mention du privilège immobilier spécial.",
+      "expected_output": "Le skill recommande la procédure belge de recouvrement ACP : 1. Mise en demeure par recommandé (obligatoire). 2. Si pas de réponse : déchéance du terme (toutes provisions exigibles, art. 3.93 Cc belge). 3. Requête en injonction de payer (juge de paix compétent en copropriété belge). 4. Les frais sont à la charge du débiteur (art. 3.90 Cc belge). 5. Hypothèque légale ACP (art. 3.93 Cc belge).",
       "files": [
         "evals/files/copro-oliviers.json"
       ],
       "assertions": [
         "La relance par simple email n'a pas de valeur juridique pour déclencher la procédure",
-        "La mise en demeure par LRAR est recommandée comme prochaine étape",
-        "Le délai de 30 jours après mise en demeure est mentionné",
-        "La déchéance du terme (art. 19-2) est expliquée après 30 jours sans réponse",
-        "L'injonction de payer est recommandée car le montant est < 5 000 EUR",
-        "Les frais de recouvrement sont à la charge du débiteur (art. 10-1 loi 1965)",
-        "Le privilège immobilier spécial est mentionné (art. 19-2)",
+        "La mise en demeure par recommandé est recommandée comme prochaine étape",
+        "La déchéance du terme (art. 3.93 Cc belge) est expliquée",
+        "La requête en injonction de payer devant le juge de paix est recommandée",
+        "Les frais de recouvrement sont à la charge du débiteur (art. 3.90 Cc belge)",
+        "L'hypothèque légale ACP est mentionnée (art. 3.93 Cc belge)",
         "Un plan d'apurement est proposé comme alternative amiable",
         "Le template mise-en-demeure.md est utilisé ou proposé",
         "Le skill ne recommande pas d'assigner en justice directement sans mise en demeure préalable"
@@ -90,28 +87,28 @@
       "id": 5,
       "name": "transition-syndic-pro-vers-benevole",
       "prompt": "Notre syndic professionnel (Cabinet Dupont) termine son mandat le 30 juin. Nous voulons passer en syndic bénévole. Le copropriétaire du lot 3 est candidat. L'AG est prévue le 15 mai. Quelles sont les étapes ?",
-      "expected_output": "Le skill détaille le processus complet : 1. Préparer le contrat de syndic bénévole (conforme au contrat type). 2. Inscrire les résolutions à l'AG (non-renouvellement du syndic sortant art. 25 + élection du nouveau syndic art. 25). 3. Joindre le projet de contrat à la convocation. 4. Après le vote : notification au syndic sortant. 5. Transmission des archives sous 3 mois (art. 18-2). 6. Ouverture du nouveau compte bancaire. 7. Mise à jour RNC.",
+      "expected_output": "Le skill détaille le processus complet selon le droit belge : 1. Préparer la mission du syndic bénévole. 2. Inscrire les résolutions à l'AG (non-renouvellement + élection nouveau syndic, majorité absolue art. 3.87 §6 Cc belge). 3. Joindre le projet de mission à la convocation. 4. Après le vote : notification au syndic sortant. 5. Transmission des archives. 6. Ouverture du nouveau compte bancaire séparé au nom de l'ACP (art. 3.89 §3 Cc belge). 7. Notification à l'assureur.",
       "files": [
         "evals/files/copro-oliviers.json"
       ],
       "assertions": [
-        "Le vote de non-renouvellement est à la majorité de l'art. 25",
-        "L'élection du nouveau syndic bénévole est à la majorité de l'art. 25",
-        "La passerelle art. 25-1 est mentionnée (si art. 25 non atteint)",
-        "Le projet de contrat de syndic doit être joint à la convocation (art. 11)",
-        "Le candidat doit être copropriétaire (art. 17-1 loi 1965)",
+        "Le vote de non-renouvellement du syndic est à la majorité absolue (art. 3.87 §6 Cc belge), et non aux 4/5",
+        "L'élection du nouveau syndic bénévole est à la majorité absolue (art. 3.87 §6 Cc belge)",
+        "Le mécanisme de 2ème AG en cas de double quorum non atteint est mentionné (art. 3.87 §5 Cc belge)",
+        "Le projet de mission du syndic doit être joint à la convocation",
+        "Le skill précise qu'un syndic bénévole est en pratique un copropriétaire (le syndic professionnel, lui, est un tiers mandaté)",
         "La souscription d'une assurance RC syndic bénévole est recommandée",
-        "La transmission des archives est obligatoire sous 3 mois (art. 18-2)",
-        "L'ouverture d'un nouveau compte bancaire séparé est mentionnée",
-        "La mise à jour de l'immatriculation RNC est mentionnée",
-        "La procédure en cas de refus de transmission des archives est mentionnée (mise en demeure puis tribunal)"
+        "La transmission des archives par le syndic sortant est obligatoire dans les 30 jours (art. 3.89 §5 Cc belge)",
+        "L'ouverture d'un nouveau compte bancaire séparé au nom de l'ACP est mentionnée",
+        "La notification à l'assureur de la copropriété est mentionnée",
+        "La procédure en cas de refus de transmission des archives est mentionnée"
       ]
     },
     {
       "id": 6,
       "name": "dashboard-multi-copro",
       "prompt": "Je gère deux copropriétés. Donne-moi un point de situation global.",
-      "expected_output": "Le skill lit tous les fichiers dans copros/ (les-oliviers.json et parc-des-cedres.json), affiche le tableau de bord portfolio consolidé avec les métriques clés (lots, budget, impayés, fonds travaux, prochaine AG), les échéances toutes copros triées par date, et les alertes (impayés > 3 mois). Puis demande sur quelle copropriété travailler.",
+      "expected_output": "Le skill lit tous les fichiers dans copros/ (les-oliviers.json et parc-des-cedres.json), affiche le tableau de bord portfolio consolidé avec les métriques clés (lots, budget, impayés, fonds de réserve, prochaine AG), les échéances toutes copros triées par date, et les alertes (impayés > 3 mois). Puis demande sur quelle copropriété travailler.",
       "files": [
         "evals/files/copro-oliviers.json",
         "evals/files/parc-des-cedres.json"
@@ -119,9 +116,9 @@
       "assertions": [
         "Le skill lit tous les fichiers JSON dans copros/",
         "Le tableau de bord portfolio affiche les deux copropriétés",
-        "Les totaux consolidés sont calculés (lots, budget, impayés, fonds travaux)",
-        "Les Oliviers : 24 lots principaux, budget 28 000 EUR",
-        "Parc des Cèdres : 32 lots principaux, budget 45 000 EUR",
+        "Les totaux consolidés sont calculés (lots, budget, impayés, fonds de réserve)",
+        "Les Oliviers : 24 lots principaux, budget 28 000 EUR (Liège)",
+        "Parc des Cèdres : 32 lots principaux, budget 45 000 EUR (Namur)",
         "Le total du portefeuille est affiché (56 lots principaux, 73 000 EUR de budget)",
         "Les impayés du Parc des Cèdres (3 200 EUR, 2 débiteurs) sont signalés en alerte",
         "Les prochaines échéances des deux copros sont triées par date",
@@ -133,22 +130,19 @@
       "id": 7,
       "name": "transition-workflow-realiste",
       "prompt": "Je veux virer mon syndic professionnel (Cabinet Immogestion) pour passer en syndic bénévole. Son mandat se termine le 30 septembre. L'AG est prévue en juin. Le copropriétaire du lot 12 est candidat. Par où je commence ? Je n'ai pas accès à grand-chose pour l'instant, le syndic ne communique pas beaucoup.",
-      "expected_output": "Le skill propose le workflow réaliste de transition en 6 phases. Il commence par l'état des lieux avec les documents accessibles AVANT le vote (extranet, PV AG, fiche synthétique) et explique que la comptabilité complète ne sera disponible qu'après le vote (art. 18-2). Il détaille les LRAR à envoyer avec les délais. Il propose la phase de consultation des copropriétaires pour s'assurer d'avoir la majorité art. 25.",
+      "expected_output": "Le skill propose le workflow réaliste de transition en 6 phases selon le droit belge (ACP). Il commence par l'état des lieux avec les documents accessibles AVANT le vote (portal copropriétaire, PV AG antérieurs) et explique que la comptabilité complète ne sera disponible qu'après le vote. Il détaille les envois recommandés avec les délais. Il propose la phase de consultation des copropriétaires pour s'assurer d'avoir la majorité absolue.",
       "files": [
         "evals/files/copro-oliviers.json"
       ],
       "assertions": [
-        "Le skill distingue les documents accessibles AVANT le vote (extranet, PV AG, fiche synthétique) et ceux accessibles APRÈS (comptabilité complète, art. 18-2)",
+        "Le skill distingue les documents accessibles AVANT le vote et ceux accessibles APRÈS",
         "Le skill ne demande PAS de récupérer la comptabilité complète avant le vote",
-        "Le skill mentionne l'extranet copropriétaires comme source d'information avant le vote (obligation ALUR)",
         "Le skill recommande de consulter les copropriétaires AVANT l'AG pour estimer le soutien",
-        "Le skill calcule le seuil de majorité art. 25 nécessaire",
-        "La LRAR de convocation est mentionnée avec le délai de 21 jours (art. 9-1)",
-        "La LRAR de notification du PV est mentionnée avec le délai de 1 mois (art. 18 décret)",
-        "Le délai de contestation de 2 mois est mentionné (art. 42, court à compter de la notification)",
-        "La LRAR au syndic sortant pour demander la transmission est mentionnée",
-        "Le délai de 3 mois pour la transmission des archives est cité (art. 18-2)",
-        "La procédure en cas de refus (mise en demeure LRAR puis référé) est mentionnée",
+        "Le skill calcule le seuil de majorité absolue nécessaire pour désigner le syndic (art. 3.87 §6 Cc belge), et n'exige pas les 4/5",
+        "La convocation par recommandé est mentionnée avec le délai de 15 jours (art. 3.87 §2 Cc belge)",
+        "La notification du PV après l'AG est mentionnée (max 30 jours, art. 3.92 §3 Cc belge)",
+        "Le délai de contestation est mentionné (4 mois à compter de la date de l'AG selon art. 3.92 §3 Cc belge)",
+        "La demande de transmission au syndic sortant est mentionnée",
         "L'assurance RC syndic bénévole est recommandée pour le candidat"
       ]
     },
@@ -156,21 +150,20 @@
       "id": 8,
       "name": "sinistre-degat-des-eaux",
       "prompt": "Il y a une fuite d'eau dans l'appartement du 2e étage (lot 8) qui coule chez le voisin du dessous (lot 4). L'origine semble être une canalisation dans les parties communes entre les deux étages. Que dois-je faire en tant que syndic ?",
-      "expected_output": "Le skill applique la convention IRSI et guide le syndic à travers la procédure complète : déclaration à l'assureur dans les 5 jours, recherche de fuite, coordination entre les copropriétaires concernés et leurs assureurs respectifs. Il identifie que l'origine est en parties communes donc l'assureur du syndicat est compétent.",
+      "expected_output": "Le skill applique la convention ASSURALIA (Belgique) et guide le syndic à travers la procédure complète : déclaration à l'assureur de la copropriété dans les délais prévus, recherche de fuite dans les parties communes, coordination entre les copropriétaires concernés et leurs assureurs respectifs. L'assureur de la copropriété (ACP) est compétent car l'origine est en parties communes.",
       "files": [
         "evals/files/copro-oliviers.json"
       ],
       "assertions": [
-        "Le skill identifie qu'il s'agit d'un dégât des eaux (DDE)",
-        "La convention IRSI est mentionnée",
-        "Le délai de déclaration de 5 jours ouvrés est cité",
+        "Le skill identifie qu'il s'agit d'un dégât des eaux",
+        "La convention ASSURALIA (et non IRSI française) est mentionnée",
         "Le skill identifie que l'origine est en parties communes",
-        "L'assureur du syndicat est identifié comme compétent pour la recherche de fuite (origine en parties communes)",
-        "Le skill demande au syndic de prendre des mesures conservatoires d'urgence (couper l'eau si possible)",
-        "Les deux copropriétaires concernés (lots 8 et 4) doivent déclarer à leurs propres assureurs",
-        "Le seuil de 5 000 EUR HT de la convention IRSI est mentionné",
+        "L'assureur de l'ACP est identifié comme compétent pour la partie commune",
+        "Le skill recommande les mesures conservatoires d'urgence (couper l'eau si possible)",
+        "Les deux copropriétaires concernés (lots 8 et 4) doivent également déclarer à leurs propres assureurs",
+        "Le délai de déclaration à l'assureur est mentionné",
         "Le skill propose la checklist sinistre pour le suivi",
-        "Les dommages aux parties privatives du lot 4 sont à la charge de l'assureur de l'occupant du lot 4 (convention IRSI)"
+        "Les dommages aux parties privatives sont traités selon la convention ASSURALIA belge"
       ]
     }
   ]

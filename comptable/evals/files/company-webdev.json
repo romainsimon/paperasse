@@ -1,14 +1,13 @@
 {
   "name": "WebCraft",
-  "legal_form": "SASU",
+  "legal_form": "SRL",
   "capital": 1000,
-  "address": "12 rue du Commerce, 69002 Lyon",
-  "siren": "912345678",
-  "siret": "91234567800014",
-  "rcs": "RCS Lyon",
-  "naf": "6201Z",
+  "address": "12 Rue du Marché, 5000 Namur",
+  "bce": "0912.345.678",
+  "tva_number": "BE0912345678",
+  "nace": "6201Z",
   "president": {
-    "title": "President",
+    "title": "Gérant",
     "first_name": "Marie",
     "last_name": "DURAND",
     "civility": "Mme"
@@ -20,14 +19,14 @@
   },
   "tax": {
     "regime_tva": "franchise",
-    "regime_is": "reel_simplifie",
-    "tva_rate": 0.20
+    "regime_isoc": "pme",
+    "tva_rate": 0.21
   },
   "banks": [
     {
       "id": "qonto",
       "name": "Qonto",
-      "account": "5121",
+      "account": "5500",
       "type": "api"
     }
   ],
@@ -41,5 +40,10 @@
       "env_key": "STRIPE_SECRET_SAAS"
     }
   ],
-  "city": "Lyon"
+  "city": "Namur",
+  "einvoicing": {
+    "peppol_id": "0208:0912345678",
+    "reception_ready": true,
+    "emission_ready": false
+  }
 }

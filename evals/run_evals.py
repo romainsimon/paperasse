@@ -159,7 +159,7 @@ def get_iteration_id() -> tuple[str, bool]:
     try:
         shorthash = _run_git("rev-parse", "--short", "HEAD").stdout.strip()
         skill_dirs = [
-            "commissaire-aux-comptes/",
+            "reviseur-entreprises/",
             "controleur-fiscal/",
             "notaire/",
             "comptable/",

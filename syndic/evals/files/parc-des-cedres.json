@@ -1,8 +1,7 @@
 {
   "slug": "parc-des-cedres",
   "name": "Parc des Cèdres",
-  "address": "5 allée des Cèdres, 06600 Antibes",
-  "immatriculation": "AA-0005678",
+  "address": "5 allée des Cèdres, 5000 Namur",
   "date_creation": "1982-09-01",
   "lots": {
     "total": 45,
@@ -26,9 +25,9 @@
     { "nom": "M. Éric Faure", "role": "Secrétaire", "lot": 22 }
   ],
   "compte_bancaire": {
-    "banque": "BNP Paribas",
-    "iban": "FR76 XXXX XXXX XXXX XXXX XXXX XXX",
-    "bic": "BNPAFRPP"
+    "banque": "ING Belgique",
+    "iban": "BE45 3630 0000 0047",
+    "bic": "BBRUBEBB"
   },
   "qonto": {
     "enabled": false,
@@ -49,7 +48,7 @@
   "chauffage": "individuel",
   "ascenseur": true,
   "gardien": false,
-  "dpe": {
+  "peb": {
     "classe": "C",
     "date": "2024-02-10"
   },

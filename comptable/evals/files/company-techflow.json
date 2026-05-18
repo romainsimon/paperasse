@@ -1,14 +1,13 @@
 {
   "name": "TECHFLOW",
-  "legal_form": "SAS",
-  "capital": 1000,
-  "address": "12 Rue de la Liberté, 69001 Lyon",
-  "siren": "987654321",
-  "siret": "98765432100012",
-  "rcs": "RCS Lyon",
-  "naf": "6201Z",
+  "legal_form": "SA",
+  "capital": 61500,
+  "address": "12 Rue de la Régence, 4000 Liège",
+  "bce": "0987.654.321",
+  "tva_number": "BE0987654321",
+  "nace": "6201Z",
   "president": {
-    "title": "Président",
+    "title": "Administrateur délégué",
     "first_name": "Marie",
     "last_name": "MARTIN",
     "civility": "Mme"
@@ -20,15 +19,15 @@
   },
   "tax": {
     "regime_tva": "franchise",
-    "regime_is": "reel_simplifie",
-    "tva_rate": 0.20
+    "regime_isoc": "pme",
+    "tva_rate": 0.21
   },
   "banks": [
     {
       "id": "qonto-main",
       "name": "Qonto",
-      "account": "5121",
-      "fec_account": "51211"
+      "account": "5500",
+      "pcmn_account": "55001"
     }
   ],
   "qonto": {
@@ -41,5 +40,5 @@
       "env_key": "STRIPE_SECRET_SAAS"
     }
   ],
-  "city": "Lyon"
+  "city": "Liège"
 }

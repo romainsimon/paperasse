@@ -4,41 +4,42 @@
     {
       "id": 1,
       "name": "config-company-json",
-      "prompt": "Je veux configurer Paperasse pour ma société DevStudio. C'est une SASU de développement web (NAF 6201Z), SIREN 123456789, siège au 5 rue de la Paix 75002 Paris, capital 1000 EUR, exercice du 01/01 au 31/12, je suis en franchise de TVA. Génère le company.json correspondant.",
-      "expected_output": "Le skill génère un company.json structuré avec tous les champs obligatoires, déduit le régime IS de la forme SASU, et applique le format attendu par Paperasse.",
+      "prompt": "Je veux configurer Paperasse pour ma société DevStudio. C'est une SRL de développement web (NACE 6201Z), BCE 0123.456.789, siège au 5 rue de la Paix 1000 Bruxelles, capital 18.550 EUR, exercice du 01/01 au 31/12, je suis en franchise de TVA (art. 56bis CTVA). Génère le company.json correspondant.",
+      "expected_output": "Le skill génère un company.json structuré avec tous les champs obligatoires, déduit le régime ISOC de la forme SRL, et applique le format attendu par Paperasse.",
       "files": [],
       "assertions": [
         "Le company.json contient le nom 'DevStudio'",
-        "La forme juridique SASU est présente",
-        "Le SIREN 123456789 est présent",
-        "Le régime d'imposition IS est déduit de la forme SASU",
-        "Le régime TVA franchise est configuré",
+        "La forme juridique SRL est présente",
+        "Le numéro BCE 0123.456.789 est présent",
+        "Le numéro TVA BE0123456789 est déduit du BCE",
+        "Le régime d'imposition ISOC est déduit de la forme SRL",
+        "Le régime TVA franchise (art. 56bis CTVA) est configuré",
         "Les dates d'exercice (01/01 au 31/12) sont présentes",
-        "Le capital social 1000 EUR est présent",
-        "Le code NAF 6201Z est présent"
+        "Le capital social 18.550 EUR est présent",
+        "Le code NACE 6201Z est présent"
       ]
     },
     {
       "id": 2,
       "name": "config-integrations",
-      "prompt": "Ma société NovaTech (SAS, Lyon, SIREN 987654321) utilise Qonto et Stripe pour son SaaS. Comment configurer company.json et le fichier .env pour les intégrations bancaires ? Montre-moi les fichiers complets.",
-      "expected_output": "Le skill montre la configuration company.json avec les intégrations Qonto et Stripe activées, et le fichier .env avec les clés API séparées. Le régime IS est déduit de la forme SAS.",
+      "prompt": "Ma société NovaTech (SA, Liège, BCE 0987.654.321) utilise Qonto et Stripe pour son SaaS. Comment configurer company.json et le fichier .env pour les intégrations bancaires ? Montre-moi les fichiers complets.",
+      "expected_output": "Le skill montre la configuration company.json avec les intégrations Qonto et Stripe activées, et le fichier .env avec les clés API séparées. Le régime ISOC est déduit de la forme SA.",
       "files": [],
       "assertions": [
         "Le company.json contient qonto.enabled: true (ou équivalent)",
         "Le company.json contient une section stripe_accounts",
         "Les clés API Qonto (QONTO_ID, QONTO_API_SECRET) sont dans .env et pas dans company.json",
         "La clé secrète Stripe (STRIPE_SECRET_KEY) est dans .env",
-        "Le régime IS est mentionné ou déduit pour une SAS",
+        "Le régime ISOC est mentionné ou déduit pour une SA",
         "Les scripts npm run fetch:qonto et fetch:stripe sont mentionnés",
-        "La structure du company.json suit le format Paperasse (name, legal_form, siren, fiscal_year, tax, integrations)"
+        "La structure du company.json suit le format Paperasse (name, legal_form, bce, fiscal_year, tax, integrations)"
       ]
     },
     {
       "id": 3,
       "name": "cloture-categorisation",
       "prompt": "Je veux commencer la clôture de l'exercice 2025 pour TechFlow. Pour l'instant, catégorise les transactions et fais le rapprochement bancaire. Les transactions Qonto sont dans data/transactions/qonto-main.json et les transactions Stripe dans data/transactions/stripe-saas.json.",
-      "expected_output": "Le skill catégorise chaque transaction avec le bon compte PCG, enregistre le CA Stripe en brut avec frais séparés, traite le remboursement, et croise les payouts Stripe avec les crédits Qonto.",
+      "expected_output": "Le skill catégorise chaque transaction avec le bon compte PCMN, enregistre le CA Stripe en brut avec frais séparés, traite le remboursement, et croise les payouts Stripe avec les crédits Qonto.",
       "files": [
         "evals/files/company-techflow.json",
         "evals/files/qonto-transactions.json",
@@ -46,9 +47,9 @@
       ],
       "assertions": [
         "Le skill lit company.json et identifie TechFlow",
-        "Chaque transaction Qonto est associée à un compte PCG (Hetzner → 6135, GitHub → 6135, OVH domaine → 651, frais bancaires → 627, MacBook → 2183)",
-        "Le CA Stripe est enregistré en brut (706) et les frais Stripe en charges (6278)",
-        "Le remboursement Stripe (txn_009) est comptabilisé correctement (avoir ou extourne)",
+        "Chaque transaction Qonto est associée à un compte PCMN (Hetzner → 6120, GitHub → 6120, OVH domaine → 6120, frais bancaires → 6560, MacBook → 2430)",
+        "Le CA Stripe est enregistré en brut (700) et les frais Stripe en charges (6561)",
+        "Le remboursement Stripe est comptabilisé correctement (avoir ou extourne)",
         "Le rapprochement bancaire croise les payouts Stripe avec les crédits Qonto",
         "Le remboursement du compte courant associé (200 EUR) est enregistré au compte 455",
         "Les écritures sont présentées dans un format structuré avec date, journal, comptes, libellé, montants"
@@ -56,9 +57,9 @@
     },
     {
       "id": 4,
-      "name": "cloture-inventaire-is",
-      "prompt": "Suite de la clôture TechFlow 2025. Les transactions sont catégorisées. Maintenant fais les écritures d'inventaire (amortissements, PCA), calcule l'IS, et génère le journal d'écritures. Les données sont dans data/transactions/.",
-      "expected_output": "Le skill calcule l'amortissement du MacBook avec prorata, identifie le PCA sur l'abonnement annuel, calcule l'IS au taux réduit, et génère le journal et les états financiers.",
+      "name": "cloture-inventaire-isoc",
+      "prompt": "Suite de la clôture TechFlow 2025. Les transactions sont catégorisées. Maintenant fais les écritures d'inventaire (amortissements, PCA), calcule l'ISOC, et génère le journal d'écritures. Les données sont dans data/transactions/.",
+      "expected_output": "Le skill calcule l'amortissement du MacBook avec prorata, identifie le PCA sur l'abonnement annuel, calcule l'ISOC au taux réduit PME 20%, et génère le journal et les états financiers.",
       "files": [
         "evals/files/company-techflow.json",
         "evals/files/qonto-transactions.json",
@@ -67,17 +68,17 @@
       "assertions": [
         "Le MacBook à 599 EUR est immobilisé (>500 EUR) et amorti sur 3 ans avec prorata temporis",
         "Un PCA est calculé pour l'abonnement annuel Client F (290 EUR, oct 2025 à sept 2026)",
-        "L'IS est calculé avec le taux réduit 15% (résultat < 42 500 EUR)",
+        "L'ISOC est calculé avec le taux réduit PME 20% sur la 1ère tranche de 100 000 EUR (art. 215 al. 2 CIR 92)",
         "Le bilan est équilibré (actif = passif)",
         "Les écritures d'inventaire sont datées au 31/12/2025",
-        "Le résultat net est correctement calculé (produits - charges - IS)"
+        "Le résultat net est correctement calculé (produits - charges - ISOC)"
       ]
     },
     {
       "id": 5,
       "name": "cloture-premier-exercice",
       "prompt": "Ma société TechFlow a été créée le 25/02/2025. Je veux faire la clôture de mon premier exercice (25/02/2025 au 31/12/2025). Les transactions sont dans data/transactions/.",
-      "expected_output": "Le skill gère les spécificités du premier exercice : prorata temporis pour les amortissements (309 jours au lieu de 365), prorata du seuil IS à taux réduit (42500 * 309/365), vérification du seuil franchise TVA sur la période courte.",
+      "expected_output": "Le skill gère les spécificités du premier exercice : prorata temporis pour les amortissements (309 jours au lieu de 365), prorata de la tranche ISOC taux réduit 20% (100 000 × 309/365), vérification du seuil franchise TVA sur la période courte.",
       "files": [
         "evals/files/company-techflow.json",
         "evals/files/qonto-transactions.json",
@@ -86,104 +87,102 @@
       "assertions": [
         "L'exercice est identifié comme premier exercice (durée inférieure à 12 mois)",
         "Le prorata temporis est appliqué aux amortissements du MacBook (mis en service en octobre, prorata oct-déc)",
-        "Le seuil IS à taux réduit est proratisé sur la durée de l'exercice",
-        "Le seuil de franchise TVA est surveillé sur la période courte",
+        "Le seuil ISOC taux réduit 20% est proratisé sur la durée de l'exercice",
+        "Le seuil de franchise TVA est surveillé sur la période courte (25.000 EUR art. 56bis CTVA)",
         "Les dépenses antérieures à la création (25/02/2025) ne sont pas incluses"
       ]
     },
     {
       "id": 6,
       "name": "facturation-diagnostic-conformite-2026",
-      "prompt": "Ma société WebCraft est une SASU en franchise en base de TVA. Suis-je concernée par la facturation électronique obligatoire en 2026 ? Que dois-je faire et quand ?",
-      "expected_output": "Le skill identifie que l'entreprise est assujettie à la TVA (même en franchise), détermine la taille (micro/PME), donne les échéances (réception sept. 2026, émission sept. 2027), recommande de choisir une PA, et mentionne les nouvelles mentions obligatoires.",
+      "prompt": "Ma société WebCraft est une SRL en franchise de TVA (art. 56bis CTVA). Suis-je concernée par la facturation électronique Peppol obligatoire en 2026 ? Que dois-je faire et quand ?",
+      "expected_output": "Le skill identifie que l'entreprise est assujettie à la TVA (même en franchise), que l'obligation B2B Peppol est en vigueur depuis le 01/01/2026 (AR 29 octobre 2024), recommande de s'inscrire sur le réseau Peppol via un opérateur certifié, et mentionne les mentions obligatoires ainsi que le portail Mercurius.",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "Le skill identifie que WebCraft est assujettie à la TVA même en franchise en base",
-        "L'échéance de réception est mentionnée : 1er septembre 2026",
-        "L'échéance d'émission est mentionnée : 1er septembre 2027 (car PME/micro)",
-        "Le skill recommande de choisir une plateforme agréée (PA)",
-        "Au moins une PA gratuite est mentionnée (Qonto, Indy, Pennylane ou Dext)",
-        "Les nouvelles mentions obligatoires 2026 sont citées (SIREN client, catégorie d'opération)",
-        "L'e-reporting est mentionné comme obligation complémentaire",
-        "Le skill mentionne que le PPF ne sert plus à émettre/recevoir des factures"
+        "Le skill identifie que WebCraft est assujettie à la TVA même en franchise",
+        "L'obligation Peppol B2B au 01/01/2026 est mentionnée (AR 29 octobre 2024)",
+        "La réception de factures électroniques est obligatoire depuis le 01/01/2026",
+        "Le skill recommande de s'inscrire sur le réseau Peppol via un opérateur certifié",
+        "Le portail Mercurius (portail gouvernemental belge) est mentionné",
+        "Au moins un opérateur Peppol est mentionné (Billit, Edicom, Storecove ou équivalent)",
+        "Le Peppol ID belge (format 0208:BCEnodots) est expliqué",
+        "Les nouvelles mentions obligatoires 2026 sont citées (BCE, numéro TVA, Peppol ID)"
       ]
     },
     {
       "id": 7,
       "name": "facturation-generer-facture-conforme",
-      "prompt": "Génère une facture pour mon client TechSolutions SAS (SIREN 987654321, 45 avenue de la République, 75011 Paris) pour une prestation de développement d'application web, 10 jours de travail à 500 EUR/jour. Paiement à 30 jours par virement.",
-      "expected_output": "Le skill génère une facture complète avec toutes les mentions obligatoires, incluant les nouvelles mentions 2026 (SIREN client, catégorie prestation de services), la mention franchise TVA, les pénalités de retard et l'indemnité de 40 EUR.",
+      "prompt": "Génère une facture pour mon client TechSolutions SA (BCE 0987.654.321, Peppol ID 0208:0987654321, 45 avenue de la Couronne, 1050 Bruxelles) pour une prestation de développement d'application web, 10 jours de travail à 500 EUR/jour. Paiement à 30 jours par virement.",
+      "expected_output": "Le skill génère une facture complète avec toutes les mentions légales belges, incluant BCE, TVA BE, Peppol ID, mention franchise TVA art. 56bis CTVA, indemnité 40 EUR (loi 2 août 2002) et pénalités de retard.",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "L'identité complète de WebCraft est présente (nom, SASU, adresse, SIRET)",
-        "L'identité du client est complète (TechSolutions SAS, adresse, SIREN 987654321)",
+        "L'identité complète de WebCraft est présente (nom, SRL, adresse, BCE, TVA)",
+        "L'identité du client est complète (TechSolutions SA, adresse, BCE 0987.654.321)",
         "Un numéro de facture est attribué (format séquentiel)",
         "La date d'émission est présente",
         "La désignation est précise (développement application web)",
         "La quantité (10 jours) et le prix unitaire (500 EUR) sont indiqués",
         "Le montant total est correct (5 000 EUR)",
-        "La mention franchise TVA est présente (art. 293 B du CGI)",
+        "La mention franchise TVA est présente (art. 56bis CTVA)",
         "La date d'échéance est calculée (30 jours après émission)",
-        "Les pénalités de retard sont mentionnées",
-        "L'indemnité forfaitaire de recouvrement de 40 EUR est mentionnée",
-        "La catégorie d'opération est indiquée (prestation de services)"
+        "Les pénalités de retard sont mentionnées (taux BCE + 8 points, loi 2 août 2002)",
+        "L'indemnité forfaitaire de recouvrement de 40 EUR est mentionnée (art. 6 loi 2002)",
+        "Les coordonnées bancaires (IBAN/BIC) sont présentes"
       ]
     },
     {
       "id": 8,
-      "name": "facturation-choix-pa-auto-entrepreneur",
-      "prompt": "Je suis auto-entrepreneur en services informatiques, je facture environ 5 clients par mois, tous en France. Je n'ai pas de compte Qonto. Quelle plateforme agréée me recommandes-tu pour la facturation électronique ?",
-      "expected_output": "Le skill recommande une PA gratuite adaptée au profil (auto-entrepreneur, faible volume, B2B France), compare les options, et justifie le choix.",
+      "name": "facturation-choix-operateur-peppol",
+      "prompt": "Je suis indépendant en personnes physique (PP) en services informatiques, je facture environ 5 clients par mois, tous en Belgique. Je n'ai pas encore de compte Qonto. Quel opérateur Peppol me recommandes-tu pour la facturation électronique B2B obligatoire depuis 2026 ?",
+      "expected_output": "Le skill recommande un opérateur Peppol adapté au profil (indépendant PP, faible volume, B2B Belgique), compare les options disponibles, et explique l'inscription au réseau Peppol via Mercurius.",
       "files": [],
       "assertions": [
-        "Au moins deux PA gratuites sont comparées",
-        "Les critères de comparaison incluent le coût (gratuit), la facilité d'utilisation, et le public cible",
-        "La recommandation est justifiée par le profil (auto-entrepreneur, faible volume)",
-        "Le skill mentionne de vérifier que la PA est bien immatriculée sur impots.gouv.fr",
-        "L'échéance de réception (sept. 2026) est rappelée",
-        "L'e-reporting est abordé (ventes B2B → pas de reporting spécifique, géré par la facturation électronique)"
+        "Au moins deux solutions Peppol sont comparées",
+        "Les critères de comparaison incluent le coût, la facilité d'utilisation, et le public cible",
+        "La recommandation est justifiée par le profil (indépendant PP, faible volume)",
+        "Le skill mentionne le portail Mercurius comme infrastructure nationale belge",
+        "L'obligation de réception depuis le 01/01/2026 est rappelée",
+        "Le format UBL 2.1 / Peppol BIS 3.0 est mentionné"
       ]
     },
     {
       "id": 9,
       "name": "facturation-validation-facture-incomplete",
-      "prompt": "Vérifie cette facture :\n\nFacture N° 2026-042\nDate : 15/09/2026\n\nWebCraft SASU\n12 rue du Commerce, Lyon\n\nClient : Jean Martin\n\nPrestation de conseil : 2 000 EUR\n\nÀ payer sous 30 jours.",
-      "expected_output": "Le skill identifie les mentions manquantes : SIRET émetteur, SIREN client (si B2B), mention franchise TVA, pénalités de retard, indemnité 40 EUR, catégorie d'opération (2026), quantité et prix unitaire, capital social et RCS.",
+      "prompt": "Vérifie cette facture :\n\nFacture N° 2026-042\nDate : 15/09/2026\n\nWebCraft SRL\n12 rue du Marché, Namur\n\nClient : Jean Martin\n\nPrestation de conseil : 2 000 EUR\n\nÀ payer sous 30 jours.",
+      "expected_output": "Le skill identifie les mentions manquantes selon l'AR du 29 juin 1992 (CTVA belge) : BCE émetteur, mention franchise TVA art. 56bis CTVA, pénalités de retard, indemnité 40 EUR, quantité et prix unitaire détaillés, IBAN, BCE du client si B2B.",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "Le SIRET de l'émetteur est identifié comme manquant",
-        "Le SIREN du client est identifié comme manquant (ou demande de clarification B2B/B2C)",
-        "La mention franchise TVA (art. 293 B) est identifiée comme manquante",
+        "Le BCE de l'émetteur est identifié comme manquant",
+        "Le numéro TVA BE de l'émetteur est identifié comme manquant",
+        "La mention franchise TVA (art. 56bis CTVA) est identifiée comme manquante",
         "Les pénalités de retard sont identifiées comme manquantes",
         "L'indemnité forfaitaire de 40 EUR est identifiée comme manquante",
         "La quantité et le prix unitaire détaillés sont identifiés comme manquants",
-        "La forme juridique, le capital social ou le RCS sont identifiés comme manquants",
-        "La catégorie d'opération (prestation de services) est mentionnée comme manquante pour 2026",
+        "Les coordonnées bancaires (IBAN) sont identifiées comme manquantes",
         "Le skill propose une version corrigée ou une liste de corrections"
       ]
     },
     {
       "id": 10,
-      "name": "facturation-e-reporting-saas-b2c",
-      "prompt": "Mon SaaS WebCraft vend des abonnements à des particuliers via Stripe. Je suis en franchise TVA. Quelles sont mes obligations d'e-reporting à partir de 2027 ?",
-      "expected_output": "Le skill explique les obligations d'e-reporting B2C : transmission des données de transactions (totaux par période), fréquence semestrielle pour la franchise, pas d'e-reporting de paiement car pas de TVA à l'encaissement. Mentionne que la PA gère la transmission.",
+      "name": "facturation-peppol-saas-b2b",
+      "prompt": "Mon SaaS WebCraft facture des abonnements à des entreprises belges via Stripe. Je suis en franchise TVA. Quelles sont mes obligations Peppol depuis 2026 et comment les intégrer avec Stripe ?",
+      "expected_output": "Le skill explique l'obligation Peppol B2B depuis le 01/01/2026, explique que les factures Stripe doivent être converties en UBL 2.1 et transmises via le réseau Peppol, mentionne le script generate-peppol.js de Paperasse, et précise qu'il n'y a pas d'e-reporting B2C en Belgique (contrairement à la France).",
       "files": [
         "evals/files/company-webdev.json"
       ],
       "assertions": [
-        "L'e-reporting de transactions B2C est expliqué (ventes aux particuliers)",
-        "La fréquence de transmission est correcte (semestrielle pour franchise en base)",
-        "Les données à transmettre sont décrites (bases HT par taux, montants TVA cumulés)",
-        "Le skill précise que l'e-reporting de paiement ne s'applique pas en franchise TVA",
-        "Le rôle de la PA dans la transmission est mentionné",
-        "L'amende pour défaut de transmission est mentionnée (250 EUR par transmission)",
-        "L'échéance est correcte (1er septembre 2027 pour PME/micro)"
+        "L'obligation Peppol B2B depuis le 01/01/2026 est expliquée (AR 29 octobre 2024)",
+        "Le format UBL 2.1 / Peppol BIS 3.0 est mentionné",
+        "L'intégration Stripe → Peppol est abordée (conversion des factures)",
+        "Le script generate-peppol.js de Paperasse est mentionné ou recommandé",
+        "Le skill précise qu'il n'y a pas d'e-reporting B2C obligatoire en Belgique",
+        "Le Peppol ID belge 0208:BCE est expliqué"
       ]
     }
   ]

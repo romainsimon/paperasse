@@ -3,131 +3,135 @@
   "evals": [
     {
       "id": 1,
-      "name": "ir-celibataire-salaire-simple",
-      "prompt": "Je suis célibataire, sans enfant, mon salaire net imposable (case 1AJ) est de 50 000 €. Pas d'autres revenus. Calcule mon impôt sur le revenu pour les revenus 2025.",
-      "expected_output": "Calcul complet avec abattement 10% (= RNI 45 000 €), application du barème progressif tranche par tranche, décote si applicable, impôt net final. Mention de la checklist à vérifier sur impots.gouv.fr.",
+      "name": "ipp-celibataire-salaire-simple",
+      "prompt": "Je suis célibataire, sans enfant, salarié en Belgique. Mon revenu net imposable (après cotisations sociales) est de 50 000 EUR. Pas d'autres revenus. Calcule mon IPP pour les revenus 2025 (exercice d'imposition 2026).",
+      "expected_output": "Calcul complet : forfait frais professionnels (30% plafonné à 5 930 EUR pour les revenus 2025), base imposable ~44 070 EUR, application barème progressif belge 2025 (25%/40%/45%/50%), réduction pour quotité exemptée de base, IPP fédéral net, additionnels communaux (~7%). Mention de Tax-on-web.",
       "files": [],
       "assertions": [
-        "Le skill applique l'abattement forfaitaire 10% sur les salaires (RNI = 50 000 × 0.9 = 45 000 €)",
-        "Le barème progressif est appliqué tranche par tranche (0%, 11%, 30%)",
-        "Les tranches 2025 correctes sont utilisées (11 600 / 29 579 / 84 577 / 181 917)",
-        "L'impôt brut pour 45 000 € avec 1 part est calculé (environ 6 604 €)",
-        "La décote est testée mais non applicable (impôt brut > 1 982 €)",
-        "L'année de référence des données (revenus 2025, déclaration 2026) est mentionnée",
-        "Pas de prélèvements sociaux calculés (pas de revenus du capital)",
-        "Le calcul est structuré étape par étape"
+        "Le skill applique le forfait frais professionnels belge 2025 (30% du brut, plafonné à 5 930 EUR)",
+        "Le barème IPP 2025 est appliqué tranche par tranche (25%, 40%, 45%, 50%)",
+        "Les tranches 2025 correctes sont utilisées (0-15.820 / 15.820-27.920 / 27.920-48.320 / >48.320)",
+        "La réduction pour quotité exemptée de base (10 910 EUR pour les revenus 2025) est appliquée",
+        "L'IPP fédéral net est calculé correctement",
+        "Les additionnels communaux sont mentionnés (taux moyen ~7% de l'IPP)",
+        "L'année de référence des données (revenus 2025, exercice 2026) est mentionnée",
+        "Le calcul est structuré étape par étape",
+        "Tax-on-web est mentionné pour la déclaration officielle"
       ]
     },
     {
       "id": 2,
-      "name": "ir-marie-2-enfants-plafonnement-qf",
-      "prompt": "Je suis marié avec 2 enfants à charge. Nos salaires imposables sont 80 000 € et 60 000 €. Pas d'autres revenus. Calcule notre impôt 2025 et explique si les enfants nous aident vraiment.",
-      "expected_output": "Calcul avec 3 parts (2 + 0,5 + 0,5), abattement 10% sur chaque salaire, application barème, PUIS vérification du plafonnement QF (2 demi-parts × 1 807 € = 3 614 €). Doit comparer impôt avec et sans enfants pour vérifier que le plafond n'est pas dépassé.",
+      "name": "ipp-couple-quotient-conjugal",
+      "prompt": "Je suis marié. Mon revenu net imposable est de 70 000 EUR (revenus professionnels). Mon conjoint travaille à mi-temps, revenus nets imposables 12 000 EUR. Pas d'enfants. Comment fonctionne le quotient conjugal et quel est notre avantage fiscal ?",
+      "expected_output": "Le quotient conjugal (art. 87 CIR 92) : une quote-part des revenus professionnels est attribuée au conjoint le moins rémunéré de façon à porter ses revenus à 30% du total du ménage, le montant attribué étant plafonné à 13 490 EUR (revenus 2025). Ici revenus B = 12 000 < 30% du ménage, donc applicable. Attribution = min(13 490, 30% × (70 000+12 000) − 12 000) = min(13 490, 12 600) = 12 600 EUR. L'avantage = différence d'IPP, le montant transféré étant taxé au taux marginal plus faible de B. Le skill rappelle que le quotient conjugal n'est plus indexé et disparaît progressivement dès l'exercice 2027.",
       "files": [],
       "assertions": [
-        "Le skill identifie 3 parts fiscales (2 base + 0,5 × 2 enfants)",
-        "L'abattement 10% est appliqué sur chaque salaire séparément",
-        "Le skill calcule l'impôt avec 3 parts ET avec 2 parts pour comparer",
-        "Le plafonnement QF est testé : gain réel vs gain max (2 × 1 807 = 3 614 €)",
-        "Le skill indique si le plafond QF est actif ou non dans ce cas",
-        "La réponse explique que les enfants aident mais que le gain est plafonné par demi-part",
-        "Les valeurs 2025 correctes sont utilisées (tranches, plafond QF 1 807 €)"
+        "Le skill identifie le mécanisme du quotient conjugal (art. 87 CIR 92)",
+        "Les conditions d'application sont vérifiées (le conjoint le moins rémunéré gagne moins de 30 % des revenus professionnels du ménage)",
+        "Le calcul de l'attribution est correct : min(13 490 EUR plafond 2025 ; 30 % du total ménage − revenus du conjoint faible)",
+        "Dans ce cas l'attribution est de 12 600 EUR (30 % × 82 000 − 12 000), inférieure au plafond de 13 490 EUR",
+        "Le skill chiffre l'avantage fiscal réel (économie d'IPP grâce au quotient conjugal)",
+        "Le skill distingue le quotient conjugal belge (mécanisme de transfert) du splitting français (mécanisme de parts)"
       ]
     },
     {
       "id": 3,
-      "name": "per-arbitrage-tmi",
-      "prompt": "Je gagne 90 000 € bruts (80 000 € imposables 1AJ). Mon conseiller me propose de verser 8 000 € sur un PER. C'est vraiment utile ou juste un report d'imposition ?",
-      "expected_output": "Économie immédiate calculée (8 000 × TMI 30% = 2 400 €). Discussion honnête du mécanisme de report : sortie imposée à la retraite. Recommandation dépend du TMI futur estimé. Plafond PER 10% des revenus pro. Rappel PEE/PERCO en priorité si disponible.",
+      "name": "pm-dividendes-vvpr-bis",
+      "prompt": "J'ai créé une SRL il y a 3 ans. Je veux me distribuer un dividende de 50 000 EUR. Mon comptable me parle de VVPR bis. C'est quoi et est-ce que je peux en bénéficier ?",
+      "expected_output": "Explication du VVPR bis (art. 269 §2 CIR 92) : précompte mobilier réduit pour PME ayant des actions nominatives libérées en numéraire depuis la constitution. Taux : 20% pour dividendes distribués à partir des bénéfices du 2e exercice complet, 15% à partir du 3e exercice complet. Conditions : SRL, capital libéré, actions nominatives, pas de réduction de capital dans les 4 ans. Calcul : 50 000 × (1 - 15%) = 42 500 EUR nets.",
       "files": [],
       "assertions": [
-        "L'économie immédiate est calculée en appliquant le TMI 30% au montant effectivement déductible",
-        "Le skill explique que c'est un REPORT d'imposition, pas une exonération",
-        "Le TMI futur à la retraite est mentionné comme variable clé",
-        "Le plafond PER 10% des revenus professionnels nets est correctement appliqué (72 000 × 10% = 7 200 €, donc 800 € non déductibles sur les 8 000 versés)",
-        "Le skill rappelle qu'il faut saturer l'abondement employeur PEE/PERCO en priorité si disponible",
-        "La réponse nuance : pas toujours avantageux, dépend de la situation"
+        "Le skill explique le VVPR bis (art. 269 §2 CIR 92)",
+        "Les taux progressifs sont corrects : 30% standard, 20% dès 2e exercice complet, 15% dès 3e exercice complet",
+        "Les conditions d'éligibilité sont vérifiées (SRL, actions nominatives, libérées en numéraire à la constitution)",
+        "La société ayant 3 ans peut bénéficier du taux de 15% (3e exercice complet)",
+        "Le calcul du dividende net est donné : 50 000 - (50 000 × 15%) = 42 500 EUR",
+        "Le skill mentionne la condition de non-réduction de capital dans les 4 ans"
       ]
     },
     {
       "id": 4,
-      "name": "pfu-vs-bareme-dividendes",
-      "prompt": "Célibataire, salaires 30 000 € net imposable. Je reçois 5 000 € de dividendes. Je choisis PFU ou barème ?",
-      "expected_output": "Calcul des deux scénarios. Sous PFU : 5 000 × 30% = 1 500 €. Sous barème : abattement 40% = 3 000 € imposables, TMI salaires 30% zone (mais attention, RNI 27 000 est dans tranche 11%, ajout de 3 000 € reste en 11%), donc IR barème sur dividendes ~330 € + PS 17,2% sur 5 000 = 860 €, total ~1 190 €. Barème plus favorable ici. Plus CSG déductible 6,8% × 5 000 × 11% = 37 € en N+1.",
+      "name": "crypto-bonne-gestion-belgique",
+      "prompt": "J'ai acheté du Bitcoin en 2020 et je l'ai vendu en 2025 avec une plus-value de 15 000 EUR. Je gère ce portefeuille en bon père de famille, sans trading intensif. Dois-je payer de l'impôt en Belgique ?",
+      "expected_output": "En Belgique, les plus-values crypto sont taxées selon la nature de l'opération : 'gestion normale du patrimoine privé' = exonéré (art. 90, 1° CIR 92 a contrario) ; 'revenus divers spéculatifs' = 33% + additionnels communaux (art. 90, 1° CIR 92). L'horizon long terme (2020-2025), l'absence de trading intensif et la détention majoritaire qualifient a priori de 'gestion normale'. Pas de seuil de 305 EUR comme en France. NB : une taxe de 10% sur les plus-values en gestion normale s'applique à partir du 01/01/2026 (historique jusqu'au 31/12/2025 généralement exonéré) ; le régime 33% spéculation est maintenu.",
       "files": [],
       "assertions": [
-        "Les deux scénarios (PFU et barème) sont chiffrés",
-        "Sous barème : abattement 40% sur dividendes est appliqué (3 000 € imposables)",
-        "Le TMI du foyer après ajout des dividendes est correctement identifié",
-        "Les PS 17,2% sont calculés dans les deux cas",
-        "Le skill rappelle que l'option barème est GLOBALE (tous revenus du capital)",
-        "La recommandation est cohérente avec le TMI : à TMI 11%, le barème est souvent meilleur pour les dividendes"
+        "Le skill applique le régime belge des plus-values crypto (pas le régime français 30%)",
+        "Le skill explique la distinction bonne gestion / spéculation (art. 90 CIR 92)",
+        "Le critère de détention long terme (5 ans) est mis en avant comme indicateur de bonne gestion",
+        "Le taux de 33% pour les revenus divers spéculatifs est mentionné",
+        "Le skill conclut que l'opération décrite semble relever de la bonne gestion (a priori exonérée)",
+        "Le skill recommande de documenter le contexte (dates d'achat, fréquence des opérations) en cas de contrôle",
+        "Le skill précise qu'il n'y a pas de seuil de 305 EUR comme en France"
       ]
     },
     {
       "id": 5,
-      "name": "lmnp-micro-vs-reel",
-      "prompt": "J'ai un appartement loué meublé, recettes 18 000 €/an (longue durée). Je suis au micro-BIC avec abattement 50%. Un ami me dit que je devrais passer au réel. Bonne idée ?",
-      "expected_output": "Micro-BIC = 18 000 × 50% = 9 000 € imposables. Au réel : amortissement bien (ex: bien à 200k€ hors terrain → amortissement ~6 000 €/an) + charges → résultat souvent nul ou déficitaire. Nuance : déficit LMNP non imputable sur revenu global. Évoquer bascule LMP si recettes > 23 000 € ET > 50% autres revenus pro.",
+      "name": "revenus-immobiliers-rc-location-nue",
+      "prompt": "J'ai un appartement que je loue nu à un particulier. Le revenu cadastral (RC) indexé est de 1 200 EUR. Pas d'emprunt. Je ne l'occupe pas. Comment suis-je taxé sur ce revenu en Belgique ?",
+      "expected_output": "Location nue à un particulier : imposé sur le RC indexé × 1,4 = 1 680 EUR comme revenu immobilier à l'IPP (art. 7 §1 2°a CIR 92). Coefficient d'indexation 2025 = 2,1763. Si RC non indexé = 1 200 / 2,1763 ≈ 551 EUR, RC indexé = 1 200 EUR, base imposable = 1 200 × 1,4 = 1 680 EUR. Ce n'est pas le loyer réel qui est imposé mais ce forfait, sauf si loyer < RC indexé × 1,4.",
       "files": [],
       "assertions": [
-        "Le skill reconnaît le régime micro-BIC LMNP longue durée (abattement 50%, seuil 77 700 €)",
-        "Le calcul micro est donné (18 000 × 50% = 9 000 € de base imposable)",
-        "Le skill explique le principe du réel : amortissements + charges",
-        "Le skill rappelle que le déficit LMNP n'est PAS imputable sur le revenu global",
-        "La règle de bascule LMP (23 000 € ET > 50% autres revenus pro) est mentionnée",
-        "La recommandation est nuancée : ça dépend de la valeur du bien et des charges réelles"
+        "Le skill applique la règle belge : RC indexé × 1,4 comme base imposable (art. 7 §1 2°a CIR 92)",
+        "Le skill précise que c'est le RC indexé (et non le loyer réel) qui sert de base",
+        "La base imposable est calculée correctement (1 200 × 1,4 = 1 680 EUR)",
+        "Le skill mentionne le coefficient d'indexation 2025",
+        "Le skill explique l'avantage : si le loyer réel est supérieur au RC indexé × 1,4, la base forfaitaire s'applique",
+        "Le skill précise que le précompte immobilier (taxe régionale sur le RC) est distinct et s'applique séparément"
       ]
     },
     {
       "id": 6,
-      "name": "rsu-vesting-quotient",
-      "prompt": "J'ai reçu un vesting RSU de 100 000 € cette année. Mon salaire habituel est 60 000 €. Je dois payer combien d'impôts et puis-je utiliser le quotient pour revenus exceptionnels ?",
-      "expected_output": "Gain acquisition 100 000 € = imposé comme salaire (1TT). Total imposable salaires : 160 000 € + abattement 10%. CSG 9,7% sur RSU + contribution salariale 10% éventuelle. Quotient : comparer impôt avec/sans quotient (coefficient 4). À 160k€ on est en TMI 41%, quotient peut lisser si on revient en 30% sans RSU. La PV ultérieure (cession après vesting) sera imposée séparément au PFU.",
+      "name": "eip-regle-80-pour-cent",
+      "prompt": "Je suis gérant d'une SRL. Mon salaire mensuel brut est de 4 000 EUR (48 000 EUR/an). Je veux savoir si je peux créer un EIP (Engagement Individuel de Pension) et quelle prime maximale la SRL peut déduire.",
+      "expected_output": "L'EIP (Engagement Individuel de Pension) est déductible pour la SRL sous la règle des 80% : la pension légale + la pension extra-légale ne peut dépasser 80% du dernier salaire brut annuel. Prime déductible = (80% × 48 000 - pension légale estimée) / facteur de capitalisation. La prime est déductible à l'ISOC pour la SRL, imposable à la liquidation (60% sur capital, ISOC 10% via liquidation-bonus ou capitaux de pension). Intérêt : déduction immédiate pour la SRL.",
       "files": [],
       "assertions": [
-        "Le skill identifie le gain RSU comme SALAIRE (pas comme PV mobilière)",
-        "L'abattement 10% salaire s'applique sur le total salaires + RSU",
-        "La CSG 9,7% sur le gain RSU est mentionnée",
-        "La contribution salariale 10% sur plans qualifiants est évoquée",
-        "Le mécanisme du quotient (coefficient 4) est expliqué",
-        "Le skill chiffre (ou explique comment chiffrer) les 2 scénarios avec/sans quotient",
-        "Le skill distingue gain d'acquisition (salaire) et future PV de cession (PFU)"
+        "Le skill explique l'EIP (Engagement Individuel de Pension) comme véhicule de pension dirigeant",
+        "La règle des 80% est expliquée (pension légale + EIP ≤ 80% du dernier salaire normal)",
+        "Le calcul du plafond de prime déductible est expliqué",
+        "La prime EIP est identifiée comme déductible à l'ISOC pour la SRL",
+        "Le régime fiscal à la sortie (taxation à taux réduit) est mentionné",
+        "Le skill compare l'EIP avec l'épargne-pension ordinaire"
       ]
     },
     {
       "id": 7,
-      "name": "crypto-pamc-exoneration",
-      "prompt": "J'ai vendu 250 € de Bitcoin cette année avec une PV de 40 €. Je dois déclarer ?",
-      "expected_output": "Exonération totale car cessions annuelles ≤ 305 €. Pas de déclaration 2086 requise. Au-delà de 305 €, imposition intégrale (pas seulement la fraction).",
+      "name": "epargne-pension-choix-1050-vs-1350",
+      "prompt": "Je veux faire de l'épargne-pension. J'hésite entre verser 1 050 EUR (réduction 30%) ou 1 350 EUR (réduction 25%). Mon TMI est de 50%. Quelle option est la plus avantageuse et comment déclarer ?",
+      "expected_output": "Option 1 050 EUR : réduction d'impôt = 1 050 × 30% = 315 EUR. Option 1 350 EUR : réduction d'impôt = 1 350 × 25% = 337,50 EUR. Différence de versement : 300 EUR. Différence de réduction : 22,50 EUR. La deuxième option donne plus de réduction fiscale mais nécessite 300 EUR de plus. Le skill rappelle le piège fiscal : entre 1 050,01 € et 1 260 €, l'avantage est inférieur aux 315 € de l'option basse — l'option haute n'est gagnante qu'au-delà de 1 260 € versés. Déclaration Tax-on-web, code 1361/2361.",
       "files": [],
       "assertions": [
-        "Le skill identifie le seuil d'exonération de 305 € de cessions annuelles",
-        "Le skill confirme l'exonération totale dans ce cas (250 € ≤ 305 €)",
-        "Le skill précise que le seuil s'applique sur le montant brut des cessions, pas sur la PV",
-        "Le skill avertit que dépasser 305 € déclencherait l'imposition sur TOUT (pas seulement l'excédent)"
+        "Le skill explique les deux plafonds belges (revenus 2025) : 1 050 EUR / 30% et 1 350 EUR / 25%",
+        "Les deux réductions sont calculées : 315 EUR et 337,50 EUR",
+        "Le skill signale le piège fiscal de la zone 1 050,01–1 260 EUR",
+        "Le skill compare les deux options (coût net après réduction)",
+        "Le skill précise que le taux de réduction ne suit pas le TMI (c'est un taux fixe de 30% ou 25%)",
+        "La déclaration Tax-on-web est mentionnée avec le code 1361/2361",
+        "Le skill mentionne la taxation à la liquidation (taxe libératoire 8% à 60 ans)"
       ]
     },
     {
       "id": 8,
-      "name": "ifi-assujettissement-decote",
-      "prompt": "Mon patrimoine immobilier net au 1er janvier : résidence principale 900 000 € + appartement locatif 500 000 €, emprunt restant 200 000 € sur le locatif. Dois-je payer l'IFI ?",
-      "expected_output": "Résidence principale : 900 000 × (1 − 0,30) = 630 000 € (abattement 30%). Locatif : 500 000 − 200 000 = 300 000 €. Patrimoine net taxable = 930 000 €. Sous le seuil d'assujettissement (1 300 000 €) → pas d'IFI dû.",
+      "name": "atn-vehicule-societe",
+      "prompt": "Ma SRL met un véhicule à ma disposition à titre personnel. C'est une voiture électrique Tesla Model 3 valeur catalogue 55 000 EUR, mise en circulation en janvier 2025. Quel est mon avantage de toute nature (ATN) imposable ?",
+      "expected_output": "ATN véhicule belge = valeur catalogue × % CO₂ × 6/7 × coefficient d'âge. Véhicule électrique : émissions CO₂ = 0 g/km → % CO₂ ramené au plancher de 4%. Coefficient d'âge = 100% (1re immatriculation 2025). ATN annuel = 55 000 × 4% × 6/7 × 100% = 1 885,71 EUR ≈ 1 886 EUR. Comme 1 886 EUR > ATN minimum 2025 (1 650 EUR), l'ATN imposable retenu est ≈ 1 886 EUR/an, imposable à l'IPP. La SRL déduit 100% des frais du véhicule électrique (déductibilité 100% pour BEV).",
       "files": [],
       "assertions": [
-        "L'abattement 30% sur la résidence principale est appliqué (630 000 € pris en compte)",
-        "L'emprunt est déduit de la valeur du bien locatif",
-        "Le total patrimoine net taxable est calculé (930 000 €)",
-        "Le skill conclut que le seuil d'assujettissement (1 300 000 €) n'est pas atteint",
-        "Pas d'IFI dû, pas de déclaration 2042-IFI",
-        "Le seuil d'assujettissement IFI 1 300 000 € est correctement cité"
+        "Le skill applique la formule belge ATN véhicule complète (valeur catalogue × % CO₂ × 6/7 × coefficient d'âge), sans omettre le facteur 6/7",
+        "Le plancher de 4% pour les véhicules zéro émission est appliqué",
+        "L'ATN annuel est calculé correctement : 55 000 × 4% × 6/7 ≈ 1 886 EUR (et non 2 200 EUR)",
+        "Le skill compare le résultat à l'ATN minimum 2025 de 1 650 EUR",
+        "Le skill précise que cet ATN est imposable à l'IPP du dirigeant",
+        "La déductibilité 100% des frais véhicule électrique à l'ISOC est mentionnée",
+        "Le skill mentionne le précompte professionnel sur l'ATN"
       ]
     },
     {
       "id": 9,
       "name": "redirection-succession-vers-notaire",
       "prompt": "Mon père est décédé. Comment calcule-t-on les droits de succession pour ses héritiers ?",
-      "expected_output": "Sujet hors scope du fiscaliste. Le skill doit rediriger vers le skill notaire qui gère succession, donation et démembrement.",
+      "expected_output": "Sujet hors scope du fiscaliste belge. Le skill doit rediriger vers le skill notaire qui gère succession, donation et transmission patrimoniale.",
       "files": [],
       "assertions": [
         "Le skill identifie que la succession est hors de son scope",
@@ -137,141 +141,72 @@
     },
     {
       "id": 10,
-      "name": "redirection-sasu-vers-comptable",
-      "prompt": "Je veux comparer rémunération en salaire vs dividendes dans ma SASU. Peux-tu m'aider ?",
-      "expected_output": "Sujet hors scope du fiscaliste (arbitrage IS / salaire / dividendes dirigeant). Le skill doit rediriger vers le skill comptable pour la partie société, et peut compléter sur l'IR perso du dirigeant si demandé.",
+      "name": "redirection-srl-vers-comptable",
+      "prompt": "Je veux comparer rémunération en salaire vs dividendes dans ma SRL. Peux-tu m'aider ?",
+      "expected_output": "L'arbitrage SRL salaire/dividendes dépasse le scope IPP pur. Le skill doit rediriger vers le skill comptable pour la partie ISOC/SRL, et peut compléter sur l'IPP perso du dirigeant si demandé.",
       "files": [],
       "assertions": [
-        "Le skill identifie que l'arbitrage SASU salaire/dividendes est hors de son scope",
+        "Le skill identifie que l'arbitrage SRL salaire/dividendes est hors de son scope",
         "Le skill redirige explicitement vers le skill comptable",
-        "Le skill peut proposer de compléter sur l'IR perso du dirigeant si l'utilisateur le souhaite"
+        "Le skill peut proposer de compléter sur l'IPP perso du dirigeant si l'utilisateur le souhaite"
       ]
     },
     {
       "id": 11,
-      "name": "cehr-couple-haut-revenu",
-      "prompt": "Couple marié, RFR 2025 de 780 000 €. Quelle est la CEHR due en plus de notre IR ?",
-      "expected_output": "CEHR s'applique à partir de 500 000 € pour un couple. Tranche 3 % de 500 000 € à 1 000 000 € : (780 000 − 500 000) × 3 % = 8 400 €. Pas de tranche 4 % (RFR < 1 000 000 €). CEHR totale = 8 400 € s'ajoutant à l'IR net.",
+      "name": "additionnels-communaux",
+      "prompt": "J'habite à Bruxelles (commune d'Ixelles, taux additionnel communal 7,5%). Mon IPP fédéral net est de 8 000 EUR. Comment calculer mes additionnels communaux et comment sont-ils prélevés ?",
+      "expected_output": "Les additionnels communaux belges sont calculés sur l'IPP de base (avant additionnels) au taux fixé par la commune. Pour Ixelles 7,5% : 8 000 × 7,5% = 600 EUR. Le précompte professionnel intègre déjà une estimation des additionnels basée sur le domicile. Le solde est régularisé via l'avis d'imposition. Les taux varient de 0% (Lasne, Knoktke-Heist) à 9%+ (certaines communes).",
       "files": [],
       "assertions": [
-        "Le skill utilise le RFR (pas le RNI) comme base de la CEHR",
-        "Les seuils couple sont corrects (500 000 € / 1 000 000 €)",
-        "Le calcul tranche par tranche est correct : (780 000 − 500 000) × 3 % = 8 400 €",
-        "Le skill précise que la CEHR s'AJOUTE à l'IR net (ne se déduit pas)",
-        "Le mécanisme de lissage sur 2 années (art. 223 sexies CGI) peut être mentionné"
+        "Le calcul des additionnels communaux est correct (8 000 × 7,5% = 600 EUR)",
+        "Le skill explique que le taux est fixé par chaque commune",
+        "Le skill mentionne que le précompte professionnel intègre une estimation des additionnels",
+        "La régularisation via l'avis d'imposition est mentionnée",
+        "Le skill mentionne la variation des taux entre communes belges"
       ]
     },
     {
       "id": 12,
-      "name": "deficit-foncier-imputation",
-      "prompt": "Foncier nu au réel : loyers bruts 15 000 €, charges courantes 4 000 €, travaux déductibles 18 000 €, intérêts d'emprunt 6 000 €. Quel est mon déficit foncier et combien s'impute sur mon revenu global ?",
-      "expected_output": "Résultat foncier = 15 000 − 4 000 − 18 000 − 6 000 = −13 000 €. Le déficit foncier s'impute sur le revenu global dans la limite de 10 700 €, hors intérêts d'emprunt. Part intérêts (6 000 €) reste imputable uniquement sur les revenus fonciers des 10 années suivantes. Part hors intérêts : 13 000 − 6 000 = 7 000 € ≤ 10 700 € → entièrement imputable sur le revenu global. Solde sur revenus fonciers futurs : 6 000 €.",
+      "name": "workflow-declaration-tax-on-web",
+      "prompt": "On est en juin 2026, je dois faire ma déclaration IPP pour les revenus 2025. Quelles étapes dois-je suivre pour ne rien oublier ?",
+      "expected_output": "Workflow structuré Tax-on-web : 1) Connexion Tax-on-web avec itsme/eID, 2) Vérifier la situation personnelle (adresse, état civil, enfants à charge), 3) Vérifier les revenus pré-remplis (salaires, PM précompté), 4) Ajouter les revenus non pré-remplis : revenus immobiliers (RC indexé × 1,4), revenus mobiliers (PM non prélevé), revenus divers, 5) Déductions : EIP, épargne-pension (code 1361/2361), chèque-habitat régional, 6) Crédits d'impôt : frais de garde, dons, 7) Valider et signer. Date limite fin juin pour papier, fin juillet pour en ligne.",
       "files": [],
       "assertions": [
-        "Le déficit foncier est calculé correctement (−13 000 €)",
-        "Le skill distingue la part intérêts d'emprunt et le reste",
-        "La limite de 10 700 € d'imputation sur revenu global est citée",
-        "Les intérêts d'emprunt sont exclus de l'imputation sur revenu global",
-        "Le report 10 ans sur revenus fonciers uniquement est mentionné pour la part non imputée"
+        "Le skill propose un workflow structuré étape par étape pour Tax-on-web",
+        "La connexion via itsme ou eID est mentionnée",
+        "Les principaux codes de déclaration belges sont cités (1250/2250 salaires, 1361/2361 épargne-pension)",
+        "Les revenus immobiliers belges (RC indexé × 1,4) sont rappelés",
+        "L'épargne-pension avec ses codes est rappelée",
+        "Les dates limites belges sont évoquées (fin juin papier, fin juillet en ligne)",
+        "La vérification de la situation familiale est mise en avant"
       ]
     },
     {
       "id": 13,
-      "name": "pea-retrait-avant-5-ans",
-      "prompt": "J'ai ouvert mon PEA il y a 3 ans, valorisation 40 000 € pour 30 000 € de versements. Si je retire maintenant, quelle fiscalité ?",
-      "expected_output": "Retrait avant 5 ans : clôture du PEA + imposition des gains (10 000 €) au PFU 30 % (12,8 % IR + 17,2 % PS), soit 3 000 €. Conseil : attendre 5 ans si possible pour exonération IR (seuls PS 17,2 % restent dus).",
+      "name": "deficit-professionnel-independant",
+      "prompt": "Je suis indépendant complémentaire. Mon activité a généré 8 000 EUR de revenus et 12 000 EUR de charges professionnelles. J'ai donc un déficit de 4 000 EUR. Puis-je le déduire de mes revenus salariaux (35 000 EUR) ?",
+      "expected_output": "Oui, en Belgique le déficit professionnel d'une activité complémentaire peut être compensé avec d'autres revenus professionnels de la même catégorie. Le déficit de 4 000 EUR est déduit des 35 000 EUR salariaux → base imposable revenus professionnels = 31 000 EUR. Contrairement à la France (déficit BNC imputable sur revenu global dans certaines limites), la Belgique permet la compensation au sein des revenus professionnels sans limitation de montant.",
       "files": [],
       "assertions": [
-        "Le skill identifie le retrait avant 5 ans comme entraînant clôture du PEA",
-        "L'imposition au PFU 30 % sur les gains (10 000 €) est calculée",
-        "Le skill recommande d'attendre 5 ans pour économiser 12,8 % d'IR",
-        "Le skill précise qu'après 5 ans les PS 17,2 % restent dus (pas d'exonération totale)"
+        "Le skill confirme que le déficit est déductible des revenus salariaux",
+        "Le calcul est donné : 35 000 - 4 000 = 31 000 EUR de base imposable professionnelle",
+        "Le skill précise la règle belge de compensation au sein des revenus professionnels",
+        "Le skill distingue la règle belge de la règle française (plus favorable en Belgique)",
+        "Le skill mentionne l'importance de conserver les justificatifs des charges"
       ]
     },
     {
       "id": 14,
-      "name": "assurance-vie-rachat-apres-8-ans-couple",
-      "prompt": "Couple pacsé, rachat partiel sur une assurance-vie ouverte il y a 10 ans : 25 000 € dont 8 000 € de gains. Versements totaux 100 000 €. Quelle fiscalité ?",
-      "expected_output": "Contrat > 8 ans, versements < 150 000 € (100 000 € ≤ 150 000 €) → abattement couple 9 200 € sur les gains. Gains imposables : 8 000 − 9 200 = 0 € (abattement supérieur aux gains). Pas d'IR dû. PS 17,2 % sur les 8 000 € de gains = 1 376 € (les PS sont dus indépendamment de l'abattement IR).",
+      "name": "quotites-exemptees-enfants",
+      "prompt": "Je suis célibataire avec 2 enfants à charge. Mon IPP brut (avant réduction quotité exemptée) est de 12 000 EUR. Quelle est ma réduction pour enfants à charge ?",
+      "expected_output": "Quotités exemptées belges (revenus 2025) : base 10 910 EUR + supplément 1er enfant 1 690 EUR + supplément 2e enfant 4 340 EUR = total exempt 16 940 EUR. La réduction = barème progressif appliqué à la quotité exemptée totale (les tranches basses d'abord) : 15 820 × 25% + (16 940 - 15 820) × 40% = 3 955 + 448 = 4 403 EUR de réduction. IPP brut 12 000 > réduction 4 403 → IPP réduit = 12 000 - 4 403 = 7 597 EUR.",
       "files": [],
       "assertions": [
-        "Le skill applique l'abattement 9 200 € couple (> 8 ans)",
-        "Le skill vérifie le seuil 150 000 € de versements (non dépassé)",
-        "Les gains imposables à l'IR ressortent à 0 € grâce à l'abattement",
-        "Les PS 17,2 % sont calculés SUR LES GAINS (sans abattement applicable aux PS)",
-        "Le skill distingue clairement IR et PS (piège classique)"
-      ]
-    },
-    {
-      "id": 15,
-      "name": "bspce-anciennete-penalite",
-      "prompt": "J'ai exercé des BSPCE et cédé les actions avec 50 000 € de plus-value. Je suis dans la société depuis 2 ans seulement. Quelle fiscalité ?",
-      "expected_output": "Ancienneté < 3 ans → pénalité : 30 % IR + 20 % PS = 50 % global. 50 000 × 50 % = 25 000 €. Si l'utilisateur attend 1 an de plus (≥ 3 ans), taux 30 % global = 15 000 €. Gain à attendre : 10 000 € (si les BSPCE sont encore valables).",
-      "files": [],
-      "assertions": [
-        "Le skill identifie l'ancienneté < 3 ans comme déclenchant la pénalité",
-        "Le taux 50 % (30 % IR + 20 % PS) est appliqué",
-        "Le skill chiffre l'écart avec le régime favorable (30 %)",
-        "Le skill suggère d'attendre 3 ans d'ancienneté si possible",
-        "Le skill rappelle les conditions d'éligibilité société (SAS/SA française, < 15 ans, IS, 25 % personnes physiques)"
-      ]
-    },
-    {
-      "id": 16,
-      "name": "per-mutualisation-couple",
-      "prompt": "Mon conjoint ne travaille pas (parent au foyer), moi je gagne 70 000 € (salaire net imposable). Mon plafond PER est déjà bien utilisé. Peut-il verser sur son PER et déduire quand même ?",
-      "expected_output": "Oui via la mutualisation couple (case à cocher sur 2042). Le conjoint sans revenu pro a un plafond plancher de 4 710 € (10 % × PASS). Mutualisation = les plafonds des deux conjoints sont additionnés. Économie selon TMI : 4 710 × 30 % = 1 413 €. Le versement peut être fait sur le PER du conjoint sans revenu pro et déduit du revenu imposable commun.",
-      "files": [],
-      "assertions": [
-        "Le skill identifie la possibilité de mutualisation couple",
-        "Le plafond plancher 4 710 € est cité",
-        "Le skill précise qu'il faut COCHER la case de mutualisation sur 2042",
-        "L'économie d'impôt est chiffrée en appliquant le TMI du foyer",
-        "Le skill recommande de vérifier l'avis d'imposition N-1 pour le plafond officiel DGFIP"
-      ]
-    },
-    {
-      "id": 17,
-      "name": "workflow-declaration-complete",
-      "prompt": "On est en mai 2026, je dois faire ma déclaration des revenus 2025. Quelles étapes dois-je suivre pour ne rien oublier ?",
-      "expected_output": "Workflow structuré : 1) Se connecter impots.gouv.fr avec numéro fiscal, 2) Vérifier la situation familiale (naissance, mariage, séparation), 3) Vérifier les salaires pré-remplis (case 1AJ / 1BJ), 4) Ajouter les revenus non pré-remplis : dividendes (2DC), intérêts (2TR), PV mobilières (3VG), revenus fonciers (4BE micro ou 2044 réel), crypto (2086 si cessions > 305 €), 5) Déductions : PER (6NS/6NT), pension alimentaire, 6) Niches : dons, emploi à domicile, garde enfants, 7) IFI si patrimoine > 1,3 M€ (2042-IFI), 8) Option PFU/barème si pertinent, 9) Vérifier le RFR final, 10) Signer. Date limite : fin mai ou début juin selon département.",
-      "files": [],
-      "assertions": [
-        "Le skill propose un workflow structuré étape par étape",
-        "Les principales cases 2042 sont citées (1AJ, 2DC, 3VG, 4BE, 6NS)",
-        "Le formulaire 2086 crypto est rappelé (seuil 305 €)",
-        "Le formulaire 2042-IFI est mentionné pour les patrimoines > 1,3 M€",
-        "L'option PFU/barème est mentionnée comme choix à faire",
-        "Les dates limites selon département sont évoquées",
-        "La vérification de la situation familiale avant tout est mise en avant"
-      ]
-    },
-    {
-      "id": 18,
-      "name": "pas-modulation-baisse-revenus",
-      "prompt": "J'ai perdu mon emploi en mars. Mon taux PAS est calculé sur mes revenus de l'an dernier, trop élevé. Que puis-je faire ?",
-      "expected_output": "Modulation à la baisse possible dès que l'écart estimé dépasse 5 %. Procédure : espace impots.gouv.fr → 'Gérer mon prélèvement à la source' → 'Actualiser mon taux'. Attention à la pénalité 10 % si écart > 10 % et non justifié — être conservateur. Signaler aussi tout changement de situation familiale dans les 60 jours. Si le nouveau taux est 0 % (estimation revenus nuls), possible aussi.",
-      "files": [],
-      "assertions": [
-        "Le skill propose la modulation à la baisse via l'espace impots.gouv.fr",
-        "Le seuil de 5 % d'écart estimé est cité",
-        "Le skill mentionne la pénalité 10 % si écart > 10 % non justifié",
-        "Le skill rappelle le délai de 60 jours pour signaler un changement familial",
-        "Le skill évoque la possibilité d'un taux 0 % si revenus nuls anticipés"
-      ]
-    },
-    {
-      "id": 19,
-      "name": "plafond-niches-global",
-      "prompt": "En 2025 j'ai : 4 000 € de dons (réduction 66 %), 6 000 € d'emploi à domicile (crédit 50 %), 3 000 € de versements FCPI (réduction 25 %), 5 000 € de réduction Pinel. Ai-je un problème avec le plafond global ?",
-      "expected_output": "Calcul des niches : dons (hors plafond : 2 640 €), emploi à domicile (hors plafond, crédit 3 000 €), FCPI (DANS plafond : 750 €), Pinel (DANS plafond : 5 000 €). Total DANS plafond = 750 + 5 000 = 5 750 € ≤ 10 000 € → pas de dépassement. Total hors plafond = 5 640 €. Total économie fiscale = 11 390 €. Attention : seules les niches DANS le plafond (Pinel + FCPI) sont comptabilisées pour le plafond 10 000 €.",
-      "files": [],
-      "assertions": [
-        "Le skill distingue niches DANS plafond (Pinel, FCPI) et HORS plafond (dons, emploi à domicile)",
-        "Les montants des réductions/crédits sont correctement calculés",
-        "Le skill additionne uniquement les niches dans le plafond pour vérifier les 10 000 €",
-        "Le skill conclut correctement sur le respect du plafond (5 750 € < 10 000 €)",
-        "Le skill rappelle que l'excédent au-delà du plafond serait perdu (non reportable)"
+        "Le skill applique les quotités exemptées belges 2025 (base + suppléments par enfant)",
+        "Les montants corrects sont utilisés : 1 690 EUR (1er enfant), 4 340 EUR (2e enfant)",
+        "La réduction est calculée en appliquant le barème à la quotité exemptée totale",
+        "La réduction finale est calculée correctement",
+        "Le skill distingue les quotités exemptées belges du quotient familial français (mécanisme différent)"
       ]
     }
   ]

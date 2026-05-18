@@ -1,19 +1,20 @@
 {
   "name": "WebAgency",
-  "legal_form": "SASU",
-  "siren": "987654321",
-  "siret": "98765432100011",
-  "director": {
+  "legal_form": "SRL",
+  "bce": "0987.654.321",
+  "tva_number": "BE0987654321",
+  "president": {
     "name": "Sophie Martin",
-    "title": "Présidente"
+    "title": "Gérant",
+    "civility": "Mme"
   },
   "address": {
     "street": "15 rue des Lilas",
-    "city": "Nantes",
-    "zip": "44000"
+    "city": "Liège",
+    "zip": "4000"
   },
-  "naf": "6201Z",
-  "capital": 1000,
+  "nace": "6201Z",
+  "capital": 18550,
   "fiscal_year": {
     "start": "2025-01-01",
     "end": "2025-12-31",
@@ -21,11 +22,11 @@
     "first_exercise": false
   },
   "tax": {
-    "regime": "IS",
+    "regime": "ISOC",
     "tva": "franchise"
   },
   "banks": [
-    { "id": "qonto", "name": "Qonto", "account": "5121", "type": "api" }
+    { "id": "qonto", "name": "Qonto", "account": "5500", "type": "api" }
   ],
   "qonto": {
     "enabled": true

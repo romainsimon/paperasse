@@ -1,0 +1,48 @@
+{
+  "skill_name": "reviseur-entreprises",
+  "evals": [
+    {
+      "id": 1,
+      "name": "audit-complet-srl-saas",
+      "prompt": "Réalise l'audit des comptes annuels 2025 de WebAgency (SRL). Le company.json est en place. Le livre-journal est dans evals/files/livre-journal-webagency.csv. Fais toutes les phases de l'audit.",
+      "expected_output": "Le skill déroule les 7 phases d'audit ISA/IRE. Phase 2 (livre-journal belge) : vérifie le format CSV, l'équilibre, la conformité PCMN. Phase 3 (Bilan) : vérifie les immobilisations et amortissements. Phase 4 (Compte de résultat) : identifie le PCA manquant sur l'abonnement annuel Client Alpha (12 000 EUR en déc), questionne Netflix en 6120. Phase 7 : réconciliation bancaire, opinion finale.",
+      "files": [
+        "evals/files/company-webagency.json",
+        "evals/files/livre-journal-webagency.csv"
+      ],
+      "assertions": [
+        "Le skill lit company.json pour obtenir le contexte automatiquement",
+        "Le livre-journal belge est contrôlé : format CSV (Date;Journal;Référence;Libellé;CompteDebit;CompteCredit;Montant;Devise), équilibre global, conformité PCMN",
+        "Chaque écriture est vérifiée équilibrée (débit = crédit par référence)",
+        "L'amortissement du MacBook Pro est vérifié (1800 EUR, compte 2430, 3 ans, prorata 7/12 = ~350 EUR)",
+        "Le PCA est identifié pour l'abonnement annuel Client Alpha (12 000 EUR en décembre, 11/12 mois sur N+1)",
+        "L'abonnement Netflix (15,99 EUR en 6120) est questionné comme charge potentiellement personnelle",
+        "Le bureau domicile (250 EUR en mai seulement) est signalé comme incomplet ou à justifier",
+        "Les commissions Stripe (127,50 EUR) ne couvrent que T2, les autres trimestres manquent",
+        "Le seuil franchise TVA (25.000 EUR, art. 56bis CTVA) est vérifié par rapport au CA total",
+        "Un rapport d'audit structuré est produit avec opinion et tableau de synthèse (format ISA 700)",
+        "Les recommandations incluent les points d'amélioration identifiés"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "controle-livre-journal-format",
+      "prompt": "Vérifie la conformité du livre-journal belge de WebAgency (evals/files/livre-journal-webagency.csv) avant de le communiquer à l'administration fiscale (art. 315 CIR 92).",
+      "expected_output": "Le skill exécute la Phase 2 de l'audit : vérifie le format CSV belge (8 colonnes), l'équilibre global (total débit = total crédit), l'équilibre par écriture, la numérotation des références, les dates dans la période 2025, la conformité PCMN des comptes.",
+      "files": [
+        "evals/files/company-webagency.json",
+        "evals/files/livre-journal-webagency.csv"
+      ],
+      "assertions": [
+        "Les 8 colonnes obligatoires du livre-journal belge sont vérifiées présentes (Date;Journal;Référence;Libellé;CompteDebit;CompteCredit;Montant;Devise)",
+        "L'équilibre global est vérifié (total débit = total crédit)",
+        "Chaque écriture est vérifiée individuellement pour l'équilibre",
+        "La chronologie des références est vérifiée (séquence logique sans trous)",
+        "Toutes les dates sont vérifiées dans la période 01/01/2025 au 31/12/2025",
+        "Les comptes sont vérifiés contre le PCMN (racines valides : classes 1-7)",
+        "Aucun montant négatif injustifié n'est signalé",
+        "Le résultat est présenté de façon structurée avec conclusion (conforme / non conforme) et base légale (art. 315 CIR 92)"
+      ]
+    }
+  ]
+}

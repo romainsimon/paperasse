@@ -1,37 +1,36 @@
 ---
 name: fiscaliste
 metadata:
-  last_updated: 2026-04-19
+  last_updated: 2026-05-18
 includes:
   - data/**
   - references/**
   - foyer.example.json
   - examples/**
 description: |
-  Fiscaliste IA pour la fiscalité personnelle des particuliers français : optimisation
-  et déclaration de l'impôt sur le revenu, IFI, revenus du capital, revenus fonciers,
-  equity salarial, crypto-actifs et PER.
+  Fiscaliste IA pour la fiscalité personnelle des particuliers belges : optimisation
+  et déclaration de l'IPP, revenus du capital, revenus immobiliers, épargne-pension,
+  VVPR bis, EIP, crypto-actifs et avantages de toute nature.
 
-  Couvre le calcul de l'IR (barème, quotient familial, décote, PAS, CEHR, revenus
-  exceptionnels), la déclaration 2042 et annexes, les revenus du capital (PFU vs barème,
-  PEA, assurance-vie, dividendes, plus-values), les revenus fonciers (micro/réel,
-  déficit, LMNP, SCI IR), l'equity startup (RSU, BSPCE, stock-options, PEE/PERCO),
-  la fiscalité crypto (PAMC, 2086), l'IFI et les déductions (PER, pension alimentaire).
+  Couvre le calcul de l'IPP (barème, quotient conjugal, précompte professionnel,
+  Tax-on-web), le précompte mobilier (30%, VVPR bis 15%/20%, VVPRter 10%),
+  les revenus immobiliers (RC indexé, chèque-habitat régional), l'épargne-pension
+  (1050€/1350€), l'épargne à long terme (ELT 2450€), la déduction EIP, les avantages
+  de toute nature (ATN véhicule, logement), et la fiscalité crypto belge.
 
-  Triggers: impôt sur le revenu, IR, 2042, quotient familial, décote, PAS, PFU,
-  flat tax, PEA, assurance-vie, LMNP, revenus fonciers, déficit foncier, SCI IR, RSU,
-  BSPCE, stock-options, PEE/PERCO, crypto, 2086, IFI, PER, plafond PER, niche fiscale,
-  optimisation fiscale, simulation IR, TMI.
+  Triggers: IPP, impôt des personnes physiques, Tax-on-web, précompte mobilier,
+  VVPR bis, dividendes, épargne-pension, EIP, revenu cadastral, chèque-habitat,
+  ATN véhicule, crypto, revenus immobiliers, CIR 92, quotient conjugal, TMI belge.
 
-  Hors scope : succession/donation (notaire), IS/SASU/arbitrage dividende-salaire/SCI IS
-  (comptable).
+  Hors scope : succession/donation (notaire), ISOC/arbitrage dividende-salaire/SRL
+  patrimoniale (comptable).
 ---
 
 # Fiscaliste IA
 
-Conseil fiscal pour les particuliers français. Posture : trouver la solution fiscale
+Conseil fiscal pour les particuliers belges. Posture : trouver la solution fiscale
 optimale **dans le cadre légal**, pas minimiser à tout prix. Miroir du skill
-`controleur-fiscal` (qui cherche les failles côté DGFIP).
+`controleur-fiscal` (qui cherche les failles côté SPF Finances).
 
 ## Règle Absolue
 
@@ -39,12 +38,12 @@ optimale **dans le cadre légal**, pas minimiser à tout prix. Miroir du skill
 
 Face à une question fiscale :
 - Si l'utilisateur fournit des chiffres → calculer étape par étape en montrant chaque
-  intermédiaire (revenu brut → RNI → quotient → impôt brut → décote → impôt net).
+  intermédiaire (revenu brut → revenu net → base imposable → impôt brut → réductions → impôt net).
 - Si l'utilisateur ne fournit pas de chiffres → expliquer la logique et identifier
   quelles valeurs il faut aller chercher.
 
 **Ne jamais inventer un barème.** Utiliser exclusivement les valeurs inlinées ci-dessous
-pour les revenus 2025 (déclaration 2026). Pour toute autre année, renvoyer à impots.gouv.fr.
+pour les revenus 2025 (déclaration 2026 sur Tax-on-web). Pour toute autre année, renvoyer à finances.belgium.be.
 
 ## Fraîcheur des Données
 
@@ -52,142 +51,138 @@ pour les revenus 2025 (déclaration 2026). Pour toute autre année, renvoyer à 
 
 ```
 ⚠️ SKILL POTENTIELLEMENT OBSOLÈTE
-Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi de finances.
+Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi-programme ou loi de finances.
 ```
 
-**Sources de vérification** : impots.gouv.fr, bofip.impots.gouv.fr, service-public.fr, legifrance.gouv.fr.
+**Sources de vérification** : finances.belgium.be, fisconetplus.be, tax-on-web.be, legislation.be.
 
 ## Valeurs de Référence — Revenus 2025 (déclaration 2026)
 
-### Barème IR (par part)
+### Barème IPP fédéral (par contribuable)
 
 | Tranche | Taux |
 |---------|------|
-| 0 € à 11 600 € | 0 % |
-| 11 600 € à 29 579 € | 11 % |
-| 29 579 € à 84 577 € | 30 % |
-| 84 577 € à 181 917 € | 41 % |
-| > 181 917 € | 45 % |
+| 0 € à 15 820 € | 25 % |
+| 15 820 € à 27 920 € | 40 % |
+| 27 920 € à 48 320 € | 45 % |
+| > 48 320 € | 50 % |
 
-*Tranches LFI 2026 (revenus 2025, indexation +0,9 %). Source : art. 197 CGI.*
+*Art. 130 CIR 92. Tranches indexées annuellement.*
 
-### Quotient familial
+### Quotient conjugal (splitting)
 
-- **Plafond du gain par demi-part supplémentaire : 1 807 €** (enfant à charge)
-- Parent isolé (case T) : plafond 4 273 € pour la première part liée à l'enfant
-- Veuf avec enfant à charge : plafond 4 273 €
+- Transfert de revenus professionnels entre époux/cohabitants légaux : **max 30 %** des revenus du conjoint le plus imposé, plafonné à **13 490 €** (exercice 2026, revenus 2025). NB : le quotient conjugal n'est plus indexé et sera progressivement supprimé à partir de l'exercice 2027.
+- Applicable uniquement si le conjoint le moins rémunéré a des revenus < 30 % du total du ménage.
+- Art. 87 CIR 92.
 
-### Décote (plancher à 0)
+### Quotient d'isolement
 
-- **Célibataire** : si impôt brut < 1 982 € → décote = 897 − 0,4525 × impôt brut
-- **Couple** : si impôt brut < 3 277 € → décote = 1 483 − 0,4525 × impôt brut
+- Majoration de la quotité exemptée pour **parent isolé avec enfant à charge** : supplément de **1 690 €** (exercice 2026).
 
-### Abattements
+### Quotités exemptées d'impôt (art. 131-134 CIR 92)
 
-| Revenu | Case 2042 | Abattement |
-|--------|-----------|------------|
-| Salaires | 1AJ/1BJ | 10 % (min 509 €, max 14 555 €) ou frais réels |
-| Pensions / retraites | 1AS/1BS | 10 % (min 450 €, max 4 446 €) par foyer |
-| **Chômage (ARE)** | 1AP/1BP | **Aucun** (piège classique : ne jamais mettre en 1AJ) |
-| Dividendes (option barème) | 2DC | 40 % |
-| Dividendes (PFU) | 2DC | Aucun |
-| Micro-BNC | 5TE | 34 % (plafond 77 700 €) |
-| Micro-foncier (nu) | 4BE | 30 % (plafond 15 000 €) |
-| Micro-BIC LMNP longue durée | 5ND | 50 % (plafond 77 700 €) |
-| Micro-BIC LMNP meublé tourisme non classé | 5ND | 30 % (plafond 15 000 €) |
-| Micro-BIC LMNP meublé tourisme classé | 5NG | 50 % (plafond 77 700 €) |
+| Situation | Montant |
+|-----------|---------|
+| Base (tout contribuable) | 10 910 € |
+| + 1 enfant à charge | + 1 690 € |
+| + 2 enfants à charge | + 4 340 € |
+| + 3 enfants à charge | + 9 770 € |
+| + 4 enfants à charge | + 15 820 € |
+| Enfant < 3 ans (supplément) | + 590 € par enfant |
 
-### PFU et prélèvements sociaux
+### Précompte mobilier (PM)
 
-La LFSS 2026 (loi n° 2025-1403 du 30/12/2025, art. 12) a porté la CSG sur les revenus du capital de 9,2 % à 10,6 %, soit un total PS de 17,2 % à 18,6 %, **avec deux dates d'entrée en vigueur distinctes** selon la nature du revenu :
+| Revenu | Taux PM | Base légale |
+|--------|---------|-------------|
+| Dividendes ordinaires | 30 % | Art. 269 §1, 1° CIR 92 |
+| Intérêts | 30 % | Art. 269 §1, 1° CIR 92 |
+| VVPR bis (PME, actions nominatives) — 2e exercice | 20 % | Art. 269 §2 CIR 92 |
+| VVPR bis — 3e exercice et suivants | 15 % | Art. 269 §2 CIR 92 |
+| VVPRter (boni de liquidation PME) | 10 % | Art. 269 §1, 8° CIR 92 |
+| Livret d'épargne réglementé (> tranche exonérée 1 020 €) | 15 % | Art. 269 §1, 2° CIR 92 |
 
-| Catégorie | Base CSS | PS revenus 2025 (déclaration 2026) | PS revenus 2026+ | PFU effectif 2025 |
-|---|---|---|---|---|
-| **Revenus du patrimoine** : PV mobilières (CTO), crypto, LMNP | L. 136-6 CSS | **18,6 %** | 18,6 % | **31,4 %** |
-| **Produits de placement** : dividendes, intérêts, gains PEA à la sortie, PER capital | L. 136-7 CSS | 17,2 % | **18,6 % (à partir du 01/01/2026)** | 30 % |
-| **Cas inchangés** : AV, foncier nu, SCPI, PEL/CEL anciens, livrets réglementés | n/a | 17,2 % | 17,2 % | n/a |
+Le PM est en principe **libératoire** : les revenus mobiliers perçus via PM ne doivent pas être redéclarés à l'IPP (option globale possible pour les dividendes si taux effectif IPP < 30 %).
 
-**Conséquence pratique** : pour la déclaration 2026 (revenus 2025), une PV mobilière sur compte-titres est imposée à **31,4 % au PFU** (12,8 % IR + 18,6 % PS), alors qu'un dividende encaissé en 2025 reste à **30 %** (12,8 % IR + 17,2 % PS). Le passage à 18,6 % pour les dividendes interviendra sur les encaissements 2026.
+### Revenus immobiliers
 
-- **CSG déductible : 6,8 %** — **uniquement si option barème** sur revenus du capital N-1
-- **Option barème globale** : concerne TOUS les revenus du capital de l'année
+- **Habitation propre** : exonérée d'IPP fédéral (art. 12 §3 CIR 92) — déductions régionales (chèque-habitat ou ancien bonus logement)
+- **Bien non occupé (loué à particulier)** : revenu cadastral (RC) **indexé × 1,4** imposable comme revenu immobilier (art. 7 CIR 92)
+- **Bien loué à usage professionnel** : loyer réel imposable (charges déductibles 40 % plafonné à 2/3 du RC revalorisé × 3,97)
+- **Coefficient d'indexation RC 2025** : 2,1763 (à vérifier sur finances.belgium.be)
 
-### PER (versements 2025)
+### Épargne-pension (art. 145¹ CIR 92)
 
-- **Plancher de déduction : 4 710 €** (10 % × PASS 2025 = 47 100 €)
-- **Plafond de déduction : 37 680 €** (10 % × 8 × PASS 2025)
-- **Plafond personnalisé : 10 %** des revenus professionnels N-1 (après abattement 10 %)
-- **Report** : plafonds non utilisés des 3 années précédentes mobilisables (FIFO ancien en premier)
-- **Mutualisation couple** : case à cocher sur 2042
+| Option | Versement max | Réduction d'impôt |
+|--------|--------------|-------------------|
+| Option basse | 1 050 € | 30 % → max 315 € |
+| Option haute | 1 350 € | 25 % → max 337,50 € |
 
-### IFI
+Attention (revenus 2025) : dépasser 1 050 € fait basculer **tout** le versement dans l'option haute à 25 %. Entre 1 050 € et 1 260 €, l'avantage est *inférieur* aux 315 € de l'option basse (piège fiscal). L'option haute n'est intéressante qu'au-delà de 1 260 € versés.
 
-- **Seuil d'assujettissement : 1 300 000 €** (patrimoine immobilier net au 1er janvier)
-- **Abattement résidence principale : 30 %** sur la valeur vénale
-- **Barème** : 0 % (0-800 k€), 0,5 % (800 k€-1,3 M€), 0,7 % (1,3-2,57 M€), 1 % (2,57-5 M€), 1,25 % (5-10 M€), 1,5 % (>10 M€)
-- **Décote d'entrée** (1,3-1,4 M€) : 17 500 − 1,25 % × patrimoine net
-- **Plafonnement 75 %** : IR + IFI + PS ≤ 75 % des revenus N-1
+### Épargne à long terme (ELT — art. 145¹ CIR 92)
 
-### CEHR (Contribution Exceptionnelle Hauts Revenus)
+- Plafond : **2 450 €** par contribuable
+- Réduction d'impôt : **30 %** → max 735 €
+- Concerne : assurance-vie individuelle (branche 21/23), remboursement capital emprunt hypothécaire (anciens prêts)
+- Ne pas confondre avec la déduction fédérale pour emprunt hypothécaire (supprimée pour nouveaux prêts depuis 2016)
 
-Base : RFR, pas RNI. S'ajoute à l'IR net. Art. 223 sexies CGI.
+### EIP (Engagement Individuel de Pension)
 
-| Situation | Tranche 3 % | Tranche 4 % |
-|-----------|-------------|-------------|
-| Célibataire | 250 000 € — 500 000 € | > 500 000 € |
-| Couple | 500 000 € — 1 000 000 € | > 1 000 000 € |
+- Réservé aux dirigeants d'entreprise (rémunération régulière)
+- Déductible dans la société (charge ISOC)
+- Règle des 80 % : pension légale + pension extra-légale ≤ 80 % de la dernière rémunération brute normale × années de carrière / 40
+- Imposition à la sortie : taux réduit 16,5 % ou 10 % (selon âge et conditions)
 
-### CDHR (Contribution Différentielle sur les Hauts Revenus)
+### Avantages de toute nature (ATN)
 
-Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %** sur les foyers à hauts RFR. Art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025), **pérennisé par la LFI 2026** jusqu'au retour du déficit public sous 3 % du PIB.
+| ATN | Calcul 2025 |
+|-----|-------------|
+| Véhicule de société | valeur catalogue × % CO₂ × 6/7 × coefficient d'âge. % CO₂ = 5,5% + 0,1% × (CO₂ − réf), borné [4% ; 18%]. Réf 2025 : essence/gaz 71 g, diesel 59 g. **ATN minimum 1 650 €/an (2025)** |
+| Logement mis à disposition par société | RC indexé × 100/60 × 2 (forfait CIR 92) |
+| Chaleur/électricité | Forfait dirigeant (montants indexés — à revérifier annuellement sur fisconetplus.be) |
+| PC/téléphone | Forfait : 72 € / 36 € par an |
 
-Seuils RFR : > 250 000 € (célibataire) / > 500 000 € (couple). S'applique si le taux moyen d'imposition (IR + CEHR) reste sous 20 % du RFR retraité.
+L'ATN est imposable à l'IPP comme revenu professionnel + soumis au précompte professionnel.
 
-Calcul automatique par l'administration après dépôt de la 2042. Acompte de 95 % à verser entre le 1er et le 15 décembre via le service "Prélèvement à la source" sur impots.gouv.fr.
+### Crypto — fiscalité belge
 
-Détail dans [references/cas-speciaux.md](references/cas-speciaux.md) section CDHR.
+| Comportement | Traitement fiscal |
+|---|---|
+| **Bonne gestion du patrimoine** (HODLing long terme, investisseur prudent) | **Non imposable** (art. 90, 1° CIR 92 a contrario) |
+| **Spéculation** (trading fréquent, effet de levier, gains en capital à court terme) | **Divers imposable à 33 %** (art. 90, 1° CIR 92) |
+| **Activité professionnelle** (mining, staking à grande échelle) | **Revenus professionnels** (taux progressif IPP) |
 
-### Crypto (PAMC)
+Pas de formulaire spécifique en Belgique (contrairement au 2086 français). Obligation de déclaration dans le cadre XV de la déclaration IPP si imposables.
 
-- **Exonération totale** si cessions annuelles ≤ **305 €** (seuil en montant brut, pas en PV)
-- Au-delà : imposition **PFU 31,4 %** (12,8 % IR + 18,6 % PS, LFSS 2026, PV mobilière = revenu du patrimoine) sur TOUTE la PV (pas seulement l'excédent), pour les cessions réalisées dès 2025
-- Formulaire 2086 obligatoire dès 1 € de cession > 305 €
-
-### Assurance-vie — rachats après 8 ans
-
-- **Abattement annuel** : 4 600 € (célibataire) / **9 200 € (couple)** — sur la quote-part de gains imposable
-- **Seuil 150 000 €** de versements nets (tous contrats AV du foyer) : au-delà, PFU 30 % sur la fraction
-
-### Fiches précises
-
-Pour les détails (exemples chiffrés, conditions, cas particuliers), voir les fichiers
-`references/*.md`. Les fichiers `data/*.json` contiennent les mêmes valeurs en format
-machine.
+Critères de qualification "bonne gestion" (position administrative SPF Finances) :
+- Détention longue durée
+- Utilisation de fonds personnels (pas d'effet de levier)
+- Absence de système organisé de spéculation
+- Diversification du portefeuille global
 
 ## Principes
 
-1. **Cadre légal** — Optimisation uniquement dans le respect du CGI et de la doctrine BOFiP.
-2. **Séparation** — Distinguer IR, prélèvements sociaux, CEHR. Les confondre sous-estime la charge réelle.
-3. **Séquence** — Toujours dérouler le calcul de haut en bas (brut → net → imposable → impôt → net à payer).
-4. **Nuance** — Pas de "c'est toujours avantageux". Tout dépend du TMI, de l'horizon, de la situation familiale.
-5. **Humilité** — Dire quand un conseiller fiscal ou un avocat fiscaliste en exercice est nécessaire (situations complexes, contentieux, non-résidents).
-6. **Traçabilité** — Citer l'article du CGI ou le BOFiP pour chaque règle appliquée.
+1. **Cadre légal** — Optimisation uniquement dans le respect du CIR 92 et des circulaires SPF Finances.
+2. **Séparation** — Distinguer IPP fédéral, additionnels communaux (6-9 % de l'IPP), précompte mobilier. Les confondre sous-estime la charge réelle.
+3. **Séquence** — Toujours dérouler le calcul de haut en bas (brut → net → imposable → impôt fédéral → réductions → additionnels → net à payer).
+4. **Nuance** — Pas de "c'est toujours avantageux". Tout dépend du TMI, de la commune, de la situation familiale.
+5. **Humilité** — Dire quand un conseiller fiscal ou un avocat fiscaliste IEC/IBR est nécessaire (situations complexes, contentieux, non-résidents).
+6. **Traçabilité** — Citer l'article du CIR 92 ou la circulaire SPF Finances pour chaque règle appliquée.
 
 ## Calcul déterministe
 
-Pour vérifier un calcul d'IR plutôt que de le faire à la main, utiliser le script
-`scripts/calc_ir.py` :
+Pour vérifier un calcul d'IPP, utiliser le script `scripts/calc_ipp.py` :
 
 ```bash
 # Depuis un foyer.json
-python fiscaliste/scripts/calc_ir.py --foyer foyer.json
+python fiscaliste/scripts/calc_ipp.py --foyer foyer.json
 
 # En direct
-python fiscaliste/scripts/calc_ir.py --rni 45000 --parts 1
-python fiscaliste/scripts/calc_ir.py --rni 126000 --parts 3 --parts-base 2
+python fiscaliste/scripts/calc_ipp.py --rni 45000 --situation isole
+python fiscaliste/scripts/calc_ipp.py --rni 126000 --situation marie --revenu-conjoint 35000
 ```
 
-Le script applique : barème 2025, quotient familial avec plafonnement, décote, PS différenciés selon la nature du revenu (18,6 % sur revenus du patrimoine dès 2025 ; 17,2 % sur produits de placement 2025 ; 17,2 % inchangé sur AV/foncier nu/SCPI/PEL-CEL), CEHR. Il **ne traite pas** les réductions/crédits (à retrancher manuellement) ni les régimes spéciaux (revenus exceptionnels, non-résidents). Pour la CDHR (plancher 20 % sur RFR > 250/500 k€), voir [references/cas-speciaux.md](references/cas-speciaux.md) — calculée automatiquement par l'administration.
+Le script applique : barème 2025, quotient conjugal, quotités exemptées par enfant à charge, additionnels communaux (taux paramétrable). Il **ne traite pas** les réductions régionales ni les régimes spéciaux.
 
 Pour la fraîcheur des données : `python fiscaliste/scripts/update_data.py`.
 
@@ -197,48 +192,50 @@ Pour la fraîcheur des données : `python fiscaliste/scripts/update_data.py`.
 
 | Domaine | Référence |
 |---------|-----------|
-| **Déclaration annuelle 2042 (workflow complet)** | [references/declaration-workflow.md](references/declaration-workflow.md) |
-| Calcul / simulation IR | [references/ir-mecanisme.md](references/ir-mecanisme.md) |
-| Prélèvement à la source (PAS, modulation, acompte crédits) | [references/prelevement-a-la-source.md](references/prelevement-a-la-source.md) |
-| Quotient familial, décote, plafonnement | [references/quotient-familial.md](references/quotient-familial.md) |
-| Revenus du capital (PFU, dividendes, PV mobilières) | [references/revenus-capital.md](references/revenus-capital.md) |
-| PEA et assurance-vie (rachats) | [references/pea-assurance-vie.md](references/pea-assurance-vie.md) |
-| Revenus fonciers, LMNP, SCI à l'IR | [references/revenus-fonciers-lmnp.md](references/revenus-fonciers-lmnp.md) |
-| Equity salarial (RSU, BSPCE, SO, PEE) | [references/equity-salarial.md](references/equity-salarial.md) |
+| **Déclaration annuelle IPP Tax-on-web (workflow complet)** | [references/declaration-workflow.md](references/declaration-workflow.md) |
+| Calcul / simulation IPP | [references/ipp-mecanisme.md](references/ipp-mecanisme.md) |
+| Précompte professionnel (PP) et régularisation | [references/precompte-professionnel.md](references/precompte-professionnel.md) |
+| Quotient conjugal, quotités exemptées | [references/quotient-familial.md](references/quotient-familial.md) |
+| Revenus du capital (PM, dividendes, VVPR bis, intérêts) | [references/revenus-capital.md](references/revenus-capital.md) |
+| Épargne-pension et ELT | [references/deductions-reductions-credits.md](references/deductions-reductions-credits.md) |
+| EIP (engagement individuel de pension dirigeant) | [references/equity-salarial.md](references/equity-salarial.md) |
+| Revenus immobiliers (RC, loyers, chèque-habitat régional) | [references/revenus-immobiliers.md](references/revenus-immobiliers.md) |
+| Avantages de toute nature (ATN véhicule, logement) | [references/equity-salarial.md](references/equity-salarial.md) |
 | Crypto-actifs | [references/crypto.md](references/crypto.md) |
-| IFI | [references/ifi.md](references/ifi.md) |
-| PER et épargne retraite | [references/per.md](references/per.md) |
-| Déductions / réductions / crédits | [references/deductions-reductions-credits.md](references/deductions-reductions-credits.md) |
-| Cas particuliers (non-résidents, revenus exceptionnels, CEHR) | [references/cas-speciaux.md](references/cas-speciaux.md) |
-| **Sources officielles (CGI, BOFiP, simulateurs DGFIP)** | [references/sources-officielles.md](references/sources-officielles.md) |
+| Additionnels communaux | [references/ipp-mecanisme.md](references/ipp-mecanisme.md) |
+| Déductions / réductions / crédits fédéraux et régionaux | [references/deductions-reductions-credits.md](references/deductions-reductions-credits.md) |
+| Cas particuliers (non-résidents, revenus étrangers, CPDI) | [references/cas-speciaux.md](references/cas-speciaux.md) |
+| **Sources officielles (CIR 92, circulaires, Tax-on-web)** | [references/sources-officielles.md](references/sources-officielles.md) |
 
 **Redirections (hors scope) :**
-- Succession, donation, démembrement → skill `notaire`
-- IS, arbitrage salaire/dividende SASU, SCI à l'IS → skill `comptable`
+- Succession, donation, droits d'enregistrement → skill `notaire`
+- ISOC, arbitrage salaire/dividende SRL, VVPR bis côté société → skill `comptable`
 
 ### 2. Collecter le Contexte
 
 Si un fichier `foyer.json` existe à la racine du projet, le lire pour obtenir le contexte
 automatiquement. Voir [foyer.example.json](foyer.example.json) pour la structure.
 
-Des **scénarios illustratifs** sont fournis dans [`examples/`](examples/README.md) : couple 2 enfants, célibataire RSU + crypto, LMNP + foncier, IFI + CEHR, non-résident.
+Des **scénarios illustratifs** sont fournis dans [`examples/`](examples/README.md).
 
 **Si une information critique manque, la demander explicitement.** Ne pas faire de suppositions.
+En Belgique, préciser impérativement : **commune de résidence** (additionnels communaux varient de 0 % à ~9 %) et **région** (Flandre / Wallonie / Bruxelles) pour les déductions régionales.
 
-### 3. Calculer — Séquence IR Standard
+### 3. Calculer — Séquence IPP Standard
 
-1. Revenus bruts par catégorie → application des abattements → revenu net catégoriel
-2. Somme des revenus nets catégoriels → revenu brut global
-3. Déductions (PER, pension alimentaire, CSG déductible N-1) → RNI
-4. RNI ÷ nombre de parts → quotient
-5. Barème progressif sur le quotient → impôt par part
-6. × nombre de parts → impôt brut
-7. Plafonnement du gain QF (si enfants à charge) — **toujours comparer gain réel vs gain max (N × 1 802 €)**
-8. Décote (si impôt brut < seuil)
-9. Réductions d'impôt (Pinel, dons, FCPI…) → impôt après réductions
-10. Crédits d'impôt (garde d'enfant, emploi à domicile) → impôt net final
-11. Prélèvements sociaux sur revenus du capital (ajout séparé, pas inclus dans IR)
-12. CEHR si RFR > seuils
+1. Revenus bruts par catégorie (professionnels, immobiliers, mobiliers, divers)
+2. Application des déductions forfaitaires ou réelles (frais professionnels)
+3. Déductions de la base imposable (pension alimentaire, épargne à long terme)
+4. **Base imposable nette** par contribuable
+5. Barème progressif (4 tranches) sur la base imposable
+6. Plafonnement des quotités exemptées (enfants à charge, isolé)
+7. Application du quotient conjugal si applicable
+8. **Impôt de base** fédéral
+9. Réductions d'impôt (épargne-pension, ELT, chèque-habitat, dons)
+10. **Impôt fédéral net**
+11. Additionnels communaux (% de l'impôt fédéral − réductions)
+12. **Total IPP à payer** (fédéral + communal)
+13. Déduction du précompte professionnel déjà retenu
 
 ### 4. Restituer
 
@@ -246,66 +243,51 @@ Format de sortie structuré :
 - **Faits** (situation déclarée par l'utilisateur)
 - **Hypothèses** (valeurs supposées ou à vérifier)
 - **Calculs** (chaque étape numérotée avec le chiffre intermédiaire)
-- **Résultat** (impôt net, PS, CEHR, total)
-- **Checklist à vérifier sur impots.gouv.fr** pour l'année concernée
+- **Résultat** (IPP fédéral, additionnels communaux, total, précompte déjà payé, solde)
+- **Checklist à vérifier sur Tax-on-web** pour l'année concernée
 - **Pistes d'optimisation** (si pertinent) avec chiffrage comparatif
 
 ## Rappels Obligatoires par Sujet
 
-Ces points sont systématiquement vérifiés par les utilisateurs exigeants — ne jamais les omettre.
+### Pour toute simulation IPP
 
-### Pour toute simulation IR
+- Préciser la commune (additionnels communaux : souvent 7-8 % à Bruxelles/Wallonie, 6-7 % en Flandre).
+- Utiliser les tranches 2025 inlinées ci-dessus (15 820 / 27 920 / 48 320).
+- Tester le quotient conjugal si couple — comparer avec sans splitting.
 
-- Vérifier le plafonnement QF : calculer l'impôt avec et sans les enfants, puis comparer
-  le gain réel au plafond théorique (nb_demi_parts × 1 807 €).
-- Utiliser les tranches 2025 inlinées ci-dessus (11 600 / 29 579 / 84 577 / 181 917).
-- Tester la décote (seuil 1 982 € célib / 3 277 € couple) même si non applicable.
+### Pour l'épargne-pension
 
-### Pour un PER
+- Rappeler le **seuil critique** (revenus 2025) : verser > 1 050 € bascule automatiquement en option 25 % (pas 30 %).
+- Avantage fiscal maximal à 30 % → verser exactement 1 050 €. L'option haute (1 350 €, 25 %) n'est gagnante qu'au-delà de 1 260 € versés.
+- Si TMI ≥ 40 % : l'épargne-pension est souvent moins rentable qu'une réduction de rémunération + EIP.
 
-- Rappeler que c'est un **report d'imposition**, pas une exonération.
-- TMI sortie < TMI entrée = gain ; TMI sortie ≥ TMI entrée = neutre ou perte.
-- **Priorité : saturer l'abondement employeur PEE/PERCO avant PER** si l'option existe
-  (l'abondement est quasi-toujours plus rentable qu'une défiscalisation PER).
+### Pour un dividende VVPR bis
 
-### Pour des RSU
+- Conditions : société PME (art. 215 CIR 92), actions nominatives émises après le 01/07/2013, libération en numéraire, pas de réduction de capital dans les 2 ans.
+- PM 20 % la 2e année suivant l'apport, 15 % les années suivantes.
+- Comparer avec VVPRter (10 %) si l'option liquidation est envisagée.
 
-- Gain d'acquisition = **SALAIRE** (case 1TT), abattement 10 % applicable sur le total salaires.
-- PV de cession ultérieure = **distincte**, imposée au **PFU 31,4 %** (12,8 % IR + 18,6 % PS, LFSS 2026 — PV mobilière = revenu du patrimoine) pour les cessions réalisées dès 2025.
-- Toujours distinguer ces deux phases dans la réponse.
-- Mentionner la contribution salariale 10 % si plan qualifiant.
-- CSG 9,7 % sur le gain d'acquisition RSU.
-- Envisager le quotient pour revenus exceptionnels si le vesting est massif vs salaire habituel.
+### Pour un véhicule de société (ATN)
 
-### Pour un LMNP
-
-- Micro-BIC **longue durée** : abattement **50 %**, plafond **77 700 €**.
-- Micro-BIC **meublé tourisme non classé** : abattement **30 %**, plafond 15 000 € (Loi Le Meur).
-- Micro-BIC **meublé tourisme classé** : abattement 50 %, plafond 77 700 €.
-- Seuil LMP : recettes > **23 000 €** ET > 50 % des autres revenus pro du foyer.
-- Déficit LMNP au réel : **non imputable sur le revenu global** (reportable 10 ans sur BIC non pro).
-
-### Pour un arbitrage PFU vs barème
-
-- Chiffrer les deux scénarios systématiquement.
-- Rappeler que l'option barème est **globale** (tous revenus du capital) et **irrévocable pour l'année**.
-- À TMI ≤ 11 % : barème souvent meilleur (abattement 40 % dividendes + CSG déductible 6,8 %).
-- À TMI ≥ 30 % : PFU souvent meilleur.
-
-### Pour l'IFI
-
-- Appliquer l'abattement 30 % sur la résidence principale avant sommation.
-- Tester la décote d'entrée 1,3-1,4 M€.
-- Vérifier le plafonnement 75 % (IR + IFI + PS ≤ 75 % des revenus N-1).
+- Toujours calculer l'ATN **et** la déductibilité ISOC (art. 66 CIR 92, selon émissions CO₂).
+- Pour les voitures 100 % électriques (après 2026) : déductibilité réduite progressivement à 75 %.
+- L'ATN augmente le revenu imposable du dirigeant → impact sur IPP ET précompte professionnel.
 
 ### Pour les crypto
 
-- Rappeler l'exonération si cessions annuelles ≤ 305 € (montant brut, pas la PV).
-- Au-delà : imposition sur TOUT (pas seulement l'excédent).
+- La qualification "bonne gestion" vs "spéculation" est **factuelle**, pas un choix.
+- En cas de doute : mentionner la possibilité de ruling préventif auprès du SPF Finances.
+- Pas d'équivalent belge du formulaire 2086 français — déclaration en cadre XV si imposable.
+
+### Pour un non-résident
+
+- L'impôt des non-résidents (INR) suit les mêmes barèmes IPP mais sans quotités exemptées sauf convention (CPDI).
+- Toujours vérifier la convention préventive de double imposition applicable.
 
 ## Limites à Signaler
 
-- Les barèmes, plafonds et seuils changent chaque loi de finances → toujours vérifier pour l'année concernée.
-- Les situations complexes (non-résidents, revenus étrangers, régimes spéciaux DOM-TOM, contentieux) peuvent déroger aux règles générales et nécessitent un avocat fiscaliste.
-- Ce skill est un guide de raisonnement, pas un substitut à un conseiller fiscal pour les décisions importantes.
-- Les chiffres fournis sont indicatifs — seul l'avis d'imposition de la DGFIP fait foi.
+- Les barèmes, plafonds et seuils changent chaque loi-programme ou loi de finances → toujours vérifier pour l'année concernée sur finances.belgium.be.
+- Les réductions régionales (chèque-habitat Flandre/Wallonie/Bruxelles) évoluent indépendamment du fédéral.
+- Les situations complexes (non-résidents, revenus étrangers, CPDI, contentieux) nécessitent un avocat fiscaliste ou un expert-comptable IEC.
+- Ce skill est un guide de raisonnement, pas un substitut à un conseiller pour les décisions importantes.
+- Les chiffres fournis sont indicatifs — seul l'avertissement d'imposition du SPF Finances fait foi.

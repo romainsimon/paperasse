@@ -1,18 +1,17 @@
 {
   "name": "EXEMPLE DE SOCIETE A COMPLETER",
-  "legal_form": "SASU",
+  "legal_form": "SRL",
   "capital": 1000,
-  "address": "1 Rue de la Paix, 75001 Paris",
-  "siren": "123456789",
-  "siret": "12345678900014",
-  "rcs": "RCS Paris",
-  "naf": "6201Z",
+  "address": "1 Avenue Louise, 1050 Bruxelles",
+  "bce": "0123.456.789",
+  "tva_number": "BE0123456789",
+  "nace": "6201Z",
   "president": {
-    "title": "President",
+    "title": "Gerant",
     "first_name": "Jean",
     "last_name": "DUPONT",
     "civility": "M.",
-    "_comment": "Utiliser 'President' pour SAS/SASU, 'Gerant' pour SARL/EURL"
+    "_comment": "Utiliser 'Administrateur délégué' pour SA, 'Gérant' pour SRL/SNC/SCS"
   },
   "fiscal_year": {
     "start": "2025-01-01",
@@ -21,15 +20,17 @@
   },
   "tax": {
     "regime_tva": "franchise",
-    "regime_is": "reel_simplifie",
-    "tva_rate": 0.20
+    "regime_isoc": "pme",
+    "tva_rate": 0.21,
+    "_comment": "Taux TVA standard belge: 21%. Taux réduits: 12% (restauration), 6% (alimentation, médicaments, rénovation). regime_isoc: 'pme' (taux 25%, réduit 20% sur 1ère tranche de 100 000 EUR) ou 'grande_entreprise'"
   },
   "banks": [
     {
       "id": "bank-1",
       "name": "Banque Principale",
-      "account": "5121",
-      "fec_account": "51211"
+      "account": "5500",
+      "pcmn_account": "55001",
+      "_comment": "PCMN (Plan Comptable Minimum Normalisé belge): classe 55 pour comptes bancaires"
     }
   ],
   "qonto": {
@@ -44,7 +45,7 @@
       "_comment": "Definir STRIPE_SECRET avec votre cle Stripe (sk_live_... ou sk_test_...). Pour Stripe Connect, ajouter: stripe_account_id: acct_xxx"
     }
   ],
-  "city": "Paris",
+  "city": "Bruxelles",
   "invoicing": {
     "prefix": "F",
     "separator": "-",
@@ -57,13 +58,11 @@
     "_comment": "Format: F-2026-001. next_numbers par annee (reset au 1er janvier). Modifier prefix et separateur selon besoins."
   },
   "einvoicing": {
-    "pa": "",
-    "pa_name": "",
     "peppol_id": "",
     "reception_ready": false,
     "emission_ready": false,
     "ereporting_ready": false,
-    "_comment": "Plateforme agreee (ex: qonto, indy, pennylane, dext). peppol_id format iso6523:siret, ex '0225:12345678900014'. reception_ready obligatoire a partir de sept. 2026."
+    "_comment": "Peppol est le standard belge pour la facturation électronique. Format peppol_id: 0208:0123456789 (préfixe 0208 = numéro TVA belge). Obligation B2G déjà en vigueur, B2B obligatoire à partir de 2026."
   },
   "payment": {
     "default_terms": "net_30",
@@ -73,11 +72,11 @@
       "iban": "",
       "bic": ""
     },
-    "late_penalty_rate": "3x_legal",
-    "late_penalty_label": "3 fois le taux d'interet legal",
+    "late_penalty_rate": "taux_bce_plus_8",
+    "late_penalty_label": "Taux de référence BCE + 8 points (loi du 2 août 2002, transposant directive 2000/35/CE)",
     "escompte": "none",
-    "escompte_label": "Pas d'escompte pour paiement anticipe",
+    "escompte_label": "Pas d'escompte pour paiement anticipé",
     "recovery_fee": 40,
-    "_comment": "late_penalty_rate: '3x_legal' (defaut legal si non precise) ou taux fixe (ex 10.15). escompte: 'none' ou taux en %. recovery_fee fixe a 40 EUR par la loi."
+    "_comment": "late_penalty_rate: taux BCE + 8% par défaut (loi belge du 2 août 2002). escompte: 'none' ou taux en %. recovery_fee: indemnité forfaitaire de 40 EUR fixée par la loi belge (art. 6 loi 2002)."
   }
 }

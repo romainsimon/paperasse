@@ -11,8 +11,8 @@ Paperasse partage certaines ressources entre plusieurs skills avec des liens sym
 - `comptable/templates` pointe vers `../templates`
 - `comptable/integrations` pointe vers `../integrations`
 - `comptable/company.example.json` pointe vers `../company.example.json`
-- `controleur-fiscal/data` et `commissaire-aux-comptes/data` pointent vers `../data`
-- `controleur-fiscal/company.example.json` et `commissaire-aux-comptes/company.example.json` pointent vers `../company.example.json`
+- `controleur-fiscal/data` et `reviseur-entreprises/data` pointent vers `../data`
+- `controleur-fiscal/company.example.json` et `reviseur-entreprises/company.example.json` pointent vers `../company.example.json`
 
 Un clone Git complet préserve ces liens. En revanche, certains installateurs qui téléchargent les dossiers skill par skill via l'API GitHub peuvent transformer les liens en petits fichiers texte contenant seulement `../data`, `../scripts`, etc. Le skill semble alors installé, mais les workflows qui lisent les données, scripts, templates ou intégrations échouent.
 
@@ -22,7 +22,7 @@ Depuis la racine du repo Paperasse cloné :
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R comptable controleur-fiscal commissaire-aux-comptes fiscaliste notaire syndic ~/.codex/skills/
+cp -R comptable controleur-fiscal reviseur-entreprises fiscaliste notaire syndic ~/.codex/skills/
 cp -R data scripts templates integrations company.example.json ~/.codex/skills/
 ```
 

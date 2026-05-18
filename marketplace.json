@@ -1,33 +1,33 @@
 {
-  "name": "paperasse",
-  "description": "Skills pour agents IA spécialisés dans la bureaucratie française",
+  "name": "paperasse-be",
+  "description": "Skills pour agents IA spécialisés dans la bureaucratie belge",
   "version": "1.0.0",
-  "author": "romainsimon",
+  "author": "braingnac",
   "license": "MIT",
   "skills": [
     {
       "slug": "comptable",
       "name": "Expert-Comptable",
       "path": "comptable/SKILL.md",
-      "description": "Comptabilité, TVA, IS, clôture annuelle, FEC, liasse fiscale, facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées, e-reporting)"
+      "description": "Comptabilité (PCMN), TVA, ISOC, clôture annuelle, dépôt BCE, facturation (mentions obligatoires, facturation électronique Peppol, e-reporting)"
     },
     {
       "slug": "controleur-fiscal",
       "name": "Contrôleur Fiscal",
       "path": "controleur-fiscal/SKILL.md",
-      "description": "Simulation de contrôle DGFIP, chefs de redressement"
+      "description": "Simulation de contrôle SPF Finances, chefs de redressement"
     },
     {
-      "slug": "commissaire-aux-comptes",
-      "name": "Commissaire aux Comptes",
-      "path": "commissaire-aux-comptes/SKILL.md",
-      "description": "Audit NEP en 7 phases, opinion motivée"
+      "slug": "reviseur-entreprises",
+      "name": "Réviseur d'Entreprises",
+      "path": "reviseur-entreprises/SKILL.md",
+      "description": "Audit ISA/ISRS en 7 phases (IRE), opinion motivée sur comptes annuels BNB"
     },
     {
       "slug": "notaire",
       "name": "Notaire",
       "path": "notaire/SKILL.md",
-      "description": "Frais de notaire, successions, donations, SCI, PACS"
+      "description": "Frais de notaire, successions, donations, SCI, cohabitation légale"
     },
     {
       "slug": "syndic",
@@ -38,5 +38,5 @@
   ],
   "integrations": ["qonto", "stripe"],
   "language": "fr",
-  "country": "FR"
+  "country": "BE"
 }

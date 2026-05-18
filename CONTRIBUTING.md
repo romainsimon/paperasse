@@ -16,8 +16,8 @@ Vous avez un métier de la paperasse que vous aimeriez voir automatisé ? Les co
 Noms de dossiers en français, en minuscules, avec tirets :
 
 - `comptable` (expert-comptable)
-- `controleur-fiscal` (contrôleur fiscal / simulation DGFIP)
-- `commissaire-aux-comptes` (commissaire aux comptes)
+- `controleur-fiscal` (contrôleur fiscal / simulation SPF Finances)
+- `reviseur-entreprises` (réviseur d'entreprises IRE)
 - `notaire` (notaire)
 - `avocat` (avocat d'affaires)
 - `drh` (DRH / ressources humaines)
@@ -28,27 +28,27 @@ Un skill représente un **métier** (ou un rôle professionnel identifiable) et 
 
 **Critère de décision** pour un nouveau skill : « est-ce qu'un humain se présente avec cette casquette sur le marché du travail ? » Si oui → skill. Sinon → module partagé.
 
-Les **canaux, APIs, outils transverses** (guichet unique INPI, API Entreprise, portails URSSAF/DGFiP, etc.) ne sont pas des skills. Ce sont des briques utilisées par plusieurs métiers.
+Les **canaux, APIs, outils transverses** (guichet électronique BCE, API Entreprise belge, portails ONSS/SPF Finances, etc.) ne sont pas des skills. Ce sont des briques utilisées par plusieurs métiers.
 
 ### Code partagé via symlinks
 
 Pour éviter la duplication tout en gardant les skills self-contained, le code partagé vit à la racine du repo et les skills le référencent par symlink :
 
 ```
-paperasse/
+paperasse-be/
 ├── integrations/
-│   └── guichet-unique/        # client API INPI, soumission formalités
+│   └── bce/                   # client API BCE, soumission formalités
 ├── data/
-│   └── formes-juridiques.json # codes INPI partagés
+│   └── formes-juridiques.json # codes BCE/KBO partagés
 ├── scripts/
 │   └── submit-depot-comptes.js
 ├── comptable/
 │   ├── SKILL.md
-│   ├── integrations/guichet-unique -> ../../integrations/guichet-unique
+│   ├── integrations/bce -> ../../integrations/bce
 │   └── data/formes-juridiques.json -> ../../data/formes-juridiques.json
 └── notaire/
     ├── SKILL.md
-    └── integrations/guichet-unique -> ../../integrations/guichet-unique
+    └── integrations/bce -> ../../integrations/bce
 ```
 
 **Chevauchement ≠ duplication** : si `notaire` et un futur `avocat` font tous les deux des modifications statutaires, c'est fidèle à la réalité (les deux professions le font). La *logique* est partagée via les symlinks, le *framing métier* diffère dans chaque `SKILL.md` (le notaire rédige un acte authentique, l'avocat un acte SSP).
@@ -58,12 +58,12 @@ paperasse/
 ```
 mon-skill/
 ├── SKILL.md              # Instructions pour l'agent (obligatoire)
-├── references/           # Textes de loi, barèmes, données de référence
+├── references/           # Textes de loi belges, barèmes, données de référence
 │   ├── texte-de-loi.md
 │   └── bareme.md
 └── evals/                # Tests automatisés (recommandé)
     ├── evals.json
-    └── files/            # Fichiers de test (company.json, FEC, etc.)
+    └── files/            # Fichiers de test (company.json, etc.)
 ```
 
 ## SKILL.md : frontmatter

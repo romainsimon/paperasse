@@ -1,7 +1,7 @@
 {
   "name": "paperasse",
   "version": "1.1.0",
-  "description": "Skills et outils pour la comptabilité française",
+  "description": "Skills et outils pour la comptabilité belge",
   "private": true,
   "scripts": {
     "calc": "node scripts/calc.js",

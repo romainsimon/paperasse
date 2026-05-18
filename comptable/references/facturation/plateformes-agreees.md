@@ -95,6 +95,38 @@ Pour recommander une PA, demander :
 | E-reporting | Transmet les données de facturation, transaction et paiement au PPF |
 | Conservation | Archive les factures 6 ans minimum |
 
+## Formats selon le réseau d'échange
+
+Trois formats sont définis par la norme européenne EN 16931. Toute PA immatriculée doit être capable d'émettre et de recevoir au moins l'un d'entre eux.
+
+| Format | Standard | Cas d'usage |
+|--------|----------|-------------|
+| **Factur-X** | PDF/A-3 + XML CII embarqué (EN 16931) | Format hybride : lisible par l'humain (PDF) et par la machine (XML CII embarqué). Recommandé pour les échanges entre PA françaises et pour les envois aux clients qui n'ont pas encore de PA. |
+| **CII pur** | Cross-Industry Invoice — UN/CEFACT (EN 16931) | Fichier XML seul, sans PDF. Même structure que le XML embarqué dans Factur-X. Utilisé pour les échanges machine-to-machine entre PA. |
+| **UBL** | Universal Business Language — OASIS (EN 16931) | Format natif du réseau Peppol. Requis pour les échanges avec des partenaires dont la PA est connectée au réseau Peppol (notamment les entreprises européennes hors France). |
+
+**Annuaire PPF** : registre central tenu par l'État qui associe chaque SIREN/SIRET à sa PA. Toutes les PA doivent l'interroger pour savoir où router une facture. L'annuaire ne dicte pas le format : c'est la PA destinataire qui déclare les formats qu'elle accepte.
+
+**Réseau Peppol** : réseau d'échange européen (transport AS4 + annuaire SML) utilisé par certaines PA pour acheminer les factures — y compris parfois entre PA françaises — et obligatoirement pour les échanges intra-UE avec des partenaires Peppol.
+
+**Conséquence sur le choix de PA** : si vous avez des clients dans l'UE déjà sur Peppol, choisissez une PA connectée au réseau Peppol (Indy, Dext, ou toute PA immatriculée avec cette capacité). Vérifiez dans le contrat de votre PA si elle prend en charge la conversion CII/Factur-X → UBL en sortie : cette conversion n'est pas imposée par la réglementation, elle est propre à chaque PA.
+
+Sources : [Spécification Factur-X (FNFE-MPE)](https://fnfe-mpe.org/factur-x/) · [Peppol BIS Billing 3.0](https://docs.peppol.eu/poacc/billing/3.0/) · [DGFiP — Facturation électronique](https://www.impots.gouv.fr/professionnel/je-passe-la-facturation-electronique)
+
+## PDPs pour éditeurs de logiciels et opérateurs
+
+Certaines PDPs immatriculées (ou en cours d'immatriculation) ciblent non pas les entreprises directement, mais les **éditeurs de logiciels** et les **Opérateurs de Dématérialisation (OD)** qui souhaitent intégrer la facturation électronique dans leurs propres produits via API.
+
+### Iopole
+
+- **Statut DGFiP** : immatriculation en cours — rapport d'audit de conformité attendu (source : [liste officielle DGFiP](https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees))
+- **Peppol** : oui
+- **Formats** : Factur-X, CII, UBL
+- **Cible** : éditeurs de logiciels et opérateurs (accès via API)
+- **Site** : https://www.iopole.com
+- **Siège** : 145 Impasse John Locke, 34470 Pérols
+- **Intérêt** : PDP française avec réseau Peppol, adaptée aux intégrateurs qui veulent embarquer la facturation électronique dans leur produit
+
 ## Devenir PA
 
 **Non recommandé pour les TPE/PME.** Conditions : ISO 27001, SecNumCloud (si hébergement tiers), audit de conformité, tests d'interopérabilité PPF, système d'information dans l'UE. Coût et complexité réservés aux éditeurs de logiciels et plateformes financières.

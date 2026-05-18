@@ -12,6 +12,7 @@
     "closing": "node scripts/generate-fec.js && node scripts/generate-statements.js && node scripts/generate-pdfs.js",
     "facture": "node scripts/generate-facturx.js",
     "validate:facture": "node scripts/validate-facture.js",
+    "parse:facture": "node scripts/parse-einvoice.js",
     "fetch": "node integrations/stripe/fetch.js; node integrations/qonto/fetch.js",
     "fetch:qonto": "node integrations/qonto/fetch.js",
     "fetch:stripe": "node integrations/stripe/fetch.js"

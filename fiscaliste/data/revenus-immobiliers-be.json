@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "exercice": 2026,
+    "revenus": 2025,
+    "source": "art. 7-15 CIR 92",
+    "source_url": "https://fisconetplus.be",
+    "last_updated": "2026-05-15"
+  },
+  "habitation_propre": {
+    "description": "Habitation occupée par le contribuable lui-même",
+    "regime_federal": "Exonérée d'IPP fédéral depuis 2014 (art. 12 §3 CIR 92 abrogé pour le fédéral)",
+    "regime_regional": "Voir chèque-habitat régional (epargne-pension-elt.json)",
+    "rc_imposable": false,
+    "note": "L'habitation propre n'est plus imposable à l'IPP fédéral. La déduction des intérêts est régionalisée."
+  },
+  "bien_loue_particulier": {
+    "description": "Bien immobilier loué à usage privé (pas professionnel)",
+    "base_imposable": "Revenu cadastral (RC) indexé × 1,4",
+    "calcul": "RC non indexé × coefficient d'indexation (2,1763 en 2025) × 1,4",
+    "coefficient_indexation_2025": 2.1763,
+    "majorant": 1.4,
+    "charges_deductibles": "Aucune déduction spécifique (forfait implicitement dans la règle RC × 1,4)",
+    "base_legale": "art. 7 §1, 2° b CIR 92",
+    "note": "Pas de déduction des frais réels pour les biens loués à usage privé."
+  },
+  "bien_loue_usage_professionnel": {
+    "description": "Bien loué à une société ou à usage professionnel du locataire",
+    "base_imposable": "Loyer réel + avantages locatifs",
+    "charges_deductibles": {
+      "taux_forfaitaire": 0.40,
+      "plafond": "2/3 du RC revalorisé × 3,97",
+      "frais_reels_alternatif": "Si frais réels > forfait 40 %, déduction réelle possible (intérêts hypothécaires, précompte immobilier, travaux)"
+    },
+    "base_legale": "art. 13 CIR 92"
+  },
+  "rc_revenu_cadastral": {
+    "description": "Revenu cadastral — base de l'imposition immobilière en Belgique",
+    "nature": "Valeur locative nette annuelle fictive fixée par l'Administration générale de la Documentation Patrimoniale (AGDP)",
+    "derniere_peréquation": 1975,
+    "indexation_annuelle": true,
+    "coefficient_2025": 2.1763,
+    "source_coefficient": "https://finances.belgium.be/fr/particuliers/habitation/precompte-immobilier",
+    "precompte_immobilier": {
+      "description": "Taxe régionale et communale sur les biens immobiliers belges",
+      "base": "RC non indexé × coeff. indexation × taux régional et communal",
+      "taux_regional": {
+        "flandre": 2.5,
+        "wallonie": 1.25,
+        "bruxelles": 1.25,
+        "note": "Centimes additionnels provinciaux et communaux s'ajoutent — total 30 à 50 % du revenu cadastral indexé"
+      }
+    }
+  },
+  "plus_value_immobiliere": {
+    "description": "Plus-value sur vente de biens immobiliers",
+    "habitation_propre_5ans": {
+      "regime": "Exonérée si détention > 5 ans ET occupée comme résidence principale",
+      "base_legale": "art. 90, 10° a contrario CIR 92"
+    },
+    "terrain_a_batir": {
+      "regime": "Imposable à 33 % si vendu dans les 8 ans de l'acquisition (divers imposables)",
+      "base_legale": "art. 90, 8° CIR 92"
+    },
+    "immeuble_bati_autre": {
+      "regime": "Imposable à 16,5 % si vendu dans les 5 ans de l'acquisition ET dans le cadre d'une gestion non normale",
+      "base_legale": "art. 90, 10° CIR 92"
+    },
+    "speculation": {
+      "regime": "Imposable à 33 % si caractère spéculatif",
+      "base_legale": "art. 90, 1° CIR 92"
+    },
+    "pas_d_abattement_duree": "Contrairement à la France, il n'y a pas d'abattement progressif pour durée de détention."
+  }
+}

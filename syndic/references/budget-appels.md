@@ -1,10 +1,14 @@
-# Budget Prévisionnel et Appels de Fonds
+# Budget Ordinaire et Appels de Fonds
 
-## Budget Prévisionnel
+`last_updated: 2026-05-15`
+
+## Budget Ordinaire
 
 ### Définition
 
-Le budget prévisionnel est le document financier prévoyant les charges courantes de la copropriété pour l'exercice à venir. Il est voté chaque année en AG à la majorité de l'art. 24.
+Le budget ordinaire est le document financier prévoyant les charges courantes de l'ACP pour l'exercice à venir. Il est voté chaque année en AG à la majorité ordinaire (art. 3.84 Cc belge).
+
+En droit belge, on parle de **budget ordinaire** (pour les charges courantes) par opposition au **budget extraordinaire** (pour les travaux importants votés en AG).
 
 ### Contenu
 
@@ -14,43 +18,44 @@ Le budget est ventilé par postes de charges :
 |-------|----------|
 | Nettoyage parties communes | Contrat ménage, produits |
 | Espaces verts | Entretien jardin, taille |
-| Chauffage collectif | Gaz/fioul, entretien chaudière |
+| Chauffage collectif | Gaz/mazout, entretien chaudière |
 | Eau froide | Consommation commune, compteurs |
 | Électricité parties communes | Éclairage, minuteries, VMC |
 | Ascenseur | Contrat maintenance, réparations |
-| Assurance immeuble | Multirisques, RC |
+| Assurance immeuble | Incendie + RC ACP, assistance |
 | Honoraires syndic | Gestion courante (forfait annuel) |
-| Frais postaux et administratifs | LRAR, copies, extranet |
-| Frais bancaires | Tenue de compte |
+| Frais postaux et administratifs | Recommandés, copies, communications |
+| Frais bancaires | Tenue de compte courant et épargne |
 | Petites réparations | Plomberie, serrurerie, électricité |
 | Désinsectisation / dératisation | Contrat annuel |
 | Contrats d'entretien divers | Portail, interphone, extincteurs |
-| Honoraires divers | Expert-comptable, géomètre |
-| Imprévu / Divers | Marge de sécurité (2-5%) |
+| Honoraires divers | Réviseur aux comptes, géomètre |
+| Imprévus / Divers | Marge de sécurité (2–5%) |
 
 ### Préparation
 
 1. Reprendre le réalisé N-1 (charges réelles de l'exercice clos)
-2. Identifier les variations prévisibles (augmentation contrats, travaux, sinistres)
-3. Ajouter une marge d'imprévus (2-5%)
+2. Identifier les variations prévisibles (indexation contrats, travaux, sinistres)
+3. Ajouter une marge d'imprévus (2–5%)
 4. Comparer avec le budget N-1 et expliquer les écarts
-5. Présenter au conseil syndical avant l'AG
+5. Présenter au conseil de gérance avant l'AG
 6. Soumettre au vote en AG
 
 Voir template : [templates/budget-previsionnel.md](../templates/budget-previsionnel.md)
 
 ## Appels de Fonds
 
-### Provisions sur charges courantes (art. 14-1 loi 1965)
+### Quote-part sur charges ordinaires
 
-Le budget prévisionnel est divisé en provisions trimestrielles.
+Le budget ordinaire est divisé en appels de fonds périodiques (trimestriels ou mensuels selon les habitudes de l'ACP).
 
 **Calcul par copropriétaire :**
 ```
-Provision = (Budget prévisionnel × Tantièmes du lot / Tantièmes totaux) / 4
+Appel de fonds = (Budget ordinaire × Quote-part du lot / Millièmes totaux) / 4
+(si appels trimestriels)
 ```
 
-**Calendrier type :**
+**Calendrier type (appels trimestriels) :**
 | Trimestre | Exigibilité | Couverture |
 |-----------|-------------|-----------|
 | T1 | 1er janvier | Janvier, Février, Mars |
@@ -58,53 +63,53 @@ Provision = (Budget prévisionnel × Tantièmes du lot / Tantièmes totaux) / 4
 | T3 | 1er juillet | Juillet, Août, Septembre |
 | T4 | 1er octobre | Octobre, Novembre, Décembre |
 
-Le calendrier exact dépend de la date de début de l'exercice comptable.
+Certaines ACP pratiquent des appels mensuels, ce qui lisse mieux la trésorerie.
 
 **Clés de répartition :**
-- Charges générales → tantièmes de parties communes générales
-- Charges spéciales (ascenseur, escalier, chauffage) → tantièmes spéciaux si prévus au règlement de copropriété
+- Charges générales → quotes-parts de parties communes générales (millièmes généraux)
+- Charges spéciales (ascenseur, chauffage, escalier) → clés spéciales si prévues dans l'acte de base
 
-### Provisions pour travaux votés
+### Appels de fonds pour travaux votés
 
-Appels de fonds spécifiques, distincts des provisions courantes. Le montant et l'échéancier sont fixés par l'AG.
+Appels de fonds spécifiques, distincts des charges ordinaires. Le montant et l'échéancier sont fixés par l'AG lors du vote des travaux.
 
 **Calcul :**
 ```
-Appel travaux = Montant voté × Tantièmes du lot / Tantièmes totaux
+Appel travaux = Montant voté × Quote-part du lot / Millièmes totaux
 ```
 
-L'AG peut décider d'un paiement en une ou plusieurs fois.
+L'AG peut décider d'un paiement en une ou plusieurs fois, en fonction de l'avancement des travaux.
 
-### Fonds de Travaux (art. 14-2 loi 1965)
+### Fonds de Réserve (art. 3.89 §1er Cc belge)
 
-**Obligatoire** depuis la loi ALUR pour toutes les copropriétés de plus de 10 lots à usage de logement, bureaux ou commerce (ou dont le DTG ne fait pas apparaître de besoin de travaux dans les 10 ans).
+**Obligatoire** pour toutes les ACP, sans seuil minimal de lots.
 
-**Minimum** : 5% du budget prévisionnel.
+**Montant minimum** : 5% du budget ordinaire approuvé.
 
 **Caractéristiques :**
-- Le fonds est attaché aux lots (pas au copropriétaire). En cas de vente, les cotisations restent acquises au syndicat.
-- Les sommes sont déposées sur un compte séparé rémunéré (livret A syndic, par exemple)
+- La quote-part du fonds de réserve est attachée au lot (pas au copropriétaire). En cas de vente, les cotisations restent acquises à l'ACP — elles ne sont ni remboursées au vendeur ni reprises par l'acquéreur
+- Les sommes sont déposées sur un **compte bancaire séparé** au nom de l'ACP (compte d'épargne ou à terme)
 - L'AG peut voter un taux supérieur à 5%
-- L'AG peut décider de suspendre les cotisations si le fonds dépasse le budget prévisionnel
+- L'AG peut décider de suspendre temporairement les cotisations si le fonds est jugé suffisant
 
-## Régularisation Annuelle
+## Décompte Annuel
 
-À la clôture de l'exercice, le syndic compare les charges réelles aux provisions appelées.
+À la clôture de l'exercice, le syndic compare les charges réelles aux appels de fonds versés.
 
-### Trop-perçu (provisions > charges réelles)
+### Avoir (appels de fonds > charges réelles)
 
 Le solde est porté au crédit du copropriétaire. Il peut être :
 - Déduit du prochain appel de fonds
-- Remboursé sur demande
+- Remboursé sur demande expresse du copropriétaire
 
-### Insuffisance (charges réelles > provisions)
+### Complément dû (charges réelles > appels de fonds)
 
-Le solde est porté au débit du copropriétaire. Un appel de fonds complémentaire est émis.
+Le solde est porté au débit du copropriétaire. Un appel de fonds complémentaire est émis après l'approbation des comptes en AG.
 
-### Calcul de la régularisation
+### Calcul du décompte
 
 ```
-Régularisation = Charges réelles × (Tantièmes / Total) - Provisions appelées
+Décompte = Charges réelles × (Quote-part / Millièmes totaux) - Appels versés
 ```
 
 Si positif → le copropriétaire doit un complément.
@@ -112,16 +117,29 @@ Si négatif → le copropriétaire a un avoir.
 
 ## Exigibilité
 
-- **Provisions courantes** : exigibles le premier jour de chaque trimestre (art. 14-1)
+- **Appels de fonds ordinaires** : exigibles le premier jour de chaque trimestre (ou mois, selon le rythme décidé)
 - **Travaux votés** : exigibles selon l'échéancier voté en AG
-- **Régularisation** : exigible après l'approbation des comptes en AG
-- **Fonds de travaux** : même exigibilité que les provisions courantes
+- **Décompte annuel** : exigible après l'approbation des comptes en AG
+- **Fonds de réserve** : même rythme que les appels de fonds ordinaires
 
-## Répartition des Charges (art. 10 loi 1965)
+En cas de non-paiement à l'échéance, des intérêts de retard peuvent être réclamés (taux légal belge ou taux prévu dans les statuts).
+
+## Répartition des Charges (art. 3.79 Cc belge)
 
 **Deux catégories :**
 
-1. **Charges relatives à la conservation, l'entretien et l'administration** → réparties selon les tantièmes de parties communes
-2. **Charges relatives aux services collectifs et équipements communs** → réparties selon l'utilité objective pour chaque lot (ex: ascenseur, chauffage)
+1. **Charges générales** (conservation, entretien et administration des parties communes) → réparties selon les quotes-parts de chaque lot telles que définies dans l'acte de base
+2. **Charges spéciales** (services collectifs et équipements communs) → réparties selon l'utilité objective pour chaque lot (ex : ascenseur, chauffage central)
 
-La répartition est fixée dans le règlement de copropriété. Toute modification nécessite l'unanimité (art. 11 loi 1965), sauf si elle résulte de travaux votés.
+La clé de répartition est fixée dans l'acte de base. Toute modification de la clé de répartition nécessite en principe l'unanimité ou la décision judiciaire.
+
+## Référence Virement
+
+Pour faciliter le rapprochement bancaire, utiliser une référence de virement structurée :
+
+```
+Format : {{lot}}-{{trimestre}}-{{année}}
+Exemple : 007-T2-2026
+```
+
+Communiquer cette référence à chaque copropriétaire dans l'avis d'appel de fonds.

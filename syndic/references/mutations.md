@@ -1,139 +1,154 @@
 # Mutations de Lots (Vente)
 
+`last_updated: 2026-05-15`
+
 ## Vue d'Ensemble
 
-Lors de la vente d'un lot de copropriété, le syndic intervient à plusieurs étapes :
-1. Pré-état daté (avant le compromis)
-2. État daté (après le compromis, avant l'acte authentique)
-3. Opposition éventuelle (art. 20)
-4. Notification de la mutation
+Lors de la vente d'un lot de copropriété en Belgique, le syndic intervient à plusieurs étapes :
+1. Renseignements préalables à la vente (avant le compromis)
+2. État des charges (avant l'acte authentique)
+3. Information du notaire instrumentant
+4. Notification de la mutation et mise à jour des données ACP
 
-## Pré-état Daté
+**Fondement légal principal** : art. 3.80 et 3.81 du Code civil belge.
+
+## Renseignements Préalables à la Vente
 
 ### Définition
 
-Document d'information remis à l'acquéreur **avant la signature du compromis** (art. L721-2 CCH). Le vendeur ou son agent demande ces informations au syndic.
+Informations communiquées à l'acquéreur potentiel **avant la signature du compromis de vente** ou de la promesse de vente. En Belgique, c'est généralement le notaire ou l'agence immobilière qui collecte ces informations auprès du syndic pour le compte du vendeur.
 
-### Contenu obligatoire
+### Contenu recommandé
 
-1. Montant des charges courantes du budget prévisionnel et des charges hors budget (quote-part du lot)
-2. Sommes susceptibles d'être dues au syndicat par l'acquéreur
-3. État global des impayés de la copropriété
-4. Fonds de travaux (montant de la part du lot et montant global)
-5. Nombre de copropriétaires ayant engagé une procédure art. 29-1A
+1. Montant des charges ordinaires et extraordinaires en cours (quote-part du lot)
+2. Arriérés de charges éventuellement dus par le vendeur
+3. État global de la trésorerie de l'ACP (impayés, fonds de réserve)
+4. Travaux votés et non encore exécutés — appels à venir
+5. Procédures judiciaires en cours impliquant l'ACP ou le lot
 
-### Documents à joindre
+### Documents à joindre (selon statuts et pratique)
 
-- Fiche synthétique (art. 8-2)
-- Règlement de copropriété et état descriptif de division
+- Statuts de la copropriété (acte de base + règlement de copropriété) — disponibles à la Conservation des hypothèques
 - PV des 3 dernières AG
-- Carnet d'entretien
-- DTG (si réalisé)
-- DPE collectif (si réalisé)
-- Conclusions de l'audit énergétique (si réalisé)
+- Carnet d'entretien (si tenu)
+- DIU (Dossier d'Intervention Ultérieure) — obligatoire à transmettre à l'acquéreur
+- PEB (certificat de performance énergétique) — obligatoire à la vente selon les régions (Flandre : EPC, Bruxelles : PEB, Wallonie : PEB)
+- Rapport d'inspection électrique (obligatoire pour installations de plus de 25 ans ou non conformes)
 
 ### Facturation
 
-Le pré-état daté **ne peut pas être facturé** au vendeur. Il fait partie des missions normales du syndic (inclus dans le forfait de gestion courante, décret du 26 mars 2015).
+Les renseignements préalables peuvent faire l'objet d'une facturation au vendeur, dans les limites prévues par les statuts ou l'accord entre les parties. Il n'existe pas en Belgique de plafond légal réglementé comme en France.
 
-## État Daté (art. 5 décret 1967)
+## État des Charges (avant l'acte authentique)
 
 ### Définition
 
-Document comptable détaillé établi par le syndic **après la signature du compromis**, à la demande du notaire. C'est le document de référence pour le partage des charges entre vendeur et acquéreur.
+Document comptable détaillé établi par le syndic à la demande du notaire, **avant la signature de l'acte authentique**. C'est le document de référence pour le partage des charges entre vendeur et acquéreur.
 
-### Contenu (3 parties)
+### Contenu
 
-**Partie 1 : Sommes pouvant rester dues par le vendeur**
-- Provisions sur charges courantes (appelées, versées, solde)
-- Provisions sur travaux votés (appelées, versées, solde)
-- Cotisations fonds de travaux
-- Impayés éventuels
+**Partie 1 : Sommes dues par le vendeur à l'ACP**
+- Appels de fonds ordinaires (appelés, versés, solde)
+- Appels de fonds travaux votés (appelés, versés, solde)
+- Cotisations fonds de réserve
+- Arriérés éventuels et intérêts de retard
 
-**Partie 2 : Sommes dont le syndicat pourrait être débiteur envers le vendeur**
-- Avances versées
-- Trop-perçu sur régularisation
+**Partie 2 : Sommes dont l'ACP pourrait être débitrice envers le vendeur**
+- Avances versées en excès
+- Avoir sur décompte de l'exercice en cours
 
 **Partie 3 : Sommes qui seront dues par l'acquéreur**
-- Provisions des trimestres restants de l'exercice
-- Cotisations fonds de travaux restantes
+- Appels de fonds des trimestres restants de l'exercice
+- Cotisations fonds de réserve restantes
 
 Voir template : [templates/etat-date.md](../templates/etat-date.md)
 
 ### Facturation
 
-L'état daté **peut être facturé** au vendeur, dans la limite du plafond fixé par décret : **380 EUR TTC** maximum (art. 10-1 al. 7 loi 1965, décret du 21 février 2020).
+Le syndic peut facturer l'établissement de l'état des charges au vendeur. Le montant est librement négocié en Belgique (pas de plafond légal national, contrairement à la France).
 
 ### Délai
 
-Pas de délai légal strict, mais la pratique recommande **15 jours** après la demande du notaire. Un retard peut bloquer la vente.
+Pas de délai légal strict, mais la pratique recommande de répondre dans les **15 jours** suivant la demande du notaire. Un retard peut bloquer la vente et engager la responsabilité du syndic.
 
-## Opposition (art. 20 loi 1965)
+## Solidarité de l'Acquéreur (art. 3.81 Cc belge)
 
-### Principe
+En droit belge, **l'acquéreur est solidairement responsable** des dettes du vendeur envers l'ACP à la date de la vente.
 
-Le syndic peut **faire opposition au versement du prix de vente** pour garantir le paiement des charges dues par le vendeur.
-
-### Conditions
-
-1. Le vendeur a des **charges impayées**
-2. L'opposition doit être notifiée au notaire **dans les 15 jours** suivant la notification de la mutation au syndic
-3. L'opposition porte sur les sommes dues par le vendeur (charges, provisions, appels travaux)
-
-### Procédure
-
-1. Le notaire notifie le projet de mutation au syndic (LRAR ou voie électronique)
-2. Le syndic vérifie le compte du vendeur
-3. Si des sommes sont dues :
-   - Le syndic notifie l'opposition au notaire dans les 15 jours
-   - Le notaire retient les sommes sur le prix de vente
-   - Le notaire verse au syndicat les sommes dues avant de libérer le solde au vendeur
-4. Si aucune somme n'est due : pas d'opposition, le notaire verse le prix au vendeur
-
-### Attention
-
-- L'opposition n'est **pas automatique**. Le syndic doit agir dans les 15 jours.
-- Passé ce délai, le syndic perd son droit d'opposition.
-- L'opposition est **limitée aux sommes exigibles** à la date de la mutation.
+**Conséquences pratiques :**
+- Le notaire a l'obligation légale de s'informer auprès du syndic de l'état des dettes du vendeur
+- L'acquéreur peut retenir sur le prix de vente les sommes dues à l'ACP (pratique courante)
+- Le notaire retient les sommes dues sur le produit de la vente avant de les reverser au vendeur
+- Cette solidarité protège l'ACP sans nécessiter de procédure d'opposition formelle (contrairement au droit français)
 
 ## Notification de Mutation
 
 ### Obligations
 
-Le notaire notifie la mutation au syndic (art. 6 décret 1967). Le syndic doit ensuite :
+Le notaire notifie la mutation au syndic après signature de l'acte authentique. Le syndic doit ensuite :
 
-1. **Mettre à jour le registre des copropriétaires** (nom, adresse, lot, tantièmes)
-2. **Transférer le compte copropriétaire** (solde du vendeur → acquéreur)
-3. **Informer l'acquéreur** des modalités de paiement des charges
-4. **Mettre à jour le RNC** si nécessaire
+1. **Mettre à jour le registre des copropriétaires** (nom, adresse, lot, quotes-parts)
+2. **Transférer le compte copropriétaire** (solde du vendeur → acquéreur si applicable)
+3. **Informer l'acquéreur** des modalités de paiement des charges, de l'IBAN pour les virements, et du rythme des appels de fonds
+4. **Mettre à jour le fichier JSON** de la copro (données Paperasse)
 
 ### Répartition des charges
 
-**Principe** : le transfert des charges s'opère au jour de la signature de l'acte authentique (et non du compromis).
+**Principe** : le transfert des charges s'opère au jour de la signature de l'acte authentique.
 
 | Charges | Qui paie |
 |---------|---------|
-| Provisions appelées avant la vente | Vendeur |
-| Provisions appelées après la vente | Acquéreur |
-| Régularisation de l'exercice en cours | Au prorata temporis (vendeur et acquéreur) |
-| Travaux votés avant la vente | Vendeur (même si les appels sont postérieurs) |
-| Fonds de travaux (cotisations passées) | Acquises au syndicat, non remboursables |
+| Appels de fonds appelés avant la vente | Vendeur |
+| Appels de fonds appelés après la vente | Acquéreur |
+| Décompte de l'exercice en cours | Au prorata temporis selon convention notariale |
+| Travaux votés avant la vente | En principe le vendeur (selon accord dans l'acte) |
+| Fonds de réserve (cotisations passées) | Acquises à l'ACP, non remboursables au vendeur |
 
-### Fonds de travaux et mutation
+### Fonds de réserve et mutation
 
-Les cotisations au fonds de travaux sont **définitivement acquises au syndicat** (art. 14-2 al. 4). Elles ne sont ni remboursées au vendeur ni transférées à l'acquéreur. L'acquéreur commence à cotiser à partir de la date de mutation.
+Les cotisations au fonds de réserve sont **définitivement acquises à l'ACP** (art. 3.89 Cc belge). Elles ne sont ni remboursées au vendeur ni transférées à l'acquéreur. L'acquéreur cotise à partir de la date de mutation.
+
+Toutefois, **dans l'acte de vente**, vendeur et acquéreur peuvent librement convenir d'un ajustement du prix de vente pour tenir compte du fonds de réserve existant — cette convention est entre les parties et n'affecte pas l'ACP.
+
+## Contenu de l'Acte de Vente (obligations spécifiques Belgique)
+
+L'acte authentique de vente d'un lot de copropriété doit en Belgique contenir ou référencer :
+- La description précise du lot (avec référence à l'acte de base et à l'état descriptif de division)
+- La quote-part dans les parties communes
+- La mention que l'acquéreur a pris connaissance des statuts de la copropriété (acte de base, règlement de copropriété, ROI)
+- L'état des charges et dettes à la date de la vente
+- Les travaux votés et non encore exécutés
+- Les procédures judiciaires en cours
+
+**Pas de certificat « loi Carrez » en Belgique** : contrairement au droit français (loi Carrez du 18 décembre 1996), il n'existe pas en Belgique d'obligation légale de mentionner la superficie privative dans le contrat de vente d'un lot de copropriété. La superficie peut figurer dans l'acte de base ou dans l'acte de vente à titre indicatif, mais ne constitue pas une donnée légalement opposable dont l'inexactitude permettrait à l'acquéreur d'agir en réduction du prix.
+
+**PEB obligatoire** : le certificat PEB du logement privatif doit être annexé à l'acte de vente ou au moins avoir été communiqué à l'acquéreur avant la signature du compromis, sous peine de sanctions régionales.
+
+**Rapport d'inspection électrique** : si l'installation électrique est non conforme, la mention de non-conformité doit figurer dans l'acte ; l'acquéreur dispose d'un délai pour mise en conformité.
+
+**DIU** : le Dossier d'Intervention Ultérieure doit être remis à l'acquéreur lors de la vente. Le notaire mentionne généralement sa remise dans l'acte.
+
+## Notification au Syndic après la Vente
+
+Le notaire notifie la mutation au syndic, en principe dans les **15 jours** suivant la signature de l'acte authentique. Cette notification permet au syndic de :
+- Mettre à jour le registre des copropriétaires
+- Transférer le compte copropriétaire
+- Informer l'acquéreur des modalités de paiement
+
+En pratique, le notaire belge contacte le syndic avant et après la signature. Le délai de 15 jours est une pratique recommandée ; aucun délai légal strict n'est prévu par le Code civil belge pour cette notification, mais un retard peut engager la responsabilité du notaire si l'ACP subit un préjudice.
 
 ## Checklist Mutation
 
 ```
 Mutation — Lot {{n}} — Vendeur : {{vendeur}} → Acquéreur : {{acquereur}}
-- [ ] Pré-état daté transmis (gratuit)
-- [ ] Documents obligatoires joints (fiche synthétique, PV AG, règlement, etc.)
-- [ ] État daté établi et transmis au notaire (max 380 EUR TTC)
-- [ ] Vérification compte vendeur (impayés ?)
-- [ ] Opposition notifiée si impayés (délai : 15 jours après notification)
-- [ ] Mutation notifiée par le notaire
+- [ ] Renseignements préalables transmis au notaire / vendeur
+- [ ] Documents joints (PV AG, statuts, DIU, PEB si disponible)
+- [ ] État des charges établi et transmis au notaire
+- [ ] Vérification arriérés du vendeur
+- [ ] Confirmation solidarité acquéreur / retenue sur prix de vente si impayés
+- [ ] Mutation notifiée par le notaire (acte authentique signé)
 - [ ] Registre copropriétaires mis à jour
-- [ ] Compte copropriétaire transféré
-- [ ] Acquéreur informé (modalités paiement, prochain appel)
+- [ ] Compte copropriétaire transféré dans le système
+- [ ] Acquéreur informé (modalités paiement, IBAN, prochain appel)
+- [ ] DIU remis à l'acquéreur (confirmation)
 ```

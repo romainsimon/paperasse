@@ -1,345 +1,276 @@
-# Formes Juridiques des Entreprises en France
+# Formes Juridiques des Sociétés en Belgique
+
+`last_updated: 2026-05-15`
+
+Base légale : **Code des Sociétés et des Associations (CSA)**, loi du 23 mars 2019. Administration : **Banque-Carrefour des Entreprises (BCE)** — numéro d'entreprise format `0xxx.xxx.xxx`.
 
 ## Tableau Comparatif
 
-| Critère | EI | EURL | SASU | SARL | SAS |
-|---------|----|----- |------|------|-----|
-| Associés | 1 | 1 | 1 | 2-100 | 2+ |
-| Capital min. | - | 1 € | 1 € | 1 € | 1 € |
-| Responsabilité | Illimitée* | Limitée | Limitée | Limitée | Limitée |
-| Imposition défaut | IR | IR | IS | IS | IS |
-| Option possible | IS | IS | IR (5 ans) | IR (5 ans) | IR (5 ans) |
-| Dirigeant | Exploitant | Gérant | Président | Gérant(s) | Président |
-| Régime social dirigeant | TNS | TNS | Assimilé salarié | TNS (majoritaire) / AS (minoritaire) | Assimilé salarié |
+| Critère | SRL | SA | SNC | SCS | SC (coopérative) |
+|---------|-----|----|-----|-----|-----------------|
+| Associés | 1+ | 1+ | 2+ | 2+ (1 commandité, 1+ commanditaires) | 3+ |
+| Capital minimum | Aucun* | **61 500 €** | Aucun | Aucun | Aucun* |
+| Responsabilité | Limitée aux apports | Limitée aux apports | Illimitée et solidaire | Commandités : illimitée / Commanditaires : limitée | Limitée aux apports |
+| Imposition défaut | ISOC | ISOC | IPP (transparence) ou ISOC | IPP ou ISOC | ISOC |
+| Dirigeant | Gérant | Administrateur / CEO | Gérant(s) | Gérant(s) (commandités) | Administrateur |
+| Régime social dirigeant | Indépendant (INASTI) | Indépendant (INASTI) sauf dirigeant salarié | Indépendant | Indépendant | Indépendant |
 
-*Depuis 2022, patrimoine professionnel séparé par défaut.
-
----
-
-## Entreprise Individuelle (EI)
-
-### Caractéristiques
-
-- Pas de personnalité morale distincte
-- Patrimoine professionnel séparé (depuis 2022)
-- Imposition IR catégorie BIC ou BNC
-- Option IS possible (irréversible)
-
-### Régime Fiscal
-
-**Micro-entreprise (auto-entrepreneur):**
-- Plafonds: 188 700 € (ventes) / 77 700 € (services)
-- Versement libératoire possible
-- Comptabilité ultra-simplifiée
-
-**Réel:**
-- BIC réel simplifié ou normal
-- BNC déclaration contrôlée
-
-### Régime Social
-
-- TNS (Travailleur Non Salarié)
-- Cotisations URSSAF sur bénéfice
-- Base minimum si déficit
-
-### Comptes Spécifiques
-
-- **108** Compte de l'exploitant
-- **644** Rémunération du travail de l'exploitant
-- **646** Cotisations sociales personnelles
-
-### Écritures Courantes
-
-**Prélèvement personnel:**
-```
-  Débit 108 Compte de l'exploitant    X XXX,XX
-  Crédit 512 Banque                   X XXX,XX
-```
-
-**Cotisations sociales:**
-```
-  Débit 646 Cotisations personnelles  X XXX,XX
-  Crédit 512 Banque                   X XXX,XX
-```
+*SRL et SC : capital minimal librement fixé par les fondateurs, mais soumis au test d'adéquation des fonds propres (plan financier).
 
 ---
 
-## EURL (Entreprise Unipersonnelle à Responsabilité Limitée)
+## SRL (Société à Responsabilité Limitée)
 
 ### Caractéristiques
 
-- SARL à associé unique
+- Forme juridique la plus utilisée par les PME belges depuis le CSA 2019
+- Remplace l'ancienne SPRL (Société Privée à Responsabilité Limitée)
+- **Pas de capital minimum** : les fondateurs fixent librement le capital, mais doivent établir un plan financier démontrant l'adéquation des fonds propres (art. 5:4 CSA)
+- Parts sociales non librement cessibles sans agrément des associés
 - Responsabilité limitée aux apports
 - Personnalité morale distincte
 
-### Régime Fiscal
+### Constitution
 
-**Défaut:** IR (transparence fiscale)
-**Option:** IS (irrévocable après 5 ans)
+- **Acte constitutif** : notarié ou sous seing privé (avec apports en numéraire uniquement pour l'acte sous seing privé)
+- **Plan financier** : obligatoire, remis au notaire — engage la responsabilité des fondateurs pendant 3 ans en cas de faillite
+- **Dépôt au greffe du TRE** (Tribunal de l'Entreprise) via la BCE
+- **Numéro BCE** : attribué lors de l'enregistrement (format `0xxx.xxx.xxx`)
 
-### Régime Social du Gérant
+### Activation TVA
 
-| Qualité | Régime |
-|---------|--------|
-| Gérant associé unique | TNS |
-| Gérant non associé | Assimilé salarié |
-
-### Rémunération du Gérant Associé Unique
-
-**Option IR:**
-- Pas de rémunération déductible
-- Résultat imposé directement à l'IR de l'associé
-
-**Option IS:**
-- Rémunération déductible du résultat
-- Imposée à l'IR de l'associé (traitements et salaires)
-
-**Écriture (EURL à l'IS):**
-```
-Rémunération gérant:
-  Débit 641 Rémunérations             X XXX,XX
-  Crédit 455 Compte courant associé   X XXX,XX
-```
-
----
-
-## SASU (Société par Actions Simplifiée Unipersonnelle)
-
-### Caractéristiques
-
-- SAS à actionnaire unique
-- Grande liberté statutaire
-- Responsabilité limitée aux apports
-- Personnalité morale distincte
+Demande d'assujettissement à la TVA via le formulaire **604A** (ou formulaire **604B** pour une entreprise existante) auprès du Centre de Contrôle TVA compétent, ou via l'intermédiaire d'un guichet d'entreprises agréé.
 
 ### Régime Fiscal
 
-**Défaut:** IS
-**Option:** IR (5 exercices maximum, conditions)
+- **Défaut :** ISOC (Impôt des Sociétés)
+- Taux réduit 20% possible si conditions remplies (art. 215 al. 2 CIR 92)
 
-**Conditions option IR:**
-- Moins de 5 ans d'existence
-- < 50 salariés
-- CA ou total bilan < 10 M€
-- Non cotée
-- Détenue à 50%+ par personnes physiques
+### Dirigeant (Gérant)
 
-### Régime Social du Président
-
-- **Toujours assimilé salarié** (même si actionnaire unique)
-- Affiliation régime général
-- Pas de cotisations si non rémunéré
-- Cotisations patronales et salariales si rémunéré
-
-### Rémunération vs Dividendes
-
-| | Rémunération | Dividendes |
-|---|-------------|------------|
-| Déductible IS | Oui | Non |
-| Cotisations sociales | Oui (~80%) | PFU ou prélèvements sociaux (17,2%) |
-| Protection sociale | Oui | Non |
-| Trésorerie nécessaire | Oui | Bénéfice distribuable |
+- Toujours statut d'**indépendant** (INASTI)
+- Rémunération déductible à l'ISOC si justifiée
+- Pas de cotisations ONSS (régime indépendant — INASTI)
 
 ### Écritures Courantes
 
-**Rémunération président:**
+**Rémunération gérant :**
 ```
-  Débit 641 Rémunérations personnel    X XXX,XX
-  Crédit 421 Personnel - rémunérations X XXX,XX
-
-Charges sociales:
-  Débit 645 Charges sociales          X XXX,XX
-  Crédit 431 Sécurité sociale         X XXX,XX
+  Débit 622 Rémunérations dirigeants    X XXX,XX
+  Crédit 452 Précompte prof. à verser     XXX,XX
+  Crédit 454 Rémunérations à payer     X XXX,XX
 ```
 
-**Distribution dividendes:**
+**Distribution dividendes :**
 ```
-Décision AG:
-  Débit 120 Résultat de l'exercice    X XXX,XX
-  Crédit 457 Dividendes à payer       X XXX,XX
+Décision AG :
+  Débit 14 Bénéfice reporté            X XXX,XX
+  Crédit 489 Dividendes à payer        X XXX,XX
 
-Paiement (après PFU):
-  Débit 457 Dividendes à payer        X XXX,XX
-  Crédit 4423 Retenues à la source        XXX,XX
-  Crédit 512 Banque                   X XXX,XX
+Paiement (après PM 30%) :
+  Débit 489 Dividendes à payer         X XXX,XX
+  Crédit 453 Précompte mobilier          XXX,XX
+  Crédit 550 Banque                    X XXX,XX
 ```
 
 ---
 
-## SARL (Société à Responsabilité Limitée)
+## SA (Société Anonyme)
 
 ### Caractéristiques
 
-- 2 à 100 associés
-- Responsabilité limitée aux apports
-- Parts sociales (non librement cessibles)
-
-### Régime Fiscal
-
-**Défaut:** IS
-**Option IR:** Possible (5 ans max, conditions SARL de famille)
-
-### Régime Social des Gérants
-
-| Qualité du gérant | Régime |
-|-------------------|--------|
-| Majoritaire (>50% parts) | TNS |
-| Égalitaire (50%) | TNS |
-| Minoritaire (<50%) | Assimilé salarié |
-
-**Cogérance:** Parts de tous les co-gérants et conjoints/pacsés/enfants mineurs cumulées.
-
-### Dividendes Gérant Majoritaire
-
-**Particularité:** Dividendes soumis à cotisations sociales TNS au-delà de 10% du capital + compte courant + primes d'émission.
-
-```
-Si dividendes > 10% × (capital + CC + primes):
-  → Part excédentaire = assiette cotisations TNS
-```
-
----
-
-## SAS (Société par Actions Simplifiée)
-
-### Caractéristiques
-
-- 2+ actionnaires
-- Très grande liberté statutaire
+- Adaptée aux structures plus grandes, aux levées de fonds et à l'accueil d'investisseurs
+- **Capital minimum : 61 500 €** entièrement souscrit, libéré à 25% minimum lors de la constitution
 - Actions librement cessibles (sauf clause)
-- Responsabilité limitée aux apports
+- Personnalité morale distincte
 
-### Régime Fiscal
+### Constitution
 
-- Identique SASU (IS par défaut, option IR possible)
+- **Acte notarié obligatoire**
+- Plan financier obligatoire
+- Enregistrement BCE, dépôt au greffe du TRE
 
-### Organes de Direction
+### Gouvernance
 
-- **Président** (obligatoire)
-- **Directeur général** (optionnel)
-- Autres organes prévus par statuts
+- **Conseil d'administration** (minimum 3 membres, ou 1 si actionnaire unique) OU **Administrateur unique**
+- Système moniste ou dualiste (conseil de surveillance + directoire)
 
-### Régime Social
+### Régime Social du Dirigeant
 
-Tous les dirigeants mandataires sociaux = assimilés salariés.
+- Administrateurs : statut indépendant (INASTI) sur leurs jetons de présence et rémunérations de mandat
+- Directeur salarié : possible (contrat de travail + cotisations ONSS)
 
 ---
 
-## Compte Courant d'Associé (455)
+## SNC (Société en Nom Collectif)
+
+### Caractéristiques
+
+- Tous les associés sont commerçants
+- Responsabilité illimitée et solidaire : les associés répondent sur leur patrimoine personnel
+- Parts non librement cessibles
+- Pas de capital minimum
+
+### Régime Fiscal
+
+- **Par défaut :** Transparence fiscale — les bénéfices sont imposés à l'IPP des associés
+- **Option ISOC** possible (irrévocable)
+
+---
+
+## SCS (Société en Commandite Simple)
+
+### Caractéristiques
+
+- Deux catégories d'associés :
+  - **Commandités** : responsabilité illimitée et solidaire, gèrent la société
+  - **Commanditaires** : responsabilité limitée aux apports, pas de gestion
+- Utile pour les structures avec investisseurs passifs
+
+---
+
+## SC (Société Coopérative)
+
+### Caractéristiques
+
+- Minimum **3 associés**
+- Finalité sociale ou économique collective
+- Possibilité d'agrément comme **entreprise sociale agréée (ESA)**
+- Responsabilité limitée aux apports
+
+---
+
+## Banque-Carrefour des Entreprises (BCE)
+
+### Rôle de la BCE
+
+La BCE remplace le SIREN/SIRET/RCS français. Elle attribue à chaque entité juridique un **numéro d'entreprise unique** au format `0xxx.xxx.xxx`.
+
+| Concept français | Équivalent belge |
+|-----------------|-----------------|
+| SIREN | Numéro BCE (9 chiffres, format 0xxx.xxx.xxx) |
+| SIRET | Numéro d'unité d'établissement BCE (même numéro + suffixe) |
+| Extrait Kbis | **Extrait BCE** (téléchargeable sur https://kbopub.economie.fgov.be) |
+| RCS (Registre Commerce) | Registre BCE + dépôt au greffe TRE |
+| INPI | BCE (guichets d'entreprises agréés) |
+
+**Consultation publique BCE :** https://kbopub.economie.fgov.be (informations légales, statuts, comptes annuels)
+
+---
+
+## Compte Courant d'Associé (456)
 
 ### Définition
 
-Sommes mises à disposition de la société par les associés:
-- Apports non rémunérés par des parts/actions
+Sommes mises à disposition de la société par les associés ou gérants :
+- Avances de fonds
 - Rémunérations non prélevées
-- Remboursement de frais en attente
+- Remboursement de frais professionnels en attente
 
 ### Règles Fiscales
 
-**Intérêts versés:**
-- Déductibles si taux ≤ taux fiscal (taux BCE + 2 points)
-- Excédent = réintégration fiscale
+**Intérêts versés :**
+- Déductibles à l'ISOC dans la limite du taux du marché
+- Au-delà → avantage anormal et bénévole (art. 79 CIR 92)
 
-**Convention de compte courant:** Recommandée (taux, remboursement, garanties).
+**Convention recommandée** : convention de compte courant définissant le taux d'intérêt, les conditions de remboursement.
 
 ### Écritures
 
-**Apport en compte courant:**
+**Apport en compte courant :**
 ```
-  Débit 512 Banque                    X XXX,XX
-  Crédit 455 Compte courant associé   X XXX,XX
-```
-
-**Remboursement:**
-```
-  Débit 455 Compte courant associé    X XXX,XX
-  Crédit 512 Banque                   X XXX,XX
+  Débit 550 Banque                      X XXX,XX
+  Crédit 456 Compte courant associé     X XXX,XX
 ```
 
-**Intérêts courus:**
+**Remboursement :**
 ```
-  Débit 6615 Intérêts comptes courants   XXX,XX
-  Crédit 4558 Intérêts courus            XXX,XX
+  Débit 456 Compte courant associé      X XXX,XX
+  Crédit 550 Banque                     X XXX,XX
+```
+
+**Intérêts courus :**
+```
+  Débit 650 Charges d'intérêts            XXX,XX
+  Crédit 456 Compte courant associé       XXX,XX
 ```
 
 ---
 
 ## Capital Social
 
-### Apports
+### Apports (SRL sans capital minimum)
 
 | Type | Contrepartie | Libération |
 |------|--------------|------------|
-| Numéraire | Parts/actions | 20% (SARL) ou 50% (SAS) à la création, solde 5 ans |
-| Nature | Parts/actions | 100% immédiate |
-| Industrie | Parts (SARL) | Pas dans le capital, droits de vote |
+| Numéraire | Parts sociales | Librement fixée (minimum légal prudentiel selon plan financier) |
+| Nature | Parts sociales | 100% immédiate + rapport de réviseur si > 6 200 € |
+| Industrie | Possible dans SRL (art. 5:39 CSA) | Droits de vote, pas de valeur bilan |
 
 ### Écritures de Constitution
 
-**Promesse d'apport:**
+**Promesse d'apport :**
 ```
-  Débit 4561 Apports en société      XX XXX,XX
-  Crédit 101 Capital social          XX XXX,XX
-```
-
-**Libération:**
-```
-  Débit 512 Banque                   XX XXX,XX
-  Crédit 4561 Apports en société     XX XXX,XX
+  Débit 416 Créances s/ associés        XX XXX,XX
+  Crédit 100 Capital souscrit           XX XXX,XX
 ```
 
-### Réduction et Augmentation
-
-**Augmentation de capital:**
-- Apports nouveaux
-- Incorporation de réserves
-- Conversion de créances (compte courant)
-
-**Réduction de capital:**
-- Absorption de pertes
-- Remboursement aux associés
+**Libération :**
+```
+  Débit 550 Banque                      XX XXX,XX
+  Crédit 416 Créances s/ associés       XX XXX,XX
+```
 
 ---
 
-## Affectation du Résultat
+## Affectation du Résultat (Belgique)
 
-### Ordre d'affectation
+### Ordre d'affectation (SRL)
 
-1. **Report à nouveau débiteur** (absorption des pertes antérieures)
-2. **Réserve légale** (5% jusqu'à 10% du capital)
-3. **Réserves statutaires** (si prévues)
-4. **Dividendes**
-5. **Report à nouveau** (solde)
+1. **Réserve légale** : 5% du bénéfice jusqu'à 10% du capital souscrit (art. 5:190 CSA)
+2. **Réserves statutaires** (si prévues)
+3. **Dividendes** (après test de liquidité et solvabilité — art. 5:142 CSA)
+4. **Report à nouveau**
+
+### Test Double Bilan (distribution en SRL)
+
+Avant toute distribution, les gérants vérifient :
+1. **Test du bilan** : l'actif net ne peut devenir inférieur aux réserves indisponibles
+2. **Test de liquidité** : la société peut continuer à payer ses dettes dans les 12 mois suivants
 
 ### Écriture Type
 
 ```
-Affectation bénéfice:
-  Débit 120 Résultat (bénéfice)      XX XXX,XX
-  Crédit 1061 Réserve légale          X XXX,XX
-  Crédit 457 Dividendes               X XXX,XX
-  Crédit 110 Report à nouveau         X XXX,XX
+Affectation bénéfice (compte 14) :
+  Débit 14 Bénéfice reporté            XX XXX,XX
+  Crédit 130 Réserve légale             X XXX,XX
+  Crédit 489 Dividendes à payer         X XXX,XX
+  Crédit 14 Report à nouveau            X XXX,XX
 ```
 
 ---
 
 ## Obligations Légales par Forme
 
-### SARL / EURL
+### SRL
 
-- Rapport de gestion (sauf petit EURL)
-- Approbation des comptes (6 mois après clôture)
-- Dépôt des comptes au greffe
-- PV d'AG
+- Approbation des comptes en AG (6 mois après clôture)
+- Dépôt des comptes annuels à la **Centrale des Bilans BNB** (https://cri.nbb.be) dans les 7 mois après clôture
+- PV d'AG (décision de l'associé unique ou procès-verbal d'AG)
+- Rapport de gestion si grande entreprise
 
-### SAS / SASU
+### SA
 
-- Approbation des comptes (6 mois après clôture)
-- Dépôt des comptes au greffe
-- PV de décision de l'associé unique ou AG
-- Rapport de gestion si seuils dépassés
+- Même obligations que SRL
+- Rapport de rémunération si cotée ou grande entreprise
 
-**Seuils dispense rapport de gestion:**
-- Total bilan ≤ 4 M€
-- CA HT ≤ 8 M€
-- Salariés ≤ 50
+**Seuils petite société (schéma abrégé, art. 1:24 CSA) :**
+- Total bilan ≤ 4 500 000 €
+- CA net ≤ 9 000 000 €
+- Effectif ≤ 50 (moyens annuels)
+
+2 critères sur 3 dépassés → grande société → schéma complet.
+
+### Dépôt BCE — Extrait
+
+L'extrait BCE (équivalent belge du Kbis) est téléchargeable gratuitement sur https://kbopub.economie.fgov.be et comporte : numéro d'entreprise, dénomination, forme juridique, siège, date de constitution, objet social, dirigeants.

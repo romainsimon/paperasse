@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "exercice": 2026,
+    "revenus": 2025,
+    "source": "art. 90 CIR 92 + position administrative SPF Finances",
+    "source_url": "https://finances.belgium.be/fr/particuliers/transactions/actifs-numeriques",
+    "last_updated": "2026-05-15"
+  },
+  "qualification_fiscale": {
+    "description": "La fiscalité belge des crypto-actifs repose sur la qualification du comportement du contribuable, pas sur la nature de l'actif.",
+    "categories": {
+      "bonne_gestion_patrimoine": {
+        "regime": "Non imposable",
+        "base_legale": "art. 90, 1° a contrario CIR 92",
+        "criteres": [
+          "Détention longue durée (HODLing)",
+          "Utilisation de fonds personnels disponibles (pas d'emprunt ni d'effet de levier)",
+          "Gestion prudente — pas de trading actif ni spéculatif",
+          "Diversification normale du portefeuille"
+        ],
+        "note": "Le SPF Finances apprécie la situation au cas par cas. Aucun critère objectif chiffré n'est fixé par la loi."
+      },
+      "revenus_divers_speculatifs": {
+        "regime": "Imposable à 33 % + additionnels communaux",
+        "base_legale": "art. 90, 1° CIR 92",
+        "criteres": [
+          "Trading fréquent",
+          "Utilisation d'effet de levier",
+          "Gains en capital réalisés à court terme de manière répétée",
+          "Connaissance technique poussée et investissement de temps significatif"
+        ],
+        "declaration": "Cadre XV de la déclaration IPP annuelle"
+      },
+      "revenus_professionnels": {
+        "regime": "Imposable au taux progressif IPP comme revenus professionnels",
+        "base_legale": "art. 23 CIR 92",
+        "criteres": [
+          "Mining à grande échelle avec matériel professionnel",
+          "Staking professionnel",
+          "Activité de trading organisée à titre de profession principale"
+        ]
+      }
+    }
+  },
+  "calcul_plus_value": {
+    "methode": "Prix de cession − prix de revient moyen pondéré (PRMP) ou FIFO",
+    "frais_deductibles": "Frais d'acquisition et de cession déductibles si l'opération est imposable",
+    "taux_de_change": "Valorisation en EUR au cours de la Banque Nationale de Belgique à la date de chaque transaction"
+  },
+  "ruling_preventif": {
+    "description": "Possibilité d'obtenir un ruling fiscal préventif auprès du Service des Décisions Anticipées (SDA)",
+    "utilite": "Sécurité juridique si situation ambiguë (investisseur actif mais pas encore professionnel)",
+    "contact": "https://ruling.be",
+    "delai": "Environ 3 mois"
+  },
+  "obligations_declaratives": {
+    "comptes_etrangers": "Obligation de déclaration des comptes ouverts auprès d'exchanges étrangers (cadre XIII de la déclaration IPP)",
+    "revenus_imposables": "Déclaration en cadre XV si revenus divers ou professionnels imposables",
+    "pas_de_formulaire_specifique": "Pas d'équivalent du formulaire 2086 français en Belgique"
+  },
+  "tokens_staking_defi": {
+    "staking_rewards": "Revenus de staking potentiellement imposables comme revenus divers (qualification dépend du contexte)",
+    "defi_yield_farming": "Idem — qualification au cas par cas",
+    "nft": "Même grille de qualification (bonne gestion / spéculation / professionnel)"
+  }
+}

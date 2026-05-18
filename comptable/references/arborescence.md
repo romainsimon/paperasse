@@ -2,6 +2,8 @@
 
 Convention de nommage et rangement pour tous les fichiers comptables.
 
+`last_updated: 2026-05-15`
+
 ## Structure
 
 ```
@@ -16,7 +18,7 @@ data/
 │   │   ├── releve-2025-01.csv
 │   │   ├── releve-2025-02.csv
 │   │   └── ...
-│   └── sg/
+│   └── ing/
 │       └── releve-2025-01.ofx
 ├── factures/                  # Factures fournisseurs et clients
 │   ├── fournisseurs/
@@ -28,16 +30,16 @@ data/
 │       └── 2025/
 │           ├── F-2025-001_client-a_290.00.pdf
 │           └── ...
-├── journal-entries.json       # Journal comptable consolidé
-├── pcg_YYYY.json              # Plan Comptable Général (open data)
-├── nomenclature-liasse-fiscale.csv
+├── journal-entries.json       # Journal comptable consolidé (PCMN)
+├── pcmn_2026.json             # Plan Comptable Minimum Normalisé (open data CNC-CBN)
+├── nomenclature-isoc.csv      # Nomenclature déclaration ISOC 275
 └── sources.json               # Métadonnées des sources de données
 
-output/                        # Fichiers générés (états financiers, FEC, PDFs)
+output/                        # Fichiers générés (états financiers, exports, PDFs)
 ├── bilan.md
 ├── compte-de-resultat.md
 ├── balance.md
-├── [SIREN]FEC[YYYYMMDD].txt
+├── livre-journal-YYYY.txt     # Export livre-journal normalisé belge (art. 3 loi comptable)
 └── pdf/
     ├── bilan.pdf
     ├── compte-de-resultat.pdf
@@ -97,6 +99,17 @@ Exemples :
 
 Ne pas modifier manuellement. Régénérés à chaque exécution des scripts.
 
+**Export livre-journal :** En Belgique, il n'existe pas de format standardisé équivalent au FEC français. L'obligation comptable belge est de tenir un livre-journal chronologique (art. 3 de la loi du 17 juillet 1975 relative à la comptabilité des entreprises). Le fichier `livre-journal-YYYY.txt` est un export du journal dans un format lisible et archivable.
+
+## Fichiers de référence clés
+
+| Fichier | Contenu | Usage |
+|---------|---------|-------|
+| `data/pcmn_2026.json` | Plan Comptable Minimum Normalisé complet | Référence comptes PCMN |
+| `data/nomenclature-isoc.csv` | Nomenclature déclaration ISOC 275 (SPF Finances) | Mapping comptes → lignes déclaration |
+| `data/journal-entries.json` | Journal comptable consolidé | Source vérité écritures |
+| `data/sources.json` | Métadonnées des connecteurs et imports | Configuration et traçabilité |
+
 ## Règles
 
 1. **Ne jamais modifier les fichiers dans `data/transactions/`**. Ils sont régénérés par `npm run fetch`.
@@ -104,3 +117,4 @@ Ne pas modifier manuellement. Régénérés à chaque exécution des scripts.
 3. **Le dossier `output/` peut être vidé et régénéré** à tout moment avec les scripts.
 4. **Pas de secrets dans les fichiers**. Les clés API sont dans `.env`, pas dans les noms de fichiers ni les données.
 5. **Tout en minuscules, tirets pour séparer les mots**. Pas d'espaces, pas de caractères spéciaux dans les noms de fichiers.
+6. **Conservation 10 ans** des pièces justificatives (art. 7 loi comptable 17 juillet 1975 et art. L123-22 C.com. belge).

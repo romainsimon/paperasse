@@ -1,174 +1,230 @@
-# Formats de Facturation Électronique
+# Formats de Facturation Électronique (Belgique)
 
-## Les trois formats acceptés
+`last_updated: 2026-05-15`
 
-La réforme impose l'utilisation de formats structurés. Un simple PDF n'est pas conforme.
+## Contexte belge
 
-| Format | Standard | Structure | Usage principal |
-|--------|----------|-----------|----------------|
-| **Factur-X** | FR/DE (EN 16931) | PDF/A-3 + XML CII embarqué | France, Allemagne |
-| **UBL** (Universal Business Language) | ISO/IEC 19845 | XML pur | Europe (standard OASIS) |
-| **CII** (Cross Industry Invoice) | UN/CEFACT | XML pur | International |
+Depuis le 1er janvier 2026, la facturation électronique B2B est obligatoire en Belgique. Le format imposé est **Peppol BIS 3.0** (UBL 2.1 conforme EN 16931), transmis via le réseau **Peppol** (hub belge : Mercurius).
 
-## Factur-X
+Contrairement à la France (Factur-X / CII), la Belgique a adopté le standard **UBL** (Universal Business Language) comme format principal.
 
-Factur-X est le format privilégié en France. C'est un **PDF/A-3 contenant un fichier XML embarqué** au format CII (Cross Industry Invoice).
+---
 
-### Avantages
+## Le standard Peppol BIS 3.0 (UBL)
 
-- **Lisible par un humain** : le PDF s'ouvre comme n'importe quelle facture
-- **Lisible par une machine** : le XML embarqué permet le traitement automatisé
-- **Hybride** : compatible avec les process papier existants ET l'automatisation
+| Élément | Détail |
+|---------|--------|
+| Standard | Peppol BIS Billing 3.0 |
+| Format XML | UBL 2.1 (ISO/IEC 19845) |
+| Norme européenne | EN 16931 (directive 2014/55/UE) |
+| Réseau de transmission | Peppol |
+| Hub belge | Mercurius (https://mercurius.belgium.be) |
+| Identifiant émetteur/récepteur | `0208:[numéro BCE sans points]` |
 
-### Profils Factur-X
-
-Factur-X définit plusieurs profils, du plus simple au plus complet :
-
-| Profil | Données | Usage |
-|--------|---------|-------|
-| **Minimum** | Identifiants, montant total, TVA globale | Archivage, conformité minimale |
-| **Basic WL** | + Détail vendeur/acheteur, conditions paiement | Petites entreprises |
-| **Basic** | + Lignes de facture | Usage courant |
-| **EN 16931** (Comfort) | Conforme norme européenne complète | Standard recommandé |
-| **Extended** | + Champs optionnels métier | Besoins spécifiques |
-
-**Recommandation** : utiliser le profil **EN 16931** (Comfort) pour la conformité complète avec la réforme française.
-
-### Structure XML CII
-
-Le XML embarqué dans un Factur-X suit la structure CII (rsm:CrossIndustryInvoice) :
+### Structure minimale XML Peppol BIS 3.0
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<rsm:CrossIndustryInvoice
-  xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
-  xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
-  xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+
+  <!-- Profil Peppol BIS 3.0 -->
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
 
   <!-- En-tête -->
-  <rsm:ExchangedDocumentContext>
-    <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>urn:cen.eu:en16931:2017</ram:ID>
-    </ram:GuidelineSpecifiedDocumentContextParameter>
-  </rsm:ExchangedDocumentContext>
+  <cbc:ID>F-2026-001</cbc:ID>
+  <cbc:IssueDate>2026-09-15</cbc:IssueDate>
+  <cbc:DueDate>2026-10-15</cbc:DueDate>
+  <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
 
-  <!-- Document -->
-  <rsm:ExchangedDocument>
-    <ram:ID>F-2026-001</ram:ID>                    <!-- Numéro facture -->
-    <ram:TypeCode>380</ram:TypeCode>                <!-- 380=facture, 381=avoir -->
-    <ram:IssueDateTime>                             <!-- Date émission -->
-      <udt:DateTimeString format="102">20260915</udt:DateTimeString>
-    </ram:IssueDateTime>
-  </rsm:ExchangedDocument>
+  <!-- Vendeur (émetteur) -->
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0208">0123456789</cbc:EndpointID>
+      <cac:PartyName><cbc:Name>Ma SRL</cbc:Name></cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Rue de la Loi 1</cbc:StreetName>
+        <cbc:CityName>Bruxelles</cbc:CityName>
+        <cbc:PostalZone>1000</cbc:PostalZone>
+        <cac:Country><cbc:IdentificationCode>BE</cbc:IdentificationCode></cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Ma SRL</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="0208">0123456789</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>BE0123456789</cbc:CompanyID>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:PartyTaxScheme>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
 
-  <rsm:SupplyChainTradeTransaction>
-    <!-- Vendeur -->
-    <ram:ApplicableHeaderTradeAgreement>
-      <ram:SellerTradeParty>
-        <ram:Name>DevStudio SASU</ram:Name>
-        <ram:SpecifiedLegalOrganization>
-          <ram:ID schemeID="0002">12345678900014</ram:ID>  <!-- SIRET -->
-        </ram:SpecifiedLegalOrganization>
-        <ram:PostalTradeAddress>
-          <ram:LineOne>5 rue de la Paix</ram:LineOne>
-          <ram:PostcodeCode>75002</ram:PostcodeCode>
-          <ram:CityName>Paris</ram:CityName>
-          <ram:CountryID>FR</ram:CountryID>
-        </ram:PostalTradeAddress>
-        <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">FR12345678901</ram:ID>  <!-- TVA intracom -->
-        </ram:SpecifiedTaxRegistration>
-      </ram:SellerTradeParty>
+  <!-- Acheteur (récepteur) -->
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0208">0987654321</cbc:EndpointID>
+      <cac:PartyName><cbc:Name>Client SA</cbc:Name></cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Avenue Louise 50</cbc:StreetName>
+        <cbc:CityName>Bruxelles</cbc:CityName>
+        <cbc:PostalZone>1050</cbc:PostalZone>
+        <cac:Country><cbc:IdentificationCode>BE</cbc:IdentificationCode></cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>BE0987654321</cbc:CompanyID>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:PartyTaxScheme>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
 
-      <!-- Acheteur -->
-      <ram:BuyerTradeParty>
-        <ram:Name>Client SAS</ram:Name>
-        <ram:SpecifiedLegalOrganization>
-          <ram:ID schemeID="0002">98765432100014</ram:ID>
-        </ram:SpecifiedLegalOrganization>
-        <ram:PostalTradeAddress>
-          <ram:CountryID>FR</ram:CountryID>
-        </ram:PostalTradeAddress>
-      </ram:BuyerTradeParty>
-    </ram:ApplicableHeaderTradeAgreement>
+  <!-- Totaux TVA -->
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="EUR">210.00</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxableAmount currencyID="EUR">1000.00</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="EUR">210.00</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>21</cbc:Percent>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
 
-    <!-- Livraison -->
-    <ram:ApplicableHeaderTradeDelivery/>
+  <!-- Montants -->
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="EUR">1000.00</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="EUR">1000.00</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="EUR">1210.00</cbc:TaxInclusiveAmount>
+    <cbc:PayableAmount currencyID="EUR">1210.00</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
 
-    <!-- Paiement et totaux -->
-    <ram:ApplicableHeaderTradeSettlement>
-      <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
-
-      <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-        <ram:LineTotalAmount>1500.00</ram:LineTotalAmount>    <!-- Total HT -->
-        <ram:TaxBasisTotalAmount>1500.00</ram:TaxBasisTotalAmount>
-        <ram:TaxTotalAmount currencyID="EUR">0.00</ram:TaxTotalAmount>
-        <ram:GrandTotalAmount>1500.00</ram:GrandTotalAmount>  <!-- Total TTC -->
-        <ram:DuePayableAmount>1500.00</ram:DuePayableAmount>
-      </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-    </ram:ApplicableHeaderTradeSettlement>
-  </rsm:SupplyChainTradeTransaction>
-</rsm:CrossIndustryInvoice>
+  <!-- Ligne de facture -->
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="HUR">10</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="EUR">1000.00</cbc:LineExtensionAmount>
+    <cac:Item>
+      <cbc:Description>Développement application web</cbc:Description>
+      <cbc:Name>Prestation de services</cbc:Name>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>21</cbc:Percent>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="EUR">100.00</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+</Invoice>
 ```
 
-### Codes TypeCode courants
+---
+
+## Codes TypeCode (types de document)
 
 | Code | Type de document |
 |------|-----------------|
 | 380 | Facture |
-| 381 | Avoir (note de crédit) |
-| 384 | Facture rectificative |
+| 381 | Note de crédit (avoir) |
 | 386 | Facture d'acompte |
 | 389 | Autofacturation |
 
-## UBL (Universal Business Language)
+## Codes TVA (catégories)
 
-Format XML pur, standard OASIS. Utilisé dans de nombreux pays européens. Pas de composante PDF.
+| Code | Signification | Taux belge |
+|------|---------------|------------|
+| S | Standard (imposable) | 21%, 12%, 6% |
+| Z | Zéro (taux zéro) | 0% |
+| E | Exonéré | Export, livraisons IC |
+| AE | Autoliquidation | Services intra-UE B2B |
+| O | Hors champ | Opérations non soumises |
 
-```xml
-<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
-  <ID>F-2026-001</ID>
-  <IssueDate>2026-09-15</IssueDate>
-  <InvoiceTypeCode>380</InvoiceTypeCode>
-  <!-- ... -->
-</Invoice>
+---
+
+## Identifiant Peppol belge
+
+L'identifiant Peppol d'une entreprise belge est dérivé de son numéro BCE :
+
+```
+Format : 0208:[numéro BCE sans points]
+Exemple : 0208:0123456789
 ```
 
-## Bibliothèques open source
+Le schéma `0208` est le code pays Peppol pour la Belgique (numéro BCE).
 
-Pour générer des Factur-X en local (sans dépendre d'une PA) :
+---
+
+## Prestataires Peppol belges agréés
+
+Pour transmettre des factures Peppol, l'entreprise doit passer par un prestataire connecté au réseau Peppol :
+
+| Prestataire | Site | Notes |
+|-------------|------|-------|
+| Clearfacts | clearfacts.be | Comptabilité + Peppol |
+| Unifiedpost | unifiedpost.com | Plateforme documentaire |
+| Isabel | isabel.eu | Services financiers |
+| Qonto | qonto.com | Banque + Peppol belge |
+| Paiements.online | paiements.online | Spécialiste B2B |
+| Odoo | odoo.com | ERP avec connecteur Peppol |
+
+---
+
+## Validation d'une facture Peppol
+
+Un document Peppol BIS 3.0 peut être validé avec :
+
+- **Schémas XSD officiels** UBL 2.1 (OASIS)
+- **Règles Schematron** EN 16931 + Peppol BIS 3.0
+- **Validateur en ligne** : https://www.mercurius.belgium.be (portail de test)
+- **Validateur Peppol** : https://peppol.helger.com/en-index.html (outil communautaire)
+
+---
+
+## Bibliothèques open source pour générer du Peppol UBL
 
 ### Node.js
 
 | Lib | Repo | Fonctionnalité |
 |-----|------|----------------|
-| **node-zugferd** | github.com/jslno/node-zugferd | Génère XML ZUGFeRD/Factur-X + embed dans PDF/A |
-| **facturx** | github.com/stafyniaksacha/facturx | Génère Factur-X PDF-A/3 depuis PDF + XML |
+| **peppol-js** | Diverses | Génère UBL Peppol BIS 3.0 |
+| **xmlbuilder2** | github.com/oozcitak/xmlbuilder2 | Construction XML générique |
 
 ### Python
 
 | Lib | Repo | Fonctionnalité |
 |-----|------|----------------|
-| **factur-x** (Akretion) | github.com/akretion/factur-x | Référence, licence BSD, génère et parse Factur-X |
-| **factur-x-ng** | github.com/invoice-x/factur-x-ng | Fork avec interfaces haut niveau |
+| **peppol-validation** | Communauté | Validation Peppol |
+| **lxml** | Standard | Génération et validation XML |
 
-### Workflow de génération locale
+### Workflow de génération
 
 ```
-1. Données facture (company.json + données client + lignes)
+1. Données facture (company.json + données client BCE + lignes)
      ↓
-2. Générer le XML CII conforme EN 16931
+2. Générer le XML UBL Peppol BIS 3.0
      ↓
-3. Générer le PDF de la facture (lisible humain)
+3. Valider contre les schémas XSD + Schematron
      ↓
-4. Embarquer le XML dans le PDF → Factur-X (PDF/A-3)
+4. Transmettre au prestataire Peppol (API ou portail)
      ↓
-5. Déposer le Factur-X sur la PA choisie pour transmission
+5. Le prestataire route via Mercurius vers la PA du client
 ```
 
-## Validation
+---
 
-Un Factur-X peut être validé avec :
-- Les schémas XSD officiels CII
-- Les règles Schematron EN 16931
-- Les outils en ligne de l'AIFE (Agence pour l'Informatique Financière de l'État)
+## Comparaison avec la France (Factur-X)
+
+| Aspect | Belgique | France |
+|--------|----------|--------|
+| Format | UBL 2.1 (Peppol BIS 3.0) | Factur-X (PDF/A-3 + XML CII) |
+| Réseau | Peppol / Mercurius | Plateformes Agréées (PA) + PPF |
+| Obligation B2B | 01/01/2026 | 01/09/2026 (réception) / 2027 (émission PME) |
+| Identifiant | Numéro BCE (0208:...) | SIRET (0002:...) |
+| Hub gouvernemental | Mercurius.belgium.be | PPF (impots.gouv.fr) |
+
+> En Belgique, les factures PDF simples restent techniquement valables pour le B2C et les situations hors champ Peppol, mais le Peppol est obligatoire pour le B2B domestique depuis le 01/01/2026.

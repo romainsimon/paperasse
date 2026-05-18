@@ -1,0 +1,87 @@
+code;libelle;rubrique
+1001;Réserves taxées — Début de période;Bilan actif
+1002;Réserves taxées — Fin de période (bénéfice de la période);Bilan actif
+1010;Bénéfice (perte) reporté de la période précédente;Bilan actif
+1011;Bénéfice (perte) à reporter à la période suivante;Bilan actif
+1020;Résultat comptable de la période (bénéfice +, perte −);Compte de résultats
+1040;Dividendes distribués;Affectations
+1050;Tantièmes distribués;Affectations
+1100;Dépenses non admises — Total;DNA
+1105;Dépenses non admises — Frais de voiture (limitation CO₂);DNA
+1106;Dépenses non admises — Frais de restaurant (31 %);DNA
+1107;Dépenses non admises — Frais de réception (50 %);DNA
+1108;Dépenses non admises — Avantages en nature non déclarés;DNA
+1110;Dépenses non admises — Amendes et pénalités;DNA
+1115;Dépenses non admises — ISOC comptabilisé;DNA
+1120;Dépenses non admises — Taxes non déductibles;DNA
+1130;Dépenses non admises — Avantages anormaux ou bénévoles (art. 26 CIR 92);DNA
+1190;Dépenses non admises — Autres;DNA
+1200;Déductions pour investissement (art. 68-77 CIR 92);Déductions
+1205;Déduction pour investissement ordinaire (8 % ou 20 % selon exercice);Déductions
+1210;Réserve d'investissement exonérée (art. 194quater CIR 92);Déductions
+1300;Revenus définitivement taxés (RDT) — Dividendes reçus;Déductions
+1310;RDT — Montant brut des dividendes;Déductions
+1320;RDT — Déduction accordée (95 % du montant brut);Déductions
+1400;Revenus exonérés — Plus-values sur actions et parts (art. 192 CIR 92);Déductions
+1410;Plus-values immunisées (art. 47 CIR 92) — Condition de remploi;Déductions
+1500;Pertes fiscales antérieures récupérables;Déductions
+1510;Pertes récupérées de la période;Déductions
+1520;Solde des pertes à reporter;Déductions
+1600;Revenu imposable — Base de calcul ISOC;ISOC
+1610;ISOC au taux normal (25 %);ISOC
+1615;ISOC au taux réduit PME (20 % — 1ère tranche 100 000 €);ISOC
+1620;Majoration pour absence ou insuffisance de versements anticipés;ISOC
+1630;Cotisation distincte — Dépenses non justifiées et avantages indirects;ISOC
+1640;Précompte mobilier imputable;ISOC
+1650;Précompte professionnel imputable;ISOC
+1660;Versements anticipés (VA1 + VA2 + VA3 + VA4);ISOC
+1670;ISOC net à payer;ISOC
+1700;Cotisation minimale (art. 215 al. 3 CIR 92);ISOC
+2001;Total actif — Frais d'établissement;Bilan actif
+2002;Total actif — Immobilisations incorporelles;Bilan actif
+2010;Total actif — Immobilisations corporelles;Bilan actif
+2020;Total actif — Immobilisations financières;Bilan actif
+2030;Total actif — Créances à plus d'un an;Bilan actif
+2040;Total actif — Stocks;Bilan actif
+2050;Total actif — Créances à un an au plus;Bilan actif
+2055;Total actif — Clients;Bilan actif
+2060;Total actif — Placements de trésorerie;Bilan actif
+2070;Total actif — Valeurs disponibles;Bilan actif
+2080;Total actif — Comptes de régularisation;Bilan actif
+2090;Total actif;Bilan actif
+3001;Total passif — Capitaux propres;Bilan passif
+3010;Total passif — Capital souscrit;Bilan passif
+3020;Total passif — Réserves;Bilan passif
+3030;Total passif — Résultat reporté;Bilan passif
+3040;Total passif — Subsides en capital;Bilan passif
+3050;Total passif — Provisions;Bilan passif
+3060;Total passif — Dettes à plus d'un an;Bilan passif
+3070;Total passif — Dettes financières à court terme;Bilan passif
+3080;Total passif — Dettes commerciales;Bilan passif
+3090;Total passif — Dettes fiscales et sociales;Bilan passif
+3100;Total passif — Autres dettes à court terme;Bilan passif
+3110;Total passif — Comptes de régularisation;Bilan passif
+3120;Total passif;Bilan passif
+4001;Chiffre d'affaires;Compte de résultats
+4010;Variation des stocks;Compte de résultats
+4020;Production immobilisée;Compte de résultats
+4030;Autres produits d'exploitation;Compte de résultats
+4040;Achats de marchandises et matières premières;Compte de résultats
+4050;Services et biens divers;Compte de résultats
+4060;Rémunérations et charges sociales;Compte de résultats
+4070;Amortissements et réductions de valeur;Compte de résultats
+4080;Provisions pour risques et charges;Compte de résultats
+4090;Autres charges d'exploitation;Compte de résultats
+4100;Bénéfice (perte) d'exploitation;Compte de résultats
+4110;Produits financiers;Compte de résultats
+4120;Charges financières;Compte de résultats
+4130;Bénéfice (perte) courant avant impôts;Compte de résultats
+4140;Produits exceptionnels;Compte de résultats
+4150;Charges exceptionnelles;Compte de résultats
+4160;Bénéfice (perte) de l'exercice avant impôts;Compte de résultats
+4170;ISOC et taxes assimilées;Compte de résultats
+4180;Bénéfice (perte) de l'exercice;Compte de résultats
+5001;Nombre de travailleurs (ETP);Informations sociales
+5010;Frais de personnel totaux;Informations sociales
+5020;Nombre de dirigeants d'entreprise;Informations sociales
+5030;Rémunérations brutes des dirigeants;Informations sociales

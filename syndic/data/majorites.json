@@ -1,70 +1,74 @@
 {
-  "source": "Loi n°65-557 du 10 juillet 1965, articles 24 à 26-1",
-  "last_updated": "2026-03-26",
-  "description": "Matrice décision / majorité requise en copropriété",
+  "source": "art. 3.69 à 3.94 du Code civil belge (Livre 3, ex-art. 577-2 à 577-14 Cc)",
+  "last_updated": "2026-05-15",
+  "description": "Règles de majorité en Assemblée Générale de l'Association des Copropriétaires (ACP) belge",
+  "note": "Depuis la loi du 18 juin 2018 (réforme copropriété belge), les règles de majorité sont codifiées aux art. 3.84 à 3.87 du Code civil belge.",
   "majorites": {
-    "art_24": {
-      "label": "Majorité simple",
-      "definition": "Majorité des voix des copropriétaires présents, représentés ou ayant voté par correspondance",
-      "calcul": "Voix pour > 50% des voix exprimées (présents + représentés + correspondance)",
+    "majorite_simple": {
+      "label": "Majorité simple (1/2 + 1 en voix et en quotes-parts)",
+      "definition": "Plus de la moitié des voix des copropriétaires présents ou représentés ET plus de la moitié de leur quote-part dans les parties communes",
+      "calcul": "Voix pour > 50% des voix exprimées ET parts représentées > 50% des parts présentes/représentées",
+      "base_legale": "art. 3.84 §2 Code civil belge",
       "decisions": [
-        "Approbation des comptes du syndic",
-        "Vote du budget prévisionnel",
-        "Travaux d'entretien et de maintenance courante",
-        "Travaux nécessaires à la conservation de l'immeuble",
-        "Travaux nécessaires à la sécurité et santé des occupants",
-        "Adaptation ou remplacement de boîtes aux lettres",
-        "Autorisation de travaux d'accessibilité aux personnes handicapées",
-        "Travaux d'économies d'énergie (hors changement équipement collectif)",
-        "Décision d'engager un DTG (diagnostic technique global)",
-        "Cotisation au fonds de travaux (montant ≥ 5% du budget)",
-        "Suppression du poste de gardien (sans changement d'affectation du local)",
-        "Autorisation permanente de la police d'accéder aux parties communes"
+        "Approbation des comptes annuels et du budget prévisionnel",
+        "Élection et révocation du syndic",
+        "Actes d'administration provisoire et de conservation urgente",
+        "Entretien courant et petites réparations des parties communes",
+        "Approbation du rapport annuel de gestion",
+        "Fixation des provisions du fonds de réserve (dans la limite légale)",
+        "Questions d'ordre administratif courantes",
+        "Autorisation de sous-délégation à un mandataire"
       ]
     },
-    "art_25": {
-      "label": "Majorité absolue",
-      "definition": "Majorité des voix de tous les copropriétaires, présents ou non",
-      "calcul": "Voix pour > 50% des tantièmes totaux de copropriété",
-      "passerelle": "Si non atteint mais ≥ 1/3 des voix de tous les copropriétaires → second vote immédiat ou dans 3 mois à la majorité art. 24 (art. 25-1)",
+    "majorite_4_5": {
+      "label": "Majorité des 4/5",
+      "definition": "4/5 des voix de l'ensemble des copropriétaires (pas seulement les présents)",
+      "calcul": "Voix pour ≥ 4/5 de la totalité des quotes-parts de copropriété",
+      "base_legale": "art. 3.84 §3 Code civil belge",
       "decisions": [
-        "Élection ou révocation du syndic",
-        "Élection ou révocation des membres du conseil syndical",
-        "Autorisation donnée au syndic de contracter un emprunt",
-        "Autorisation donnée au syndic d'agir en justice",
-        "Travaux d'amélioration",
-        "Installation réseau communications électroniques",
-        "Modification répartition des charges résultant de travaux",
-        "Individualisation des contrats de fourniture d'eau",
-        "Installation de compteurs individuels (eau, chauffage)",
-        "Suppression gardiennage avec changement d'affectation du local",
-        "Modalités de réalisation des travaux obligatoires",
-        "Travaux d'économies d'énergie impliquant changement d'équipement collectif",
-        "Délégation de pouvoir au conseil syndical (art. 21-1)"
-      ]
-    },
-    "art_26": {
-      "label": "Double majorité",
-      "definition": "Majorité des copropriétaires (en nombre) détenant au moins 2/3 des tantièmes",
-      "calcul": "Majorité en nombre de copropriétaires ET ≥ 2/3 des tantièmes totaux",
-      "decisions": [
-        "Actes d'acquisition immobilière ou de disposition (vente parties communes)",
-        "Modification du règlement de copropriété (jouissance, usage, administration des parties communes)",
-        "Travaux comportant transformation, addition ou amélioration importante",
-        "Suppression du poste de gardien avec vente du local",
-        "Installation d'un ascenseur"
+        "Modification des statuts (règlement de copropriété et de l'ordre intérieur)",
+        "Travaux d'amélioration ou de transformation importants des parties communes",
+        "Modification de la répartition des charges communes",
+        "Modification de la destination des parties communes",
+        "Travaux entraînant une modification structurelle de l'immeuble",
+        "Actes d'acquisition d'immeubles destinés à devenir parties communes"
       ]
     },
     "unanimite": {
       "label": "Unanimité",
-      "definition": "Accord de tous les copropriétaires",
-      "calcul": "100% des tantièmes de copropriété",
+      "definition": "Accord de tous les copropriétaires, sans exception",
+      "calcul": "100% des voix et des quotes-parts de l'ensemble des copropriétaires",
+      "base_legale": "art. 3.84 §4 Code civil belge",
       "decisions": [
-        "Modification de la répartition des charges (art. 11)",
-        "Aliénation de parties communes nécessaires au respect de la destination de l'immeuble",
-        "Changement de destination de l'immeuble",
-        "Suppression d'un droit de jouissance privative"
+        "Aliénation (vente) de parties communes indispensables à l'usage de l'immeuble",
+        "Modification de la répartition des charges si elle porte atteinte aux droits d'un copropriétaire",
+        "Dissolution de l'ACP"
       ]
+    },
+    "derogation_2e_ag": {
+      "label": "Dérogation par deuxième assemblée",
+      "definition": "Si la 1re AG ne réunit pas le quorum ou la majorité requise, une 2e AG peut être convoquée avec des règles allégées",
+      "conditions": "Convocation dans les 30 jours; quorum réduit; décision à la majorité des présents/représentés",
+      "base_legale": "art. 3.85 Code civil belge",
+      "note": "Mécanisme permettant d'éviter le blocage décisionnel. La 2e AG peut décider à majorité simple quelle que soit la fraction des quotes-parts représentées, sauf pour les décisions requérant l'unanimité."
+    },
+    "quorum": {
+      "label": "Quorum de présence",
+      "definition": "Plus de la moitié des copropriétaires représentant plus de la moitié des quotes-parts",
+      "base_legale": "art. 3.85 §1 Code civil belge",
+      "note": "Si le quorum n'est pas atteint à la 1re AG, une 2e AG peut être convoquée sans condition de quorum."
     }
+  },
+  "fonds_de_reserve": {
+    "description": "Fonds de réserve obligatoire de l'ACP",
+    "base_legale": "art. 3.89 §1 Code civil belge",
+    "minimum": "5% du montant total des charges communes ordinaires du dernier exercice",
+    "affectation": "Réparations et travaux extraordinaires des parties communes",
+    "note": "Obligation depuis la loi du 2 juin 2010. Les statuts peuvent prévoir un montant supérieur."
+  },
+  "hypotheque_legale": {
+    "description": "Hypothèque légale de l'ACP sur les lots des copropriétaires débiteurs",
+    "base_legale": "art. 3.93 Code civil belge",
+    "nature": "L'ACP dispose d'une hypothèque légale sur le lot du copropriétaire défaillant pour les charges, frais et dommages-intérêts"
   }
 }

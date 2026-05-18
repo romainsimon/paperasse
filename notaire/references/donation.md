@@ -1,22 +1,25 @@
 # Donations
 
-Référence complète pour les donations : droits, abattements, démembrement, donation-partage, Dutreil.
+Référence complète pour les donations en Belgique : droits régionaux, démembrement, donation-partage, rappel de 3 ans.
 
-**Base légale** : art. 893 à 966 Code civil (donations), art. 777 à 790 G CGI (droits de donation)
+**Base légale** : art. 4.57 à 4.134 Code civil belge (donations et successions) ; Codes régionaux des droits d'enregistrement (VCF Flandre ; CDE Wallonie ; CWCF Bruxelles)
+
+**last_updated: 2026-05-15**
 
 ## Types de Donations
 
 ### Donation simple
 
-**Base légale** : art. 931 à 932 Code civil
+**Base légale** : art. 4.57 à 4.75 Code civil belge
 
-- Acte notarié obligatoire (sauf don manuel et don familial)
-- Irrévocable (sauf ingratitude, inexécution des charges, survenance d'enfant pour les donations antérieures à 2007)
-- Acceptance par le donataire obligatoire
+- Acte notarié obligatoire sauf pour le don manuel de biens meubles
+- Irrévocable sauf pour cause d'ingratitude, d'inexécution des charges, ou survenance d'enfant (si stipulé)
+- Acceptation expresse du donataire obligatoire
+- Pour les immeubles : acte notarié belge obligatoire (art. 4.57 Cc belge)
 
 ### Donation-partage
 
-**Base légale** : art. 1075 à 1080-1 Code civil
+**Base légale** : art. 4.76 à 4.87 Code civil belge
 
 | Point | Détail |
 |-------|--------|
@@ -24,18 +27,18 @@ Référence complète pour les donations : droits, abattements, démembrement, d
 | Avantage fiscal | Les biens sont évalués au jour de la donation (pas de réévaluation au décès) |
 | Différence avec donation simple | La donation simple est rapportable à la succession (réévaluée au jour du décès) |
 | Bénéficiaires | Héritiers présomptifs (enfants), petits-enfants (donation-partage transgénérationnelle) |
+| Acte notarié | Obligatoire |
 
-### Donation entre époux (au dernier vivant)
+### Donation entre époux (institution contractuelle)
 
-**Base légale** : art. 1091 à 1099-1 Code civil
+**Base légale** : art. 4.88 à 4.95 Code civil belge
 
 | Point | Détail |
 |-------|--------|
-| Objet | Augmenter les droits du conjoint survivant au-delà de la loi |
-| Options classiques | 100% usufruit, ou 1/4 PP + 3/4 usufruit, ou quotité disponible en PP |
-| Révocable ? | Oui, à tout moment (sauf si elle résulte d'un contrat de mariage) |
-| Forme | Acte notarié |
-| Coût | Émolument fixe (voir tarifs) |
+| Objet | Augmenter les droits du conjoint survivant |
+| Forme | Acte notarié ; peut être intégrée dans le contrat de mariage |
+| Révocable ? | En principe révocable jusqu'au décès, sauf si faite dans le contrat de mariage (irrévocable) |
+| Étendue | Peut porter sur la totalité des biens ou une quotité |
 
 ### Donation en démembrement
 
@@ -43,188 +46,141 @@ Donation de la nue-propriété avec conservation de l'usufruit par le donateur.
 
 | Avantage | Détail |
 |----------|--------|
-| Fiscal | Droits calculés sur la valeur de la nue-propriété seulement (art. 669 CGI) |
+| Fiscal | Droits calculés sur la valeur de la nue-propriété seulement (table art. 745bis Cc belge) |
 | Patrimonial | Le donateur conserve la jouissance du bien (revenus locatifs, habitation) |
 | Successoral | Au décès du donateur, le donataire récupère la pleine propriété sans droits supplémentaires |
 
 ### Don manuel
 
-**Base légale** : art. 757 CGI
-
 | Point | Détail |
 |-------|--------|
 | Définition | Remise matérielle d'un bien meuble (argent, titres, objets) sans acte notarié |
-| Déclaration | Obligatoire auprès de l'administration fiscale (formulaire 2735) |
-| Délai | 1 mois après la révélation du don |
-| Droits | Mêmes barèmes et abattements que les donations classiques |
+| Enregistrement volontaire | Possible par déclaration aux droits de donation régionaux (ce qui fige le rappel de 3 ans) |
+| Sans enregistrement | Soumis aux droits de succession si le donateur décède dans les **3 ans** |
 
-### Don familial de sommes d'argent
+## Droits de Donation par Région
 
-**Base légale** : art. 790 G CGI
+### Droits sur les biens meubles
 
-| Point | Détail |
-|-------|--------|
-| Montant exonéré | 31 865 EUR par donateur et par donataire |
-| Conditions | Donateur < 80 ans, donataire ≥ 18 ans (ou émancipé) |
-| Renouvellement | Tous les 15 ans |
-| Cumulable | Avec les abattements classiques (100 000 EUR parent/enfant, etc.) |
-| Bénéficiaires | Enfants, petits-enfants, arrière-petits-enfants, neveux/nièces (si pas de descendants) |
+Les droits de donation sur les **biens meubles** (argent, titres, mobilier) sont perçus par les régions. L'enregistrement est volontaire mais recommandé pour figer le rappel de 3 ans.
 
-## Abattements
+#### Flandre (VCF)
 
-**Base légale** : art. 779 à 790 G CGI
+| Lien donateur → donataire | Taux |
+|--------------------------|:----:|
+| En ligne directe (enfants, petits-enfants) et entre époux / cohabitants légaux | **3%** |
+| Entre frères et sœurs, oncles/tantes, neveux/nièces | **7%** |
+| Autres | **7%** |
 
-### Abattements classiques (renouvelables tous les 15 ans)
+#### Wallonie (CDE)
 
-| Lien donateur → donataire | Abattement | Base légale |
-|--------------------------|:----------:|-------------|
-| Parent → enfant | 100 000 EUR | art. 779-I CGI |
-| Grand-parent → petit-enfant | 31 865 EUR | art. 790 B CGI |
-| Arrière-grand-parent → arrière-petit-enfant | 5 310 EUR | art. 790 D CGI |
-| Époux / partenaire PACS → conjoint | 80 724 EUR | art. 790 E CGI |
-| Frère / soeur | 15 932 EUR | art. 779-IV CGI |
-| Neveu / nièce | 7 967 EUR | art. 779-V CGI |
-| Personne handicapée | 159 325 EUR | art. 779-II CGI (cumulable) |
+| Lien donateur → donataire | Taux |
+|--------------------------|:----:|
+| En ligne directe et entre époux / cohabitants légaux | **3,3%** |
+| Entre frères et sœurs | **5,5%** |
+| Autres | **7,7%** |
 
-### Rappel fiscal des 15 ans
+#### Bruxelles (CWCF)
 
-**Base légale** : art. 784 CGI
+| Lien donateur → donataire | Taux |
+|--------------------------|:----:|
+| En ligne directe et entre époux / cohabitants légaux | **3%** |
+| Entre frères et sœurs et entre oncles/tantes et neveux/nièces | **7%** |
+| Autres | **7%** |
 
-Toute donation consentie depuis moins de 15 ans est **rapportée** fiscalement : l'abattement déjà utilisé vient en déduction de l'abattement disponible pour la nouvelle donation (ou pour la succession).
+### Droits sur les biens immeubles
 
-**Calcul :**
-```
-Abattement disponible = Abattement légal - Somme des abattements utilisés dans les 15 ans précédents
-```
+Les donations immobilières sont soumises aux droits d'enregistrement régionaux selon un barème progressif (même barème que les droits de succession, en principe).
 
-**Exemple** : Parent donne 100 000 EUR à son enfant en 2015. En 2028 (< 15 ans), nouvelle donation : abattement disponible = 100 000 - 100 000 = 0 EUR. En 2031 (> 15 ans) : abattement reconstitué à 100 000 EUR.
+#### Flandre — biens immeubles
 
-## Barème des Droits de Donation
+| Tranche (par donataire, en ligne directe) | Taux |
+|-------------------------------------------|:----:|
+| 0 à 150 000 EUR | 3% |
+| 150 001 à 250 000 EUR | 9% |
+| Au-delà de 250 000 EUR | 27% |
 
-### En ligne directe
+#### Wallonie — biens immeubles
 
-Identique au barème des droits de succession :
+Barème progressif identique au barème des droits de succession en ligne directe (voir succession.md).
 
-| Tranche (après abattement) | Taux |
-|---------------------------|:----:|
-| 0 à 8 072 EUR | 5% |
-| 8 073 à 12 109 EUR | 10% |
-| 12 110 à 15 932 EUR | 15% |
-| 15 933 à 552 324 EUR | 20% |
-| 552 325 à 902 838 EUR | 30% |
-| 902 839 à 1 805 677 EUR | 40% |
-| Au-delà de 1 805 677 EUR | 45% |
+#### Bruxelles — biens immeubles
 
-### Entre époux / partenaires PACS
+Barème progressif identique au barème des droits de succession en ligne directe (voir succession.md).
 
-| Tranche (après abattement de 80 724 EUR) | Taux |
-|------------------------------------------|:----:|
-| 0 à 8 072 EUR | 5% |
-| 8 073 à 15 932 EUR | 10% |
-| 15 933 à 31 865 EUR | 15% |
-| 31 866 à 552 324 EUR | 20% |
-| 552 325 à 902 838 EUR | 30% |
-| 902 839 à 1 805 677 EUR | 40% |
-| Au-delà de 1 805 677 EUR | 45% |
+## Rappel de 3 Ans
 
-### Entre frères et soeurs
+**Principe belge** : en Belgique, le rappel fiscal des donations s'opère sur **3 ans** (et non 15 ans comme en France).
 
-| Tranche (après abattement de 15 932 EUR) | Taux |
-|------------------------------------------|:----:|
-| 0 à 24 430 EUR | 35% |
-| Au-delà de 24 430 EUR | 45% |
+| Situation | Conséquence |
+|-----------|-------------|
+| Donation enregistrée (droits payés) | Le rappel de 3 ans est acquis : pas de droits de succession si le donateur décède après 3 ans |
+| Don manuel non enregistré | Soumis aux droits de succession si le donateur décède dans les 3 ans suivant la donation |
 
-### Autres
+**Calcul :** lors d'une nouvelle donation, les donations enregistrées de moins de 3 ans sont prises en compte pour le calcul du barème progressif (si applicable). Passé 3 ans, les tranches basses du barème sont disponibles à nouveau.
 
-| Lien | Taux |
-|------|:----:|
-| Parents jusqu'au 4e degré | 55% |
-| Au-delà ou non-parents | 60% |
-
-## Réduction de Droits
-
-### Réduction pour charge de famille (supprimée pour les successions, maintenue pour les donations)
-
-**Base légale** : art. 780 CGI (applicable aux donations)
-
-Historiquement, des réductions existaient pour les donations aux familles nombreuses. Vérifier les textes en vigueur car ce dispositif a été modifié à plusieurs reprises.
+**Stratégie** : pour les biens meubles (argent, titres), enregistrer la donation auprès du bureau compétent fait courir le délai de 3 ans et sécurise la transmission.
 
 ## Usufruit et Nue-Propriété
 
-### Barème fiscal (art. 669 CGI)
+### Table fiscale belge (art. 745bis Code civil belge)
 
 | Âge de l'usufruitier | Usufruit | Nue-propriété |
 |---------------------|:--------:|:-------------:|
-| < 21 ans révolus | 90% | 10% |
-| 21 à 30 ans révolus | 80% | 20% |
-| 31 à 40 ans révolus | 70% | 30% |
-| 41 à 50 ans révolus | 60% | 40% |
-| 51 à 60 ans révolus | 50% | 50% |
-| 61 à 70 ans révolus | 40% | 60% |
-| 71 à 80 ans révolus | 30% | 70% |
-| 81 à 90 ans révolus | 20% | 80% |
-| ≥ 91 ans révolus | 10% | 90% |
+| Moins de 20 ans | 80% | 20% |
+| 20 à 29 ans | 74% | 26% |
+| 30 à 39 ans | 68% | 32% |
+| 40 à 49 ans | 62% | 38% |
+| 50 à 55 ans | 56% | 44% |
+| 56 à 60 ans | 52% | 48% |
+| 61 à 65 ans | 46% | 54% |
+| 66 à 70 ans | 40% | 60% |
+| 71 à 75 ans | 30% | 70% |
+| 76 à 80 ans | 20% | 80% |
+| Plus de 80 ans | 10% | 90% |
 
-**Usufruit temporaire** : 23% de la valeur en pleine propriété par tranche de 10 ans (maximum 69%).
+**Usufruit temporaire** : évalué à 4% de la valeur en pleine propriété par an (maximum 80%).
 
 ### Stratégie de donation en démembrement
 
-**Exemple** : Parent de 55 ans donne la nue-propriété d'un bien valant 400 000 EUR.
+**Exemple** : Parent de 55 ans donne la nue-propriété d'un bien valant 400 000 EUR (Bruxelles, enfant).
 
 | Calcul | Montant |
 |--------|--------:|
 | Valeur pleine propriété | 400 000 EUR |
-| Nue-propriété (50%, parent 51-60 ans) | 200 000 EUR |
-| Abattement parent/enfant | -100 000 EUR |
-| Part nette taxable | 100 000 EUR |
-| Droits (barème progressif) | ~18 194 EUR |
+| Valeur usufruit (56%, parent 56-60 ans) | 224 000 EUR |
+| Nue-propriété (44%) | 176 000 EUR |
+| Droits (barème Bruxelles ligne directe) | ~13 080 EUR |
 
 Au décès du parent, l'enfant récupère la pleine propriété (400 000 EUR ou plus) sans droits supplémentaires.
 
-## Pacte Dutreil (Transmission d'Entreprise)
+## Transmission d'Entreprise
 
-**Base légale** : art. 787 B et 787 C CGI
+En Belgique, les régions ont instauré des régimes d'exonération pour la transmission d'entreprise.
 
-### Conditions
+### Flandre — Exonération sur transmission d'entreprise
 
 | Condition | Détail |
 |-----------|--------|
-| Engagement collectif de conservation | 2 ans minimum avant la transmission, portant sur 34% (sociétés non cotées) ou 20% (cotées) des droits de vote |
-| Engagement individuel de conservation | 4 ans par le donataire après la transmission |
-| Exercice d'une fonction de direction | Par un signataire de l'engagement collectif pendant 2 ans, puis par le donataire pendant 3 ans |
+| Exonération | 3% sur la valeur des actifs professionnels (au lieu du barème normal) si conditions remplies |
+| Durée de conservation | 3 ans après la transmission |
+| Activité | Exercice d'une activité professionnelle à la date de la donation et pendant 3 ans après |
 
-### Avantage
+### Wallonie et Bruxelles
 
-- **Exonération de 75%** de la valeur des parts/actions
-- Cumulable avec les abattements classiques
-- Réduction de 50% des droits restants si le donateur a moins de 70 ans
+Régimes d'exonération ou de taux réduit similaires pour la transmission d'entreprises familiales ; vérifier le code régional en vigueur et les conditions d'application.
 
-**Exemple** : Transmission de parts d'entreprise valant 1 000 000 EUR à un enfant (donateur < 70 ans) :
+## Droits d'Enregistrement sur Donations Immobilières
 
-| Calcul | Montant |
-|--------|--------:|
-| Valeur des parts | 1 000 000 EUR |
-| Exonération Dutreil (75%) | -750 000 EUR |
-| Base taxable | 250 000 EUR |
-| Abattement parent/enfant | -100 000 EUR |
-| Part nette taxable | 150 000 EUR |
-| Droits bruts | ~28 194 EUR |
-| Réduction 50% (donateur < 70 ans) | -14 097 EUR |
-| **Droits nets** | **~14 097 EUR** |
+En plus des droits de donation, les donations d'immeubles donnent lieu à :
+- **Droit hypothécaire** : 1% du capital garanti (si constitution d'hypothèque)
+- **Émoluments notaire** : barème proportionnel (AR du 16 décembre 1950)
+- **Transcription** à l'AGDP (Administration générale de la Documentation Patrimoniale)
 
-Sans Dutreil : droits d'environ 195 000 EUR (sur 900 000 EUR net taxable).
+## Formalités
 
-## Droits de Mutation à Titre Gratuit (Donations Immobilières)
-
-En plus des droits de donation classiques, les donations d'immeubles sont soumises à :
-- **Taxe de publicité foncière** : 0,715% (ou DMTO selon les cas)
-- **CSI** : 0,10%
-- **Émoluments notaire** : barème proportionnel
-
-## Formulaires
-
-| Formulaire | Usage |
-|-----------|-------|
-| 2735 | Déclaration de don manuel ou don familial |
-| 2734 | Révélation de don manuel |
-| 2725 | Déclaration IFI (si le patrimoine du donataire dépasse le seuil après donation) |
+| Acte | Formalité |
+|------|-----------|
+| Donation immobilière | Acte notarié + transcription AGDP |
+| Donation mobilière enregistrée | Déclaration au bureau de l'enregistrement régional compétent |
+| Don manuel non enregistré | Aucune formalité obligatoire (mais risque de droits de succession si décès dans les 3 ans) |

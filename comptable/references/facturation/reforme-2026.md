@@ -1,132 +1,152 @@
-# Réforme de la Facturation Électronique 2026
+# Facturation Électronique B2B Obligatoire — Belgique 2026
+
+`last_updated: 2026-05-15`
 
 ## Textes de référence
 
-- Loi n° 2022-1726 du 30 décembre 2022 (loi de finances 2023)
-- Loi n° 2023-1322 du 29 décembre 2023 (report de calendrier)
-- Ordonnance n° 2021-1190 du 15 septembre 2021
-- Décret n° 2022-1299 du 7 octobre 2022
-- Article 289 bis du Code général des impôts
+- **AR du 29 octobre 2024** modifiant l'AR n°1 d'exécution du Code de la TVA (obligation e-facture B2B)
+- **Loi du 2 février 2021** portant diverses dispositions en matière de numérisation (base législative)
+- **Directive européenne 2014/55/UE** (facturation électronique dans les marchés publics)
+- **Norme EN 16931** (format sémantique européen de la facture électronique)
+- **Standard Peppol BIS Billing 3.0** (format technique UBL 2.1)
+- **Source** : https://mercurius.belgium.be et https://finances.belgium.be
+
+---
 
 ## Calendrier
 
-### Phase 1 : 1er septembre 2026
+### Depuis le 1er janvier 2026
 
 | Obligation | Qui |
 |-----------|-----|
-| **Réception** de factures électroniques | **Toutes** les entreprises assujetties TVA |
-| **Émission** de factures électroniques | Grandes entreprises (GE) et ETI |
-| **E-reporting** | GE et ETI |
+| **Émission** de factures électroniques Peppol | Toutes les entreprises assujetties à la TVA (B2B belge) |
+| **Réception** de factures électroniques Peppol | Toutes les entreprises assujetties à la TVA |
 
-### Phase 2 : 1er septembre 2027
+> Contrairement à la France (calendrier phasé PME/GE), la Belgique a opté pour une obligation simultanée pour toutes les tailles d'entreprises dès le 01/01/2026.
 
-| Obligation | Qui |
-|-----------|-----|
-| **Émission** de factures électroniques | PME et micro-entreprises |
-| **E-reporting** | PME et micro-entreprises |
+### Historique B2G (marchés publics)
 
-### Déterminer la taille de l'entreprise
+La facturation électronique via Mercurius est obligatoire pour les marchés publics belges depuis **2014** (directive européenne). L'obligation 2026 est une extension au secteur privé B2B.
 
-Critères cumulatifs (2 sur 3 dépassés pendant 2 exercices consécutifs) :
-
-| Catégorie | Effectif | CA (HT) | Total bilan |
-|-----------|----------|---------|-------------|
-| Micro-entreprise | < 10 | < 900 000 EUR | < 450 000 EUR |
-| PME | < 250 | < 50 M EUR | < 43 M EUR |
-| ETI | < 5 000 | < 1 500 M EUR | < 2 000 M EUR |
-| Grande entreprise | >= 5 000 | >= 1 500 M EUR | >= 2 000 M EUR |
-
-**En pratique** : la grande majorité des utilisateurs de Paperasse sont des TPE/PME/micro. Échéance émission = **1er septembre 2027**. Échéance réception = **1er septembre 2026**.
+---
 
 ## Qui est concerné
 
-**Toutes les entreprises assujetties à la TVA établies en France**, y compris :
-- Les entreprises en **franchise en base de TVA** (art. 293 B du CGI) : elles sont assujetties, elles ne collectent simplement pas
-- Les auto-entrepreneurs
-- Les entreprises individuelles
-- Les sociétés (SASU, SAS, SARL, EURL, SA, SCI, etc.)
+**Toutes les entreprises assujetties à la TVA belge**, y compris :
+- Les entreprises en **franchise de la taxe** (art. 56bis CTVA) — assujetties mais ne collectent pas la TVA
+- Les SRL, SA, SNC, SCS, SC
+- Les indépendants assujettis
+- Les ASBL si elles exercent des activités économiques soumises à TVA
 
 ### Opérations concernées
 
-- Livraisons de biens entre assujettis en France
-- Prestations de services entre assujettis en France
+- Livraisons de biens B2B entre assujettis belges
+- Prestations de services B2B entre assujettis belges
 - Acomptes liés à ces opérations
 
-### Opérations exclues
+### Opérations non concernées par l'e-facture Peppol
 
-- Prestations de santé (art. 261, 4° du CGI)
-- Enseignement (art. 261, 4° du CGI)
-- Opérations immobilières exonérées
-- Opérations bancaires et d'assurance (art. 261 C du CGI)
-- Activités associatives exonérées
+| Opération | Règle |
+|-----------|-------|
+| B2C (particuliers) | Facture PDF ou papier autorisée |
+| Export hors UE | Facture PDF autorisée (exonération TVA) |
+| Livraisons/services intra-UE vers clients étrangers | Règles Peppol du pays du client (pas Peppol BE obligatoire) |
+| Opérations exonérées sans lien TVA | Selon nature de l'opération |
 
-### Territoires concernés
+---
 
-| Territoire | TVA applicable | E-facturation |
-|-----------|---------------|---------------|
-| France métropolitaine | Oui | Oui |
-| Guadeloupe, Martinique, Réunion | Oui (taux spécifiques) | Oui |
-| Guyane, Mayotte | Non | Non |
-| Saint-Pierre-et-Miquelon, Saint-Barthélemy, Saint-Martin | Non | Non |
-| Nouvelle-Calédonie, Polynésie française | Non | Non |
+## Architecture du système belge
 
-## Architecture du système
-
-### Les trois acteurs
+### Les acteurs
 
 ```
-Entreprise A ──→ PA émettrice ──→ PA réceptrice ──→ Entreprise B
-                      │                  │
-                      └──────┬───────────┘
-                             ▼
-                      PPF (annuaire +
-                      concentrateur)
-                             │
-                             ▼
-                         DGFiP
+Entreprise A ──→ Prestataire Peppol A ──→ Mercurius (hub belge) ──→ Prestataire Peppol B ──→ Entreprise B
+                        │                        │
+                        └────────────────────────┘
+                              Réseau Peppol
+                              (interopérabilité UE)
+                                     │
+                                     ▼
+                              SPF Finances
+                              (contrôle fiscal)
 ```
 
-### Portail Public de Facturation (PPF)
+### Mercurius
 
-Le PPF devait initialement servir de plateforme d'émission/réception gratuite pour tous. **Ce rôle a été abandonné en octobre 2024.** Le PPF ne sert plus qu'à :
+**Mercurius** est le hub Peppol belge (https://mercurius.belgium.be), géré par le gouvernement belge. Il :
 
-1. **Annuaire central** : identifie la PA de chaque entreprise pour le routage
-2. **Concentrateur fiscal** : collecte les données de facturation, transaction et paiement transmises par les PA, et les relaie à la DGFiP
+1. Sert de point d'accès central au réseau Peppol belge
+2. Gère l'annuaire des identifiants Peppol belges (`0208:[BCE]`)
+3. Route les factures entre les prestataires Peppol des émetteurs et récepteurs
+4. Est connecté au réseau Peppol européen (interopérabilité avec la France, Allemagne, etc.)
 
-**Les entreprises ne peuvent pas utiliser le PPF pour émettre ou recevoir des factures.**
+### Prestataires Peppol (Access Points)
 
-### Plateformes Agréées (PA, anciennement PDP)
+Les prestataires Peppol sont des opérateurs privés connectés au réseau Peppol. Toute entreprise doit choisir un prestataire pour émettre et recevoir des factures électroniques.
 
-Les PA sont des opérateurs privés immatriculés par la DGFiP. Elles assurent :
-- L'émission et la réception des factures électroniques
-- L'extraction et la transmission des données à l'administration (via le PPF)
-- La conformité des formats (Factur-X, UBL, CII)
-- Le suivi des statuts de traitement des factures
+Voir [plateformes-agreees.md](plateformes-agreees.md) pour le comparatif.
 
-**Toute entreprise doit choisir une PA** pour émettre et recevoir des factures électroniques. Voir [plateformes-agreees.md](plateformes-agreees.md) pour le comparatif.
+---
 
-### PEPPOL
+## Format technique
 
-Réseau européen d'interopérabilité entre PA. La DGFiP est l'Autorité PEPPOL France. 74 prestataires français connectés (déc. 2025). PEPPOL n'est pas obligatoire pour les PA (elles peuvent s'interconnecter par conventions bilatérales), mais il facilite l'interopérabilité, notamment pour les échanges intra-UE.
+**Format obligatoire :** Peppol BIS Billing 3.0 (UBL 2.1 conforme EN 16931)
 
-## Nouvelles mentions obligatoires (à partir de sept. 2026)
-
-En plus des mentions existantes (voir [mentions-obligatoires.md](mentions-obligatoires.md)), les factures devront comporter :
-
-| Mention | Détail |
+| Élément | Valeur |
 |---------|--------|
-| **SIREN du client** | Obligatoire pour les transactions B2B domestiques |
-| **Catégorie d'opération** | Livraison de biens / prestation de services / mixte |
-| **Adresse de livraison** | Si différente de l'adresse de facturation |
-| **Option pour les débits** | Si TVA exigible à la facturation (et non à l'encaissement) |
+| Format XML | UBL 2.1 |
+| Profil | Peppol BIS Billing 3.0 |
+| Norme sémantique | EN 16931 |
+| Identifiant émetteur | `0208:[BCE sans points]` |
+| Identifiant récepteur | `0208:[BCE sans points]` |
+
+Voir [formats-facturx.md](formats-facturx.md) pour la structure XML complète.
+
+---
+
+## Mentions obligatoires (depuis 01/01/2026)
+
+En plus des mentions TVA habituelles (art. 53 CTVA), les factures électroniques doivent inclure dans le XML :
+
+| Champ XML | Contenu |
+|-----------|---------|
+| `EndpointID schemeID="0208"` | Numéro BCE sans points (émetteur ET récepteur) |
+| `CompanyID schemeID="0208"` | Numéro BCE dans PartyLegalEntity |
+| `PartyTaxScheme/CompanyID` | Numéro TVA belge (BE0xxx.xxx.xxx) |
+| `InvoiceTypeCode` | 380 (facture) / 381 (avoir) / 386 (acompte) |
+| `TaxCategory/ID` | S (standard) / Z (zéro) / E (exonéré) / AE (autoliquidation) |
+
+Voir [mentions-obligatoires.md](mentions-obligatoires.md) pour la liste complète.
+
+---
 
 ## Conservation
 
-Les factures électroniques doivent être conservées **6 ans** à compter de la date d'établissement, **en format informatique** (pas de simple impression papier). Un cachet électronique qualifié est recommandé pour authentifier l'origine et garantir l'intégrité.
+Les factures électroniques Peppol doivent être conservées **10 ans** en format informatique (XML UBL original).
+
+Voir [numerotation-conservation.md](numerotation-conservation.md) pour les règles de conservation.
+
+---
 
 ## Sanctions
 
-Le non-respect des obligations de facturation électronique expose à :
-- **Amende de 15 EUR par facture** non émise au format électronique (plafond 15 000 EUR par année civile)
-- **Amende de 250 EUR par transmission** manquante en e-reporting (plafond 15 000 EUR par année civile)
-- Sanctions fiscales classiques en cas de défaut de facturation (50% du montant de la transaction, art. 1737 du CGI)
+| Infraction | Sanction |
+|------------|----------|
+| Facture B2B non émise au format Peppol | Amende administrative (montant fixé par AR d'application) |
+| Absence d'enregistrement dans l'annuaire Peppol | Impossibilité de recevoir des factures électroniques |
+| Non-conservation 10 ans | Sanctions comptables (loi du 17 juillet 1975) |
+
+> Les montants précis des amendes pour non-respect de l'e-facturation B2B sont à confirmer auprès du SPF Finances (https://finances.belgium.be) — le décret d'application précise les sanctions.
+
+---
+
+## Comparaison Belgique vs France
+
+| Aspect | Belgique | France |
+|--------|----------|--------|
+| Obligation B2B depuis | 01/01/2026 (toutes entreprises) | 01/09/2026 (réception) / 2027 (émission PME) |
+| Format | Peppol BIS 3.0 (UBL) | Factur-X (PDF/A-3 + XML CII) ou UBL ou CII |
+| Hub | Mercurius (gouvernemental) | PPF (annuaire) + Plateformes Agréées (privées) |
+| Identifiant | `0208:[BCE]` | `0002:[SIRET]` |
+| Phasage | Pas de phasage — obligation unique | Phasage GE/ETI puis PME |
+| B2G | Obligatoire depuis 2014 | Obligatoire depuis 2020 (Chorus Pro) |

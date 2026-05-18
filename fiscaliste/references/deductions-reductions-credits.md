@@ -1,171 +1,233 @@
-# Déductions, réductions et crédits d'impôt
+# Déductions, réductions et crédits d'impôt (IPP belge)
+
+<!-- last_updated: 2026-05-15 -->
+
+Base légale : CIR 92, art. 104 à 116 (déductions), art. 145¹ et s. (réductions d'impôt fédérales).
+Voir `data/niches-fiscales.json` pour les paramètres chiffrés.
 
 ## Distinction fondamentale
 
-Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
-
 | Mécanisme | S'applique sur | Remboursable si excédent ? | Ordre dans le calcul |
 |-----------|---------------|---------------------------|----------------------|
-| **Déduction** | Revenu imposable (avant calcul) | Non applicable | Étape 3 (RNI) |
-| **Réduction** | Impôt calculé | Non — plancher 0 | Étape 9 (après décote) |
-| **Crédit** | Impôt calculé | Oui — remboursé si > impôt dû | Étape 10 (après réductions) |
+| **Déduction** | Revenu imposable (avant calcul de l'impôt) | Non applicable | Étape 4 (avant barème) |
+| **Réduction** | Impôt calculé | Non — plancher 0 € | Étape 8 (après barème) |
+| **Crédit d'impôt** | Impôt calculé | Oui — remboursé si excédent | Étape 8 bis |
 
-**Conséquence pratique** : une déduction de 1 000 € à TMI 30% économise 300 €. Une réduction/crédit de 1 000 € économise 1 000 €. Les dispositifs ne sont donc pas équivalents à montant nominal identique.
+**Conséquence pratique** : une déduction de 1 000 € à TMI 50 % économise 500 €. Une réduction de 1 000 € économise 1 000 €. Un crédit de 1 000 € économise 1 000 € et est remboursable si l'impôt est inférieur à 1 000 €.
 
-## Déductions (agissent sur le RNI)
+**Note belge importante** : contrairement à la France, il n'existe pas en Belgique de **plafonnement global des niches fiscales** unique (pas d'équivalent au plafond français de 10 000 €). Chaque dispositif a ses propres plafonds individuels.
 
-### PER (Plan d'Épargne Retraite)
+---
 
-- Déduction dans la limite du plafond (10% revenus pro, plancher 4 710 €, plafond 37 680 €)
-- Économie immédiate = versement × TMI
-- Mutualisation couple, report plafonds non utilisés sur 3 ans → détails listés dans SKILL.md sous "Rappels PER"
+## Déductions (agissent sur le revenu imposable)
 
-### Pension alimentaire
+### Pensions alimentaires (art. 104 CIR 92)
 
-- Versée à un enfant majeur (case 6GI / 6GJ) : plafond annuel à vérifier
-- Versée à un ascendant dans le besoin : plafond distinct
-- **Condition clé** : preuve du besoin du bénéficiaire et du versement effectif
-- Déduction plafonnée
+- Les pensions alimentaires versées à des **personnes dont le contribuable n'assume pas les charges** (ex-conjoint, enfant majeur, ascendant dans le besoin) sont déductibles à hauteur de **80 %** du montant versé.
+- La fraction non déductible (20 %) reste à charge du contribuable sans avantage fiscal.
+- **Conditions** : pension versée en exécution d'une obligation légale (jugement, convention homologuée), preuve des versements effectifs.
+- **Limite** : la déduction est plafonnée si le bénéficiaire est à charge du contribuable (pas de déduction + prise en charge simultanée).
 
-### CSG déductible
+**Base légale** : art. 104 CIR 92.
 
-- 6,8% de la CSG prélevée sur les revenus du capital
-- **Uniquement si option barème progressif** sur les revenus du capital N-1
-- Imputée sur le RNI de N+1
-- **Zéro sous PFU**
+**Exemple** : pension alimentaire versée = 1 000 €/mois → déduction annuelle = 12 000 × 80 % = **9 600 €**.
 
-### Autres déductions notables
+### Frais professionnels (forfait ou réels)
 
-- Frais réels professionnels (option vs abattement 10% salaires)
-- Charges foncières (régime réel) → section Revenus fonciers dans SKILL.md
+- **Salariés** : forfait automatique 30 % (max 5 930 €, revenus 2025) ou frais réels documentés si supérieurs.
+- **Dirigeants** : forfait 3 % (max 2 890 €) ou frais réels.
+- **Indépendants** : frais réels uniquement (toutes charges professionnelles réelles et documentées).
 
-## Réductions d'impôt (agissent sur l'impôt, plancher 0)
+Voir `references/ipp-mecanisme.md` pour le détail.
 
-### Dispositifs dans le plafond global 10 000 €
+### Épargne-pension et ELT (déduction de base imposable régionale)
 
-Voir `data/niches-fiscales.json` → `dispositifs_dans_plafond`.
+L'épargne-pension et l'ELT agissent comme des **réductions d'impôt fédérales** (pas des déductions stricto sensu du revenu imposable) — voir ci-dessous.
 
-| Dispositif | Taux / mécanisme | Particularité |
-|-----------|------------------|---------------|
-| **Pinel** | Réduction étalée sur 6/9/12 ans | En extinction — dernier millésime 2024 |
-| **Denormandie** | Similaire Pinel, ancien avec travaux | Ciblé centres-villes dégradés |
-| **Loc'Avantages** | Selon conventionnement et loyer | Alternative au Pinel |
-| **FCPI / FIP** | 18% à 25% des versements | Plafond versements distinct |
-| **Malraux** | 22% ou 30% des travaux | Hors plafond dans certains cas |
-| **Monuments historiques** | Déduction travaux sans plafond | Conditions strictes (ouverture public) |
-| **Investissement forestier** | 18% des versements | Engagement 8 ans minimum |
-| **Corse / outre-mer** (certaines formes) | Variable | Vérifier plafonds spécifiques |
+---
 
-### Dispositifs hors plafond global
+## Réductions d'impôt fédérales (agissent sur l'impôt calculé)
 
-Voir `data/niches-fiscales.json` → `dispositifs_hors_plafond`.
+### Épargne-pension (art. 145¹ CIR 92)
 
-| Dispositif | Taux / mécanisme |
-|-----------|------------------|
-| **Dons associations** | 66% ou 75% (aide aux personnes en difficulté) |
-| **Cotisations syndicales** | 66% |
-| **Girardin industriel outre-mer** | Variable, sous conditions |
-| **Investissement outre-mer** (catégories spécifiques) | Variable |
+| Versement annuel | Taux de réduction | Réduction max |
+|-----------------|-------------------|---------------|
+| ≤ 1 050 € | **30 %** | 315 € |
+| 1 050 € à 1 350 € | **25 %** | 337,50 € |
 
-### Dons aux associations
+**Règle pratique** (revenus 2025) : si versement = 1 050 €, réduction = 315 € (30 % × 1 050). Si versement = 1 350 €, réduction = 337,50 € (25 % × 1 350). Le passage de 1 050 € à 1 050,01 € fait basculer **tout** le versement au taux 25 % ; entre 1 050,01 € et 1 260 €, l'avantage est *inférieur* aux 315 € de l'option basse (piège fiscal).
 
-**Taux standard : 66%** de réduction, dans la limite de 20% du revenu imposable.
+**Produits éligibles** : contrat d'assurance épargne-pension ou fonds de pension réglementés (banques et assureurs agréés par la FSMA).
 
-**Taux majoré : 75%** pour les dons à des associations d'aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.), dans la limite de **1 000 €** par an. Au-delà : taux 66%.
+**Attestation** : fiche fiscale 281.60 fournie par l'organisme.
 
-**Report** : les dons dépassant le plafond de 20% sont reportables sur les 5 années suivantes.
+**Base légale** : art. 145¹ CIR 92.
 
-## Crédits d'impôt (remboursables)
+### Épargne à long terme (ELT) (art. 145¹⁰ CIR 92)
 
-### Emploi à domicile
+- **Taux** : 30 % sur les versements éligibles.
+- **Plafond** : 2 450 € de versements maximum (indexé), net d'impôt selon les revenus professionnels nets.
+- **Produits éligibles** :
+  - Remboursement de capital d'emprunt hypothécaire (hors habitation propre depuis 2015 — critères régionaux)
+  - Primes d'assurance-vie liée à l'emprunt (assurance solde restant dû)
+  - Contrats d'assurance-vie pure (branche 21) qualifiés
 
-- **Taux : 50%** des dépenses éligibles
-- **Plafond général : 12 000 €** par an (donc crédit max 6 000 €)
-- **Majoration** : +1 500 € par enfant à charge ou personne de + 65 ans dans le foyer (plafond max 15 000 €)
-- **Éligible** : ménage, garde d'enfant à domicile, soutien scolaire, petit bricolage, jardinage, etc.
-- **Entreprise agréée ou emploi direct** avec déclaration URSSAF
+**Attestation** : fiche fiscale 281.61.
 
-**Avance immédiate (depuis 2022)** : possible via CESU+ — l'URSSAF avance le crédit directement, pas d'attente de remboursement.
+**Base légale** : art. 145¹⁰ CIR 92.
 
-### Garde d'enfant hors domicile
+**Attention** : l'ELT et l'épargne-pension sont soumis à la **taxe sur les sommes constituées** de 10 % lors du rachat (à 60 ans ou à la maturité). Cela doit être intégré dans le calcul du rendement net.
 
-- **Taux : 50%** des dépenses
-- **Plafond : 3 500 € par enfant** (donc crédit max 1 750 € par enfant)
-- **Âge limite** : enfant de moins de 6 ans au 1er janvier
-- **Éligibles** : crèche, assistante maternelle agréée, garde partagée
+### Dons à des institutions agréées (art. 145³³ CIR 92)
 
-### Cotisations syndicales
+- **Taux** : **45 %** de réduction sur les dons à des institutions agréées par le SPF Finances.
+- **Montant minimum** : **40 €** par institution et par an (pas de réduction en dessous).
+- **Plafond** : **10 %** des revenus nets recueillis, plafond absolu à vérifier (indexé).
+- **Attestation** : fiche fiscale 281.71 fournie par l'institution agréée.
 
-- **Taux : 66%**
-- **Plafond** : 1% du salaire brut
-- Pour salariés déclarant à l'IR (pas pour les non-imposables)
+**Exemple** : don de 500 € à une institution agréée → réduction = 500 × 45 % = **225 €**.
 
-## Plafonnement global des niches fiscales
+**Base légale** : art. 145³³ CIR 92.
 
-Voir `data/niches-fiscales.json` → `plafonnement_global`.
+**Liste des institutions agréées** : https://finances.belgium.be/fr/particuliers/avantages_fiscaux/liberalites
 
-**Plafond : 10 000 €** par an (18 000 € pour investissements outre-mer spécifiques).
+### Frais de garde d'enfant (art. 145³⁴ et s. CIR 92)
 
-**Mécanique** :
-1. Calculer toutes les réductions et crédits éligibles
-2. Distinguer ceux **dans le plafond** vs **hors plafond**
-3. Sommer les "dans le plafond"
-4. Si total > 10 000 € → l'excédent est **perdu** (pas reportable)
+- **Taux** : **45 %** des dépenses déclarées.
+- **Conditions** :
+  - Enfant de moins de **14 ans** (ou 21 ans si handicapé).
+  - Garde par une institution ou personne agréée (crèche, garderie, accueil extrascolaire agréé ONE/Kind en Gezin).
+  - Maximum **14,40 €/jour** de garde par enfant (montant 2025, indexé).
+- **Attestation** : fournie par la structure d'accueil agréée.
 
-**Pièges fréquents** :
-- Cumuler Pinel + FCPI + Girardin sans vérifier le plafond → partie perdue
-- Confondre "dans plafond" et "hors plafond" (les dons et l'emploi à domicile sont hors plafond)
+**Base légale** : art. 145³⁴ CIR 92.
 
-## Ordre d'application (après impôt brut)
+### Sécurité habitation (art. 145³¹ bis CIR 92)
+
+- **Taux** : **50 %** des dépenses pour l'installation de systèmes de sécurité ou de détection d'incendie dans la résidence propre.
+- **Plafond** : montant des dépenses plafonné — vérifier le montant actualisé.
+- **Conditions** : travaux réalisés par un entrepreneur agréé, factures à conserver.
+
+### Bonus à l'emploi fiscal (crédit d'impôt remboursable)
+
+- Réduction d'impôt **remboursable** pour les travailleurs à bas salaires.
+- Calculée automatiquement par le système (déjà intégrée dans le calcul PP et régularisée via Tax-on-web).
+- **Base légale** : art. 289ter CIR 92.
+
+---
+
+## Avantages fiscaux régionaux
+
+Depuis la 6e réforme de l'État, certaines réductions d'impôt ont été régionalisées. Elles s'appliquent à la part régionale de l'IPP et varient selon la Région de résidence (Wallonie, Flandre, Bruxelles-Capitale).
+
+### Chèque-habitat wallon
+
+- Déduction régionale pour l'emprunt hypothécaire sur l'habitation propre (Wallonie uniquement).
+- Montant de base selon les revenus du foyer ; majoré par enfant à charge.
+- Annoncé en extinction progressive — vérifier le calendrier actualisé.
+- Déclaration en cadre XII de Tax-on-web.
+
+### Réduction flamande (woonbonus)
+
+- Anciennement applicable en Flandre, **supprimée depuis l'exercice 2021**.
+- Plus aucun avantage fiscal régional flamand sur l'emprunt hypothécaire pour les nouveaux contrats depuis 2020.
+
+### Bruxelles
+
+- Réduction pour emprunt hypothécaire sur habitation propre en Région bruxelloise — régime spécifique, vérifier via Tax-on-web.
+
+---
+
+## Pas d'équivalents belges à certains dispositifs français
+
+Les dispositifs suivants **n'existent pas** en droit fiscal belge :
+
+| Dispositif français | Situation en Belgique |
+|--------------------|----------------------|
+| Pinel / Denormandie | Aucun équivalent — investissement locatif non défiscalisé |
+| FCPI / FIP | Aucun équivalent |
+| Emploi à domicile (crédit 50 %) | Partiellement remplacé par les titres-services (déductibilité limitée) |
+| IFI | N'existe pas — aucune taxe sur la fortune en Belgique |
+| PER (déduction revenus) | Remplacé par épargne-pension (réduction 30/25 %) et ELT (réduction 30 %) |
+| Girardin / Malraux | Aucun équivalent |
+| Crédit d'impôt transition énergétique | Primes régionales directes (primes Énergie, RENoVAS) — pas de crédit IPP |
+
+---
+
+## Titres-services
+
+Les titres-services (aide à domicile, ménage, repassage) permettent une **déduction fiscale limitée** :
+- Prix d'achat du titre-service : **9 €** (dont une partie subventionnée par la Région).
+- Déductibilité fiscale : **non** directement en IPP (contrairement au crédit d'impôt emploi à domicile français).
+- Les Régions gèrent les subventions directement — l'avantage est intégré dans le prix subventionné.
+
+---
+
+## Ordre d'application (après calcul de l'impôt brut)
 
 ```
-Impôt brut après QF et décote
-  ↓ − réductions d'impôt (plancher 0)
-Impôt après réductions
-  ↓ − crédits d'impôt (peut être négatif = remboursement)
-Impôt net final
+Impôt brut (barème progressif sur revenu taxable)
+  ↓ − réductions d'impôt fédérales (épargne-pension, ELT, dons, frais garde, etc.)
+  Plancher 0 € — l'excédent de réduction est perdu (sauf quotités exemptées enfants remboursables)
+Impôt fédéral réduit
+  ↓ + additionnels communaux (6 % à 9 %)
+IPP total
+  ↓ − précompte professionnel déjà retenu
+= Solde à payer ou à rembourser
 ```
 
-**Pourquoi distinguer l'ordre** : si l'impôt est déjà faible, une réduction est "perdue" (plancher 0) alors qu'un crédit reste remboursable.
+**Crédits d'impôt remboursables** (bonus à l'emploi, quotités excédentaires pour enfants — art. 134 §2) : peuvent générer un remboursement même si l'impôt est à 0.
 
-## Stratégies d'optimisation
+---
 
-### 1. Vérifier le plafond global avant de cumuler
+## Stratégies d'optimisation belges
 
-Tableau rapide :
-- Pinel + FCPI : à additionner → vérifier ≤ 10 000 €
-- Malraux : peut dépasser le plafond selon les cas
+### 1. Maximiser l'épargne-pension jusqu'à 1 050 € (taux 30 %)
 
-### 2. Privilégier les crédits si non imposable
+Passer de 1 050 € à 1 050,01 € fait basculer au taux 25 % — ne pas dépasser 1 050 € sauf si le versement dépasse 1 260 € (seuil au-delà duquel l'option haute redevient avantageuse).
 
-Un crédit d'impôt (emploi à domicile, garde d'enfant) est **remboursé** même si l'impôt est à 0. Une réduction est perdue dans ce cas.
+### 2. Combiner épargne-pension et ELT
 
-### 3. Étaler les dons
+Un foyer peut combiner les deux plafonds (1 050/1 350 € + 2 450 €) — ce sont des plafonds indépendants.
 
-Dons importants : étaler sur plusieurs années pour rester dans le plafond 20% du revenu imposable et éviter la perte.
+### 3. Dons : seuil minimum 40 € par institution
 
-### 4. Combiner déduction + crédit
+En dessous de 40 € par institution et par an, la réduction n'est pas accordée. Regrouper les dons sur un petit nombre d'institutions agréées.
 
-Un même foyer peut :
-- Déduire du PER (réduction RNI)
-- Puis bénéficier de crédits d'impôt sur les dépenses restantes
+### 4. Frais de garde : vérifier l'agrément ONE/Kind en Gezin
 
-Les deux jouent sur des couches différentes du calcul.
+Seule la garde par une structure agréée ouvre droit à la réduction. Vérifier l'agrément avant d'inclure dans la déclaration.
+
+### 5. Pensions alimentaires : conserver les preuves de paiement
+
+L'administration peut demander la preuve des versements effectifs. Virer par virement bancaire avec mention de la référence du jugement.
+
+---
 
 ## Pièges fréquents
 
-1. **Confondre réduction et crédit** → surévaluer l'économie si foyer non imposable
-2. **Oublier le plafond 20% sur les dons** → excédent reporté mais souvent oublié en N+1
-3. **Plafond global mal évalué** → perte silencieuse
-4. **Déduction PER vs réduction FCPI** : ne pas confondre les mécanismes
-5. **Emploi à domicile non déclaré CESU** → pas d'éligibilité au crédit
+1. **Confondre réduction et crédit** : un excédent de réduction d'impôt est perdu (sauf cas de crédit remboursable). Ne pas confondre avec le crédit d'impôt bonus à l'emploi (remboursable).
+2. **Passer le seuil 1 050 € épargne-pension sans calculer** : le taux passe à 25 % sur tout le versement.
+3. **Oublier le seuil minimum de 40 €** pour les dons : en dessous, zéro réduction.
+4. **Frais garde enfant : enfant ≥ 14 ans** (non handicapé) : plus éligible — vérifier l'âge.
+5. **ELT et taxe finale 10 %** : oublier cette taxe lors du rachat dans les simulations de rendement.
+6. **Avantages régionaux variables** : les plafonds et conditions du chèque-habitat wallon ou des dispositifs bruxellois évoluent chaque année — vérifier sur Tax-on-web.
 
-## Références CGI / BOFiP
+---
 
-- Plafonnement global : art. 200-0 A CGI
-- Dons : art. 200 CGI
-- Emploi à domicile : art. 199 sexdecies CGI
-- Garde d'enfant : art. 200 quater B CGI
-- Pinel : art. 199 novovicies CGI
-- FCPI : art. 199 terdecies-0 A CGI
-- BOFiP : BOI-IR-RICI
+## Références CIR 92 / Fisconetplus
+
+| Règle | Article CIR 92 |
+|-------|---------------|
+| Pensions alimentaires déductibles (80 %) | art. 104 |
+| Épargne-pension — réduction 30/25 % | art. 145¹ |
+| ELT — réduction 30 % | art. 145¹⁰ |
+| Dons — réduction 45 % | art. 145³³ |
+| Frais garde enfant — réduction 45 % | art. 145³⁴ |
+| Sécurité habitation — réduction 50 % | art. 145³¹ bis |
+| Bonus à l'emploi fiscal (crédit remboursable) | art. 289ter |
+| Quotités exemptées enfants remboursables | art. 134 §2 |
+
+Source : Fisconetplus.be — https://www.fisconetplus.be
+SPF Finances (avantages fiscaux) : https://finances.belgium.be/fr/particuliers/avantages_fiscaux
+Institutions agréées pour dons : https://finances.belgium.be/fr/particuliers/avantages_fiscaux/liberalites

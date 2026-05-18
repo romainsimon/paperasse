@@ -1,229 +1,244 @@
 # Droit Immobilier
 
-Référence complète pour les transactions immobilières : frais de notaire, diagnostics, urbanisme, préemption, copropriété.
+Référence complète pour les transactions immobilières en Belgique : droits d'enregistrement régionaux, diagnostics obligatoires, urbanisme, préemption, copropriété.
 
-## Frais de Notaire (Acquisition dans l'Ancien)
+**Base légale** : Codes régionaux des droits d'enregistrement (VCF Flandre, CDE Wallonie, CWCF Bruxelles) ; Code civil belge ; législation régionale de l'urbanisme
 
-### 1. Droits de Mutation à Titre Onéreux (DMTO)
+**last_updated: 2026-05-15**
 
-**Base légale** : art. 1594 D CGI, art. 1594 F quinquies CGI
+## Frais d'Acquisition — Droits d'Enregistrement Régionaux
 
-| Composante | Taux | Base légale |
-|------------|------|-------------|
-| Taxe départementale (base) | 3,80% | art. 1594 D CGI |
-| Taxe départementale (majorée, quasi-totalité des départements) | 4,50% | art. 1594 D CGI |
-| Taxe départementale (hausse 2025, 73 départements) | 5,00% | Loi de finances 2025, art. 116 |
-| Taxe communale additionnelle | 1,20% | art. 1584 CGI |
-| Prélèvement pour l'État | 2,37% de la taxe départementale | art. 1647-1° CGI |
+### 1. Droits d'enregistrement sur la vente immobilière
 
-**Total DMTO courant :**
-- Département à 4,50% : **5,81%** du prix
-- Département à 5,00% : **~6,37%** du prix
+Les droits d'enregistrement sur les ventes immobilières sont perçus par la **région** dans laquelle le bien est situé.
 
-**Hausse de 0,5 point (2025) :**
-- Votée par 73 départements (sur 101)
-- Applicable du 1er avril 2025 au 31 mars 2028
-- **Exclusion primo-accédants** : les acquéreurs d'un premier logement en résidence principale ne sont pas soumis à la hausse de 0,5 point
+#### Flandre (VCF)
 
-**Exonérations et réductions :**
-- Vente de logements neufs soumis à TVA : taxe de publicité foncière à 0,715% seulement
-- Marchands de biens (engagement de revente dans 5 ans) : DMTO réduit
-- Logements sociaux : exonération sous conditions
-- Zones de revitalisation rurale (ZRR) : taux réduit possible
+| Type de bien | Taux | Remarque |
+|-------------|:----:|----------|
+| Habitation (taux général depuis 2022) | **3%** | Remplace l'ancien taux de 6% depuis le 1er janvier 2022 |
+| Terrain à bâtir et immeuble de rapport | **10%** | — |
+| Abattement pour habitation propre et unique | 15 000 EUR sur la base imposable | Sous conditions de domiciliation dans les 3 ans |
 
-### 2. Contribution de Sécurité Immobilière (CSI)
+**Taux réduit Flandre** : pour l'acquisition d'une habitation propre et unique (habitation modeste ou non), le taux est de **3%** avec un abattement de 15 000 EUR sur la base imposable (soit les premiers 15 000 EUR exemptés).
 
-**Base légale** : art. 878 à 881 CGI
+#### Wallonie (CDE)
 
-| Opération | Taux | Minimum |
-|-----------|------|---------|
-| Publication d'un acte de vente | 0,10% | 15 EUR |
-| Inscription d'hypothèque | 0,05% | 15 EUR |
+| Type de bien | Taux | Remarque |
+|-------------|:----:|----------|
+| Habitation (taux général) | **12,5%** | — |
+| Habitation modeste (valeur ≤ 163 620 EUR) | **6%** | Sous conditions de revenus et de non-propriété d'autre bien + abattement 20 000 EUR sur la base |
+| Terrain à bâtir | **12,5%** | — |
 
-### 3. Débours
+#### Bruxelles (CWCF)
+
+| Type de bien | Taux | Remarque |
+|-------------|:----:|----------|
+| Habitation (taux général) | **12,5%** | — |
+| Habitation unique — abattement | Abattement de **200 000 EUR** sur la base | Sous condition de non-propriété d'un autre bien en Belgique |
+
+**Exemple Bruxelles** : bien à 350 000 EUR, habitation unique :
+- Base taxable = 350 000 − 200 000 = 150 000 EUR
+- Droits = 150 000 × 12,5% = 18 750 EUR (au lieu de 43 750 EUR sans abattement)
+
+### 2. TVA immobilier neuf
+
+| Situation | Taux TVA |
+|-----------|:--------:|
+| Immeuble neuf (premier usage dans les 2 ans) | **21%** |
+| Démolition-reconstruction (conditions régionales) | **6%** |
+
+Lorsque la TVA est applicable, les droits d'enregistrement sont réduits à un droit fixe de 50 EUR (à la place des droits proportionnels).
+
+### 3. Droit hypothécaire
+
+| Point | Détail |
+|-------|--------|
+| Taux | **1%** du capital garanti |
+| Base | Capital emprunté + intérêts + frais accessoires stipulés dans l'acte |
+| Applicable | Toutes régions |
+
+### 4. Émoluments du notaire
+
+Régis par l'AR du 16 décembre 1950 (barème réglementé). Voir tarifs-emoluments.md.
+
+### 5. Débours
 
 Frais engagés par le notaire pour le compte de l'acquéreur :
 
 | Poste | Montant estimé |
 |-------|---------------|
-| État hypothécaire | 30 à 50 EUR |
-| Extrait cadastral | 15 à 30 EUR |
-| Certificat d'urbanisme | 0 EUR (gratuit) |
-| Documents copropriété | 200 à 500 EUR |
-| Géomètre (si nécessaire) | 500 à 2 000 EUR |
-| Divers (courriers, copies, timbres) | 100 à 300 EUR |
-| **Total estimé** | **800 à 1 600 EUR** |
+| État hypothécaire (AGDP) | 20 à 50 EUR |
+| Extrait cadastral | 10 à 30 EUR |
+| Renseignements urbanistiques | 0 à 100 EUR selon commune |
+| Documents copropriété | 100 à 400 EUR |
+| Transcription à l'AGDP | Frais de dossier |
+| Divers (courriers, copies, timbres) | 50 à 200 EUR |
+| **Total estimé** | **400 à 1 000 EUR** |
 
-### 4. Total des Frais (Ancien)
+### 6. Estimation globale des frais (exemple)
 
-Pour un bien à 200 000 EUR (département à 4,50%) :
+Pour un bien à 300 000 EUR à Bruxelles (habitation unique) :
 
 | Poste | Montant |
 |-------|--------:|
-| DMTO (5,81%) | 11 620 EUR |
-| Émoluments TTC | ~2 394 EUR |
-| CSI (0,10%) | 200 EUR |
-| Débours (estimation) | 1 000 EUR |
-| **Total** | **~15 214 EUR** |
-| **Soit** | **~7,6% du prix** |
+| Droits d'enregistrement (12,5% sur 100 000 EUR après abattement de 200 000) | 12 500 EUR |
+| Émoluments TTC | ~3 200 EUR |
+| Droit hypothécaire (sur emprunt 240 000 EUR) | 2 400 EUR |
+| Débours (estimation) | 700 EUR |
+| **Total** | **~18 800 EUR** |
+| **Soit** | **~6,3% du prix** |
 
-### 5. Frais de Notaire (Neuf / VEFA)
+## Diagnostics Obligatoires à la Vente
 
-**Base légale** : art. 691 CGI
+Les diagnostics obligatoires sont définis par chaque région. Ils doivent être annexés au compromis de vente ou, à défaut, à l'acte authentique.
 
-| Composante | Taux |
-|------------|------|
-| Taxe de publicité foncière | 0,715% du prix HT |
-| Émoluments | Même barème dégressif |
-| CSI | 0,10% |
+### Diagnostics communs aux trois régions
 
-**Total neuf : environ 2% à 3% du prix TTC.**
+| Diagnostic | Condition | Validité | Source |
+|-----------|-----------|---------|--------|
+| **PEB** (Performance énergétique des bâtiments) | Toujours (sauf exceptions) | 10 ans | Certificateur agréé régional |
+| **Attestation du sol** (certification de l'état du sol) | Toujours (selon région) | Variable | Région compétente |
 
-## Diagnostics Obligatoires (DDT)
+### Flandre
 
-**Base légale** : art. L271-4 à L271-6 Code de la construction et de l'habitation
+| Diagnostic | Condition | Remarque |
+|-----------|-----------|---------|
+| **EPC** (Energieprestatiecertificaat) | Toujours | Équivalent du PEB flamand ; validité 10 ans |
+| **Asbestattest** (attestation amiante) | Immeuble construit avant 2001 | Obligatoire depuis le 23 novembre 2022 ; délivré par un expert certifié |
+| **Bodemattest** (attestation du sol) | Toujours | Délivré par OVAM (Openbare Vlaamse Afvalstoffenmaatschappij) |
+| **Elektrische keuring** (contrôle électrique) | Installation non conforme ou > 25 ans | Obligatoire si l'installation n'est pas aux normes |
 
-Le Dossier de Diagnostic Technique (DDT) doit être annexé à la promesse de vente ou, à défaut, à l'acte de vente.
+### Wallonie
 
-### Diagnostics systématiques
+| Diagnostic | Condition | Remarque |
+|-----------|-----------|---------|
+| **PEB** | Toujours | Certificat PEB délivré par un certificateur agréé en Wallonie |
+| **Attestation du sol** | Terrain à usage non résidentiel ou antécédents de pollution | Délivrée par la SPAQuE ou résultat de la banque de données BDES |
+| **Contrôle des installations électriques** | Installation > 25 ans ou non conforme | Contrôle par un organisme agréé |
+| **Contrôle citerne à mazout** | Cuve souterraine | Certificat de conformité |
 
-| Diagnostic | Condition | Validité | Base légale |
-|-----------|-----------|---------|-------------|
-| **DPE** (Performance énergétique) | Toujours | 10 ans | art. L126-26 CCH |
-| **ERP** (État des Risques et Pollutions) | Zone à risques | 6 mois | art. L125-5 C. env. |
-| **Loi Carrez** | Lots de copropriété | Illimitée | Loi n°96-1107 du 18/12/1996 |
+### Bruxelles
 
-### Diagnostics conditionnels
+| Diagnostic | Condition | Remarque |
+|-----------|-----------|---------|
+| **PEB** | Toujours | Certificat PEB délivré par un certificateur agréé à Bruxelles |
+| **Certificat de contrôle sol** | Terrain suspecté de pollution (IBGE/Bruxelles Environnement) | Résultat de la banque de données BSSP |
+| **Contrôle électrique** | Installation non conforme | Contrôle par un organisme agréé |
 
-| Diagnostic | Condition | Validité | Base légale |
-|-----------|-----------|---------|-------------|
-| **Audit énergétique** | Maisons DPE E, F ou G | 5 ans | art. L126-28-1 CCH |
-| **Amiante** (DAPP) | Permis avant 01/07/1997 | Illimitée si négatif | art. R1334-14 CSP |
-| **Plomb** (CREP) | Construction avant 01/01/1949 | Illimitée si négatif, 1 an si positif | art. L1334-5 CSP |
-| **Électricité** | Installation > 15 ans | 3 ans | art. L134-7 CCH |
-| **Gaz** | Installation > 15 ans | 3 ans | art. L134-6 CCH |
-| **Termites** | Zone déclarée par arrêté préfectoral | 6 mois | art. L133-6 CCH |
-| **Assainissement** | Non raccordé au tout-à-l'égout | 3 ans | art. L1331-11-1 CSP |
-| **Bruit** | Proximité aéroport (zone PEB) | Informatif | art. L112-11 C. urb. |
-| **Mérule** | Zone déclarée par arrêté préfectoral | Informatif | art. L133-8 CCH |
+### Géoportails environnementaux
 
-### Passoires thermiques (interdiction de location)
-
-| DPE | Interdiction de location | Base légale |
-|-----|-------------------------|-------------|
-| G | Depuis le 1er janvier 2025 | Loi Climat et Résilience, art. 160 |
-| F | À partir du 1er janvier 2028 | Loi Climat et Résilience, art. 160 |
-| E | À partir du 1er janvier 2034 | Loi Climat et Résilience, art. 160 |
-
-**Impact sur la vente** : un acquéreur doit être informé de l'interdiction actuelle ou future de louer le bien.
+| Région | Source |
+|--------|--------|
+| Flandre | geopunt.be |
+| Wallonie | géoportail.wallonie.be |
+| Bruxelles | urbis.irisnet.be / environment.brussels |
 
 ## Droits de Préemption
 
-### Droit de Préemption Urbain (DPU)
+### Flandre
 
-**Base légale** : art. L210-1 à L213-18 Code de l'urbanisme
+**Vlaamse Grondenbank / Agentschap Natuur en Bos :**
+- Droit de préemption sur les biens agricoles et naturels
+- Notification par le notaire ; délai de réponse selon la législation flamande en vigueur
 
-| Point | Détail |
-|-------|--------|
-| Bénéficiaire | Commune (ou EPCI par délégation) |
-| Champ | Zones U et AU du PLU |
-| Notification | DIA (Déclaration d'Intention d'Aliéner) envoyée par le notaire |
-| Délai de réponse | 2 mois (silence = renonciation) |
-| DPU renforcé | Zones définies par délibération, permet la préemption même pour les donations |
+### Wallonie
 
-### Droit de Préemption SAFER
+**SRWBE (Société Régionale Wallonne du Bâtiment et de l'Environnement) / communes :**
+- Droit de préemption communal dans les périmètres définis
+- Droit de préemption de la SRWBE dans les zones d'action prioritaire
 
-**Base légale** : art. L143-1 à L143-16 Code rural
+### Bruxelles
 
-| Point | Détail |
-|-------|--------|
-| Bénéficiaire | SAFER (Société d'Aménagement Foncier et d'Établissement Rural) |
-| Champ | Biens à vocation agricole |
-| Notification | Par le notaire |
-| Délai de réponse | 2 mois |
+**SAU (Société d'Aménagement Urbain) :**
+- Droit de préemption dans les périmètres délimités par le gouvernement bruxellois
 
-### Droit de Préemption du Locataire
+### Droit de préemption du locataire
 
-**Base légale** : art. 15-II loi du 6 juillet 1989
+**Base légale** : art. 47 et suivants du décret wallon sur le bail, dispositions régionales flamandes et bruxelloises
 
 | Point | Détail |
 |-------|--------|
 | Condition | Congé pour vente donné au locataire |
-| Délai | Les 2 premiers mois du délai de préavis |
+| Délai | Selon le code régional applicable (6 mois en général) |
 | Effet | Le locataire dispose d'un droit prioritaire d'achat |
-
-### Hiérarchie des droits de préemption
-
-1. Droit de préemption du locataire (logement d'habitation)
-2. DPU de la commune
-3. Droit de préemption SAFER (biens agricoles)
 
 ## Urbanisme
 
-### PLU (Plan Local d'Urbanisme)
+### Plans d'urbanisme par région
+
+| Région | Instrument | Description |
+|--------|-----------|-------------|
+| Bruxelles | **PRAS** (Plan Régional d'Affectation du Sol) | Plan d'affectation principal pour la Région bruxelloise |
+| Wallonie | **Plan de secteur** | Plan d'affectation des sols en Wallonie |
+| Flandre | **Gewestplan** / **BPA** (Bijzonder Plan van Aanleg) / **RUP** (Ruimtelijk Uitvoeringsplan) | Plans d'aménagement flamands |
 
 **Vérifications avant vente :**
-- Zonage du bien (U, AU, A, N)
-- Règles de constructibilité (hauteur, emprise, CES)
+- Affectation urbanistique du bien (zone d'habitat, agricole, forestière, industrielle)
+- Règles de constructibilité applicables (hauteur, implantation, densité)
 - Servitudes d'utilité publique
-- Emplacements réservés
-- Zones de protection du patrimoine
+- Risques naturels ou de pollution
 
-**Source** : Géoportail de l'Urbanisme (geoportail-urbanisme.gouv.fr)
+**Sources :**
+- Flandre : omgevingsloket.be
+- Wallonie : géoportail.wallonie.be / CIGo
+- Bruxelles : urbis.irisnet.be / nova.brussels
 
-### Certificat d'Urbanisme
+### Permis d'urbanisme
 
-| Type | Contenu | Validité |
-|------|---------|---------|
-| CUa (informatif) | Règles applicables, servitudes, taxes | 18 mois |
-| CUb (opérationnel) | Faisabilité d'un projet précis sur le terrain | 18 mois |
+En Belgique, le **permis d'urbanisme** (et non le « permis de construire ») est délivré par la commune et/ou les instances régionales selon les cas.
 
-Demande gratuite en mairie. Délai d'instruction : 1 mois (CUa) ou 2 mois (CUb).
+| Type | Condition | Autorité |
+|------|-----------|---------|
+| Permis d'urbanisme | Tout acte et travaux soumis à permis selon la législation régionale | Commune + fonctionnaire délégué (selon les cas) |
+| Permis de lotir (Flandre : omgevingsvergunning voor het verkavelen) | Division d'un terrain | Commune |
+
+### Données sur les mutations foncières
+
+Il n'existe pas d'équivalent direct du DVF français. Les données de ventes immobilières sont gérées par :
+
+**AGDP (Administration générale de la Documentation Patrimoniale, SPF Finances)** : données des mutations foncières, accessibles partiellement via le portail patrimoniumdocumentatie.be ou sur demande.
 
 ## Copropriété
 
-### Documents obligatoires (loi ALUR)
+**Base légale** : art. 3.84 Code civil belge et loi du 2 juin 2010 sur la copropriété (intégrée dans le Code civil belge réformé)
+
+### Documents obligatoires
 
 **À fournir à l'acquéreur :**
-- Règlement de copropriété et état descriptif de division
-- PV des 3 dernières AG
-- Fiche synthétique de la copropriété
-- Carnet d'entretien de l'immeuble
-- Diagnostic technique global (si réalisé)
-- Plan pluriannuel de travaux (obligatoire depuis 2023)
-- Montant du fonds de travaux
-- Montant des charges courantes et travaux votés
-- Impayés du copropriétaire vendeur
-- Impayés globaux de la copropriété (état des créances)
+- Statuts de la copropriété (acte de base + règlement de copropriété)
+- Règlement d'ordre intérieur
+- PV des 3 dernières assemblées générales
+- Décompte des charges des 2 dernières années
+- État des dettes de l'immeuble et des copropriétaires
+- Montant du fonds de réserve
+- Travaux votés et programmés
 
-### Loi Carrez
+**Attestation du syndic** : le notaire est tenu de demander une attestation au syndic avant la signature de l'acte authentique (art. 3.94 Cc belge).
 
-**Base légale** : loi n°96-1107 du 18 décembre 1996
+### Superficie
 
-- Obligatoire pour les lots de copropriété
-- Surface privative avec hauteur sous plafond ≥ 1,80 m
-- Exclusion : caves, garages, parkings, lots < 8 m²
-- Marge d'erreur tolérée : 5% (au-delà, réduction de prix possible)
+En Belgique, il n'existe pas d'équivalent de la loi Carrez. La superficie est mentionnée à titre indicatif dans l'acte et dans les annonces immobilières. Une erreur significative peut fonder une action en garantie des vices cachés ou en lésion qualifiée.
 
 ## Servitudes
 
-### Servitudes légales (Code civil)
+### Servitudes légales (Code civil belge)
 
 | Servitude | Article | Détail |
 |-----------|---------|--------|
-| Écoulement des eaux | art. 640-641 | Le fonds inférieur doit recevoir les eaux naturelles |
-| Distances de plantation | art. 671-672 | 2m (arbres > 2m) ou 0,50m (haies et arbustes ≤ 2m) |
-| Vue et jour | art. 675-680 | Vue droite à 1,90m, vue oblique à 0,60m |
-| Passage (enclave) | art. 682-685 | Droit de passage si fonds enclavé |
-| Mitoyenneté | art. 653-673 | Mur mitoyen : entretien partagé |
+| Écoulement des eaux | art. 3.127 Cc belge | Le fonds inférieur doit recevoir les eaux naturelles |
+| Distances de plantation | art. 3.133 Cc belge | Distances réglementées selon les usages locaux |
+| Vue et jour | art. 3.136 Cc belge | Distances applicables pour les vues sur fonds voisin |
+| Passage (enclave) | art. 3.130 Cc belge | Droit de passage si fonds enclavé |
+| Mitoyenneté | art. 3.119 à 3.126 Cc belge | Mur mitoyen : entretien partagé |
 
-### Servitudes d'utilité publique (SUP)
+### Servitudes d'utilité publique
 
-Inscrites au PLU, consultables via le Géoportail de l'Urbanisme :
+Inscrites dans les plans d'urbanisme régionaux ; consultables via les géoportails régionaux :
 - Servitudes de protection du patrimoine
 - Servitudes liées aux réseaux (électricité, gaz, eau, télécoms)
 - Servitudes liées aux infrastructures de transport
-- Servitudes liées aux risques naturels et technologiques
+- Zones inondables et risques naturels
 
 ## Viager
 
@@ -231,43 +246,44 @@ Inscrites au PLU, consultables via le Géoportail de l'Urbanisme :
 
 **Éléments du viager :**
 - Valeur vénale du bien
-- Valeur de l'usufruit ou du droit d'usage et d'habitation (DUH)
+- Valeur de l'usufruit ou du droit d'habitation et d'usage (DUH)
 - Bouquet = somme versée comptant
 - Rente = somme versée périodiquement
 
-**Formule simplifiée :**
+**Table belge** : valorisation de l'usufruit selon la table art. 745bis Code civil belge.
+
 ```
 Capital à convertir en rente = Valeur vénale - Bouquet - Valeur DUH
 Rente mensuelle = Capital / Coefficient de conversion (tables de mortalité)
 ```
 
-**Coefficient de conversion** : basé sur les tables de mortalité INSEE et un taux technique.
-
-**Viager libre** : pas de DUH à déduire (le bien est livré libre).
-**Viager occupé** : DUH déduit (généralement évalué entre 40% et 60% de la valeur vénale selon l'âge).
+**Viager occupé** : DUH déduit (évalué selon la table art. 745bis en fonction de l'âge du crédirentier).
+**Viager libre** : pas de DUH à déduire.
 
 ### Fiscalité du viager
 
 | Pour le vendeur (crédirentier) | Détail |
 |-------------------------------|--------|
-| Plus-value immobilière | Sur le bouquet (exonération RP) |
-| IR sur la rente | Fraction imposable selon l'âge (art. 158-6 CGI) : 70% (< 50 ans), 50% (50-59 ans), 40% (60-69 ans), 30% (≥ 70 ans) |
+| Plus-value immobilière | Selon l'art. 90 CIR 92 et les règles belges de plus-value (voir plus-value.md) |
+| IR sur la rente | Imposable partiellement comme rente viagère (art. 90, 4° CIR 92) |
 
 | Pour l'acquéreur (débirentier) | Détail |
 |-------------------------------|--------|
-| DMTO | Sur la valeur vénale en pleine propriété |
-| Déduction de la rente | Non déductible (sauf viager professionnel) |
+| Droits d'enregistrement | Sur la valeur vénale conventionnelle |
+| Déduction de la rente | Non déductible en principe |
 
-## VEFA (Vente en l'État Futur d'Achèvement)
+## VEFA (Vente en État Futur d'Achèvement)
 
-**Base légale** : art. 1601-1 à 1601-4 Code civil, art. L261-1 à L261-22 CCH
+**Base légale** : Loi Breyne du 9 juillet 1971 (vente d'immeubles en construction)
 
-### Spécificités
+### Spécificités belges (Loi Breyne)
 
 | Point | Détail |
 |-------|--------|
-| Contrat de réservation | Dépôt de garantie max 5% (livraison < 1 an) ou 2% (1-2 ans) |
-| Paiement échelonné | 35% fondations, 70% hors d'eau, 95% achèvement, 5% livraison |
-| Garantie financière d'achèvement (GFA) | Obligatoire (banque ou assureur) |
-| Délai de rétractation | 10 jours à compter de la notification (art. L271-1 CCH) |
-| Frais de notaire | Réduits (taxe de publicité foncière à 0,715%) |
+| Champ d'application | Vente d'un immeuble à construire ou en cours de construction destiné à l'habitation |
+| Contrat préliminaire | Possible (avec dépôt de 5% maximum du prix) |
+| Paiement échelonné | Selon l'avancement des travaux : pas plus de 5% au stade des fondations, tranches progressives jusqu'à la réception |
+| Garantie financière | Obligation de garantie pour achèvement (caution bancaire ou assurance) |
+| Délai de rétractation | **Pas de délai légal de rétractation** en Belgique pour les particuliers (contrairement au droit français) |
+| Protection acheteur | Loi Breyne impose des clauses obligatoires ; prix fixe sauf index prévu contractuellement |
+| TVA | 21% (ou 6% si démolition-reconstruction dans les conditions) |

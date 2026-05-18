@@ -1,65 +1,69 @@
 # Formats de Sortie
 
+`last_updated: 2026-05-15`
+
 ## Tableau de Bord Portfolio
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📊 PORTEFEUILLE SYNDIC — {{date}}
+PORTEFEUILLE SYNDIC — {{date}}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌──────────────────┬──────┬──────────┬──────────┬──────────┬───────────┐
-│ Copropriété      │ Lots │ Budget   │ Impayés  │ Fonds Tx │ Proch. AG │
+│ ACP              │ Lots │ Budget   │ Impayés  │ Fds Rés. │ Proch. AG │
 ├──────────────────┼──────┼──────────┼──────────┼──────────┼───────────┤
-│ {{copro.name}}   │  XXX │ XX XXX € │  X XXX € │ XX XXX € │ DD/MM     │
+│ {{acp.name}}     │  XXX │ XX XXX € │  X XXX € │ XX XXX € │ DD/MM     │
 │ ...              │  ... │      ... │      ... │      ... │ ...       │
 ├──────────────────┼──────┼──────────┼──────────┼──────────┼───────────┤
 │ TOTAL            │  XXX │ XX XXX € │  X XXX € │ XX XXX € │           │
 └──────────────────┴──────┴──────────┴──────────┴──────────┴───────────┘
 
-⏰ PROCHAINES ÉCHÉANCES (toutes copros, triées par date)
-🔴 DD/MM — {{copro}} : {{action}} (dans X jours)
-🟠 DD/MM — {{copro}} : {{action}} (dans X jours)
-🟡 DD/MM — {{copro}} : {{action}} (dans X jours)
+PROCHAINES ÉCHÉANCES (toutes ACP, triées par date)
+DD/MM — {{acp}} : {{action}} (dans X jours)
+DD/MM — {{acp}} : {{action}} (dans X jours)
+DD/MM — {{acp}} : {{action}} (dans X jours)
 
-⚠️ ALERTES
-🔴 {{copro}} : X copropriétaires en impayé (X XXX €, > 3 mois)
-🟡 {{copro}} : Contrat {{fournisseur}} arrive à échéance dans 30 jours
+ALERTES
+{{acp}} : X copropriétaires en impayé (X XXX EUR, > 3 mois)
+{{acp}} : Contrat {{fournisseur}} arrive à échéance dans 30 jours
 ```
 
-Si une seule copropriété, ne pas afficher le tableau comparatif. Afficher directement les échéances et alertes de cette copropriété.
+Si une seule ACP, ne pas afficher le tableau comparatif. Afficher directement les échéances et alertes de cette ACP.
 
 ## Appel de Fonds
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 APPEL DE FONDS — {{trimestre}} {{année}}
-Copropriété {{copro.name}}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ACP {{acp.name}}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Copropriétaire : {{nom}}
-Lot(s) : {{lots}} ({{tantièmes}} tantièmes / {{total_tantièmes}})
+Lot(s) : {{lots}} ({{quotes_parts}} millièmes / {{total_millièmes}})
 
 ┌─────────────────────────────────┬──────────┐
 │ Poste                           │ Montant  │
 ├─────────────────────────────────┼──────────┤
-│ Provisions charges courantes    │   XXX,XX │
-│ Fonds de travaux (art. 14-2)   │    XX,XX │
+│ Charges ordinaires (quote-part) │   XXX,XX │
+│ Fonds de réserve (art. 3.89)   │    XX,XX │
 │ Travaux votés (si applicable)  │   XXX,XX │
 ├─────────────────────────────────┼──────────┤
 │ TOTAL À RÉGLER                  │   XXX,XX │
 └─────────────────────────────────┴──────────┘
 
 Date d'exigibilité : {{date}}
-Virement : IBAN {{iban}} / BIC {{bic}}
+Virement SEPA : IBAN {{iban}} / BIC {{bic}}
 Référence : {{lot}}-{{trimestre}}-{{année}}
+
+Tous montants en EUR (TVA incluse dans les charges).
 ```
 
-## Budget Prévisionnel
+## Budget Ordinaire
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-BUDGET PRÉVISIONNEL — Exercice {{exercice}}
-Copropriété {{copro.name}}
+BUDGET ORDINAIRE — Exercice {{exercice}}
+ACP {{acp.name}}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌──────────────────────────┬──────────┬──────────┬────────┐
@@ -70,7 +74,7 @@ Copropriété {{copro.name}}
 │ Chauffage                │ X XXX,XX │ X XXX,XX │   +X%  │
 │ Eau                      │ X XXX,XX │ X XXX,XX │   +X%  │
 │ Électricité              │ X XXX,XX │ X XXX,XX │   +X%  │
-│ Assurance                │ X XXX,XX │ X XXX,XX │   +X%  │
+│ Assurance incendie       │ X XXX,XX │ X XXX,XX │   +X%  │
 │ Honoraires syndic        │ X XXX,XX │ X XXX,XX │   +X%  │
 │ Entretien / réparations  │ X XXX,XX │ X XXX,XX │   +X%  │
 │ Contrats maintenance     │ X XXX,XX │ X XXX,XX │   +X%  │
@@ -82,26 +86,29 @@ Copropriété {{copro.name}}
 └──────────────────────────┴──────────┴──────────┴────────┘
 
 Charges par lot (moyenne) : {{total / nb_lots}} EUR
-Fonds de travaux (5% min.) : {{fonds_travaux}} EUR
+Fonds de réserve (5% min.) : {{fonds_reserve}} EUR (art. 3.89 Cc belge)
 ```
 
-## Régularisation Annuelle
+## Décompte Annuel
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RÉGULARISATION — Exercice {{exercice}}
+DÉCOMPTE ANNUEL — Exercice {{exercice}}
 Copropriétaire : {{nom}}
+ACP : {{acp.name}}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌────────────────────────────┬──────────┐
 │ Charges réelles (votre QP) │ X XXX,XX │
-│ Provisions versées         │ X XXX,XX │
+│ Appels de fonds versés     │ X XXX,XX │
 ├────────────────────────────┼──────────┤
 │ SOLDE                      │  ±XXX,XX │
 └────────────────────────────┴──────────┘
 
-☐ Trop-perçu → déduit du prochain appel
-☐ Complément dû → à régler avant le {{date}}
+Avoir → déduit du prochain appel de fonds
+Complément dû → à régler avant le {{date}}
+
+Quote-part : {{quotes_parts}} millièmes / {{total_millièmes}} totaux
 ```
 
 ## État des Impayés
@@ -109,12 +116,13 @@ Copropriétaire : {{nom}}
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ÉTAT DES IMPAYÉS — Au {{date}}
+ACP : {{acp.name}}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌─────────────┬───────────┬──────────┬──────────┬──────────┐
 │ Lot         │ Montant   │ Ancienneté│ Relance  │ Statut   │
 ├─────────────┼───────────┼──────────┼──────────┼──────────┤
-│ {{lot}}     │ X XXX,XX  │ X mois   │ MED/INJ  │ 🔴/🟡/🟢 │
+│ {{lot}}     │ X XXX,XX  │ X mois   │ MED/INJ  │ [statut] │
 └─────────────┴───────────┴──────────┴──────────┴──────────┘
 
 Total impayés : XX XXX,XX EUR
@@ -126,45 +134,47 @@ Total impayés : XX XXX,XX EUR
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RÉSOLUTION N°{{n}} — {{objet}}
+ACP : {{acp.name}} — AG du {{date}}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Majorité requise : {{art. 24/25/26/unanimité}}
-Quorum/seuil : {{seuil}} voix
+Majorité requise : {{majorité ordinaire / 3/4 / 4/5 / unanimité}}
+Quotes-parts totales de l'ACP : {{total}} millièmes
+Quotes-parts représentées : {{représentés}} millièmes
 
-┌──────────┬─────────┬─────────┐
-│          │  Voix   │    %    │
-├──────────┼─────────┼─────────┤
-│ Pour     │  X XXX  │   XX%   │
-│ Contre   │  X XXX  │   XX%   │
-│ Abstention│    XXX  │    X%   │
-├──────────┼─────────┼─────────┤
-│ Total    │  X XXX  │  100%   │
-└──────────┴─────────┴─────────┘
+┌──────────────┬─────────────┬─────────┐
+│              │  Millièmes  │    %    │
+├──────────────┼─────────────┼─────────┤
+│ Pour         │      X XXX  │   XX%   │
+│ Contre       │      X XXX  │   XX%   │
+│ Abstention   │        XXX  │    X%   │
+├──────────────┼─────────────┼─────────┤
+│ Représentés  │      X XXX  │  100%   │
+└──────────────┴─────────────┴─────────┘
 
-Résultat : ✅ ADOPTÉE / ❌ REJETÉE
-Passerelle art. 25-1 : applicable / non applicable
+Résultat : ADOPTÉE / REJETÉE
+Note : {{explication si borderline ou 2e AG requise}}
 ```
 
-## Suivi LRAR Centralisé
+## Suivi Recommandés Centralisé
 
-Tableau de suivi de tous les recommandés envoyés. Essentiel pour le respect des délais légaux.
+Tableau de suivi de tous les recommandés envoyés. Essentiel pour le respect des délais légaux belges.
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📮 SUIVI LRAR — {{copro.name}}
+SUIVI RECOMMANDÉS — {{acp.name}}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌────┬────────────┬──────────────────┬──────────────────────┬───────────────┬────────────┬──────────────────────────┐
-│ #  │ Date envoi │ Destinataire     │ Objet                │ N° suivi      │ Date AR    │ Délai qui court          │
+│ #  │ Date envoi │ Destinataire     │ Objet                │ N° suivi bpost│ Date AR    │ Délai qui court          │
 ├────┼────────────┼──────────────────┼──────────────────────┼───────────────┼────────────┼──────────────────────────┤
 │  1 │ YYYY-MM-DD │ {{destinataire}} │ {{objet}}            │ {{n_suivi}}   │ YYYY-MM-DD │ {{delai}} jours (art. X) │
 └────┴────────────┴──────────────────┴──────────────────────┴───────────────┴────────────┴──────────────────────────┘
 
-Délais courants :
-- Convocation AG : 21 jours à compter du lendemain de la 1ère présentation (art. 9-1)
-- Notification PV : contestation 2 mois à compter de la réception (art. 42)
-- Mise en demeure : 30 jours pour régulariser
-- Transmission archives : 3 mois à compter de la cessation (art. 18-2)
+Délais clés en droit belge :
+- Convocation AG : 15 jours minimum avant la date de l'AG (art. 3.85 Cc belge)
+- Notification PV : contestation 4 mois à compter de la réception (art. 3.86 Cc belge)
+- Mise en demeure : 15–30 jours pour régulariser (pratique)
+- Transmission archives (changement syndic) : 30 jours (art. 3.84 §5 Cc belge)
 ```
 
 ## Évolution des Charges Pluriannuelle
@@ -172,9 +182,9 @@ Délais courants :
 Suivi des charges sur N années pour détecter les dérives.
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📈 ÉVOLUTION DES CHARGES — {{copro.name}}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉVOLUTION DES CHARGES — {{acp.name}}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌──────────────────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
 │ Poste                │ N-3      │ N-2      │ N-1      │ N        │ Tendance │
@@ -190,9 +200,9 @@ Suivi des charges sur N années pour détecter les dérives.
 │ Charge moy./lot      │ X XXX €  │ X XXX €  │ X XXX €  │ X XXX €  │          │
 └──────────────────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
 
-⚠️ ALERTES
+ALERTES
 - {{poste}} : +XX% sur 3 ans (à mettre en concurrence)
-- {{poste}} : très variable (écart min/max > 100%)
+- {{poste}} : très variable (comparer à l'indice santé belge ou indice Agoria)
 ```
 
 Source : factures fournisseurs, annexe 3 (budget vs réalisé), PV d'AG.
@@ -203,7 +213,7 @@ Tableau de synthèse pour l'audit annuel des fournisseurs.
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔍 AUDIT FOURNISSEURS — {{copro.name}} — {{date}}
+AUDIT FOURNISSEURS — {{acp.name}} — {{date}}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ┌────┬──────────────┬─────────────────┬──────────┬─────────┬──────────────┬──────────────────────────┐
@@ -212,6 +222,7 @@ Tableau de synthèse pour l'audit annuel des fournisseurs.
 │  1 │ {{nom}}      │ {{prestation}}  │ X XXX €  │   XX%   │ Oui/Non      │ {{piste}}                │
 └────┴──────────────┴─────────────────┴──────────┴─────────┴──────────────┴──────────────────────────┘
 
+BCE fournisseur : 0xxx.xxx.xxx (vérifiable sur kbopub.economie.fgov.be)
 Règle : tout fournisseur > 5% du budget et non mis en concurrence depuis 3 ans = alerte.
 
 Économies identifiées : {{total}} EUR/an

@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "exercice": 2026,
+    "revenus": 2025,
+    "source": "art. 269-269bis CIR 92",
+    "source_url": "https://fisconetplus.be",
+    "last_updated": "2026-05-15"
+  },
+  "taux_standard": {
+    "dividendes": 0.30,
+    "interets": 0.30,
+    "loyers_mobiliers": 0.30,
+    "redevances": 0.30,
+    "base_legale": "art. 269 §1, 1° CIR 92"
+  },
+  "taux_reduits": {
+    "livret_epargne_reglemente": {
+      "taux": 0.15,
+      "tranche_exoneree": 1020,
+      "description": "PM 15 % uniquement sur la fraction > 1 020 € d'intérêts par an (tranche exonérée indexée)",
+      "base_legale": "art. 269 §1, 2° CIR 92"
+    },
+    "vvpr_bis_2e_exercice": {
+      "taux": 0.20,
+      "description": "Dividendes PME VVPR bis : 2e exercice suivant l'apport en numéraire",
+      "conditions": [
+        "Société PME (art. 215 al. 1 CIR 92)",
+        "Actions nominatives émises après le 01/07/2013",
+        "Libération en numéraire (pas en nature)",
+        "Pas de réduction de capital dans les 2 ans suivant l'émission"
+      ],
+      "base_legale": "art. 269 §2 CIR 92"
+    },
+    "vvpr_bis_3e_exercice_et_suivants": {
+      "taux": 0.15,
+      "description": "Dividendes PME VVPR bis : 3e exercice et exercices suivants",
+      "base_legale": "art. 269 §2 CIR 92"
+    },
+    "vvpRter_liquidation_bonus": {
+      "taux": 0.10,
+      "description": "Boni de liquidation réservé (VVPRter) : constitution d'une réserve de liquidation, imposée à 10 % PM lors de la mise en réserve, puis exonérée à la liquidation (ou 5 % si distribution anticipée après 5 ans)",
+      "conditions": [
+        "PME (art. 215 al. 1 CIR 92)",
+        "Décision AG de constituer la réserve",
+        "Cotisation distincte 10 % payée immédiatement"
+      ],
+      "base_legale": "art. 269 §1, 8° CIR 92 + art. 184quater CIR 92"
+    },
+    "obligations_societes": {
+      "taux": 0.30,
+      "note": "Pas de taux réduit général sur obligations d'entreprises"
+    }
+  },
+  "caractere_liberatoire": {
+    "principe": "Le PM est en principe libératoire : les revenus mobiliers soumis au PM ne doivent pas être redéclarés à l'IPP (art. 313 CIR 92)",
+    "exception": "Option de globalisation possible pour les dividendes si le taux IPP effectif est inférieur à 30 %. Rarement avantageuse en pratique (additionnels communaux s'ajoutent).",
+    "base_legale": "art. 313 CIR 92"
+  },
+  "dividendes_option_globalisation": {
+    "avantage": "Si TMI IPP < 30 %, la globalisation peut être avantageuse",
+    "inconvenient": "Option globale — tous les revenus mobiliers sont inclus; additionnels communaux s'appliquent",
+    "conseil": "Calculer les deux scénarios. Rarement rentable au-delà de TMI 25 %."
+  }
+}

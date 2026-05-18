@@ -1,165 +1,167 @@
-# Equity salarial (RSU, BSPCE, stock-options, PEE/PERCO)
+# Equity salarial — stock-options et warrants sur actions (IPP belge)
 
-Voir `data/equity-salarial.json` pour les taux et seuils.
+<!-- last_updated: 2026-05-15 -->
 
-## RSU / AGA (Restricted Stock Units / Actions Gratuites)
+Base légale : loi du 26 mars 1999 relative au plan belge d'action pour l'emploi (régime stock-options) ; art. 42 à 43 loi du 26 mars 1999 ; art. 36 CIR 92 (ATN) ; art. 171 CIR 92 (taxation distincte).
+Voir `data/atn-vehicules-be.json` pour les ATN connexes.
 
-**Terminologie** : "RSU" est le terme anglo-saxon ; "AGA" (Actions Gratuites d'Actions) est le terme juridique français (art. L. 225-197-1 C. com., art. 80 quaterdecies CGI). Les deux désignent le même dispositif : attribution d'actions gratuites aux salariés, avec période d'acquisition (vesting) puis détention éventuelle.
+> **Note** : les mécanismes RSU et BSPCE sont propres au droit fiscal français et **n'existent pas** en tant que tels en Belgique. Le droit belge connaît les **stock-options sur actions** (régime loi du 26 mars 1999) et les **warrants sur actions** (régime distinct). Les plans d'actionnariat mis en place par des multinationales (souvent qualifiés de "RSU" ou "restricted stock units") sont traités selon le régime des avantages de toute nature (ATN) en Belgique si les actions sont allouées gratuitement.
 
-### Deux événements fiscaux distincts
+---
 
-**1. Gain d'acquisition (au vesting)**
-- Valeur de l'action à la date d'acquisition
-- **Imposition : traitements et salaires** (case 1TT ou 1UT)
-- Au barème progressif de l'IR
-- Cotisations sociales : CSG/CRDS 9,7% + contribution salariale 10% (sur plans qualifiants, dans certains plafonds)
+## 1. Stock-options — régime loi du 26 mars 1999
 
-**2. Plus-value de cession**
-- Valeur de cession − valeur au vesting
-- **Imposition : PV mobilière** : PFU à **31,4 % pour les cessions réalisées dès 2025** (12,8 % IR + 18,6 % PS, LFSS 2026), ou barème sur option
-- Les PV mobilières sont des "revenus du patrimoine" (art. L. 136-6 CSS), donc soumises au taux PS 18,6 % dès les revenus 2025
-- Uniquement si cession après vesting
+### Principe
 
-### Plans qualifiants (loi Macron)
+Le régime belge des stock-options a été instauré par la **loi du 26 mars 1999**. Les options sur actions d'entreprise attribuées à des travailleurs ou dirigeants sont imposées **à l'octroi** (et non à l'exercice), sur la base d'un avantage forfaitaire.
 
-Régime de faveur pour la fraction ≤ plafonds (variables selon les plans) :
-- Imposition comme PV mobilière au PFU (pas comme salaire)
-- Abattement 50% possible sur une fraction
+### Moment d'imposition : à l'octroi
 
-Au-delà des plafonds : régime de droit commun (salaire).
+L'avantage imposable est calculé **lors de l'offre des options** (pas lors de l'exercice ni lors de la vente des actions). L'acceptation par le bénéficiaire dans les 60 jours de l'offre déclenche l'imposition.
 
-### Piège classique
+**Avantage imposable forfaitaire** :
 
-**Traiter le gain RSU comme une PV mobilière classique** → erreur majeure. Le gain au vesting est d'abord :
-1. Salaire (barème)
-2. Soumis à CSG 9,7%
-3. Soumis à contribution salariale 10% (plans qualifiants)
+```
+ATN = 18 % × valeur des actions sous-jacentes à la date d'offre
+```
 
-Seule la plus-value ultérieure (valeur vesting → cession) est PV mobilière.
+Si des conditions restrictives s'appliquent (incessibilité pendant plus de 3 ans, conditions de performance, risque de perte substantielle) :
 
-### Stratégie : quotient pour revenus exceptionnels
+```
+ATN = 9 % × valeur des actions sous-jacentes (taux réduit)
+```
 
-Un vesting massif (ex: 150 000 € en une seule année) fait franchir plusieurs tranches. Le **quotient pour revenus exceptionnels** (coefficient 4) peut lisser l'imposition.
+**Base légale** : art. 42 à 43 loi du 26 mars 1999.
 
-Mécanisme : impôt = [IR(RNI_hors_RSU + vesting/4) − IR(RNI_hors_RSU)] × 4. Utile si le vesting seul fait franchir une tranche. **Nuance** : inutile si le foyer est déjà au TMI 45% — le taux marginal ne change pas avec la division. Détail et exemples chiffrés dans la section cas-speciaux listée depuis SKILL.md.
+### Imposition de l'ATN
 
-## Stock-options
+L'ATN (avantage de toute nature) est imposé **comme rémunération professionnelle** :
+- Soumis à l'IPP au barème progressif (art. 36 CIR 92)
+- Soumis au précompte professionnel (PP) retenu par l'employeur
+- Soumis aux cotisations ONSS (salariales et patronales)
 
-### Rabais excédentaire
+### Avantage du régime belge vs exercice
 
-Différence entre prix du marché à l'attribution et prix d'exercice, au-delà de 5%.
-→ **Imposition comme salaire à l'acquisition**.
+En imposant à l'octroi sur une base forfaitaire (18 % ou 9 %), le bénéficiaire peut réaliser ultérieurement une **plus-value totalement exonérée** si la valeur de l'action monte entre l'offre et l'exercice/vente, pour autant que la plus-value relève de la gestion normale du patrimoine privé.
 
-### Gain de levée
+**Risque** : si l'action perd de la valeur, l'ATN a été imposé sur une base supérieure à la plus-value réelle → l'impôt ne sera pas remboursé.
 
-Selon date d'attribution :
+### Exercice des options
 
-| Plan | Régime |
-|------|--------|
-| Avant 2012 | Barème de faveur (selon durée détention) |
-| 2012-2016 | Salaire (barème IR + cotisations sociales spécifiques) |
-| Après 2017 | Salaire (barème) + contribution salariale 10% sur plans qualifiants |
+L'exercice des options (achat des actions au prix d'exercice) n'est **pas un événement imposable** en lui-même dans le cadre du régime loi 1999 — l'imposition a eu lieu à l'octroi.
 
-Toujours consulter le plan pour déterminer le régime applicable.
+### Cession des actions
 
-## BSPCE (Bons de Souscription de Parts de Créateur d'Entreprise)
+La plus-value de cession des actions (valeur vente − valeur d'exercice) est **exonérée** pour un particulier en gestion normale du patrimoine (pas d'imposition sur les plus-values mobilières en Belgique).
 
-**Différence clé vs RSU** : pas de gain d'acquisition imposable comme salaire. Le gain n'est réalisé et imposé **qu'à la cession des actions**.
+Si l'administration considère la transaction spéculative ou hors gestion normale → 33 % (art. 90, 1° CIR 92).
 
-### Imposition du gain de cession
+### Déclaration
 
-Voir `data/equity-salarial.json` → `bspce.gain_cession`.
+L'employeur déclare l'ATN sur la fiche fiscale 281.10 (case 250 ou case ATN spécifique). Pré-rempli dans Tax-on-web.
 
-| Ancienneté dans la société à la date de cession | Taux global pour cessions 2025 |
-|--------------------------------------------------|-------------|
-| **≥ 3 ans** | **31,4 %** (12,8 % IR + 18,6 % PS) — PV mobilière |
-| **< 3 ans** | 50 % (30 % IR + 20 % PS — contribution salariale spécifique) |
+---
 
-Note : pour les cessions ≥ 3 ans, le PS suit le taux applicable aux PV mobilières (revenus du patrimoine, L. 136-6 CSS), soit 18,6 % dès 2025. Pour les cessions < 3 ans, la part PS reste à 20 % (contribution salariale spécifique, distincte du PS de droit commun).
+## 2. Warrants sur actions
 
-La pénalité pour départ précoce (< 3 ans) est forte. À intégrer dans les décisions de départ.
+### Nature et distinction
 
-### Conditions d'éligibilité de la société
+Les **warrants** sont des instruments financiers donnant le droit (mais pas l'obligation) d'acquérir des actions à un prix déterminé (prix d'exercice). Contrairement aux stock-options loi 1999, les warrants sont des valeurs mobilières cotées ou non.
 
-À vérifier avant attribution :
-- SA ou SAS française
-- Immatriculée depuis moins de 15 ans
-- Non cotée OU cotée sur compartiment dédié aux PME
-- Soumise à l'IS
-- Capital détenu à 25% minimum par des personnes physiques
-- Non issue d'une restructuration (fusion, scission, reprise d'activité)
+### Régime fiscal selon la structure
 
-**Si conditions non remplies** : requalification en salaires → barème IR + cotisations sociales → traitement beaucoup plus défavorable.
+| Structure | Moment d'imposition | Base imposable | Taux |
+|-----------|--------------------|-----------------|----|
+| Warrants attribués comme rémunération | À l'attribution | Valeur intrinsèque + valeur temps | Barème IPP + ONSS |
+| Warrants souscrits par le travailleur à valeur réelle | À l'exercice (gain d'exercice) | Prix de marché − prix d'exercice | Barème IPP si salariat |
+| Warrants exercés et actions cédées | À la cession (plus-value) | Plus-value nette | Exonéré (gestion normale) |
 
-### Vérification préalable recommandée
+**Point d'attention** : si les warrants sont attribués à titre gratuit ou à un prix inférieur à leur valeur réelle, l'avantage est un ATN imposable à l'IPP.
 
-Demander à la société :
-- Date d'immatriculation au RCS
-- Capital social et répartition (tableau des associés)
-- Régime fiscal (IS obligatoire)
-- Historique des restructurations éventuelles
+---
 
-## Épargne salariale (PEE / PERCO / PERO)
+## 3. Actions gratuites allouées par multinationales (type "RSU")
 
-### PEE (Plan d'Épargne Entreprise)
+En Belgique, les actions allouées gratuitement dans le cadre de plans internationaux (souvent appelés RSU dans la documentation des entreprises américaines) sont traitées comme des **avantages de toute nature (ATN)** imposables au moment de l'acquisition définitive des droits (vesting).
 
-Enveloppe collective distincte du PER individuel.
+### Moment d'imposition
 
-- **Abondement employeur** : exonéré IR et PS dans les plafonds — **AVANTAGE MAJEUR**
-- **Plafond abondement** : ~3 709 € par bénéficiaire (8% PASS — vérifier annuellement)
-- **Blocage** : 5 ans sauf cas de déblocage anticipé (mariage, naissance 3e enfant, achat RP, divorce avec enfant, fin contrat travail, surendettement, invalidité, décès, violences conjugales)
-- **Sortie après 5 ans** : exonération IR, seuls PS 17,2% sur les gains
-- **Dividendes réinvestis** : exonérés IR tant qu'ils restent dans l'enveloppe
+**Au vesting** : la valeur de marché des actions à la date d'acquisition définitive constitue un ATN imposable.
 
-### PERCO / PERO (PER d'entreprise)
+```
+ATN = valeur de marché des actions à la date de vesting × nombre d'actions
+```
 
-- **Sortie à la retraite** : rente ou capital
-- **Fiscalité sortie** : même que PER individuel (versements à barème, gains au PFU)
-- **Abondement employeur** : exonéré dans plafonds (~7 418 €, distinct du plafond PEE)
+### Imposition
 
-### Arbitrage PEE/PERCO vs PER individuel
+- Barème IPP progressif (comme un salaire)
+- PP retenu par l'employeur (si employeur belge)
+- Cotisations ONSS (salariales et patronales)
 
-| Enveloppe | Avantage unique | Quand privilégier |
-|-----------|----------------|-------------------|
-| PEE | Abondement employeur (levier +30% à +300%) | D'abord, toujours — tant qu'il y a abondement |
-| PERCO / PERO | Abondement employeur sur épargne retraite | En second après PEE max |
-| PER individuel | Déduction RNI (pas de plafond d'abondement) | En complément, après saturation PEE/PERCO |
+### Cession ultérieure des actions
 
-**Règle d'or** : ne jamais abonder un PER individuel avant d'avoir saturé l'abondement employeur PEE + PERCO. L'abondement est de l'argent gratuit.
+La plus-value entre la valeur au vesting et le prix de cession est, en principe, **exonérée** pour un particulier en gestion normale du patrimoine privé.
 
-## Quotient pour revenus exceptionnels
+**Risque de requalification spéculative** : ventes très rapides après vesting, grandes quantités, marchés volatils — l'administration peut argumenter le caractère spéculatif.
 
-Vesting massif, cession d'entreprise, indemnité de départ → à activer.
+### Différence avec le régime français RSU (AGA)
 
-**Mécanisme** :
-1. Revenu exceptionnel ÷ coefficient (généralement 4)
-2. Ajouter au revenu ordinaire
-3. Calculer l'impôt supplémentaire
-4. × coefficient
+| Critère | RSU/AGA France | Belgique (actions gratuites) |
+|---------|---------------|------------------------------|
+| Moment d'imposition | Au vesting (gain d'acquisition = salaire) | Au vesting (ATN = salaire) |
+| Régime PV de cession | PFU ou barème | Exonérée (gestion normale) |
+| Cotisations sociales | CSG/CRDS + contribution salariale 10% | ONSS (13,07 % salarié + ~25 % patronal) |
+| Mécanisme de lissage | Quotient revenus exceptionnels (art. 163-0 A CGI) | Quotient revenus exceptionnels (art. 171 CIR 92) |
 
-**À mentionner systématiquement** pour :
-- Vesting RSU > 1,5 × salaire annuel
-- Cession de parts de société
-- Indemnité de départ importante
-- Prime exceptionnelle massive
+### Revenus exceptionnels : quotient (art. 171 CIR 92)
 
-**Inutile si** : foyer déjà à TMI 45% (taux marginal identique quelle que soit la division).
+Un vesting important peut faire franchir artificiellement des tranches supérieures du barème IPP. Le **quotient pour revenus exceptionnels** (art. 171 CIR 92) permet de lisser l'imposition :
 
-## Formulaires
+```
+IPP_exceptionnel = [IPP(revenus_ordinaires + ATN_exceptionnel / 4) − IPP(revenus_ordinaires)] × 4
+```
 
-| Revenu | Formulaire / case |
-|--------|-------------------|
-| Gain acquisition RSU (salaire) | 2042 case 1TT / 1UT |
-| Plus-value cession RSU | 2042 C case 3VG (PFU) ou 2074 (détail) |
-| Gain cession BSPCE | 2042 C case 3VG ou 3WB selon ancienneté |
-| Abondement PEE (information) | Déclaration employeur — exonéré |
-| Stock-options | Variable selon plan — consulter le plan |
+**À appliquer systématiquement** si l'ATN vesting dépasse significativement le revenu annuel ordinaire du contribuable.
 
-## Références CGI / BOFiP
+**Conditions** : le revenu exceptionnel doit avoir un caractère non récurrent et dépasser la moyenne des revenus imposables des 3 années précédentes.
 
-- RSU : art. 80 quaterdecies CGI
-- Stock-options : art. 80 bis CGI
-- BSPCE : art. 163 bis G CGI
-- PEE : art. L. 3332-1 et s. Code du travail
-- PER : art. 163 quatervicies CGI
-- BOFiP : BOI-RSA-ES (actionnariat salarié)
+---
+
+## 4. Épargne salariale — équivalents belges
+
+Il n'existe pas en Belgique d'équivalent direct au PEE (Plan d'Épargne Entreprise) ou au PERCO français. Les mécanismes belges d'épargne dans le cadre de l'entreprise sont :
+
+| Mécanisme | Avantage fiscal | Base légale |
+|-----------|----------------|------------|
+| **EIP (Engagement Individuel de Pension)** | Déductible IS pour la société, 2e pilier | art. 52, 3° bis CIR 92 |
+| **PLCI (Pension Libre Complémentaire pour Indépendants)** | Déductible à 100 % (frais pro) | art. 52, 7° CIR 92 |
+| **Épargne-pension individuelle** | Réduction 30 % (max 1 050 €) ou 25 % (max 1 350 €) — revenus 2025 | art. 145¹ CIR 92 |
+| **Épargne à long terme (ELT)** | Réduction 30 % (max 2 450 €) | art. 145¹⁰ CIR 92 |
+
+Voir `data/epargne-pension-elt.json` pour les détails.
+
+---
+
+## Pièges fréquents
+
+1. **Appliquer le régime RSU/BSPCE français à un plan belge** : les deux systèmes diffèrent fondamentalement (moment d'imposition, cotisations sociales, plus-values).
+2. **Oublier le PP sur l'ATN vesting** : l'employeur doit retenir le PP sur la valeur des actions allouées à la date de vesting.
+3. **Croire que la plus-value de cession est imposable** : pour un particulier en gestion normale, elle est exonérée en Belgique.
+4. **Ne pas appliquer le quotient art. 171** sur un vesting massif → surcharge fiscale évitable.
+5. **Confondre stock-options loi 1999 et warrants** : le moment et la base d'imposition diffèrent.
+6. **Oublier les cotisations ONSS** sur les ATN : l'ONSS patronal (~25 %) représente un coût significatif pour l'employeur sur les plans d'actionnariat.
+
+## Références légales / Fisconetplus
+
+| Règle | Source |
+|-------|--------|
+| Stock-options — régime fiscal | Loi du 26 mars 1999, art. 42-43 |
+| ATN — définition et imposition | art. 36 CIR 92 |
+| Revenus exceptionnels — quotient | art. 171 CIR 92 |
+| Plus-values spéculatives | art. 90, 1° CIR 92 |
+| Épargne-pension | art. 145¹ CIR 92 |
+| ELT | art. 145¹⁰ CIR 92 |
+
+Source : Fisconetplus.be — https://www.fisconetplus.be
+SPF Finances : https://finances.belgium.be/fr/entreprises/personnel-et-remuneration/avantages-de-toute-nature
+Loi du 26 mars 1999 : https://www.ejustice.just.fgov.be

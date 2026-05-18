@@ -1,44 +1,48 @@
 {
-  "source": "Décret n°2005-240 du 14 mars 2005 relatif à la comptabilité des syndicats de copropriétaires",
-  "last_updated": "2026-03-26",
-  "description": "Plan comptable spécifique aux syndicats de copropriétaires (classes 1 à 7)",
+  "source": "Commission des Normes Comptables (CNC-CBN) — Avis sur la comptabilité des ACP + art. 3.89 Code civil belge",
+  "last_updated": "2026-05-15",
+  "description": "Plan comptable de l'Association des Copropriétaires (ACP) belge — basé sur le PCMN adapté aux spécificités de la copropriété",
+  "base_legale": "art. 3.89 §2 Code civil belge — obligation de tenir une comptabilité; CNC avis 2013/10",
+  "note": "L'ACP belge tient une comptabilité simplifiée ou complète selon le nombre de lots. Les comptes annuels sont approuvés en AG annuelle.",
+  "seuils_comptabilite": {
+    "simplifiee": "ACP ≤ 20 lots (hors caves, garages, parkings)",
+    "complete": "ACP > 20 lots — comptabilité en partie double obligatoire",
+    "base_legale": "art. 3.89 §2 al. 2 Code civil belge"
+  },
   "classes": [
     {
       "class": 1,
-      "label": "Provisions, avances, subventions, emprunts",
+      "label": "Fonds propres et dettes à long terme",
       "accounts": [
-        { "number": "102", "label": "Provisions pour travaux décidés non encore clôturés" },
-        { "number": "103", "label": "Avances" },
-        { "number": "1031", "label": "Avances de trésorerie" },
-        { "number": "1032", "label": "Avances travaux (art. 18-6 loi 1965)" },
-        { "number": "105", "label": "Fonds de travaux (art. 14-2 loi 1965)" },
-        { "number": "110", "label": "Solde en attente sur travaux et opérations exceptionnelles" },
-        { "number": "112", "label": "Solde en attente sur budget prévisionnel" },
-        { "number": "12", "label": "Solde des comptes de gestion" },
-        { "number": "13", "label": "Subventions" },
-        { "number": "16", "label": "Emprunts et dettes assimilées" },
-        { "number": "164", "label": "Emprunts collectifs" }
+        { "number": "100", "label": "Fonds de réserve" },
+        { "number": "1001", "label": "Fonds de réserve — travaux extraordinaires" },
+        { "number": "1002", "label": "Fonds de réserve — réparations urgentes" },
+        { "number": "103", "label": "Avances de trésorerie des copropriétaires" },
+        { "number": "105", "label": "Fonds spéciaux (travaux décidés non encore réalisés)" },
+        { "number": "110", "label": "Résultat reporté" },
+        { "number": "16", "label": "Emprunts collectifs (ACP emprunteur)" }
       ]
     },
     {
       "class": 4,
-      "label": "Copropriétaires et tiers",
+      "label": "Créances et dettes à court terme",
       "accounts": [
-        { "number": "401", "label": "Fournisseurs" },
-        { "number": "408", "label": "Fournisseurs - factures non parvenues" },
-        { "number": "411", "label": "Copropriétaires - provisions sur opérations courantes" },
-        { "number": "412", "label": "Copropriétaires - provisions sur travaux de l'art. 14-2" },
-        { "number": "413", "label": "Copropriétaires - avances" },
-        { "number": "414", "label": "Copropriétaires - fonds de travaux" },
-        { "number": "418", "label": "Copropriétaires - produits à recevoir" },
-        { "number": "420", "label": "Personnel - rémunérations dues" },
-        { "number": "421", "label": "Personnel - charges sociales" },
-        { "number": "431", "label": "Sécurité sociale et autres organismes sociaux" },
-        { "number": "432", "label": "État - impôts et taxes" },
-        { "number": "450", "label": "Compte d'attente" },
-        { "number": "459", "label": "Copropriétaires - créditeurs" },
+        { "number": "400", "label": "Fournisseurs" },
+        { "number": "408", "label": "Fournisseurs — factures non encore reçues" },
+        { "number": "411", "label": "Copropriétaires — provisions sur charges ordinaires" },
+        { "number": "412", "label": "Copropriétaires — provisions sur fonds de réserve" },
+        { "number": "413", "label": "Copropriétaires — avances de trésorerie" },
+        { "number": "414", "label": "Copropriétaires — fonds spéciaux (travaux)" },
+        { "number": "418", "label": "Copropriétaires — produits à recevoir" },
+        { "number": "419", "label": "Copropriétaires — soldes créditeurs" },
+        { "number": "420", "label": "Rémunérations dues (personnel de l'ACP)" },
+        { "number": "421", "label": "Charges sociales à payer (ONSS)" },
+        { "number": "451", "label": "TVA à rembourser" },
+        { "number": "452", "label": "TVA à payer" },
+        { "number": "453", "label": "Précompte professionnel à verser" },
+        { "number": "459", "label": "Copropriétaires débiteurs (arriérés de charges)" },
         { "number": "46", "label": "Débiteurs et créditeurs divers" },
-        { "number": "47", "label": "Comptes transitoires" },
+        { "number": "47", "label": "Comptes transitoires et d'attente" },
         { "number": "486", "label": "Charges constatées d'avance" },
         { "number": "487", "label": "Produits constatés d'avance" }
       ]
@@ -47,73 +51,71 @@
       "class": 5,
       "label": "Trésorerie",
       "accounts": [
-        { "number": "501", "label": "Banque - compte courant" },
-        { "number": "502", "label": "Banque - livret A" },
-        { "number": "503", "label": "Banque - fonds de placement" },
-        { "number": "51", "label": "Caisse" }
+        { "number": "500", "label": "Caisse" },
+        { "number": "550", "label": "Compte courant de l'ACP (compte de gestion ordinaire)" },
+        { "number": "551", "label": "Compte fonds de réserve (compte séparé obligatoire — art. 3.89 §2 Cc)" },
+        { "number": "552", "label": "Compte fonds spéciaux (travaux décidés)" },
+        { "number": "58", "label": "Virements internes" }
       ]
     },
     {
       "class": 6,
       "label": "Charges",
       "accounts": [
-        { "number": "60", "label": "Achats de matières et fournitures" },
-        { "number": "601", "label": "Fournitures d'entretien" },
-        { "number": "602", "label": "Fournitures de bureau et documentation" },
-        { "number": "61", "label": "Services extérieurs" },
-        { "number": "611", "label": "Assurance de l'immeuble" },
-        { "number": "612", "label": "Nettoyage des locaux" },
-        { "number": "613", "label": "Espaces verts" },
-        { "number": "614", "label": "Digicode / interphone / vidéosurveillance" },
-        { "number": "615", "label": "Ascenseur - contrat d'entretien" },
-        { "number": "616", "label": "Chauffage collectif - fourniture d'énergie (P1)" },
-        { "number": "617", "label": "Chauffage collectif - entretien (P2/P3)" },
-        { "number": "618", "label": "Eau froide" },
-        { "number": "619", "label": "Électricité parties communes" },
-        { "number": "62", "label": "Autres services extérieurs" },
-        { "number": "621", "label": "Honoraires du syndic" },
-        { "number": "622", "label": "Honoraires - avocat, huissier" },
-        { "number": "623", "label": "Honoraires - expert, géomètre, diagnostiqueur" },
-        { "number": "624", "label": "Frais de recouvrement" },
-        { "number": "625", "label": "Frais postaux et de télécommunications" },
-        { "number": "626", "label": "Frais de copies et de reprographie" },
-        { "number": "63", "label": "Impôts et taxes" },
-        { "number": "631", "label": "Taxe foncière (si applicable)" },
-        { "number": "633", "label": "Taxe d'enlèvement des ordures ménagères" },
-        { "number": "64", "label": "Frais de personnel" },
-        { "number": "641", "label": "Rémunérations - gardien / employé d'immeuble" },
-        { "number": "645", "label": "Charges sociales" },
-        { "number": "65", "label": "Autres charges de gestion courante" },
-        { "number": "66", "label": "Charges financières" },
-        { "number": "661", "label": "Intérêts d'emprunt collectif" },
-        { "number": "662", "label": "Frais bancaires" },
-        { "number": "67", "label": "Charges exceptionnelles" },
-        { "number": "671", "label": "Créances irrécouvrables" },
-        { "number": "672", "label": "Pénalités et amendes" },
-        { "number": "68", "label": "Dotations aux amortissements et provisions" },
-        { "number": "681", "label": "Dotation provision pour impayés" }
+        { "number": "600", "label": "Achats de fournitures et consommables" },
+        { "number": "610", "label": "Entretien courant des parties communes" },
+        { "number": "611", "label": "Réparations et travaux ordinaires" },
+        { "number": "612", "label": "Nettoyage des parties communes" },
+        { "number": "613", "label": "Ascenseur — entretien et contrat maintenance" },
+        { "number": "614", "label": "Chauffage collectif — combustible et entretien" },
+        { "number": "615", "label": "Eau et énergie parties communes" },
+        { "number": "616", "label": "Assurances (incendie, RC immeuble)" },
+        { "number": "617", "label": "Précompte immobilier parties communes" },
+        { "number": "618", "label": "Honoraires syndic" },
+        { "number": "619", "label": "Autres prestations de services" },
+        { "number": "620", "label": "Rémunérations du personnel (gardien, concierge)" },
+        { "number": "621", "label": "Charges sociales patronales (ONSS)" },
+        { "number": "630", "label": "Amortissements des immobilisations communes" },
+        { "number": "650", "label": "Charges financières (intérêts emprunt collectif)" },
+        { "number": "670", "label": "Charges exceptionnelles (sinistres, pénalités)" }
       ]
     },
     {
       "class": 7,
       "label": "Produits",
       "accounts": [
-        { "number": "701", "label": "Provisions sur opérations courantes" },
-        { "number": "702", "label": "Provisions sur travaux et opérations exceptionnelles" },
-        { "number": "703", "label": "Cotisations fonds de travaux" },
-        { "number": "71", "label": "Produits liés aux travaux" },
-        { "number": "72", "label": "Produits financiers" },
-        { "number": "721", "label": "Intérêts sur placements" },
-        { "number": "73", "label": "Produits divers" },
-        { "number": "731", "label": "Indemnités d'assurance" },
-        { "number": "732", "label": "Revenus des parties communes (location)" },
-        { "number": "74", "label": "Subventions" },
-        { "number": "741", "label": "Subventions ANAH" },
-        { "number": "742", "label": "MaPrimeRénov' Copropriété" },
-        { "number": "743", "label": "CEE (Certificats d'Économies d'Énergie)" },
-        { "number": "78", "label": "Reprises de provisions" },
-        { "number": "781", "label": "Reprise provision pour impayés" }
+        { "number": "700", "label": "Charges communes ordinaires imputées aux copropriétaires" },
+        { "number": "701", "label": "Charges communes extraordinaires imputées aux copropriétaires" },
+        { "number": "702", "label": "Dotations au fonds de réserve imputées aux copropriétaires" },
+        { "number": "703", "label": "Contributions aux fonds spéciaux (travaux)" },
+        { "number": "740", "label": "Produits des parties communes (location antennes, publicité, etc.)" },
+        { "number": "741", "label": "Intérêts perçus sur comptes ACP" },
+        { "number": "742", "label": "Subventions et primes perçues (primes énergie, etc.)" },
+        { "number": "750", "label": "Produits divers" },
+        { "number": "760", "label": "Produits financiers" },
+        { "number": "770", "label": "Produits exceptionnels (indemnités assurance)" }
       ]
     }
-  ]
+  ],
+  "obligations_comptables": {
+    "compte_separe_fonds_reserve": {
+      "description": "Le fonds de réserve doit être détenu sur un compte bancaire séparé au nom de l'ACP",
+      "base_legale": "art. 3.89 §2 al. 3 Code civil belge",
+      "note": "Obligation absolue — interdit de mélanger le fonds de réserve avec le compte de gestion ordinaire"
+    },
+    "comptes_annuels": {
+      "description": "Comptes annuels approuvés en AG annuelle obligatoire",
+      "contenu": [
+        "Bilan (actif / passif)",
+        "Compte de résultats (charges / produits)",
+        "État des dettes des copropriétaires"
+      ],
+      "delai_ag_annuelle": "Dans les 6 mois de la clôture de l'exercice comptable"
+    },
+    "tresorerie_separee_syndic": {
+      "description": "Le syndic ne peut pas mélanger les fonds de l'ACP avec ses propres fonds",
+      "base_legale": "art. 3.84 §7 Code civil belge",
+      "note": "Les fonds de l'ACP sont la propriété exclusive de l'ACP — pas du syndic"
+    }
+  }
 }

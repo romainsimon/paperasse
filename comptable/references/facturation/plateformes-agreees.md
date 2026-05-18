@@ -1,109 +1,147 @@
-# Plateformes Agréées (PA)
+# Prestataires Peppol Belges (Facturation Électronique)
+
+`last_updated: 2026-05-15`
 
 ## Contexte
 
-Depuis l'abandon du PPF comme plateforme d'émission/réception (octobre 2024), toute entreprise assujettie à la TVA **doit choisir une PA** pour émettre et recevoir des factures électroniques.
+Depuis le 1er janvier 2026, toute facture B2B entre assujettis belges doit être émise au format électronique structuré (Peppol BIS 3.0) via le réseau **Peppol**. Le hub belge est **Mercurius** (https://mercurius.belgium.be).
 
-170+ PA sont immatriculées par la DGFiP. Liste officielle :
-https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
+Contrairement à la France (système des Plateformes Agréées immatriculées par la DGFiP), en Belgique tout prestataire connecté au réseau Peppol peut émettre et recevoir des factures.
 
-## PA avec offre gratuite pour TPE/PME
+**Identifiant Peppol belge :** `0208:[numéro BCE sans points]`
 
-Plusieurs PA proposent des offres gratuites (modèle freemium : facturation gratuite, upsell sur la comptabilité).
+---
+
+## Prestataires recommandés (TPE/PME belges)
 
 ### Qonto
 
-- **PA agréée** : oui (immatriculation #23)
-- **PEPPOL** : non
-- **Gratuit** : oui, inclus dans tous les plans. Aussi disponible **sans compte pro**
-- **Émission/réception** : illimitées
-- **Formats** : Factur-X
-- **E-reporting** : inclus
-- **Intérêt** : si déjà client Qonto, zéro friction. Banque + facturation au même endroit
-- **Limite** : pas sur PEPPOL (pas bloquant pour les échanges domestiques)
+- **Peppol** : oui (connecté au réseau Peppol belge)
+- **Gratuit** : inclus dans tous les plans Qonto
+- **Émission/réception** : via interface Qonto ou API
+- **Formats** : UBL Peppol BIS 3.0
+- **IBAN belge** : oui (BE)
+- **Intérêt** : si déjà client Qonto, banque + facturation Peppol au même endroit
+- **Limite** : banque en ligne (pas de comptabilité intégrée)
 
-### Indy
+### Clearfacts
 
-- **PA agréée** : oui
-- **PEPPOL** : oui
-- **Gratuit** : oui (plan Essentiel, sans CB)
-- **Émission/réception** : illimitées
-- **Formats** : Factur-X
-- **E-reporting** : inclus
-- **Intérêt** : gratuit + PEPPOL + outil de comptabilité intégré
-- **Limite** : upsell vers compta payante (12 EUR/mois)
-
-### Pennylane
-
-- **PA agréée** : oui
-- **PEPPOL** : non
-- **Gratuit** : oui (plan gratuit, sans CB, sans limite de temps)
-- **Émission/réception** : illimitées
-- **Formats** : Factur-X, UBL, CII
-- **E-reporting** : inclus
-- **Intérêt** : supporte les 3 formats, interface moderne, API publique
-- **Limite** : pas PEPPOL, upsell compta (14 EUR/mois)
-
-### Dext
-
-- **PA agréée** : oui
-- **PEPPOL** : oui
-- **Gratuit** : oui (Dext Facturation, sans CB, sans engagement)
+- **Peppol** : oui
+- **Gratuit** : offre d'entrée disponible
 - **Émission/réception** : oui
-- **Formats** : Factur-X
-- **E-reporting** : à confirmer
-- **Intérêt** : gratuit + PEPPOL + forte extraction documentaire (OCR/IA)
-- **Limite** : stockage 500 MB, upsell extraction/compta
+- **Formats** : UBL Peppol BIS 3.0, PDF
+- **Intérêt** : spécialisé Belgique, intégration comptable, reconnaissance automatique des factures entrantes
+- **Site** : https://clearfacts.be
 
-## Arbre de décision : quelle PA choisir ?
+### Unifiedpost
+
+- **Peppol** : oui (Access Point Peppol certifié)
+- **Émission/réception** : oui
+- **Intérêt** : plateforme documentaire complète, gestion des factures entrantes et sortantes
+- **Site** : https://unifiedpost.com
+
+### Isabel
+
+- **Peppol** : oui
+- **Émission/réception** : oui
+- **Intérêt** : acteur historique belge des paiements et échanges financiers, intégration bancaire forte
+- **Site** : https://isabel.eu
+
+### Odoo (ERP)
+
+- **Peppol** : oui (module e-invoicing belge)
+- **Intérêt** : ERP complet avec gestion des factures, comptabilité, CRM
+- **Limite** : solution plus lourde, adaptée si besoin d'un ERP complet
+- **Site** : https://www.odoo.com
+
+### Billit
+
+- **Peppol** : oui
+- **Intérêt** : solution belge de facturation pour PME, interface intuitive
+- **Site** : https://www.billit.be
+
+### Exactonline
+
+- **Peppol** : oui
+- **Intérêt** : solution comptable + facturation, populaire chez les PME belges
+- **Site** : https://www.exactonline.be
+
+---
+
+## Arbre de décision : quel prestataire choisir ?
 
 ```
 Déjà client Qonto ?
-  ├── OUI → Qonto (zéro friction, déjà intégré)
+  ├── OUI → Qonto (zéro friction, IBAN BE + Peppol intégré)
   └── NON
-       ├── Besoin PEPPOL (clients UE) ?
-       │    ├── OUI → Indy ou Dext
+       ├── Besoin d'un ERP complet ?
+       │    ├── OUI → Odoo ou Exactonline
        │    └── NON
-       │         ├── Besoin compta intégrée ?
-       │         │    ├── OUI → Pennylane ou Indy
-       │         │    └── NON → Indy (le plus simple, gratuit)
-       │         └── Besoin API ?
-       │              └── OUI → Pennylane (API publique documentée)
-       └── Auto-entrepreneur ?
-            └── Indy (spécialisé indépendants, gratuit)
+       │         ├── Volume élevé + gestion documentaire ?
+       │         │    └── OUI → Clearfacts ou Unifiedpost
+       │         └── PME simple
+       │              └── Billit ou Clearfacts (offre d'entrée)
+       └── Indépendant / très petite structure ?
+            └── Qonto ou Billit (interface simple)
 ```
 
-## Questions à poser à l'utilisateur
+---
 
-Pour recommander une PA, demander :
+## Questions à poser
+
+Pour recommander un prestataire, demander :
 
 1. **Quelle banque professionnelle utilisez-vous ?** (si Qonto → recommander Qonto)
-2. **Avez-vous des clients dans l'UE ?** (si oui → recommander PA avec PEPPOL)
-3. **Utilisez-vous déjà un logiciel de comptabilité ?** (si oui → vérifier s'il est PA)
-4. **Quel volume de factures par mois ?** (les offres gratuites couvrent les volumes TPE/PME)
-5. **Avez-vous besoin d'une API ?** (si oui → Pennylane)
+2. **Utilisez-vous déjà un logiciel de comptabilité ?** (vérifier s'il supporte Peppol)
+3. **Quel volume de factures par mois ?** (les offres de base couvrent les volumes TPE/PME)
+4. **Avez-vous des clients dans l'UE ?** (le réseau Peppol est européen — pas de problème)
+5. **Avez-vous besoin d'une API ?** (Qonto, Clearfacts, Unifiedpost proposent des API)
 
-## Ce que fait une PA
+---
+
+## Ce que fait un prestataire Peppol
 
 | Fonction | Détail |
 |----------|--------|
-| Émission | Génère ou reçoit la facture, la transmet à la PA du client |
-| Réception | Reçoit les factures des fournisseurs, les met à disposition |
-| Routage | Utilise l'annuaire PPF pour identifier la PA du destinataire |
-| Conformité | Vérifie le format (Factur-X, UBL, CII) et les mentions obligatoires |
-| Statuts | Gère le cycle de vie (émise, reçue, acceptée, rejetée, payée) |
-| E-reporting | Transmet les données de facturation, transaction et paiement au PPF |
-| Conservation | Archive les factures 6 ans minimum |
+| Émission | Génère ou reçoit la facture XML, la route via Mercurius |
+| Réception | Reçoit les factures XML des fournisseurs, les met à disposition |
+| Routage | Utilise l'annuaire Peppol pour identifier l'identifiant du destinataire |
+| Conformité | Vérifie le format (UBL Peppol BIS 3.0) et les mentions obligatoires |
+| Archivage | Archive les factures (durée légale : 10 ans) |
 
-## Devenir PA
+---
 
-**Non recommandé pour les TPE/PME.** Conditions : ISO 27001, SecNumCloud (si hébergement tiers), audit de conformité, tests d'interopérabilité PPF, système d'information dans l'UE. Coût et complexité réservés aux éditeurs de logiciels et plateformes financières.
+## Mercurius — Hub Peppol belge
 
-## Vérifier qu'une PA est bien immatriculée
+**Mercurius** est la plateforme de routage Peppol belge, gérée par le SPF Finances et connectée au réseau Peppol européen.
 
-Avant de choisir, toujours vérifier sur la liste officielle :
-https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
+**URL :** https://mercurius.belgium.be
 
-La liste distingue :
-1. **Immatriculées définitivement** : tests d'interopérabilité réussis
-2. **En attente** : dossier complet, tests en cours
+**Rôle :**
+- Hub de routage des factures électroniques B2B belges
+- Connexion au réseau Peppol international (interopérabilité avec les PA françaises, les autres pays UE)
+- Déjà obligatoire pour B2G (marchés publics) depuis 2014
+
+**B2G (marchés publics) :** Les factures aux administrations belges transitent via Mercurius depuis 2014 — le B2B n'est que l'extension de ce dispositif existant.
+
+---
+
+## Inscription au réseau Peppol
+
+Pour recevoir des factures Peppol, votre entreprise doit être enregistrée dans l'annuaire Peppol via un prestataire :
+
+1. Choisir un prestataire Peppol (voir liste ci-dessus)
+2. Créer un compte et fournir votre numéro BCE
+3. Le prestataire enregistre votre identifiant `0208:[BCE]` dans l'annuaire Peppol
+4. Communiquer votre identifiant Peppol à vos fournisseurs et clients
+
+**Configurer dans `company.json` :**
+```json
+"einvoicing": {
+  "peppol_id": "0208:0123456789",
+  "provider": "qonto",
+  "provider_name": "Qonto",
+  "reception_ready": true,
+  "emission_ready": true
+}
+```

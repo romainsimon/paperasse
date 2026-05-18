@@ -1,30 +1,32 @@
 # Tarifs et Émoluments du Notaire
 
-Référence complète : émoluments proportionnels, émoluments fixes, débours.
+Référence complète : émoluments proportionnels, émoluments fixes, débours — tarif belge.
 
-**Base légale** : Décret n°2016-230 du 26 février 2016, arrêté du 26 février 2016 (et mises à jour ultérieures)
+**Base légale** : Arrêté royal du 16 décembre 1950 fixant le tarif des honoraires et émoluments des notaires (et ses modifications ultérieures)
+
+**Source** : https://www.notaire.be/fr/achat-vente-2/achat/frais-notaires
+
+**last_updated: 2026-05-15**
 
 ## Émoluments Proportionnels (Vente Immobilière)
 
-**Base légale** : art. A444-91 Code de commerce (tableau 5, n°54)
+**Base légale** : AR du 16 décembre 1950, tableau A
 
 ### Barème dégressif
 
 | Tranche d'assiette | Taux |
 |--------------------|:----:|
-| 0 à 6 500 EUR | 3,945% |
-| 6 501 à 17 000 EUR | 1,627% |
-| 17 001 à 60 000 EUR | 1,085% |
-| Au-delà de 60 000 EUR | 0,814% |
+| 0 à 7 500 EUR | 4,56% |
+| 7 501 à 17 500 EUR | 2,85% |
+| 17 501 à 30 000 EUR | 2,28% |
+| 30 001 à 45 495 EUR | 1,71% |
+| 45 496 à 64 095 EUR | 1,14% |
+| 64 096 à 250 000 EUR | 0,57% |
+| Au-delà de 250 000 EUR | 0,057% |
 
-**TVA** : 20% sur les émoluments.
+**TVA** : 21% sur les émoluments.
 
-### Remise
-
-**Base légale** : art. R444-10 Code de commerce
-
-- Remise maximale : **20%** sur la part d'émoluments calculée sur les tranches supérieures à 100 000 EUR
-- La remise doit être appliquée de manière uniforme à tous les clients de l'office
+**Note** : les montants ci-dessus sont les tarifs réglementés. Le notaire belge ne peut pas accorder de remise sur ses émoluments légaux (contrairement à la France où une remise de 20% était possible sur les tranches élevées).
 
 ### Exemples de calcul
 
@@ -32,106 +34,75 @@ Référence complète : émoluments proportionnels, émoluments fixes, débours.
 
 | Tranche | Base | Taux | Émolument |
 |---------|-----:|:----:|----------:|
-| 0 - 6 500 | 6 500 | 3,945% | 256,43 |
-| 6 501 - 17 000 | 10 500 | 1,627% | 170,84 |
-| 17 001 - 60 000 | 43 000 | 1,085% | 466,55 |
-| 60 001 - 200 000 | 140 000 | 0,814% | 1 139,60 |
-| **Total HT** | | | **2 033,42** |
-| **TVA (20%)** | | | **406,68** |
-| **Total TTC** | | | **2 440,10** |
+| 0 - 7 500 | 7 500 | 4,56% | 342,00 |
+| 7 501 - 17 500 | 10 000 | 2,85% | 285,00 |
+| 17 501 - 30 000 | 12 500 | 2,28% | 285,00 |
+| 30 001 - 45 495 | 15 495 | 1,71% | 264,96 |
+| 45 496 - 64 095 | 18 600 | 1,14% | 212,04 |
+| 64 096 - 200 000 | 135 905 | 0,57% | 774,66 |
+| **Total HT** | | | **2 163,66** |
+| **TVA (21%)** | | | **454,37** |
+| **Total TTC** | | | **2 618,03** |
 
 **Vente à 400 000 EUR :**
 
 | Tranche | Base | Taux | Émolument |
 |---------|-----:|:----:|----------:|
-| 0 - 6 500 | 6 500 | 3,945% | 256,43 |
-| 6 501 - 17 000 | 10 500 | 1,627% | 170,84 |
-| 17 001 - 60 000 | 43 000 | 1,085% | 466,55 |
-| 60 001 - 400 000 | 340 000 | 0,814% | 2 767,60 |
-| **Total HT** | | | **3 661,42** |
-| **TVA (20%)** | | | **732,28** |
-| **Total TTC** | | | **4 393,70** |
-
-Avec remise de 20% sur la tranche > 100 000 EUR :
-- Tranche 100 001 à 400 000 = 300 000 × 0,814% = 2 442,00 EUR
-- Remise 20% : -488,40 EUR
-- **Économie : 488,40 EUR HT (586,08 EUR TTC)**
+| 0 - 7 500 | 7 500 | 4,56% | 342,00 |
+| 7 501 - 17 500 | 10 000 | 2,85% | 285,00 |
+| 17 501 - 30 000 | 12 500 | 2,28% | 285,00 |
+| 30 001 - 45 495 | 15 495 | 1,71% | 264,96 |
+| 45 496 - 64 095 | 18 600 | 1,14% | 212,04 |
+| 64 096 - 250 000 | 185 905 | 0,57% | 1 059,66 |
+| 250 001 - 400 000 | 150 000 | 0,057% | 85,50 |
+| **Total HT** | | | **2 534,16** |
+| **TVA (21%)** | | | **532,17** |
+| **Total TTC** | | | **3 066,33** |
 
 ## Émoluments Proportionnels (Succession)
 
-**Base légale** : art. A444-69 à A444-76 Code de commerce
+**Base légale** : AR du 16 décembre 1950
 
 ### Acte de notoriété
 
-Émolument fixe : **56,60 EUR HT** (+ TVA 20%)
+Émolument fixe : montant réglementé — contacter l'étude notariale ou consulter notaire.be pour le tarif en vigueur.
 
-### Attestation immobilière (attestation de propriété)
+### Attestation immobilière (déclaration de propriété)
 
 | Tranche d'assiette | Taux |
 |--------------------|:----:|
-| 0 à 6 500 EUR | 1,935% |
-| 6 501 à 17 000 EUR | 1,064% |
-| 17 001 à 30 000 EUR | 0,726% |
-| Au-delà de 30 000 EUR | 0,532% |
+| 0 à 7 500 EUR | 1,14% |
+| 7 501 à 17 500 EUR | 0,855% |
+| 17 501 à 30 000 EUR | 0,57% |
+| 30 001 à 45 495 EUR | 0,456% |
+| Au-delà de 45 495 EUR | 0,228% |
 
 Assiette = valeur du bien immobilier.
 
-### Déclaration de succession
+### Déclaration de succession (rédaction)
 
-| Tranche d'assiette | Taux |
-|--------------------|:----:|
-| 0 à 6 500 EUR | 1,548% |
-| 6 501 à 17 000 EUR | 0,851% |
-| 17 001 à 30 000 EUR | 0,580% |
-| Au-delà de 30 000 EUR | 0,426% |
-
-Assiette = actif brut de la succession.
+Barème proportionnel selon l'actif brut de la succession (tarif AR 1950 ; voir notaire.be pour le montant actualisé).
 
 ### Partage successoral
 
 | Tranche d'assiette | Taux |
 |--------------------|:----:|
-| 0 à 6 500 EUR | 4,837% |
-| 6 501 à 17 000 EUR | 1,995% |
-| 17 001 à 30 000 EUR | 1,330% |
-| Au-delà de 30 000 EUR | 0,998% |
+| 0 à 7 500 EUR | 2,28% |
+| 7 501 à 17 500 EUR | 1,14% |
+| Au-delà de 17 500 EUR | 0,57% |
 
 Assiette = actif net partagé.
 
-**Droit de partage** (en plus des émoluments) : **2,5%** de l'actif net partagé (art. 746 CGI).
-
-### Délivrance de legs
-
-**Avec décharge du légataire universel :**
-
-| Tranche d'assiette | Taux |
-|--------------------|:----:|
-| 0 à 6 500 EUR | 1,935% |
-| 6 501 à 17 000 EUR | 1,064% |
-| 17 001 à 30 000 EUR | 0,726% |
-| Au-delà de 30 000 EUR | 0,532% |
-
-**Sans décharge (demi-tarif) :**
-
-| Tranche d'assiette | Taux |
-|--------------------|:----:|
-| 0 à 6 500 EUR | 0,967% |
-| 6 501 à 17 000 EUR | 0,532% |
-| 17 001 à 30 000 EUR | 0,363% |
-| Au-delà de 30 000 EUR | 0,266% |
-
-### Inventaire
-
-Émolument fixe : **75,46 EUR HT** par vacation d'une heure (+ TVA 20%)
+**Droit de partage** : en Belgique, le droit de partage (droit d'enregistrement) est de **1%** sur l'actif net partagé (et non 2,5% comme en France).
 
 ## Émoluments Proportionnels (Donation)
 
 | Tranche d'assiette | Taux |
 |--------------------|:----:|
-| 0 à 6 500 EUR | 1,935% |
-| 6 501 à 17 000 EUR | 1,064% |
-| 17 001 à 30 000 EUR | 0,726% |
-| Au-delà de 30 000 EUR | 0,532% |
+| 0 à 7 500 EUR | 1,14% |
+| 7 501 à 17 500 EUR | 0,855% |
+| 17 501 à 30 000 EUR | 0,57% |
+| Au-delà de 30 000 EUR | 0,228% |
 
 Assiette = valeur du bien donné en pleine propriété (même si donation en démembrement).
 
@@ -139,41 +110,38 @@ Assiette = valeur du bien donné en pleine propriété (même si donation en dé
 
 | Tranche d'assiette | Taux |
 |--------------------|:----:|
-| 0 à 6 500 EUR | 1,315% |
-| 6 501 à 17 000 EUR | 0,542% |
-| 17 001 à 60 000 EUR | 0,362% |
-| Au-delà de 60 000 EUR | 0,271% |
+| 0 à 7 500 EUR | 1,14% |
+| 7 501 à 17 500 EUR | 0,855% |
+| 17 501 à 30 000 EUR | 0,57% |
+| 30 001 à 45 495 EUR | 0,456% |
+| Au-delà de 45 495 EUR | 0,228% |
 
 Assiette = montant du prêt.
 
 ## Émoluments Fixes
 
-**Base légale** : art. A444-53 à A444-68 Code de commerce
+**Base légale** : AR du 16 décembre 1950
 
-| Acte | Montant HT |
-|------|----------:|
-| Procuration authentique | 26,41 EUR |
-| Convention de PACS | 160,26 EUR |
-| Modification de PACS | 160,26 EUR |
-| Donation entre époux | 113,52 EUR |
-| Testament authentique | 113,52 EUR |
-| Dépôt de testament olographe | 26,41 EUR |
-| Révocation de testament | 26,41 EUR |
-| Acte de notoriété (succession) | 56,60 EUR |
-| Inventaire (par vacation d'1h) | 75,46 EUR |
-| Certificat de propriété (< 5 335,72 EUR) | 15,00 EUR |
-| Certificat de propriété (≥ 5 335,72 EUR) | 0,484% |
-| Consentement à adoption | 26,41 EUR |
-| Mandat de protection future | 113,52 EUR |
+| Acte | Montant HT (indicatif) |
+|------|----------------------:|
+| Procuration authentique | Tarif fixe réglementé |
+| Convention de cohabitation légale | Tarif fixe réglementé |
+| Modification de convention de cohabitation | Tarif fixe réglementé |
+| Donation entre époux | Tarif fixe réglementé |
+| Testament authentique | Tarif fixe réglementé |
+| Dépôt de testament olographe | Tarif fixe réglementé |
+| Révocation de testament | Tarif fixe réglementé |
+| Acte de notoriété (succession) | Tarif fixe réglementé |
+| Mandat de protection extrajudiciaire | Tarif fixe réglementé |
+| Consentement à adoption | Tarif fixe réglementé |
 
-**TVA** : 20% sur tous les émoluments fixes.
+**TVA** : 21% sur tous les émoluments fixes.
+
+**Note** : les montants exacts des émoluments fixes sont publiés sur le site de la Fédération Royale du Notariat belge : https://www.notaire.be
 
 ## Mainlevée d'Hypothèque
 
-| Tranche du montant de l'inscription | Émolument HT |
-|--------------------------------------|-------------:|
-| 0 à 77 090 EUR | 78,00 EUR |
-| Au-delà de 77 090 EUR | 150,00 EUR |
+Émolument proportionnel selon le montant de l'inscription, barème AR 1950. S'y ajoutent les frais de transcription à l'AGDP.
 
 ## Honoraires Libres
 
@@ -182,8 +150,9 @@ En dehors des actes tarifés, le notaire peut facturer des honoraires libres pou
 - Audit successoral
 - Étude de faisabilité
 - Consultations juridiques
+- Rédaction de compromis de vente (si honoraires non inclus dans les émoluments de l'acte)
 
-**Convention d'honoraires** obligatoire (art. 4-4 du décret n°78-262).
+**Convention d'honoraires** : recommandée pour les prestations hors tarif réglementé.
 
 ## Débours Types par Opération
 
@@ -191,60 +160,68 @@ En dehors des actes tarifés, le notaire peut facturer des honoraires libres pou
 
 | Poste | Montant estimé |
 |-------|---------------:|
-| État hypothécaire | 30 à 50 EUR |
-| Extrait cadastral | 15 à 30 EUR |
-| Certificat d'urbanisme | Gratuit |
-| Documents copropriété | 200 à 500 EUR |
-| Copies d'actes | 15 à 30 EUR par acte |
-| Timbres et courriers | 50 à 100 EUR |
-| **Total estimé** | **400 à 800 EUR** |
+| État hypothécaire (AGDP) | 20 à 50 EUR |
+| Extrait cadastral | 10 à 30 EUR |
+| Renseignements urbanistiques | 0 à 100 EUR |
+| Documents copropriété | 100 à 400 EUR |
+| Copies d'actes | 10 à 30 EUR par acte |
+| Divers (courriers, copies, timbres) | 50 à 150 EUR |
+| **Total estimé** | **300 à 800 EUR** |
 
 ### Succession
 
 | Poste | Montant estimé |
 |-------|---------------:|
 | Copies d'actes d'état civil | 0 à 30 EUR |
-| État hypothécaire (par immeuble) | 30 à 50 EUR |
-| FICOBA (recherche de comptes) | 15 EUR |
-| Publication attestation immobilière | Variable |
-| Inscription FCDDV | 15 à 30 EUR |
-| Copies d'actes notariés antérieurs | 15 à 30 EUR par acte |
-| **Total estimé** | **200 à 500 EUR** |
+| État hypothécaire par immeuble (AGDP) | 20 à 50 EUR |
+| Transcription attestation immobilière | Variable |
+| Inscription au Registre Central des Testaments | Variable |
+| Copies d'actes notariés antérieurs | 10 à 30 EUR par acte |
+| **Total estimé** | **150 à 400 EUR** |
 
 ### Donation immobilière
 
 | Poste | Montant estimé |
 |-------|---------------:|
-| Publication au SPF | 0,10% de la valeur (CSI) |
-| Copies d'actes | 15 à 30 EUR |
-| État hypothécaire | 30 à 50 EUR |
-| **Total estimé** | **200 à 400 EUR** (hors CSI) |
+| Transcription à l'AGDP | Variable (droits + frais) |
+| Copies d'actes | 10 à 30 EUR |
+| État hypothécaire | 20 à 50 EUR |
+| **Total estimé** | **150 à 350 EUR** (hors droits de donation) |
 
 ## Frais Totaux par Opération (Récapitulatif)
 
-### Vente dans l'ancien à 300 000 EUR (département à 4,50%)
+### Vente à Bruxelles à 300 000 EUR (habitation unique, abattement 200 000 EUR)
 
 | Poste | Montant |
 |-------|--------:|
-| DMTO (5,81%) | 17 430 EUR |
-| Émoluments HT | 2 847 EUR |
-| TVA émoluments | 569 EUR |
-| CSI (0,10%) | 300 EUR |
-| Débours | ~700 EUR |
-| **Total** | **~21 846 EUR** |
-| **Soit** | **~7,3% du prix** |
+| Droits d'enregistrement (12,5% sur 100 000 EUR) | 12 500 EUR |
+| Émoluments TTC | ~3 100 EUR |
+| Droit hypothécaire (sur emprunt 240 000 EUR) | 2 400 EUR |
+| Débours | ~600 EUR |
+| **Total** | **~18 600 EUR** |
+| **Soit** | **~6,2% du prix** |
 
-### Succession de 500 000 EUR (actif net, 2 enfants)
+### Vente en Flandre à 300 000 EUR (habitation propre et unique)
 
 | Poste | Montant |
 |-------|--------:|
-| Acte de notoriété | 68 EUR TTC |
-| Déclaration de succession | ~2 600 EUR TTC |
-| Attestation immobilière (si immo. 300k) | ~2 100 EUR TTC |
-| Partage | ~6 200 EUR TTC |
-| Débours | ~400 EUR |
-| Droit de partage (2,5%) | 12 500 EUR |
-| **Total émoluments + débours** | **~11 400 EUR** |
-| **Total avec droit de partage** | **~23 900 EUR** |
+| Droits d'enregistrement (3% sur 285 000 EUR après abattement 15 000 EUR) | 8 550 EUR |
+| Émoluments TTC | ~3 100 EUR |
+| Droit hypothécaire (sur emprunt 240 000 EUR) | 2 400 EUR |
+| Débours | ~600 EUR |
+| **Total** | **~14 650 EUR** |
+| **Soit** | **~4,9% du prix** |
 
-Note : les droits de succession eux-mêmes s'ajoutent à ces frais.
+### Succession de 500 000 EUR (actif net, 2 enfants, Bruxelles)
+
+| Poste | Montant |
+|-------|--------:|
+| Acte de notoriété | ~60 EUR TTC |
+| Attestation immobilière (si immo. 300k) | ~800 EUR TTC |
+| Partage | ~400 EUR TTC |
+| Débours | ~300 EUR |
+| Droit de partage (1%) | 5 000 EUR |
+| **Total émoluments + débours** | **~1 560 EUR** |
+| **Total avec droit de partage** | **~6 560 EUR** |
+
+Note : les droits de succession eux-mêmes s'ajoutent à ces frais (calculés séparément sur la base des barèmes régionaux).

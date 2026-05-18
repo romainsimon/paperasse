@@ -1,0 +1,205 @@
+{
+  "_meta": {
+    "description": "Droits de succession belges — barèmes et abattements par région et degré de parenté",
+    "last_updated": "2026-05-15",
+    "source": "Code des droits de succession (fédéral) + décrets/ordonnances régionaux",
+    "source_url": "https://finances.belgium.be/fr/particuliers/habitation/succession-et-donation/droits-de-succession",
+    "note": "Les droits de succession sont une matière régionale depuis 2014. Les barèmes ci-dessous sont ceux applicables pour les décès survenus en 2025 (EX 2026).",
+    "rappel_donations": "Les donations hors-main-notariale faites dans les 3 ans avant le décès sont réintégrées dans la succession (art. 7 Code succ. fédéral)"
+  },
+  "regions": {
+    "flandre": {
+      "source_url": "https://belastingen.vlaanderen.be/erfbelasting",
+      "base_legale": "Vlaamse Codex Fiscaliteit (VCF) — art. 2.7.1.0.1 ss",
+      "rappel_fiscal_donations": "3 ans (art. 2.7.1.0.6 VCF) — réduit à 1 an pour biens meubles enregistrés",
+      "tarifs": {
+        "ligne_directe_conjoint_cohabitant": {
+          "description": "Entre époux/cohabitants légaux et en ligne directe (parent/enfant/grand-parent/petit-enfant)",
+          "tranches": [
+            { "de": 0, "a": 50000, "taux": 0.03 },
+            { "de": 50000, "a": 250000, "taux": 0.09 },
+            { "au_dela": 250000, "taux": 0.27 }
+          ],
+          "abattement_conjoint_cohabitant": {
+            "description": "Habitation familiale exonérée intégralement entre époux/cohabitants légaux",
+            "exoneration": "Pleine valeur de l'habitation commune"
+          },
+          "abattement_ligne_directe": {
+            "description": "Abattement sur la part nette",
+            "montant": 50000,
+            "note": "Les premiers 50 000 € sont taxés à 3% (tranche 0-50 000€)"
+          }
+        },
+        "freres_soeurs": {
+          "description": "Entre frères et sœurs",
+          "tranches": [
+            { "de": 0, "a": 35000, "taux": 0.25 },
+            { "de": 35000, "a": 75000, "taux": 0.30 },
+            { "au_dela": 75000, "taux": 0.55 }
+          ]
+        },
+        "oncles_tantes_neveux_nieces": {
+          "description": "Oncles/tantes et neveux/nièces",
+          "tranches": [
+            { "de": 0, "a": 35000, "taux": 0.25 },
+            { "de": 35000, "a": 75000, "taux": 0.35 },
+            { "au_dela": 75000, "taux": 0.65 }
+          ]
+        },
+        "autres": {
+          "description": "Tous autres héritiers (personnes sans lien de parenté)",
+          "tranches": [
+            { "de": 0, "a": 35000, "taux": 0.25 },
+            { "de": 35000, "a": 75000, "taux": 0.45 },
+            { "au_dela": 75000, "taux": 0.65 }
+          ]
+        }
+      }
+    },
+    "wallonie": {
+      "source_url": "https://www.notaire.be/heritage-et-donations/heritage/impot-sur-lheritage-tarifs-des-droits-de-succession/calcul-et-tarifs-des-droits-de-succession-en-wallonie",
+      "base_legale": "Code wallon des droits de succession — barème réformé au 01/01/2025 (décret wallon)",
+      "rappel_fiscal_donations": "3 ans (art. 7 Code succ. fédéral applicable)",
+      "note_reforme": "Barème ligne directe réformé au 01/01/2025. Nouvelle réduction prévue au 01/01/2028 (taux divisés ~de moitié, max 15 %) — à revérifier après cette date.",
+      "tarifs": {
+        "ligne_directe_conjoint_cohabitant": {
+          "description": "Entre époux/cohabitants légaux et en ligne directe (barème 2025)",
+          "tranches": [
+            { "de": 0, "a": 12500, "taux": 0.03 },
+            { "de": 12500, "a": 25000, "taux": 0.06 },
+            { "de": 25000, "a": 175000, "taux": 0.12 },
+            { "de": 175000, "a": 300000, "taux": 0.24 },
+            { "au_dela": 300000, "taux": 0.30 }
+          ],
+          "exoneration_conjoint": {
+            "description": "Habitation familiale exonérée entre époux/cohabitants légaux (sans condition de durée d'occupation depuis 2025)",
+            "note": "Exonération totale de la part en pleine propriété ou en usufruit de l'habitation familiale"
+          }
+        },
+        "freres_soeurs": {
+          "description": "Entre frères et sœurs",
+          "tranches": [
+            { "de": 0, "a": 12500, "taux": 0.20 },
+            { "de": 12500, "a": 25000, "taux": 0.25 },
+            { "de": 25000, "a": 75000, "taux": 0.35 },
+            { "de": 75000, "a": 175000, "taux": 0.50 },
+            { "au_dela": 175000, "taux": 0.65 }
+          ]
+        },
+        "oncles_tantes_neveux_nieces": {
+          "description": "Oncles/tantes et neveux/nièces",
+          "tranches": [
+            { "de": 0, "a": 12500, "taux": 0.25 },
+            { "de": 12500, "a": 25000, "taux": 0.30 },
+            { "de": 25000, "a": 75000, "taux": 0.40 },
+            { "de": 75000, "a": 175000, "taux": 0.55 },
+            { "au_dela": 175000, "taux": 0.70 }
+          ]
+        },
+        "autres": {
+          "description": "Tous autres héritiers",
+          "tranches": [
+            { "de": 0, "a": 12500, "taux": 0.30 },
+            { "de": 12500, "a": 25000, "taux": 0.35 },
+            { "de": 25000, "a": 75000, "taux": 0.60 },
+            { "de": 75000, "a": 175000, "taux": 0.70 },
+            { "au_dela": 175000, "taux": 0.80 }
+          ]
+        }
+      }
+    },
+    "bruxelles": {
+      "source_url": "https://finances.brussels/droits-succession",
+      "base_legale": "Ordonnance de la RBC du 18 octobre 2018 (droits de succession)",
+      "rappel_fiscal_donations": "3 ans",
+      "tarifs": {
+        "ligne_directe_conjoint_cohabitant": {
+          "description": "Entre époux/cohabitants légaux et en ligne directe",
+          "tranches": [
+            { "de": 0, "a": 50000, "taux": 0.03 },
+            { "de": 50000, "a": 100000, "taux": 0.08 },
+            { "de": 100000, "a": 175000, "taux": 0.09 },
+            { "de": 175000, "a": 250000, "taux": 0.18 },
+            { "de": 250000, "a": 500000, "taux": 0.24 },
+            { "au_dela": 500000, "taux": 0.30 }
+          ],
+          "exoneration_conjoint": {
+            "description": "Habitation familiale exonérée entre époux/cohabitants légaux",
+            "plafond": 250000,
+            "note": "Exonération jusqu'à 250 000 € sur la part de l'habitation familiale"
+          },
+          "abattement_ligne_directe": {
+            "montant": 15000,
+            "note": "Abattement de 15 000 € sur la part nette en ligne directe"
+          }
+        },
+        "freres_soeurs": {
+          "description": "Entre frères et sœurs",
+          "tranches": [
+            { "de": 0, "a": 12500, "taux": 0.20 },
+            { "de": 12500, "a": 25000, "taux": 0.25 },
+            { "de": 25000, "a": 50000, "taux": 0.30 },
+            { "de": 50000, "a": 100000, "taux": 0.40 },
+            { "de": 100000, "a": 175000, "taux": 0.55 },
+            { "de": 175000, "a": 250000, "taux": 0.60 },
+            { "au_dela": 250000, "taux": 0.65 }
+          ]
+        },
+        "oncles_tantes_neveux_nieces": {
+          "description": "Oncles/tantes et neveux/nièces",
+          "tranches": [
+            { "de": 0, "a": 50000, "taux": 0.35 },
+            { "de": 50000, "a": 100000, "taux": 0.50 },
+            { "de": 100000, "a": 175000, "taux": 0.60 },
+            { "au_dela": 175000, "taux": 0.70 }
+          ]
+        },
+        "autres": {
+          "description": "Tous autres héritiers",
+          "tranches": [
+            { "de": 0, "a": 50000, "taux": 0.40 },
+            { "de": 50000, "a": 75000, "taux": 0.55 },
+            { "de": 75000, "a": 175000, "taux": 0.65 },
+            { "au_dela": 175000, "taux": 0.80 }
+          ]
+        }
+      }
+    }
+  },
+  "droits_donation": {
+    "description": "Droits de donation (biens meubles et immeubles) — également régionalisés",
+    "note": "Les droits de donation sont nettement inférieurs aux droits de succession. La donation permet d'anticiper la transmission.",
+    "flandre": {
+      "meubles_ligne_directe_conjoint": "3%",
+      "meubles_autres": "7%",
+      "immeubles": "Mêmes taux que droits d'enregistrement (voir droits-enregistrement-regions.json)"
+    },
+    "wallonie": {
+      "meubles_ligne_directe_conjoint": "3,3%",
+      "meubles_autres": "5,5%",
+      "immeubles_ligne_directe": "Barème progressif 1,1% à 6,6% selon valeur"
+    },
+    "bruxelles": {
+      "meubles_ligne_directe_conjoint": "3%",
+      "meubles_autres": "7%",
+      "immeubles": "Barème progressif 2% à 30% selon valeur et lien de parenté"
+    }
+  },
+  "usufruit_nue_propriete": {
+    "description": "Évaluation de l'usufruit et de la nue-propriété pour les successions",
+    "base_legale": "art. 745bis et 745ter Code civil belge",
+    "table_usufruit": [
+      { "age_usufruitier": "< 20 ans", "valeur_usufruit_pct": 80, "valeur_nue_propriete_pct": 20 },
+      { "age_usufruitier": "20-29 ans", "valeur_usufruit_pct": 74, "valeur_nue_propriete_pct": 26 },
+      { "age_usufruitier": "30-39 ans", "valeur_usufruit_pct": 68, "valeur_nue_propriete_pct": 32 },
+      { "age_usufruitier": "40-49 ans", "valeur_usufruit_pct": 62, "valeur_nue_propriete_pct": 38 },
+      { "age_usufruitier": "50-54 ans", "valeur_usufruit_pct": 56, "valeur_nue_propriete_pct": 44 },
+      { "age_usufruitier": "55-59 ans", "valeur_usufruit_pct": 50, "valeur_nue_propriete_pct": 50 },
+      { "age_usufruitier": "60-64 ans", "valeur_usufruit_pct": 44, "valeur_nue_propriete_pct": 56 },
+      { "age_usufruitier": "65-69 ans", "valeur_usufruit_pct": 38, "valeur_nue_propriete_pct": 62 },
+      { "age_usufruitier": "70-74 ans", "valeur_usufruit_pct": 32, "valeur_nue_propriete_pct": 68 },
+      { "age_usufruitier": "75-79 ans", "valeur_usufruit_pct": 26, "valeur_nue_propriete_pct": 74 },
+      { "age_usufruitier": "80 ans et +", "valeur_usufruit_pct": 16, "valeur_nue_propriete_pct": 84 }
+    ]
+  }
+}

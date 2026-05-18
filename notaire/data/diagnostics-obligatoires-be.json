@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "description": "Diagnostics et certificats obligatoires pour la vente d'un bien immobilier en Belgique",
+    "last_updated": "2026-05-15",
+    "source": "Législation fédérale + ordonnances/décrets régionaux",
+    "note": "La compétence sur les diagnostics est partagée entre le fédéral et les régions. Les obligations varient selon la région et le type de bien."
+  },
+  "diagnostics_federaux": {
+    "description": "Obligations applicables sur l'ensemble du territoire belge",
+    "electricite": {
+      "id": "electricite",
+      "nom": "Contrôle de l'installation électrique",
+      "obligatoire_vente": true,
+      "condition": "Toute habitation dont l'installation a plus de 25 ans ou n'est pas conforme RGIE",
+      "organisme": "Organisme agréé (OCA) accrédité par BELAC",
+      "validite": "Non conforme : valable pour la vente, mais acheteur doit mettre en conformité dans les 18 mois",
+      "base_legale": "AR du 8 septembre 2019 — RGIE (Règlement Général sur les Installations Électriques)",
+      "note": "Rapport de contrôle remis à l'acheteur; mention obligatoire dans l'acte authentique"
+    },
+    "citerne_mazout": {
+      "id": "citerne_mazout",
+      "nom": "Contrôle de la citerne à mazout",
+      "obligatoire_vente": true,
+      "condition": "Présence d'une citerne à mazout aérienne > 3 000 L ou souterraine",
+      "validite_annees": 5,
+      "base_legale": "AR du 28 février 2019 (citernes souterraines) — règlements régionaux",
+      "note": "Citerne hors d'usage à déclarer ou à dépolluer"
+    },
+    "garantie_vices_caches": {
+      "description": "Pas de diagnostic spécifique requis mais obligation légale de garantie des vices cachés",
+      "base_legale": "art. 1641-1649 Code civil belge",
+      "note": "Le vendeur reste responsable des vices cachés même après la vente"
+    }
+  },
+  "diagnostics_regionaux": {
+    "flandre": {
+      "source_url": "https://www.vlaanderen.be/verkopen-van-uw-woning",
+      "peb": {
+        "id": "peb_flandre",
+        "nom": "Energieprestatiecertificaat (EPC) — Certificat de Performance Énergétique (CPE)",
+        "obligatoire_vente": true,
+        "validite_annees": 10,
+        "organisme": "Energiedeskundige agréé (Vlaanderen)",
+        "etiquettes": ["A+", "A", "B", "C", "D", "E", "F", "G"],
+        "obligation_renovation": {
+          "label_F_ou_G": "Obligation de rénover pour atteindre minimum D dans les 5 ans après la vente",
+          "entree_vigueur": "2023-01-01"
+        },
+        "base_legale": "Besluit Vlaamse Regering 2020 — Energieprestatieregelgeving"
+      },
+      "amiante": {
+        "id": "amiante_flandre",
+        "nom": "Asbestattest (attestation amiante)",
+        "obligatoire_vente": true,
+        "condition": "Biens construits avant 2001",
+        "organisme": "Gecertificeerde asbestattest-expert (OVAM agréé)",
+        "validite": "Permanent (valable jusqu'à travaux modifiant les matériaux)",
+        "base_legale": "Materialendecreet — OVAM",
+        "note": "Obligatoire depuis 23 novembre 2022 pour toute vente d'habitation pré-2001 en Flandre"
+      },
+      "sol": {
+        "id": "sol_flandre",
+        "nom": "Bodemattest (attestation de sol)",
+        "obligatoire_vente": true,
+        "organisme": "OVAM (Openbare Vlaamse Afvalstoffenmaatschappij)",
+        "source_url": "https://www.ovam.be/bodemattest",
+        "validite": "Non limitée dans le temps pour la délivrance; contenu daté",
+        "base_legale": "Bodemdecreet 2006 — art. 101 ss",
+        "note": "Vérification de pollution du sol. Obligatoire pour toute transaction immobilière en Flandre."
+      },
+      "dossier_intervention_ulterieure": {
+        "id": "diu",
+        "nom": "Veiligheids- en gezondheidsplan / Postinterventiedossier (PID)",
+        "obligatoire_vente": true,
+        "condition": "Biens ayant fait l'objet de travaux importants avec entrepreneur extérieur",
+        "base_legale": "AR du 25 janvier 2001 (chantiers temporaires ou mobiles)"
+      }
+    },
+    "wallonie": {
+      "source_url": "https://energie.wallonie.be/fr/le-certificat-peb.html",
+      "peb": {
+        "id": "peb_wallonie",
+        "nom": "Certificat de Performance Énergétique (PEB)",
+        "obligatoire_vente": true,
+        "validite_annees": 10,
+        "organisme": "Certificateur agréé par la Région wallonne",
+        "etiquettes": ["A++", "A+", "A", "B", "C", "D", "E", "F", "G"],
+        "base_legale": "Décret wallon du 28 novembre 2013 relatif à la performance énergétique des bâtiments"
+      },
+      "sol": {
+        "id": "sol_wallonie",
+        "nom": "Extrait de la banque de données de l'état des sols (BDES)",
+        "obligatoire_vente": true,
+        "organisme": "SPW Agriculture, Ressources naturelles et Environnement",
+        "source_url": "https://sol.wallonie.be",
+        "base_legale": "Décret wallon sol du 1er mars 2018 — art. 60 ss",
+        "note": "L'extrait BDES doit être fourni par le notaire avant la signature du compromis"
+      },
+      "amiante": {
+        "id": "amiante_wallonie",
+        "nom": "Inventaire amiante (non encore généralisé à la vente en 2025)",
+        "obligatoire_vente": false,
+        "note": "Obligation d'inventaire amiante à la vente en cours de déploiement — vérifier l'état de la réglementation actuelle"
+      },
+      "diu": {
+        "id": "diu_wallonie",
+        "nom": "Dossier d'Intervention Ultérieure (DIU)",
+        "obligatoire_vente": true,
+        "condition": "Travaux importants réalisés sur le bien depuis 2001",
+        "base_legale": "AR du 25 janvier 2001"
+      }
+    },
+    "bruxelles": {
+      "source_url": "https://environnement.brussels/thematiques/energie/performance-energetique-des-batiments",
+      "peb": {
+        "id": "peb_bruxelles",
+        "nom": "Certificat PEB (Performance Énergétique des Bâtiments)",
+        "obligatoire_vente": true,
+        "validite_annees": 10,
+        "organisme": "Certificateur agréé par Bruxelles Environnement",
+        "etiquettes": ["A+", "A", "B", "C", "D", "E", "F", "G"],
+        "base_legale": "Ordonnance bruxelloise du 2 mai 2013 relative à la performance énergétique"
+      },
+      "sol": {
+        "id": "sol_bruxelles",
+        "nom": "Attestation de non-pollution du sol (BSI/BDES)",
+        "obligatoire_vente": true,
+        "organisme": "Bruxelles Environnement — banque de données de l'état des sols",
+        "source_url": "https://environnement.brussels/sol",
+        "base_legale": "Ordonnance bruxelloise du 5 mars 2009 (gestion et assainissement des sols)"
+      },
+      "amiante": {
+        "id": "amiante_bruxelles",
+        "nom": "Inventaire amiante",
+        "obligatoire_vente": false,
+        "note": "Pas encore obligatoire à la vente en 2025 — vérifier évolution réglementaire"
+      },
+      "diu": {
+        "id": "diu_bruxelles",
+        "nom": "Dossier d'Intervention Ultérieure (DIU)",
+        "obligatoire_vente": true,
+        "condition": "Travaux importants réalisés sur le bien depuis 2001",
+        "base_legale": "AR du 25 janvier 2001"
+      }
+    }
+  },
+  "renseignements_urbanisme": {
+    "description": "Informations à obtenir auprès des autorités communales avant toute vente",
+    "items": [
+      "Certificat d'urbanisme (renseignements urbanistiques)",
+      "Absence de permis de bâtir non régularisé",
+      "Absence d'infraction urbanistique",
+      "Affectation au plan de secteur (Wallonie) / PRAS (Bruxelles) / Gewestplan ou BPA (Flandre)",
+      "Préemption éventuelle (droit de préemption régional : SRWBE, VLABEL, etc.)",
+      "Zone inondable (données DCENN / Sigec / Geopunt)"
+    ],
+    "delai_obtention": "Variable selon commune (1 à 4 semaines typiquement)",
+    "note": "Le notaire est chargé d'effectuer ces recherches préalablement à la rédaction du compromis ou de l'acte"
+  }
+}

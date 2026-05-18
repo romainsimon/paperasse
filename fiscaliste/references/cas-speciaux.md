@@ -1,290 +1,219 @@
-# Cas particuliers
+# Cas particuliers (IPP belge)
 
-## Non-résidents fiscaux
+<!-- last_updated: 2026-05-15 -->
 
-### Définition résidence fiscale
+Base légale : CIR 92, art. 227 et s. (impôt des non-résidents) ; conventions préventives de double imposition.
+Source administrative : Fisconetplus.be ; SPF Finances — finances.belgium.be.
 
-Un contribuable est résident fiscal français si l'un de ces critères est rempli (article 4 B CGI) :
-- Foyer ou lieu de séjour principal en France
-- Exercice d'une activité professionnelle principale en France
-- Centre des intérêts économiques en France
+## Non-résidents — Impôt des Non-Résidents (INR)
+
+### Définition de la résidence fiscale belge
+
+Un contribuable est **résident fiscal belge** si son **domicile fiscal** ou son **siège de fortune** se trouve en Belgique (art. 2 §1, 1° CIR 92).
+
+- **Domicile fiscal** : lieu où le contribuable est établi de façon stable avec sa famille (présomption réfragable liée à l'adresse d'inscription au Registre national).
+- **Siège de fortune** : lieu depuis lequel le contribuable gère l'ensemble de ses avoirs (critère subsidiaire si pas de foyer familial stable).
 
 **La nationalité n'est pas un critère.**
 
-### Règles applicables aux non-résidents
+**Présomption légale** : l'inscription au Registre national belge crée une présomption de résidence fiscale belge (art. 2 §1, 1°, al. 2 CIR 92). Cette présomption est réfragable par la preuve d'une résidence effective à l'étranger.
 
-- Imposés uniquement sur les **revenus de source française** (article 164 A CGI)
-- Taux minimum : 20% sur la fraction ≤ 27 519 € et 30% au-delà (revenus 2025)
-- Pas de quotient familial au-delà de 2 parts
-- Pas de décote
-- Application des conventions fiscales bilatérales (crédit d'impôt, exonérations)
+### Impôt des Non-Résidents (INR — Personnes Physiques)
 
-**Ce skill ne couvre PAS la fiscalité des non-résidents en détail.** Pour les cas complexes, orienter vers un avocat fiscaliste spécialisé en fiscalité internationale.
+Les non-résidents belges qui perçoivent des **revenus de source belge** sont soumis à l'**Impôt des Non-Résidents (INR/PP)** (art. 227 et s. CIR 92), et non à l'IPP.
 
-## Revenus exceptionnels : quotient
+**Revenus de source belge imposables à l'INR** :
+- Rémunérations de travail effectué en Belgique
+- Revenus immobiliers situés en Belgique (RC ou loyers)
+- Dividendes et intérêts distribués par des sociétés belges (sous réserve de conventions)
+- Pensions liées à une activité exercée en Belgique
+- Revenus d'activité professionnelle exercée en Belgique
+
+**Règles spécifiques INR** :
+- Pas de quotités exemptées (en principe), sauf si au moins 75 % des revenus sont de source belge
+- Pas de déductions personnelles (épargne-pension, pension alimentaire), sauf conditions spécifiques
+- Application des conventions fiscales bilatérales (élimination de la double imposition)
+- Taux minimum : 25 % sur les revenus professionnels nets
+
+**Ce skill ne couvre PAS la fiscalité des non-résidents en détail.** Pour les cas complexes (expatriation, revenus mixtes belge/étranger), orienter vers un conseiller fiscal spécialisé en fiscalité internationale.
+
+## Revenus étrangers et conventions préventives de double imposition
+
+### Principes belges
+
+La Belgique applique le principe de **mondialité** pour les résidents : les résidents fiscaux belges sont en principe imposables sur l'ensemble de leurs revenus mondiaux (art. 5 CIR 92).
+
+Les **conventions préventives de double imposition (CPDI)** bilatérales conclues par la Belgique prévoient, selon les cas :
+- **Méthode d'exemption** : le revenu étranger est exonéré en Belgique (mais peut influencer le taux effectif — exemption avec réserve de progressivité).
+- **Méthode d'imputation** : le revenu est imposé en Belgique, mais un crédit d'impôt est accordé pour l'impôt payé à l'étranger, limité à l'impôt belge correspondant.
+
+### Méthodes selon les conventions
+
+| Méthode | Effet en Belgique |
+|---------|------------------|
+| Exemption totale | Revenu exonéré à l'IPP belge |
+| Exemption avec réserve de progressivité | Revenu inclus pour calculer le taux effectif belge, puis exonéré |
+| Imputation ordinaire | Revenu imposé en Belgique ; crédit d'impôt = impôt étranger (plafonné à l'impôt belge) |
+
+### Déclaration des revenus étrangers
+
+- Revenus immobiliers étrangers : cadre III de la déclaration IPP (Tax-on-web)
+- Revenus mobiliers étrangers (dividendes, intérêts étrangers non soumis au PM belge) : **cadre VII** de la déclaration IPP
+- Revenus professionnels étrangers : cadres IV/V/VI selon la nature
+- Comptes bancaires étrangers : déclaration obligatoire à la **Banque Nationale de Belgique (BNB)** via MyMinfin (art. 307 §1, al. 4 CIR 92)
+
+**Zone complexe** — renvoyer vers un conseiller fiscal pour les cas significatifs (expatriation partielle, revenus locatifs étrangers, retraites de l'étranger, frontaliers).
+
+## Revenus exceptionnels : quotient (art. 171 CIR 92)
 
 ### Mécanisme
 
-Lissage fiscal pour éviter qu'un revenu ponctuel ne fasse franchir artificiellement plusieurs tranches.
+Lissage fiscal pour éviter qu'un revenu ponctuel ne fasse franchir artificiellement plusieurs tranches du barème IPP.
 
 **Formule** :
 ```
-Impôt_supplémentaire = [IR(revenu_ordinaire + revenu_exceptionnel / coefficient) − IR(revenu_ordinaire)] × coefficient
+IPP_supplémentaire = [IPP(revenu_ordinaire + revenu_exceptionnel / 4) − IPP(revenu_ordinaire)] × 4
 ```
 
-**Coefficient par défaut : 4**. Peut être différent selon la nature du revenu.
+**Coefficient par défaut : 4.**
 
 ### Revenus éligibles
 
-- Prime exceptionnelle (non pérennisable)
 - Indemnité de départ volontaire ou licenciement (fraction imposable)
-- Gratification de fin d'activité
-- Vesting RSU massif (exceptionnellement élevé vs revenus habituels)
-- Régularisation d'arriérés de salaire
-- Plus-value de cession d'entreprise (cas spécifiques)
+- Arriérés de rémunérations (salaires non perçus en temps voulu)
+- Prime exceptionnelle non récurrente
+- Revenus de remplacement en capital (certaines liquidations de pension)
+- Bénéfices ou profits de cessation d'activité
+- ATN vesting massif (actions gratuites, stock-options — voir `references/equity-salarial.md`)
 
 ### Conditions d'application
 
-- Revenu > **moyenne des revenus imposables des 3 années précédentes**
-- Caractère exceptionnel avéré (non récurrent)
-- Demande expresse du contribuable sur la déclaration
-
-### Nuance critique
-
-**Inutile si foyer déjà au TMI 45%** : le taux marginal ne change pas avec la division par 4.
-
-**Très utile si** :
-- TMI habituel 30% et revenu exceptionnel fait passer à 41%
-- TMI habituel 11% et revenu exceptionnel fait passer à 30% ou 41%
+- Revenu exceptionnel > **moyenne des revenus imposables des 3 années précédentes**
+- Caractère non récurrent avéré
+- Application automatique via Tax-on-web si les conditions sont remplies et les revenus déclarés correctement
 
 ### Exemple
 
-Foyer célibataire, RNI habituel 40 000 € (TMI 30%), vesting RSU 80 000 € imposé comme salaire.
+Salarié, revenu ordinaire net imposable = 35 000 €, arriéré exceptionnel = 60 000 €.
 
 **Sans quotient** :
-- RNI total : 120 000 €
-- Impôt approximatif : ~32 000 €
+- Base taxable (après quotité 10 910 €) = 84 090 €
+- Impôt estimé : tranche 50 % sur fraction > 48 320 €
 
 **Avec quotient (coefficient 4)** :
-- Revenu fractionné : 40 000 + 80 000/4 = 60 000 €
-- Impôt sur 60 000 € : ~12 000 €
-- Impôt sur 40 000 € : ~5 100 €
-- Supplément × 4 : (12 000 − 5 100) × 4 = 27 600 €
-- Impôt total : 5 100 + 27 600 = ~32 700 €
+```
+Revenu fractionné : 35 000 + 60 000 / 4 = 50 000 €
+IPP sur 50 000 € (après quotité) ≈ X
+IPP sur 35 000 € (après quotité) ≈ Y
+Supplément × 4 = (X − Y) × 4
+```
 
-Dans cet exemple, peu de gain car le revenu ordinaire est déjà en tranche 30%. L'intérêt est marginal.
+**Règle** : chiffrer systématiquement les deux scénarios dans Tax-on-web avant de conclure.
 
-**Règle** : chiffrer systématiquement les deux scénarios avant de recommander le quotient.
+## Splitting fiscal entre conjoints — imposition commune
 
-## CEHR (Contribution Exceptionnelle Hauts Revenus)
+Les époux et cohabitants légaux font l'objet d'une **imposition commune** (art. 126 CIR 92). Leurs revenus sont regroupés pour calculer l'IPP global du ménage.
 
-Voir `data/bareme-ir-2025.json` → `cehr`. Base légale : art. 223 sexies CGI.
+**Mécanismes propres à l'imposition commune** :
+- **Quotient conjugal** (art. 87 CIR 92) : transfert automatique jusqu'à 30 % des revenus professionnels du conjoint le mieux rémunéré, plafonné à 13 490 € (revenus 2025), si le conjoint faible a des revenus < 30 % du total ménage. Non indexé, supprimé progressivement dès l'exercice 2027.
+- Déclaration unique Tax-on-web pour le ménage (deux parties, une déclaration).
+- Chaque conjoint conserve ses propres déductions personnelles (épargne-pension, dons) dans ses rubriques.
 
-### Seuils (revenus 2025)
+**Situations particulières** :
+- **Année du mariage / cohabitation légale** : imposition commune pour l'année entière (principe) ; option d'imposition séparée possible.
+- **Année de séparation / divorce** : imposition séparée à partir de l'année de la séparation de fait durable.
+- **Année du décès** : déclaration commune jusqu'à la date du décès ; déclaration séparée pour le conjoint survivant pour le reste de l'année.
 
-| Situation | Tranche 3% | Tranche 4% |
-|-----------|-----------|-----------|
-| Célibataire | 250 000 € à 500 000 € | > 500 000 € |
-| Couple | 500 000 € à 1 000 000 € | > 1 000 000 € |
+## Expatriés belges
 
-**Base de calcul : RFR** (pas RNI). Le RFR inclut des éléments exonérés d'IR normal (certains revenus capital, abattements réintégrés).
+### Départ de Belgique
 
-### À ne pas oublier
+Le départ de Belgique implique la **perte de la résidence fiscale belge** et le transfert de l'obligation IPP illimitée vers l'INR. La date de départ du Registre national est un indice, mais c'est la réalité de l'établissement à l'étranger qui prime.
 
-- S'ajoute à l'IR net (ne se déduit pas)
-- Lissage possible sur la moyenne des 2 années précédentes (article 223 sexies CGI)
+**Obligations lors du départ** :
+- Déclaration IPP pour la période de résidence (du 1er janvier jusqu'à la date de départ)
+- Signalement du départ au bureau de contrôle IPP local
 
-## CDHR (Contribution Différentielle sur les Hauts Revenus)
+Il n'existe **pas d'exit tax belge** générale sur les plus-values latentes lors du départ (contrairement à la France, art. 167 bis CGI). Certains régimes spécifiques (trusts, structures complexes) peuvent impliquer des obligations déclaratives à la sortie.
 
-Voir `data/bareme-ir-2025.json` → `cdhr`.
+### Retour en Belgique
 
-Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %** sur les foyers à hauts RFR. À ne jamais confondre avec la CEHR (les deux peuvent s'appliquer simultanément sur un même foyer).
+- Réintégration dans le régime IPP dès le retour au Registre national.
+- Les revenus perçus durant la période d'absence sont en principe hors champ IPP belge (sous réserve de conventions).
+- Pas de régime d'impatriation général en Belgique comparable au régime français (art. 155 B CGI). Il existe un **régime spécial d'imposition pour cadres étrangers et chercheurs** (circulaire administrative, en voie de révision législative) — hors scope, renvoyer vers un conseiller spécialisé.
 
-### Base légale
+## Situations transfrontalières
 
-- Art. 224 CGI, créé par l'**art. 10 de la LFI 2025** (loi n° 2025-127 du 14/02/2025)
-- **Pérennisée par la LFI 2026** jusqu'au retour du déficit public sous 3 % du PIB (donc applicable aux revenus 2025+ jusqu'à condition de fin)
+### Frontaliers travaillant en Belgique
 
-### Seuils RFR
+Les travailleurs résidant à l'étranger et travaillant en Belgique sont soumis à l'INR belge sur leurs revenus d'activité exercée en Belgique, sauf convention bilatérale d'exemption.
 
-| Situation | Seuil de déclenchement |
-|---|---|
-| Célibataire, veuf, séparé, divorcé | RFR > 250 000 € |
-| Couple marié ou pacsé (imposition commune) | RFR > 500 000 € |
+Les conventions entre la Belgique et ses voisins (France, Luxembourg, Pays-Bas, Allemagne) prévoient des règles spécifiques pour les frontaliers — notamment des jours de télétravail autorisés sans modification du pays d'imposition (règle des 25 jours avec la France, par exemple).
 
-### Mécanisme
+**Point d'attention** : la multiplication du télétravail post-COVID a complexifié les situations transfrontalières. Les règles évoluent fréquemment.
 
-La CDHR s'applique lorsque le **taux moyen d'imposition** (IR + CEHR, après réductions et crédits d'impôt) reste **inférieur à 20 % du RFR retraité**. Elle vient combler la différence pour atteindre ce plancher de 20 %.
+### Double résidence fiscale
 
-Calcul automatique par l'administration après dépôt de la 2042. Pas de case spécifique à remplir manuellement.
+Si un contribuable est potentiellement résident dans deux pays, les **règles de départage (tie-breaker)** des conventions (modèle OCDE) s'appliquent dans l'ordre :
+1. Foyer d'habitation permanent
+2. Centre des intérêts vitaux
+3. Séjour habituel
+4. Nationalité
+5. Accord amiable entre administrations
 
-### Distinction CEHR vs CDHR
+## Droit de reprise SPF Finances / AGFisc
 
-| Critère | CEHR (art. 223 sexies CGI) | CDHR (art. 224 CGI) |
-|---|---|---|
-| Nature | Surtaxe additionnelle | Plancher d'imposition |
-| Taux | 3 % à 4 % selon tranche RFR | 0 à 20 % selon écart au plancher |
-| Mode de calcul | Direct sur le RFR | Différentiel (complète si IR + CEHR < 20 % RFR) |
-| Application | Tous les foyers > seuils | Uniquement si IR effectif < 20 % du RFR |
+Délai pendant lequel l'administration fiscale peut rectifier l'IPP :
 
-Les deux peuvent s'appliquer simultanément : la CEHR est toujours due au-delà des seuils, la CDHR ne se déclenche qu'en cas de fort poids des revenus PFU (faiblement imposés à 12,8 % IR).
+| Situation | Délai de reprise |
+|-----------|-----------------|
+| Cas ordinaire | 3 ans à partir du 1er janvier de l'exercice d'imposition |
+| Fraude fiscale | 7 ans (ou 10 ans si fraude grave avec intention frauduleuse) |
+| Actifs à l'étranger non déclarés | 10 ans |
+| Constructions juridiques (cadre XV) non déclarées | 10 ans |
 
-### Calendrier
+**Conservation des documents** : minimum 7 ans recommandé ; 10 ans pour couvrir les cas de fraude présumée.
 
-- **Acompte** : 95 % du montant estimé à verser entre le **1er et le 15 décembre** de l'année des revenus, via le service "Prélèvement à la source" sur impots.gouv.fr
-- **Solde** : calculé automatiquement par l'administration après dépôt de la 2042 au printemps suivant
+## Acomptes provisionnels
 
-### Cas typiques touchés
+Les contribuables dont les revenus ne sont pas (ou insuffisamment) soumis au PP doivent verser des **acomptes provisionnels** (art. 157 à 168 CIR 92) pour éviter une majoration fiscale :
 
-- Dirigeants à fort revenu PFU dividendes (TMI effectif IR ~12,8 % alors que RFR > 250 k€)
-- Business angels avec PV mobilières importantes
-- Cadres exécutifs à fort RSU/BSPCE l'année de vesting/cession
+| Date | Acompte |
+|------|---------|
+| 10 avril | VA1 |
+| 10 juillet | VA2 |
+| 10 octobre | VA3 |
+| 20 décembre | VA4 |
 
-### Source officielle
+**Concernés** : indépendants, dirigeants à revenus variables, rentiers, contribuables avec revenus étrangers ou immobiliers importants.
 
-[impots.gouv.fr — Contribution Différentielle sur les Hauts Revenus](https://www.impots.gouv.fr/actualite/contribution-differentielle-sur-les-hauts-revenus-cdhr)
-
-## Revenus étrangers et conventions fiscales
-
-### Principes
-
-- France applique le principe de **mondialité** pour les résidents : imposition sur l'ensemble des revenus (y compris étrangers)
-- **Conventions fiscales bilatérales** peuvent prévoir :
-  - Exonération en France (méthode de l'exemption)
-  - Imposition en France avec crédit d'impôt pour l'impôt payé à l'étranger (méthode de l'imputation)
-
-### Méthodes courantes
-
-| Méthode | Effet |
-|---------|-------|
-| Exemption totale | Revenu non imposé en France |
-| Exemption avec taux effectif | Revenu inclus pour le calcul du taux, mais non imposé |
-| Imputation | Revenu imposé en France, crédit d'impôt = impôt payé à l'étranger (limité à l'impôt français correspondant) |
-
-### À vérifier
-
-- La convention fiscale **entre la France et le pays de source** du revenu
-- Formulaire 2047 pour déclarer les revenus étrangers (annexe à la 2042)
-- Crédits d'impôt étrangers : reports, limitations
-
-**Zone complexe** — renvoyer vers un avocat fiscaliste pour les cas significatifs (expatriation partielle, revenus locatifs étrangers, retraites étrangères).
-
-## Expatriation et retour en France
-
-### Exit tax
-
-Article 167 bis CGI — imposition immédiate des plus-values latentes sur titres détenus lors du départ à l'étranger, si :
-- Résidence fiscale française pendant au moins 6 ans sur les 10 dernières années
-- Détention de titres > seuils (plusieurs catégories de seuils)
-
-Sursis de paiement possible dans certains cas. Régime complexe.
-
-### Retour en France
-
-Régime d'**impatriation** (article 155 B CGI) : exonération partielle de l'impôt pour les impatriés sous conditions strictes. Durée 8 ans max.
-
-**Hors scope ce skill** — renvoyer vers un avocat fiscaliste spécialisé.
-
-## DOM-TOM
-
-Régimes spéciaux :
-- Réduction d'impôt de 30% à 40% dans les DOM (plafonnée)
-- Revenus de source DOM : régime spécifique
-- Investissement Girardin : mécanismes distincts
-
-**Hors scope ce skill** pour le détail. Signaler la spécificité et renvoyer vers la documentation locale / BOFiP dédié.
-
-## Allocations chômage et revenus de remplacement
-
-Déclarées case **1AP / 1BP** (pas 1AJ).
-
-**Points critiques** :
-- **Pas d'abattement 10%** (contrairement aux salaires)
-- CSG prélevée à taux réduit à la source
-- La fraction de CSG prélevée à taux réduit n'est pas déductible du revenu imposable
-
-**Erreur classique** : déclarer l'ARE en case 1AJ → bénéficie à tort de l'abattement 10% → redressement probable.
-
-## Situations matrimoniales particulières
-
-### Année du mariage / PACS
-
-- **Imposition commune** pour l'année entière (depuis 2011)
-- Ou imposition séparée sur option (cases dédiées)
-- À chiffrer : selon situation des conjoints, l'une peut être plus favorable
-
-### Année de séparation / divorce
-
-- **Imposition séparée** pour l'année entière depuis la séparation (principe)
-- Enfants à charge : attribution selon accord ou garde principale
-- Case T (parent isolé) possible pour celui qui assume seul les enfants
-
-### Année du décès d'un conjoint
-
-- Imposition commune jusqu'au décès (du 1er janvier à la date de décès)
-- Imposition individuelle du conjoint survivant pour la fin de l'année
-- Deux déclarations séparées à faire
-
-## Droit de reprise DGFIP
-
-Délai pendant lequel la DGFIP peut redresser :
-
-| Impôt | Délai standard |
-|-------|----------------|
-| IR | 3 ans (jusqu'au 31 décembre de la 3e année suivant celle de l'imposition) |
-| IFI | 6 ans (cas général) |
-| Tous impôts | **10 ans** en cas d'activité occulte ou fraude |
-| TVA | 3 ans |
-
-**Conservation des documents** : minimum 6 ans (conseil : 10 ans pour couvrir tous les cas).
-
-## PUMA (Protection universelle maladie) — cotisation subsidiaire maladie
-
-Concerne les personnes **affiliées à l'assurance maladie française** qui tirent peu ou pas de revenus d'activité professionnelle mais disposent d'un **patrimoine générateur de revenus du capital significatifs**.
-
-### Conditions d'assujettissement cumulatives
-
-- Rattachement à un régime d'assurance maladie français
-- Revenus d'activité professionnelle **< 20 % du PASS** (≈ 9 420 € pour 2025)
-- Revenus du capital (RCM, PV, revenus fonciers) > **50 % du PASS** (≈ 23 550 € pour 2025)
-
-### Calcul
-
-Assiette = revenus du patrimoine − abattement (50 % du PASS).
-Taux : **6,5 %** appliqué à l'assiette (taux plafonné à 8 × PASS = ~376 k€ de base pour 2025).
-
-Recouvrement : URSSAF, pas DGFIP. Avis distinct de l'avis IR.
-
-### À vérifier systématiquement
-
-- Retraités avec patrimoine significatif (dividendes, loyers) → potentiellement concernés
-- Rentiers avant retraite → souvent concernés
-- Personnes en congé sabbatique avec revenus du capital → vérifier
-
-### Nuance
-
-- **Non déductible** de l'IR (contrairement à la CSG sur revenus d'activité)
-- Cumul avec les prélèvements sociaux 17,2 % sur les mêmes revenus du capital (pas de double comptage, mais additionne à la pression fiscale globale)
-
-**Piège fréquent** : oublier la PUMA dans la simulation globale d'un FIRE / rentier → sous-estimation de ~6,5 % sur les revenus du capital hors seuil.
+**Majoration en l'absence d'acomptes** : calculée sur base du taux de référence BCE majoré (art. 157 CIR 92) — à chiffrer systématiquement si revenus non soumis au PP.
 
 ## Régularisation spontanée
 
 **Intérêt** : réduction des pénalités si le contribuable rectifie avant contrôle.
 
-- Intérêts de retard : 0,2%/mois
+- Intérêts de retard : 7 % par an (taux 2025, indexé)
 - Pas de majoration si régularisation spontanée et bonne foi
+- Régularisation fiscale permanente (DLU quater — Direction de Ruling) pour avoirs non déclarés antérieurs
 
-**Quand envisager** : oubli de déclaration (crypto, revenus étrangers, plus-values). Orienter vers un avocat fiscaliste pour les cas significatifs (régularisation structurée).
+**Quand envisager** : oubli de déclaration (crypto, revenus étrangers, comptes étrangers, constructions juridiques). Orienter vers un conseiller fiscal pour les régularisations significatives.
 
-## Références CGI / BOFiP
+## Références CIR 92 / Fisconetplus
 
-- Résidence fiscale : art. 4 B CGI
-- Non-résidents : art. 164 A à 165 CGI
-- Revenus exceptionnels : art. 163-0 A CGI
-- CEHR : art. 223 sexies CGI
-- Exit tax : art. 167 bis CGI
-- Impatriation : art. 155 B CGI
-- Droit de reprise : LPF (Livre des Procédures Fiscales)
-- PUMA / cotisation subsidiaire maladie : art. L. 380-2 CSS
-- BOFiP : BOI-INT (conventions internationales), BOI-IR-LIQ
+| Règle | Source |
+|-------|--------|
+| Résidence fiscale belge | art. 2 §1, 1° CIR 92 |
+| Mondialité de l'imposition | art. 5 CIR 92 |
+| Impôt des non-résidents | art. 227 à 248 CIR 92 |
+| Imposition commune | art. 126 à 131 CIR 92 |
+| Quotient conjugal | art. 87 CIR 92 |
+| Revenus exceptionnels (quotient) | art. 171 CIR 92 |
+| Acomptes provisionnels | art. 157 à 168 CIR 92 |
+| Déclaration comptes étrangers (BNB) | art. 307 §1, al. 4 CIR 92 |
+| Constructions juridiques | art. 307 §1/1 CIR 92 |
+| Délais de reprise | art. 354 à 358 CIR 92 |
+
+Source : Fisconetplus.be — https://www.fisconetplus.be
+SPF Finances : https://finances.belgium.be/fr/particuliers
+Conventions fiscales belges : https://finances.belgium.be/fr/conventions-preventives-de-double-imposition

@@ -1,123 +1,147 @@
-# Quotient familial et plafonnement
+# Quotités exemptées et quotient conjugal (IPP belge)
 
-## Calcul des parts
+<!-- last_updated: 2026-05-15 -->
 
-Le quotient familial réduit le revenu taxable en augmentant le nombre de parts.
+Base légale : art. 86 à 88 (quotient conjugal) et art. 131 à 134 (quotités exemptées) CIR 92.
 
-### Parts de base selon situation
+## Le quotient familial français N'EXISTE PAS en Belgique
 
-| Situation | Parts de base |
-|-----------|--------------|
-| Célibataire, divorcé, séparé | 1 |
-| Marié, pacsé (imposition commune) | 2 |
-| Veuf sans enfant | 1 |
-| Veuf avec enfant(s) | 2 (+ parts enfants) |
+Le **quotient familial** (QF) est un mécanisme propre au droit fiscal français. Il divise le revenu imposable par un nombre de "parts" pour atténuer la progressivité du barème. Ce concept n'existe pas en droit fiscal belge.
 
-### Majoration pour enfants à charge
+En Belgique, la charge familiale est prise en compte via deux mécanismes distincts et indépendants :
 
-| Rang de l'enfant | Parts ajoutées |
-|------------------|----------------|
-| 1er enfant | +0,5 |
-| 2ème enfant | +0,5 |
-| 3ème enfant et suivants | +1 chacun |
+1. **Les quotités exemptées** : montants fixes déduits de la base taxable, qui s'appliquent au taux de la tranche inférieure (25 %).
+2. **Le quotient conjugal** : transfert d'une fraction des revenus entre époux/cohabitants légaux.
 
-**Cas particuliers** :
-- Enfant en résidence alternée : moitié des valeurs ci-dessus (0,25 / 0,25 / 0,5)
-- Enfant invalide (carte CMI-invalidité) : +0,5 part supplémentaire
-- Parent isolé (case T, divorcé/veuf élevant seul des enfants) : +0,5 part sur le premier enfant
+---
 
-### Exemples
+## 1. Quotités exemptées (art. 131 à 134 CIR 92)
 
-| Foyer | Parts |
-|-------|-------|
-| Célibataire sans enfant | 1 |
-| Célibataire, 1 enfant | 1,5 (ou 2 si parent isolé) |
-| Marié, 0 enfant | 2 |
-| Marié, 2 enfants | 3 (2 + 0,5 + 0,5) |
-| Marié, 3 enfants | 4 (2 + 0,5 + 0,5 + 1) |
-| Marié, 1 enfant + 1 en résidence alternée | 2,75 (2 + 0,5 + 0,25) |
+### Principe
 
-## Plafonnement du gain QF
+Les quotités exemptées sont des **montants soustraits du revenu imposable** avant application du barème progressif. Elles s'appliquent à la tranche à 25 % (tranche basse du barème IPP). Ce ne sont pas des "parts" — c'est une exonération en euros, pas un diviseur.
 
-**Mécanisme critique souvent oublié.** Le gain d'impôt lié aux demi-parts supplémentaires (enfants) est plafonné.
+**Économie d'impôt** = quotité exemptée × 25 %.
 
-### Algorithme de vérification
+### Quotité de base
+
+| Tout contribuable | 10 910 € |
+|---|---|
+
+**Base légale** : art. 131 CIR 92.
+
+### Suppléments pour enfants à charge (art. 132 CIR 92)
+
+| Nombre d'enfants à charge | Supplément total pour enfants |
+|---------------------------|-------------------------------|
+| 1 enfant | + 1 690 € |
+| 2 enfants | + 4 340 € |
+| 3 enfants | + 9 770 € |
+| 4 enfants | + 15 820 € |
+| 5 enfants | + 21 870 € (+6 050 €) |
+| Par enfant supplémentaire | + 6 050 € par enfant |
+
+**Exemples** :
+
+| Foyer | Quotité exemptée totale | Économie d'impôt (× 25 %) |
+|-------|------------------------|--------------------------|
+| Célibataire sans enfant | 10 910 € | 2 727,50 € |
+| Couple, 0 enfant (chacun) | 10 910 € chacun | 2 727,50 € chacun |
+| Parent isolé, 1 enfant | 10 910 + 1 690 = 12 600 € | 3 150 € |
+| Couple, 2 enfants | 10 910 + 4 340 = 15 250 € | 3 812,50 € |
+| Couple, 3 enfants | 10 910 + 9 770 = 20 680 € | 5 170 € |
+
+### Cas particuliers
+
+**Enfants handicapés** : comptent pour 2 enfants (art. 132, al. 1er, 3° CIR 92).
+
+**Enfants en garde alternée** : chaque parent peut déduire la moitié de la quotité supplémentaire (art. 132bis CIR 92). Si les parents optent pour la répartition, chacun obtient la moitié du supplément calculé pour le nombre d'enfants concernés.
+
+**Enfant de moins de 3 ans sans déduction frais de garde** : supplément de 590 € si aucune déduction de frais de garde n'est demandée pour cet enfant (art. 132, al. 1er, 6° CIR 92).
+
+**Contribuable lui-même handicapé** : supplément de 1 690 € (art. 131, al. 2 CIR 92).
+
+**Personnes à charge autres que des enfants** (ascendants, collatéraux dans le besoin) : supplément de 1 690 € par personne (art. 132, al. 1er, 7° CIR 92).
+
+### Quotités excédentaires remboursables (art. 134 §2 CIR 92)
+
+Si la quotité exemptée totale (base + suppléments enfants) dépasse l'impôt dû du contribuable, la **fraction excédentaire liée aux enfants** est partiellement **remboursable** sous forme de crédit d'impôt. Ce mécanisme protège les familles à faibles revenus.
+
+**Plafond du remboursement** : limité à la quotité exemptée pour enfants, pas pour la part de base.
+
+---
+
+## 2. Quotient conjugal (art. 87 CIR 92)
+
+### Principe
+
+Le quotient conjugal permet de **transférer une fraction des revenus professionnels** du conjoint le mieux rémunéré vers le conjoint à revenus faibles ou nuls. Il réduit la charge fiscale globale du ménage en lissant les taux marginaux entre les deux conjoints.
+
+**Important** : le quotient conjugal n'est pas un diviseur mais un **transfert de revenus** entre époux ou cohabitants légaux soumis à imposition commune.
+
+### Conditions d'application
+
+- Les deux conjoints sont soumis à une **imposition commune** (époux ou cohabitants légaux).
+- Les revenus professionnels nets du conjoint le moins rémunéré sont **inférieurs à 30 %** de la somme des revenus professionnels nets du ménage.
+
+### Mécanisme
 
 ```
-impôt_avec_parts_pleines = calcul normal avec toutes les parts
-impôt_sans_enfants       = calcul avec parts de base seulement (1 ou 2)
-gain_réel = impôt_sans_enfants − impôt_avec_parts_pleines
-
-plafond_par_demi_part = 1 807 €  (revenus 2025, voir data/bareme-ir-2025.json)
-nb_demi_parts_supp = (nb_parts − parts_de_base) × 2
-gain_max = plafond_par_demi_part × nb_demi_parts_supp
-
-impôt_final = impôt_sans_enfants − min(gain_réel, gain_max)
+Transfert = min(30 % × revenus_professionnels_nets_ménage − revenus_conjoint_faible ; 13 490 €)
 ```
 
-### Conséquence pratique
+Le conjoint bénéficiaire (faibles revenus) se voit attribuer fictivement une partie des revenus de l'autre conjoint, jusqu'à ce que :
+- les revenus du conjoint faible atteignent 30 % du total, OU
+- le plafond de 13 490 € soit atteint.
 
-Au-delà d'un certain seuil de revenu, **l'avantage fiscal stagne** même si le revenu augmente. Les enfants cessent de réduire l'impôt proportionnellement.
+### Plafond
 
-**Exemple (marié, 2 enfants, 2025)** :
-- Parts pleines : 3 parts
-- Demi-parts supplémentaires : (3 − 2) × 2 = 2 demi-parts
-- Gain maximum : 2 × 1 807 € = **3 614 €**
+Le transfert est **plafonné à 13 490 €** par an (revenus 2025, art. 87, al. 2 CIR 92). Ce plafond n'est plus indexé et le dispositif est supprimé progressivement à partir de l'exercice 2027.
 
-Au-delà d'environ 90-100 k€ de RNI, le plafond devient actif et le gain QF stagne à 3 614 €.
+### Exemple
 
-### Pièges fréquents
+Ménage : conjoint A = 60 000 € revenus pro nets ; conjoint B = 5 000 € revenus pro nets.
 
-1. **Oublier le plafonnement** : calculer l'IR avec 3 parts sans comparer au calcul à 2 parts + plafond.
-2. **Appliquer le plafonnement sur 1 part** : non, il s'applique sur les demi-parts **supplémentaires** à la situation de base.
-3. **Parent isolé** : la demi-part du parent isolé (case T) a son propre plafond, distinct.
+- Total ménage = 65 000 €
+- 30 % du total = 19 500 €
+- B a déjà 5 000 € → transfert possible = 19 500 − 5 000 = 14 500 €
+- Plafond 13 490 € → transfert effectif = **13 490 €**
 
-## Décote
+Après transfert : A imposé sur 60 000 − 13 490 = 46 510 € ; B imposé sur 5 000 + 13 490 = 18 490 €.
 
-Mécanisme distinct du QF, appliqué **après** le plafonnement.
+### Avantage fiscal
 
-### Formules (revenus 2025)
+Le transfert sort une tranche de revenus de la tranche à 50 % (ou 45 %) de A pour l'imposer à 25 % (ou 40 %) dans le chef de B → économie substantielle pour les ménages avec forte disparité de revenus.
 
-Voir `data/bareme-ir-2025.json` → champ `decote`.
+### Automaticité
 
-- **Célibataire** : si impôt_brut < 1 982 € → décote = 897 − 0,4525 × impôt_brut
-- **Couple** : si impôt_brut < 3 277 € → décote = 1 483 − 0,4525 × impôt_brut
+Le quotient conjugal est appliqué **automatiquement** par le système Tax-on-web dès lors que les conditions sont remplies. Le contribuable n'a pas à le demander explicitement.
 
-### Ordre d'application
+---
 
-```
-Impôt brut (après barème)
-  ↓ plafonnement QF
-Impôt après QF
-  ↓ décote (si applicable)
-Impôt après décote
-  ↓ réductions puis crédits
-Impôt net
-```
+## Comparaison synthétique : France vs Belgique
 
-### Particularité : taux marginal effectif élevé
+| Mécanisme | France | Belgique |
+|-----------|--------|----------|
+| Réduction de charge pour enfants | Quotient familial (diviseur) | Quotités exemptées (montants fixes × 25 %) |
+| Plafonnement | Gain QF plafonné à 1 807 €/demi-part | Pas de plafonnement (sauf remboursement) |
+| Revenus couple | Automatique (quotient 2 parts) | Quotient conjugal (transfert max 13 490 €, revenus 2025) |
+| Parent isolé | Demi-part case T | Pas de demi-part — attribution complète des suppléments enfants |
 
-Dans la zone de décote, chaque euro supplémentaire de revenu :
-- Augmente l'impôt au taux du barème
-- Diminue la décote de 0,4525 × ce supplément
+---
 
-Taux marginal effectif ≈ (taux_barème × 1,4525). Un foyer à la tranche 11% peut subir un taux marginal effectif proche de 16% dans la zone de décote.
+## Références CIR 92 / Fisconetplus
 
-## Parent isolé (case T)
+| Règle | Article CIR 92 |
+|-------|---------------|
+| Quotient conjugal | art. 87 |
+| Plafond transfert conjugal | art. 87, al. 2 |
+| Quotité exemptée de base | art. 131 |
+| Suppléments enfants à charge | art. 132 |
+| Enfants handicapés | art. 132, al. 1er, 3° |
+| Garde alternée | art. 132bis |
+| Enfant < 3 ans sans frais garde | art. 132, al. 1er, 6° |
+| Crédit d'impôt quotités excédentaires | art. 134 §2 |
 
-Majoration de 0,5 part pour les contribuables vivant seuls et élevant des enfants.
-
-**Conditions** :
-- Célibataire, divorcé ou séparé au 1er janvier
-- Assume la charge exclusive ou principale d'au moins un enfant
-- N'est pas en concubinage
-
-**Plafonnement spécifique** : la demi-part "T" a son propre plafond (distinct du plafond par demi-part "enfant classique"). Vérifier sur impots.gouv.fr.
-
-## Références CGI / BOFiP
-
-- Parts : art. 194 à 195 CGI
-- Plafonnement QF : art. 197-2 CGI
-- Décote : art. 197-4° CGI
-- Parent isolé : art. 194-II CGI
-- BOFiP : BOI-IR-LIQ-10-20-20 et BOI-IR-LIQ-20-20-30
+Source : Fisconetplus.be — https://www.fisconetplus.be
+SPF Finances : https://finances.belgium.be/fr/particuliers/famille/personnes-a-charge

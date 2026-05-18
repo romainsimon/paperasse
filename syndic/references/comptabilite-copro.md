@@ -1,37 +1,45 @@
-# Comptabilité de la Copropriété
+# Comptabilité de l'ACP en Belgique
+
+`last_updated: 2026-05-15`
 
 ## Cadre Réglementaire
 
-**Décret n2005-240 du 14 mars 2005** : toute copropriété doit tenir une comptabilité en partie double, selon un plan comptable spécifique.
+**Article 3.89 du Code civil belge** : toute ACP doit tenir une comptabilité conforme au plan comptable minimum normalisé (PCMN) adapté aux associations de copropriétaires, selon les recommandations de la **Commission des Normes Comptables (CNC/CBN)**.
 
-## Plan Comptable des Copropriétés
+**Seuils :**
+- **ACP de 20 lots ou moins** (hors caves, garages et parkings) : comptabilité **simplifiée** (recettes-dépenses)
+- **ACP de plus de 20 lots** : comptabilité **complète** en partie double
 
-### Classe 1 : Provisions, avances, subventions
+Le plan comptable applicable à l'ACP est défini dans le fichier `data/plan-comptable-copro.json`.
+
+## Plan Comptable ACP Belge (CNC/CBN)
+
+### Classe 1 : Fonds propres, provisions et dettes à long terme
 
 | Compte | Libellé |
 |--------|---------|
-| 102 | Provisions pour travaux décidés (art. 14-2 loi 1965) |
-| 103 | Avances |
-| 105 | Fonds de travaux (cotisations art. 14-2) |
+| 100 | Fonds de réserve (art. 3.89 Cc belge) |
+| 101 | Fonds de roulement |
+| 102 | Provisions pour travaux décidés par l'AG |
+| 103 | Avances des copropriétaires |
 | 110 | Solde en attente sur travaux et opérations exceptionnelles |
-| 112 | Solde en attente sur budget prévisionnel |
-| 12 | Solde des comptes de gestion |
-| 13 | Subventions |
+| 112 | Solde en attente sur budget ordinaire |
+| 13 | Subventions et subsides reçus |
 
 ### Classe 4 : Copropriétaires et tiers
 
 | Compte | Libellé |
 |--------|---------|
 | 401 | Fournisseurs |
-| 411 | Copropriétaires : provisions sur opérations courantes |
-| 412 | Copropriétaires : provisions sur travaux |
-| 413 | Copropriétaires : avances |
-| 414 | Copropriétaires : fonds de travaux |
+| 411 | Copropriétaires — appels de fonds ordinaires |
+| 412 | Copropriétaires — appels de fonds travaux |
+| 413 | Copropriétaires — avances |
+| 414 | Copropriétaires — fonds de réserve |
 | 420 | Personnel |
-| 421 | Charges sociales |
+| 421 | Charges sociales (ONSS) |
 | 431 | État (TVA, impôts) |
 | 450 | Compte d'attente |
-| 459 | Copropriétaires : créditeurs |
+| 459 | Copropriétaires créditeurs |
 | 46 | Débiteurs et créditeurs divers |
 | 47 | Comptes transitoires |
 
@@ -39,34 +47,36 @@
 
 | Compte | Libellé |
 |--------|---------|
-| 501 | Compte courant (banque) |
-| 502 | Livret A syndic |
+| 501 | Compte courant bancaire (fonds ordinaires) |
+| 502 | Compte épargne ou compte à terme (fonds de réserve) |
 | 503 | Fonds de placement |
 | 51 | Caisse |
+
+Le compte séparé du fonds de réserve (compte 502) est **obligatoirement distinct** du compte courant de fonctionnement (art. 3.89 §2 Cc belge).
 
 ### Classe 6 : Charges
 
 | Compte | Libellé | Exemples |
 |--------|---------|----------|
 | 60 | Achats | Fournitures, produits d'entretien |
-| 61 | Services extérieurs | Assurance, nettoyage, espaces verts |
-| 62 | Autres services extérieurs | Honoraires syndic, avocat, géomètre |
-| 63 | Impôts et taxes | Taxe foncière (si applicable), ordures ménagères |
-| 64 | Frais de personnel | Gardien, employé d'immeuble |
-| 65 | Autres charges de gestion | Frais postaux, fournitures bureau |
+| 61 | Services et biens divers | Assurance, nettoyage, espaces verts |
+| 62 | Rémunérations et services externes | Honoraires syndic, avocat, géomètre |
+| 63 | Impôts et taxes | Précompte immobilier (si applicable), taxes communales |
+| 64 | Frais de personnel | Concierge, employé d'immeuble (+ cotisations ONSS) |
+| 65 | Autres charges de gestion | Frais postaux, fournitures de bureau |
 | 66 | Charges financières | Intérêts d'emprunt, frais bancaires |
 | 67 | Charges exceptionnelles | Sinistres, contentieux |
-| 68 | Dotations amortissements et provisions | Provisions pour impayés |
+| 68 | Dotations aux provisions | Provisions pour travaux futurs |
 
 ### Classe 7 : Produits
 
 | Compte | Libellé | Exemples |
 |--------|---------|----------|
-| 70 | Appels de fonds | Provisions sur charges courantes |
-| 71 | Produits liés aux travaux | Appels pour travaux votés |
-| 72 | Produits financiers | Intérêts livret, placements |
-| 73 | Produits divers | Indemnités d'assurance, locations |
-| 74 | Subventions | Aides ANAH, MaPrimeRénov' collectif |
+| 70 | Appels de fonds ordinaires | Quote-part charges courantes |
+| 71 | Appels de fonds travaux | Appels pour travaux votés en AG |
+| 72 | Produits financiers | Intérêts sur compte épargne |
+| 73 | Produits divers | Indemnités assurance, locations parties communes |
+| 74 | Subsides et primes | Primes REG (Flandre), Primes Rénov (Bruxelles), primes wallonnes |
 | 78 | Reprises de provisions | |
 
 ## Écritures Types
@@ -74,61 +84,67 @@
 ### Appel de fonds trimestriel
 
 ```
-Débit  411 - Copropriétaires (provisions courantes)    X
-Crédit 701 - Provisions sur charges courantes              X
+Débit  411 - Copropriétaires (appels fonds ordinaires)    X
+Crédit 701 - Appels de fonds ordinaires                       X
 ```
 
-Ventilation par copropriétaire selon les tantièmes de la clé de répartition concernée.
+Ventilation par copropriétaire selon la quote-part (millièmes) et la clé de répartition concernée.
 
 ### Paiement d'un copropriétaire
 
 ```
-Débit  501 - Banque                                     X
-Crédit 411 - Copropriétaires                                X
+Débit  501 - Compte courant bancaire                      X
+Crédit 411 - Copropriétaires                                  X
 ```
 
 ### Facture fournisseur
 
 ```
-Débit  6xx - Charge correspondante                      X
-Crédit 401 - Fournisseurs                                   X
+Débit  6xx - Charge correspondante                        X
+Crédit 401 - Fournisseurs                                     X
 ```
 
 ### Règlement fournisseur
 
 ```
-Débit  401 - Fournisseurs                               X
-Crédit 501 - Banque                                         X
+Débit  401 - Fournisseurs                                 X
+Crédit 501 - Compte courant bancaire                          X
 ```
 
 ### Appel pour travaux votés
 
 ```
-Débit  412 - Copropriétaires (provisions sur travaux)   X
-Crédit 702 - Provisions sur travaux et opérations except.    X
+Débit  412 - Copropriétaires (appels fonds travaux)       X
+Crédit 712 - Appels de fonds travaux                          X
 ```
 
-Ventilation par copropriétaire selon les tantièmes et l'échéancier voté en AG.
+Ventilation par copropriétaire selon les quotes-parts et l'échéancier voté en AG.
 
-### Cotisation fonds de travaux
-
-```
-Débit  414 - Copropriétaires (fonds de travaux)         X
-Crédit 105 - Fonds de travaux                               X
-```
-
-### Régularisation annuelle (trop-perçu)
+### Cotisation fonds de réserve
 
 ```
-Débit  701 - Provisions sur charges courantes           X
-Crédit 459 - Copropriétaires créditeurs                     X
+Débit  414 - Copropriétaires (fonds de réserve)           X
+Crédit 100 - Fonds de réserve                                 X
 ```
 
-### Régularisation annuelle (insuffisance)
+Simultanément, virement du montant sur le compte bancaire séparé du fonds de réserve :
+```
+Débit  502 - Compte épargne (fonds de réserve)            X
+Crédit 501 - Compte courant bancaire                          X
+```
+
+### Décompte annuel — trop-perçu (avoir)
 
 ```
-Débit  411 - Copropriétaires (solde débiteur)           X
-Crédit 701 - Provisions sur charges courantes               X
+Débit  701 - Appels de fonds ordinaires                   X
+Crédit 459 - Copropriétaires créditeurs                       X
+```
+
+### Décompte annuel — insuffisance (complément dû)
+
+```
+Débit  411 - Copropriétaires (solde débiteur)             X
+Crédit 701 - Appels de fonds ordinaires                       X
 ```
 
 ## Clôture Annuelle
@@ -136,31 +152,31 @@ Crédit 701 - Provisions sur charges courantes               X
 ### Workflow de clôture
 
 1. Vérifier l'exhaustivité des écritures (toutes les factures enregistrées)
-2. Rapprochement bancaire (solde comptable vs relevé bancaire)
+2. Rapprochement bancaire (solde comptable vs relevé bancaire Belfius/ING/BNP/Qonto)
 3. Contrôler les comptes copropriétaires (411, 412, 413, 414)
 4. Provisions pour charges à payer (factures reçues après clôture)
-5. Calcul de la régularisation (réel vs budget prévisionnel)
+5. Calcul du décompte (réel vs budget ordinaire voté)
 6. Affectation du résultat (report, remboursement, ou appel complémentaire)
-7. Préparer les 5 annexes comptables obligatoires
-8. Soumettre les comptes au conseil syndical puis à l'AG
+7. Préparer les annexes comptables
+8. Soumettre les comptes au conseil de gérance (si existant) puis à l'AG
 
-### Les 5 Annexes Comptables Obligatoires (art. 35-2 décret 1967)
+### Annexes Comptables Belges
 
-#### Annexe 1 : État financier
+#### Annexe 1 : État de la trésorerie
 
-Situation de trésorerie au jour de la clôture :
-- Soldes bancaires (compte courant, livret, placements)
-- Fonds de travaux
+Situation des comptes bancaires à la date de clôture :
+- Solde compte courant (fonctionnement ordinaire)
+- Solde compte épargne (fonds de réserve)
 - Total trésorerie disponible
 
-#### Annexe 2 : Compte de gestion général
+#### Annexe 2 : Compte de résultat global
 
-Toutes les charges et tous les produits de l'exercice, hors budget :
+Toutes les charges et tous les produits de l'exercice :
 - Charges de l'exercice par nature (classes 6)
 - Produits de l'exercice par nature (classes 7)
 - Résultat de l'exercice
 
-#### Annexe 3 : Compte de gestion pour opérations courantes
+#### Annexe 3 : Budget vs réalisé (charges ordinaires)
 
 Comparaison budget voté vs charges réelles :
 - Budget voté par poste
@@ -168,7 +184,7 @@ Comparaison budget voté vs charges réelles :
 - Écart (montant et %)
 - Explication des écarts significatifs
 
-#### Annexe 4 : Compte de gestion pour travaux et opérations exceptionnelles
+#### Annexe 4 : Compte travaux et opérations exceptionnelles
 
 Pour chaque opération de travaux votée :
 - Montant voté
@@ -176,7 +192,7 @@ Pour chaque opération de travaux votée :
 - Montant réglé
 - Solde restant
 
-#### Annexe 5 : État des travaux et opérations exceptionnelles votés non clôturés
+#### Annexe 5 : État des travaux votés non clôturés
 
 Suivi des travaux en cours ou non encore soldés :
 - Description de l'opération
@@ -184,3 +200,32 @@ Suivi des travaux en cours ou non encore soldés :
 - Budget voté
 - État d'avancement
 - Montants appelés et versés
+
+## Fonds de Réserve Obligatoire (art. 3.89 Cc belge)
+
+**Montant minimum** : 5% du budget ordinaire voté en AG.
+
+**Compte séparé obligatoire** au nom de l'ACP (distinct du compte de fonctionnement courant).
+
+**Caractéristiques :**
+- Le fonds est attaché aux lots (pas au copropriétaire). En cas de vente, la quote-part du fonds de réserve reste acquise à l'ACP.
+- L'AG peut voter un taux supérieur à 5%
+- L'AG peut décider de suspendre les cotisations si le fonds atteint un niveau jugé suffisant, en motivant cette décision
+- Les sommes sont déposées sur un compte bancaire portant intérêt (compte d'épargne ou compte à terme)
+
+## Comptabilité Simplifiée (ACP ≤ 20 lots)
+
+Pour les ACP de 20 lots ou moins, une comptabilité simplifiée est admise. Elle comprend au minimum :
+- Un livre de recettes et de dépenses chronologique
+- Un état de trésorerie en fin d'exercice
+- Un état des dettes et créances (fournisseurs impayés, copropriétaires débiteurs)
+- Un état du fonds de réserve (solde initial, cotisations, dépenses, solde final)
+
+Même en comptabilité simplifiée, le fonds de réserve doit être maintenu sur un compte distinct.
+
+## TVA en Copropriété Belge
+
+L'ACP n'est en principe pas assujettie à la TVA pour ses activités courantes (gestion d'un immeuble résidentiel). Cependant :
+- Les prestations du syndic professionnel sont soumises à la TVA au taux normal de **21%**
+- Les travaux de rénovation sur immeubles de plus de 10 ans peuvent bénéficier du taux réduit de **6% TVA** sous conditions (logements privés, règles SPF Finances)
+- Conserver les factures avec TVA correctement ventilée pour le décompte annuel

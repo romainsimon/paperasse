@@ -1,83 +1,105 @@
 # Droit des Sociétés
 
-Référence complète : SCI, apport immobilier, cession de parts, fiscalité.
+Référence complète : SRL patrimoniale, types de sociétés belges, apport immobilier, cession de parts, fiscalité (ISOC).
 
-## SCI (Société Civile Immobilière)
+**Base légale** : Code des Sociétés et des Associations (CSA), loi du 23 mars 2019 ; CIR 92 (ISOC) ; Code civil belge
 
-**Base légale** : art. 1832 à 1873 Code civil (sociétés civiles)
+**last_updated: 2026-05-15**
+
+## SRL Patrimoniale (Société à Responsabilité Limitée)
+
+La **SRL** (anciennement SPRL) est la forme la plus utilisée en Belgique pour la détention patrimoniale immobilière, équivalent fonctionnel de la SCI française. La SCI n'existe pas en droit belge.
+
+**Base légale** : art. 5:1 à 5:157 CSA
 
 ### Création
 
 | Point | Détail |
 |-------|--------|
-| Associés | Minimum 2 (pas de maximum). Personnes physiques ou morales |
-| Capital | Libre (pas de minimum). Variable possible (art. 1844-2 C. civ.) |
-| Objet social | Acquisition, gestion, administration d'immeubles |
-| Durée | Maximum 99 ans (renouvelable) |
-| Immatriculation | RCS (Registre du Commerce et des Sociétés) |
-| Statuts | Acte notarié obligatoire si apport d'immeuble. Acte sous seing privé possible sinon |
+| Associés | Minimum 1 (unipersonnelle possible). Personnes physiques ou morales |
+| Capital | Pas de capital minimum légal (depuis la réforme du CSA en 2019) ; mais obligation de constituer un capital de départ suffisant (plan financier) |
+| Objet social | Acquisition, gestion, administration d'immeubles (ou autre) |
+| Durée | Illimitée ou à durée déterminée |
+| Immatriculation | **BCE** (Banque-Carrefour des Entreprises) — équivalent belge du RCS français |
+| Statuts | Acte notarié obligatoire si apport d'immeuble ; acte notarié obligatoire pour les statuts de SRL (art. 5:2 CSA) |
+| Plan financier | Obligatoire, soumis au notaire lors de la constitution |
 
-### Statuts de SCI : clauses essentielles
+### Statuts de SRL : clauses essentielles
 
 | Clause | Contenu |
 |--------|---------|
-| Dénomination sociale | Nom de la SCI |
-| Siège social | Adresse (peut être le domicile du gérant) |
+| Dénomination sociale | Nom de la SRL |
+| Siège social | Adresse (en Belgique) |
 | Objet social | Description précise de l'activité |
-| Capital et répartition | Montant, nombre de parts, répartition entre associés |
-| Apports | Nature et valeur de chaque apport |
+| Capital et répartition | Parts sociales, valeur nominale ou sans valeur nominale, répartition entre associés |
+| Apports | Nature et valeur de chaque apport (rapport du réviseur si apport en nature) |
 | Gérance | Désignation du gérant, pouvoirs, révocation |
-| Décisions collectives | Modalités de vote (unanimité, majorité, etc.) |
+| Assemblée générale | Modalités de vote et de convocation |
 | Cession de parts | Conditions de cession, agrément, droit de préemption |
 | Dissolution et liquidation | Causes, procédure, répartition du boni de liquidation |
 | Clauses de démembrement | Droits de l'usufruitier et du nu-propriétaire sur les parts |
 
-### Types de SCI
+### Types de sociétés en droit belge (CSA)
 
-| Type | Objet | Particularité |
-|------|-------|---------------|
-| SCI de gestion / location | Acquérir et louer des immeubles | Le plus courant |
-| SCI familiale | Gestion du patrimoine familial | Associés = membres de la famille |
-| SCI construction-vente (SCCV) | Construire pour revendre | Soumise à TVA, régime spécial |
-| SCI d'attribution | Acquérir un immeuble pour l'attribuer aux associés | Chaque associé reçoit un lot |
+| Forme | Description | Particularité |
+|-------|-------------|---------------|
+| **SRL** | Société à Responsabilité Limitée | Forme la plus flexible ; responsabilité limitée aux apports |
+| **SA** (Société Anonyme) | Grande structure ; actions librement cessibles | Obligatoire si plus de 250 actionnaires ou si cotée |
+| **SNC** (Société en Nom Collectif) | Responsabilité illimitée et solidaire des associés | Rare en pratique patrimoniale |
+| **SCS** (Société en Commandite Simple) | Associés commandités (responsabilité illimitée) + commanditaires (responsabilité limitée) | Usage patrimonial et de family offices |
+| **SC** (Société Coopérative) | Structure à capital variable, idéal pour les projets collectifs | Conditions d'agrément possibles |
 
-### Fiscalité de la SCI
-
-#### SCI à l'IR (régime par défaut)
-
-**Base légale** : art. 8 et 239 bis AA CGI
+### Immatriculation et publicité
 
 | Point | Détail |
 |-------|--------|
-| Principe | Transparence fiscale : les revenus sont imposés entre les mains des associés |
-| Revenus fonciers | Chaque associé déclare sa quote-part de revenus fonciers |
-| Plus-values | Régime des PV immobilières des particuliers (abattements pour durée de détention) |
-| Déficit foncier | Imputable sur le revenu global dans la limite de 10 700 EUR/an |
-| Amortissement | Non déductible (sauf LMNP via SCI à l'IS) |
+| BCE (Banque-Carrefour des Entreprises) | Registre unique des entreprises en Belgique (équivalent du RCS français) |
+| Numéro d'entreprise | Attribué à la création (format 0XXX.XXX.XXX) |
+| Publication | Statuts déposés au greffe du tribunal de l'entreprise + publication aux Annexes du Moniteur belge |
+| TVA | Identification TVA distincte du numéro BCE |
 
-#### SCI à l'IS (option irrévocable)
+## Fiscalité de la SRL (ISOC)
 
-**Base légale** : art. 206-2 et 239 CGI
+### Régime de droit commun : ISOC (Impôt des Sociétés)
+
+**Base légale** : CIR 92, art. 185 à 207
 
 | Point | Détail |
 |-------|--------|
-| Principe | La société est imposée sur ses bénéfices (IS) |
-| Taux | 15% jusqu'à 42 500 EUR, 25% au-delà |
+| Principe | La société est imposée sur ses bénéfices (ISOC) |
+| Taux réduit | **20%** sur les premiers 100 000 EUR de bénéfices (sous conditions PME) |
+| Taux plein | **25%** au-delà de 100 000 EUR |
 | Amortissement | L'immeuble est amortissable (avantage en trésorerie) |
-| Plus-values | Régime des PV professionnelles (court terme et long terme, pas d'abattement pour durée de détention) |
-| Distribution | Dividendes soumis au PFU (30%) ou barème progressif IR |
+| Plus-values | Pas d'abattement pour durée de détention ; plus-value = prix de cession − valeur nette comptable |
+| Distribution | Dividendes soumis au précompte mobilier (30%) |
 
-#### Comparaison IR vs IS
+**Contrairement à la SCI française à l'IR, la SRL belge est toujours imposée à l'ISOC.** Il n'existe pas d'option pour la transparence fiscale en droit belge pour une SRL.
 
-| Critère | IR | IS |
-|---------|:--:|:--:|
-| Revenus fonciers déficitaires | Imputable sur le revenu global (10 700 EUR) | Report des déficits sur bénéfices futurs |
-| Amortissement de l'immeuble | Non | Oui |
-| Plus-value à la revente | Abattements pour durée (exo après 22/30 ans) | Pas d'abattement (PV = prix cession - VNC) |
-| Distribution des résultats | Pas de double imposition | Double imposition (IS + PFU ou IR) |
-| Optimisation succession | Valeur des parts = valeur patrimoniale | Valeur des parts = valeur comptable (décote possible) |
+### Conditions du taux réduit à 20%
 
-**Recommandation générale** : IR si détention longue, IS si exploitation intensive avec travaux importants ou si revente à court/moyen terme.
+| Condition | Détail |
+|-----------|--------|
+| Rémunération minimale du gérant | Au moins 45 000 EUR de rémunération annuelle brute au gérant-personne physique (ou égale au résultat fiscal si inférieur à 45 000 EUR) |
+| Pas de participation dans d'autres sociétés > 50% | La SRL ne doit pas détenir une participation financière > 50% dans d'autres sociétés (sauf si actifs investissement) |
+| Actions non détenues par une société cotée à > 50% | — |
+
+### Avantages de la SRL patrimoniale
+
+| Avantage | Détail |
+|----------|--------|
+| Responsabilité limitée | Les associés ne répondent des dettes qu'à hauteur de leurs apports |
+| Amortissement | L'immeuble peut être amorti, réduisant la base imposable |
+| Transmission | Cession de parts plus simple qu'une vente immobilière directe (pas de droits d'enregistrement élevés sur les parts) |
+| Démembrement de parts | Stratégie de transmission par donation de la nue-propriété des parts |
+
+### Inconvénients
+
+| Inconvénient | Détail |
+|-------------|--------|
+| Double imposition | ISOC sur les bénéfices + précompte mobilier (30%) sur les dividendes |
+| Pas de transparence fiscale | Pas d'imputation des pertes sur le revenu global du gérant |
+| Plus-value à la revente | Calculée sur la valeur nette comptable (prix d'achat moins amortissements) — peut être importante |
+| Frais de constitution et de gestion | Coûts comptables et administratifs annuels |
 
 ## Apport d'Immeuble à une Société
 
@@ -85,118 +107,103 @@ Référence complète : SCI, apport immobilier, cession de parts, fiscalité.
 
 ### Droits et taxes
 
-| Type d'apport | Droits | Base légale |
-|---------------|--------|-------------|
-| Apport pur et simple à une SCI soumise à l'IR | Droit fixe de 125 EUR | art. 810-I CGI |
-| Apport pur et simple à une SCI soumise à l'IS | DMTO (5,81%) sur la valeur de l'immeuble | art. 810-III CGI |
-| Apport à titre onéreux (reprise de passif) | DMTO sur la fraction correspondant au passif repris | art. 810-II CGI |
+| Type d'apport | Droits | Remarque |
+|---------------|--------|---------|
+| Apport pur et simple à une SRL à l'ISOC | Droit d'apport fixe de **50 EUR** | En principe exonéré de droits d'enregistrement proportionnels (art. 115bis CDE) |
+| Apport à titre onéreux (reprise de passif) | Droits d'enregistrement sur la fraction correspondant au passif repris | Assimilé à une vente pour la part du passif |
 
-**Apport à titre onéreux** : si la société reprend un emprunt immobilier, la fraction correspondant au passif repris est assimilée à une vente et soumise aux DMTO.
+**Attention** : si l'apport est assorti d'une reprise de passif (ex : la société reprend l'emprunt hypothécaire), la fraction correspondant au passif est soumise aux droits d'enregistrement (traitement similaire à une vente).
 
 ### Plus-value sur apport
 
-- L'apport d'un immeuble à une SCI est assimilé à une cession
-- Plus-value imposable dans les conditions de droit commun (art. 150 U CGI)
-- **Sauf** si le bien est la résidence principale de l'apporteur
+- L'apport d'un immeuble à une SRL est assimilé à une cession
+- La plus-value éventuelle est imposable selon les règles du CIR 92 (voir plus-value.md)
+- Si l'immeuble est la résidence propre du contribuable : en principe exonéré
 
 ## Cession de Parts Sociales
 
-### Quand un acte notarié est-il obligatoire ?
+### Acte notarié
 
 | Cas | Acte notarié ? |
 |-----|:-----------:|
-| SCI détenant des immeubles | Non obligatoire mais recommandé |
-| Société avec apport immobilier soumis à publicité foncière | Oui (publication au SPF) |
+| Cession de parts de SRL (en général) | Non obligatoire mais recommandé ; acte sous seing privé possible |
+| Cession avec apport immobilier nécessitant transcription | Oui (si lié à une modification du régime immobilier) |
 | Clause statutaire l'exigeant | Oui |
 
-### Droits d'enregistrement
+### Droits d'enregistrement sur la cession de parts
 
-**Base légale** : art. 726 CGI
+En principe, la cession de parts de SRL n'est **pas soumise aux droits d'enregistrement proportionnels** (pas de DMTO). Un droit fixe général peut s'appliquer si l'acte est enregistré volontairement.
 
-| Type de société | Taux | Abattement |
-|-----------------|:----:|:----------:|
-| Parts de SCI (à prépondérance immobilière) | 5% | Abattement de 23 000 EUR proratisé au nombre de parts cédées / total de parts |
-| Parts de SARL, sociétés de personnes | 3% | Abattement de 23 000 EUR proratisé |
-| Actions de SA, SAS | 0,1% | Pas d'abattement (plafond 5 000 EUR/cession depuis 2025) |
-
-**Formule d'abattement** :
-```
-Abattement = 23 000 × (Nombre de parts cédées / Nombre total de parts)
-Droits = (Prix de cession - Abattement) × Taux
-```
+**Avantage fiscal** : c'est l'un des principaux avantages de la SRL patrimoniale par rapport à la vente directe de l'immeuble.
 
 ### Agrément
 
 | Disposition | Détail |
 |-------------|--------|
-| Principe | Cession libre entre associés, cession à un tiers soumise à agrément (sauf clause contraire) |
-| Procédure | Notification du projet de cession à la société et à chaque associé |
-| Délai de réponse | 6 mois (silence = acceptation pour les SCI) |
-| Refus d'agrément | Obligation de rachat par les associés restants ou la société |
+| Principe | Cession libre entre associés, cession à un tiers soumise à agrément (sauf clause contraire dans les statuts) |
+| Procédure | Notification du projet de cession à la gérance et aux autres associés |
+| Délai de réponse | Fixé par les statuts |
+| Refus d'agrément | Obligation de rachat par les associés restants ou par la société |
 
 ## Dissolution et Liquidation
 
-### Causes de dissolution
-
-**Base légale** : art. 1844-7 Code civil
+### Causes de dissolution (art. 5:152 CSA)
 
 | Cause | Détail |
 |-------|--------|
-| Arrivée du terme | Expiration de la durée (99 ans max) |
+| Arrivée du terme | Expiration de la durée statutaire |
 | Réalisation de l'objet | L'objet social est accompli |
-| Décision des associés | Dissolution anticipée volontaire |
-| Tribunal | Dissolution judiciaire (mésentente, paralysie) |
-| Réunion des parts en une seule main | Si non régularisé dans l'année |
+| Décision des associés | Dissolution anticipée volontaire (assemblée générale extraordinaire, acte notarié) |
+| Tribunal | Dissolution judiciaire (mésentente grave, paralysie, violation grave des statuts) |
+| Réunion des parts en une seule main | Possible sans dissolution obligatoire (SRL unipersonnelle légale) |
 
 ### Liquidation avec bien immobilier
 
 | Étape | Détail |
 |-------|--------|
-| 1. Nomination du liquidateur | Par les associés ou par le tribunal |
+| 1. Nomination du liquidateur | Par l'assemblée générale ou par le tribunal |
 | 2. Réalisation de l'actif | Vente de l'immeuble ou attribution aux associés |
 | 3. Paiement du passif | Remboursement des dettes, emprunts |
 | 4. Partage du boni de liquidation | Distribution entre les associés selon les parts |
 
 ### Fiscalité de la dissolution
 
-| Opération | Droits |
-|-----------|--------|
-| Attribution d'immeuble à un associé | Droit de partage 2,5% de la valeur nette attribuée |
-| Plus-value (SCI à l'IR) | Régime des PV immobilières des particuliers |
-| Plus-value (SCI à l'IS) | Régime des PV professionnelles |
-| Boni de liquidation | Imposé comme un dividende (PFU 30% ou barème IR) |
+| Opération | Impôt |
+|-----------|-------|
+| Attribution d'immeuble à un associé | Droits d'enregistrement selon la région (en principe comme une vente) |
+| Plus-value sur l'immeuble (SRL à l'ISOC) | ISOC sur la plus-value (prix cession − valeur nette comptable) |
+| Boni de liquidation | Précompte mobilier de **30%** (régime des dividendes liquidatifs) |
 
-## SCI et Transmission
+**Exception** : si l'associé a acquis ses parts depuis au moins 5 ans et a apporté à l'origine le bien, des régimes spécifiques d'exonération peuvent s'appliquer. À vérifier selon les faits.
+
+## SRL et Transmission Patrimoniale
 
 ### Stratégie de transmission par démembrement de parts
 
 | Étape | Détail |
 |-------|--------|
-| 1. Création de la SCI | Les parents apportent l'immeuble et détiennent 100% des parts |
+| 1. Création de la SRL | Les parents apportent l'immeuble et détiennent 100% des parts |
 | 2. Donation de la nue-propriété des parts | Les parents donnent la nue-propriété aux enfants et conservent l'usufruit |
-| 3. Gestion par les parents | L'usufruit donne droit aux revenus locatifs et au vote en AG ordinaire |
-| 4. Décès des parents | Réunion automatique de l'usufruit, les enfants ont la pleine propriété sans droits supplémentaires |
+| 3. Gestion par les parents | L'usufruit sur les parts donne en principe droit aux dividendes et à la participation aux décisions (selon statuts) |
+| 4. Décès des parents | Réunion automatique de l'usufruit : les enfants ont la pleine propriété sans droits supplémentaires |
 
 **Avantages :**
-- Droits de donation calculés sur la nue-propriété uniquement (décote art. 669 CGI)
-- Décote de non-liquidité sur les parts de SCI (10% à 30% admise par l'administration)
-- Les parents conservent les revenus et le contrôle
+- Droits de donation calculés sur la nue-propriété uniquement (table art. 745bis Cc belge)
+- Décote de non-liquidité sur les parts de SRL (10% à 20% selon les cas)
+- Les parents conservent les revenus et le contrôle opérationnel
 - Pas de droits de succession au décès sur les parts démembrées
 
-**Décote de non-liquidité** : les parts de SCI ne sont pas cotées et pas facilement cessibles. L'administration admet généralement une décote de 10% à 30% sur la valeur patrimoniale.
+**Rappel de 3 ans** : si les parts sont données avec enregistrement, le rappel de 3 ans s'applique (voir donation.md). Après 3 ans, les droits de succession ne s'appliquent pas sur les parts transmises.
 
 ### Exemple chiffré
 
 | Calcul | Montant |
 |--------|--------:|
 | Valeur de l'immeuble | 500 000 EUR |
-| Décote non-liquidité (20%) | -100 000 EUR |
-| Valeur des parts | 400 000 EUR |
-| Nue-propriété (60%, parents 51-60 ans) | 240 000 EUR |
-| Donation 50/50 à 2 enfants | 120 000 EUR chacun |
-| Abattement parent/enfant | -100 000 EUR |
-| Part nette taxable (par enfant) | 20 000 EUR |
-| Droits par enfant (barème progressif) | ~2 194 EUR |
-| **Droits totaux (2 enfants)** | **~4 388 EUR** |
+| Décote non-liquidité (15%) | -75 000 EUR |
+| Valeur des parts | 425 000 EUR |
+| Nue-propriété (48%, parents 56-60 ans selon table 745bis) | 204 000 EUR |
+| Donation 50/50 à 2 enfants (Bruxelles, biens meubles 3%) | 204 000 × 3% = 6 120 EUR |
+| **Droits totaux (2 enfants)** | **~6 120 EUR** |
 
-Sans SCI ni démembrement : droits sur 500 000 EUR en pleine propriété seraient beaucoup plus élevés.
+Sans SRL ni démembrement : droits sur 500 000 EUR en ligne directe seraient nettement plus élevés.

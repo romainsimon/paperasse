@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "revenus": 2025,
+    "declaration": 2026,
+    "exercice_imposition": "2026",
+    "source": "art. 130 CIR 92 — indexation annuelle",
+    "source_url": "https://finances.belgium.be/fr/particuliers/impot-des-personnes-physiques/calcul-de-limpot/bareme",
+    "last_updated": "2026-05-15",
+    "note": "Tranches indexées par l'indice santé lissé. Vérifier sur finances.belgium.be pour l'exercice courant."
+  },
+  "bareme_ipp": {
+    "description": "Tranches appliquées par contribuable (revenus 2025, déclaration 2026 via Tax-on-web)",
+    "tranches": [
+      { "jusqu_a": 15820, "taux": 0.25 },
+      { "de": 15820, "a": 27920, "taux": 0.40 },
+      { "de": 27920, "a": 48320, "taux": 0.45 },
+      { "au_dela": 48320, "taux": 0.50 }
+    ]
+  },
+  "quotites_exemptees": {
+    "description": "Quotités exemptées d'impôt (art. 131-134 CIR 92) — montants pour exercice 2026 (revenus 2025). NB : 10 570 € correspondait aux revenus 2024 ; la base est passée à 10 910 € pour les revenus 2025.",
+    "base": 10910,
+    "enfants_a_charge": [
+      { "nombre": 1, "supplement": 1690 },
+      { "nombre": 2, "supplement": 4340 },
+      { "nombre": 3, "supplement": 9770 },
+      { "nombre": 4, "supplement": 15820 },
+      { "nombre_supplementaire": 1, "supplement_par_enfant": 6050 }
+    ],
+    "enfant_moins_3ans": { "supplement": 590 },
+    "parent_isole": { "supplement_1ere_part": 1690 },
+    "note": "Les montants s'ajoutent à la base. L'avantage fiscal = montant × taux de la tranche la plus basse applicable."
+  },
+  "quotient_conjugal": {
+    "description": "Transfert de revenus professionnels entre époux/cohabitants légaux (art. 87 CIR 92)",
+    "taux_max": 0.30,
+    "plafond_eur": 13490,
+    "note_indexation": "Plafond exercice 2026 (revenus 2025). Le quotient conjugal n'est plus indexé et est progressivement supprimé à partir de l'exercice 2027.",
+    "condition": "Applicable si le conjoint le moins rémunéré a des revenus < 30 % du total du ménage",
+    "base_legale": "art. 87 CIR 92"
+  },
+  "additionnels_communaux": {
+    "description": "Centimes additionnels communaux — calculés en % de l'IPP de base (avant réductions régionales)",
+    "fourchette_typique": "6 % à 9 %",
+    "exemples": [
+      { "commune": "Bruxelles (1000-1190)", "taux": 0.07 },
+      { "commune": "Ixelles/Elsene (1050)", "taux": 0.079 },
+      { "commune": "Anvers/Antwerpen (2000)", "taux": 0.068 },
+      { "commune": "Gand/Gent (9000)", "taux": 0.077 },
+      { "commune": "Liège (4000)", "taux": 0.08 },
+      { "commune": "Namur (5000)", "taux": 0.075 }
+    ],
+    "note": "Toujours vérifier le taux exact sur le site de la commune ou via Tax-on-web. Les taux sont votés annuellement."
+  },
+  "abattements": {
+    "frais_professionnels_forfaitaires": {
+      "description": "Déduction forfaitaire sur revenus professionnels (art. 51 CIR 92)",
+      "taux": 0.30,
+      "maximum": 5930,
+      "note": "Revenus 2025 (exercice d'imposition 2026) : 30 % du revenu brut (après cotisations sociales), plafonné à 5 930 €. Plafond atteint vers ~19 767 € de brut. Alternative : frais réels si plus élevés."
+    },
+    "frais_professionnels_dirigeants": {
+      "description": "Déduction forfaitaire pour revenus de dirigeants",
+      "taux": 0.03,
+      "minimum": 0,
+      "maximum": 2890,
+      "note": "Taux plus bas que pour les salariés. Vérifier le montant actualisé."
+    }
+  }
+}

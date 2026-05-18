@@ -1,10 +1,12 @@
 # Contentieux et Impayés
 
+`last_updated: 2026-05-15`
+
 ## Impayés de Charges
 
 ### Principe
 
-Les charges de copropriété sont des dettes certaines, liquides et exigibles. Le syndic a l'**obligation** de procéder au recouvrement (art. 18 loi 1965). Le non-recouvrement engage la responsabilité du syndic.
+Les charges de copropriété sont des dettes certaines, liquides et exigibles. Le syndic a l'**obligation** de procéder au recouvrement (art. 3.88 Cc belge). Le non-recouvrement engage la responsabilité du syndic envers l'ACP et les copropriétaires.
 
 ### Procédure de Recouvrement (étapes progressives)
 
@@ -19,110 +21,113 @@ Les charges de copropriété sont des dettes certaines, liquides et exigibles. L
 
 #### 2. Mise en demeure (J+30 si pas de réponse)
 
-- LRAR obligatoire
-- Mention du montant dû avec détail (appels de fonds, régularisation)
-- Référence aux articles applicables (art. 10 et 14-1 loi 1965)
-- Délai de 30 jours pour régulariser
-- Avertissement des frais de recouvrement à la charge du débiteur (art. 10-1 loi 1965)
+- Lettre recommandée avec accusé de réception (AR)
+- Mention du montant dû avec détail (appels de fonds, décompte)
+- Référence aux articles applicables (art. 3.79 et 3.89 Cc belge)
+- Délai de 15 à 30 jours pour régulariser
+- Avertissement des frais de recouvrement à la charge du débiteur
 
-**Coût** : frais de LRAR (environ 6-8 EUR).
+**Coût** : frais de recommandé (environ 5–8 EUR).
 
 Voir template : [templates/mise-en-demeure.md](../templates/mise-en-demeure.md)
 
-#### 3. Déchéance du terme (après mise en demeure restée sans effet)
+#### 3. Procédure judiciaire (si mise en demeure restée sans effet)
 
-**Art. 19-2 loi 1965** : après mise en demeure restée infructueuse pendant plus de 30 jours, le syndic peut rendre immédiatement exigibles les provisions non encore échues.
+En Belgique, la procédure judiciaire en matière de copropriété est répartie entre deux juridictions selon le montant et la nature du litige :
 
-Toutes les provisions de l'exercice deviennent exigibles (pas seulement l'impayé en cours).
+**Juge de Paix** :
+- Compétent pour les litiges jusqu'à **5 000 EUR** en droit commun, mais en matière de copropriété le Juge de Paix est compétent pour **tous les litiges entre copropriétaires et l'ACP**, quel que soit le montant (art. 591, 1° du Code judiciaire belge)
+- Procédure simple, rapide, sans avocat obligatoire
+- Citation à comparaître par huissier
+- Délai : quelques semaines à quelques mois
 
-#### 4. Injonction de payer (si < 5 000 EUR)
-
-- Requête au tribunal judiciaire (pôle de proximité)
-- Procédure non contradictoire (sans audience)
-- Délai : quelques semaines
-- Coût : frais de greffe (~40 EUR)
-- Le copropriétaire a 1 mois pour faire opposition
-
-#### 5. Assignation en paiement (si > 5 000 EUR ou opposition)
-
-- Assignation devant le tribunal judiciaire
-- Représentation par avocat obligatoire si > 10 000 EUR
-- Procédure contradictoire (audience)
+**Tribunal de Première Instance (TPI)** :
+- Compétent pour les litiges complexes, les actions immobilières et les affaires dépassant la compétence du Juge de Paix
+- Représentation par avocat recommandée (obligatoire dans certains cas)
 - Délai : plusieurs mois
 
-#### 6. Exécution forcée
+**Pratique courante** : pour les impayés de charges en copropriété belge, le **Juge de Paix** est la juridiction de droit commun. Il connaît également des contestations de décisions d'AG.
+
+#### 4. Requête en injonction de payer
+
+Procédure non contradictoire possible devant le Juge de Paix (art. 1338 et suivants du Code judiciaire belge) :
+- Pour les créances certaines, liquides et exigibles
+- Sans audience contradictoire en première instance
+- Le débiteur peut faire opposition dans un délai d'un mois
+- Coût : faibles frais de greffe
+
+#### 5. Exécution forcée
 
 Si le jugement est obtenu :
-- Saisie sur compte bancaire (saisie-attribution)
-- Saisie sur salaire (saisie des rémunérations)
-- Saisie immobilière (en dernier recours)
+- Saisie sur compte bancaire (saisie-arrêt)
+- Saisie sur rémunération (saisie-arrêt sur salaire — procédure devant le Tribunal du travail)
+- Saisie immobilière (en dernier recours, procédure devant le Tribunal de Première Instance)
 
-### Frais de Recouvrement (art. 10-1 loi 1965)
+L'huissier de justice belge est l'officier ministériel compétent pour l'exécution forcée.
 
-**Principe fondamental** : les frais nécessaires au recouvrement sont à la charge du copropriétaire débiteur, et non de la copropriété.
+### Frais de Recouvrement
 
-Cela inclut :
-- Frais de mise en demeure (LRAR)
-- Frais de relance
-- Frais d'huissier
-- Frais de procédure (injonction, assignation)
-- Honoraires d'avocat (dans la limite de l'art. 700 CPC)
+**Principe** : les frais nécessaires au recouvrement peuvent être mis à la charge du copropriétaire débiteur. En Belgique, ce droit est fondé sur les principes généraux de la responsabilité contractuelle (art. 1382 anc. Cc belge / art. 6.1 nouveau Cc belge) et sur les statuts de l'ACP.
 
-**Exception** : les frais d'action en justice engagée par le syndic au nom du syndicat (honoraires d'avocat, frais d'huissier) restent à la charge du syndicat en premier lieu, puis sont récupérés auprès du débiteur.
+Cela peut inclure :
+- Frais de recommandé
+- Frais d'huissier (signification, saisie)
+- Frais de procédure (greffe, inscription rôle)
+- Honoraires d'avocat (dans la limite de l'indemnité de procédure — tarif réglementaire belge)
 
-## Privilège Immobilier Spécial (art. 19-2 loi 1965)
+**Exception** : les frais d'action en justice engagée par l'ACP sont avancés par l'ACP, puis récupérés auprès du débiteur condamné.
 
-Le syndicat des copropriétaires bénéficie d'un **privilège immobilier spécial** sur le lot du copropriétaire débiteur.
+## Hypothèque Légale de l'ACP (art. 3.93 Cc belge)
 
-**Portée** : le privilège garantit le paiement de l'exercice en cours et des deux derniers exercices échus.
+L'ACP bénéficie d'une **hypothèque légale** sur le lot de chaque copropriétaire, à concurrence de sa quote-part dans les dettes de l'ACP.
 
-**Rang** : le privilège prime les hypothèques et les privilèges du prêteur de deniers (sauf hypothèques inscrites antérieurement à l'acte de copropriété).
+**Portée** : l'hypothèque légale garantit le paiement de toutes les charges dues à l'ACP (charges ordinaires, charges extraordinaires, fonds de réserve).
 
-**Inscription** : pas d'inscription nécessaire pour l'opposabilité (privilège occulte), mais inscription possible au service de la publicité foncière pour renforcer la protection.
+**Rang** : l'hypothèque légale prend rang à la date de transcription de l'acte de base. Elle prime donc les hypothèques conventionnelles ultérieures.
 
-## Hypothèque Légale (art. 19-1 loi 1965)
-
-Le syndic peut prendre une hypothèque légale sur le lot du copropriétaire débiteur, sans autorisation de l'AG.
-
-**Utilité** : sécuriser la créance au-delà du privilège immobilier (qui ne couvre que l'exercice en cours + 2 exercices échus).
+**Inscription** : l'hypothèque légale est inscrite de plein droit lors de la transcription de l'acte de base. Le syndic peut faire inscrire une hypothèque judiciaire en cas de créance non contestée après jugement.
 
 ## Plan d'Apurement
 
-Le syndic peut accorder un **échelonnement de paiement** au copropriétaire en difficulté.
+Le syndic peut accorder un **échelonnement de paiement** au copropriétaire en difficulté, avec accord du conseil de gérance.
 
 **Conditions recommandées :**
 - Demande écrite du copropriétaire
 - Reconnaissance de la dette
 - Échéancier précis (montants et dates)
-- Clause de déchéance en cas de non-respect
-- Information du conseil syndical
+- Clause de déchéance en cas de non-respect d'une échéance
+- Information du conseil de gérance
+- Pas de suspension de la procédure judiciaire si le plan est insuffisant
 
-## Vente du Lot : Opposition et Privilège
+## Vente du Lot : Opposition et Sûreté
 
-En cas de vente d'un lot par un copropriétaire débiteur :
+En cas de vente d'un lot par un copropriétaire débiteur (art. 3.81 Cc belge) :
 
-**Opposition** (art. 20 loi 1965) :
-- Le syndic peut faire opposition au versement du prix de vente au vendeur
-- L'opposition doit être notifiée au notaire dans les 15 jours de la notification de la mutation
-- Le notaire doit verser au syndicat les sommes dues avant de libérer le solde au vendeur
+**Solidarité acquéreur-vendeur** :
+- L'acquéreur est solidairement responsable des dettes du vendeur envers l'ACP
+- Le notaire a l'obligation de s'informer auprès du syndic de l'état des dettes avant la signature de l'acte authentique
+- L'acquéreur peut retenir sur le prix de vente les sommes dues à l'ACP
 
-**Pré-état daté** : document que le syndic remet au notaire avant la vente, indiquant les sommes dues par le vendeur.
+**Rôle du syndic lors d'une vente :**
+1. Le notaire interroge le syndic sur les charges dues par le vendeur
+2. Le syndic établit un état des charges (voir [references/mutations.md](mutations.md))
+3. Si des sommes sont dues : le notaire retient les montants sur le prix de vente
+4. L'ACP est payée avant que le vendeur reçoive le solde
 
-**État daté** (art. 5 décret 1967) : document détaillé transmis au notaire lors de la mutation, comprenant :
-- Sommes dues par le vendeur (charges, fonds travaux)
-- Sommes dues au vendeur (avoirs, remboursements)
-- Sommes qui seront dues par l'acquéreur
-- Procédures en cours
+**Attention** : en droit belge, il n'existe pas de procédure d'opposition strictement formalisée comme en France (art. 20 loi 1965 française). La protection de l'ACP repose sur la solidarité légale de l'acquéreur et sur l'obligation d'information du notaire.
 
-## Copropriétés en Difficulté
+## Contestation d'une Décision d'AG
 
-### Alerte (art. 29-1A loi 1965)
+Un copropriétaire peut contester une décision d'AG devant le **Juge de Paix** (art. 3.86 al. 2 Cc belge) :
 
-Le président du tribunal judiciaire peut être saisi si le syndicat est en difficulté :
-- Impayés > 25% du budget prévisionnel
-- Dettes fournisseurs importantes
-- Incapacité à assurer la conservation de l'immeuble
+- **Délai** : 4 mois à compter de la notification du PV pour les copropriétaires présents ou représentés ; à compter du moment où ils en ont eu connaissance pour les absents non représentés
+- **Juridiction** : Juge de Paix du lieu de l'immeuble
+- **Motifs** : décision prise en violation de la loi, des statuts ou de l'intérêt général de l'ACP
 
-### Administration provisoire (art. 29-1 loi 1965)
+Le Juge de Paix peut annuler la décision ou la substituer par une autre décision.
 
-Le tribunal peut désigner un administrateur provisoire qui se substitue au syndic et, le cas échéant, à l'AG pour prendre les mesures nécessaires au rétablissement du fonctionnement normal de la copropriété.
+## Désignation Judiciaire d'un Syndic Provisoire
+
+Si l'ACP se retrouve sans syndic (refus de renouvellement, démission, carence), tout intéressé peut saisir le Juge de Paix pour demander la désignation d'un **syndic provisoire** (art. 3.83 Cc belge).
+
+Le Juge de Paix est également compétent pour mettre fin aux fonctions d'un syndic défaillant ou pour régler tout conflit entre le syndic et les copropriétaires.

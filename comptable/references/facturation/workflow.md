@@ -1,55 +1,57 @@
-# Workflow Facturation — Détails opérationnels
+# Workflow Facturation — Détails opérationnels (Belgique)
+
+`last_updated: 2026-05-15`
 
 Chargé à la demande depuis `comptable/SKILL.md` section **Facturation**.
 
 ## Contents
-- Checklists (mise en conformité, génération, validation)
-- Format JSON d'une facture
-- Articulation facture ↔ écriture comptable
+- Checklists (mise en conformité Peppol, génération, validation)
+- Format JSON d'une facture belge
+- Articulation facture ↔ écriture comptable PCMN
 - Pipeline Stripe → Facture → Qonto
 - Numérotation par année
-- Refunds et avoirs Stripe
-- Réception des e-factures (1er septembre 2026)
+- Avoirs (notes de crédit) belges
+- Réception des e-factures Peppol (depuis 01/01/2026)
+
+---
 
 ## Checklists
 
-### Mise en conformité facturation électronique 2026
+### Mise en conformité facturation électronique Peppol (01/01/2026)
 
 ```
-Conformité e-facturation — {{company.name}}
+Conformité e-facturation Peppol — {{company.name}} — BCE {{company.bce}}
 - [ ] Vérifier statut : assujettie TVA (même en franchise)
-- [ ] Déterminer taille entreprise (GE / ETI / PME / micro)
-- [ ] Identifier échéances (réception : sept. 2026 / émission : sept. 2026 ou 2027)
-- [ ] Choisir une plateforme agréée (PA)
-- [ ] Créer un compte sur la PA choisie
-- [ ] Configurer la réception des factures sur la PA
-- [ ] Tester la réception d'une facture de test
-- [ ] Informer les fournisseurs de votre PA de réception
-- [ ] Mettre à jour les mentions sur les factures émises (SIREN client, catégorie)
-- [ ] Configurer l'émission sur la PA (quand l'obligation s'applique)
-- [ ] Configurer l'e-reporting si opérations B2C ou international
+- [ ] S'inscrire auprès d'un prestataire Peppol (Qonto, Clearfacts, Unifiedpost, Isabel, Billit...)
+- [ ] Obtenir l'identifiant Peppol : 0208:[BCE sans points]
+- [ ] Enregistrer l'identifiant dans l'annuaire Peppol via le prestataire
+- [ ] Configurer la réception des factures sur le prestataire
+- [ ] Tester la réception d'une facture de test (via mercurius.belgium.be)
+- [ ] Informer les fournisseurs de votre identifiant Peppol
+- [ ] Mettre à jour les mentions sur les factures émises (numéro BCE, numéro TVA BE0...)
+- [ ] Configurer l'émission Peppol pour les clients B2B belges
+- [ ] Ajouter les numéros BCE des clients belges dans company.json / CRM
 ```
 
-### Génération d'une facture conforme
+### Génération d'une facture conforme (Belgique)
 
 ```
 Facture — {{company.name}} → {{client}}
 - [ ] Numéro de facture (séquence chronologique continue)
 - [ ] Date d'émission
-- [ ] Identité émetteur complète (nom, SIREN, SIRET, adresse, forme juridique)
-- [ ] Identité client complète (nom, adresse, SIREN si professionnel)
-- [ ] Numéro TVA intracommunautaire (si régime réel)
+- [ ] Identité émetteur complète (dénomination, forme juridique, adresse, BCE, numéro TVA BE0...)
+- [ ] IBAN belge (BE + 14 chiffres) et BIC
+- [ ] Identité client complète (dénomination, adresse)
+- [ ] Numéro TVA belge du client (si assujetti) — format BE0xxx.xxx.xxx
 - [ ] Description détaillée des prestations / biens
-- [ ] Quantité, prix unitaire HT, montant total HT
-- [ ] Taux et montant TVA (ou mention d'exonération)
-- [ ] Montant total TTC
+- [ ] Quantité, prix unitaire HTVA, montant total HTVA
+- [ ] Taux et montant TVA (21% / 12% / 6%) ou mention d'exonération/franchise
+- [ ] Montant total TVAC
 - [ ] Date d'échéance de paiement
-- [ ] Conditions de paiement
-- [ ] Pénalités de retard et indemnité forfaitaire
-- [ ] [2026+] **Catégorie d'opération** (biens / services / mixte) — obligation distincte de la description, toujours flagger si absente (biens / services / mixte)
-- [ ] [2026+] SIREN du client (si B2B domestique)
-- [ ] [2026+] Adresse de livraison (si différente de facturation)
-- [ ] Mention spéciale si applicable (franchise TVA, autoliquidation, etc.)
+- [ ] Conditions de paiement (délai)
+- [ ] Pénalités de retard (taux légal BCE + 8 pts) + indemnité forfaitaire 40 EUR (B2B)
+- [ ] Mention spéciale si applicable (franchise art. 56bis, autoliquidation art. 51 §2, exonération art. 39/39bis...)
+- [ ] [B2B belge 2026+] Format Peppol BIS 3.0 (UBL) obligatoire
 ```
 
 ### Validation d'une facture existante
@@ -58,26 +60,27 @@ Facture — {{company.name}} → {{client}}
 Validation — Facture {{numéro}}
 - [ ] Numéro présent et conforme à la séquence
 - [ ] Date d'émission présente
-- [ ] Émetteur : nom, SIREN, SIRET, adresse, forme juridique
-- [ ] Client : nom, adresse
-- [ ] Client : SIREN (obligatoire 2026+ pour B2B)
-- [ ] Désignation précise des biens/services (distincte de quantité/prix)
-- [ ] **Quantité** présente pour chaque ligne (mention distincte)
-- [ ] **Prix unitaire HT** présent pour chaque ligne (mention distincte)
-- [ ] Montant HT par ligne
-- [ ] TVA : taux, montant, ou mention d'exonération valide
-- [ ] Montant TTC
+- [ ] Émetteur : dénomination, BCE, numéro TVA BE0..., adresse, forme juridique
+- [ ] Client : dénomination, adresse
+- [ ] Client assujetti belge : numéro TVA BE0... (vérifiable sur https://kbopub.economie.fgov.be)
+- [ ] Désignation précise des biens/services
+- [ ] Quantité présente pour chaque ligne
+- [ ] Prix unitaire HTVA présent pour chaque ligne
+- [ ] Montant HTVA par ligne
+- [ ] TVA : taux (21%/12%/6%), montant, ou mention d'exonération valide
+- [ ] Montant TVAC total
 - [ ] Date d'échéance, conditions de paiement
-- [ ] Pénalités de retard (taux, indemnité forfaitaire 40 EUR)
-- [ ] [2026+] **Catégorie d'opération** (biens / services / mixte) — obligation distincte de la description, toujours flagger si absente
-- [ ] [2026+] Adresse de livraison si différente
-- [ ] Mention franchise TVA si applicable (art. 293 B du CGI)
-- [ ] Format Factur-X si émission électronique
+- [ ] Pénalités de retard + indemnité forfaitaire 40 EUR (si B2B)
+- [ ] IBAN belge mentionné (format BE + 14 chiffres)
+- [ ] Mention franchise TVA si applicable (art. 56bis CTVA)
+- [ ] [B2B belge] Format Peppol BIS 3.0 si émission électronique
 ```
 
-## Format JSON d'une facture
+---
 
-Utilisé par `scripts/generate-facturx.js`, `scripts/validate-facture.js` et produit par `scripts/import-stripe-invoices.js`. Schéma complet dans `data/invoices/_template.json`.
+## Format JSON d'une facture belge
+
+Utilisé par `scripts/generate-peppol.js`, `scripts/validate-facture.js` et produit par `scripts/import-stripe-invoices.js`.
 
 ```json
 {
@@ -85,52 +88,98 @@ Utilisé par `scripts/generate-facturx.js`, `scripts/validate-facture.js` et pro
   "date": "2026-09-15",
   "due_date": "2026-10-15",
   "type": "invoice",
-  "category": "services",
+  "b2b_be": true,
   "client": {
-    "name": "Client SAS",
-    "address": "10 avenue de la République, 75011 Paris",
-    "siren": "987654321"
+    "name": "Client SA",
+    "address": "Avenue Louise 50, 1050 Bruxelles",
+    "bce": "0987654321",
+    "vat_number": "BE0987654321",
+    "peppol_id": "0208:0987654321"
   },
   "lines": [
     {
       "description": "Développement application web",
       "quantity": 10,
-      "unit": "jours",
-      "unit_price": 500.00
+      "unit": "heures",
+      "unit_price": 100.00,
+      "vat_rate": 21
     }
   ],
   "payment": {
     "terms": "30 jours date de facture",
-    "method": "virement"
+    "method": "virement",
+    "iban": "BE68 5390 0754 7034",
+    "bic": "BNAGBEBB"
   }
 }
 ```
 
-## Articulation facture ↔ écriture comptable
+**Champs clés belges :**
+- `b2b_be` : `true` si client assujetti belge → génération Peppol obligatoire
+- `client.bce` : numéro BCE du client (sans points)
+- `client.vat_number` : `BE0xxx.xxx.xxx`
+- `client.peppol_id` : `0208:[BCE]`
 
-1. Générer la facture conforme (mentions, format, numérotation)
-2. Enregistrer l'écriture : 706/707 (produits), 411 (créance client), 44571 (TVA collectée si régime réel)
-3. Transmettre via la PA (quand l'obligation s'applique)
+---
+
+## Articulation facture ↔ écriture comptable (PCMN)
+
+### Facture émise (vente de services B2B, TVA 21%)
+
+```
+1. Générer la facture conforme (mentions CTVA, format Peppol si B2B belge)
+2. Écriture PCMN :
+   Débit 400 Clients               1 210,00    (montant TVAC)
+   Crédit 701 Prestations services 1 000,00    (HTVA)
+   Crédit 451 TVA à payer            210,00    (TVA 21%)
+3. Transmettre via le prestataire Peppol (si B2B belge)
+```
+
+### Facture émise (franchise art. 56bis CTVA, sans TVA)
+
+```
+Débit 400 Clients               1 000,00    (pas de TVA)
+Crédit 701 Prestations services 1 000,00
+```
+
+### Facture émise (client UE B2B, autoliquidation)
+
+```
+Débit 400 Clients               1 000,00    (pas de TVA belge)
+Crédit 701 Prestations services 1 000,00
+```
+Mention facture : *"Autoliquidation — TVA due par le preneur, art. 51 §2 CTVA"*
+
+---
 
 ## Pipeline Stripe → Facture → Qonto
 
-Utilisé quand les encaissements arrivent par Stripe et que le compte bancaire est Qonto :
+Utilisé quand les encaissements arrivent par Stripe et que le compte bancaire est Qonto (IBAN BE) :
 
 1. **Import** : `node scripts/import-stripe-invoices.js --start YYYY-MM-DD --end YYYY-MM-DD`
    - Récupère les `invoices` Stripe au statut `paid` de la période
    - Génère un JSON par facture dans `data/invoices/F-YYYY-NNN.json`
-   - Numérote via `invoicing.next_numbers[year]` (reset au 1er janvier)
+   - Numérote via `invoicing.next_numbers[year]` (remise à zéro au 1er janvier)
    - Convertit les montants en EUR via `balance_transaction.exchange_rate`
+   - Détermine si B2B belge (numéro TVA belge présent dans Stripe)
    - Maintient `data/invoices/index.json` (map `stripe_id → invoice_number`) pour l'idempotence
-2. **Génération PDF + XML Factur-X** : `node scripts/generate-facturx.js --invoice data/invoices/F-YYYY-NNN.json`
-3. **Justificatif Qonto** : `node scripts/upload-qonto-attachments.js --upload`
+
+2. **Génération Peppol ou PDF** :
+   - B2B belge : `node scripts/generate-peppol.js --invoice data/invoices/F-YYYY-NNN.json` → UBL XML + PDF
+   - B2C ou B2B étranger : `node scripts/generate-pdf.js --invoice data/invoices/F-YYYY-NNN.json` → PDF
+
+3. **Transmission Peppol (B2B belge)** : `node scripts/send-peppol.js --invoice data/invoices/F-YYYY-NNN.json`
+
+4. **Justificatif Qonto** : `node scripts/upload-qonto-attachments.js --upload`
    - Matche chaque crédit Stripe sur Qonto avec les factures émises dans la fenêtre temporelle
    - Génère un PDF récapitulatif listant les factures du payout
    - Uploade via `POST /v2/transactions/{uuid}/attachments` (max 5 pièces, 30 MB/pièce)
 
-**Routine recommandée** : hebdomadaire (ex. lundi matin), paramétrable via cron. Les deux scripts sont idempotents.
+**Routine recommandée** : hebdomadaire (ex. lundi matin), paramétrable via cron. Les scripts sont idempotents.
 
 Détails complets : voir [stripe-sync.md](stripe-sync.md).
+
+---
 
 ## Numérotation par année
 
@@ -142,26 +191,37 @@ Convention : **séquence chronologique continue réinitialisée au 1er janvier**
 - L'avoir reprend le format avec `avoir_prefix` (ex. `AV-2026-001`)
 - Aucun trou dans la séquence : un numéro émis ne peut pas être supprimé
 
-## Refunds et avoirs Stripe
+---
 
-Un `refund` Stripe → **avoir** (note de crédit) côté facturation française :
+## Avoirs (notes de crédit) belges
+
+Un refund Stripe → **avoir / note de crédit** (note de crédit) côté facturation belge :
 
 1. Récupérer le refund Stripe et la facture d'origine (via `charge.invoice`)
-2. Créer un avoir : `number` = `AV-YYYY-NNN` (nouvelle séquence ou séquence facture selon pratique), `type: "credit_note"`, référencer la facture d'origine
-3. Mentions obligatoires avoir : voir `data/facturation/mentions-obligatoires.json` (clé `avoir`)
-4. Écriture comptable : extourner 706/707 et 411, ajuster 44571 si TVA
+2. Créer un avoir : `number` = `AV-YYYY-NNN` (séquence séparée), `type: "credit_note"`, référencer la facture d'origine
+3. Mentions obligatoires : référence à la facture originale, motif, montants en négatif
+4. Si B2B belge : générer le XML Peppol avec `InvoiceTypeCode 381` (note de crédit)
+5. Écriture comptable PCMN :
+   ```
+   Débit 701 Prestations services    XXX,XX
+   Débit 451 TVA à payer              XX,XX
+   Crédit 400 Clients                XXX,XX
+   ```
 
-## Réception des e-factures (obligation 1er septembre 2026)
+---
 
-**Toute entreprise assujettie TVA (y compris en franchise)** doit pouvoir recevoir des factures électroniques via une PA au 1er septembre 2026.
+## Réception des e-factures Peppol (obligation 01/01/2026)
+
+**Toute entreprise assujettie TVA** doit pouvoir recevoir des factures électroniques Peppol depuis le 01/01/2026.
 
 Checklist réception :
 
-- [ ] `einvoicing.pa` défini dans `company.json`
-- [ ] Compte actif sur la PA choisie
+- [ ] `einvoicing.peppol_id` défini dans `company.json` (ex : `0208:0123456789`)
+- [ ] Compte actif sur le prestataire Peppol choisi
+- [ ] Identifiant Peppol enregistré dans l'annuaire via le prestataire
 - [ ] `einvoicing.reception_ready: true` dans `company.json`
-- [ ] Fournisseurs informés de l'identifiant PEPPOL (`einvoicing.peppol_id`)
-- [ ] Workflow de rapprochement des factures entrantes défini (PA → comptabilité → règlement)
-- [ ] Format de lecture : Factur-X (PDF/A-3 + XML), UBL ou CII
+- [ ] Fournisseurs informés de l'identifiant Peppol
+- [ ] Workflow de rapprochement des factures entrantes défini (prestataire → comptabilité → règlement)
+- [ ] Format de lecture : XML UBL 2.1 Peppol BIS 3.0
 
-Voir [setup-facturation.md](setup-facturation.md) pour la configuration et [plateformes-agreees.md](plateformes-agreees.md) pour le choix d'une PA.
+Voir [setup-facturation.md](setup-facturation.md) pour la configuration et [plateformes-agreees.md](plateformes-agreees.md) pour le choix d'un prestataire.

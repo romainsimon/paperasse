@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "exercice": 2026,
+    "revenus": 2025,
+    "source": "art. 36 §2 + art. 66 CIR 92 + AR du 21 décembre 2013",
+    "source_url": "https://finances.belgium.be/fr/entreprises/personnel_et_remuneration/avantages-de-toute-nature/vehicule-de-societe",
+    "last_updated": "2026-05-15"
+  },
+  "atn_vehicule_societe": {
+    "description": "Avantage de toute nature (ATN) pour l'usage privé d'un véhicule de société mis à disposition du dirigeant ou du travailleur",
+    "base_legale": "art. 36 §2 CIR 92",
+    "formule": "ATN = Valeur catalogue × % CO₂ × 6/7 × coefficient_âge × jours_disponibilité/365",
+    "coefficient_age": "100 % la 1re année (12 mois suivant 1re immatriculation), puis −6 % par année entamée, plancher 70 % à partir de la 5e année",
+    "calcul": {
+      "valeur_catalogue": "Prix catalogue TVAC du véhicule neuf (options incluses) — sans remise ni décote",
+      "co2_coefficient": {
+        "description": "Coefficient ajusté selon émissions CO₂ et type de carburant",
+        "formule": "5,5% + 0,1% × (CO₂ - référence CO₂)",
+        "references_co2_2025": {
+          "essence_gaz_naturel": 71,
+          "diesel": 59,
+          "full_electrique": null,
+          "note": "Émissions de CO₂ de référence pour les revenus 2025 (exercice 2026). Ces valeurs sont publiées chaque année et diminuent ; à revérifier annuellement."
+        },
+        "bornes": {
+          "minimum": 0.04,
+          "maximum": 0.18
+        },
+        "note": "Le coefficient est calculé puis limité entre 4% et 18%."
+      },
+      "correcteur_6_7": "Correction pour usage professionnel présumé (1/7 du temps)",
+      "minimum_atn_2025": 1650,
+      "note_minimum": "L'ATN ne peut être inférieur à 1 650 € par an (montant indexé pour 2025 ; 1 600 € en 2024)."
+    },
+    "exemple_calcul": {
+      "vehicule": "Berline essence — prix catalogue 40 000 € — 110 g/km CO₂ — 1re immatriculation 2025",
+      "coefficient_co2": "5,5% + 0,1% × (110 - 71) = 9,4%",
+      "atn_annuel_brut": "40 000 × 9,4% × 6/7 × 100% (âge an 1) = 3 223 €",
+      "atn_annuel_net": "max(3 223 €, 1 650 €) = 3 223 €",
+      "imposition": "Ajouté aux revenus professionnels du bénéficiaire et soumis à l'IPP + additionnels communaux"
+    },
+    "vehicules_zero_emission": {
+      "atn": "Coefficient CO₂ ramené au plancher de 4% ; en pratique le minimum forfaitaire de 1 650 € (2025) s'applique souvent",
+      "co2": "0 g/km — coeff CO₂ théorique 0% → plancher s'applique",
+      "note": "Les voitures full électriques ou à pile à combustible bénéficient de l'ATN minimum."
+    },
+    "contribution_personnelle_atn": {
+      "principe": "Toute contribution personnelle du travailleur/dirigeant vient en déduction de l'ATN",
+      "exemple": "ATN calculé 2 400 € — contribution 50 €/mois → ATN imposable = 2 400 − 600 = 1 800 €"
+    }
+  },
+  "deductibilite_vehicule_societe": {
+    "description": "Limitation de la déductibilité des frais de véhicule à l'ISOC (ou IPP pour indépendants)",
+    "base_legale": "art. 66 CIR 92",
+    "regime_voitures_thermiques": {
+      "periode": "Véhicules acquis avant 01/01/2026",
+      "methode": "Taux de déductibilité selon émissions CO₂ (tableau NEDC ou WLTP)",
+      "exemples_taux": [
+        { "co2_g_km": "0 (EV)", "taux": 1.00 },
+        { "co2_g_km": "1-50", "taux": 0.90 },
+        { "co2_g_km": "51-100", "taux": 0.75 },
+        { "co2_g_km": "101-105", "taux": 0.70 },
+        { "co2_g_km": "106-115", "taux": 0.65 },
+        { "co2_g_km": "116-145", "taux": 0.60 },
+        { "co2_g_km": "146-175", "taux": 0.55 },
+        { "co2_g_km": "176-200", "taux": 0.50 },
+        { "co2_g_km": "201-250", "taux": 0.25 },
+        { "co2_g_km": ">250", "taux": 0.25 }
+      ],
+      "minimum": 0.50,
+      "note": "Depuis le 01/01/2020, le minimum est 50%. Pour les voitures achetées avant cette date, les anciens taux s'appliquaient."
+    },
+    "regime_transition_2026": {
+      "description": "Réforme fiscale verte — véhicules hybrides et thermiques acquis à partir du 01/01/2026",
+      "voitures_thermiques_neuves": "Déductibilité dégressive de 100% (2025) → 50% (2028) → 0% (2029 et suivants) pour nouveaux achats",
+      "voitures_hybrides_plug_in": "Régime intermédiaire — vérifier circulaire SPF Finances 2025",
+      "voitures_zero_emission": "100% déductibles — pas de limitation CO₂",
+      "source": "Loi du 25 novembre 2021 (Plan de réforme fiscale verte)"
+    },
+    "frais_carburant_fossile": {
+      "deductibilite": "50% maximum (même pour véhicules 100% déductibles)",
+      "base_legale": "art. 66 §1 al. 4 CIR 92"
+    },
+    "faux_frais_exclus": {
+      "amendes": "Non déductibles (art. 53, 6° CIR 92)",
+      "tva": "TVA sur voiture → déductible à 50% max (art. 45 §2 CTVA)"
+    }
+  },
+  "autres_atn_courants": {
+    "logement_gratuit": {
+      "description": "Mise à disposition gratuite d'un logement par la société",
+      "base": "RC du bien × forfaits AR 21/12/2013",
+      "majoration": "× 2 si meublé, avec eau, gaz, électricité inclus",
+      "note": "Valeur locative réelle si pas de RC disponible"
+    },
+    "pret_taux_reduit": {
+      "description": "Prêt consenti par l'employeur/société à taux inférieur au marché",
+      "calcul": "Différence entre taux de référence BNB et taux appliqué × capital",
+      "taux_reference_2025": "Publié annuellement par la BNB (art. 18 AR/CIR 92)"
+    },
+    "mise_a_disposition_autres_biens": {
+      "description": "Ordinateur, tablette, téléphone, etc.",
+      "atn_ordinateur_prive": "72 € par an (forfait 2025)",
+      "atn_gsm": "48 € par an (forfait 2025)",
+      "base_legale": "AR du 21 décembre 2013"
+    },
+    "cheque_repas": {
+      "exoneration": "Jusqu'à 8 € par jour presté (part patronale max 6,91 €)",
+      "conditions": "Accord collectif ou contrat individuel requis; non convertible en cash",
+      "base_legale": "art. 19bis AR/loi du 24 juillet 1987"
+    }
+  }
+}

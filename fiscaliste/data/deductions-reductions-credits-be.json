@@ -1,0 +1,143 @@
+{
+  "_meta": {
+    "exercice": 2026,
+    "revenus": 2025,
+    "source": "art. 104-156 CIR 92 (réductions d'impôt et déductions)",
+    "source_url": "https://finances.belgium.be/fr/particuliers/avantages-fiscaux",
+    "last_updated": "2026-05-15"
+  },
+  "deductions_federales": {
+    "description": "Dépenses déductibles du revenu imposable (diminuent la base imposable)",
+    "pensions_alimentaires": {
+      "regime": "80% des pensions alimentaires payées déductibles du revenu imposable",
+      "base_legale": "art. 104, 1° CIR 92",
+      "conditions": [
+        "Obligation alimentaire légale (ex-conjoint, enfant majeur, ascendants)",
+        "Paiement régulier sur base d'une décision judiciaire ou d'une convention homologuée",
+        "Le bénéficiaire doit déclarer 100% (imposable dans son chef)"
+      ],
+      "note": "La rente allouée dans le cadre d'un jugement de séparation de corps est assimilée."
+    },
+    "liberalites_dons": {
+      "description": "Dons à des institutions agréées",
+      "montant_minimum": 40,
+      "taux_reduction": 0.45,
+      "plafond_relatif": 0.10,
+      "plafond_absolu": 397850,
+      "base_legale": "art. 145³³ CIR 92",
+      "attestation": "Attestation fiscale délivrée par l'institution bénéficiaire obligatoire"
+    }
+  },
+  "reductions_impot_federales": {
+    "description": "Réductions calculées sur l'impôt dû (pas sur la base imposable)",
+    "epargne_pension": {
+      "reference": "Voir epargne-pension-elt.json — réduction 30% (1 050€) ou 25% (1 350€) — revenus 2025"
+    },
+    "epargne_long_terme": {
+      "reference": "Voir epargne-pension-elt.json — réduction 30% sur max 2450€"
+    },
+    "frais_garde_enfants": {
+      "description": "Réduction d'impôt pour frais de garde d'enfants de moins de 14 ans",
+      "taux_reduction": 0.45,
+      "plafond_par_enfant_par_jour": 15.70,
+      "conditions": [
+        "Enfant âgé de moins de 14 ans (ou moins de 21 ans si handicapé)",
+        "Accueil par institution agréée (crèche, garderie, camp de vacances agréé, accueil extrascolaire)",
+        "Attestation fiscale de l'institution requise"
+      ],
+      "base_legale": "art. 145³² CIR 92"
+    },
+    "securite_habitation": {
+      "description": "Réduction d'impôt pour mesures de sécurité contre le vol et l'incendie",
+      "taux_reduction": 0.50,
+      "plafond": 820,
+      "conditions": "Habitation propre; travaux agréés (serrures, alarme, détecteurs)",
+      "base_legale": "art. 145²⁴ CIR 92",
+      "note": "Réduction fédérale résiduelle — vérifier si la région a repris cet avantage"
+    },
+    "renovation_habitation_bailleur": {
+      "description": "Réduction d'impôt pour travaux de rénovation (propriétaires-bailleurs conventionnés)",
+      "taux_reduction": 0.45,
+      "plafond_travaux": 22060,
+      "conditions": [
+        "Convention de mise en location avec AIS (Agence Immobilière Sociale) ou similaire",
+        "Loyer modéré imposé pendant 9 ans",
+        "Travaux sur immeubles anciens (> 15 ans)"
+      ],
+      "base_legale": "art. 14526 CIR 92 (fédéral résiduel)"
+    }
+  },
+  "reductions_impot_regionales": {
+    "description": "Réductions fiscales régionales — applicables en complément de l'IPP fédéral",
+    "note": "Depuis 2015, les régions peuvent octroyer des réductions fiscales propres. Les montants varient par région et exercice.",
+    "flandre": {
+      "win_win_lening": {
+        "description": "Prêt gagnant-gagnant — prêt subordonné à une PME flamande",
+        "taux_reduction": 0.025,
+        "plafond_annuel": 75000,
+        "duree": "5 ou 10 ans",
+        "note": "Réduction 2,5% par an sur le capital prêté"
+      },
+      "energierenovatie": {
+        "description": "Réduction flamande pour rénovation énergétique (isolation, pompe à chaleur, etc.)",
+        "note": "Montants 2025 — vérifier https://www.vlaanderen.be/premies-en-subsidies"
+      }
+    },
+    "wallonie": {
+      "cheque_habitat": {
+        "description": "Chèque-habitat wallon pour emprunt hypothécaire habitation propre et unique",
+        "reference": "Voir epargne-pension-elt.json section cheque_habitat_regional"
+      },
+      "pretvert": {
+        "description": "Prêt vert wallon — réduction pour rénovation énergétique",
+        "note": "Via la Société Wallonne du Crédit Social (SWCS) — vérifier conditions actualisées"
+      }
+    },
+    "bruxelles": {
+      "renovation": {
+        "description": "Réduction pour travaux de rénovation en région bruxelloise",
+        "note": "Vérifier conditions sur https://finances.brussels"
+      }
+    }
+  },
+  "credit_impot_remboursable": {
+    "description": "Crédits d'impôt restituables (remboursés si supérieurs à l'impôt dû)",
+    "bonus_travail": {
+      "description": "Crédit d'impôt pour travailleurs à bas salaires (bonus à l'emploi fiscal)",
+      "base_legale": "art. 289ter CIR 92",
+      "nature": "Complète la réduction ONSS (bonus à l'emploi social)",
+      "montant_2025": "Variable selon salaire brut — max environ 800 € par an",
+      "remboursable": true,
+      "note": "Calcul automatique par le précompte professionnel ou via Tax-on-web"
+    },
+    "credit_impot_enfants": {
+      "description": "Crédit d'impôt pour contribuables avec enfants à charge sans revenus suffisants",
+      "base_legale": "art. 134 §2 CIR 92",
+      "nature": "Si la quotité exemptée pour enfants excède l'impôt dû, une partie est remboursée",
+      "remboursable": true
+    }
+  },
+  "options_pas_de_belgique": {
+    "description": "Avantages fiscaux français n'existant PAS en Belgique",
+    "items": [
+      "PEA (Plan d'Épargne en Actions) — pas d'équivalent belge",
+      "IFI (Impôt sur la Fortune Immobilière) — pas de taxe sur la fortune en Belgique",
+      "PER (Plan d'Épargne Retraite individuel) — remplacé par épargne-pension + ELT + EIP",
+      "BSPCE (Bons de Souscription de Parts de Créateur d'Entreprise) — pas d'équivalent direct",
+      "Niches Scellier / Pinel / Malraux — pas d'équivalent belge",
+      "LMNP / LMP — pas de régime loueur meublé non-professionnel en Belgique",
+      "PFU (flat tax 30%) — remplacé par PM (30%) libératoire en Belgique"
+    ]
+  },
+  "avantages_sociaux_exoneres": {
+    "description": "Avantages non imposables ou partiellement exonérés",
+    "chèques_repas": "Max 8 €/jour presté — voir atn-vehicules-be.json",
+    "eco_cheques": "Max 250 € par an — non imposables",
+    "cheques_sport_culture": "Max 100 € par an (sport) + 100 € (culture) — non imposables",
+    "intervention_transports_commun": "Exonérée si remboursement des frais réels de transport public domicile-travail",
+    "velo_domicile_travail": {
+      "indemnite_velo": "0,35 €/km — exonérée sans plafond en 2025",
+      "base_legale": "art. 38 §1 al. 1, 14° CIR 92"
+    }
+  }
+}

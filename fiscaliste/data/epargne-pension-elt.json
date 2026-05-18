@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "exercice": 2026,
+    "revenus": 2025,
+    "source": "art. 145¹ CIR 92",
+    "source_url": "https://finances.belgium.be/fr/particuliers/epargne-et-investissements/epargne-retraite",
+    "last_updated": "2026-05-15"
+  },
+  "epargne_pension": {
+    "description": "Réduction d'impôt pour épargne-pension individuelle (pensioensparen)",
+    "base_legale": "art. 145¹, 5° CIR 92",
+    "options": {
+      "option_basse": {
+        "versement_max": 1050,
+        "taux_reduction": 0.30,
+        "reduction_max": 315,
+        "description": "Option par défaut (revenus 2025) : 30 % de réduction jusqu'à 1 050 €"
+      },
+      "option_haute": {
+        "versement_min": 1050.01,
+        "versement_max": 1350,
+        "taux_reduction": 0.25,
+        "reduction_max": 337.50,
+        "description": "Option automatique si versement > 1 050 € : 25 % de réduction (revenus 2025)"
+      }
+    },
+    "attention": "Verser plus de 1 050 € fait basculer la TOTALITÉ du versement dans l'option haute à 25 %. Entre 1 050,01 € et 1 260 €, l'avantage est inférieur aux 315 € de l'option basse (piège fiscal) — soit verser exactement 1 050 €, soit verser plus de 1 260 € (idéalement 1 350 €).",
+    "seuil_optimal": "Si TMI > 25 % : verser 1 050 € (réduction 315 €) est souvent meilleur que 1 350 € (réduction 337,50 €) car le taux de réduction est plus élevé. L'option haute n'est gagnante qu'au-delà de 1 260 € versés.",
+    "produits_eligibles": [
+      "Compte d'épargne-pension (branche 26)",
+      "Assurance épargne-pension (branche 21)",
+      "Assurance épargne-pension liée à des fonds de placement (branche 23)"
+    ]
+  },
+  "epargne_long_terme": {
+    "description": "Réduction d'impôt pour épargne à long terme (ELT)",
+    "base_legale": "art. 145¹, 2° et 3° CIR 92",
+    "plafond": 2450,
+    "taux_reduction": 0.30,
+    "reduction_max": 735,
+    "produits_eligibles": [
+      "Assurance-vie individuelle (branche 21/23) : prime + frais de gestion",
+      "Remboursement en capital d'emprunt hypothécaire (anciens prêts avant 2016 pour habitation propre)"
+    ],
+    "note": "Depuis 2016, les nouveaux emprunts hypothécaires pour habitation propre relèvent du chèque-habitat régional (plus avantageux), pas de l'ELT fédéral. L'ELT reste applicable pour les anciens prêts.",
+    "cumul_epargne_pension": "L'ELT et l'épargne-pension sont deux paniers distincts — cumul possible jusqu'aux plafonds respectifs."
+  },
+  "cheque_habitat_regional": {
+    "description": "Réduction régionale pour habitation propre et unique (remplace le bonus logement fédéral depuis 2016)",
+    "flandre": {
+      "statut": "Supprimé depuis 01/01/2020 pour nouveaux prêts",
+      "note": "Woonbonus supprimé. Aucune réduction régionale pour nouveaux prêts en Flandre depuis 2020."
+    },
+    "wallonie": {
+      "statut": "Chèque-habitat wallon (AC2)",
+      "plafond_interets": 1520,
+      "plafond_capital": 760,
+      "taux_base": 0.40,
+      "note": "Vérifier les conditions actualisées sur https://finances.wallonie.be"
+    },
+    "bruxelles": {
+      "statut": "Réduction pour habitation propre (régime transitoire)",
+      "note": "Vérifier les conditions actualisées sur https://finances.brussels"
+    }
+  },
+  "eip": {
+    "description": "Engagement Individuel de Pension (EIP) pour dirigeants d'entreprise",
+    "nature": "Assurance-vie souscrite par la société au profit du dirigeant — charge déductible ISOC",
+    "regle_80_pct": {
+      "principe": "Pension légale + pension extra-légale ≤ 80 % de la dernière rémunération brute normale × années de carrière / 40",
+      "calcul": "Espace EIP = (80 % × rémunération) - pension légale estimée - autres avantages extralégaux"
+    },
+    "imposition_a_la_sortie": {
+      "taux_60_ans": 0.165,
+      "taux_65_ans": 0.10,
+      "base_de_calcul": "Capital constitué par les primes patronales",
+      "note": "Taux réduits 10 % à 65 ans si carrière complète et activité professionnelle maintenue. La cotisation ONSS personnelle s'applique aussi (3,55 %)."
+    },
+    "avantages": [
+      "Déductible ISOC en tant que charge professionnelle",
+      "Sortie à taux réduit (10 %/16,5 %)",
+      "Optimisation de la rémunération dirigeant"
+    ],
+    "limites": [
+      "Nécessite une rémunération régulière et suffisante",
+      "Prime plafonnée par la règle des 80 %",
+      "Cotisation ONSS de 8,86 % (cotisation spéciale) sur les primes patronales"
+    ]
+  }
+}

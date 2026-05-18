@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "exercice": 2026,
+    "source": "Code des droits d'enregistrement — régions Flandre, Wallonie, Bruxelles",
+    "source_url": "https://finances.belgium.be/fr/particuliers/habitation/achat-dhabitation/droits-denregistrement",
+    "last_updated": "2026-05-15",
+    "note": "Les droits d'enregistrement sur les transactions immobilières sont une matière régionale depuis 2014."
+  },
+  "regions": {
+    "flandre": {
+      "taux_general": 0.12,
+      "description": "Taux général de 12% (biens autres que l'habitation propre et unique)",
+      "base_legale": "Vlaamse Codex Fiscaliteit (VCF)",
+      "source_url": "https://belastingen.vlaanderen.be/registratiebelasting",
+      "taux_habitation_propre_unique": {
+        "taux": 0.02,
+        "depuis": "2025-01-01",
+        "description": "2% pour l'habitation propre et unique depuis le 01/01/2025 (auparavant 3%). La date de l'acte authentique est déterminante.",
+        "conditions": [
+          "Aucun autre bien immeuble en pleine propriété en Belgique ou à l'étranger",
+          "Établissement de la résidence principale dans les 3 ans"
+        ]
+      },
+      "abattement_modeste": {
+        "description": "Déduction complémentaire pour habitation modeste",
+        "montant": 1867,
+        "note": "Applicable si prix ≤ 220 000 € (240 000 € en zones tendues)"
+      },
+      "regime_remploi": {
+        "description": "Réduction pour remploi (meeneembaarheid) — report des droits déjà payés sur l'ancienne habitation",
+        "plafond_remploi": 13000,
+        "note": "Régime transitoire — applicable jusqu'à épuisement"
+      },
+      "renovation_energetique_1pct": {
+        "description": "Ancien taux réduit de 1% pour rénovation énergétique majeure",
+        "statut": "SUPPRIMÉ au 01/01/2025"
+      },
+      "accord_pret_hypothecaire": {
+        "taux": 0.01,
+        "description": "Droit hypothécaire flamand"
+      }
+    },
+    "wallonie": {
+      "taux_general": 0.125,
+      "description": "Taux général de 12,5% sur la valeur vénale",
+      "base_legale": "Code wallon des droits d'enregistrement — réforme au 01/01/2025",
+      "source_url": "https://www.wallonie.be/fr/actualites/reduction-des-droits-denregistrement-de-succession-et-de-donation",
+      "taux_habitation_propre_unique": {
+        "taux": 0.03,
+        "depuis": "2025-01-01",
+        "description": "3% pour l'habitation propre et unique depuis le 01/01/2025 (auparavant 12,5%).",
+        "conditions": [
+          "Habitation propre et unique (ou terrain à bâtir / habitation en construction ou sur plan)",
+          "Pas d'autre bien immeuble destiné à l'habitation en Belgique ou à l'étranger",
+          "Résidence principale dans les 3 ans (5 ans pour terrain/construction)"
+        ]
+      },
+      "regimes_supprimes_2025": {
+        "description": "Le chèque-habitat, les abattements et le taux réduit 'habitation modeste' sont SUPPRIMÉS au 01/01/2025"
+      },
+      "heritage_successif": {
+        "description": "Réduction pour revente dans les 2 ans de vente successive",
+        "taux_restituable": 0.36
+      },
+      "accord_pret_hypothecaire": {
+        "taux": 0.01,
+        "description": "Droit hypothécaire wallon"
+      }
+    },
+    "bruxelles": {
+      "taux_general": 0.125,
+      "description": "Taux général de 12,5% sur la valeur vénale",
+      "base_legale": "Ordonnance de la RBC du 22 novembre 2018",
+      "source_url": "https://finances.brussels/droits-enregistrement",
+      "abattement_habitation_unique": {
+        "description": "Abattement sur la valeur vénale (habitation propre et unique)",
+        "montant": 200000,
+        "taux_sur_abattement": 0,
+        "taux_sur_reste": 0.125,
+        "note": "Pour un bien à 300 000 €, l'abattement porte sur 200 000 € → droits calculés sur 100 000 €",
+        "conditions": [
+          "Habitation propre et unique",
+          "Pas d'autre bien immeuble en pleine propriété dans un État de l'EEE",
+          "Obligation d'occupation principale dans les 2 ans de l'acte authentique"
+        ]
+      },
+      "accord_pret_hypothecaire": {
+        "taux": 0.01,
+        "description": "Droit hypothécaire bruxellois"
+      }
+    }
+  },
+  "tva_immobilier_neuf": {
+    "description": "TVA au lieu des droits d'enregistrement pour les biens neufs (≤ 2 ans ou première occupation)",
+    "taux_standard": 0.21,
+    "taux_reduit": {
+      "taux": 0.06,
+      "conditions": [
+        "Démolition-reconstruction d'un logement privé (propriétaire-occupant)",
+        "Habitation sociale reconnue",
+        "Rénovation lourde dans certaines zones (depuis 2024)"
+      ]
+    },
+    "base_legale": "art. 1 §9 CTVA + circulaire TVA 2022"
+  },
+  "droit_hypothecaire": {
+    "description": "Droit d'inscription hypothécaire (anciennement 'droit de transcription')",
+    "taux": 0.01,
+    "base": "Capital garanti (et non valeur du bien)",
+    "note": "Commun aux 3 régions — droit fédéral résiduel"
+  },
+  "frais_d_acte": {
+    "description": "Honoraires et frais notariés indicatifs (tarif réglementé AR du 16 décembre 1950)",
+    "note": "Les honoraires notariaux sont fixés par arrêté royal et varient selon la valeur du bien. S'y ajoutent frais administratifs, cadastre, etc.",
+    "source": "https://www.notaire.be/fr/achat-vente-2/achat/frais-notaires"
+  }
+}

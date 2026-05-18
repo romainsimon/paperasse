@@ -1,325 +1,237 @@
-# Impôts et Taxes des Entreprises en France
+# Impôts et Taxes des Entreprises en Belgique
 
-## Impôt sur les Sociétés (IS)
+`last_updated: 2026-05-15`
 
-### Taux d'IS (2026)
+## Impôt des Sociétés (ISOC)
 
-| Tranche de bénéfice | Taux |
-|---------------------|------|
-| 0 - 42 500 € | 15% (PME) |
-| Au-delà de 42 500 € | 25% |
+### Taux d'ISOC (2026)
 
-> Note: Le PLF 2026 envisage de relever le plafond du taux réduit à 100 000 €. Vérifier l'état de la loi de finances.
+| Situation | Taux |
+|-----------|------|
+| Taux normal | **25%** (art. 215 al. 1 CIR 92) |
+| Taux réduit PME | **20%** sur les premiers 100 000 € de bénéfice imposable (art. 215 al. 2 CIR 92) |
 
-**Conditions pour le taux réduit PME (15%):**
-- CA HT < 10 M€
-- Capital entièrement libéré
-- Capital détenu à 75%+ par des personnes physiques
+**Conditions pour le taux réduit PME (20%) :**
+- Petite société au sens du CSA (art. 1:24)
+- Pas cotée en bourse
+- Au moins un dirigeant reçoit une rémunération minimale de 45 000 € (ou égale au résultat imposable si celui-ci est inférieur)
+- Capital détenu à 50%+ par des personnes physiques (condition principale)
 
 ### Calcul du Résultat Fiscal
 
 ```
 Résultat comptable
-+ Réintégrations (charges non déductibles)
-- Déductions (produits non imposables)
-- Déficits reportables
-= Résultat fiscal
++ Réintégrations (DNA — Dépenses Non Admises, art. 74 CIR 92)
+- Déductions (RDT, revenus définitivement taxés, art. 202 CIR 92)
+- Déductions pour investissements
+- Pertes fiscales antérieures reportées
+= Résultat fiscal imposable
 ```
 
-### Charges Non Déductibles (principales)
+### Dépenses Non Admises (DNA) — art. 74 CIR 92
 
 | Charge | Règle |
 |--------|-------|
-| Amendes et pénalités | Non déductibles |
-| Impôt sur les sociétés | Non déductible |
-| Taxe sur véhicules de société | Non déductible |
-| Dépenses somptuaires | Non déductibles (chasse, pêche, yachts) |
-| Rémunération excessive | Partie excessive non déductible |
-| Intérêts compte courant | Plafonnés (taux BCE + 2 points) |
+| Amendes et pénalités fiscales | Non admises |
+| ISOC lui-même | Non admis |
+| Cotisations patronales de voiture (taxe CO2) | Partiellement non admise |
+| Dépenses somptuaires (chasse, pêche, yachts) | Non admises |
+| Avantages anormaux et bénévoles | Non admis |
+| Frais de voiture | Déductibilité limitée (50% à 100% selon émissions CO2) |
+| Intérêts compte courant excessifs | Partie excessive non admise |
 
-### Acomptes IS
+### Revenus Définitivement Taxés (RDT) — art. 202 CIR 92
 
-**4 acomptes trimestriels:**
+Exonération des dividendes reçus de filiales belges ou étrangères qualifiées :
+- **Condition de participation** : au moins 10% du capital ou valeur d'acquisition ≥ 2 500 000 €
+- **Durée de détention** : au moins 12 mois en pleine propriété
+- **Quotité déductible** : 100% (exonération totale des dividendes qualifiés)
 
-| Acompte | Échéance | Base |
-|---------|----------|------|
-| 1er | 15 mars | 25% de l'IS N-1 |
-| 2ème | 15 juin | 25% de l'IS N-1 |
-| 3ème | 15 septembre | 25% de l'IS N-1 |
-| 4ème | 15 décembre | 25% de l'IS N-1 |
+Cette déduction RDT évite la double imposition économique des dividendes dans les groupes.
 
-**Solde:** 15 du 4ème mois suivant la clôture (15 mai pour clôture 31/12)
+### Versements Anticipés (VA) — ISOC
 
-**Dispense d'acomptes:** IS N-1 < 3 000 €
+**4 versements trimestriels :**
 
-### Comptabilisation IS
+| Versement | Échéance | Bonification accordée |
+|-----------|----------|-----------------------|
+| VA1 | **10 avril** | 9% × 3/12 = 2,25% |
+| VA2 | **10 juillet** | 9% × 2/12 = 1,50% |
+| VA3 | **10 octobre** | 9% × 1/12 = 0,75% |
+| VA4 | **20 décembre** | 0% |
 
-**Acompte:**
+**Bonification totale si paiement anticipé suffisant : 6,75%** (réduit l'ISOC dû).
+
+**Accroissement si pas de versements anticipés ou insuffisants : 9%** de l'ISOC dû (majoré sur la cotisation de base).
+
+> Exemple : ISOC dû = 10 000 €. Sans VA → accroissement de 900 € → ISOC total = 10 900 €.
+> Si VA suffisants → bonification de 675 € → ISOC total = 9 325 €.
+
+**Dispense de VA :** Première année civile d'activité d'une nouvelle société (dispense d'accroissement pour les 3 premiers exercices selon art. 218 CIR 92).
+
+### Comptabilisation ISOC
+
+**Versement anticipé :**
 ```
-  Débit 444 État - IS              X XXX,XX
-  Crédit 512 Banque                X XXX,XX
+  Débit 450 ISOC à payer             X XXX,XX
+  Crédit 550 Banque                  X XXX,XX
 ```
 
-**Charge IS en fin d'exercice:**
+**Charge ISOC en fin d'exercice :**
 ```
-  Débit 695 Impôt sur les bénéfices    X XXX,XX
-  Crédit 444 État - IS                 X XXX,XX
+  Débit 670 ISOC dû — exercice      X XXX,XX
+  Crédit 450 ISOC à payer            X XXX,XX
 ```
 
-### Report des Déficits
+### Déclaration ISOC 275
 
-**En avant (illimité):**
-- Report sur bénéfices futurs
-- Limité à 1 M€ + 50% du bénéfice excédant 1 M€
+La déclaration ISOC se dépose via **Tax-on-web entreprises** (https://www.taxonweb.be) dans un délai de **7 mois après la clôture de l'exercice**.
 
-**En arrière (carry-back):**
-- Report sur bénéfice N-1 uniquement
-- Limité à 1 M€
-- Génère une créance sur l'État
+Pour un exercice clos au 31/12/N : délai = **31 juillet N+1** (en pratique, la date exacte est fixée annuellement par arrêté royal).
+
+Formulaire : **275** (déclaration à l'ISOC) — remplace la liasse fiscale française 2065/2033.
+
+Dépôt obligatoirement électronique via Tax-on-web ou Biztax.
+
+### Report des Pertes Fiscales
+
+**En avant (illimité) :**
+- Report sur bénéfices futurs sans limitation de montant ni de durée
+- Pas de plafonnement belge contrairement à la règle française
+
+**Pas de carry-back en Belgique :**
+La législation belge ne prévoit pas de report en arrière des pertes (contrairement à la France).
 
 ---
 
-## Impôt sur le Revenu (IR) - Entreprises Individuelles
+## Précompte Professionnel (PP)
 
-### BIC (Bénéfices Industriels et Commerciaux)
+Le précompte professionnel est une retenue à la source effectuée par l'employeur sur les rémunérations des travailleurs et dirigeants.
 
-**Micro-BIC:**
-- Seuil: 188 700 € (ventes) ou 77 700 € (services)
-- Abattement: 71% (ventes) ou 50% (services)
+**Taux :** Variable selon le barème progressif IPP (Impôt des Personnes Physiques).
 
-**Réel simplifié:**
-- Obligations comptables allégées
-- Bilan et compte de résultat simplifiés
+**Paiement :** Mensuel, au plus tard le **15 du mois suivant** le paiement des rémunérations (via Intervat ou virement référencé).
 
-**Réel normal:**
-- Comptabilité complète
-- Liasse fiscale complète
+**Comptabilisation :**
+```
+Salaires bruts :
+  Débit 620 Rémunérations           X XXX,XX
+  Crédit 452 Précompte prof. à verser  XXX,XX
+  Crédit 454 Rémunérations à payer  X XXX,XX
 
-### BNC (Bénéfices Non Commerciaux)
+Cotisations ONSS patronales :
+  Débit 621 Charges ONSS            X XXX,XX
+  Crédit 455 ONSS à payer           X XXX,XX
+```
 
-**Micro-BNC:**
-- Seuil: 77 700 €
-- Abattement: 34%
+---
 
-**Déclaration contrôlée:**
-- Comptabilité recettes-dépenses
-- Déclaration 2035
+## Précompte Mobilier
 
-### Barème IR 2026 (revenus 2025)
+Retenue à la source sur les revenus de capitaux mobiliers (dividendes, intérêts).
+
+**Taux standard :** 30% sur les dividendes distribués (art. 269 CIR 92).
+
+**Taux réduit dividendes PME (VVPR bis) :** 15% après 2 ans / 20% après 1 an de détention des nouvelles actions (art. 269 §2 CIR 92).
+
+**Comptabilisation de la distribution de dividendes :**
+```
+Décision AG :
+  Débit 14 Bénéfice reporté         X XXX,XX
+  Crédit 489 Dividendes à payer     X XXX,XX
+
+Paiement (après PM 30%) :
+  Débit 489 Dividendes à payer      X XXX,XX
+  Crédit 453 Précompte mobilier       XXX,XX
+  Crédit 550 Banque                 X XXX,XX
+```
+
+---
+
+## Cotisation Distincte sur Avantages Anormaux
+
+En Belgique, les **avantages anormaux ou bénévoles** accordés à des tiers non-résidents (ou à certains bénéficiaires sans lien commercial justifié) sont soumis à une cotisation distincte (art. 219 CIR 92) de **100%** sur le montant non justifié.
+
+---
+
+## Impôt des Personnes Physiques (IPP) — Dirigeants
+
+Les dirigeants d'entreprise sont imposés à l'IPP sur leurs rémunérations.
+
+**Barème IPP 2026 (revenus 2025) :**
 
 | Tranche | Taux |
 |---------|------|
-| 0 - 11 600 € | 0% |
-| 11 601 - 29 579 € | 11% |
-| 29 580 - 84 577 € | 30% |
-| 84 578 - 181 917 € | 41% |
-| > 181 917 € | 45% |
+| 0 — 15 820 € | 25% |
+| 15 821 — 27 920 € | 40% |
+| 27 921 — 48 320 € | 45% |
+| > 48 320 € | 50% |
 
-Revalorisation de +0,9% par rapport à 2025.
+Plus les centimes additionnels communaux (en moyenne 7-8% de l'IPP).
 
----
-
-## Contribution Économique Territoriale (CET)
-
-### CFE (Cotisation Foncière des Entreprises)
-
-**Base:** Valeur locative des biens passibles de taxe foncière.
-
-**Cotisation minimum:** Fixée par la commune (entre 237 € et 7 349 € selon CA).
-
-**Exonérations:**
-- Première année de création
-- Artisans (sous conditions)
-- Certaines zones (ZRR, ZFU, QPV)
-
-**Échéance:** 15 décembre
-
-**Comptabilisation:**
-```
-  Débit 63511 CFE                  X XXX,XX
-  Crédit 512 Banque                X XXX,XX
-```
-
-### CVAE (Cotisation sur la Valeur Ajoutée des Entreprises)
-
-**Seuil d'assujettissement:** CA > 500 000 €
-
-**Seuil de paiement:** CA > 500 000 € et VA > 0
-
-**Taux 2026:** 0,28% max (suppression reportée à 2030)
-
-> Note: La baisse prévue dans le PLF 2026 a été abandonnée. Taux maintenu à 0,28%.
-
-**Calcul de la valeur ajoutée:**
-```
-+ Ventes de marchandises
-+ Production vendue
-+ Production stockée
-+ Production immobilisée
-+ Subventions d'exploitation
-+ Autres produits de gestion courante
-+ Transferts de charges d'exploitation
-- Achats de marchandises (variation de stock déduite)
-- Achats de matières premières (variation de stock déduite)
-- Autres achats et charges externes (sauf loyers, redevances crédit-bail)
-= Valeur Ajoutée
-```
-
-**Échéances:**
-- Acompte 1: 15 juin (50%)
-- Acompte 2: 15 septembre (50%)
-- Solde: Mai N+1 avec déclaration 1330-CVAE
+**Déclaration IPP :** Via Tax-on-web (https://www.taxonweb.be), généralement juin-juillet de l'année suivante.
 
 ---
 
-## Autres Impôts et Taxes
+## Taxe sur les Véhicules
 
-### Taxe sur les Véhicules de Société (TVS)
+**Taxe de mise en circulation (TMC) :** Taxe unique à l'immatriculation, perçue par les régions.
 
-**Deux composantes:**
-1. **Composante CO2:** selon émissions ou puissance fiscale
-2. **Composante polluants atmosphériques:** selon type de carburant et année
+**Taxe de circulation (TC) :** Taxe annuelle sur possession du véhicule, perçue par les régions.
 
-**Exonérations:**
-- Véhicules électriques
-- Véhicules hybrides (sous conditions)
+**Cotisation patronale CO2 :** Pour les véhicules de société mis à disposition, cotisation trimestrielle calculée sur les émissions CO2 (art. 38 §3quater CIR 92). Non déductible ISOC.
 
-**Période:** Janvier à décembre
-**Échéance:** Janvier N+1 (annexe 2855 à la déclaration CA3)
-
-**Comptabilisation (non déductible IS):**
-```
-  Débit 63514 TVS                  X XXX,XX
-  Crédit 512 Banque                X XXX,XX
-```
-
-### Taxe sur les Salaires
-
-**Assujettissement:** Employeurs non soumis à TVA ou soumis partiellement.
-
-**Taux 2026:**
-| Tranche salaire annuel | Taux |
-|------------------------|------|
-| 0 - 9 071 € | 4,25% |
-| 9 071 - 18 111 € | 8,50% |
-| > 18 111 € | 13,60% |
-
-> Tranches revalorisées selon l'inflation.
-
-**Déclaration:** 2502 annuelle
-
-### Contribution Sociale de Solidarité des Sociétés (C3S)
-
-**Seuil:** CA HT > 19 M€
-
-**Taux:** 0,16%
-
-**Échéance:** 15 mai
-
-### Taxe d'Apprentissage
-
-**Taux:** 0,68% de la masse salariale (0,44% en Alsace-Moselle)
-
-**Composantes:**
-- Part principale: 87% (financement formations)
-- Solde: 13% (versements aux établissements)
-
-### Formation Professionnelle Continue
-
-**Taux:**
-- < 11 salariés: 0,55%
-- ≥ 11 salariés: 1%
-
-Versée à l'OPCO.
+**Avantage de toute nature (ATN) voiture :** L'utilisation privée d'un véhicule de société donne lieu à un ATN imposable à l'IPP du bénéficiaire, calculé selon la formule : `(CO2 référence / CO2 voiture) × valeur catalogue × 6/7 × %utilisation privée`.
 
 ---
 
-## Crédits et Réductions d'Impôt
+## Crédits et Déductions Fiscales Belges
 
-### Crédit d'Impôt Recherche (CIR)
+### Déduction pour Investissements (DPI)
 
-**Taux:** 30% des dépenses de R&D (5% au-delà de 100 M€)
+**Taux de base :** Variable selon exercice et type d'investissement.
+**Petites sociétés (art. 68 CIR 92) :** Majoré — vérifier le taux en vigueur auprès du SPF Finances.
 
-**Dépenses éligibles:**
-- Salaires chercheurs et techniciens
-- Amortissement matériel de recherche
-- Brevets
-- Sous-traitance R&D
+**Investissements éligibles :**
+- Immobilisations corporelles ou incorporelles nouvellement acquises
+- Affectées à l'activité professionnelle en Belgique
+- Amortissables
 
-**Plafond:** Pas de plafond
+### Déduction des Intérêts Notionnels (anciens exercices)
 
-### Crédit d'Impôt Innovation (CII) - PME
+Ce régime a été supprimé (dernier exercice d'application progressivement réduit). Il permettait de déduire un intérêt fictif sur les fonds propres.
 
-**Taux:** 20% des dépenses d'innovation
+### Déduction INNOVATION (patent box)
 
-**Plafond:** 400 000 € de dépenses éligibles
-
-### Crédit d'Impôt Formation Dirigeants
-
-**Montant:** Heures de formation × SMIC horaire
-**Plafond:** 40 heures/an
-
-**Doublé pour micro-entreprises.**
-
----
-
-## Calendrier Fiscal Annuel
-
-### Janvier
-- TVS (déclaration et paiement)
-- CFE solde si > 3 000 €
-
-### Février
-- DSN janvier (cotisations sociales)
-
-### Mars
-- Acompte IS 1 (15 mars)
-- Liasse fiscale exercices clos 30/11
-
-### Avril
-- Liasse fiscale exercices clos 31/12 (2ème jour ouvré suivant 1er mai)
-
-### Mai
-- Solde IS exercices clos 31/12 (15 mai)
-- CA12 régime simplifié TVA
-- CVAE solde et déclaration
-
-### Juin
-- Acompte IS 2 (15 juin)
-- CVAE acompte 1 (15 juin)
-
-### Juillet
-- Acompte TVA régime simplifié
-
-### Septembre
-- Acompte IS 3 (15 septembre)
-- CVAE acompte 2 (15 septembre)
-
-### Décembre
-- Acompte IS 4 (15 décembre)
-- CFE (15 décembre)
-- Acompte TVA régime simplifié
+Déduction de **85%** des revenus nets provenant de brevets et droits de propriété intellectuelle développés (art. 205/1 à 205/4 CIR 92).
 
 ---
 
 ## Obligations Déclaratives
 
-### Liasse Fiscale (formulaires principaux)
+### Fiches fiscales (281.xx)
 
-**IS:**
-- 2065: Déclaration de résultat
-- 2050 à 2059: Tableaux comptables et fiscaux
+Les rémunérations versées à des tiers (dirigeants, travailleurs, prestataires) doivent faire l'objet de fiches fiscales annuelles :
+- **Fiche 281.10** : rémunérations des travailleurs
+- **Fiche 281.20** : rémunérations des dirigeants d'entreprise
+- **Fiche 281.50** : commissions, courtages, honoraires
 
-**IR (BIC réel):**
-- 2031: Déclaration de résultat
-- 2050 à 2059: Tableaux
+**Délai :** Avant le 1er mars de l'année suivante (via Belcotax-on-web).
 
-**IR (BNC):**
-- 2035: Déclaration de résultat
+### Déclaration ISOC 275
 
-### Délais
+| Clôture | Délai dépôt |
+|---------|-------------|
+| 31/12 | 31 juillet N+1 (en principe) |
+| Autre date | 7 mois après la clôture |
 
-| Clôture | Échéance liasse |
-|---------|-----------------|
-| 31/12 | 2ème jour ouvré après 1er mai |
-| Autre date | 3 mois après clôture |
+Dépôt via : Tax-on-web entreprises (https://www.taxonweb.be) ou mandataire fiscal.
+
+---
+
+## Ressources
+
+- **SPF Finances** : https://finances.belgium.be
+- **Tax-on-web** : https://www.taxonweb.be
+- **Fisconetplus (législation fiscale belge)** : https://www.fisconetplus.be
+- **CIR 92 (Code des Impôts sur les Revenus 1992)** : texte coordonné sur fisconetplus.be

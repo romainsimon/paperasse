@@ -1,8 +1,10 @@
-# Workflow de Clôture Annuelle
+# Workflow de Clôture Annuelle (Belgique)
 
-Guide d'exécution complet pour la clôture des comptes annuels d'une entreprise française soumise à l'IS.
+Guide d'exécution complet pour la clôture des comptes annuels d'une société belge soumise à l'ISOC.
 
-Ce workflow couvre les 12 étapes de la clôture, de la collecte des données au dépôt au greffe, en s'appuyant sur les scripts du repo pour automatiser les sorties (FEC, états financiers, PDFs, formulaires fiscaux).
+Ce workflow couvre les 12 étapes de la clôture, de la collecte des données au dépôt à la Centrale des Bilans BNB, en s'appuyant sur les scripts du repo pour automatiser les sorties (états financiers, livre-journal, PDFs, déclaration ISOC).
+
+`last_updated: 2026-05-15`
 
 ---
 
@@ -11,23 +13,23 @@ Ce workflow couvre les 12 étapes de la clôture, de la collecte des données au
 ```
 Phase 1 : Préparation des données
   1. Collecte des transactions (banques, plateformes de paiement)
-  2. Catégorisation des dépenses (mappage vendor → PCG)
+  2. Catégorisation des dépenses (mappage vendor → PCMN)
   3. Rapprochement bancaire
 
 Phase 2 : Écritures d'inventaire
   4. Immobilisations et amortissements
-  5. Cut-off (CCA, PCA, CAP, PAR)
-  6. Provisions et dépréciations
-  7. IS (Impôt sur les sociétés)
+  5. Cut-off (470 charges à reporter, 493 produits à reporter, 492 charges à imputer, 472 produits acquis)
+  6. Réductions de valeur et provisions
+  7. ISOC (Impôt des Sociétés)
 
 Phase 3 : Génération des états
-  8. Journal des écritures (journal-entries.json)
+  8. Journal des écritures (journal-entries.json — comptes PCMN)
   9. États financiers (Bilan, Compte de résultat, Balance, Grand livre)
-  10. FEC (Fichier des Écritures Comptables)
+  10. Livre-journal normalisé belge (export archivage)
 
 Phase 4 : Déclarations et dépôt
-  11. Liasse fiscale (2065-SD + 2033-A à 2033-D)
-  12. Documents de dépôt (PV, Déclaration confidentialité, Dépôt greffe)
+  11. Déclaration ISOC 275 (Tax-on-web / Biztax)
+  12. Documents de dépôt (PV AG, comptes annuels BNB, Centrale des Bilans)
   13. Génération des PDFs
 ```
 
@@ -47,8 +49,8 @@ Phase 4 : Déclarations et dépôt
 | Autre banque | Export CSV/OFX depuis l'espace en ligne | Transactions avec date, montant, libellé |
 | Stripe | `npm run fetch:stripe` (connecteur intégré) | JSON dans `data/transactions/stripe-*.json` |
 | PayPal / Mollie / autre | Export depuis la plateforme | Charges, payouts, fees, refunds |
-| Factures fournisseurs | Google Drive / email | PDF avec montant, TVA, date |
-| Factures clients | Logiciel facturation | Numéro, montant, date, client |
+| Factures fournisseurs | Boîte mail / Mercurius Peppol | PDF ou XML Peppol BIS 3.0 avec montant, TVA, date |
+| Factures clients | Logiciel facturation / Mercurius | Numéro, montant, date, client, numéro BCE |
 
 **Connecteurs intégrés** :
 
@@ -68,33 +70,33 @@ node integrations/stripe/fetch.js --start 2025-01-01 --end 2025-12-31
 
 ### Étape 2 : Catégorisation des dépenses
 
-**Objectif** : Associer chaque transaction à un compte PCG.
+**Objectif** : Associer chaque transaction à un compte PCMN.
 
-**Règles de catégorisation** :
+**Règles de catégorisation (PCMN belge) :**
 
-| Type de dépense | Compte PCG | Exemples |
-|----------------|------------|----------|
-| API / services cloud | 604 | Anthropic, OpenAI, fal.ai |
-| Hébergement / SaaS | 6135 | Hetzner, Vercel, MongoDB, GitHub |
-| Bureau domicile | 6132 | Quote-part charges locatives |
-| Documentation | 6181 | Livres, formations |
-| Intermédiaires | 622 | Comptable, freelances |
-| Publicité | 6231 | Annonces, directories |
-| Frais bancaires | 627 | Frais bancaires, commissions |
-| Commissions paiement | 6278 | Frais Stripe par transaction |
-| Domaines | 651 | Noms de domaine |
-| Chargebacks | 654 | Litiges Stripe perdus |
-| Immobilisations (>500 EUR) | 2183 | Matériel informatique |
-| SaaS revenue | 706 | Abonnements clients |
-| Ventes ponctuelles | 707 | Ventes de marchandises |
-| Cession d'actif | 775 | Vente de domaine |
+| Type de dépense | Compte PCMN | Exemples |
+|----------------|-------------|----------|
+| API / services cloud (sous-traitance) | 604 | Anthropic, OpenAI, fal.ai |
+| Hébergement / SaaS | 618 | Hetzner, Vercel, MongoDB, GitHub |
+| Bureau domicile (quote-part) | 610 | Quote-part charges locatives |
+| Documentation | 615 | Livres, formations |
+| Honoraires expert-comptable | 619 | Honoraires comptable |
+| Publicité | 619 | Annonces, directories |
+| Frais bancaires | 619 | Frais bancaires, commissions |
+| Commissions paiement | 619 | Frais Stripe par transaction |
+| Assurances | 613 | RC professionnelle |
+| Téléphone et internet | 617 | Abonnement mobile, internet |
+| Immobilisations (> seuil) | 241 | Matériel informatique |
+| CA — Prestations de services | 701 | Abonnements SaaS clients |
+| CA — Ventes de marchandises | 700 | Ventes de produits |
+| Subsides d'exploitation | 740 | Aides VLAIO, SOGEPA, hub.brussels |
 
 **Cas spéciaux** :
 
-- **Amazon** : distinguer fournitures (<500 EUR → 606) des immobilisations (>500 EUR → 2183)
-- **Stripe fees** : enregistrer le CA brut en 706 et les frais en 6278 (pas le net)
-- **Transferts internes** : Neutraliser (débit banque A, crédit banque B)
-- **Devises** : Convertir en EUR au taux du jour ou au taux de change de la plateforme de paiement
+- **Amazon** : distinguer fournitures (< seuil → 615) des immobilisations (> seuil → 241)
+- **Stripe fees** : enregistrer le CA brut en 701 et les frais en 619 (pas le net)
+- **Transferts internes** : Neutraliser (débit banque A, crédit banque B via compte 58)
+- **Devises** : Convertir en EUR au taux du jour ou au taux de change de la plateforme
 
 ### Étape 3 : Rapprochement bancaire
 
@@ -104,7 +106,7 @@ node integrations/stripe/fetch.js --start 2025-01-01 --end 2025-12-31
 Solde bancaire (relevé au 31/12)
 + Opérations comptabilisées non débitées
 - Opérations débitées non comptabilisées
-= Solde comptable (compte 512)
+= Solde comptable (compte 550)
 ```
 
 **Avec les connecteurs Qonto + Stripe** :
@@ -115,9 +117,9 @@ Le rapprochement peut être largement automatisé en croisant les données des d
 
 2. **Transactions Qonto sans Stripe** : Ce sont les dépenses directes (fournisseurs, charges, virements) qui constituent les charges et immobilisations de l'exercice.
 
-3. **Stripe fees** : Les frais Stripe ne transitent pas par Qonto (ils sont retenus sur les charges). Ils apparaissent dans les balance transactions Stripe avec `type: "stripe_fee"` et doivent être comptabilisés en charges (627/6278).
+3. **Stripe fees** : Les frais Stripe ne transitent pas par Qonto. Ils apparaissent dans les balance transactions Stripe avec `type: "stripe_fee"` et sont comptabilisés en charges (619).
 
-4. **Solde final** : Le solde Qonto au 31/12 doit correspondre au solde du compte 512 dans le journal des écritures.
+4. **Solde final** : Le solde Qonto au 31/12 doit correspondre au solde du compte 550 dans le journal des écritures.
 
 **Contrôle** : L'écart doit être nul. Si écart, identifier et régulariser.
 
@@ -127,115 +129,112 @@ Le rapprochement peut être largement automatisé en croisant les données des d
 
 ### Étape 4 : Immobilisations et amortissements
 
-**Seuil d'immobilisation** : 500 EUR HT (ou TTC si franchise TVA).
+**Seuil d'immobilisation** : Défini dans la politique comptable (généralement 250 EUR ou 500 EUR HTVA). Les biens en dessous du seuil sont comptabilisés en charge.
 
 **Méthode standard** : Linéaire. Durées usuelles :
-- Matériel informatique : 3 ans
-- Logiciels : 1-3 ans
-- Mobilier : 5-10 ans
+- Matériel informatique : 3-5 ans (compte 241)
+- Logiciels : 3-5 ans (compte 211)
+- Mobilier de bureau : 5-10 ans (compte 240)
 
 **Prorata temporis** : Première année au prorata du nombre de jours d'utilisation.
 
 ```
-Dotation = (Valeur brute / Durée en années) x (Jours d'utilisation / 365)
+Dotation = (Valeur brute / Durée en années) × (Jours d'utilisation / 365)
 ```
 
 **Écriture** :
 ```
-  Débit  6811  Dotations aux amortissements     XXX,XX
-  Crédit 28XX  Amortissements immobilisations    XXX,XX
+  Débit  630  Dotations aux amortissements    XXX,XX
+  Crédit 28X  Amortissements immobilisations   XXX,XX
 ```
 
 ### Étape 5 : Cut-off (Séparation des exercices)
 
-#### Produits Constatés d'Avance (PCA) — CRITIQUE pour SaaS
+#### Produits à Reporter (493) — CRITIQUE pour SaaS
 
-Les PCA représentent la part des revenus encaissés sur l'exercice N mais qui couvrent une période en N+1. C'est le point de cut-off le plus important pour une entreprise SaaS avec des abonnements annuels.
+Les produits à reporter représentent la part des revenus encaissés sur l'exercice N mais qui couvrent une période en N+1. C'est le point de cut-off le plus important pour une entreprise SaaS avec des abonnements annuels.
 
 **Exemple** : Abonnement annuel de 120 EUR payé le 01/10/2025, couvre 01/10/2025 au 30/09/2026.
-- Part N : 92 jours (oct-déc) = 120 x 92/365 = 30,25 EUR (revenue)
-- Part N+1 : 273 jours (jan-sep) = 120 x 273/365 = 89,75 EUR (PCA)
+- Part N : 92 jours (oct-déc) = 120 × 92/365 = 30,25 EUR (chiffre d'affaires)
+- Part N+1 : 273 jours (jan-sep) = 120 × 273/365 = 89,75 EUR (produit à reporter)
 
 **Calcul** :
 ```
-PCA = Montant total x (Jours couvrant N+1 / Durée totale de la période)
+Produit à reporter = Montant total × (Jours couvrant N+1 / Durée totale de la période)
 ```
-
-**Pour les abonnements en devise étrangère (USD)** :
-Utiliser le montant EUR réel reçu (taux de change appliqué à la transaction par la plateforme de paiement), pas une conversion théorique.
 
 **Écriture** :
 ```
-  Débit  706   Prestations de services      XXX,XX
-  Crédit 487   Produits constatés d'avance   XXX,XX
+  Débit  701   Prestations de services        XXX,XX
+  Crédit 493   Produits à reporter             XXX,XX
 ```
 
-**Extourne au 01/01/N+1** (écriture d'ouverture) :
+**Extourne au 01/01/N+1** :
 ```
-  Débit  487   Produits constatés d'avance   XXX,XX
-  Crédit 706   Prestations de services      XXX,XX
-```
-
-#### Charges Constatées d'Avance (CCA)
-
-Charges payées en N mais concernant N+1 (assurance annuelle, abonnement annuel payé d'avance).
-
-```
-  Débit  486   Charges constatées d'avance   XXX,XX
-  Crédit 6XX   Compte de charge              XXX,XX
+  Débit  493   Produits à reporter             XXX,XX
+  Crédit 701   Prestations de services        XXX,XX
 ```
 
-#### Charges à Payer (CAP)
+#### Charges à Reporter (470)
+
+Charges payées en N mais concernant N+1.
+
+```
+  Débit  470   Charges à reporter             XXX,XX
+  Crédit 6XX   Compte de charge               XXX,XX
+```
+
+#### Charges à Imputer (492)
 
 Charges de N non encore facturées (factures fournisseurs non parvenues).
 
 ```
-  Débit  6XX   Charge                        XXX,XX
-  Crédit 408   Fournisseurs — FNP            XXX,XX
+  Débit  6XX   Charge                         XXX,XX
+  Crédit 492   Charges à imputer              XXX,XX
 ```
 
-#### Produits à Recevoir (PAR)
+#### Produits Acquis (472)
 
-Revenus de N non encore facturés (factures à établir).
+Revenus de N non encore facturés.
 
 ```
-  Débit  418   Clients — FAE                 XXX,XX
-  Crédit 7XX   Produit                       XXX,XX
+  Débit  400   Clients — FAE                  XXX,XX
+  Crédit 7XX   Produit                        XXX,XX
 ```
 
-### Étape 6 : Provisions et dépréciations
+### Étape 6 : Réductions de valeur et provisions
 
-- Provisions pour risques : litiges en cours, garanties
-- Dépréciation des créances : clients douteux
-- Dépréciation des stocks : stocks obsolètes
+- Provisions pour litiges (195) et autres risques (199)
+- Réductions de valeur sur créances douteuses (409)
+- Réductions de valeur sur stocks (390)
 
-### Étape 7 : Impôt sur les sociétés
+### Étape 7 : Impôt des Sociétés (ISOC)
 
 **Calcul du résultat fiscal** :
 ```
-Résultat comptable (avant IS)
-+ Réintégrations extra-comptables (charges non déductibles)
-- Déductions extra-comptables
-- Déficits antérieurs reportés
+Résultat comptable (avant ISOC)
++ Réintégrations extra-comptables (DNA — art. 74 CIR 92)
+- Déductions extra-comptables (RDT — art. 202 CIR 92, DPI)
+- Pertes fiscales antérieures reportées
 = Résultat fiscal
 ```
 
-**Taux IS (2025)** :
+**Taux ISOC (2026)** :
 
 | Tranche | Taux | Conditions |
 |---------|------|------------|
-| 0 à 42 500 EUR | 15% | PME : CA < 10M, capital libéré, 75%+ personnes physiques |
-| Au-delà | 25% | Taux normal |
+| 0 à 100 000 EUR | 20% | Taux réduit PME (art. 215 al. 2 CIR 92) |
+| Au-delà | 25% | Taux normal (art. 215 al. 1 CIR 92) |
 
 **Prorata pour exercice court** :
 ```
-Seuil taux réduit = 42 500 x (Jours exercice / 365)
+Seuil taux réduit = 100 000 × (Jours exercice / 365)
 ```
 
 **Écriture** :
 ```
-  Débit  695   Impôt sur les bénéfices       X XXX,XX
-  Crédit 444   État — IS                     X XXX,XX
+  Débit  670   ISOC dû — exercice courant     X XXX,XX
+  Crédit 450   ISOC à payer                   X XXX,XX
 ```
 
 ---
@@ -246,7 +245,7 @@ Seuil taux réduit = 42 500 x (Jours exercice / 365)
 
 Consolider toutes les écritures dans `data/journal-entries.json`.
 
-**Format standard** :
+**Format standard (comptes PCMN)** :
 ```json
 [
   {
@@ -256,8 +255,8 @@ Consolider toutes les écritures dans `data/journal-entries.json`.
     "ref": "REF-001",
     "label": "Achat fournitures",
     "lines": [
-      { "account": "606", "debit": 45.99, "credit": 0 },
-      { "account": "5121", "debit": 0, "credit": 45.99 }
+      { "account": "615", "debit": 45.99, "credit": 0 },
+      { "account": "550", "debit": 0, "credit": 45.99 }
     ]
   }
 ]
@@ -280,8 +279,8 @@ node scripts/generate-statements.js
 ```
 
 Génère dans `output/` :
-- `bilan.md` — Bilan (Actif / Passif)
-- `compte-de-resultat.md` — Compte de résultat (Produits / Charges / Résultat)
+- `bilan.md` — Bilan (Actif / Passif) selon schéma PCMN
+- `compte-de-resultat.md` — Compte de résultat
 - `balance.md` — Balance générale (tous les comptes avec soldes)
 
 **Contrôles automatiques** :
@@ -289,16 +288,17 @@ Génère dans `output/` :
 - Bilan équilibré (actif = passif)
 - Résultat P&L = résultat au bilan
 
-### Étape 10 : FEC
+### Étape 10 : Livre-journal normalisé belge
 
 ```bash
-node scripts/generate-fec.js
+node scripts/generate-livre-journal.js
 ```
 
-Génère `output/[SIREN]FEC[YYYYMMDD].txt`.
+Génère `output/livre-journal-YYYY.txt`.
+
+Il n'existe pas en Belgique de format FEC standardisé comme en France. Le livre-journal belge est un export chronologique du journal, conforme à l'obligation de l'art. 3 de la loi du 17 juillet 1975 (tenue d'un livre-journal).
 
 **Contrôles automatiques** :
-- 18 colonnes format pipe
 - Équilibre global
 - Équilibre par écriture
 - Numérotation séquentielle
@@ -307,33 +307,38 @@ Génère `output/[SIREN]FEC[YYYYMMDD].txt`.
 
 ## Phase 4 : Déclarations et dépôt
 
-### Étape 11 : Liasse fiscale
+### Étape 11 : Déclaration ISOC 275
 
-Utiliser le template `templates/liasse-fiscale-2033.md` pour préparer :
-- **2065-SD** : Déclaration de résultat (utiliser `templates/2065-sd.html`)
-- **2033-A** : Bilan simplifié
-- **2033-B** : Compte de résultat simplifié
-- **2033-C** : Immobilisations et amortissements
-- **2033-D** : Provisions et déficits
+Déposer via **Tax-on-web entreprises** (https://www.taxonweb.be) ou via **Biztax** (logiciels comptables agréés) :
+
+**Documents à préparer :**
+- Bilan (schéma complet, abrégé ou micro selon taille)
+- Compte de résultat
+- Annexes (mouvements des immobilisations, des provisions, des capitaux propres)
+- Calcul du résultat fiscal (DNA, RDT, déductions)
+- Formulaire 275 (déclaration ISOC proprement dite)
 
 **Vérification croisée** :
-- 2033-A actif = 2033-A passif
-- 2033-B résultat = 2033-A résultat (case DI)
-- 2033-C valeurs fin = 2033-A immobilisations brutes
-- 2065 résultat fiscal cohérent avec 2033-B + réintégrations
+- Bilan actif = Bilan passif
+- Résultat compte de résultat = résultat repris dans capitaux propres
+- Résultat fiscal cohérent avec résultat comptable + ajustements
 
-### Étape 12 : Documents de dépôt
+**Délai :** 7 mois après la clôture (31 juillet pour clôture 31/12).
 
-**Templates disponibles dans `templates/`** :
+### Étape 12 : Documents de dépôt BNB
 
-| Document | Template | Obligatoire |
-|----------|----------|-------------|
-| Comptes annuels (Bilan + CR + Annexe) | Générés par le script | Oui |
-| Décision d'approbation des comptes | `approbation-comptes.md` | Oui |
-| Déclaration de confidentialité | `declaration-confidentialite.html` | Optionnel (petite entreprise) |
-| Liasse fiscale 2065+2033 | `liasse-fiscale-2033.md` + `2065-sd.html` | Oui (au SIE) |
-| Checklist dépôt greffe | `depot-greffe-checklist.md` | Aide interne |
-| FEC | Généré par le script | À conserver (10 ans) |
+**Documents à déposer à la Centrale des Bilans BNB** (https://cri.nbb.be) :
+
+| Document | Obligatoire |
+|----------|-------------|
+| Comptes annuels (Bilan + CR + Annexes) selon schéma | Oui |
+| Décision d'approbation des comptes (PV AG ou décision associé unique) | Oui |
+| Rapport de gestion | Si grande société |
+| Rapport du commissaire aux comptes | Si société avec commissaire |
+
+**Délai :** 7 mois après la clôture (31 juillet pour clôture 31/12).
+
+**Dépôt :** Obligatoirement électronique via le portail BNB. Possible via mandataire (expert-comptable, réviseur d'entreprises).
 
 ### Étape 13 : PDFs
 
@@ -345,20 +350,19 @@ Convertit tous les .md du dossier `output/` en PDFs professionnels avec en-tête
 
 ---
 
-## Échéances
+## Échéances (exercice clos 31/12)
 
-| Date | Déclaration | Formulaire |
-|------|-------------|------------|
-| J+90 (3 mois après clôture) | Liasse fiscale | 2065 + 2033 A/B/C/D via EDI-TDFC |
-| 15 mai (exercice cal.) | Paiement IS solde | 2572-SD (télépaiement) |
-| J+180 (6 mois après clôture) | Approbation comptes | Décision associé unique ou PV d'AG |
-| J+180 + 30j | Dépôt greffe | Comptes annuels + PV + décl. confidentialité |
-
-Pour un exercice clos le 31/12 :
-- Liasse fiscale : **2e jour ouvré après le 1er mai** (~3-4 mai)
-- Paiement IS : **15 mai**
-- Approbation : **30 juin** au plus tard
-- Dépôt greffe : **30 juillet** au plus tard
+| Date | Obligation | Portail |
+|------|------------|---------|
+| 30 juin N+1 | Approbation comptes (AG) | — |
+| 31 juillet N+1 | Déclaration ISOC 275 | Tax-on-web / Biztax |
+| 31 juillet N+1 | Dépôt comptes annuels BNB | cri.nbb.be |
+| 20 avril (VA1) | Versement anticipé ISOC 1 | MyMinfin |
+| 10 juillet (VA2) | Versement anticipé ISOC 2 | MyMinfin |
+| 10 octobre (VA3) | Versement anticipé ISOC 3 | MyMinfin |
+| 20 décembre (VA4) | Versement anticipé ISOC 4 | MyMinfin |
+| 31 mars N+1 | Listing TVA annuel clients | Intervat |
+| 1er mars N+1 | Fiches fiscales 281.xx | Belcotax-on-web |
 
 ---
 
@@ -367,21 +371,22 @@ Pour un exercice clos le 31/12 :
 ### Premier exercice
 
 - L'exercice peut être différent de 12 mois (ex: 25/02 au 31/12 = 309 jours)
-- Prorata pour les amortissements ET pour le seuil IS à taux réduit
-- Les dépenses payées avant la création (max 6 mois) peuvent être reprises via le compte courant d'associé (455)
+- Prorata pour les amortissements ET pour le seuil ISOC à taux réduit
+- Dispense d'accroissement ISOC pour les 3 premiers exercices (art. 218 CIR 92)
+- Les dépenses payées avant la constitution (frais d'établissement) peuvent être activées (compte 200)
 
 ### Franchise TVA
 
 - Pas de TVA collectée ni déductible
-- Seuil : 36 800 EUR pour les services (2025), 37 500 EUR (2026)
+- Seuil : 25 000 EUR de CA annuel (art. 56bis CTVA)
 - Surveiller le CA cumulé mois par mois
-- Si dépassement : obligation de collecte à partir de la date de dépassement
+- Si dépassement : immatriculation TVA via formulaire 604A
 
-### Compte courant d'associé (455)
+### Compte courant associé (456)
 
 Le compte courant enregistre les avances et remboursements entre l'associé et la société :
-- Charges pré-constitution (délai : 6 mois après création)
-- Bureau domicile (quote-part justifiée par surface et charges)
+- Avances de fonds à la société
+- Rémunérations non prélevées
 - Dépenses professionnelles payées sur compte personnel
 
 **Documentation** : chaque mouvement doit être justifié par une facture ou un calcul détaillé.
@@ -390,8 +395,8 @@ Le compte courant enregistre les avances et remboursements entre l'associé et l
 
 Pour les revenus en devise étrangère (USD, GBP, etc.) :
 - Utiliser le taux de change EUR réel de la plateforme de paiement (balance_transaction)
-- Ne pas utiliser un taux moyen ou le taux BCE
-- Le taux de la plateforme inclut déjà la conversion et est celui du jour effectif
+- Comptabiliser les écarts de change en 654 (pertes) ou 754 (gains)
+- Ne pas utiliser un taux moyen ou le taux BCE de façon rétroactive
 
 ---
 
@@ -400,19 +405,30 @@ Pour les revenus en devise étrangère (USD, GBP, etc.) :
 | Script | Input | Output |
 |--------|-------|--------|
 | `generate-statements.js` | `data/journal-entries.json` + `company.json` | `output/bilan.md`, `compte-de-resultat.md`, `balance.md` |
-| `generate-fec.js` | `data/journal-entries.json` + `company.json` | `output/[SIREN]FEC[YYYYMMDD].txt` |
+| `generate-livre-journal.js` | `data/journal-entries.json` + `company.json` | `output/livre-journal-YYYY.txt` |
 | `generate-pdfs.js` | `output/*.md` + `company.json` + `templates/` | `output/pdf/*.pdf` |
 
 **Ce qui est automatisé** :
-- Génération du FEC à partir du journal
-- Génération du bilan, compte de résultat, balance
+- Génération du livre-journal à partir du journal
+- Génération du bilan, compte de résultat, balance (format PCMN)
 - Conversion en PDFs professionnels
-- Pré-remplissage des templates (2065, déclaration confidentialité, PV)
+- Pré-remplissage des templates (comptes annuels BNB, décision AG)
 
 **Ce qui reste manuel** :
 - La collecte initiale des transactions (selon vos sources)
 - La catégorisation des dépenses (règles spécifiques à votre activité)
-- Le calcul des PCA (nécessite l'analyse des périodes de couverture)
-- La validation des montants de la liasse fiscale
-- La signature et le dépôt effectif (Infogreffe, impots.gouv.fr)
-- Le télépaiement de l'IS
+- Le calcul des produits à reporter / PCA (nécessite l'analyse des périodes de couverture)
+- La validation des montants de la déclaration ISOC 275
+- La signature et le dépôt effectif (Tax-on-web, BNB Centrale des Bilans)
+- Le paiement de l'ISOC (solde après versements anticipés)
+
+---
+
+## Ressources
+
+- **Tax-on-web** : https://www.taxonweb.be
+- **Centrale des Bilans BNB** : https://cri.nbb.be
+- **Fisconetplus (CIR 92 et législation fiscale)** : https://www.fisconetplus.be
+- **SPF Finances** : https://finances.belgium.be
+- **BCE (Banque-Carrefour des Entreprises)** : https://kbopub.economie.fgov.be
+- **CNC-CBN (normes comptables belges)** : https://www.cnc-cbn.be

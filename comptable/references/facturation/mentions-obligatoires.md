@@ -1,153 +1,185 @@
-# Mentions Obligatoires sur les Factures
+# Mentions Obligatoires sur les Factures (Belgique)
 
-Base légale : articles 289 et 242 nonies A du CGI, article L441-9 du Code de commerce.
+`last_updated: 2026-05-15`
 
-## Mentions générales (toute facture)
+Base légale : **Code de la TVA (CTVA)** — art. 53, 53decies; **loi du 2 août 2002** sur les retards de paiement (B2B); **CSA** pour les mentions légales de la société.
+
+---
+
+## Mentions générales (toute facture belge)
 
 ### Identité de l'émetteur
 
 | Mention | Base légale | Exemple |
 |---------|-------------|---------|
-| Nom ou dénomination sociale | Art. 242 nonies A, I-1° | "DevStudio SASU" |
-| Adresse du siège social | Art. 242 nonies A, I-1° | "5 rue de la Paix, 75002 Paris" |
-| SIREN ou SIRET | Art. 242 nonies A, I-1° | "SIRET 12345678900014" |
-| Numéro RCS et ville | Code de commerce | "RCS Paris" |
-| Forme juridique | Code de commerce | "SASU au capital de 1 000 EUR" |
-| Capital social | Code de commerce (sociétés) | inclus ci-dessus |
-| Numéro TVA intracommunautaire | Art. 242 nonies A, I-2° | "FR12345678901" (si assujetti) |
+| Dénomination sociale | Art. 53 CTVA + CSA | "DevStudio SRL" |
+| Forme juridique | CSA | "SRL" |
+| Adresse du siège social | Art. 53 CTVA | "Rue de la Loi 1, 1000 Bruxelles" |
+| Numéro BCE | Art. 53 CTVA + CSA | "BCE 0xxx.xxx.xxx" |
+| Numéro de TVA belge | Art. 53 CTVA | "TVA BE0xxx.xxx.xxx" |
+| IBAN et BIC | Recommandé | "IBAN BE68 5390 0754 7034 / BIC BNAGBEBB" |
 
 ### Identité du client
 
 | Mention | Base légale | Exemple |
 |---------|-------------|---------|
-| Nom ou dénomination sociale | Art. 242 nonies A, I-3° | "Client SAS" |
-| Adresse | Art. 242 nonies A, I-3° | "10 avenue des Champs-Élysées, 75008 Paris" |
-| **SIREN** (nouveau 2026) | Réforme 2026 | "SIREN 987654321" |
-| Numéro TVA intracommunautaire | Art. 242 nonies A, I-4° | Si opération intra-UE |
+| Dénomination sociale ou nom | Art. 53 CTVA | "Client SA" |
+| Adresse | Art. 53 CTVA | "Avenue Louise 50, 1050 Bruxelles" |
+| Numéro de TVA belge (si assujetti) | Art. 53 CTVA | "TVA BE0987.654.321" |
+| Numéro BCE (si société belge) | Recommandé | "BCE 0987.654.321" |
 
 ### Informations sur la facture
 
 | Mention | Base légale | Détail |
 |---------|-------------|--------|
-| Numéro de facture | Art. 242 nonies A, I-5° | Séquence chronologique continue, unique |
-| Date d'émission | Art. 242 nonies A, I-6° | Date du jour de facturation |
-| Date de livraison / exécution | Art. 242 nonies A, I-7° | Si différente de la date de facture |
+| Numéro de facture | Art. 53 CTVA | Séquence chronologique continue, unique |
+| Date d'émission | Art. 53 CTVA | Date du jour de facturation |
+| Date de livraison ou d'exécution | Art. 53 CTVA | Si différente de la date de facture |
 
 ### Description des biens/services
 
 | Mention | Base légale | Détail |
 |---------|-------------|--------|
-| Désignation précise | Art. 242 nonies A, I-8° | Nature, marque, référence |
-| Quantité | Art. 242 nonies A, I-9° | Nombre d'unités |
-| Prix unitaire HT | Art. 242 nonies A, I-10° | Par unité |
-| **Catégorie d'opération** (nouveau 2026) | Réforme 2026 | "Prestation de services" / "Livraison de biens" / "Mixte" |
+| Désignation précise | Art. 53 CTVA | Nature de la prestation ou du bien |
+| Quantité | Art. 53 CTVA | Nombre d'unités |
+| Prix unitaire HTVA | Art. 53 CTVA | Par unité |
 
 ### Montants
 
 | Mention | Base légale | Détail |
 |---------|-------------|--------|
-| Montant total HT | Art. 242 nonies A, I-11° | Somme des lignes |
-| Taux de TVA applicable | Art. 242 nonies A, I-12° | Par taux distinct |
-| Montant de TVA | Art. 242 nonies A, I-12° | Par taux distinct |
-| Montant total TTC | Art. 242 nonies A, I-13° | HT + TVA |
-| Remises, rabais, ristournes | Art. 242 nonies A, I-14° | Si applicable |
+| Montant total HTVA | Art. 53 CTVA | Somme des lignes |
+| Taux de TVA applicable | Art. 53 CTVA | Par taux distinct (21%, 12%, 6%) |
+| Montant de TVA | Art. 53 CTVA | Par taux distinct |
+| Montant total TVAC | Art. 53 CTVA | HTVA + TVA |
+| Remises, rabais, ristournes | Art. 53 CTVA | Si applicable |
 
-### Conditions de paiement
+### Conditions de paiement (B2B)
 
 | Mention | Base légale | Détail |
 |---------|-------------|--------|
-| Date d'échéance | Art. L441-9 C.com | Date limite de paiement |
-| Conditions d'escompte | Art. L441-9 C.com | Si escompte pour paiement anticipé |
-| Taux de pénalités de retard | Art. L441-10 C.com | Minimum : 3x le taux d'intérêt légal |
-| Indemnité forfaitaire de recouvrement | Art. L441-10 C.com | **40 EUR** (obligatoire) |
-| Conditions de règlement | Art. L441-9 C.com | Virement, chèque, etc. |
+| Date d'échéance | Loi 2 août 2002 | Délai de paiement convenu (max 30 jours légal, 60 jours max avec accord) |
+| Taux de pénalités de retard | Loi 2 août 2002 | Minimum : taux BCE + 8 points (taux de référence semestriel) |
+| Indemnité forfaitaire de recouvrement | Loi 2 août 2002 | **40 EUR** (obligatoire pour B2B) |
+| IBAN de paiement | Recommandé | Format belge BE + 14 chiffres |
 
-### Nouvelles mentions 2026
+---
 
-| Mention | Obligatoire à partir de | Détail |
-|---------|------------------------|--------|
-| SIREN du client | Sept. 2026 | Pour les transactions B2B domestiques |
-| Catégorie d'opération | Sept. 2026 | Biens / services / mixte |
-| Adresse de livraison | Sept. 2026 | Si différente de l'adresse de facturation |
-| Option TVA sur les débits | Sept. 2026 | Si l'entreprise a opté |
+## Mentions spéciales selon le régime TVA
 
-## Mentions spéciales selon le régime
-
-### Franchise en base de TVA
+### Franchise de la taxe (art. 56bis CTVA)
 
 ```
-TVA non applicable, article 293 B du Code général des impôts
+Régime particulier de franchise — TVA non applicable
 ```
 
-La facture ne doit comporter **aucun montant de TVA**. Montant HT = montant TTC.
+La facture ne doit comporter **aucun montant de TVA**. Montant HTVA = montant TVAC.
 
-### Autoliquidation de TVA
+### Autoliquidation — services intra-UE (B2B)
 
-Pour les prestations de services intra-UE (B2B) :
-
-```
-Autoliquidation - TVA due par le preneur, article 283-2 du CGI
-```
-
-### Exonération de TVA (export)
+Pour les prestations de services à des clients professionnels dans l'UE :
 
 ```
-Exonération de TVA, article 262 I du CGI
+Autoliquidation — TVA due par le preneur, art. 51 §2 CTVA
 ```
 
-### Livraison intracommunautaire
+### Autoliquidation — régime cocontractant (construction)
+
+Pour les travaux de construction et assimilés entre assujettis belges (régime cocontractant) :
 
 ```
-Exonération de TVA, article 262 ter I du CGI
+Autoliquidation — régime cocontractant, art. 20 AR n°1
 ```
 
-### Sous-traitance BTP
+### Exonération — exportation (hors UE)
 
 ```
-Autoliquidation de la TVA par le preneur, article 283 2 nonies du CGI
+Exonération de TVA — exportation, art. 39 CTVA
 ```
 
-### Membre d'une association agréée
+### Exonération — livraison intracommunautaire (B2B intra-UE)
 
 ```
-Membre d'une association agréée, le règlement par chèque et carte bancaire est accepté
+Exonération de TVA — livraison intracommunautaire, art. 39bis CTVA
 ```
 
-### Auto-entrepreneur
+### TVA à 0% — autres opérations exonérées
 
-Mêmes obligations que les autres entreprises. Mention franchise TVA obligatoire si en dessous du seuil.
+```
+Exonération de TVA — [motif], art. [X] CTVA
+```
+
+---
+
+## Facture électronique Peppol (B2B belge depuis 01/01/2026)
+
+Pour les factures B2B entre assujettis belges, les mentions ci-dessus doivent être encodées dans le format XML Peppol BIS 3.0.
+
+**Identifiant Peppol de l'émetteur :** `0208:[numéro BCE sans points]`
+**Numéro TVA dans le XML :** `BE0xxx.xxx.xxx` (champ `PartyTaxScheme/CompanyID`)
+
+---
 
 ## Avoirs (notes de crédit)
 
 Un avoir doit comporter :
 - Toutes les mentions d'une facture
-- La mention "Avoir" ou "Note de crédit"
+- La mention "Note de crédit" ou "Avoir"
 - La **référence à la facture d'origine** (numéro et date)
-- Le motif de l'avoir (retour, erreur, geste commercial, etc.)
-- Les montants en négatif ou avec mention explicite de la rectification
+- Le motif de l'avoir (retour, erreur, geste commercial)
+- Les montants en négatif ou avec mention explicite
 
-Un avoir suit la même séquence de numérotation que les factures, ou une séquence séparée préfixée (ex : AV-2026-001).
+L'avoir suit sa propre séquence de numérotation (ex : AV-2026-001) ou la même séquence que les factures.
+
+---
 
 ## Factures d'acompte
 
-Obligatoires pour tout acompte reçu (art. 289, I-1-c du CGI). Mentions identiques à une facture classique, plus :
+Mentions identiques à une facture classique, plus :
 - La mention "Facture d'acompte"
-- Le montant de l'acompte HT et TTC
+- Le montant de l'acompte HTVA et TVAC
 - La référence au devis ou contrat
 
-La facture de solde déduit les acomptes déjà facturés.
+La facture finale déduit les acomptes déjà facturés.
+
+---
+
+## Facture simplifiée (ticket de caisse)
+
+Pour les ventes au détail B2C avec montant TVAC ≤ 400 EUR (ou sur autorisation SPF Finances) :
+
+Mentions minimales :
+- Date d'émission
+- Identité du vendeur (dénomination + numéro BCE + adresse)
+- Désignation des biens/services
+- Taux de TVA et montant TVAC
+
+---
 
 ## Cas particuliers
 
-### Facture simplifiée (< 150 EUR TTC)
+### Facture en devise étrangère
 
-Pour les ventes au détail et prestations de services < 150 EUR TTC, certaines mentions peuvent être simplifiées (art. 242 nonies A, II du CGI). La facture doit quand même comporter :
-- Date, identité du vendeur, désignation, montant TTC, taux TVA
+Le montant de TVA doit être converti en EUR au taux de change du jour de l'opération (taux BCE). Indiquer le taux utilisé.
 
 ### Autofacturation
 
-Quand le client émet la facture pour le compte du fournisseur. Mention obligatoire : "Autofacturation".
+Quand le client émet la facture pour le compte du fournisseur (autofacturation, art. 53 §5 CTVA). Mention obligatoire : *"Autofacturation"* et accord préalable du fournisseur.
 
-### Facture en devise étrangère
+### Facture adressée à un client étranger hors UE
 
-Le montant de TVA doit être converti en euros au taux de change du jour de l'opération.
+Mêmes mentions obligatoires, mais le numéro TVA du client peut être son identifiant fiscal étranger. Mention exonération export.
+
+---
+
+## Tableau récapitulatif — Mentions par situation
+
+| Situation | Mentions spécifiques |
+|-----------|---------------------|
+| B2B belge normal | TVA 21%/12%/6%, numéros BCE/TVA des deux parties |
+| Franchise (art. 56bis) | "Franchise — TVA non applicable" |
+| Export hors UE | "Exonération art. 39 CTVA" |
+| Livraison IC B2B | "Exonération art. 39bis CTVA" + numéro TVA client vérifié VIES |
+| Services IC B2B | "Autoliquidation art. 51 §2 CTVA" |
+| Construction (cocontractant) | "Autoliquidation art. 20 AR n°1" |
+| B2B Peppol électronique | XML UBL Peppol BIS 3.0 via Mercurius |

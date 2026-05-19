@@ -77,7 +77,7 @@ paperasse-be/
 - [x] Mise à jour des templates (formulaires belges)
 - [x] Mise à jour des evals avec des cas de test belges
 - [x] Revue juridique (Opus) + vérification valeurs 2025 contre sources officielles
-- [ ] Exécution du runner d'évaluation (`evals/run_evals.py`) pour valider le comportement des skills
+- [x] Exécution du runner d'évaluation (`evals/run_evals.py`) pour valider le comportement des skills
 
 ## Références utiles
 

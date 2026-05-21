@@ -173,11 +173,107 @@ Prérequis : `npm install`, puis `cp company.example.json company.json` et rempl
 
 ---
 
+## Rappels fiscaux J-15 (e-mail automatique)
+
+Pour les **SASU simples** (IS au réel, TVA réelle normale mensuelle, clôture au 31/12, sans salariés), Paperasse peut envoyer un **rappel par e-mail 15 jours avant** chaque échéance, avec le **montant estimé** et la **justification du calcul** (journal, bilan, formules IS/TVA).
+
+| Obligation | Échéance type |
+|------------|----------------|
+| TVA (CA3) | 25 du mois suivant |
+| Acomptes IS (×4) | 15 mars, juin, sept., déc. |
+| Solde IS | 15 mai |
+| Liasse IS (2065) | 2e jour ouvré après le 1er mai |
+| AG / approbation des comptes | 6 mois après clôture |
+| Dépôt au greffe | 30 jours après l’AG |
+| CFE | 15 décembre |
+| DAS2, rappel IR perso | selon calendrier |
+
+**Calculs déterministes** (pas de LLM pour les montants) :
+
+- **IS** : 25 % × IS N-1 (bilan / `company.json` / override `.env`)
+- **TVA** : TVA collectée (44571) − TVA déductible (44566) sur le mois déclaré
+- **CFE / greffe** : saisie manuelle ou overrides
+
+### Configuration
+
+1. Copier les variables Resend dans `.env` (voir `.env.example`).
+2. Vérifier un **domaine d’envoi** sur [resend.com](https://resend.com/domains) (`REMINDER_EMAIL_FROM` ne peut pas être `@gmail.com`).
+3. Tenir le journal à jour (`data/journal-entries.json`) pour des montants TVA fiables.
+
+### Journal Qonto → montants TVA des rappels
+
+Les rappels **TVA** lisent `data/journal-entries.json` (comptes **44571*** collectée, **44566*** / **44562*** déductible sur le mois déclaré). Un simple `fetch:qonto` ne suffit pas : il remplit seulement `data/transactions/`.
+
+**`npm run journal:qonto`** enchaîne :
+
+1. **`fetch:qonto`** — synchronise les opérations Qonto vers `data/transactions/*.json`
+2. **`qonto-to-journal.js`** — mappe les catégories Qonto vers le PCG, ventile la TVA (réel normal), écrit les écritures **BQ** dans `journal-entries.json`
+
+Règles libellés spécifiques (clients récurrents, fournisseurs) : fichier optionnel `config/qonto-label-rules.local.json` (modèle : `config/qonto-label-rules.example.json`, gitignored).
+
+**`npm run journal:an`** (optionnel, recommandé) fusionne le bilan de clôture N-1 (`data/bilan-closing.json` ou `bilan-closing-YYYY.json`), l’affectation du résultat (`fiscal_affectation_*` dans `company.json`) et les écritures BQ de l’exercice.
+
+```bash
+npm run journal:qonto
+npm run journal:an              # si bilan Dougs / export disponible
+npm run fec
+npm run reminders:preview
+```
+
+| Commande | Sortie |
+|----------|--------|
+| `fetch:qonto` | `data/transactions/` uniquement |
+| `journal:qonto` | transactions + **`journal-entries.json`** (BQ + TVA) |
+| `journal:an` | AN + OD affectation + BQ consolidé |
+
+Période CA3 : échéance du **25/MM** = TVA du **mois M−1**.
+
+**Montant TVA provisoire** — si le journal n’est pas prêt avant le J-15, forcer le montant du prochain rappel CA3 dans `.env` :
+
+```bash
+# Ex. CA3 du 25/05/2026 → période TVA 2026-04 (avril)
+TVA_OVERRIDE_EUR=1234.56
+```
+
+Le calculateur utilise ce montant comme **confirmé** (prioritaire sur le journal). Retirer la variable dès que `journal-entries.json` contient les écritures TVA du mois concerné. Voir aussi `.env.example`.
+
+```bash
+npm run reminders:dry-run           # aperçu sans envoi
+npm run reminders:send              # envoi des rappels du jour (J-15)
+npm run reminders:preview -- --date 2026-02-28   # simuler une date
+```
+
+### PM2 (cron quotidien 08:00 Paris)
+
+```bash
+npm run pm2:reminders
+pm2 save
+pm2 logs paperasse-reminders
+```
+
+**Windows — persistance au redémarrage** : `pm2 save` seul ne suffit pas. Installer le démarrage automatique :
+
+```powershell
+npm install -g pm2-windows-startup
+pm2-startup install
+pm2 save
+```
+
+Cela ajoute une entrée au démarrage de session (registre utilisateur) qui exécute `pm2 resurrect` et restaure `paperasse-reminders` avec les autres apps PM2 sauvegardées.
+
+Fichier `ecosystem.config.cjs` : `cron_restart: '0 8 * * *'`, `autorestart: false`. Les envois déjà faits sont journalisés dans `data/reminders-sent.json` (gitignored) pour éviter les doublons.
+
+Calendrier et profils : `config/reminders.json`. Code : `lib/reminders/`.
+
+> **Note** : la CA3 du 25/MM porte sur les opérations du **mois M−1** (ex. paiement du 25/05 = TVA d’avril). Le crédit de TVA (44567) n’est pas imputé automatiquement en v1.
+
+---
+
 ## Garde-fous
 
 - **Contexte entreprise** : chaque skill vérifie les informations minimales (raison sociale, SIREN, forme juridique, régime TVA) avant de procéder. Si `company.json` existe, il est lu automatiquement. Sinon, le skill pose les questions.
 
-- **Échéances fiscales** : le skill comptable affiche les prochaines échéances à chaque conversation (acomptes IS, TVA, etc.).
+- **Échéances fiscales** : le skill comptable affiche les prochaines échéances à chaque conversation (acomptes IS, TVA, etc.). En production, `npm run reminders:send` ou PM2 peut les rappeler par e-mail à J-15.
 
 - **Fraîcheur des données** : chaque skill a une date `last_updated`. S'il a plus de 6 mois, l'agent vérifie les chiffres en ligne avant de répondre. Le législateur français change les règles plus souvent que vous changez de mot de passe. Contrairement à votre mot de passe, ça peut coûter cher.
 

@@ -1,0 +1,11 @@
+{
+  "_comment": "Copier vers config/qonto-label-rules.local.json (gitignored) pour des règles libellé → PCG spécifiques à votre activité (clients, fournisseurs récurrents).",
+  "label_rules": [
+    {
+      "pattern": "NOM CLIENT FACTURE",
+      "account": "706",
+      "label": "Ventes prestations",
+      "vat": "full"
+    }
+  ]
+}

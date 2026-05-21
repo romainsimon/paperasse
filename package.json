@@ -14,7 +14,13 @@
     "validate:facture": "node scripts/validate-facture.js",
     "fetch": "node integrations/stripe/fetch.js; node integrations/qonto/fetch.js",
     "fetch:qonto": "node integrations/qonto/fetch.js",
-    "fetch:stripe": "node integrations/stripe/fetch.js"
+    "journal:qonto": "node scripts/journal-qonto.js",
+    "journal:an": "node scripts/prepare-opening-entries.js",
+    "fetch:stripe": "node integrations/stripe/fetch.js",
+    "reminders:send": "node scripts/send-reminders.js",
+    "reminders:dry-run": "node scripts/send-reminders.js --dry-run",
+    "reminders:preview": "node scripts/send-reminders.js --dry-run --stdout",
+    "pm2:reminders": "pm2 start ecosystem.config.cjs --only paperasse-reminders"
   },
   "dependencies": {
     "marked": "^15.0.0",

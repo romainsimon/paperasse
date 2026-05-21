@@ -1,0 +1,7 @@
+{
+  "_comment": "Exemple fictif pour les tests et la doc — ne pas utiliser pour une vraie société",
+  "as_of": "2025-12-31",
+  "accounts": [
+    { "account": "129", "label": "Resultat exercice (exemple)", "debit": 0, "credit": 40000 }
+  ]
+}

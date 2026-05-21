@@ -5,6 +5,13 @@ node_modules/
 output/
 company.json
 data/transactions/
+data/journal-entries.json
+data/reminders-sent.json
+data/bilan-closing.json
+data/bilan-closing-*.json
+data/journal-entries.demo-backup.json
+config/qonto-label-rules.local.json
+!data/examples/
 __pycache__/
 evals-workspace/
 evals/.venv/

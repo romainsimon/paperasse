@@ -79,5 +79,12 @@
     "escompte_label": "Pas d'escompte pour paiement anticipe",
     "recovery_fee": 40,
     "_comment": "late_penalty_rate: '3x_legal' (defaut legal si non precise) ou taux fixe (ex 10.15). escompte: 'none' ou taux en %. recovery_fee fixe a 40 EUR par la loi."
+  },
+  "reminders": {
+    "_comment": "Rappels J-15 (npm run reminders:send / PM2). Overrides optionnels — sinon calcul depuis bilan local (data/bilan-closing.json) ou journal.",
+    "is_n1_eur": null,
+    "cfe_annual_eur": null,
+    "greffe_fee_eur": 45,
+    "depot_confidentialite": false
   }
 }

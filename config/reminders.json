@@ -1,0 +1,138 @@
+{
+  "_meta": {
+    "description": "Obligations fiscales et juridiques — échéances générées pour company.json",
+    "lead_days_default": 15,
+    "timezone": "Europe/Paris"
+  },
+  "profiles": {
+    "sasu_is_tva_normal": {
+      "match": {
+        "legal_form": ["SASU", "SAS", "SARL", "EURL", "SA"],
+        "tax.regime_is": ["reel_normal", "reel_simplifie"],
+        "tax.regime_tva": ["reel_normal"]
+      },
+      "obligations": [
+        {
+          "id": "TVA_CA3",
+          "title": "Déclaration et paiement TVA (CA3)",
+          "type": "payment",
+          "schedule": "monthly_day",
+          "day": 25,
+          "form": "CA3",
+          "calculator": "tva"
+        },
+        {
+          "id": "IS_ACOMPTE_1",
+          "title": "Acompte IS n°1",
+          "type": "payment",
+          "schedule": "yearly",
+          "month": 3,
+          "day": 15,
+          "form": "2571",
+          "calculator": "is_acompte",
+          "acompte_index": 1
+        },
+        {
+          "id": "IS_ACOMPTE_2",
+          "title": "Acompte IS n°2",
+          "type": "payment",
+          "schedule": "yearly",
+          "month": 6,
+          "day": 15,
+          "form": "2571",
+          "calculator": "is_acompte",
+          "acompte_index": 2
+        },
+        {
+          "id": "IS_ACOMPTE_3",
+          "title": "Acompte IS n°3",
+          "type": "payment",
+          "schedule": "yearly",
+          "month": 9,
+          "day": 15,
+          "form": "2571",
+          "calculator": "is_acompte",
+          "acompte_index": 3
+        },
+        {
+          "id": "IS_ACOMPTE_4",
+          "title": "Acompte IS n°4",
+          "type": "payment",
+          "schedule": "yearly",
+          "month": 12,
+          "day": 15,
+          "form": "2571",
+          "calculator": "is_acompte",
+          "acompte_index": 4
+        },
+        {
+          "id": "IS_SOLDE",
+          "title": "Solde IS (exercice clos 31/12)",
+          "type": "payment",
+          "schedule": "yearly",
+          "month": 5,
+          "day": 15,
+          "form": "2572",
+          "calculator": "is_solde"
+        },
+        {
+          "id": "LIASSE_IS",
+          "title": "Liasse fiscale IS (télédéclaration)",
+          "type": "declaration",
+          "schedule": "second_business_day_after",
+          "anchor_month": 5,
+          "anchor_day": 1,
+          "form": "2065"
+        },
+        {
+          "id": "AG_APPROBATION",
+          "title": "AG / décision associé unique — approbation des comptes",
+          "type": "legal",
+          "schedule": "months_after_fiscal_end",
+          "months": 6,
+          "form": "PV AG"
+        },
+        {
+          "id": "DEPOT_GREFFE",
+          "title": "Dépôt des comptes au greffe",
+          "type": "payment",
+          "schedule": "days_after_ag",
+          "days": 30,
+          "form": "Infogreffe",
+          "calculator": "greffe"
+        },
+        {
+          "id": "CFE",
+          "title": "Cotisation foncière des entreprises (CFE)",
+          "type": "payment",
+          "schedule": "yearly",
+          "month": 12,
+          "day": 15,
+          "calculator": "cfe"
+        },
+        {
+          "id": "DAS2",
+          "title": "Déclaration DAS2 (honoraires > 1 200 €)",
+          "type": "declaration",
+          "schedule": "yearly",
+          "month": 3,
+          "day": 31,
+          "form": "DAS2"
+        },
+        {
+          "id": "IR_PERSO",
+          "title": "Déclaration IR personnelle (rappel)",
+          "type": "personal",
+          "schedule": "yearly",
+          "month": 5,
+          "day": 20,
+          "form": "2042"
+        }
+      ],
+      "skip_if": {
+        "employees_gte": 1,
+        "hide_ids": ["DSN"]
+      }
+    }
+  }
+}

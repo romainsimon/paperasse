@@ -6,6 +6,7 @@
   "scripts": {
     "calc": "node scripts/calc.js",
     "test:calc": "node scripts/test-deterministic-calculations.js",
+    "test:providers": "node --test tests/integrations/core/*.test.js",
     "fec": "node scripts/generate-fec.js",
     "statements": "node scripts/generate-statements.js",
     "pdfs": "node scripts/generate-pdfs.js",

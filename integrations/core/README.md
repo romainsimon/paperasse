@@ -12,6 +12,12 @@ This module does not fetch data and does not change the existing Qonto or Stripe
 
 CSV, API, MCP and manual exports are ingestion mechanisms, not capabilities.
 
+## Capability Compatibility
+
+Adding a new capability is backward-compatible because existing providers keep declaring the capabilities they already support.
+
+Removing, renaming or changing the meaning of an existing capability is breaking.
+
 ## Validate a Provider
 
 ```js

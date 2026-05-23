@@ -72,6 +72,9 @@ Legacy compatibility must be defined by observable behavior:
 
 Internal module exports are secondary unless they are documented public APIs.
 
+Adding a new provider capability is backward-compatible.
+Removing, renaming or changing the meaning of an existing capability is breaking.
+
 ## Consequences
 
 Provider authors can add new integrations without changing the provider taxonomy.

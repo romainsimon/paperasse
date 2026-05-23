@@ -6,8 +6,9 @@ function isNonEmptyString(value) {
 
 function isIsoDateString(value) {
   if (!isNonEmptyString(value)) return false;
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value)) return false;
   const timestamp = Date.parse(value);
-  return Number.isFinite(timestamp);
+  return Number.isFinite(timestamp) && new Date(timestamp).toISOString() === value;
 }
 
 function validateProviderDescriptor(provider) {
@@ -37,7 +38,14 @@ function validateProviderDescriptor(provider) {
   } else if (provider.capabilities.length === 0) {
     errors.push('provider.capabilities must contain at least one capability');
   } else {
+    const seenCapabilities = new Set();
     for (const capability of provider.capabilities) {
+      if (seenCapabilities.has(capability)) {
+        errors.push(`provider.capabilities contains duplicate capability: ${String(capability)}`);
+        continue;
+      }
+      seenCapabilities.add(capability);
+
       if (!isProviderCapability(capability)) {
         errors.push(`provider.capabilities contains unsupported capability: ${String(capability)}`);
       }
@@ -69,7 +77,7 @@ function validateNormalizedTransaction(transaction) {
   }
 
   if (!isIsoDateString(transaction.date)) {
-    errors.push('transaction.date must be a non-empty ISO date string');
+    errors.push('transaction.date must be a UTC ISO date string with milliseconds');
   }
 
   if (typeof transaction.amount !== 'number' || !Number.isFinite(transaction.amount)) {

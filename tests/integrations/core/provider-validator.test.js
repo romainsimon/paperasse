@@ -93,6 +93,20 @@ test('validateProviderDescriptor rejects unknown capabilities', () => {
   ]);
 });
 
+test('validateProviderDescriptor rejects duplicate capabilities', () => {
+  const result = validateProviderDescriptor({
+    id: 'duplicate-provider',
+    type: 'generic',
+    name: 'Duplicate Provider',
+    capabilities: ['banking', 'banking'],
+  });
+
+  assert.equal(result.valid, false);
+  assert.deepEqual(result.errors, [
+    'provider.capabilities contains duplicate capability: banking',
+  ]);
+});
+
 test('validateNormalizedTransaction accepts a valid transaction', () => {
   const result = validateNormalizedTransaction({
     id: 'tx-1',
@@ -127,7 +141,7 @@ test('validateNormalizedTransaction rejects missing required fields', () => {
   assert.deepEqual(result.errors, [
     'transaction.id must be a non-empty string',
     'transaction.source must be a non-empty string',
-    'transaction.date must be a non-empty ISO date string',
+    'transaction.date must be a UTC ISO date string with milliseconds',
     'transaction.amount must be a finite number',
     'transaction.currency must be a non-empty string',
     'transaction.label must be a non-empty string',
@@ -148,8 +162,25 @@ test('validateNormalizedTransaction rejects invalid dates and amounts', () => {
 
   assert.equal(result.valid, false);
   assert.deepEqual(result.errors, [
-    'transaction.date must be a non-empty ISO date string',
+    'transaction.date must be a UTC ISO date string with milliseconds',
     'transaction.amount must be a finite number',
+  ]);
+});
+
+test('validateNormalizedTransaction rejects non-UTC ISO date formats', () => {
+  const result = validateNormalizedTransaction({
+    id: 'tx-3',
+    source: 'qonto',
+    date: '2026-05-23',
+    amount: 42.5,
+    currency: 'EUR',
+    label: 'Ambiguous date',
+    raw: {},
+  });
+
+  assert.equal(result.valid, false);
+  assert.deepEqual(result.errors, [
+    'transaction.date must be a UTC ISO date string with milliseconds',
   ]);
 });
 

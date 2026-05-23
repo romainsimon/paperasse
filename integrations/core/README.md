@@ -12,6 +12,9 @@ This module does not fetch data and does not change the existing Qonto or Stripe
 
 CSV, API, MCP and manual exports are ingestion mechanisms, not capabilities.
 
+`payroll` is separate from `hr` because payroll has specific legal, accounting and reporting implications.
+`hr` is an umbrella capability for non-payroll HR workflows such as employee records, onboarding, reviews, recruiting or HR documents.
+
 ## Capability Compatibility
 
 Adding a new capability is backward-compatible because existing providers keep declaring the capabilities they already support.

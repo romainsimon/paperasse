@@ -48,6 +48,9 @@ Ingestion details remain internal to each provider.
 CSV is not a business capability.
 API, CSV, MCP, manual export and pasted data are ingestion mechanisms.
 
+`payroll` is separate from `hr` because payroll has specific legal, accounting and reporting implications.
+`hr` is an umbrella capability for non-payroll HR workflows such as employee records, onboarding, reviews, recruiting or HR documents.
+
 ## V1 Runtime Boundary
 
 The first runtime implementation may stay transaction-first because Qonto and Stripe currently produce transaction-like records.

@@ -16,7 +16,7 @@ Examples:
 - Qonto can be used for banking.
 - Stripe can be used for payments.
 - Pennylane can be used for accounting, invoicing or bank feeds depending on the setup.
-- Dougs could expose accounting, banking or insurance-related capabilities.
+- A fictional provider could expose accounting, banking or insurance-related capabilities.
 - A generic provider could expose a business capability while hiding whether it uses CSV, API, MCP, pasted data or another ingestion mechanism internally.
 
 ## Decision

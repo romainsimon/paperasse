@@ -7,7 +7,7 @@ const PROVIDER_CONTRACT_VERSION = '1.0.0';
 /**
  * @typedef {Object} ProviderDescriptor
  * @property {string} id Stable configured provider instance id.
- * @property {string} type Provider implementation type, such as qonto, stripe, dougs or generic.
+ * @property {string} type Provider implementation type, such as qonto, stripe, fictional-suite or generic.
  * @property {string} name Human-readable provider name.
  * @property {ProviderCapability[]} capabilities Business capabilities exposed by the provider.
  */

@@ -152,3 +152,16 @@ test('validateNormalizedTransaction rejects invalid dates and amounts', () => {
     'transaction.amount must be a finite number',
   ]);
 });
+
+test('core index exports contract utilities', () => {
+  const core = require('../../../integrations/core');
+
+  assert.equal(Array.isArray(core.PROVIDER_CAPABILITIES), true);
+  assert.equal(typeof core.isProviderCapability, 'function');
+  assert.equal(typeof core.validateProviderDescriptor, 'function');
+  assert.equal(typeof core.validateNormalizedTransaction, 'function');
+  assert.equal(typeof core.assertProviderDescriptor, 'function');
+  assert.equal(typeof core.assertNormalizedTransactions, 'function');
+  assert.equal(typeof core.runProviderContractChecks, 'function');
+  assert.equal(core.PROVIDER_CONTRACT_VERSION, '1.0.0');
+});

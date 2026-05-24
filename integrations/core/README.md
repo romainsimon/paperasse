@@ -1,0 +1,47 @@
+# Provider Core
+
+Provider core contains the shared provider contract utilities for Paperasse.
+
+This module does not fetch data and does not change the existing Qonto or Stripe integrations.
+
+## Concepts
+
+- Provider identity: `id`, `type`, `name`
+- Business capabilities: `banking`, `payments`, `invoicing`, `accounting`, `payroll`, `hr`, `insurance`
+- Ingestion details: internal to each provider
+
+CSV, API, MCP and manual exports are ingestion mechanisms, not capabilities.
+
+`payroll` is separate from `hr` because payroll has specific legal, accounting and reporting implications.
+`hr` is an umbrella capability for non-payroll HR workflows such as employee records, onboarding, reviews, recruiting or HR documents.
+
+## Capability Compatibility
+
+Adding a new capability is backward-compatible because existing providers keep declaring the capabilities they already support.
+
+Removing, renaming or changing the meaning of an existing capability is breaking.
+
+## Validate a Provider
+
+```js
+const {
+  assertProviderDescriptor,
+  runProviderContractChecks,
+} = require('../core');
+
+const provider = require('../providers/template/provider');
+
+assertProviderDescriptor(provider);
+
+runProviderContractChecks(provider).then((summary) => {
+  console.log(summary);
+});
+```
+
+## Add a Provider
+
+1. Copy `integrations/providers/template`.
+2. Change `id`, `type`, `name` and `capabilities`.
+3. Implement provider-specific fetching.
+4. Return normalized transactions when implementing transaction output.
+5. Test with `runProviderContractChecks`.

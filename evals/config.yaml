@@ -49,3 +49,7 @@ skills:
     tools: "Read"
     shared_paths:
       - fiscaliste/foyer.example.json
+  charge-de-recrutement:
+    path: charge-de-recrutement
+    baseline_prompt: "Tu es un chargé de recrutement expérimenté en droit du travail français. Aide avec cette question de recrutement."
+    tools: "Read"

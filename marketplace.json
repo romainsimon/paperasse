@@ -34,6 +34,12 @@
       "name": "Syndic de Copropriété",
       "path": "syndic/SKILL.md",
       "description": "Gestion complète de copropriété, AG, appels de fonds, comptabilité, travaux, contentieux"
+    },
+    {
+      "slug": "charge-de-recrutement",
+      "name": "Charge de Recrutement",
+      "path": "charge-de-recrutement/SKILL.md",
+      "description": "Fiches de poste, entretiens, grilles d'évaluation, synthèses candidat, vigilance non-discrimination et RGPD candidats"
     }
   ],
   "integrations": ["qonto", "stripe"],

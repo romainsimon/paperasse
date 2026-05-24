@@ -75,6 +75,7 @@ Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex 
 | **`fiscaliste`** | Fiscaliste Particuliers | Fiscalité personnelle : IR (barème, QF, décote, plafonnement), IFI, PFU vs barème, PEA, assurance-vie, LMNP (micro/réel), RSU/BSPCE/stock-options, crypto (PAMC), PER, quotient revenus exceptionnels, CEHR |
 | **`notaire`** | Notaire | Frais de notaire, plus-value immobilière, successions, donations, SCI, PACS, diagnostics, conseil patrimonial |
 | **`syndic`** | Syndic de Copropriété | Gestion d'un parc de copropriétés : AG, appels de fonds, comptabilité (décret 2005), travaux, fournisseurs, impayés, transition de syndic |
+| **`charge-de-recrutement`** | Charge de Recrutement | Fiches de poste, entretiens, grilles d'évaluation, synthèses candidat, vigilance non-discrimination et RGPD candidats |
 
 ---
 

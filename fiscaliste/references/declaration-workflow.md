@@ -41,7 +41,7 @@ Phase 4 : Vérification et suivi
 | Source | Document | Usage |
 |--------|----------|-------|
 | Employeur | Bulletin de décembre + attestation fiscale | Salaires imposables (1AJ), gain RSU (1TT) |
-| Pôle emploi | Attestation fiscale annuelle | ARE (1AP) — attention pas 1AJ |
+| France Travail (ex-Pôle emploi) | Attestation fiscale annuelle | ARE (1AP, pas 1AJ — abattement 10 % applicable malgré tout) |
 | Banque / courtier | IFU (Imprimé Fiscal Unique) | Intérêts, dividendes, PV mobilières |
 | Assurance-vie | Relevé annuel | Rachats, produits imposables |
 | Notaire | Acte de vente + formulaire 2048-IMM | PV immobilière |
@@ -97,7 +97,7 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 | Patrimoine immobilier net > 1,3 M€ | — | **2042-IFI** |
 | Dons, emploi à domicile, garde d'enfant | — | **2042-RICI** |
 
-**Piège** : déclarer l'ARE en 1AJ bénéficie à tort de l'abattement 10 % → redressement probable.
+**Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), pas en 1AJ. Elle bénéficie **quand même** de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20) — la case ne change pas l'abattement. L'enjeu de la bonne case : l'ARE n'est pas un revenu d'activité (compte pour le plafond PER, prestations sociales, etc.).
 
 ---
 
@@ -234,7 +234,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 - [ ] Plafonnement QF appliqué (si enfants) — gain réel ≤ N × 1 807 €
 - [ ] Décote testée (si impôt brut faible)
 - [ ] Abattement 10 % salaires appliqué (vérifier plancher 509 € / plafond 14 555 €)
-- [ ] Aucune confusion 1AJ / 1AP (salaires vs chômage)
+- [ ] ARE bien en 1AP (pas 1AJ) — l'abattement 10 % s'applique dans les deux cas ; la case sert à distinguer revenu d'activité / remplacement
 - [ ] Option PFU / barème choisie explicitement (case 2OP)
 - [ ] PER déduit dans la limite du plafond disponible
 - [ ] Réductions d'impôt ≤ plafond global 10 000 €
@@ -277,7 +277,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 
 1. **Oublier un compte étranger** — obligation de déclarer l'ouverture (formulaire 3916) sous peine d'amende 1 500 € par compte.
 2. **Ne pas cocher 2OP** alors que le barème serait favorable au TMI 11 %.
-3. **ARE en 1AJ** — bénéficie à tort de l'abattement 10 %.
+3. **ARE en 1AJ au lieu de 1AP** — l'abattement 10 % s'applique dans les deux cas, mais la mauvaise case fausse la distinction revenu d'activité / remplacement (plafond PER, prestations).
 4. **Oublier le quotient** pour un vesting RSU massif.
 5. **Sous-déclarer les cessions crypto** > 305 € — imposition totale sur TOUT.
 6. **Déduire un PER > plafond** — fraction non déductible.

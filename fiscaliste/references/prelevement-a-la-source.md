@@ -42,9 +42,11 @@ Possible si :
 - **Hausse de revenus** : modulation à la hausse autorisée sans seuil minimum.
 - **Changement de situation familiale** : mariage, PACS, naissance, divorce, décès → à signaler dans les **60 jours** (art. 204 I CGI).
 
-Procédure : espace impots.gouv.fr → "Gérer mon prélèvement à la source".
+Procédure : espace impots.gouv.fr → "Gérer mon prélèvement à la source" → "Actualiser suite à une hausse ou une baisse de vos revenus". On saisit une **estimation de tous les revenus du foyer pour l'année en cours** (toutes catégories) ; l'administration recalcule un **nouveau taux** affiché avant validation. Le taux modulé n'est donc PAS le taux issu de la dernière déclaration : il dépend de l'estimation saisie.
 
-**Pénalité si modulation à la baisse excessive** (majoration 10 % si écart > 10 % et non justifié).
+Cas fréquent (perte d'emploi → ARE) : un taux personnalisé calculé sur une année d'activité élevée reste appliqué jusqu'au septembre suivant. Pour récupérer la trésorerie immédiatement plutôt que d'attendre la mise à jour de septembre, faire une modulation à la baisse. L'**ARE bénéficie de l'abattement de 10 %** (revenu de remplacement, BOI-RSA-BASE-30-50-20) : saisir le **net imposable** sans retrancher soi-même le 10 % (le système l'applique).
+
+**Pénalité si modulation à la baisse excessive** (majoration 10 % si écart > 10 % et non justifié). Si reprise d'emploi en cours d'année, refaire une modulation à la hausse (sans seuil, sans pénalité).
 
 ## Régularisation annuelle
 

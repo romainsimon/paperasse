@@ -196,14 +196,14 @@ Régimes spéciaux :
 
 ## Allocations chômage et revenus de remplacement
 
-Déclarées case **1AP / 1BP** (pas 1AJ).
+Déclarées case **1AP / 1BP** (pas 1AJ). Bien vérifier le pré-rempli France Travail.
 
 **Points critiques** :
-- **Pas d'abattement 10%** (contrairement aux salaires)
+- **Abattement 10 % applicable** : l'ARE est un revenu de remplacement imposé selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20). La déduction forfaitaire de 10 % s'applique sur le total salaires + ARE (plafond commun 14 555 €/membre). La déclarer en 1AP au lieu de 1AJ ne supprime PAS l'abattement.
 - CSG prélevée à taux réduit à la source
 - La fraction de CSG prélevée à taux réduit n'est pas déductible du revenu imposable
 
-**Erreur classique** : déclarer l'ARE en case 1AJ → bénéficie à tort de l'abattement 10% → redressement probable.
+**Pourquoi 1AP et pas 1AJ ?** L'ARE n'est pas un revenu d'*activité* mais de *remplacement* : la distinction compte pour les calculs fondés sur les seuls revenus d'activité (plafond de déduction PER, certaines prestations sociales), pas pour l'abattement de 10 %.
 
 ## Situations matrimoniales particulières
 

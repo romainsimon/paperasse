@@ -1,0 +1,93 @@
+{
+  "_comment": "Matrice des autorisations à demander selon le format d'événement. Les délais sont des minima réglementaires ou de pratique courante ; ajouter une marge pour chaque commune.",
+  "autorisations": {
+    "buvette_temporaire": {
+      "base_legale": "art. L. 3334-2 CSP",
+      "destinataire": "maire",
+      "delai_minimum_jours": 15,
+      "pieces": ["lettre demande", "statuts asso", "RNA", "RC attestation", "plan implantation", "liste boissons"],
+      "quota_annuel_max": 5,
+      "limites": "groupes 1 et 3 uniquement ; zones protégées art. L. 3335-1 ; pas aux mineurs L. 3342-1"
+    },
+    "loterie_objets_mobiliers": {
+      "base_legale": "art. L. 322-3 CSI",
+      "destinataire": "maire (préfet de police à Paris)",
+      "delai_minimum_jours": 42,
+      "pieces": ["dossier complet", "statuts", "RNA", "projet bénéficiaire", "modèle billet", "liste lots", "modalités tirage"],
+      "limites": "objet de bienfaisance / encouragement arts / financement activités sportives non lucratives ; lots en nature uniquement"
+    },
+    "loto_traditionnel": {
+      "base_legale": "art. L. 322-4 CSI",
+      "destinataire": "aucun si conditions remplies",
+      "delai_minimum_jours": 0,
+      "limites": "cercle restreint ; mise ≤ 20 € ; lots en nature ≤ 150 € (D. 322-3-1) ; non remboursables ; note interne de caractérisation à conserver"
+    },
+    "vente_au_deballage": {
+      "base_legale": "art. L. 310-2 et R. 310-8 C. com.",
+      "destinataire": "maire (+ copie DDPP)",
+      "delai_minimum_jours": 15,
+      "pieces": ["Cerfa 13939*01", "statuts", "plan", "registre vendeurs à coter"],
+      "limites": "max 2 mois/an par lieu ; particuliers max 2 manifestations/an comme exposant"
+    },
+    "registre_vendeurs": {
+      "base_legale": "art. 321-7 et R. 321-9 C. pén.",
+      "destinataire": "commissariat ou mairie pour cotation",
+      "delai_minimum_jours": 7,
+      "pieces": ["registre relié, à coter et parapher AVANT l'événement"],
+      "sanction": "6 mois prison + 30 000 € amende si défaut"
+    },
+    "erp_gn6": {
+      "base_legale": "arrêté 25 juin 1980, art. GN 6",
+      "destinataire": "maire",
+      "delai_minimum_jours": 15,
+      "pieces": ["nature manifestation", "risques", "durée", "effectif", "matériaux décoration", "plan évacuation", "mesures complémentaires"]
+    },
+    "occupation_domaine_public": {
+      "base_legale": "art. L. 2122-1 CG3P",
+      "destinataire": "maire",
+      "delai_minimum_jours": 30,
+      "pieces": ["lettre demande", "périmètre / plan", "demande gratuité art. L. 2125-1 al. 2"],
+      "limites": "redevance possible (gratuité possible pour asso intérêt général)"
+    },
+    "arrete_circulation": {
+      "base_legale": "art. L. 2213-1 CGCT",
+      "destinataire": "maire (voie communale), préfet/président département (autres voies)",
+      "delai_minimum_jours": 30
+    },
+    "sacem_spre": {
+      "base_legale": "CPI L. 122-1 et s., L. 214-1",
+      "destinataire": "SACEM (mandataire SPRE)",
+      "delai_minimum_jours": 15,
+      "limites": "réduction contractuelle 20 % si déclaration ≥ 15 jours avant ; forfait associatif ; exonération possible pour caritatif strict"
+    },
+    "convention_locaux_scolaires": {
+      "base_legale": "art. L. 212-15 Code de l'éducation",
+      "destinataire": "commune + directeur école",
+      "delai_minimum_jours": 30,
+      "pieces": ["avis conseil d'école", "RC attestation", "plan", "engagement remise en état"]
+    },
+    "assurance_sportive": {
+      "base_legale": "art. L. 321-1 Code du sport",
+      "destinataire": "assureur",
+      "delai_minimum_jours": 15,
+      "sanction": "6 mois prison + 7 500 € amende (art. L. 321-2) si défaut"
+    },
+    "manifestation_sportive": {
+      "base_legale": "art. L. 331-2 Code du sport",
+      "destinataire": "préfecture (voie publique) ou mairie",
+      "delai_minimum_jours": 90
+    }
+  },
+  "formats": {
+    "kermesse": ["buvette_temporaire", "erp_gn6", "convention_locaux_scolaires", "sacem_spre"],
+    "kermesse_avec_tombola": ["buvette_temporaire", "erp_gn6", "convention_locaux_scolaires", "sacem_spre", "loterie_objets_mobiliers"],
+    "vide_grenier": ["vente_au_deballage", "registre_vendeurs", "occupation_domaine_public"],
+    "vide_grenier_avec_buvette": ["vente_au_deballage", "registre_vendeurs", "occupation_domaine_public", "buvette_temporaire"],
+    "tombola_seule": ["loterie_objets_mobiliers"],
+    "loto_traditionnel": ["loto_traditionnel"],
+    "marche_de_noel": ["vente_au_deballage", "registre_vendeurs", "occupation_domaine_public", "buvette_temporaire", "sacem_spre"],
+    "fete_fin_annee": ["erp_gn6", "convention_locaux_scolaires", "sacem_spre"],
+    "bal_soiree": ["erp_gn6", "buvette_temporaire", "sacem_spre"],
+    "course_tournoi": ["assurance_sportive", "manifestation_sportive", "occupation_domaine_public"]
+  }
+}

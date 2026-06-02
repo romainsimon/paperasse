@@ -1,0 +1,117 @@
+{
+  "_comment": "Modèle d'événement pour une association de parents d'élèves (APE). Copier dans evenements/{slug}.json et compléter. Aucune donnée réelle ne doit figurer dans cet exemple.",
+  "slug": "kermesse-2026",
+  "name": "Kermesse de fin d'année 2026",
+  "format": "kermesse",
+  "date": "2026-06-27",
+  "horaire": {
+    "ouverture": "14:00",
+    "fermeture": "19:00",
+    "montage_debut": "2026-06-27T08:00:00",
+    "demontage_fin": "2026-06-27T22:00:00"
+  },
+  "lieu": {
+    "nom": "École Maria Montessori",
+    "adresse": "12 rue des Lilas, 75011 Paris",
+    "statut": "ecole_publique",
+    "type_erp": "R",
+    "categorie_erp": "5",
+    "capacite_normale": 240,
+    "capacite_manifestation_exceptionnelle": 300
+  },
+  "effectif_attendu": 250,
+  "composantes": {
+    "buvette": true,
+    "tombola_payante": true,
+    "loto_traditionnel": false,
+    "vide_grenier": false,
+    "musique": true,
+    "structure_demontable_sup_16m2": false,
+    "activite_sportive": false,
+    "restauration": true
+  },
+  "association": {
+    "nom": "APE de l'École Maria Montessori (exemple)",
+    "forme": "association loi 1901",
+    "rna": "W751234567",
+    "siret": "12345678900012",
+    "siege": "12 rue des Lilas, 75011 Paris",
+    "president": "M. Jean DUPONT (exemple)",
+    "rc_assureur": "MAIF (exemple)",
+    "rc_n_police": "0000-0000-0000",
+    "rc_date_validite": "2026-12-31"
+  },
+  "ecole": {
+    "nom": "École Maria Montessori (exemple)",
+    "directeur": "Mme Sophie MARTIN (exemple)",
+    "conseil_ecole_avis_date": "2026-04-15"
+  },
+  "chef_de_projet": "Marie DUPONT (exemple)",
+  "referent_securite": "Jean MARTIN (exemple)",
+  "beneficiaire_recettes": "Sortie de fin d'année maternelles",
+  "tombola": {
+    "actif": true,
+    "type": "loterie_objets_mobiliers",
+    "billets_prix_unitaire_eur": 2,
+    "billets_quantite": 1500,
+    "lots": [
+      { "designation": "Bon d'achat livres", "valeur_eur": 80, "fournisseur": "Librairie locale" },
+      { "designation": "Panier gourmand", "valeur_eur": 50, "fournisseur": "Producteurs locaux" }
+    ],
+    "autorisation_maire": {
+      "demandee_le": null,
+      "arrete_obtenu_le": null,
+      "numero": null
+    },
+    "tirage_prevu_le": "2026-06-27T18:30:00"
+  },
+  "buvette": {
+    "actif": true,
+    "boissons_groupes": [1, 3],
+    "autorisation_maire": {
+      "demandee_le": null,
+      "arrete_obtenu_le": null,
+      "numero": null
+    },
+    "quota_annuel_utilise": 1,
+    "responsable_buvette": "Sandrine LEROY (exemple)"
+  },
+  "musique": {
+    "type": "playlist_enregistree",
+    "declaration_sacem": {
+      "demandee_le": null,
+      "reference": null,
+      "forfait": "associatif"
+    }
+  },
+  "vide_grenier": {
+    "actif": false,
+    "exposants_max_particuliers": null,
+    "exposants_max_professionnels": null,
+    "registre_cote_le": null,
+    "declaration_mairie_deposee_le": null,
+    "copie_ddpp_deposee_le": null
+  },
+  "erp_gn6": {
+    "demande_deposee_le": null,
+    "arrete_obtenu_le": null,
+    "prescriptions_complementaires": null
+  },
+  "convention_locaux_scolaires": {
+    "signee_le": null,
+    "parties": ["commune", "ecole", "association"]
+  },
+  "domaine_public": {
+    "occupation": false,
+    "arrete_demande_le": null,
+    "arrete_obtenu_le": null,
+    "redevance_eur": 0
+  },
+  "budget_previsionnel": {
+    "recettes_brutes_eur": 5000,
+    "depenses_eur": 1800,
+    "resultat_net_eur": 3200
+  },
+  "etat": "preparation",
+  "journal": []
+}

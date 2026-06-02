@@ -1,0 +1,32 @@
+{
+  "source": "Art. L. 3321-1 du Code de la santé publique, modifié par ordonnance n° 2015-1682 du 17 décembre 2015 (suppression de l'ancien groupe 2, fusion dans le groupe 3).",
+  "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031643382",
+  "groupes": [
+    {
+      "numero": 1,
+      "intitule": "Boissons sans alcool",
+      "exemples": ["eau plate", "eau gazeuse", "jus de fruits", "soda", "sirop", "café", "thé", "lait", "infusion"],
+      "autorise_buvette_association": true
+    },
+    {
+      "numero": 3,
+      "intitule": "Boissons fermentées non distillées et vins doux naturels, titre alcoométrique ≤ 18°",
+      "exemples": ["vin", "bière", "cidre", "poiré", "hydromel", "vin doux naturel", "vin de liqueur", "kir"],
+      "autorise_buvette_association": true,
+      "notes": "L'ancien groupe 2 (vins, bières) a été fusionné dans le groupe 3 par l'ordonnance 2015-1682."
+    },
+    {
+      "numero": 4,
+      "intitule": "Rhums, alcools provenant de la distillation des vins, cidres, poirés ou fruits, ne portant aucune addition d'essence",
+      "exemples": ["rhum", "eau-de-vie", "whisky", "gin", "vodka", "cognac", "armagnac", "calvados"],
+      "autorise_buvette_association": false
+    },
+    {
+      "numero": 5,
+      "intitule": "Toutes les autres boissons alcooliques",
+      "exemples": ["apéritifs anisés", "liqueurs sucrées", "premix", "cocktails alcoolisés"],
+      "autorise_buvette_association": false
+    }
+  ],
+  "regle_association": "Une buvette temporaire associative ne peut servir que les boissons des groupes 1 et 3 (art. L. 3334-2 CSP). 5 autorisations annuelles maximum par association."
+}

@@ -1,0 +1,23 @@
+{
+  "source": "Art. L. 3335-1 du Code de la santé publique (consolidé 29 décembre 2019).",
+  "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041411148",
+  "principe": "Le préfet de département fixe par arrêté les distances autour de certains établissements à l'intérieur desquelles aucun débit à consommer sur place ne peut être ouvert.",
+  "etablissements_proteges": [
+    "édifices consacrés à un culte",
+    "cimetières",
+    "établissements de santé, maisons de retraite et tous établissements publics ou privés de prévention, de cure et de soins, y compris dispensaires",
+    "établissements d'instruction publique et établissements scolaires privés",
+    "établissements de formation ou de loisirs de la jeunesse",
+    "stades, piscines, terrains de sport publics ou privés",
+    "casernes, camps, arsenaux et tous bâtiments occupés par le personnel des armées de terre, de mer et de l'air",
+    "bâtiments affectés à un usage de bureau pour le personnel des administrations publiques",
+    "entreprises groupant plus de 1 000 salariés"
+  ],
+  "consequence_evenement_scolaire": "Une école est en règle générale dans la zone protégée définie par arrêté préfectoral. Une buvette dans l'enceinte scolaire requiert l'autorisation du maire (art. L. 3334-2 CSP) et le respect des conditions de l'arrêté préfectoral (souvent : hors présence d'élèves, horaire encadré).",
+  "enceintes_sportives": {
+    "base": "Art. L. 3335-4 CSP",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039650350",
+    "regle": "Interdiction de vente et de distribution des boissons du groupe 3 dans les enceintes sportives.",
+    "derogation": "Le maire peut accorder une dérogation temporaire ≤ 48 h, max 10/an par association sportive agréée."
+  }
+}

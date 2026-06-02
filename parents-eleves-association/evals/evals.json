@@ -1,0 +1,572 @@
+{
+  "skill_name": "parents-eleves-association",
+  "evals": [
+    {
+      "id": 1,
+      "name": "tresorerie-setup-association-json",
+      "prompt": "Je viens de devenir trésorier de l'APE Montessori EXEMPLE. Statuts : association loi 1901, déclarée en préfecture le 01/09/2024, RNA W123456789, siège 1 rue de l'École 75001 Paris, objet 'soutenir la vie scolaire des enfants de l'école Montessori'. Exercice 01/09 → 31/08. Bureau : Nabila présidente, moi (Jean) trésorier, Marie secrétaire, élus le 15/09/2024. Cotisation des familles 30 EUR/an, aucun salarié, pas de subvention l'an dernier. Génère le association.json correspondant et explique les choix faits.",
+      "expected_output": "Le skill détecte qu'aucun association.json n'existe, propose le setup guidé, génère un JSON valide avec les champs identité, bureau, exercice, régime fiscal (gestion désintéressée, franchise des impôts commerciaux applicable), comptabilite ANC 2018-06 par défaut, recu_fiscal à false ou à valider via rescrit, subventions_publiques à 0.",
+      "files": [],
+      "assertions": [
+        "Le association.json contient name 'APE Montessori EXEMPLE' (ou équivalent fidèle)",
+        "legal_form = 'association_loi_1901'",
+        "rna = 'W123456789' est présent",
+        "joafe.declaration_date = '2024-09-01'",
+        "bureau.tresorier porte le prénom Jean et bureau.presidente porte Nabila",
+        "fiscal_year.start = '2025-09-01' et fiscal_year.end = '2026-08-31' (ou exercice en cours équivalent)",
+        "comptabilite.referentiel = 'ANC_2018-06'",
+        "regime_fiscal.gestion_desinteressee = true",
+        "regime_fiscal.franchise_impots_commerciaux = true",
+        "Le skill mentionne que l'éligibilité à l'art. 200 CGI doit être vérifiée (cercle restreint) et propose le rescrit fiscal mécénat (formulaire 2070-RD-SD) avant d'émettre des reçus",
+        "Le skill cite au moins une source officielle (loi 1901, ANC 2018-06, BOFIP ou service-public.fr)"
+      ],
+      "domain": "tresorerie"
+    },
+    {
+      "id": 2,
+      "name": "tresorerie-ecriture-cotisations-don-mairie",
+      "prompt": "Voici les opérations de septembre 2025 de l'APE Montessori : (1) 45 familles ont payé la cotisation 30 EUR par virement, total 1 350 EUR encaissé sur le compte bancaire Crédit Mutuel. (2) Un parent a fait un don de 500 EUR par chèque sans contrepartie. (3) La mairie a versé une subvention de fonctionnement de 2 000 EUR pour les sorties scolaires (pas de convention écrite cette fois). Passe les écritures comptables en ANC 2018-06 et indique les pièces justificatives à conserver.",
+      "expected_output": "Écritures en ANC 2018-06 : cotisations au crédit du 756, don au crédit du 758 (ou 746 selon plan), subvention mairie au crédit du 7421. Débit du 512x pour chaque encaissement. Mention de la pièce (relevé bancaire + tableau cotisations, talon de chèque, notification mairie). Le skill rappelle qu'une convention écrite serait nécessaire au-delà de 23 000 EUR cumulés par même autorité.",
+      "files": [],
+      "assertions": [
+        "Les cotisations sont enregistrées en crédit du compte 756 (Cotisations)",
+        "Le don de 500 EUR est enregistré en crédit du 758 ou 746 (dons manuels)",
+        "La subvention mairie est enregistrée en crédit du 7421 (subvention commune) ou 741x équivalent",
+        "Le compte 512 (banque) est débité en contrepartie de chaque encaissement",
+        "Le skill mentionne que la subvention n'impose pas encore une convention écrite car < 23 000 EUR cumulés sur l'exercice",
+        "Le skill rappelle d'émettre un reçu fiscal CERFA 11580*05 pour le don de 500 EUR si et seulement si l'association est éligible au sens art. 200 CGI",
+        "Le skill cite ANC 2018-06 ou un texte officiel"
+      ],
+      "domain": "tresorerie"
+    },
+    {
+      "id": 3,
+      "name": "tresorerie-franchise-impots-commerciaux-seuil",
+      "prompt": "Mon APE a organisé une kermesse (recette nette 4 500 EUR), un vide-grenier (2 800 EUR), un loto (3 200 EUR), une vente de gâteaux mensuelle de septembre à juin (10 ventes, total 6 500 EUR), un marché de Noël (1 800 EUR) et une fête de fin d'année (2 200 EUR). Les cotisations rapportent 1 350 EUR et la mairie verse 2 000 EUR de subvention. Sommes-nous toujours dans la franchise des impôts commerciaux pour 2026 ?",
+      "expected_output": "Le skill compte les manifestations exceptionnelles, identifie que la vente de gâteaux mensuelle n'est pas une manifestation exceptionnelle (récurrente), distingue recettes lucratives accessoires et hors champ, additionne et compare au seuil 81 051 EUR pour 2026. Conclusion : largement en-dessous du seuil, franchise maintenue, mais point de vigilance sur le caractère récurrent des ventes mensuelles.",
+      "files": [],
+      "assertions": [
+        "Le skill cite le seuil de franchise des impôts commerciaux pour 2026 : 81 051 EUR (ou indique la source BOFIP BOI-IS-CHAMP-10-50-20-20)",
+        "Le skill identifie correctement le périmètre des 6 manifestations exceptionnelles exonérées (art. 261-7-1°-c CGI)",
+        "Le skill distingue les ventes mensuelles récurrentes (à analyser comme activité économique) des manifestations exceptionnelles",
+        "Le skill conclut que l'association reste dans la franchise (total recettes lucratives bien inférieur à 81 051 EUR)",
+        "Le skill rappelle les 3 critères cumulatifs (gestion désintéressée, prépondérance non lucrative, seuil) et la règle des 4P en filigrane",
+        "Le skill ne confond pas franchise des impôts commerciaux et franchise en base de TVA (régimes distincts mais imbriqués)"
+      ],
+      "domain": "tresorerie"
+    },
+    {
+      "id": 4,
+      "name": "tresorerie-recu-fiscal-eligibilite-ape",
+      "prompt": "L'APE n'a jamais émis de reçu fiscal. Un parent qui a donné 300 EUR pour financer le voyage de classe demande son reçu. Notre association soutient uniquement les enfants des familles adhérentes (environ 60 familles). Peut-on émettre un reçu CERFA 11580 ? Quelle démarche sécurise ?",
+      "expected_output": "Le skill alerte sur le risque de 'cercle restreint' (association qui n'aide que les enfants des familles adhérentes), explique que cela peut faire perdre la qualité d'intérêt général au sens art. 200 CGI, déconseille d'émettre un reçu sans sécurisation, et recommande la procédure de rescrit fiscal mécénat (formulaire 2070-RD-SD adressé à la DDFiP) avant toute émission. Cite la sanction art. 1740 A CGI (25% en cas de reçu indu).",
+      "files": [],
+      "assertions": [
+        "Le skill identifie le risque 'cercle restreint' au sens de l'art. 200-1-b CGI et de la doctrine BOFIP",
+        "Le skill déconseille d'émettre un reçu fiscal en l'état",
+        "Le skill propose le rescrit fiscal mécénat via le formulaire 2070-RD-SD",
+        "Le skill mentionne le silence valant acceptation de l'administration après 6 mois (art. L. 80 C LPF)",
+        "Le skill mentionne la sanction de l'art. 1740 A CGI (amende de 25 % en cas de reçu fiscal indu)",
+        "Le skill propose une voie alternative : reformuler l'objet/les bénéficiaires pour ouvrir aux enfants de toute l'école, voire à un public plus large"
+      ],
+      "domain": "tresorerie"
+    },
+    {
+      "id": 5,
+      "name": "tresorerie-seuil-153000-cac-publication",
+      "prompt": "Cette année, notre association a reçu 80 000 EUR de subvention du conseil départemental, 50 000 EUR de subvention de la mairie, 30 000 EUR de la CAF, et 10 000 EUR de dons défiscalisés (nous sommes éligibles art. 200 CGI). Quelles obligations légales spécifiques nous incombent ? Quel est notre calendrier ?",
+      "expected_output": "Le skill additionne 80 000 + 50 000 + 30 000 + 10 000 = 170 000 EUR, dépasse le seuil de 153 000 EUR (art. L. 612-4 C. com.), conclut à l'obligation de désigner un CAC et de publier les comptes annuels + rapport CAC sur le portail DILA dans les 3 mois de l'approbation par l'AG. Mentionne la sanction 9 000 EUR pour défaut, le décret n° 2009-540 du 14/05/2009, et recommande d'engager rapidement un CAC inscrit à la CRCC.",
+      "files": [],
+      "assertions": [
+        "Le skill calcule correctement le total : 170 000 EUR",
+        "Le skill identifie le franchissement du seuil 153 000 EUR (art. L. 612-4 C. com.)",
+        "Le skill conclut à l'obligation de désigner un commissaire aux comptes",
+        "Le skill mentionne l'obligation de publication des comptes annuels + rapport CAC sur le portail DILA (journal-officiel.gouv.fr/pages/associations) dans les 3 mois suivant l'approbation par l'AG",
+        "Le skill cite la sanction de 9 000 EUR pour défaut de publication",
+        "Le skill cite le décret n° 2009-540 du 14 mai 2009 (ou texte équivalent)",
+        "Le skill rappelle aussi que les subventions > 75 000 EUR ou > 50% du budget exigent des comptes certifiés transmis à l'autorité versante (loi 2000-321)",
+        "Le skill renvoie vers un CAC (et le skill commissaire-aux-comptes le cas échéant) en disclaimer"
+      ],
+      "domain": "tresorerie"
+    },
+    {
+      "id": 6,
+      "name": "secretariat-delai-declaration-modification-statuts",
+      "prompt": "Notre association de parents d'élèves a voté en AG extraordinaire le 12 mars 2026 la modification de son objet social pour y inclure l'organisation de stages pédagogiques pendant les vacances. Quels sont les délais et les démarches à effectuer ?",
+      "expected_output": "Le skill cite l'article 5 al. 5 de la loi du 1er juillet 1901 imposant la déclaration de toute modification dans un délai de 3 mois. Il indique que la déclaration peut se faire via Le Compte Asso (e-modification, recommandée) ou par voie papier (CERFA 13972*03 + nouveaux statuts signés + PV de l'AGE). Il précise qu'une modification de l'objet déclenche une publication au JOAFE, gratuite et automatique depuis 2020. Il rappelle l'obligation d'avoir un PV signé par président et secrétaire de séance.",
+      "files": [],
+      "assertions": [
+        "Le skill cite l'article 5 al. 5 de la loi du 1er juillet 1901",
+        "Le délai de 3 mois est mentionné explicitement (avant le 12 juin 2026)",
+        "Le Compte Asso (e-modification) est cité comme voie recommandée",
+        "La voie papier (CERFA 13972*03) est mentionnée comme alternative",
+        "La publication au JOAFE est mentionnée pour une modification de l'objet",
+        "La gratuité de la publication JOAFE depuis 2020 (loi 2019-1479) est citée",
+        "Le PV signé de l'AGE est exigé comme pièce justificative",
+        "Les nouveaux statuts signés et datés doivent accompagner la déclaration",
+        "L'inopposabilité aux tiers en cas de non-déclaration dans les 3 mois est signalée",
+        "La structure de réponse comprend faits, cadre juridique, actions concrètes avec dates"
+      ],
+      "domain": "secretariat"
+    },
+    {
+      "id": 7,
+      "name": "secretariat-convocation-ag-quorum-modif-statuts",
+      "prompt": "Nos statuts prévoient pour une AG extraordinaire un quorum d'1/3 des membres et une majorité des 2/3 pour modifier les statuts. Nous sommes 90 membres à jour de cotisation. Nous voulons changer le siège social. Combien de membres minimum doivent être présents ou représentés, et combien de voix pour faire passer la modification ?",
+      "expected_output": "Le skill calcule le quorum : 1/3 de 90 = 30 membres présents ou représentés. Il explique que la majorité des 2/3 s'applique aux voix exprimées des présents et représentés (pas sur le total des membres). Il rappelle que les abstentions ne sont pas comptées dans les voix exprimées. Il rappelle le délai de convocation statutaire (à vérifier dans les statuts), l'obligation de mentionner précisément le changement de siège à l'ODJ, et le délai de 3 mois post-décision pour déclarer.",
+      "files": [],
+      "assertions": [
+        "Le calcul du quorum 1/3 de 90 = 30 membres est explicite",
+        "La distinction entre quorum (sur le total des membres) et majorité (sur les voix exprimées) est faite",
+        "Le skill précise que les abstentions ne comptent pas dans les voix exprimées",
+        "Le skill rappelle l'obligation d'inscrire précisément le changement de siège à l'ODJ",
+        "Le délai de convocation statutaire est mentionné (à vérifier dans les statuts)",
+        "Le délai de 3 mois pour la déclaration en préfecture est rappelé",
+        "Le skill mentionne que le changement de siège déclenche une publication JOAFE",
+        "Si le siège change de département, la double déclaration est évoquée",
+        "Le skill propose un canevas de PV ou renvoie vers le template pv-ag-extraordinaire.md"
+      ],
+      "domain": "secretariat"
+    },
+    {
+      "id": 8,
+      "name": "secretariat-registre-special-obligatoire",
+      "prompt": "Mon trésorier insiste pour qu'on achète un registre spécial à pages cotées pour y consigner toutes nos décisions, comme le faisait l'ancien président. Est-ce toujours obligatoire pour une association loi 1901 en 2026 ?",
+      "expected_output": "Le skill explique que l'obligation de tenir un registre spécial (article 5 du décret du 16 août 1901) a été abrogée par l'ordonnance n° 2015-904 du 23 juillet 2015. Depuis cette date, plus aucune obligation légale pour les associations loi 1901 en métropole. Le skill recommande néanmoins de tenir un registre des décisions ou des archives ordonnées, et propose une structure numérique. Il mentionne le régime particulier d'Alsace-Moselle si pertinent.",
+      "files": [],
+      "assertions": [
+        "Le skill cite l'ordonnance n° 2015-904 du 23 juillet 2015",
+        "L'abrogation de l'article 5 du décret du 16/08/1901 est mentionnée",
+        "La date d'abrogation (23/07/2015) est correctement citée",
+        "Le skill confirme que le registre spécial n'est plus obligatoire en métropole",
+        "Une recommandation pratique (registre numérique ou papier) est donnée",
+        "Le régime particulier d'Alsace-Moselle est signalé si l'association est dans le 67/68/57",
+        "Le skill rappelle l'importance des PV signés (qui restent indispensables)",
+        "La réponse est nuancée : pas obligatoire légalement, mais fortement recommandé"
+      ],
+      "domain": "secretariat"
+    },
+    {
+      "id": 9,
+      "name": "secretariat-creation-association-parents-eleves",
+      "prompt": "Nous voulons créer une association de parents d'élèves pour notre école Montessori à Paris. Nous sommes 8 parents fondateurs. Pouvez-vous nous décrire la procédure complète et l'ordre des étapes ?",
+      "expected_output": "Le skill décrit la procédure dans l'ordre : rédaction des statuts (modèle disponible), tenue de l'AG constitutive avec PV, déclaration via Le Compte Asso (recommandée) ou voie papier (CERFA 13971*04) à la préfecture de Police de Paris, réception du récépissé sous environ 5 jours avec attribution du RNA, parution automatique et gratuite au JOAFE, archivage des pièces. Il précise qu'un SIRET n'est requis que si l'association demande des subventions publiques, emploie des salariés ou paie des taxes. Il rappelle l'avertissement légal.",
+      "files": [],
+      "assertions": [
+        "Le minimum légal de 2 personnes (art. 1 loi 1901) est mentionné — les 8 fondateurs sont donc bien au-delà",
+        "La rédaction des statuts est positionnée comme première étape",
+        "Un modèle de statuts est cité (template statuts-modele.md ou service-public.fr)",
+        "L'AG constitutive avec PV signé est mentionnée",
+        "Le Compte Asso est présenté comme voie recommandée pour la déclaration",
+        "La voie papier (CERFA 13971*04) est mentionnée comme alternative",
+        "Le délai d'environ 5 jours pour le récépissé est cité (art. 2 décret 16/08/1901)",
+        "Le RNA (W + 9 chiffres) est expliqué",
+        "La gratuité de la parution JOAFE depuis 2020 est confirmée",
+        "Le SIRET n'est PAS présenté comme obligatoire pour exister (clarification cruciale)",
+        "Les conditions pour demander un SIRET sont énumérées (subventions, salariés, taxes)",
+        "Le calendrier indicatif (J / J+5 / J+30) est proposé",
+        "L'avertissement légal est inclus"
+      ],
+      "domain": "secretariat"
+    },
+    {
+      "id": 10,
+      "name": "secretariat-dissolution-devolution-impossible",
+      "prompt": "Notre association ferme. Il nous reste 4 200 EUR en caisse. Nos statuts ne disent rien sur la dévolution. Le trésorier propose de les partager entre les 12 membres restants comme remerciement. Est-ce possible ?",
+      "expected_output": "Le skill répond clairement NON. Il cite l'article 9 de la loi du 1er juillet 1901 : à défaut de disposition statutaire, l'AG décide de la dévolution, mais EN AUCUN CAS aux membres. Il cite aussi l'article 1 (but autre que partager des bénéfices). Il propose des bénéficiaires possibles (autre association, fondation, collectivité publique). Il rappelle qu'il faut une AGE pour décider de la dévolution, et que la délibération doit être actée par PV signé. Il signale les risques fiscaux et personnels en cas de non-respect.",
+      "files": [],
+      "assertions": [
+        "La réponse est NON, claire et sans ambiguïté",
+        "L'article 9 de la loi du 1er juillet 1901 est cité",
+        "L'article 1 de la loi 1901 (but autre que partager des bénéfices) est cité ou évoqué",
+        "L'AG extraordinaire est désignée comme compétente pour décider de la dévolution",
+        "Des bénéficiaires possibles sont proposés : autre association à objet proche, fondation, collectivité publique",
+        "Le skill exige un PV signé de l'AGE",
+        "Les sanctions/risques en cas de partage entre membres sont évoqués (nullité, restitution, sanctions fiscales)",
+        "La déclaration de dissolution en préfecture dans les 3 mois est rappelée",
+        "L'unique exception (cotisations de l'année courante, art. 4 loi 1901) est mentionnée si pertinent",
+        "L'avertissement légal et le renvoi vers un avocat en cas de complexité sont présents"
+      ],
+      "domain": "secretariat"
+    },
+    {
+      "id": 11,
+      "name": "representation-calendrier-elections-public",
+      "prompt": "Je suis parent d'élève à l'école publique élémentaire Jean Moulin (8 classes). Quand auront lieu les prochaines élections des représentants des parents d'élèves et comment dois-je m'organiser pour déposer une liste ?",
+      "expected_output": "Le skill explique que les élections sont fixées chaque année par une note de service ministérielle, qu'elles tombent typiquement un vendredi ou samedi de la première quinzaine d'octobre (semaine de la démocratie scolaire), et qu'il faut vérifier la note de service en vigueur (dernière connue : MENE2517394N pour 2025-2026, scrutin 10-11 octobre 2025). Le skill rappelle qu'une liste doit comporter au moins 2 candidats, qu'elle doit être déposée au moins 10 jours francs avant le scrutin auprès du directeur, et qu'une profession de foi conforme à la neutralité du service public est attendue.",
+      "files": [],
+      "assertions": [
+        "Le skill mentionne que la date du scrutin est fixée par note de service annuelle du ministère",
+        "Le skill renvoie à la note de service en vigueur et à eduscol/education.gouv.fr pour vérification",
+        "Le skill cite le scrutin d'octobre (semaine de la démocratie scolaire)",
+        "Le skill rappelle le dépôt de liste 10 jours francs avant le scrutin",
+        "Le skill précise qu'une liste comporte au moins 2 candidats et au maximum le double du nombre de sièges",
+        "Le skill mentionne l'obligation de neutralité de la profession de foi",
+        "Le skill rappelle le nombre de sièges = nombre de classes (8 ici)",
+        "Le skill propose le modèle de profession de foi ou renvoie à references/modeles/profession-de-foi.md"
+      ],
+      "domain": "representation"
+    },
+    {
+      "id": 12,
+      "name": "representation-scrutin-proportionnel-plus-forte-moyenne",
+      "prompt": "On vient de dépouiller au conseil d'école : 200 suffrages exprimés, 8 sièges à pourvoir, FCPE 90 voix, liste Indépendants 70 voix, PEEP 40 voix. Comment répartit-on les sièges ?",
+      "expected_output": "Le skill applique le scrutin proportionnel à la plus forte moyenne : quotient électoral 25, attribution au quotient (FCPE 3, Indépendants 2, PEEP 1 = 6 sièges), puis attribution des 2 sièges restants à la plus forte moyenne. Calcul détaillé avec recalcul à chaque attribution. Résultat final : FCPE 4, Indépendants 3, PEEP 1.",
+      "files": [],
+      "assertions": [
+        "Le skill explique le mécanisme du scrutin proportionnel à la plus forte moyenne",
+        "Le skill calcule le quotient électoral (200 / 8 = 25)",
+        "Le skill attribue 3 sièges à la FCPE, 2 aux Indépendants et 1 à la PEEP au quotient (total 6)",
+        "Le skill identifie qu'il reste 2 sièges à attribuer à la plus forte moyenne",
+        "Le skill calcule la moyenne = voix / (sièges + 1) pour chaque liste",
+        "Le skill attribue le premier siège restant aux Indépendants (70 / 3 ≈ 23,3)",
+        "Le skill recalcule la moyenne après chaque attribution",
+        "Le skill attribue le deuxième siège restant à la FCPE (90 / 4 = 22,5)",
+        "Le résultat final est FCPE 4, Indépendants 3, PEEP 1",
+        "Le skill renvoie à references/elections.md pour le détail du mécanisme"
+      ],
+      "domain": "representation"
+    },
+    {
+      "id": 13,
+      "name": "representation-ecole-hors-contrat-montessori",
+      "prompt": "Je suis parent dans une école Montessori privée hors contrat à Lyon. La directrice me dit que les parents n'ont pas vraiment d'instance officielle parce que l'école n'est pas tenue par le Code de l'éducation. Du coup, comment est-ce qu'on s'organise concrètement pour avoir une voix ?",
+      "expected_output": "Le skill confirme que les instances du Code de l'éducation (conseil d'école, conseil d'administration EPLE) ne s'appliquent pas aux écoles hors contrat. Il rappelle que ce sont les statuts de l'école (souvent une association loi 1901) et son règlement intérieur qui définissent les organes et la place des parents. Il décrit les trois schémas typiques (association unique, deux associations, autres formes) et propose d'importer par analogie les bonnes pratiques publiques (délégué par classe, réunions trimestrielles, comptes rendus écrits) sous réserve de les inscrire dans les statuts ou le RI. Le skill ne cite pas le Code de l'éducation comme contraignant pour cette école.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que la directrice a raison sur le principe : pas d'obligation de conseil d'école pour le hors contrat",
+        "Le skill renvoie aux statuts de l'école et au règlement intérieur comme sources contraignantes",
+        "Le skill mentionne que l'école est typiquement portée par une association loi 1901",
+        "Le skill décrit les schémas typiques (association unique, deux associations distinctes)",
+        "Le skill propose d'importer par analogie les bonnes pratiques du public (délégué par classe, réunions trimestrielles, comptes rendus)",
+        "Le skill recommande d'inscrire ces dispositifs dans les statuts ou le RI pour les rendre opposables",
+        "Le skill ne cite pas un article du Code de l'éducation comme contraignant pour cette école hors contrat",
+        "Le skill rappelle que le DASEN reste compétent pour les contrôles de l'instruction mais pas pour arbitrer les conflits internes",
+        "Le skill renvoie à references/public-vs-prive.md"
+      ],
+      "domain": "representation"
+    },
+    {
+      "id": 14,
+      "name": "representation-mediation-parent-enseignant",
+      "prompt": "Une famille de notre école nous demande, en tant que représentants des parents, d'intervenir pour eux auprès de la maîtresse de leur enfant qu'ils trouvent autoritaire et trop sévère sur les évaluations. On fait quoi ?",
+      "expected_output": "Le skill rappelle que la médiation est expressément prévue par l'article D111-11 du Code de l'éducation, et que cette mission est secondaire à la facilitation. Il rappelle l'obligation absolue de confidentialité du représentant. Il propose une démarche en plusieurs niveaux : 1. demander à la famille ce qu'elle attend exactement et si elle a déjà tenté un échange direct avec l'enseignante ; 2. si non, recommander en priorité un rendez-vous direct ; 3. si la famille a essayé sans résultat, proposer d'accompagner une demande d'entretien avec le directeur ; 4. si insatisfaction persistante, mention de l'IEN de circonscription ; 5. au-delà, médiateur académique. Le skill insiste sur le fait que le représentant ne juge pas la pédagogie de l'enseignante et ne diffuse rien publiquement.",
+      "files": [],
+      "assertions": [
+        "Le skill cite l'article D111-11 du Code de l'éducation pour fonder la mission de médiation",
+        "Le skill rappelle l'obligation absolue de confidentialité du représentant",
+        "Le skill propose une démarche graduée commençant par le dialogue direct famille / enseignante",
+        "Le skill mentionne le directeur d'école comme deuxième niveau d'escalade",
+        "Le skill mentionne l'IEN de circonscription comme troisième niveau",
+        "Le skill mentionne le médiateur académique comme niveau supérieur",
+        "Le skill rappelle que le représentant ne juge pas la pédagogie de l'enseignante",
+        "Le skill rappelle qu'aucun élément individuel ne doit être diffusé publiquement",
+        "Le skill renvoie à references/droits-parents.md et/ou references/cadre-legal.md"
+      ],
+      "domain": "representation"
+    },
+    {
+      "id": 15,
+      "name": "representation-compte-rendu-conseil-ecole",
+      "prompt": "Je dois rédiger le compte rendu du conseil d'école du 1er trimestre pour les parents. Pendant la séance, on a parlé d'une situation de tension entre un élève de CM2 et son enseignant, et un parent a interpellé nominativement un agent municipal sur la qualité de la cantine. Comment je rédige ?",
+      "expected_output": "Le skill rappelle la double obligation : confidentialité absolue sur les informations à caractère personnel (art. D111-11) et neutralité / respect (art. D111-9). Il indique que la situation individuelle CM2 ne doit jamais figurer dans le compte rendu diffusé, et que l'interpellation nominative de l'agent municipal doit être reformulée sans nom ni accusation. Il propose la structure du modèle de PV (sections effectifs, projet, périscolaire, sécurité, etc.) en orientant la section restauration vers un résumé impersonnel et factuel des retours et engagements. Il propose de produire un compte rendu sous 10 jours et de le faire valider par les autres représentants avant diffusion.",
+      "files": [],
+      "assertions": [
+        "Le skill rappelle l'obligation de confidentialité (art. D111-11)",
+        "Le skill exclut tout élément individuel concernant l'élève de CM2 du compte rendu diffusé",
+        "Le skill recommande de reformuler l'interpellation de l'agent municipal sans nom ni accusation",
+        "Le skill propose une structure de compte rendu (effectifs, projet, périscolaire, sécurité, etc.)",
+        "Le skill renvoie au modèle references/modeles/pv-conseil-ecole.md",
+        "Le skill recommande une diffusion sous 10 jours",
+        "Le skill recommande une relecture / validation par les autres représentants avant diffusion",
+        "Le skill rappelle que le compte rendu est distinct du PV officiel rédigé sous l'autorité du directeur"
+      ],
+      "domain": "representation"
+    },
+    {
+      "id": 16,
+      "name": "evenementiel-distinction-loterie-payante-vs-tombola-gratuite",
+      "prompt": "Nous organisons la kermesse de l'école le 27 juin. À l'entrée, les visiteurs paient 3 € et reçoivent un ticket de tombola pour le tirage prévu à 18h30. Les lots sont des bons d'achat et un panier garni. Est-ce une tombola gratuite ou faut-il une autorisation ? Comment formaliser la demande ?",
+      "expected_output": "Le skill caractérise les 4 critères cumulatifs de l'art. L. 322-2 CSI (offre publique, espérance de gain, hasard, sacrifice pécuniaire) ; identifie le sacrifice pécuniaire INDIRECT (le droit d'entrée donne accès au tirage) ; en conclut qu'il s'agit bien d'une loterie au sens de la loi, donc soumise à autorisation. Renvoie à l'art. L. 322-3 CSI (loteries d'objets mobiliers, autorisation du maire — préfet de police à Paris) et liste les pièces du dossier (statuts, RNA, projet bénéficiaire, lots, modalités tirage). Indique un délai d'au moins 6 semaines avant le tirage. Propose une alternative pour rester en tombola gratuite : ouvrir le tirage à toute personne présente, même sans avoir payé l'entrée.",
+      "files": [],
+      "assertions": [
+        "Les 4 critères cumulatifs de l'art. L. 322-2 CSI sont énoncés",
+        "Le sacrifice pécuniaire indirect (droit d'entrée → ticket) est explicitement identifié comme déterminant",
+        "L'opération est qualifiée de loterie payante et non de tombola gratuite",
+        "L'art. L. 322-3 CSI est cité comme base de l'autorisation municipale",
+        "Le maire (préfet de police à Paris) est correctement identifié comme autorité",
+        "Un délai d'au moins 6 semaines avant le tirage est recommandé",
+        "Les lots sont confirmés comme devant être en nature (rappel L. 322-7 : pas d'espèces, pas de bons remboursables)",
+        "L'alternative pour rester en tombola gratuite (tirage ouvert à toute personne, sans achat requis) est proposée",
+        "Un modèle ou template de lettre au maire est suggéré (références/loteries-tombolas.md ou templates/demande-autorisation-tombola.md)"
+      ],
+      "domain": "evenementiel"
+    },
+    {
+      "id": 17,
+      "name": "evenementiel-buvette-temporaire-quota-zone-protegee",
+      "prompt": "Nous voulons ouvrir une buvette pour la kermesse, dans la cour de l'école, le samedi 27 juin de 14h à 19h. C'est la 3e fois cette année qu'on organise une buvette. Nous comptons servir du vin, de la bière, des sodas, et un mojito sans alcool. La fête est en présence d'élèves. Quels sont les écueils légaux et comment procéder ?",
+      "expected_output": "Le skill rappelle l'art. L. 3334-2 CSP : 5 autorisations annuelles maximum, groupes 1 et 3 uniquement. Il confirme que la 3e demande reste possible (≤ 5/an) mais qu'il faudra arbitrer les buvettes restantes pour l'année. Il identifie le 'mojito sans alcool' comme groupe 1 (sans danger) mais avertit que tout mojito alcoolisé serait du groupe 4 (rhum) et donc INTERDIT. Il alerte sur les zones protégées art. L. 3335-1 CSP : l'école est dans la zone protégée définie par arrêté préfectoral, donc autorisation conditionnelle, et la présence d'élèves peut motiver un refus ou un horaire encadré. Il recommande la demande au maire ≥ 15 jours avant, avec affichage de l'interdiction de vente aux mineurs (L. 3342-1), du pictogramme grossesse (L. 3322-2), des prix TTC, et le contrôle d'âge.",
+      "files": [],
+      "assertions": [
+        "L'art. L. 3334-2 CSP est cité",
+        "Le quota annuel de 5 autorisations max par association est mentionné",
+        "La limitation aux groupes 1 et 3 est clairement énoncée",
+        "Le skill alerte que le rhum (mojito alcoolisé) est du groupe 4 et donc INTERDIT en buvette associative",
+        "L'art. L. 3335-1 CSP (zones protégées) est cité et appliqué à l'enceinte scolaire",
+        "Le risque d'un refus ou d'un horaire encadré du fait de la présence d'élèves est mentionné",
+        "Un délai de dépôt ≥ 15 jours avant la manifestation est indiqué",
+        "Les affichages obligatoires (L. 3342-1 mineurs, L. 3322-2 grossesse, prix TTC) sont énumérés",
+        "Le contrôle d'âge pour la vente d'alcool est rappelé (L. 3342-1, sanction L. 3353-3)"
+      ],
+      "domain": "evenementiel"
+    },
+    {
+      "id": 18,
+      "name": "evenementiel-vide-grenier-declaration-et-registre",
+      "prompt": "Nous organisons notre premier vide-grenier le 4 octobre dans la cour de l'école, ouvert à 40 exposants familles + 5 professionnels. Quelles déclarations faire, à qui, et comment tenir le registre des vendeurs ? Quelles sanctions si on l'oublie ?",
+      "expected_output": "Le skill décrit la déclaration préalable de vente au déballage (art. L. 310-2 et R. 310-8 C. com.) : Cerfa 13939*01 au maire ≥ 15 jours avant, copie simultanée à la DDPP. Rappelle la limite de 2 mois/an par lieu (R. 310-19). Explique le registre obligatoire (art. 321-7 C. pén.) : coté et paraphé par commissariat ou mairie AVANT l'événement, tenu jour par jour, avec pour chaque exposant : nom, prénom, domicile, date et lieu de naissance, nature et numéro de pièce d'identité, attestation sur l'honneur de non-participation à plus de 2 manifestations dans l'année civile (R. 321-9). Conservation 5 ans. Sanctions : défaut de registre = 6 mois + 30 000 € ; défaut de déclaration = 1 500 € PP / 7 500 € PM (contravention 5e classe). Distingue exposants particuliers (max 2/an, objets usagés personnels) et professionnels (Kbis, déclaration distincte). Recommande de refuser un exposant qui dépasse les 2 manifestations.",
+      "files": [],
+      "assertions": [
+        "L'art. L. 310-2 C. com. est cité",
+        "L'art. R. 310-8 C. com. est cité avec le délai de 15 jours et la copie DDPP",
+        "Le Cerfa 13939*01 est mentionné comme formulaire de déclaration",
+        "L'art. 321-7 C. pén. est cité pour le registre des vendeurs",
+        "L'art. R. 321-9 C. pén. est cité pour les mentions obligatoires du registre",
+        "Le registre doit être coté et paraphé avant l'événement (commissariat ou mairie)",
+        "La sanction du défaut de registre (6 mois + 30 000 €) est mentionnée",
+        "La sanction du défaut de déclaration (contravention 5e classe, 1 500 € PP / 7 500 € PM) est mentionnée",
+        "La limite de 2 manifestations par an pour les exposants particuliers est rappelée",
+        "La distinction exposants particuliers / professionnels est faite (justificatif Kbis pour les pros)"
+      ],
+      "domain": "evenementiel"
+    },
+    {
+      "id": 19,
+      "name": "evenementiel-loto-traditionnel-vs-loterie-autorisee",
+      "prompt": "Le bureau veut organiser une soirée loto en novembre, salle communale, ouverte aux familles de l'école et au voisinage. Mise : 5 € le carton, 12 € les 3, 20 € les 6. Lots : un téléviseur 32 pouces (valeur 180 €), un panier garni (valeur 60 €), des bons d'achat enseigne sport (50 € et 20 €). Pas d'argent en jeu. Peut-on le faire sans autorisation, ou faut-il déposer un dossier ?",
+      "expected_output": "Le skill applique l'art. L. 322-4 CSI (loto traditionnel) en vérifiant les 4 conditions cumulatives : (1) cercle restreint — OK (familles école + voisinage local) ; (2) but social/culturel/éducatif — OK ; (3) mise ≤ 20 € — vérifier le cumul d'achats (un participant peut acheter au-delà ? la lecture stricte vise la mise unitaire mais la pratique préfectorale apprécie le cumul) — borderline, conseiller de plafonner à 20 € par personne ; (4) lots en nature et valeur unitaire ≤ 150 € (art. D. 322-3-1) — PROBLÈME : le téléviseur à 180 € DÉPASSE le plafond. Conclusion : soit retirer ou échanger le TV pour rester sous 150 € (alors régime L. 322-4 sans autorisation) ; soit conserver le TV et basculer en loterie L. 322-3 (autorisation du maire obligatoire, ≥ 6 semaines). Mentionne que les bons d'achat sont admis tant qu'ils ne sont pas remboursables en espèces.",
+      "files": [],
+      "assertions": [
+        "L'art. L. 322-4 CSI est cité comme régime du loto traditionnel",
+        "Les 4 conditions cumulatives sont énumérées (cercle restreint, but, mise ≤ 20 €, lots ≤ 150 €)",
+        "Le plafond de 150 € par lot (art. D. 322-3-1 CSI) est cité",
+        "Le téléviseur à 180 € est explicitement identifié comme dépassant le plafond",
+        "Deux alternatives sont proposées : (a) réduire la valeur du TV, (b) basculer en L. 322-3 avec autorisation maire",
+        "Le délai de dépôt en cas de L. 322-3 (≥ 6 semaines) est rappelé",
+        "Les bons d'achat non remboursables sont confirmés admissibles",
+        "Le skill rappelle que les lots en espèces sont interdits (art. L. 322-7)",
+        "Une note interne de caractérisation est recommandée si régime L. 322-4 retenu"
+      ],
+      "domain": "evenementiel"
+    },
+    {
+      "id": 20,
+      "name": "evenementiel-convention-locaux-scolaires-et-gn6",
+      "prompt": "Le directeur d'école est d'accord pour qu'on tienne la kermesse dans la cour. Effectif attendu 250 personnes. On compte installer un chapiteau de 30 m² loué chez un pro, sonorisation, buvette, tombola, restauration légère. Quelles autorisations administratives indépendantes de l'accord du directeur, et dans quel ordre ?",
+      "expected_output": "Le skill rappelle que l'accord du directeur ne suffit pas : la mise à disposition des locaux scolaires relève du maire avec avis du conseil d'école (art. L. 212-15 Code de l'éducation), formalisée par une convention tripartite (commune / école / association). Liste les autorisations à demander en parallèle au maire : (1) convention de mise à disposition L. 212-15 — viser 30 jours minimum, avis conseil d'école à recueillir ; (2) demande GN 6 (utilisation exceptionnelle ERP) art. GN 6 arrêté 25 juin 1980 — ≥ 15 jours, plan d'évacuation, matériaux M1/Bs1d0 ; (3) chapiteau > 16 m² → régime CTS (PV d'identification fourni par loueur + déclaration mairie pour implantation) ; (4) buvette L. 3334-2 — ≥ 15 jours ; (5) tombola L. 322-3 si payante — ≥ 6 semaines ; (6) SACEM si musique enregistrée ou amplifiée — ≥ 15 jours. Recommande un dossier groupé au maire pour faciliter l'instruction, et propose un calendrier rétro-planifié J-90 / J-60 / J-30 / J-15. Confirme que la RC associative doit couvrir la manifestation (avenant si besoin), attestation à joindre au dossier.",
+      "files": [],
+      "assertions": [
+        "Le skill précise que l'accord du directeur ne suffit pas et cite l'art. L. 212-15 Code de l'éducation",
+        "L'avis du conseil d'école est mentionné comme préalable à la convention",
+        "La convention tripartite (commune / école / association) est identifiée comme livrable",
+        "La demande GN 6 (utilisation exceptionnelle ERP) est listée avec citation de l'arrêté 25 juin 1980",
+        "Le chapiteau > 16 m² déclenche le régime CTS — PV d'identification mentionné",
+        "L'autorisation de buvette (L. 3334-2 CSP) est listée avec délai ≥ 15 jours",
+        "L'autorisation de tombola (L. 322-3 CSI) est conditionnée à un caractère payant",
+        "La déclaration SACEM est mentionnée avec délai ≥ 15 jours",
+        "Un dossier groupé adressé au maire est recommandé",
+        "Un calendrier rétro-planifié (J-90 / J-60 / J-30 / J-15) est proposé",
+        "La RC associative et l'attestation à joindre sont rappelées"
+      ],
+      "domain": "evenementiel"
+    },
+    {
+      "id": 21,
+      "name": "communication-photo-classe-instagram-autorisation-cercle-1-seulement",
+      "prompt": "Je suis trésorière d'une APE Montessori. Notre référente communication a publié sur le compte Instagram de l'association une photo de groupe de la classe des 6-9 ans prise lors de la kermesse, avec les visages reconnaissables. En vérifiant le tableau de suivi, je constate que pour 4 enfants sur 18 nous n'avons qu'une autorisation 'usage interne association' (cercle 1), pas l'autorisation réseaux sociaux. Que faut-il faire, et comment éviter le problème la prochaine fois ?",
+      "expected_output": "Le skill identifie une diffusion sans base légale valable pour le cercle ciblé (RS) : l'autorisation cercle 1 ne couvre pas Instagram. Il recommande le retrait immédiat du post (ou son retraitement avec floutage des 4 enfants concernés), la conservation d'une trace, l'information des familles concernées, la mise à jour du journal des publications. Il propose un correctif structurel : autorisation à trois cercles distincts (interne / public / RS), tableau de suivi par enfant, double validation bureau avant publication RS, et inscription au registre des traitements.",
+      "files": [],
+      "assertions": [
+        "Le skill identifie que l'autorisation cercle 1 ne couvre pas Instagram (consentement spécifique, art. 7 RGPD + art. 9 C.civ)",
+        "Le skill demande le retrait immédiat OU le floutage des 4 enfants concernés",
+        "Le skill mentionne l'art. 9 du Code civil et la jurisprudence sur l'autorisation parentale conjointe",
+        "Le skill recommande d'informer les familles concernées",
+        "Le skill propose la conservation d'une trace écrite (capture avant retrait)",
+        "Le skill propose un correctif : formulaire d'autorisation à trois cercles distincts",
+        "Le skill recommande une double validation bureau avant publication RS",
+        "Le skill rappelle qu'il faut signature des deux parents pour un mineur (art. 372 C.civ)",
+        "Le skill ne suggère pas de simplement masquer le post sans trace",
+        "Le skill rappelle qu'un avis à l'entrée de l'événement n'est pas un consentement valable"
+      ],
+      "domain": "communication"
+    },
+    {
+      "id": 22,
+      "name": "communication-creation-groupe-whatsapp-parents-classe",
+      "prompt": "On veut créer un groupe WhatsApp 'Parents de la classe Maternelle 1' pour coordonner les sorties et les bricolages. L'idée est de partir de la liste de contact que la directrice de l'école nous a transmise (numéros de portable des parents). Quelles précautions faut-il prendre et qu'est-ce qu'on a le droit de faire ?",
+      "expected_output": "Le skill refuse l'usage de la liste fournie par l'école sans nouveau consentement (détournement de finalité, art. 5.1.b RGPD). Il propose une démarche conforme : annonce par mail/papier, opt-in explicite, charte du groupe (objet, modération, retrait), désignation d'administrateurs, mention que WhatsApp héberge hors UE (CCT). Le skill rappelle que le numéro de portable est une donnée personnelle, que l'adhésion à l'APE ne vaut pas opt-in à un groupe de messagerie, et que les sujets sensibles (santé enfants) sont à proscrire dans le groupe. Il propose un modèle de charte et inscrit le groupe au registre des traitements.",
+      "files": [],
+      "assertions": [
+        "Le skill refuse explicitement la reprise de la liste fournie par l'école (détournement de finalité, art. 5.1.b RGPD)",
+        "Le skill rappelle que le numéro de portable est une donnée personnelle",
+        "Le skill exige un opt-in explicite (art. 6.1.a + art. 7 RGPD)",
+        "Le skill fournit ou propose une charte de groupe (objet, modération, retrait)",
+        "Le skill recommande la désignation d'administrateurs identifiés",
+        "Le skill mentionne que WhatsApp est hébergé hors UE (Meta / US) et le besoin de CCT",
+        "Le skill rappelle que l'adhésion APE ne vaut pas opt-in à un groupe de messagerie",
+        "Le skill déconseille les sujets sensibles (santé, scolarité individuelle) dans le groupe",
+        "Le skill demande l'inscription du nouveau traitement au registre (art. 30 RGPD)",
+        "Le skill propose un canal de retrait simple (demande à un administrateur)"
+      ],
+      "domain": "communication"
+    },
+    {
+      "id": 23,
+      "name": "communication-retrait-autorisation-image-mi-annee",
+      "prompt": "Un parent nous écrit qu'il retire l'autorisation image de sa fille (CE1) pour TOUS les supports, y compris ceux publiés depuis 2 ans. Sa fille apparaît sur 12 photos sur notre site, 4 posts Instagram, et 3 bulletins PDF déjà envoyés aux familles. Que faut-il faire et dans quel délai ?",
+      "expected_output": "Le skill confirme le droit de retrait à tout moment (art. 7.3 RGPD) sans justification, sans frais. Il fixe le délai à 1 mois max (art. 12.3 RGPD). Il distingue : (1) supports contrôlés par l'APE (site, Instagram) → retrait effectif sous 1 mois, conservation d'une trace ; (2) bulletins PDF déjà diffusés → ne peuvent pas être 'rappelés', mais l'APE doit cesser toute rediffusion et anonymiser les archives accessibles. Il accuse réception sous 48h, envoie une réponse écrite confirmant les actions, conserve la demande au registre des demandes. Il rappelle que le retrait ne remet pas en cause la licéité du traitement passé mais s'impose pour l'avenir.",
+      "files": [],
+      "assertions": [
+        "Le skill cite l'article 7.3 RGPD (droit de retrait à tout moment)",
+        "Le skill confirme qu'aucune justification n'est requise et que c'est gratuit",
+        "Le skill mentionne le délai d'1 mois (art. 12.3 RGPD), prolongeable de 2 mois si complexe",
+        "Le skill prévoit un accusé de réception rapide (sous 48h conseillé)",
+        "Le skill distingue les supports contrôlés (site, RS) et les supports déjà diffusés (PDF)",
+        "Le skill propose le retrait effectif des 12 photos site + 4 posts Instagram",
+        "Le skill explique qu'on ne peut pas rappeler les PDF déjà envoyés mais qu'on cesse la rediffusion",
+        "Le skill recommande l'anonymisation des archives accessibles",
+        "Le skill consigne la demande et la réponse dans le registre des demandes (art. 12)",
+        "Le skill rappelle que le retrait ne remet pas en cause la licéité du traitement passé (art. 7.3)",
+        "Le skill propose un modèle de réponse écrite au parent"
+      ],
+      "domain": "communication"
+    },
+    {
+      "id": 24,
+      "name": "communication-mailing-newsletter-importer-adherents-doffice",
+      "prompt": "L'an dernier on envoyait notre newsletter aux 64 adhérents en copie cachée depuis l'adresse Gmail du président. On veut basculer sur Brevo. On a déjà la liste des 64 mails, on peut tout importer et commencer à envoyer ?",
+      "expected_output": "Le skill refuse l'import brut sans opt-in dédié. Il explique que l'adhésion ne vaut pas consentement newsletter (jurisprudence CJUE Planet49 + EDPB 05/2020). Il propose une démarche conforme : relancer les adhérents avec un opt-in clair (case non pré-cochée, libellé spécifique), conserver les traces, ne basculer sur Brevo qu'après recueil du consentement. Il signale les manquements de la pratique passée (Gmail en BCC > 30, pas de désinscription, pas de mentions LCEN) sans dramatiser. Il propose un modèle de mail d'opt-in et la structure de pied de page conforme. Il rappelle l'inscription au registre des traitements.",
+      "files": [],
+      "assertions": [
+        "Le skill refuse l'import direct et exige un opt-in dédié",
+        "Le skill cite CJUE Planet49 OU les lignes directrices EDPB 05/2020 sur le consentement",
+        "Le skill rappelle que l'adhésion ne vaut pas consentement newsletter",
+        "Le skill propose un mail de demande d'opt-in avec libellé clair",
+        "Le skill mentionne la case NON pré-cochée comme condition de validité",
+        "Le skill signale les manquements de la pratique Gmail/BCC (mais reste constructif)",
+        "Le skill fournit un modèle de pied de mail conforme (identité, désinscription, politique de confidentialité)",
+        "Le skill rappelle l'obligation de lien de désinscription en un clic",
+        "Le skill recommande l'inscription au registre des traitements (art. 30)",
+        "Le skill confirme que Brevo est un sous-traitant UE acceptable"
+      ],
+      "domain": "communication"
+    },
+    {
+      "id": 25,
+      "name": "communication-incident-blessure-eleve-presse-locale",
+      "prompt": "Lors de notre kermesse, un enfant s'est blessé en tombant. Pas de gravité, mais ses parents ont été appelés et l'ont récupéré. Le journal local nous appelle aujourd'hui en demandant des précisions sur 'l'accident de la kermesse de l'APE'. Notre référente comm veut publier un communiqué sur Facebook pour 'reprendre la main'. Qu'est-ce qu'on fait ?",
+      "expected_output": "Le skill recommande la prudence : pas de communication publique précipitée, pas de mention de l'enfant (même sans nom — risque d'identification dans une petite communauté), pas de captation de l'incident. Il rappelle la priorité de la coordination avec la direction de l'école et le souhait de la famille. Pour la presse : renvoi vers le ou la président·e, pas de citation à chaud, possibilité de répondre par écrit factuellement après réunion du bureau. Pour Facebook : déconseille un communiqué qui rappellerait l'incident ; au mieux, un mot factuel et mesuré uniquement si une rumeur déjà installée le justifie, et avec accord de la famille. Il propose une trame de réponse à la presse et un protocole interne (porte-parole unique, modération des commentaires, archivage des messages reçus).",
+      "files": [],
+      "assertions": [
+        "Le skill déconseille un communiqué public précipité",
+        "Le skill recommande de coordonner avec la direction de l'école",
+        "Le skill exige l'accord de la famille avant toute mention de l'enfant",
+        "Le skill rappelle de ne pas nommer l'enfant ni le décrire de manière identifiante",
+        "Le skill identifie le ou la président·e comme porte-parole unique",
+        "Le skill propose une réponse écrite et factuelle à la presse plutôt qu'une déclaration à chaud",
+        "Le skill propose la modération / désactivation des commentaires sur le post éventuel",
+        "Le skill conserve les messages reçus à des fins de traçabilité, sans diffusion",
+        "Le skill rappelle l'absence de captation de l'incident",
+        "Le skill ne pousse pas à 'reprendre la main' sur les RS si la famille préfère le silence"
+      ],
+      "domain": "communication"
+    },
+    {
+      "id": 26,
+      "name": "pedagogie-montessori-nom-non-protege",
+      "prompt": "On hésite à inscrire notre fille de 3 ans dans une nouvelle crèche du quartier qui se présente comme une 'crèche Montessori'. Comment savoir si elle l'est vraiment ?",
+      "expected_output": "Le skill explique que le nom Montessori n'est pas protégé en France, qu'une crèche peut s'autoproclamer Montessori sans aucune obligation, et liste les critères concrets de vérification (formation AMI des éducatrices, mixité d'âges, matériel agréé, label AMF, visite d'observation). Il termine par un rappel que ce skill informe mais ne remplace pas une éducatrice AMI.",
+      "files": [],
+      "assertions": [
+        "Le skill mentionne explicitement que le nom 'Montessori' n'est pas une marque protégée en France",
+        "Le skill cite l'AMI (Association Montessori Internationale) et/ou l'AMF (Association Montessori France) comme références",
+        "Le skill recommande de vérifier la formation des éducatrices (AMI, ISMM, CFMF ou AMS)",
+        "Le skill recommande une visite d'observation de l'ambiance",
+        "Le skill mentionne la mixité d'âges et/ou le cycle de travail comme critères",
+        "Le skill inclut un avertissement (ne remplace pas une éducatrice formée AMI)",
+        "Le skill ne se prononce pas sur la crèche spécifique sans plus d'information"
+      ],
+      "domain": "pedagogie"
+    },
+    {
+      "id": 27,
+      "name": "pedagogie-hors-contrat-vs-sous-contrat",
+      "prompt": "Notre école Montessori est hors-contrat. Une famille s'inquiète parce qu'elle a entendu qu'on ne suit pas les programmes officiels. Que faut-il leur répondre sur le cadre légal et les obligations ?",
+      "expected_output": "Le skill distingue clairement hors-contrat, contrat simple et contrat d'association, cite les articles L441-1, L442-1, L442-2 du Code de l'éducation et la loi Gatel 2018-266. Il explique la liberté pédagogique du hors-contrat (programmes non imposés mais socle commun à 16 ans), les contrôles d'État (titres, obligation scolaire, socle commun, ordre public, santé) et la périodicité des inspections (1ère année obligatoire puis pratique tous les ~5 ans).",
+      "files": [],
+      "assertions": [
+        "Le skill distingue les trois statuts: hors-contrat, sous-contrat simple, contrat d'association",
+        "Le skill cite au moins un article du Code de l'éducation (L441-1, L442-1, L442-2 ou L442-5)",
+        "Le skill mentionne la loi Gatel (n° 2018-266 du 13 avril 2018) ou la simplification du régime d'ouverture",
+        "Le skill explique l'obligation d'acquisition progressive du socle commun (art. L122-1-1 ou équivalent)",
+        "Le skill mentionne les contrôles d'État (titres, obligation scolaire, socle commun, ordre public)",
+        "Le skill précise la périodicité indicative (inspection obligatoire 1ère année + ensuite tous les ~5 ans)",
+        "Le skill cite Légifrance ou service-public.fr comme source vérifiable",
+        "Le skill ne confond pas la pédagogie Montessori avec un statut juridique particulier"
+      ],
+      "domain": "pedagogie"
+    },
+    {
+      "id": 28,
+      "name": "pedagogie-periodes-sensibles-age",
+      "prompt": "Notre fils a 18 mois. Il déplace tout, range tout, hurle si on change sa routine. Est-ce une 'période sensible' ? Qu'est-ce qu'on peut faire concrètement ?",
+      "expected_output": "Le skill identifie qu'il s'agit probablement de la période sensible de l'ordre (1-3 ans, pic 18-24 mois) et possiblement du mouvement, donne des explications concrètes sur ce que sont les périodes sensibles selon Maria Montessori, propose des aménagements à la maison (rituels stables, mobilier accessible, ne pas déranger les rangements de l'enfant), et rappelle de consulter l'éducatrice de la Communauté enfantine ou un pédiatre si la situation est anxiogène.",
+      "files": [],
+      "assertions": [
+        "Le skill identifie la période sensible de l'ordre (0-3 ans, pic 18-24 mois)",
+        "Le skill mentionne au moins une autre période sensible pertinente (mouvement, langage, petits objets)",
+        "Le skill cite Maria Montessori ou L'Esprit absorbant de l'enfant comme source du concept",
+        "Le skill donne au moins 2 conseils concrets et adaptés à l'âge (rituels stables, mobilier à hauteur, vie pratique, etc.)",
+        "Le skill ne pose pas de diagnostic médical sur l'enfant",
+        "Le skill oriente vers un professionnel (éducatrice de l'ambiance, pédiatre) si nécessaire",
+        "Le skill mentionne une nuance scientifique (les périodes sensibles ne sont pas des fenêtres absolues)"
+      ],
+      "domain": "pedagogie"
+    },
+    {
+      "id": 29,
+      "name": "pedagogie-transition-vers-public-6eme",
+      "prompt": "Notre fille a 11 ans, elle est en Élémentaire Montessori depuis 5 ans. Elle entre en 6ème dans un collège public l'année prochaine. Comment préparer la transition ?",
+      "expected_output": "Le skill donne des conseils concrets sur le format des évaluations (notes, contrôles), le travail à la maison, l'autonomie déjà acquise comme atout. Il rappelle de vérifier l'acquisition du socle commun avec l'éducatrice, mentionne la durée typique d'adaptation, et invite à un soutien émotionnel pendant les premiers mois. Il ne dramatise ni ne minimise.",
+      "files": [],
+      "assertions": [
+        "Le skill mentionne la vérification de l'acquisition du socle commun avec l'éducatrice",
+        "Le skill aborde le changement de format d'évaluation (notes, contrôles)",
+        "Le skill identifie l'autonomie comme un atout d'un élève Montessori",
+        "Le skill donne une indication de durée d'adaptation (semaines à un trimestre)",
+        "Le skill recommande un dialogue avec l'éducatrice de l'ambiance actuelle",
+        "Le skill aborde le soutien émotionnel de l'enfant",
+        "Le skill ne prétend pas que la transition sera triviale et ne dramatise pas non plus"
+      ],
+      "domain": "pedagogie"
+    },
+    {
+      "id": 30,
+      "name": "pedagogie-ami-vs-formation-week-end",
+      "prompt": "Une amie a fait un week-end de formation Montessori pour 350 € et veut ouvrir une micro-crèche Montessori dans son salon. Elle me dit qu'elle est 'formée Montessori'. Que vaut sa formation ?",
+      "expected_output": "Le skill explique la hiérarchie des formations: AMI (1000-1500h sur 9-12 mois, plusieurs milliers d'euros, reconnaissance internationale via ISMM/CFMF), AMS (équivalent solide), DU universitaires (qualité variable), formations courtes commerciales (week-end à quelques jours). Il indique qu'un week-end ne forme pas un éducateur Montessori. Il aborde aussi les obligations légales d'ouverture d'une micro-crèche (qui dépendent d'autres règles que le Code de l'éducation: PMI, agrément, qualifications spécifiques) sans entrer dans le détail.",
+      "files": [],
+      "assertions": [
+        "Le skill cite la durée et l'ordre de grandeur du coût d'une formation AMI (1000-1500h, plusieurs milliers d'euros)",
+        "Le skill mentionne au moins un centre AMI agréé en France (ISMM Nogent/Lyon/Montpellier ou CFMF Archamps)",
+        "Le skill indique clairement qu'une formation week-end ne forme pas un éducateur Montessori",
+        "Le skill aborde la différence entre AMI et autres formations (AMS, DU, formations courtes)",
+        "Le skill évoque le fait qu'une crèche/micro-crèche relève d'un cadre juridique spécifique (PMI, agrément) distinct du Code de l'éducation pour les écoles",
+        "Le skill reste factuel sans dénigrer la personne mentionnée",
+        "Le skill rappelle que Montessori n'est pas un titre protégé en France"
+      ],
+      "domain": "pedagogie"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "Art. R. 143-2 et s. du Code de la construction et de l'habitation (recodification 2021 — ancien R. 123-2). Arrêté du 25 juin 1980 portant règlement de sécurité contre les risques d'incendie et de panique dans les ERP.",
+  "url_cch": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074096/",
+  "url_arrete_1980": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000290033",
+  "categories": [
+    { "categorie": 1, "effectif_total_min": 1501 },
+    { "categorie": 2, "effectif_total_min": 701,  "effectif_total_max": 1500 },
+    { "categorie": 3, "effectif_total_min": 301,  "effectif_total_max": 700 },
+    { "categorie": 4, "effectif_total_max": 300,  "notes": "Sauf 5e catégorie" },
+    { "categorie": 5, "notes": "Sous les seuils minimums fixés par type d'activité" }
+  ],
+  "types_pertinents_ape": [
+    { "type": "R", "intitule": "Établissements d'enseignement, colonies de vacances, accueil de jeunes enfants", "exemple": "école, collège, lycée, crèche" },
+    { "type": "L", "intitule": "Salles d'auditions, de conférences, de réunions, de spectacles", "exemple": "salle des fêtes, salle polyvalente municipale" },
+    { "type": "X", "intitule": "Établissements sportifs couverts", "exemple": "gymnase, piscine" },
+    { "type": "N", "intitule": "Restaurants et débits de boissons", "exemple": "cantine, restaurant scolaire (hors temps scolaire)" },
+    { "type": "V", "intitule": "Établissements de culte", "exemple": "église, temple" },
+    { "type": "CTS", "intitule": "Chapiteaux, tentes et structures itinérantes", "exemple": "chapiteau loué > 16 m²" }
+  ],
+  "gn6_utilisation_exceptionnelle": {
+    "base": "Art. GN 6 de l'arrêté du 25 juin 1980 (règlement de sécurité)",
+    "obligation": "Demande d'autorisation au maire au moins 15 jours avant toute manifestation différente de l'usage normal de l'ERP",
+    "pieces": ["nature de la manifestation", "risques", "durée", "effectif attendu", "matériaux de décoration (M1 ou Bs1d0)", "plan d'évacuation", "mesures de prévention complémentaires"]
+  }
+}

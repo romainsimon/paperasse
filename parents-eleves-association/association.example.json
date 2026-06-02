@@ -1,0 +1,169 @@
+{
+  "$schema": "https://paperasse.dev/schemas/association.json",
+  "_comment": "Modèle de fichier association.json pour le skill parents-eleves-association. Renommer en association.json à la racine du projet et compléter. Toutes les valeurs sont fictives. Couvre les 6 domaines : trésorerie, secrétariat, représentation parents, événementiel, communication, pédagogie Montessori.",
+
+  "identite": {
+    "nom": "Association des Parents d'Élèves de l'École Exemple",
+    "sigle": "APEEE",
+    "objet": "Soutenir la communauté éducative de l'école Exemple, organiser des événements et soutenir financièrement les projets pédagogiques.",
+    "regime": "loi-1901",
+    "_regime_options": ["loi-1901", "loi-1901-rup", "loi-1908-alsace-moselle"],
+    "duree": "illimitée",
+    "date_creation": "2020-09-01",
+    "date_publication_joafe": "2020-09-15",
+    "naf": "9499Z"
+  },
+
+  "siege": {
+    "adresse": "12 rue de l'École",
+    "code_postal": "75001",
+    "ville": "Paris",
+    "pays": "France"
+  },
+
+  "identifiants": {
+    "rna": "W751234567",
+    "siret": null,
+    "siren": null,
+    "_siret_comment": "À demander à l'INSEE via Le Compte Asso si subventions publiques, salariés, ou paiement de taxes.",
+    "joafe_numero_annonce": "1234",
+    "joafe_annonce_url": ""
+  },
+
+  "declaration": {
+    "prefecture": "Préfecture de Police de Paris",
+    "departement": "75",
+    "date_recepisse_creation": "2020-09-05",
+    "numero_recepisse_creation": "W751234567"
+  },
+
+  "instances": {
+    "ag": {
+      "convocation_delai_jours": 15,
+      "convocation_modalites": "Convocation écrite (courrier ou e-mail) adressée à chaque membre à jour de cotisation.",
+      "quorum_ordinaire": "1/4 des membres présents ou représentés",
+      "quorum_extraordinaire": "1/3 des membres présents ou représentés",
+      "majorite_ordinaire": "majorité simple des voix exprimées",
+      "majorite_statuts": "2/3 des voix exprimées",
+      "majorite_dissolution": "2/3 des membres présents ou représentés",
+      "pouvoirs_max_par_membre": 2,
+      "periodicite": "annuelle",
+      "approbation_comptes_deadline": "2026-12-31",
+      "_approbation_comptes_comment": "L'AG annuelle approuve les comptes du dernier exercice clos. Délai usuel 6 mois après clôture, sauf disposition statutaire contraire."
+    },
+    "ca": {
+      "nombre_membres_min": 3,
+      "nombre_membres_max": 12,
+      "duree_mandat_annees": 2,
+      "renouvellement": "par moitié chaque année",
+      "frequence_reunions": "trimestrielle"
+    },
+    "bureau": {
+      "composition": ["president", "vice-president", "secretaire", "tresorier"],
+      "duree_mandat_annees": 2,
+      "elu_par": "conseil d'administration"
+    },
+    "dirigeants_actuels": [
+      {
+        "fonction": "Présidente",
+        "nom": "Dupont",
+        "prenom": "Marie",
+        "date_election": "2025-09-15"
+      },
+      {
+        "fonction": "Secrétaire",
+        "nom": "Martin",
+        "prenom": "Paul",
+        "date_election": "2025-09-15"
+      },
+      {
+        "fonction": "Trésorier",
+        "nom": "Bernard",
+        "prenom": "Sophie",
+        "date_election": "2025-09-15"
+      }
+    ]
+  },
+
+  "exercice_social": {
+    "debut": "09-01",
+    "fin": "08-31",
+    "_comment": "Format MM-DD. Calé sur l'année scolaire pour cette APEEE."
+  },
+
+  "membres": {
+    "categories": [
+      {"nom": "actifs", "cotisation_euros": 20, "droit_vote": true},
+      {"nom": "bienfaiteurs", "cotisation_euros": 100, "droit_vote": true},
+      {"nom": "honoraires", "cotisation_euros": 0, "droit_vote": false}
+    ],
+    "effectif_estime": 120
+  },
+
+  "comptabilite": {
+    "referentiel": "ANC_2018-06",
+    "type": "engagement",
+    "_comment_referentiel": "ANC 2018-06 obligatoire si l'association reçoit subventions publiques > 153 000 EUR, dons ouvrant droit à reçu fiscal > 153 000 EUR, ou si statuts/conventions l'imposent. Sinon, comptabilité simplifiée (recettes-dépenses) tolérée mais le référentiel ANC reste recommandé.",
+    "_comment_type": "'engagement' (charges/produits à la date de l'engagement, recommandé ANC 2018-06) ou 'tresorerie' (recettes-dépenses)."
+  },
+
+  "fiscal_social": {
+    "gestion_desinteressee": true,
+    "activites_lucratives": false,
+    "activites_lucratives_accessoires": false,
+    "franchise_impots_commerciaux": true,
+    "assujettie_tva": false,
+    "assujettie_is": false,
+    "is_taux_reduit_revenus_patrimoniaux": false,
+    "salaries": 0,
+    "subventions_publiques_annuelles": 0,
+    "_comment_franchise": "Franchise commune TVA / CET / IS de droit commun si: gestion désintéressée, activités non lucratives significativement prépondérantes, recettes lucratives accessoires <= 81 051 EUR pour 2026 (seuil indexé annuellement, source BOFIP MAJ 16/04/2025).",
+    "_comment_is_reduit": "Mettre à true si l'association perçoit des revenus fonciers, agricoles, mobiliers (art. 206-5 CGI).",
+    "_subventions_seuil_153k": "Si > 153 000 EUR cumulés par an (subventions publiques OU dons défiscalisés), obligations spécifiques : publication des comptes au JOAFE, AG annuelle obligatoire (loi du 12 avril 2000, art. 10), désignation d'un commissaire aux comptes (art. L. 612-4 C. com.)."
+  },
+
+  "recu_fiscal": {
+    "eligible_art_200": false,
+    "interet_general": false,
+    "rescrit_obtenu": false,
+    "rescrit_date": "",
+    "recu_template": "CERFA_11580_05",
+    "_comment": "L'éligibilité art. 200 / 238 bis CGI suppose: intérêt général, gestion désintéressée, non-lucrativité, cercle restreint exclu. Le rescrit fiscal mécénat (formulaire 2070-RD-SD) est facultatif mais sécurisant. Loi Coluche : taux porté à 75 % plafond 2 000 EUR depuis 14/10/2025."
+  },
+
+  "subventions_publiques": {
+    "total_exercice_courant": 0,
+    "depasse_seuil_153000": false,
+    "_comment_seuil": "Au-delà de 153 000 EUR cumulés (subventions publiques OU dons défiscalisés) sur l'exercice, obligation de désigner un commissaire aux comptes ET de publier les comptes annuels + rapport CAC sur le portail DILA dans les 3 mois de l'approbation."
+  },
+
+  "banks": [
+    {
+      "id": "bank-1",
+      "name": "Banque Principale",
+      "account": "5121",
+      "fec_account": "51211"
+    }
+  ],
+
+  "documents": {
+    "statuts_version": "2025-09-15",
+    "reglement_interieur_version": null,
+    "statuts_path": "statuts/statuts-2025-09-15.pdf",
+    "reglement_interieur_path": null
+  },
+
+  "agrements": {
+    "rup": false,
+    "_rup_comment": "Reconnaissance d'utilité publique : décret en Conseil d'État, conditions strictes (3 ans d'existence, > 200 membres, > 46 000 EUR de ressources annuelles, gestion désintéressée, intérêt général).",
+    "agrement_jeunesse_education_populaire": false,
+    "interet_general": true,
+    "_interet_general_comment": "Permet d'émettre des reçus fiscaux (art. 200 et 238 bis CGI) si gestion désintéressée, activité non lucrative, et cercle restreint exclu."
+  },
+
+  "compte_asso": {
+    "compte_cree": true,
+    "url_portail": "https://lecompteasso.associations.gouv.fr",
+    "_comment": "Portail unique pour e-création, e-modification, e-dissolution, demandes de subvention, mise à jour annuelle des dirigeants."
+  }
+}

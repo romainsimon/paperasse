@@ -14,6 +14,7 @@
     "validate:facture": "node scripts/validate-facture.js",
     "fetch": "node integrations/stripe/fetch.js; node integrations/qonto/fetch.js",
     "fetch:qonto": "node integrations/qonto/fetch.js",
+    "test:qonto": "node integrations/qonto/fetch.test.js",
     "fetch:stripe": "node integrations/stripe/fetch.js"
   },
   "dependencies": {

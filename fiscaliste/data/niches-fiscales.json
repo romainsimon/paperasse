@@ -34,7 +34,8 @@
       "Garde d'enfant hors domicile (crédit d'impôt 50%)",
       "Girardin industriel outre-mer (sous conditions)",
       "Cotisations syndicales (crédit d'impôt 66%)",
-      "Investissement outre-mer (certaines catégories)"
+      "Investissement outre-mer (certaines catégories)",
+      "Frais de scolarité des enfants (réduction forfaitaire 7EA/7EC/7EF)"
     ]
   },
 
@@ -57,6 +58,28 @@
       "plafond_depenses_par_enfant": 3500,
       "age_limite": "Enfant de moins de 6 ans au 1er janvier"
     }
+  },
+
+  "frais_scolarite": {
+    "cases": {
+      "college":   { "case_enfant_charge": "7EA", "case_garde_alternee": "7EB", "reduction_par_enfant": 61 },
+      "lycee":     { "case_enfant_charge": "7EC", "case_garde_alternee": "7ED", "reduction_par_enfant": 153 },
+      "superieur": { "case_enfant_charge": "7EF", "case_garde_alternee": "7EG", "reduction_par_enfant": 183 }
+    },
+    "conditions": "Enfant à charge ou rattaché, scolarisé au 31 décembre de l'année d'imposition",
+    "garde_alternee": "Réduction divisée par deux entre les deux foyers (cases 7EB/7ED/7EG)",
+    "exclusions": ["apprentissage", "congé formation", "contrat d'études avec l'employeur"],
+    "pieges": [
+      "Job étudiant à côté des études (contrat sans lien avec la formation) : éligible — la condition BOFiP vise les contrats structurellement liés à la formation, pas un emploi indépendant",
+      "Stage indemnisé obligatoire intégré au cursus : éligible (prévu explicitement par BOFiP BOI-IR-RICI-30)",
+      "Appréciation au 31/12 : si l'enfant a arrêté ses études en cours d'année et n'est inscrit nulle part au 31/12 → pas de réduction",
+      "Cumul interdit avec pension alimentaire déductible (6EL/6EM pour un enfant majeur, post-2006 ; 6GI/6GJ résiduel si décision de justice antérieure à 2006, formulaire 2042 C avec majoration de 25%) : un enfant pour lequel une pension est déduite ne fait plus partie du foyer → pas de réduction"
+    ],
+    "note": "Montants stables (non indexés annuellement). Réduction non remboursable — excédent perdu si impôt < réduction.",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F9/",
+    "bofip": "BOI-IR-RICI-30",
+    "cgi": "art. 199 quater F",
+    "source_verifiee": "2026-05-18"
   },
 
   "distinction_mecanismes": {

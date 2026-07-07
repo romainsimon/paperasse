@@ -22,7 +22,7 @@ Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
 
 ### Pension alimentaire
 
-- Versée à un enfant majeur (case 6GI / 6GJ) : plafond annuel à vérifier
+- Versée à un enfant majeur (case 6EL / 6EM, post-2006) : plafond annuel à vérifier — cases 6GI / 6GJ réservées au cas résiduel d'une décision de justice antérieure à 2006 (formulaire 2042 C, majoration de 25%)
 - Versée à un ascendant dans le besoin : plafond distinct
 - **Condition clé** : preuve du besoin du bénéficiaire et du versement effectif
 - Déduction plafonnée
@@ -66,6 +66,33 @@ Voir `data/niches-fiscales.json` → `dispositifs_hors_plafond`.
 | **Cotisations syndicales** | 66% |
 | **Girardin industriel outre-mer** | Variable, sous conditions |
 | **Investissement outre-mer** (catégories spécifiques) | Variable |
+
+### Frais de scolarité des enfants (cases 7EA/7EC/7EF)
+
+Voir `data/niches-fiscales.json` → `frais_scolarite`.
+
+Réduction forfaitaire par enfant à charge (ou rattaché) **scolarisé au 31 décembre** de l'année d'imposition.
+
+| Niveau | Enfant à charge | Garde alternée | Réduction |
+|--------|----------------|----------------|-----------|
+| Collège | 7EA | 7EB | 61 € |
+| Lycée | 7EC | 7ED | 153 € |
+| Enseignement supérieur | 7EF | 7EG | 183 € |
+
+Montants stables (non indexés annuellement). Réduction non remboursable — excédent perdu si impôt < réduction.
+
+**Garde alternée** : réduction divisée par deux entre les deux foyers (cases 7EB / 7ED / 7EG).
+
+**Exclusions** : apprentissage, congé formation, contrat d'études avec l'employeur. La condition BOFiP ("contrat de travail avec l'employeur") vise les formations dont la structure implique un lien contractuel avec un employeur — pas un job étudiant exercé en parallèle d'une formation initiale.
+
+**Cas limites à ne pas confondre** :
+- Job étudiant à côté des études → **éligible** (contrat sans lien avec la formation)
+- Stage indemnisé obligatoire intégré au cursus → **éligible** (prévu explicitement par BOFiP BOI-IR-RICI-30)
+- Apprentissage / alternance → **exclu**
+- Études terminées en cours d'année, enfant non inscrit nulle part au 31/12 → **pas de réduction**
+- Pension alimentaire déduite (6EL/6EM pour un enfant majeur, post-2006 ; 6GI/6GJ résiduel si décision de justice antérieure à 2006) pour cet enfant → **pas de réduction** (l'enfant n'est plus compté à charge)
+
+Source : BOFiP BOI-IR-RICI-30 · art. 199 quater F CGI
 
 ### Dons aux associations
 
@@ -178,4 +205,5 @@ Les deux jouent sur des couches différentes du calcul.
 - Garde d'enfant : art. 200 quater B CGI
 - Pinel : art. 199 novovicies CGI
 - FCPI : art. 199 terdecies-0 A CGI
+- Frais de scolarité enfants : art. 199 quater F CGI
 - BOFiP : BOI-IR-RICI

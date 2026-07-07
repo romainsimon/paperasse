@@ -199,6 +199,15 @@ Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fic
 | **Cline** | `~/.cline/skills/` |
 | **Aider** | `~/.aider/skills/` |
 
+### Claude Desktop / claude.ai
+
+Claude Desktop et claude.ai supportent les skills via upload :
+
+1. Activer la capacité : Réglages → Capabilities → activer **Code execution and file creation** (sans ça, l'upload échoue).
+2. Puis : Customize → Skills → uploader un `.zip` dont le dossier racine contient un `SKILL.md`.
+
+**Limite importante** : certains skills partagent des ressources via des liens symboliques : comptable (`data/`, `scripts/`, `templates/`, `integrations/`), controleur-fiscal et commissaire-aux-comptes (`data/`), notaire (`scripts/`). Un zip d'un seul dossier de skill casse ces liens et le skill ne trouve plus ses ressources. Pour ces skills, préférer [agentskill.sh](https://agentskill.sh) ou un clone Git complet utilisé avec Claude Code. Les skills autonomes (fiscaliste, syndic) s'uploadent sans problème.
+
 ---
 
 ## Evals
@@ -257,6 +266,7 @@ Vous avez un métier de la paperasse que vous aimeriez voir automatisé ? Consul
 Des forks par juridiction maintenus par la communauté :
 
 - 🇹🇳 [**paperasse-tn**](https://github.com/YassineAta/paperasse-tn) (Tunisie) — skills pour la paperasse tunisienne (IRPP, BCT/forex, RNE/NAT, SUARL). Trois skills : `mo7aseb`, `bct-shield`, `3adel-ichhad`.
+- 🇧🇪 [**paperasse-be**](https://github.com/Atelya-be/paperasse-be) (Belgique) : 16 skills adaptés au droit belge, FR/NL/DE/EN, avec table de correspondance FR/BE par skill. Maintenu par [Atelya](https://atelya.be).
 
 Ces forks ne sont **pas maintenus par paperasse** : la fraîcheur des références fiscales et juridiques est de la responsabilité de leurs auteurs. Ouvrez une issue ici si vous voulez ajouter votre fork à cette liste.
 

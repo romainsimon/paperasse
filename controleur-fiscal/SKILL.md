@@ -207,7 +207,7 @@ Lire [references/cir-cii.md](references/cir-cii.md) pour les textes complets, la
    - CII : PME au sens communautaire (< 250 salariés, CA < 50 M€ ou bilan < 43 M€), imprimé 2069-A bis
 
 2. **Forfait de fonctionnement — erreur la plus fréquente**
-   - CIR : forfait de 50% sur les dépenses de personnel (BOI-BIC-RICI-10-10-20-20) → éligible
+   - CIR : forfait de **43%** sur les dépenses de personnel pour les dépenses exposées jusqu'au 14/02/2025, puis **40%** à compter du 15/02/2025 (LF 2025, BOI-BIC-RICI-10-10-20-20) → éligible
    - CII : **aucun forfait de fonctionnement** → toute application d'un forfait sur le CII constitue un redressement 🔴
 
 3. **Nature des activités**
@@ -229,9 +229,9 @@ Lire [references/cir-cii.md](references/cir-cii.md) pour les textes complets, la
    - Cohérence avec livrables, jalons ou outils de suivi de projet
    - Si aucun suivi du temps : présomption de base déclarée sans justificatif → redressement possible
 
-7. **Procédure spécifique** (art. L. 13 C LPF)
+7. **Procédure spécifique**
    - Le vérificateur peut demander le dossier justificatif ; l'entreprise a **30 jours** pour le produire
-   - Le MESR peut être consulté pour avis technique sur l'éligibilité scientifique
+   - Le contrôle de l'affectation à la recherche relève des agents du MESR (Ministère de l'Enseignement Supérieur et de la Recherche), sur le fondement de l'**art. L. 45 B LPF** ; le MESR peut être consulté pour avis technique sur l'éligibilité scientifique
 
 ---
 

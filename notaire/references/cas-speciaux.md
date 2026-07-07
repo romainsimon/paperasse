@@ -34,7 +34,7 @@
 
 **Régime de droit commun :**
 - Primes avant 70 ans (ou contrat pré-20/11/1991 + primes avant 13/10/1998) : abattement **152 500 EUR/bénéficiaire** puis 20%/31,25% (art. 990 I CGI)
-- Primes après 70 ans sur contrat post-20/11/1991 et versements post-13/10/1998 : abattement global **30 500 EUR** puis droits de succession sur les primes uniquement — les gains sont exonérés (art. 757 B CGI)
+- Primes après 70 ans sur contrat post-20/11/1991 : abattement global **30 500 EUR** puis droits de succession sur les primes uniquement — les gains sont exonérés (art. 757 B CGI), **quelle que soit la date de versement** (le seuil du 13/10/1998 ne joue que pour les primes versées avant 70 ans)
 
 **Contrats souscrits avant le 20/11/1991 — cas dérogatoire favorable :**
 - Même les primes versées **après 70 ans** et **après le 13/10/1998** relèvent de l'art. 990 I (abattement 152 500 EUR/bénéf.)
@@ -42,8 +42,8 @@
 - **Ne jamais fermer un contrat pré-1991** sans vérifier cet avantage successoral
 
 **PV latentes au décès :**
-- UC : les plus-values latentes sont définitivement exonérées d'IR et de PS (le décès n'est pas un fait générateur)
-- Fonds € : PS prélevés chaque année au fil de l'eau ; IR jamais dû
+- UC : l'**IR** est définitivement exonéré (le décès n'est pas un fait générateur), mais les **PS restent dus** sur les gains constatés au dénouement, prélevés par l'assureur avant versement du capital (LFSS 2010, art. L136-7 II 3° CSS ; CE 18/02/2026, n° 504077). Seul l'IR est purgé, pas les PS — ne pas confondre avec le régime des cryptoactifs où IR et PS sont tous deux purgés au décès.
+- Fonds € : PS prélevés chaque année au fil de l'eau (déjà acquittés) ; IR jamais dû
 
 - Attention aux **primes manifestement excessives** (réintégration possible dans la succession, art. L132-13 Code des assurances)
 

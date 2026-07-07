@@ -166,12 +166,13 @@ L'assurance-vie est **hors succession** (art. L132-12 Code des assurances). Les 
 | Avant le 20/11/1991 | ≥ 70 ans | Avant le 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
 | Avant le 20/11/1991 | ≥ 70 ans | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. (régime dérogatoire — contrat pré-1991 prime) |
 | Après le 20/11/1991 | < 70 ans | Peu importe | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
-| Après le 20/11/1991 | ≥ 70 ans | Avant le 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
-| Après le 20/11/1991 | ≥ 70 ans | À partir du 13/10/1998 | **Art. 757 B** : abattement global 30 500 EUR, puis droits de succession sur les primes |
+| Après le 20/11/1991 | ≥ 70 ans | Peu importe | **Art. 757 B** : abattement global 30 500 EUR, puis droits de succession sur les primes |
 
-**Le seul cas défavorable** (757 B / plafond 30 500 EUR global) : contrat souscrit **après** le 20/11/1991 **ET** primes versées **après** 70 ans **ET** versements effectués **à partir** du 13/10/1998.
+**Le seul cas défavorable** (757 B / plafond 30 500 EUR global) : contrat souscrit **après** le 20/11/1991 **ET** primes versées **après** 70 ans — **quelle que soit la date de versement**. Le seuil du 13/10/1998 ne joue que pour les primes versées **avant** 70 ans (art. 990 I à partir de cette date).
 
 **Règle clé pour les contrats pré-1991** : même des primes versées après 70 ans et après le 13/10/1998 relèvent de l'art. 990 I (abattement de 152 500 EUR par bénéficiaire) — le régime dérogatoire favorable s'applique dès lors que le contrat a été souscrit avant le 20/11/1991. Ne pas fermer ces contrats anciens.
+
+**Attention — l'art. 757 B ne dépend pas du 13/10/1998** : pour un contrat souscrit **après** le 20/11/1991, les primes versées **après 70 ans** relèvent de l'art. 757 B (abattement global 30 500 EUR) quelle que soit leur date de versement, y compris avant le 13/10/1998. L'art. 757 B ne s'applique jamais aux contrats souscrits avant le 20/11/1991.
 
 ### Barèmes 990 I et 757 B
 
@@ -184,16 +185,18 @@ L'assurance-vie est **hors succession** (art. L132-12 Code des assurances). Les 
 
 ### PV latentes et gains non réalisés au décès
 
-**Le décès n'est pas un fait générateur de l'IR ni des prélèvements sociaux (PS).** Les gains latents ne sont jamais soumis à la fiscalité des rachats.
+**Le décès n'est pas un fait générateur de l'IR.** Les gains latents ne sont jamais soumis à la fiscalité des rachats au titre de l'IR. **En revanche, les prélèvements sociaux (PS) restent dus sur les gains latents en UC au décès** — ce n'est que l'IR qui est définitivement évité.
 
 | Support | Sort des gains latents au décès |
 |---------|----------------------------------|
-| Unités de compte (UC) | PV latentes définitivement exonérées d'IR et de PS — elles "s'effacent" fiscalement |
+| Unités de compte (UC) | **IR** définitivement exonéré — mais **PS dus** sur les gains constatés au dénouement, nets des PS déjà acquittés le cas échéant |
 | Fonds en euros | PS déjà prélevés annuellement (au fil de l'eau) ; IR jamais dû (pas de rachat) |
 
-**Conséquence pratique** : une AV avec 500 000 EUR de PV latentes en UC transmet ces PV sans IR ni PS aux bénéficiaires. La seule fiscalité applicable est successorale (990 I ou 757 B), qui s'applique sur la valeur totale du capital (incluant les gains latents) mais à des taux et abattements spécifiques, sans rapport avec la fiscalité des rachats de vivant (PFU 30% ou barème).
+**Attention, piège fréquent** : contrairement à une idée reçue, les PV latentes en UC ne sont **pas** exonérées de PS au décès. Depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains UC constatés au dénouement par décès et les déduit du capital avant versement aux bénéficiaires. Le Conseil d'État a validé ce mécanisme (CE 18/02/2026, n° 504077). Ce point diffère du régime des cryptoactifs au décès (où IR et PS sont tous deux purgés) — les deux régimes ne doivent pas être confondus.
 
-**Avantage décisif de l'AV pour la transmission** : cumul de l'abattement 152 500 EUR/bénéficiaire ET de l'effacement des PV latentes sur UC.
+**Conséquence pratique** : une AV avec 500 000 EUR de PV latentes en UC transmet ces PV sans IR aux bénéficiaires, mais l'assureur prélève environ 86 000 EUR de PS (17,2%) avant versement. La fiscalité successorale (990 I ou 757 B) s'applique ensuite sur le capital net de ces PS, à des taux et abattements spécifiques, sans rapport avec la fiscalité des rachats de vivant (PFU 30% ou barème).
+
+**Avantage de l'AV pour la transmission** : cumul de l'abattement 152 500 EUR/bénéficiaire ET de la purge définitive de l'IR sur les PV latentes en UC — mais **les PS restent dus** sur ces mêmes PV, contrairement à ce qui est parfois avancé.
 
 ### Autres points clés
 

@@ -139,16 +139,18 @@ Extrêmement rare — à vérifier si le contrat est très ancien.
 
 > **Périmètre** : ce qui suit concerne la fiscalité au décès de l'assuré. La transmission successorale AV (990 I / 757 B) est couverte par le skill `notaire`.
 
-**Le décès n'est pas un fait générateur de l'IR ni des prélèvements sociaux.** Les gains non réalisés au moment du décès ne sont jamais soumis à la fiscalité des rachats.
+**Le décès n'est pas un fait générateur de l'IR.** Les gains non réalisés au moment du décès ne sont jamais soumis à la fiscalité des rachats au titre de l'IR — mais, pour les UC, les **prélèvements sociaux restent dus** (voir ci-dessous).
 
 | Support | Sort des gains latents au décès |
 |---------|----------------------------------|
-| Unités de compte (UC) | PV latentes définitivement exonérées d'IR et de PS — elles "s'effacent" |
+| Unités de compte (UC) | **IR** définitivement exonéré (le décès n'est pas un rachat) — mais **PS dus** sur les gains constatés au dénouement, nets des PS déjà acquittés le cas échéant |
 | Fonds en euros | PS déjà prélevés annuellement (au fil de l'eau) ; IR jamais dû (pas de rachat) |
 
-**Conséquence** : un contrat AV avec 300 000 EUR de PV latentes en UC transmet ces gains sans IR (12,8%) ni PS (17,2%). La seule taxation applicable est successorale (990 I ou 757 B), de nature différente.
+**Attention — piège fréquent : les PV latentes en UC ne sont PAS exonérées de prélèvements sociaux au décès.** Depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains constatés en UC lors du dénouement par décès et les déduit du capital avant versement aux bénéficiaires. Le Conseil d'État a confirmé la validité de ce mécanisme (CE 18/02/2026, n° 504077). **Seul l'IR est définitivement évité — pas les PS.**
 
-C'est l'un des avantages les plus méconnus de l'AV pour la transmission : **les PV latentes sur UC ne seront jamais fiscalisées à l'IR/PS si le contrat se dénoue par décès**.
+**Conséquence** : un contrat AV avec 300 000 EUR de PV latentes en UC transmet ces gains sans IR (12,8%), mais l'assureur prélève environ 51 600 EUR de PS (17,2%) avant versement du capital aux bénéficiaires. La fiscalité successorale (990 I ou 757 B) s'applique ensuite sur le capital net de ces PS.
+
+Point souvent mal compris : **seul l'IR est purgé au décès sur les PV latentes en UC — les PS restent dus**. C'est différent des fonds en euros, où les PS ont déjà été prélevés au fil de l'eau (rien à prélever de plus au décès), et différent aussi du régime des cryptoactifs (voir `crypto.md`), où IR et PS sont tous deux purgés au décès — ne pas transposer ce raisonnement à l'assurance-vie en UC.
 
 ## Stratégies courantes
 

@@ -45,21 +45,22 @@
     "matrice_regimes": {
       "description": "3 variables déterminent le régime applicable : date souscription contrat, âge au versement, date du versement",
       "seul_cas_defavorable_757B": {
-        "condition": "Contrat souscrit APRÈS le 20/11/1991 ET primes versées APRÈS 70 ans ET versements À PARTIR du 13/10/1998",
+        "condition": "Contrat souscrit APRÈS le 20/11/1991 ET primes versées APRÈS 70 ans — quelle que soit la date de versement (le seuil du 13/10/1998 ne concerne que les primes versées AVANT 70 ans)",
         "regime": "art. 757 B",
         "abattement": "30 500 EUR global (tous bénéficiaires confondus)",
         "assiette": "Primes uniquement (les gains/intérêts sont exonérés)",
-        "imposition_surplus": "Droits de succession selon le lien de parenté"
+        "imposition_surplus": "Droits de succession selon le lien de parenté",
+        "note": "L'art. 757 B s'applique aux primes versées après 70 ans dès lors que le contrat est souscrit à compter du 20/11/1991, y compris pour les versements antérieurs au 13/10/1998. Il ne s'applique jamais aux contrats souscrits avant le 20/11/1991."
       },
       "tous_autres_cas_990I": {
-        "condition": "Tout autre cas : contrat pré-20/11/1991, OU primes avant 70 ans, OU versements avant 13/10/1998",
+        "condition": "Tout autre cas : contrat pré-20/11/1991 (quels que soient l'âge et la date de versement), OU primes versées avant 70 ans (quel que soit le contrat)",
         "regime": "art. 990 I",
         "abattement_par_beneficiaire": 152500,
         "taux": [
           { "tranche": "0 à 700 000 EUR (après abattement)", "taux": "20%" },
           { "tranche": "Au-delà de 700 000 EUR", "taux": "31,25%" }
         ],
-        "assiette": "Capital décès total (primes + gains latents)"
+        "assiette": "Capital décès total (primes + gains latents, nets des PS dus sur les gains UC — voir pv_latentes_deces)"
       }
     },
 
@@ -71,9 +72,10 @@
 
     "pv_latentes_deces": {
       "fait_generateur": false,
-      "description": "Le décès n'est pas un fait générateur de l'IR ni des PS. Les PV latentes sur UC s'effacent définitivement.",
-      "uc": "PV latentes exonérées d'IR et de PS — jamais imposées",
-      "fonds_euros": "PS prélevés annuellement au fil de l'eau (déjà acquittés) ; IR jamais dû"
+      "description": "Le décès n'est pas un fait générateur de l'IR. Les PV latentes sur UC ne sont en revanche PAS exonérées de PS au décès : depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains UC au dénouement, nets des PS déjà acquittés, et les déduit du capital avant versement. Mécanisme validé par le Conseil d'État (CE 18/02/2026, n° 504077).",
+      "uc": "IR définitivement exonéré (pas de fait générateur) ; PS (17,2%) dus sur les gains constatés au décès, prélevés par l'assureur avant versement du capital — seul l'IR est purgé, pas les PS",
+      "fonds_euros": "PS prélevés annuellement au fil de l'eau (déjà acquittés) ; IR jamais dû",
+      "exemple": "500 000 EUR de PV latentes en UC → environ 86 000 EUR de PS (17,2%) prélevés par l'assureur avant versement aux bénéficiaires"
     }
   },
 

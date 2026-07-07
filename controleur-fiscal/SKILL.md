@@ -194,6 +194,45 @@ Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilit
    - DES (Déclaration Européenne de Services) si achats intra-EU
    - Certains SaaS étrangers peuvent déclencher cette obligation
 
+### Axe 9 : CIR / CII (art. 244 quater B et 244 quater B bis CGI)
+
+Déclencher cet axe si la liasse fiscale mentionne un crédit CIR (imprimé 2069-A) ou CII (2069-A bis), ou si l'entreprise déclare des activités de R&D / innovation.
+
+Lire [references/cir-cii.md](references/cir-cii.md) pour les textes complets, la grille de contrôle et les chefs de redressement typiques.
+
+**Contrôles prioritaires :**
+
+1. **Éligibilité de base**
+   - CIR : société imposée au réel, imprimé 2069-A déposé
+   - CII : PME au sens communautaire (< 250 salariés, CA < 50 M€ ou bilan < 43 M€), imprimé 2069-A bis
+
+2. **Forfait de fonctionnement — erreur la plus fréquente**
+   - CIR : forfait de **43%** sur les dépenses de personnel pour les dépenses exposées jusqu'au 14/02/2025, puis **40%** à compter du 15/02/2025 (LF 2025, BOI-BIC-RICI-10-10-20-20) → éligible
+   - CII : **aucun forfait de fonctionnement** → toute application d'un forfait sur le CII constitue un redressement 🔴
+
+3. **Nature des activités**
+   - CIR : incertitude scientifique/technique documentée (critères Frascati), état de l'art, échecs tracés
+   - CII : nouveauté du produit **pour le marché** (pas seulement pour l'entreprise), analyse concurrentielle requise
+   - Développement standard sans incertitude technique → non éligible CIR
+
+4. **Non-cumul CIR/CII**
+   - Une même heure de personnel ne peut figurer qu'une seule fois (CIR **ou** CII, pas les deux)
+   - Vérifier que la ventilation des heures est exclusive et cohérente
+
+5. **Périmètre des dépenses CII**
+   - Personnel uniquement (salaires + charges sociales)
+   - Outillage et infrastructure de développement : éligibles uniquement si dédiés au prototype, non mutualisés
+   - Base ≤ 400 000 €/an
+
+6. **Justification des heures**
+   - Relevés de temps nominatifs ou agenda
+   - Cohérence avec livrables, jalons ou outils de suivi de projet
+   - Si aucun suivi du temps : présomption de base déclarée sans justificatif → redressement possible
+
+7. **Procédure spécifique**
+   - Le vérificateur peut demander le dossier justificatif ; l'entreprise a **30 jours** pour le produire
+   - Le contrôle de l'affectation à la recherche relève des agents du MESR (Ministère de l'Enseignement Supérieur et de la Recherche), sur le fondement de l'**art. L. 45 B LPF** ; le MESR peut être consulté pour avis technique sur l'éligibilité scientifique
+
 ---
 
 ## Format du rapport de contrôle
@@ -285,3 +324,4 @@ Le fichier `data/sources.json` liste toutes les sources avec dates de dernière 
 |---------|---------|
 | [references/textes-fiscaux.md](references/textes-fiscaux.md) | Textes CGI, BOFiP, jurisprudence applicable |
 | [references/penalites-bareme.md](references/penalites-bareme.md) | Barèmes des pénalités et intérêts de retard |
+| [references/cir-cii.md](references/cir-cii.md) | CIR/CII — textes légaux, grille de contrôle, chefs de redressement typiques |

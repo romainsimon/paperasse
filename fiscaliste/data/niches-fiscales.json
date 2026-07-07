@@ -73,7 +73,7 @@
       "Job étudiant à côté des études (contrat sans lien avec la formation) : éligible — la condition BOFiP vise les contrats structurellement liés à la formation, pas un emploi indépendant",
       "Stage indemnisé obligatoire intégré au cursus : éligible (prévu explicitement par BOFiP BOI-IR-RICI-30)",
       "Appréciation au 31/12 : si l'enfant a arrêté ses études en cours d'année et n'est inscrit nulle part au 31/12 → pas de réduction",
-      "Cumul interdit avec pension alimentaire déductible (6GI/6GJ) : un enfant pour lequel une pension est déduite ne fait plus partie du foyer → pas de réduction"
+      "Cumul interdit avec pension alimentaire déductible (6EL/6EM pour un enfant majeur, post-2006 ; 6GI/6GJ résiduel si décision de justice antérieure à 2006, formulaire 2042 C avec majoration de 25%) : un enfant pour lequel une pension est déduite ne fait plus partie du foyer → pas de réduction"
     ],
     "note": "Montants stables (non indexés annuellement). Réduction non remboursable — excédent perdu si impôt < réduction.",
     "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F9/",

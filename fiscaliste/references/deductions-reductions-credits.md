@@ -22,7 +22,7 @@ Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
 
 ### Pension alimentaire
 
-- Versée à un enfant majeur (case 6GI / 6GJ) : plafond annuel à vérifier
+- Versée à un enfant majeur (case 6EL / 6EM, post-2006) : plafond annuel à vérifier — cases 6GI / 6GJ réservées au cas résiduel d'une décision de justice antérieure à 2006 (formulaire 2042 C, majoration de 25%)
 - Versée à un ascendant dans le besoin : plafond distinct
 - **Condition clé** : preuve du besoin du bénéficiaire et du versement effectif
 - Déduction plafonnée
@@ -90,7 +90,7 @@ Montants stables (non indexés annuellement). Réduction non remboursable — ex
 - Stage indemnisé obligatoire intégré au cursus → **éligible** (prévu explicitement par BOFiP BOI-IR-RICI-30)
 - Apprentissage / alternance → **exclu**
 - Études terminées en cours d'année, enfant non inscrit nulle part au 31/12 → **pas de réduction**
-- Pension alimentaire déduite (6GI/6GJ) pour cet enfant → **pas de réduction** (l'enfant n'est plus compté à charge)
+- Pension alimentaire déduite (6EL/6EM pour un enfant majeur, post-2006 ; 6GI/6GJ résiduel si décision de justice antérieure à 2006) pour cet enfant → **pas de réduction** (l'enfant n'est plus compté à charge)
 
 Source : BOFiP BOI-IR-RICI-30 · art. 199 quater F CGI
 

@@ -18,7 +18,9 @@ Couvre :
     - Quotient familial (avec plafonnement)
     - Décote célibataire / couple
     - PS différenciés LFSS 2026 : 18,6 % revenus du patrimoine (PV mobilières,
-      crypto) / 17,2 % produits de placement 2025 (dividendes, intérêts)
+      crypto) / 17,2 % produits de placement 2025 (dividendes, intérêts).
+      Les PS sur le résultat LMNP ne sont PAS calculés (le champ
+      lmnp_reel_resultat du foyer.json n'alimente pas la base PS)
     - CEHR
 
 Ne couvre PAS :

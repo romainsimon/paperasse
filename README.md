@@ -203,10 +203,10 @@ Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fic
 
 Claude Desktop et claude.ai supportent les skills via upload :
 
-1. Activer les capacités : Réglages → Capabilities → activer **Code execution** et **File creation** (sans ça, l'upload échoue).
+1. Activer la capacité : Réglages → Capabilities → activer **Code execution and file creation** (sans ça, l'upload échoue).
 2. Puis : Customize → Skills → uploader un `.zip` dont le dossier racine contient un `SKILL.md`.
 
-**Limite importante** : certains skills (comptable, controleur-fiscal, commissaire-aux-comptes) partagent des ressources via des liens symboliques (`data/`, `scripts/`, `templates/`, `integrations/`). Un zip d'un seul dossier de skill casse ces liens et le skill ne trouve plus ses ressources. Pour ces skills, préférer [agentskill.sh](https://agentskill.sh) ou un clone Git complet utilisé avec Claude Code. Les skills autonomes (fiscaliste, notaire, syndic) s'uploadent sans problème.
+**Limite importante** : certains skills partagent des ressources via des liens symboliques : comptable (`data/`, `scripts/`, `templates/`, `integrations/`), controleur-fiscal et commissaire-aux-comptes (`data/`), notaire (`scripts/`). Un zip d'un seul dossier de skill casse ces liens et le skill ne trouve plus ses ressources. Pour ces skills, préférer [agentskill.sh](https://agentskill.sh) ou un clone Git complet utilisé avec Claude Code. Les skills autonomes (fiscaliste, syndic) s'uploadent sans problème.
 
 ---
 

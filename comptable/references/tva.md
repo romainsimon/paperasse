@@ -183,9 +183,9 @@ La TVA est exigible à la livraison/facturation.
 ### Comptabilisation TVA sur encaissements
 
 Entre la facturation et le paiement, la TVA collectée n'est pas encore exigible.
-Elle est logée dans un compte d'attente : 44580 « TVA à régulariser ou en attente »
-(compte officiel du PCG), ou par convention 44574 « TVA collectée sur les
-encaissements » (subdivision du 445 autorisée par le PCG, très répandue en pratique).
+Elle est logée dans un compte d'attente, subdivision du 4458 « TVA à régulariser » :
+44580 ou 44574 « TVA collectée sur les encaissements » sont les deux conventions
+répandues (le PCG autorise les subdivisions du 445, aucune des deux n'est imposée).
 
 **Ne pas utiliser 44587** : ce compte est réservé à la TVA sur factures à établir
 en clôture d'exercice (contrepartie 418), voir `closing.md`. Ce n'est pas le compte

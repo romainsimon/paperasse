@@ -105,7 +105,7 @@ Enveloppe collective distincte du PER individuel.
 - **Abondement employeur** : exonéré IR et PS dans les plafonds — **AVANTAGE MAJEUR**
 - **Plafond abondement** : 8% × PASS de l'année de versement — voir `data/per-plafonds.json` → `epargne_salariale_abondement.pee`
 - **Blocage** : 5 ans, sauf cas de déblocage anticipé (art. R. 3332-28 Code du travail)
-- **Sortie après 5 ans** : exonération IR, seuls PS 17,2% sur les gains
+- **Sortie après 5 ans** : exonération IR, seuls les PS sur les gains (taux en vigueur au moment de la sortie — cf. SKILL.md § PFU et prélèvements sociaux ; 17,2% jusqu'au 31/12/2025, 18,6% à compter du 01/01/2026 suite à la LFSS 2026)
 - **Dividendes réinvestis** : exonérés IR tant qu'ils restent dans l'enveloppe
 
 #### Cas de déblocage anticipé PEE
@@ -147,7 +147,7 @@ Ces sommes ont été **exonérées d'IR à l'entrée** (pas déduites). La sorti
 
 | Mode de sortie | IR | Prélèvements sociaux |
 |---------------|----|--------------------|
-| **Capital** | **Exonéré** (sommes déjà exonérées à l'entrée) | 17,2% sur les gains uniquement |
+| **Capital** | **Exonéré** (sommes déjà exonérées à l'entrée) | PS sur les gains uniquement (taux en vigueur — cf. SKILL.md, 18,6% depuis la LFSS 2026) |
 | **Rente** | Régime des rentes viagères à titre onéreux — fraction taxable selon l'âge | PS sur la fraction taxable |
 
 **Fractions taxables de la rente (rente viagère à titre onéreux)** selon l'âge au premier versement :
@@ -165,7 +165,7 @@ La rente viagère à titre onéreux est plus favorable que la rente pension (PER
 
 | Mode de sortie | IR | Prélèvements sociaux |
 |---------------|----|--------------------|
-| **Capital** | Versements au barème IR (comme revenu ordinaire) | PFU 17,2% sur les gains |
+| **Capital** | Versements au barème IR (comme revenu ordinaire) | PFU sur les gains (taux PS en vigueur — cf. SKILL.md, 18,6% depuis la LFSS 2026) |
 | **Rente** | Régime des pensions (barème + abattement 10%) | PS 9,1% |
 
 #### Rente ou capital : quand choisir quoi ?
@@ -285,7 +285,7 @@ L'abondement est une charge déductible du résultat (compte 6474 — charges de
 Pour un abondement PEE au plafond (ex. 3 768 € en 2025) :
 - Coût net société après IS : 3 768 × (1 − 25%) = **2 826 €**
 - Économie cotisations TNS évitées : 3 768 × 42% ≈ **1 583 €** (vs versement en rémunération)
-- Abondement reçu dans le PEE : **3 768 €**, bloqué 5 ans, sorti exonéré IR (PS 17,2% sur les gains seulement)
+- Abondement reçu dans le PEE : **3 768 €**, bloqué 5 ans, sorti exonéré IR (PS sur les gains seulement, taux en vigueur — cf. SKILL.md, 18,6% depuis la LFSS 2026)
 
 ### Arbitrage PEE/PERECO vs PER TNS (ex-Madelin)
 
@@ -298,7 +298,7 @@ Deux enveloppes concurrentes pour l'optimisation fiscale du dirigeant TNS :
 | Exonération IR entrée | Oui (abondement exclu du revenu) | Oui (déduction revenu professionnel) |
 | Plafond annuel | 24% × PASS (PEE + PERECO — voir per-plafonds.json) | 10% bénéfice + 15% fraction > PASS (plafond souvent plus élevé pour fort bénéfice) |
 | Liquidité | PEE : déblocage après 5 ans (cas anticipés nombreux) | Bloqué jusqu'à la retraite |
-| Sortie | PEE : exo IR, PS 17,2% gains / PERECO : barème + PFU gains | Barème IR (anciens Madelin : rente obligatoire) |
+| Sortie | PEE : exo IR, PS gains (taux en vigueur — cf. SKILL.md) / PERECO : barème + PFU gains | Barème IR (anciens Madelin : rente obligatoire) |
 | Complexité mise en place | DUE ou accord + dépôt DREETS | Souscription contrat individuel |
 
 **Recommandation pour TMI 30-41% :**
@@ -333,8 +333,9 @@ Dispositif issu de la loi n° 2022-1158 du 16 août 2022, pérennisé par la loi
 - **Bénéficiaires** : tous les salariés (dont le conjoint salarié). Le dirigeant TNS ne peut pas en bénéficier lui-même.
 - **Plafond exonération** : 3 000 € par bénéficiaire (ou 6 000 € si accord d'intéressement en vigueur)
 - **Exonérations dans le plafond** : cotisations sociales patronales et salariales
-- **Exonération IR** : pour les salariés dont la rémunération est < 3 SMIC (≈ 5 430 €/mois brut 2025) — jusqu'au 31/12/2026
-- **Au-delà du plafond ou > 3 SMIC** : imposable à l'IR et soumis aux cotisations sociales comme une prime ordinaire
+- **Exonération IR** : réservée aux entreprises de **moins de 50 salariés**, pour les salariés dont la rémunération est < 3 SMIC (≈ 5 430 €/mois brut 2025) — jusqu'au 31/12/2026
+- **Entreprises ≥ 50 salariés** : la PPV reste exonérée de cotisations sociales dans le plafond, mais est imposable à l'IR (et soumise à CSG/CRDS) dès le premier euro, quelle que soit la rémunération
+- **Au-delà du plafond, ou > 3 SMIC dans une entreprise < 50 salariés** : imposable à l'IR et soumis aux cotisations sociales comme une prime ordinaire
 - **Pas de condition d'accord** : versable par décision unilatérale de l'employeur
 
 **Piège depuis le 1er janvier 2025 — effet Fillon :**

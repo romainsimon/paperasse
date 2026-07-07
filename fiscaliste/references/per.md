@@ -188,7 +188,7 @@ L'abondement est un complément versé par l'entreprise pour chaque euro versé 
 
 | Dispositif | Avantage |
 |------------|----------|
-| **PEE + abondement** | La société abonde chaque versement + exonération IR sur l'abondement + PFU 17,2 % à la sortie (pas 30 %) |
+| **PEE + abondement** | La société abonde chaque versement + exonération IR sur l'abondement + seuls les PS à la sortie (taux en vigueur — cf. SKILL.md, pas le PFU à 30 %) |
 | **PERECO + abondement** | Idem + blocage jusqu'à la retraite |
 | **PER individuel** | Uniquement économie d'impôt immédiate × TMI, pas de match employeur |
 

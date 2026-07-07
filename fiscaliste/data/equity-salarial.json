@@ -84,13 +84,13 @@
         "Surendettement (sur demande commission de surendettement)",
         "Violences conjugales (loi n° 2021-1774 du 24 décembre 2021)"
       ],
-      "sortie": "Après 5 ans : exonération IR, PS 17,2% sur les gains uniquement",
+      "sortie": "Après 5 ans : exonération IR, PS sur les gains uniquement (taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026)",
       "dividendes_reinvestis": "Exonérés IR tant qu'ils restent dans l'enveloppe"
     },
     "perco_pereco": {
       "description": "Équivalent PER collectif — PERCO remplacé par PERECO (PER d'Entreprise Collectif) depuis loi Pacte",
       "sortie_retraite": {
-        "compartiment_2_capital": "Capital exonéré IR (seuls les gains soumis à PS 17,2%) — régime distinct du PER individuel",
+        "compartiment_2_capital": "Capital exonéré IR (seuls les gains soumis aux PS, taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026) — régime distinct du PER individuel",
         "compartiment_2_rente": "RVCTO (Rente Viagère à Titre Onéreux) — fraction imposable : <50 ans=70%, 50-59=50%, 60-69=40%, 70+=30%",
         "compartiment_1_capital": "Versements volontaires déduits → imposés au barème comme PER individuel ; gains au PFU",
         "note": "Compartiment 2 (intéressement/participation/abondement) bénéficie d'un régime fiscal plus favorable que le PER individuel"
@@ -168,7 +168,7 @@
       "pee_pereco_avantages": [
         "Liquidité supérieure : PEE débloquable après 5 ans (ou anticipément)",
         "Double exonération IS + cotisations TNS",
-        "Sortie PEE : exo IR (PS 17,2% sur gains seulement)"
+        "Sortie PEE : exo IR (PS sur gains seulement, taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026)"
       ],
       "per_tns_avantages": [
         "Plafond potentiellement plus élevé pour les forts bénéfices",
@@ -188,7 +188,7 @@
         "plafond_standard": 3000,
         "plafond_avec_accord_interessement": 6000,
         "exoneration_cotisations": "Totale (patronales + salariales) dans le plafond",
-        "exoneration_ir": "Pour salariés < 3 SMIC brut/mois (≈ 5 430 €/mois 2025) — jusqu'au 31/12/2026",
+        "exoneration_ir": "Réservée aux entreprises de moins de 50 salariés, pour salariés < 3 SMIC brut/mois (≈ 5 430 €/mois 2025) — jusqu'au 31/12/2026. Entreprises ≥ 50 salariés : exonération de cotisations sociales maintenue mais PPV imposable à l'IR dès le premier euro.",
         "mise_en_place": "Décision unilatérale de l'employeur (DUE) — pas d'accord requis",
         "piege_reduction_fillon": {
           "applicable_depuis": "2025-01-01",

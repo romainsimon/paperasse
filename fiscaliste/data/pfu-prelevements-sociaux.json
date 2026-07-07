@@ -34,6 +34,7 @@
 
   "prelevements_sociaux": {
     "description": "CSG + CRDS + prélèvement de solidarité. Taux différencié depuis la LFSS 2026 (art. 12).",
+    "note_cfa": "Le +1,4 pt de CSG (9,2%->10,6%) est présenté dans le texte comme une hausse de CSG, mais correspond à la création de la Contribution Financière pour l'Autonomie (CFA — amendement gouv. n°1104 adopté le 04/12/2025), intégralement affectée à la CNSA. CRDS (0,5%) et prélèvement de solidarité (7,5%) inchangés. Par simplicité ce fichier continue de parler de \"hausse de CSG/PS\" — voir taux_revenus_du_patrimoine_2025 / taux_produits_de_placement_2025 / taux_inchanges_17_2 pour le détail par catégorie de revenu.",
     "composition": {
       "csg": "10,6 % (hausse) ou 9,2 % (taux historique, maintenu sur certains revenus)",
       "crds": "0,5 %",

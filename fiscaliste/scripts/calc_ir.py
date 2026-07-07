@@ -305,9 +305,9 @@ def main():
     p.add_argument("--parts-base", type=float, help="Parts hors enfants (1 célib, 2 couple)")
     p.add_argument("--rfr", type=float, help="RFR pour CEHR (optionnel)")
     p.add_argument("--base-ps-patrimoine", type=float, default=0,
-                   help="Base PS revenus du patrimoine (PV mobilières, crypto) — 18,6 %% dès 2025")
+                   help="Base PS revenus du patrimoine (PV mobilières, crypto) : 18,6 %% dès 2025")
     p.add_argument("--base-ps-placement", type=float, default=0,
-                   help="Base PS produits de placement (dividendes, intérêts) — 17,2 %% en 2025")
+                   help="Base PS produits de placement (dividendes, intérêts) : 17,2 %% en 2025")
     p.add_argument("--base-ps", type=float, default=0,
                    help="(déprécié) alias de --base-ps-placement, comportement 17,2 %% historique")
     p.add_argument("--foyer", type=str, help="Chemin vers un foyer.json")

@@ -27,6 +27,26 @@
     "description": "Avantage fiscal maximum par demi-part supplémentaire liée aux enfants à charge. Au-delà du seuil de revenu, le gain QF stagne."
   },
 
+  "rattachement_majeur_marie": {
+    "description": "Abattement sur RNI pour enfant majeur marié, pacsé ou ayant un enfant à charge rattaché (art. 196 B CGI). Pas de demi-part QF — abattement forfaitaire à la place.",
+    "abattement_par_personne": 6855,
+    "base_legale": "art. 196 B CGI",
+    "note": "L'abattement s'applique à chaque personne rattachée (conjoint + enfants le cas échéant). Case N (2042)."
+  },
+
+  "pension_alimentaire": {
+    "description": "Plafonds de déduction pour pension alimentaire versée à un enfant majeur (art. 156-II-2° CGI) — revenus 2025",
+    "base_legale": "art. 156-II-2° CGI",
+    "bofip": "BOI-IR-BASE-20-30-20-20",
+    "enfant_celibataire_non_domicilie": 6855,
+    "enfant_marie_ou_charge_de_famille": 13710,
+    "forfait_domicilie_sans_ressources": {
+      "enfant_celibataire": 4075,
+      "enfant_marie_ou_pacse": 8150
+    },
+    "note": "Pension déductible en espèces ou en nature (loyer, frais d'inscription…) dans le même plafond. Exclusif avec le rattachement pour le même enfant."
+  },
+
   "decote": {
     "seuil_celibataire": 1982,
     "seuil_couple": 3277,

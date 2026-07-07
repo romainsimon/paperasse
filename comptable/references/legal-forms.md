@@ -28,7 +28,7 @@
 ### Régime Fiscal
 
 **Micro-entreprise (auto-entrepreneur):**
-- Plafonds: 188 700 € (ventes) / 77 700 € (services)
+- Plafonds 2026 : 203 100 € (ventes) / 83 600 € (services)
 - Versement libératoire possible
 - Comptabilité ultra-simplifiée
 

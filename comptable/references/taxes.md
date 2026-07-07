@@ -84,7 +84,7 @@ Résultat comptable
 ### BIC (Bénéfices Industriels et Commerciaux)
 
 **Micro-BIC:**
-- Seuil: 188 700 € (ventes) ou 77 700 € (services)
+- Seuil 2026 : 203 100 € (ventes) ou 83 600 € (services)
 - Abattement: 71% (ventes) ou 50% (services)
 
 **Réel simplifié:**
@@ -98,7 +98,7 @@ Résultat comptable
 ### BNC (Bénéfices Non Commerciaux)
 
 **Micro-BNC:**
-- Seuil: 77 700 €
+- Seuil 2026 : 83 600 €
 - Abattement: 34%
 
 **Déclaration contrôlée:**

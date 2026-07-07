@@ -182,20 +182,29 @@ La TVA est exigible à la livraison/facturation.
 
 ### Comptabilisation TVA sur encaissements
 
+Entre la facturation et le paiement, la TVA collectée n'est pas encore exigible.
+Elle est logée dans un compte d'attente : 44580 « TVA à régulariser ou en attente »
+(compte officiel du PCG), ou par convention 44574 « TVA collectée sur les
+encaissements » (subdivision du 445 autorisée par le PCG, très répandue en pratique).
+
+**Ne pas utiliser 44587** : ce compte est réservé à la TVA sur factures à établir
+en clôture d'exercice (contrepartie 418), voir `closing.md`. Ce n'est pas le compte
+d'attente du flux courant.
+
 **À la facturation:**
 ```
-  Débit 411 Client                 1 200,00
-  Crédit 706 Prestations           1 000,00
-  Crédit 44587 TVA sur FAE           200,00
+  Débit 411 Client                          1 200,00
+  Crédit 706 Prestations                    1 000,00
+  Crédit 44574 TVA sur encaissements          200,00   (attente, non exigible)
 ```
 
 **À l'encaissement:**
 ```
-  Débit 512 Banque                 1 200,00
-  Crédit 411 Client                1 200,00
+  Débit 512 Banque                          1 200,00
+  Crédit 411 Client                         1 200,00
 
-  Débit 44587 TVA sur FAE            200,00
-  Crédit 44571 TVA collectée         200,00
+  Débit 44574 TVA sur encaissements           200,00
+  Crédit 44571 TVA collectée                  200,00   (exigibilité)
 ```
 
 ---

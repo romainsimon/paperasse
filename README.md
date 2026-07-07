@@ -210,12 +210,6 @@ Claude Desktop et claude.ai supportent les skills via upload :
 
 ---
 
-## Forks et adaptations
-
-- 🇧🇪 **[paperasse-be](https://github.com/Atelya-be/paperasse-be)** : adaptation au droit belge (16 skills, FR/NL/DE/EN), maintenue par [Atelya](https://atelya.be).
-
----
-
 ## Evals
 
 Chaque skill est évalué automatiquement avec et sans le SKILL.md pour mesurer sa valeur ajoutée. Le runner utilise `claude --bare` en isolation, un grading LLM-as-judge, une exécution parallèle (~20 min pour la suite complète), et un cache adressé par contenu pour réutiliser les runs inchangés d'une itération à l'autre.
@@ -272,6 +266,7 @@ Vous avez un métier de la paperasse que vous aimeriez voir automatisé ? Consul
 Des forks par juridiction maintenus par la communauté :
 
 - 🇹🇳 [**paperasse-tn**](https://github.com/YassineAta/paperasse-tn) (Tunisie) — skills pour la paperasse tunisienne (IRPP, BCT/forex, RNE/NAT, SUARL). Trois skills : `mo7aseb`, `bct-shield`, `3adel-ichhad`.
+- 🇧🇪 [**paperasse-be**](https://github.com/Atelya-be/paperasse-be) (Belgique) : 16 skills adaptés au droit belge, FR/NL/DE/EN, avec table de correspondance FR/BE par skill. Maintenu par [Atelya](https://atelya.be).
 
 Ces forks ne sont **pas maintenus par paperasse** : la fraîcheur des références fiscales et juridiques est de la responsabilité de leurs auteurs. Ouvrez une issue ici si vous voulez ajouter votre fork à cette liste.
 

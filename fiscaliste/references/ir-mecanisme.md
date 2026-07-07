@@ -63,6 +63,25 @@ La confusion la plus fréquente concerne le "salaire net imposable".
 
 **Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), **pas** dans les salaires 1AJ — mais elle bénéficie quand même de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20). La distinction de case n'enlève donc PAS l'abattement ; elle compte pour les calculs qui distinguent revenus d'activité et de remplacement (l'ARE n'est pas un revenu d'activité, ex. plafond PER).
 
+## Revenus partiellement exonérés — apprentis, stagiaires, étudiants
+
+Deux régimes distincts, deux articles différents. S'appliquent aux enfants mineurs à charge comme aux majeurs rattachés.
+
+| Type | Article | Conditions | Plafond 2025 |
+|------|---------|------------|--------------|
+| Apprentis (contrat d'apprentissage L. 6221-1 CT) et stagiaires (L. 124-6 Code éduc.) | art. 81 bis CGI | Contrat formel requis | SMIC annuel = **21 622 €** |
+| Jobs étudiants | art. 81, 36° CGI | ≤ 25 ans au 1er janvier ; activité exercée pendant l'année scolaire/universitaire **ou** durant les congés scolaires/universitaires. **Sur option du contribuable** | 3 × SMIC mensuel = **5 405 €** |
+
+**Hors champ** : le contrat de professionnalisation n'ouvre pas droit à l'exonération art. 81 bis — la rémunération est imposable en totalité (souvent confondu avec le contrat d'apprentissage).
+
+**Mécanique de déclaration** :
+- **En ligne** : saisir le montant **total** perçu par ligne employeur, puis cocher la case dédiée ("Salaires d'apprentis exonérés" ou "Indemnités de stage exonérées" ou case équivalente étudiants) — le système reporte automatiquement max(0, total − plafond) en 1AJ/1BJ/1CJ.
+- **Papier** : reporter en 1AJ/1BJ/1CJ uniquement le montant excédant le plafond (le calcul est à la charge du contribuable).
+
+Si un même employeur verse à la fois des revenus étudiants et d'autres revenus, **dupliquer la ligne** pour déclarer séparément les deux natures.
+
+**Valeurs SMIC** : revalorisées au 1er janvier, et en cours d'année si l'indice des prix à la consommation national atteint +2% par rapport au niveau ayant déclenché la dernière revalorisation ([art. L3231-5 CT](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902835)).
+
 ## Application du barème progressif
 
 Utiliser `data/bareme-ir-2025.json` — champ `bareme_ir.tranches`.
@@ -129,6 +148,8 @@ Mécanisme de collecte en temps réel — pas d'imposition supplémentaire.
 - Barème IR : art. 197 CGI
 - Quotient familial : art. 194-195 CGI
 - Décote : art. 197-4° CGI
+- Exonérations apprentis / stagiaires : art. 81 bis CGI
+- Exonérations jobs étudiants : art. 81, 36° CGI
 - Abattement 10% salaires : art. 83-3° CGI
 - CEHR : art. 223 sexies CGI
 - Revenus exceptionnels : art. 163-0 A CGI

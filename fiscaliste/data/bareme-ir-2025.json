@@ -41,7 +41,7 @@
     "taux": 0.10,
     "minimum": 509,
     "maximum": 14555,
-    "description": "Abattement forfaitaire automatique sur traitements et salaires (case 1AJ). ATTENTION terminologie : 1AJ = salaire net imposable du bulletin, AVANT cet abattement. Le RNI = 1AJ × 0.9 (dans la plage standard)."
+    "description": "Abattement forfaitaire automatique sur traitements et salaires (case 1AJ) ET sur les allocations chômage / ARE (case 1AP), qui sont des revenus de remplacement imposés selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20). Plancher/plafond communs au total salaires + ARE par membre du foyer. ATTENTION terminologie : 1AJ = salaire net imposable du bulletin, AVANT cet abattement. Le RNI = 1AJ × 0.9 (dans la plage standard)."
   },
 
   "abattement_pensions_10pct": {

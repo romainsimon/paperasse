@@ -55,13 +55,13 @@ La confusion la plus fréquente concerne le "salaire net imposable".
 |--------|-----------|-----------|--------|
 | Salaires | 1AJ/1BJ | 10% (min 509 €, max 14 555 €) ou frais réels | data/bareme-ir-2025.json |
 | Pensions / retraites | 1AS/1BS | 10% (min 450 €, max 4 446 €) par foyer | data/bareme-ir-2025.json |
-| Allocations chômage (ARE) | 1AP/1BP | **Aucun abattement** | — |
+| Allocations chômage (ARE) | 1AP/1BP | **10 %** (revenu de remplacement imposé selon les règles des T&S, BOI-RSA-BASE-30-50-20 ; l'abattement porte sur le total salaires + ARE, plafond commun 14 555 €) | — |
 | Dividendes (option barème) | 2DC | 40% | data/pfu-prelevements-sociaux.json |
 | Dividendes (PFU) | 2DC | Aucun abattement | — |
 | BNC régime normal | 5QC | Aucun abattement | — |
 | Micro-BNC | 5TE | 34% (plafond 77 700 €) | — |
 
-**Piège classique** : confondre 1AJ (salaires) et 1AP (chômage). L'abattement 10% s'applique uniquement sur 1AJ.
+**Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), **pas** dans les salaires 1AJ — mais elle bénéficie quand même de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20). La distinction de case n'enlève donc PAS l'abattement ; elle compte pour les calculs qui distinguent revenus d'activité et de remplacement (l'ARE n'est pas un revenu d'activité, ex. plafond PER).
 
 ## Application du barème progressif
 

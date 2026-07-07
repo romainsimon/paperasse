@@ -226,20 +226,28 @@ def from_foyer(foyer, bareme, pfu_data):
     demi_parts_alt = 0.25 * min(enfants_alternee, 2) + 0.5 * max(0, enfants_alternee - 2)
     parts = parts_base + demi_parts_enfants + demi_parts_alt
 
-    # Revenu net catégoriel salaires (abattement 10 %)
+    # Limitation connue : salaires + ARE partagent ici un seul plafond d'abattement
+    # (14 555 €). Correct pour un même déclarant ; un foyer où salaire et ARE
+    # relèvent de deux conjoints distincts aurait droit à deux plafonds. Non géré
+    # (limitation préexistante) — voir issue dédiée plutôt que d'élargir cette PR.
+    #
+    # Revenu net catégoriel salaires + ARE (abattement 10 %).
+    # L'ARE est un revenu de remplacement imposé selon les règles des T&S
+    # (BOI-RSA-BASE-30-50-20) : même abattement 10 % et même plafond (14 555 €)
+    # que les salaires. On l'intègre donc à la base salaires.
     salaires = r.get("salaires_declarant1", 0) + r.get("salaires_declarant2", 0)
-    net_salaires = abattement_salaires(salaires, bareme) if salaires else 0
+    chomage = r.get("revenus_chomage", 0)
+    base_traitements = salaires + chomage
+    net_salaires = abattement_salaires(base_traitements, bareme) if base_traitements else 0
 
     pensions = r.get("pensions_declarant1", 0) + r.get("pensions_declarant2", 0)
     net_pensions = abattement_pensions(pensions, bareme) if pensions else 0
 
-    # Autres revenus ajoutés au RNI sans abattement (simplification) :
-    # revenus fonciers (déjà calculés au net), chômage (pas d'abattement)
+    # Revenus fonciers : déjà au net (micro post-abattement / réel post-charges).
     fonciers = r.get("revenus_fonciers_reels", 0) + r.get("revenus_fonciers_micro", 0)
-    chomage = r.get("revenus_chomage", 0)
 
     # Revenus imposables au barème (hors revenus du capital si PFU)
-    revenu_global = net_salaires + net_pensions + fonciers + chomage
+    revenu_global = net_salaires + net_pensions + fonciers
 
     # Déductions (PER + pension alimentaire + CSG déductible)
     per = d.get("per_declarant1", 0) + d.get("per_declarant2", 0)

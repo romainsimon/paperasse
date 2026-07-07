@@ -273,6 +273,21 @@
         "Le skill conclut correctement sur le respect du plafond (5 750 € < 10 000 €)",
         "Le skill rappelle que l'excédent au-delà du plafond serait perdu (non reportable)"
       ]
+    },
+    {
+      "id": 20,
+      "name": "are-abattement-10pct",
+      "prompt": "Je suis au chômage, j'ai touché 18 000 € d'allocations chômage (ARE) cette année, sans autre revenu. Est-ce que l'ARE a droit à l'abattement de 10 % comme les salaires, et dans quelle case je la déclare ?",
+      "expected_output": "L'ARE est un revenu de remplacement imposé selon les règles des traitements et salaires : elle bénéficie de la déduction forfaitaire de 10 % comme les salaires (BOI-RSA-BASE-30-50-20). RNI = 18 000 × 0,9 = 16 200 €. À déclarer en case 1AP/1BP (pas 1AJ) : la case distingue revenu de remplacement / d'activité, mais ne supprime pas l'abattement. À ce niveau de revenu, impôt nul après décote.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que l'ARE bénéficie de l'abattement forfaitaire de 10 % (revenu de remplacement imposé selon les règles des traitements et salaires)",
+        "Le skill NE dit PAS que l'ARE est exclue de l'abattement 10 %",
+        "Le RNI est calculé avec l'abattement (18 000 × 0,9 = 16 200 €)",
+        "Le skill indique la case 1AP/1BP (et non 1AJ) pour déclarer l'ARE",
+        "Le skill précise que la distinction 1AP vs 1AJ porte sur la nature du revenu (remplacement vs activité), pas sur l'abattement",
+        "L'abattement suit le régime des salaires (plancher commun 509 € / plafond commun 14 555 € sur le total salaires + ARE)"
+      ]
     }
   ]
 }

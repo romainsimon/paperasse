@@ -75,6 +75,16 @@ Voir `data/niches-fiscales.json` → `dispositifs_hors_plafond`.
 
 **Report** : les dons dépassant le plafond de 20% sont reportables sur les 5 années suivantes.
 
+### Abrogé : frais de comptabilité et d'adhésion AGA/OGA (art. 199 quater B)
+
+La réduction d'impôt pour frais de tenue de comptabilité et d'adhésion à un
+organisme de gestion agréé (2/3 des dépenses, plafond 915 €) est **abrogée par
+la LF 2025** (loi 2025-127 du 14 février 2025, art. 11). Dernière application :
+imposition des revenus **2024**. Ne plus la proposer pour les revenus 2025 et
+suivants. Rappel lié : la majoration de 25 % pour non-adhésion AGA/OGA avait
+déjà disparu depuis les revenus 2023 (LF 2021), l'adhésion n'apporte donc plus
+d'avantage fiscal direct.
+
 ## Crédits d'impôt (remboursables)
 
 ### Emploi à domicile

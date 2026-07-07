@@ -63,6 +63,8 @@ La confusion la plus fréquente concerne le "salaire net imposable".
 
 **Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), **pas** dans les salaires 1AJ — mais elle bénéficie quand même de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20). La distinction de case n'enlève donc PAS l'abattement ; elle compte pour les calculs qui distinguent revenus d'activité et de remplacement (l'ARE n'est pas un revenu d'activité, ex. plafond PER).
 
+**Précision AGA/OGA** : la majoration de 25 % du bénéfice pour non-adhésion à un organisme de gestion agréé (AGA/OGA) est **supprimée** (LF 2021, art. 34 ; art. 158-7 CGI). Extinction progressive (coefficients 1,20 / 1,15 / 1,10) puis disparition totale depuis l'imposition des revenus 2023. Tous les BNC en déclaration contrôlée se déclarent en 5QC/5RC, adhérent ou non, sans distinction. La réduction d'impôt pour frais de comptabilité qui accompagnait l'adhésion (art. 199 quater B) est elle aussi **abrogée** par la LF 2025 (dernière application : revenus 2024).
+
 ## Revenus partiellement exonérés — apprentis, stagiaires, étudiants
 
 Deux régimes distincts, deux articles différents. S'appliquent aux enfants mineurs à charge comme aux majeurs rattachés.

@@ -99,6 +99,8 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 
 **Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), pas en 1AJ. Elle bénéficie **quand même** de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20) — la case ne change pas l'abattement. L'enjeu de la bonne case : l'ARE n'est pas un revenu d'activité (compte pour le plafond PER, prestations sociales, etc.).
 
+**Précision BNC 5QC/5RC** : plus aucune distinction adhérent / non-adhérent AGA-OGA. La majoration de 25 % pour non-adhésion est supprimée depuis l'imposition des revenus 2023 (LF 2021, art. 158-7 CGI) : même case, même montant pour tous.
+
 ---
 
 ## Phase 2 : Choix stratégiques

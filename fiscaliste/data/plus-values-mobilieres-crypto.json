@@ -70,6 +70,19 @@
       "note": "Cessions cumulées ≤ 305 € par an → exonération totale. Au-delà : imposition intégrale (pas seulement la fraction au-delà)"
     },
 
-    "activite_habituelle": "Requalification possible en BIC si activité habituelle/professionnelle — fiscalité plus lourde (cotisations sociales TNS)"
+    "activite_habituelle": "Requalification possible en BIC si activité habituelle/professionnelle — fiscalité plus lourde (cotisations sociales TNS)",
+
+    "transmission_deces": {
+      "principe": "Le décès n'est pas une cession à titre onéreux (art. 150 VH bis CGI). Les PV latentes ne sont pas imposées à l'IR ni aux PS.",
+      "purge_pv_latentes": "Les plus-values latentes accumulées par le défunt sont définitivement exonérées d'IR et de prélèvements sociaux.",
+      "base_cout_heritiers": "Les héritiers reprennent le portefeuille à sa valeur vénale au jour du décès (valeur retenue pour les droits de succession). Cette valeur devient leur nouveau prix total d'acquisition dans la formule PAMC.",
+      "droits_succession": "Droits de succession dus sur la valeur au décès selon le lien familial et les abattements légaux (100 000 EUR par enfant, exonération conjoint survivant).",
+      "points_attention": [
+        "Valorisation : cours de clôture en EUR à la date du décès (exchange centralisé ou explorateur blockchain)",
+        "Accès aux wallets : sans clé privée ou accès exchange transmis aux héritiers, les actifs sont définitivement perdus",
+        "Déclaration de succession obligatoire : actifs numériques à l'actif successoral (art. 750 ter CGI)"
+      ],
+      "sources": ["art. 150 VH bis CGI", "art. 750 ter CGI", "BOI-RPPM-PVBMC-30"]
+    }
   }
 }

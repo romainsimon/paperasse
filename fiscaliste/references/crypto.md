@@ -109,11 +109,45 @@ Pour 6 ans minimum (délai de reprise) :
 - Transferts entre wallets (pour prouver la continuité du portefeuille)
 - Export des rewards de staking avec valorisation fiat à chaque date de réception
 
+## Transmission au décès : purge des plus-values latentes
+
+**Principe** : le décès n'est pas une "cession à titre onéreux" au sens de l'art. 150 VH bis CGI. Les plus-values latentes accumulées par le défunt sont définitivement exonérées d'IR et de prélèvements sociaux — on parle de **purge des PV latentes**.
+
+### Mécanisme
+
+Les héritiers recueillent le portefeuille à sa **valeur vénale au jour du décès** (valeur retenue pour l'assiette des droits de succession). Cette valeur devient leur nouveau **prix total d'acquisition du portefeuille** dans la formule PAMC.
+
+Ils paient des **droits de succession** sur cette valeur (après abattements légaux), mais aucun IR ni PS sur les gains réalisés du vivant du défunt.
+
+### Exemple chiffré
+
+| | Vente de son vivant | Transmission par décès |
+|---|---|---|
+| Portefeuille au jour J | 500 000 € | 500 000 € |
+| Prix d'acquisition initial | 100 000 € | — |
+| PV latente | 400 000 € | — |
+| PFU 31,4 % sur la PV | **125 600 €** | **0 €** |
+| Droits de succession (enfant, ~barème) | — | ~75 000 € (sur 400 k€ nets d'abattement) |
+
+L'avantage dépend du lien familial et des abattements applicables (100 000 € par enfant, exonération conjoint…).
+
+### Conséquences pratiques
+
+- **Intérêt patrimonial fort** pour les détenteurs de crypto avec de grandes PV latentes : conserver jusqu'au décès peut être fiscalement plus efficace que de vendre puis retransmettre du cash.
+- **Valorisation au décès** : la valeur doit être documentée (cours de clôture en EUR à la date du décès). Pour les exchanges centralisés, un relevé de compte suffit. Pour les wallets non-custodiaux, la valorisation repose sur des explorateurs de blockchain.
+- **Problème d'accès aux actifs** : les héritiers doivent pouvoir accéder aux wallets/exchanges. Sans accès aux clés privées ou aux comptes, les actifs sont définitivement perdus. Il est indispensable d'organiser la transmission des accès (via un notaire, testament, ou dispositif dédié) sans jamais exposer la clé privée dans un document non sécurisé.
+- **Déclaration de succession** : les crypto-actifs doivent être déclarés à l'actif successoral à leur valeur vénale au jour du décès (art. 750 ter CGI).
+
+### Avertissement
+
+Ce mécanisme est fondé sur l'absence du décès dans les faits générateurs de l'art. 150 VH bis CGI (position constante, confirmée par la doctrine BOFiP). Pour des portefeuilles significatifs, faire valider la stratégie par un notaire ou un avocat fiscaliste.
+
 ## Références CGI / BOFiP
 
 - Régime particulier crypto : art. 150 VH bis CGI
 - Activité habituelle (BIC) : art. 34 CGI
 - Méthode PAMC : art. 150 VH bis-II CGI
 - Sursis échange crypto-crypto : art. 150 VH bis-I-2 CGI
+- Déclaration de succession (actifs numériques) : art. 750 ter CGI
 - BOFiP PV crypto : BOI-RPPM-PVBMC-30
 - BOFiP BNC staking/mining : BOI-BNC-CHAMP-10-10-20-40

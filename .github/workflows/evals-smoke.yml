@@ -100,22 +100,39 @@ jobs:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
     steps:
+      - name: Check ANTHROPIC_API_KEY availability
+        id: key
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "Model-backed smoke evals skipped: the ANTHROPIC_API_KEY repository secret is not configured."
+              echo "Configure it to enable smoke evals on internal PRs, or run evals locally (evals/run_evals.py)."
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.key.outputs.available == 'true'
         with:
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
+        if: steps.key.outputs.available == 'true'
         with:
           python-version: "3.12"
 
       - name: Install Python dependency
+        if: steps.key.outputs.available == 'true'
         run: python -m pip install --upgrade pip pyyaml
 
       - name: Fetch base branch
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.key.outputs.available == 'true'
         run: git fetch origin "${{ github.base_ref }}" --depth=1
 
       - name: Restore eval cache
+        if: steps.key.outputs.available == 'true'
         id: cache-restore
         uses: actions/cache/restore@v4
         with:
@@ -127,16 +144,19 @@ jobs:
             evals-cache-${{ runner.os }}-${{ github.repository }}-
 
       - name: Install claude CLI
+        if: steps.key.outputs.available == 'true'
         run: |
           curl -fsSL https://claude.ai/install.sh | bash
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Verify claude CLI
+        if: steps.key.outputs.available == 'true'
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           claude --version
 
       - name: Run smoke evals
+        if: steps.key.outputs.available == 'true'
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           if [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -154,7 +174,7 @@ jobs:
             --workers 6
 
       - name: Write benchmark summary
-        if: always()
+        if: always() && steps.key.outputs.available == 'true'
         run: |
           python - <<'PY'
           import json
@@ -180,14 +200,14 @@ jobs:
           PY
 
       - name: Save eval cache
-        if: always()
+        if: always() && steps.key.outputs.available == 'true'
         uses: actions/cache/save@v4
         with:
           path: evals-workspace/cache
           key: ${{ steps.cache-restore.outputs.cache-primary-key }}
 
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.key.outputs.available == 'true'
         with:
           name: eval-benchmark
           path: |

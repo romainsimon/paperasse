@@ -33,11 +33,13 @@
 - Le régime fiscal dépend de **3 variables** : date de souscription, âge au versement, date du versement — voir le tableau complet dans `succession.md`
 
 **Régime de droit commun :**
-- Primes avant 70 ans (ou contrat pré-20/11/1991 + primes avant 13/10/1998) : abattement **152 500 EUR/bénéficiaire** puis 20%/31,25% (art. 990 I CGI)
+- **Exonération totale** (ni 990 I ni droits) : primes versées **avant le 13/10/1998**, que ce soit sur un contrat pré-20/11/1991 (tout âge) ou sur un contrat post-1991 avec versement avant 70 ans
+- Primes versées avant 70 ans **à partir du 13/10/1998** : abattement **152 500 EUR/bénéficiaire** puis 20%/31,25% (art. 990 I CGI)
 - Primes après 70 ans sur contrat post-20/11/1991 : abattement global **30 500 EUR** puis droits de succession sur les primes uniquement — les gains sont exonérés (art. 757 B CGI), **quelle que soit la date de versement** (le seuil du 13/10/1998 ne joue que pour les primes versées avant 70 ans)
 
 **Contrats souscrits avant le 20/11/1991 — cas dérogatoire favorable :**
-- Même les primes versées **après 70 ans** et **après le 13/10/1998** relèvent de l'art. 990 I (abattement 152 500 EUR/bénéf.)
+- Primes versées **avant le 13/10/1998** : exonération totale
+- Primes versées **à partir du 13/10/1998**, même après 70 ans, relèvent de l'art. 990 I (abattement 152 500 EUR/bénéf.)
 - Le plafond défavorable de 30 500 EUR ne s'applique **jamais** à ces contrats anciens
 - **Ne jamais fermer un contrat pré-1991** sans vérifier cet avantage successoral
 

@@ -52,8 +52,14 @@
         "imposition_surplus": "Droits de succession selon le lien de parenté",
         "note": "L'art. 757 B s'applique aux primes versées après 70 ans dès lors que le contrat est souscrit à compter du 20/11/1991, y compris pour les versements antérieurs au 13/10/1998. Il ne s'applique jamais aux contrats souscrits avant le 20/11/1991."
       },
-      "tous_autres_cas_990I": {
-        "condition": "Tout autre cas : contrat pré-20/11/1991 (quels que soient l'âge et la date de versement), OU primes versées avant 70 ans (quel que soit le contrat)",
+      "cas_exoneration_totale": {
+        "condition": "Primes versées AVANT le 13/10/1998, sur un contrat pré-20/11/1991 (tout âge) ou sur un contrat post-20/11/1991 avec versement AVANT 70 ans",
+        "regime": "Exonération totale",
+        "imposition": "Ni art. 990 I ni droits de succession — aucune imposition au titre de la transmission",
+        "note": "C'est le seuil du 13/10/1998, et non l'âge, qui fait basculer ces primes anciennes vers l'art. 990 I."
+      },
+      "cas_990I": {
+        "condition": "Primes versées À PARTIR du 13/10/1998 avant 70 ans (tout contrat), OU primes versées à partir du 13/10/1998 sur un contrat pré-20/11/1991 même après 70 ans (dérogation favorable)",
         "regime": "art. 990 I",
         "abattement_par_beneficiaire": 152500,
         "taux": [
@@ -65,7 +71,7 @@
     },
 
     "contrats_pre_1991_derogation": {
-      "description": "Contrats souscrits avant le 20/11/1991 : régime dérogatoire favorable — même les primes versées après 70 ans et après le 13/10/1998 relèvent de l'art. 990 I",
+      "description": "Contrats souscrits avant le 20/11/1991 : régime dérogatoire favorable. Primes versées avant le 13/10/1998 = exonération totale ; à partir du 13/10/1998, même après 70 ans, relèvent de l'art. 990 I (jamais 757 B)",
       "conseil": "Ne jamais fermer un contrat pré-1991 sans vérifier cet avantage successoral",
       "source": "BOI-RESS-000009 / art. 990 I CGI — interprétation date de souscription"
     },

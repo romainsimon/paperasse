@@ -162,15 +162,17 @@ L'assurance-vie est **hors succession** (art. L132-12 Code des assurances). Les 
 
 | Contrat souscrit | Âge à la date du versement | Date du versement | Régime |
 |------------------|:--------------------------:|-------------------|--------|
-| Avant le 20/11/1991 | < 70 ans | Peu importe | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
-| Avant le 20/11/1991 | ≥ 70 ans | Avant le 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
-| Avant le 20/11/1991 | ≥ 70 ans | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. (régime dérogatoire — contrat pré-1991 prime) |
-| Après le 20/11/1991 | < 70 ans | Peu importe | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
+| Avant le 20/11/1991 | Peu importe | Avant le 13/10/1998 | **Exonération totale** : ni 990 I ni droits de succession |
+| Avant le 20/11/1991 | Peu importe | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. (régime dérogatoire — contrat pré-1991) |
+| Après le 20/11/1991 | < 70 ans | Avant le 13/10/1998 | **Exonération totale** : ni 990 I ni droits de succession |
+| Après le 20/11/1991 | < 70 ans | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
 | Après le 20/11/1991 | ≥ 70 ans | Peu importe | **Art. 757 B** : abattement global 30 500 EUR, puis droits de succession sur les primes |
 
-**Le seul cas défavorable** (757 B / plafond 30 500 EUR global) : contrat souscrit **après** le 20/11/1991 **ET** primes versées **après** 70 ans — **quelle que soit la date de versement**. Le seuil du 13/10/1998 ne joue que pour les primes versées **avant** 70 ans (art. 990 I à partir de cette date).
+**Le vrai cas d'exonération totale** : les primes versées **avant le 13/10/1998** échappent à toute imposition (ni 990 I ni droits), que le contrat soit pré- ou post-20/11/1991 (pour un contrat post-1991, à condition d'un versement avant 70 ans). C'est le seuil du 13/10/1998 — et non l'âge — qui bascule ces primes anciennes vers l'art. 990 I.
 
-**Règle clé pour les contrats pré-1991** : même des primes versées après 70 ans et après le 13/10/1998 relèvent de l'art. 990 I (abattement de 152 500 EUR par bénéficiaire) — le régime dérogatoire favorable s'applique dès lors que le contrat a été souscrit avant le 20/11/1991. Ne pas fermer ces contrats anciens.
+**Le seul cas défavorable** (757 B / plafond 30 500 EUR global) : contrat souscrit **après** le 20/11/1991 **ET** primes versées **après** 70 ans — **quelle que soit la date de versement**. Le seuil du 13/10/1998 ne joue que pour les primes versées **avant** 70 ans (exonération totale avant cette date, art. 990 I à partir).
+
+**Règle clé pour les contrats pré-1991** : primes versées **avant le 13/10/1998** = exonération totale ; primes versées **à partir du 13/10/1998**, même après 70 ans, relèvent de l'art. 990 I (abattement de 152 500 EUR par bénéficiaire) — le régime dérogatoire favorable s'applique dès lors que le contrat a été souscrit avant le 20/11/1991, et l'art. 757 B ne s'y applique jamais. Ne pas fermer ces contrats anciens.
 
 **Attention — l'art. 757 B ne dépend pas du 13/10/1998** : pour un contrat souscrit **après** le 20/11/1991, les primes versées **après 70 ans** relèvent de l'art. 757 B (abattement global 30 500 EUR) quelle que soit leur date de versement, y compris avant le 13/10/1998. L'art. 757 B ne s'applique jamais aux contrats souscrits avant le 20/11/1991.
 

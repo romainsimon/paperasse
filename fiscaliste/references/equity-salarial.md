@@ -365,7 +365,7 @@ L'employeur est tenu de proposer une complémentaire santé collective obligatoi
 
 **Option mutuelle famille :**
 - La société peut souscrire une mutuelle "famille" couvrant le salarié (conjoint) + enfants + le conjoint du salarié (i.e. le gérant)
-- La cotisation patronale est déductible IS et exonérée de cotisations sociales dans la limite de 6% du PASS + 1,5% par enfant à charge (art. 83-1° quater CGI et art. D. 242-1 CSS)
+- La cotisation patronale est déductible IS et exonérée de cotisations sociales dans la limite de 6% du PASS + 1,5% de la rémunération annuelle brute soumise à cotisations, le total étant plafonné à 12% du PASS (art. 83-1° quater CGI et art. D. 242-1 CSS)
 - Le gérant TNS est couvert en tant que "conjoint" du salarié — sans être lui-même salarié
 
 **Dispense d'adhésion du conjoint salarié ailleurs :**

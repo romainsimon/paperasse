@@ -210,7 +210,7 @@
         "base_legale": "Art. L. 911-7 CSS (mutuelle obligatoire) ; art. 83-1° quater CGI (déductibilité patronale) ; art. R. 242-1-6 CSS (dispense)",
         "principe": "Mutuelle 'famille' couvrant le salarié (conjoint) + enfants + le gérant (en tant que conjoint du salarié)",
         "participation_patronale_min": "50% de la cotisation obligatoire",
-        "exoneration_patronale": "Dans la limite de 6% PASS + 1,5% PASS par enfant à charge (art. D. 242-1 CSS)",
+        "exoneration_patronale": "Dans la limite de 6% du PASS + 1,5% de la rémunération annuelle brute soumise à cotisations, le total étant plafonné à 12% du PASS (art. D. 242-1 CSS)",
         "dispense_conjoint_salarie_ailleurs": {
           "possible_si": "Couverture obligatoire chez l'autre employeur (pas optionnelle)",
           "formalisme": "Demande écrite conservée au dossier RH",

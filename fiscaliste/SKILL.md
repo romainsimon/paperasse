@@ -101,7 +101,7 @@ Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi de finances
 
 La LFSS 2026 (loi n° 2025-1403 du 30/12/2025, art. 12) a porté la CSG sur les revenus du capital de 9,2 % à 10,6 %, soit un total PS de 17,2 % à 18,6 %, **avec deux dates d'entrée en vigueur distinctes** selon la nature du revenu :
 
-*Note : ce +1,4 pt est présenté dans le texte comme une hausse de CSG, mais correspond en réalité à la création de la Contribution Financière pour l'Autonomie (CFA — amendement gouv. n° 1104 adopté le 04/12/2025), intégralement affectée à la CNSA (branche autonomie). Par simplicité, ce skill continue de parler de "hausse de CSG/PS" — le tableau ci-dessous reste la référence pour savoir à quels revenus elle s'applique.*
+*Note : ce +1,4 pt est juridiquement une hausse du taux de CSG sur les revenus du capital (art. L. 136-8, I, 2° CSS : « 9,2 % » remplacé par « 10,6 % ») — l'article 12 ne crée pas de contribution nouvelle. Cette hausse de CSG est présentée comme "Contribution Financière pour l'Autonomie" (CFA — label de l'amendement gouv. n° 1104 adopté le 04/12/2025, sans existence statutaire dans le code) et son produit est affecté à la CNSA / branche autonomie (art. L. 131-8 CSS). Ce skill continue de parler de "hausse de CSG/PS" — le tableau ci-dessous reste la référence pour savoir à quels revenus elle s'applique.*
 
 | Catégorie | Base CSS | PS revenus 2025 (déclaration 2026) | PS revenus 2026+ | PFU effectif 2025 |
 |---|---|---|---|---|

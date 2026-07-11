@@ -52,10 +52,10 @@ Le calendrier doit être **adapté** à l'exercice comptable de chaque copropri�
 
 | Action | Détail | Obligatoire |
 |--------|--------|------------|
-| Rédaction PV | Dans les 2 mois suivant l'AG | Oui |
-| Notification PV | Envoi aux opposants, abstentionnistes, absents | Oui |
+| Signature du PV | À la fin de la séance ou dans les 8 jours suivant l'AG | Oui |
+| Notification PV | Envoi aux opposants et défaillants | Oui |
 | Exécution décisions | Lancer les travaux votés, signer les contrats | Oui |
-| Mise à jour RNC | Dans les 2 mois suivant l'AG | Oui |
+| Mise à jour RNC | Dans les 2 mois suivant l'AG ayant approuvé les comptes | Oui |
 
 ### Juillet
 
@@ -106,11 +106,11 @@ Le calendrier doit être **adapté** à l'exercice comptable de chaque copropri�
 
 | Échéance | Délai | Fondement |
 |----------|-------|-----------|
-| Convocation AG | 21 jours minimum avant l'AG | Art. 9-1 décret 1967 |
-| AG annuelle | Au moins 1 fois par an, dans les 6 mois suivant la clôture | Art. 7 décret 1967 |
-| Rédaction PV | Délai raisonnable (2 mois max recommandé) | Art. 17 décret 1967 |
-| Notification PV | Dans le mois suivant l'AG | Art. 18 décret 1967 |
-| Mise à jour RNC | 2 mois après l'AG | Art. 55 loi 1965 |
+| Convocation AG | 21 jours minimum avant l'AG | Art. 9 décret 1967 |
+| AG annuelle | Au moins 1 fois par an, dans les 6 mois suivant la clôture | Art. 7 décret 1967 et art. 14-1 loi 1965 |
+| Signature du PV | À la fin de la séance ou dans les 8 jours suivant l'AG | Art. 17 décret 1967 |
+| Notification PV | Dans le mois suivant l'AG | Art. 18 décret 1967 et art. 42 loi 1965 |
+| Mise à jour RNC | 2 mois après l'AG ayant approuvé les comptes | Art. R. 711-10 CCH |
 | Transmission archives (changement syndic) | 3 mois | Art. 18-2 loi 1965 |
 | Contestation décision AG | 2 mois après notification PV | Art. 42 loi 1965 |
 | Prescription actions personnelles | 5 ans | Art. 42 loi 1965 |

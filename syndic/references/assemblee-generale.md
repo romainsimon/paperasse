@@ -16,7 +16,7 @@ L'AG est l'organe souverain de la copropriété. Elle seule peut voter le budget
 
 ### Délai
 
-**21 jours minimum** entre l'envoi de la convocation et la date de l'AG (art. 9-1 décret 1967).
+**21 jours minimum** entre l'envoi de la convocation et la date de l'AG (art. 9 décret 1967).
 
 Le délai court à compter :
 - Du lendemain de la première présentation de la LRAR
@@ -24,7 +24,7 @@ Le délai court à compter :
 
 ### Contenu de la convocation
 
-**Obligatoire** (art. 9-1 et 11 décret 1967) :
+**Obligatoire** (art. 9 et 11 décret 1967) :
 
 1. Lieu, date et heure de l'AG
 2. Ordre du jour détaillé (chaque résolution formulée)
@@ -81,20 +81,19 @@ Le PV est obligatoire et doit contenir :
   - Noms des copropriétaires opposants ou abstentionnistes
   - Majorité requise et atteinte ou non
 
-**Délai de rédaction** : le PV doit être signé et notifié dans un délai raisonnable. La pratique courante est 2 mois maximum.
+**Délai de signature** : le PV doit être signé à la fin de la séance ou dans les 8 jours suivant l'AG (art. 17 décret 1967).
 
 **Signatures** : président de séance + secrétaire + scrutateurs (le cas échéant).
 
 Voir template : [templates/pv-ag.md](../templates/pv-ag.md)
 
-## Notification du PV (art. 18 et 42 décret 1967)
+## Notification du PV (art. 18 décret 1967 et art. 42 loi 1965)
 
 **Obligatoire** pour les copropriétaires :
 - Opposants (ayant voté contre)
-- Abstentionnistes (n'ayant pas pris part au vote)
-- Absents et non représentés
+- Défaillants (absents et non représentés)
 
-**Délai** : dans le mois suivant l'AG (bonne pratique).
+**Délai** : dans le mois suivant l'AG (art. 42 loi 1965).
 
 **Mode** : LRAR ou notification électronique (si accord).
 

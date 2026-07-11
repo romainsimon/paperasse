@@ -161,7 +161,7 @@ Tableau de suivi de tous les recommandés envoyés. Essentiel pour le respect de
 └────┴────────────┴──────────────────┴──────────────────────┴───────────────┴────────────┴──────────────────────────┘
 
 Délais courants :
-- Convocation AG : 21 jours à compter du lendemain de la 1ère présentation (art. 9-1)
+- Convocation AG : 21 jours à compter du lendemain de la 1ère présentation (art. 9 décret 1967)
 - Notification PV : contestation 2 mois à compter de la réception (art. 42)
 - Mise en demeure : 30 jours pour régulariser
 - Transmission archives : 3 mois à compter de la cessation (art. 18-2)

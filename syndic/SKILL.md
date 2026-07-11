@@ -1,7 +1,7 @@
 ---
 name: syndic
 metadata:
-  last_updated: 2026-03-26
+  last_updated: 2026-07-11
 includes:
   - data/**
   - templates/**
@@ -161,7 +161,7 @@ Transition — {{copro.name}} — Syndic sortant : {{nom}}
 - [ ] Phase 4 AG : vote obtenu, PV rédigé, notification absents/opposants sous 1 mois
 - [ ] Phase 5 ARCHIVES : notification syndic sortant, réception 7 catégories (3 mois, art. 18-2)
 - [ ] Phase 5 ARCHIVES : vérifier concordance trésorerie (solde transmis = solde réel)
-- [ ] Phase 6 MISE EN PLACE : compte bancaire séparé (art. 26-7), transfert fonds
+- [ ] Phase 6 MISE EN PLACE : compte bancaire séparé (art. 18, II loi 1965), transfert fonds
 - [ ] Phase 6 MISE EN PLACE : fournisseurs + copropriétaires informés, RNC mis à jour (2 mois)
 ```
 

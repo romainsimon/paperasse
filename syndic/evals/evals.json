@@ -16,7 +16,7 @@
         "Le skill demande les dates de l'exercice comptable",
         "Le skill demande le type de syndic actuel et note la transition souhaitée",
         "Le skill demande la composition du conseil syndical",
-        "Le skill demande les informations du compte bancaire séparé (art. 26-7 décret 1967)",
+        "Le skill demande les informations du compte bancaire séparé (art. 18, II loi 1965)",
         "Le skill génère copros/les-oliviers.json avec tous les champs obligatoires",
         "Le skill mentionne la nécessité de voter le changement de syndic en AG (art. 25)",
         "Le skill propose de configurer une autre copropriété"
@@ -33,7 +33,7 @@
       "assertions": [
         "Le skill identifie la copropriété Les Oliviers et charge copros/les-oliviers.json",
         "Le skill vérifie le calendrier et les échéances",
-        "Le délai de 21 jours minimum est rappelé (art. 9-1 décret 1967)",
+        "Le délai de 21 jours minimum est rappelé (art. 9 décret 1967)",
         "L'ordre du jour contient la désignation du bureau en premier",
         "L'approbation des comptes est à la majorité de l'art. 24",
         "Le vote du budget prévisionnel est à la majorité de l'art. 24",
@@ -143,8 +143,8 @@
         "Le skill mentionne l'extranet copropriétaires comme source d'information avant le vote (obligation ALUR)",
         "Le skill recommande de consulter les copropriétaires AVANT l'AG pour estimer le soutien",
         "Le skill calcule le seuil de majorité art. 25 nécessaire",
-        "La LRAR de convocation est mentionnée avec le délai de 21 jours (art. 9-1)",
-        "La LRAR de notification du PV est mentionnée avec le délai de 1 mois (art. 18 décret)",
+        "La LRAR de convocation est mentionnée avec le délai de 21 jours (art. 9 décret 1967)",
+        "La notification du PV aux opposants et défaillants est mentionnée avec le délai de 1 mois (art. 18 décret 1967 et art. 42 loi 1965)",
         "Le délai de contestation de 2 mois est mentionné (art. 42, court à compter de la notification)",
         "La LRAR au syndic sortant pour demander la transmission est mentionnée",
         "Le délai de 3 mois pour la transmission des archives est cité (art. 18-2)",

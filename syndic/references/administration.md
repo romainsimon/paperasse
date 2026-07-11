@@ -47,7 +47,7 @@ Demander :
 ### Étape 5 : Informations bancaires
 
 Demander :
-1. Banque et numéro de compte séparé (obligatoire, art. 26-7 décret 1967)
+1. Banque et numéro de compte séparé (obligatoire, art. 18, II loi 1965)
 2. Signataires autorisés
 
 ### Étape 6 : Intégration Qonto (optionnel)

@@ -164,7 +164,7 @@ SI REFUS OU RETARD DE TRANSMISSION :
 PHASE 6 — MISE EN PLACE (dans le mois suivant la prise de fonction)
 ══════════════════════════════════════════════════════════════
 
-- [ ] Ouvrir le compte bancaire séparé au nom du syndicat (art. 26-7 décret 1967)
+- [ ] Ouvrir le compte bancaire séparé au nom du syndicat (art. 18, II loi 1965)
 - [ ] Transférer les fonds depuis l'ancien compte
 - [ ] Informer tous les fournisseurs :
       • Nouveau contact syndic (nom, téléphone, email)
@@ -174,7 +174,7 @@ PHASE 6 — MISE EN PLACE (dans le mois suivant la prise de fonction)
       • Coordonnées du nouveau syndic
       • Nouvelles modalités de paiement des charges
       • IBAN pour les virements
-- [ ] Mettre à jour l'immatriculation RNC (dans les 2 mois, art. 55 loi 1965)
+- [ ] Mettre à jour l'immatriculation RNC (dans les 2 mois suivant l'AG ayant approuvé les comptes, art. R. 711-10 CCH)
       → https://www.registre-coproprietes.gouv.fr
 - [ ] Reprendre la comptabilité :
       • Rapprochement bancaire au jour du changement
@@ -288,7 +288,7 @@ Si le syndic sortant ne transmet pas les archives dans le délai de 3 mois :
 
 ### Phase 4 : Mise en place
 
-1. **Ouvrir le compte bancaire séparé** (obligatoire, art. 26-7 décret 1967)
+1. **Ouvrir le compte bancaire séparé** (obligatoire, art. 18, II loi 1965)
    - Compte au nom du syndicat des copropriétaires
    - Signataire : le syndic (ou le président du conseil syndical en coopératif)
 

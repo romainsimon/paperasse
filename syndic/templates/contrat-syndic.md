@@ -108,7 +108,7 @@ Les frais engagés dans l'exercice de leurs fonctions sont remboursés sur justi
 
 ## Article 6 : Compte bancaire séparé
 
-Conformément à l'article 26-7 du décret du 17 mars 1967, les fonds du syndicat sont déposés sur un compte bancaire séparé, ouvert au nom du syndicat des copropriétaires.
+Conformément à l'article 18, II de la loi du 10 juillet 1965, les fonds du syndicat sont déposés sur un compte bancaire séparé, ouvert au nom du syndicat des copropriétaires.
 
 **Banque** : {{banque}}
 **IBAN** : {{iban}}

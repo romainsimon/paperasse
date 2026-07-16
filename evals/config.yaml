@@ -49,3 +49,12 @@ skills:
     tools: "Read"
     shared_paths:
       - fiscaliste/foyer.example.json
+  parents-eleves-association:
+    path: parents-eleves-association
+    baseline_prompt: "Tu es un bénévole d'une association de parents d'élèves (loi 1901). Réponds à cette question sur la gestion de l'association avec les références officielles."
+    tools: "Read"
+    shared_paths:
+      - parents-eleves-association/association.example.json
+      - parents-eleves-association/evenement.example.json
+      - parents-eleves-association/data/
+      - parents-eleves-association/templates/

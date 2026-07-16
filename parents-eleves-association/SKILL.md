@@ -1,7 +1,7 @@
 ---
 name: parents-eleves-association
 metadata:
-  last_updated: 2026-06-02
+  last_updated: 2026-07-16
 includes:
   - data/**
   - templates/**
@@ -16,15 +16,16 @@ description: |
   conseil de classe), événementiel (loteries L. 322-1+ CSP, buvettes L. 3334-2,
   vide-greniers L. 310-2 C. com., ERP, SACEM/SPRE, conventions locaux scolaires),
   communication (RGPD art. 6/7/8/13/30/32/33, loi 1978 art. 7-1, droit à l'image,
-  autorisation parentale, registre traitements, AIPD) et pédagogie Montessori (méthode,
-  périodes sensibles, ambiances, formations AMI/AMF/ISMM, cadre L. 441-1+ / loi Gatel
-  hors contrat). Utilisé par les bénévoles d'une APE/APEEE/APEL et par les parents élus
+  autorisation parentale, registre traitements, AIPD) et cadre juridique de l'enseignement
+  quand l'école est Montessori (statut hors contrat / sous contrat, art. L. 441-1+ et
+  loi Gatel 2018-266, socle commun, instruction obligatoire, nom « Montessori » non
+  protégé). Utilisé par les bénévoles d'une APE/APEEE/APEL et par les parents élus
   en conseil d'école ou CA.
 ---
 
 # Association de parents d'élèves
 
-Skill consolidé pour tout ce qui concerne le fonctionnement d'une association de parents d'élèves (APE) : gouvernance, comptabilité, événementiel, représentation parents, communication, et repères pédagogiques quand l'école est Montessori.
+Skill consolidé pour tout ce qui concerne le fonctionnement d'une association de parents d'élèves (APE) : gouvernance, comptabilité, événementiel, représentation parents, communication, et cadre juridique de l'école quand elle est Montessori (statut hors contrat / sous contrat).
 
 ## Prérequis : `association.json`
 
@@ -77,11 +78,7 @@ Consolider les échéances de l'association depuis [references/tresorerie/calend
 | **Communication** : droit à l'image, autorisation parentale | [references/communication/droit-image.md](references/communication/droit-image.md), [references/communication/modele-autorisation-image.md](references/communication/modele-autorisation-image.md) |
 | **Communication** : canaux, newsletter, crise, AIPD | [references/communication/canaux-diffusion.md](references/communication/canaux-diffusion.md), [references/communication/newsletter.md](references/communication/newsletter.md), [references/communication/communication-crise.md](references/communication/communication-crise.md), [references/communication/aipd.md](references/communication/aipd.md) |
 | **Communication** : droits personnes, violation, politique conf. | [references/communication/droits-personnes.md](references/communication/droits-personnes.md), [references/communication/violation-donnees.md](references/communication/violation-donnees.md), [references/communication/politique-confidentialite.md](references/communication/politique-confidentialite.md) |
-| **Pédagogie Montessori** : méthode, périodes sensibles | [references/pedagogie/principes-methode.md](references/pedagogie/principes-methode.md), [references/pedagogie/periodes-sensibles.md](references/pedagogie/periodes-sensibles.md) |
-| **Pédagogie Montessori** : ambiances, matériel, posture | [references/pedagogie/ambiances.md](references/pedagogie/ambiances.md), [references/pedagogie/materiel.md](references/pedagogie/materiel.md), [references/pedagogie/posture-educateur.md](references/pedagogie/posture-educateur.md) |
-| **Pédagogie Montessori** : formations AMI/AMF/ISMM | [references/pedagogie/ami-ismm-formations.md](references/pedagogie/ami-ismm-formations.md) |
-| **Pédagogie Montessori** : cadre juridique hors contrat, loi Gatel | [references/pedagogie/cadre-juridique.md](references/pedagogie/cadre-juridique.md) |
-| **Pédagogie Montessori** : critiques, FAQ parents | [references/pedagogie/critiques.md](references/pedagogie/critiques.md), [references/pedagogie/parents-faq.md](references/pedagogie/parents-faq.md) |
+| **École Montessori** : cadre juridique, statut hors contrat / sous contrat, loi Gatel, socle commun, nom non protégé | [references/pedagogie/cadre-juridique.md](references/pedagogie/cadre-juridique.md) |
 
 ### 2. Vérifier les sources
 
@@ -89,7 +86,7 @@ Toute affirmation chiffrée (seuils, taux, dates limites) doit citer un texte of
 
 ### 3. Fraîcheur (automatique)
 
-`last_updated: 2026-06-02`. Si plus de 6 mois, vérifier en ligne :
+`last_updated: 2026-07-16`. Si plus de 6 mois, vérifier en ligne :
 
 - **Trésorerie** : seuil franchise impôts commerciaux (BOFIP, indexé annuellement), seuils mécénat (CGI), barèmes ANC.
 - **Représentation** : note de service ministérielle élections parents d'élèves (annuelle).
@@ -126,7 +123,7 @@ Le skill fournit le cadre légal, les modèles et les calculs déterministes. Le
 
 ## Sources officielles
 
-Toutes les références citent les textes en vigueur au 2026-06-02 :
+Toutes les références citent les textes en vigueur au 2026-07-16 :
 
 - **Loi 1901** (1er juillet 1901) + décret 16 août 1901 — [Légifrance](https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006069570)
 - **Loi 1908 Alsace-Moselle** — articles 21 à 79 du Code civil local

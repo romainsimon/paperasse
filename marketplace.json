@@ -34,6 +34,12 @@
       "name": "Syndic de Copropriété",
       "path": "syndic/SKILL.md",
       "description": "Gestion complète de copropriété, AG, appels de fonds, comptabilité, travaux, contentieux"
+    },
+    {
+      "slug": "parents-eleves-association",
+      "name": "Association de Parents d'Élèves",
+      "path": "parents-eleves-association/SKILL.md",
+      "description": "Gestion complète d'une APE/APEEE/APEL (loi 1901) : trésorerie (ANC 2018-06, franchise impôts commerciaux, reçus fiscaux, mécénat Coluche, seuil CAC), secrétariat (statuts, RNA/JOAFE, AG, PV, Le Compte Asso), représentation des parents élus (conseil d'école, CA EPLE), événementiel (loteries, buvettes, vide-greniers, ERP, SACEM), communication (RGPD, droit à l'image) et cadre juridique de l'enseignement hors contrat"
     }
   ],
   "integrations": ["qonto", "stripe"],

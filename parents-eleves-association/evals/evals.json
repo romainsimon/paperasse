@@ -8,15 +8,15 @@
       "expected_output": "Le skill détecte qu'aucun association.json n'existe, propose le setup guidé, génère un JSON valide avec les champs identité, bureau, exercice, régime fiscal (gestion désintéressée, franchise des impôts commerciaux applicable), comptabilite ANC 2018-06 par défaut, recu_fiscal à false ou à valider via rescrit, subventions_publiques à 0.",
       "files": [],
       "assertions": [
-        "Le association.json contient name 'APE Montessori EXEMPLE' (ou équivalent fidèle)",
-        "legal_form = 'association_loi_1901'",
-        "rna = 'W123456789' est présent",
-        "joafe.declaration_date = '2024-09-01'",
-        "bureau.tresorier porte le prénom Jean et bureau.presidente porte Nabila",
-        "fiscal_year.start = '2025-09-01' et fiscal_year.end = '2026-08-31' (ou exercice en cours équivalent)",
+        "Le association.json contient identite.nom 'APE Montessori EXEMPLE' (ou équivalent fidèle)",
+        "identite.regime = 'loi-1901'",
+        "identifiants.rna = 'W123456789' est présent",
+        "identite.date_publication_joafe = '2024-09-01' (ou date de déclaration/publication au JOAFE équivalente)",
+        "instances.dirigeants_actuels contient un trésorier au prénom Jean et une présidente au prénom Nabila",
+        "exercice_social.debut = '09-01' et exercice_social.fin = '08-31' (format MM-DD, calé sur l'année scolaire)",
         "comptabilite.referentiel = 'ANC_2018-06'",
-        "regime_fiscal.gestion_desinteressee = true",
-        "regime_fiscal.franchise_impots_commerciaux = true",
+        "fiscal_social.gestion_desinteressee = true",
+        "fiscal_social.franchise_impots_commerciaux = true",
         "Le skill mentionne que l'éligibilité à l'art. 200 CGI doit être vérifiée (cercle restreint) et propose le rescrit fiscal mécénat (formulaire 2070-RD-SD) avant d'émettre des reçus",
         "Le skill cite au moins une source officielle (loi 1901, ANC 2018-06, BOFIP ou service-public.fr)"
       ],
@@ -514,57 +514,6 @@
         "Le skill précise la périodicité indicative (inspection obligatoire 1ère année + ensuite tous les ~5 ans)",
         "Le skill cite Légifrance ou service-public.fr comme source vérifiable",
         "Le skill ne confond pas la pédagogie Montessori avec un statut juridique particulier"
-      ],
-      "domain": "pedagogie"
-    },
-    {
-      "id": 28,
-      "name": "pedagogie-periodes-sensibles-age",
-      "prompt": "Notre fils a 18 mois. Il déplace tout, range tout, hurle si on change sa routine. Est-ce une 'période sensible' ? Qu'est-ce qu'on peut faire concrètement ?",
-      "expected_output": "Le skill identifie qu'il s'agit probablement de la période sensible de l'ordre (1-3 ans, pic 18-24 mois) et possiblement du mouvement, donne des explications concrètes sur ce que sont les périodes sensibles selon Maria Montessori, propose des aménagements à la maison (rituels stables, mobilier accessible, ne pas déranger les rangements de l'enfant), et rappelle de consulter l'éducatrice de la Communauté enfantine ou un pédiatre si la situation est anxiogène.",
-      "files": [],
-      "assertions": [
-        "Le skill identifie la période sensible de l'ordre (0-3 ans, pic 18-24 mois)",
-        "Le skill mentionne au moins une autre période sensible pertinente (mouvement, langage, petits objets)",
-        "Le skill cite Maria Montessori ou L'Esprit absorbant de l'enfant comme source du concept",
-        "Le skill donne au moins 2 conseils concrets et adaptés à l'âge (rituels stables, mobilier à hauteur, vie pratique, etc.)",
-        "Le skill ne pose pas de diagnostic médical sur l'enfant",
-        "Le skill oriente vers un professionnel (éducatrice de l'ambiance, pédiatre) si nécessaire",
-        "Le skill mentionne une nuance scientifique (les périodes sensibles ne sont pas des fenêtres absolues)"
-      ],
-      "domain": "pedagogie"
-    },
-    {
-      "id": 29,
-      "name": "pedagogie-transition-vers-public-6eme",
-      "prompt": "Notre fille a 11 ans, elle est en Élémentaire Montessori depuis 5 ans. Elle entre en 6ème dans un collège public l'année prochaine. Comment préparer la transition ?",
-      "expected_output": "Le skill donne des conseils concrets sur le format des évaluations (notes, contrôles), le travail à la maison, l'autonomie déjà acquise comme atout. Il rappelle de vérifier l'acquisition du socle commun avec l'éducatrice, mentionne la durée typique d'adaptation, et invite à un soutien émotionnel pendant les premiers mois. Il ne dramatise ni ne minimise.",
-      "files": [],
-      "assertions": [
-        "Le skill mentionne la vérification de l'acquisition du socle commun avec l'éducatrice",
-        "Le skill aborde le changement de format d'évaluation (notes, contrôles)",
-        "Le skill identifie l'autonomie comme un atout d'un élève Montessori",
-        "Le skill donne une indication de durée d'adaptation (semaines à un trimestre)",
-        "Le skill recommande un dialogue avec l'éducatrice de l'ambiance actuelle",
-        "Le skill aborde le soutien émotionnel de l'enfant",
-        "Le skill ne prétend pas que la transition sera triviale et ne dramatise pas non plus"
-      ],
-      "domain": "pedagogie"
-    },
-    {
-      "id": 30,
-      "name": "pedagogie-ami-vs-formation-week-end",
-      "prompt": "Une amie a fait un week-end de formation Montessori pour 350 € et veut ouvrir une micro-crèche Montessori dans son salon. Elle me dit qu'elle est 'formée Montessori'. Que vaut sa formation ?",
-      "expected_output": "Le skill explique la hiérarchie des formations: AMI (1000-1500h sur 9-12 mois, plusieurs milliers d'euros, reconnaissance internationale via ISMM/CFMF), AMS (équivalent solide), DU universitaires (qualité variable), formations courtes commerciales (week-end à quelques jours). Il indique qu'un week-end ne forme pas un éducateur Montessori. Il aborde aussi les obligations légales d'ouverture d'une micro-crèche (qui dépendent d'autres règles que le Code de l'éducation: PMI, agrément, qualifications spécifiques) sans entrer dans le détail.",
-      "files": [],
-      "assertions": [
-        "Le skill cite la durée et l'ordre de grandeur du coût d'une formation AMI (1000-1500h, plusieurs milliers d'euros)",
-        "Le skill mentionne au moins un centre AMI agréé en France (ISMM Nogent/Lyon/Montpellier ou CFMF Archamps)",
-        "Le skill indique clairement qu'une formation week-end ne forme pas un éducateur Montessori",
-        "Le skill aborde la différence entre AMI et autres formations (AMS, DU, formations courtes)",
-        "Le skill évoque le fait qu'une crèche/micro-crèche relève d'un cadre juridique spécifique (PMI, agrément) distinct du Code de l'éducation pour les écoles",
-        "Le skill reste factuel sans dénigrer la personne mentionnée",
-        "Le skill rappelle que Montessori n'est pas un titre protégé en France"
       ],
       "domain": "pedagogie"
     }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://paperasse.dev/schemas/association.json",
-  "_comment": "Modèle de fichier association.json pour le skill parents-eleves-association. Renommer en association.json à la racine du projet et compléter. Toutes les valeurs sont fictives. Couvre les 6 domaines : trésorerie, secrétariat, représentation parents, événementiel, communication, pédagogie Montessori.",
+  "_comment": "Modèle de fichier association.json pour le skill parents-eleves-association. Renommer en association.json à la racine du projet et compléter. Toutes les valeurs sont fictives. Couvre les domaines : trésorerie, secrétariat, représentation parents, événementiel, communication, et cadre juridique de l'enseignement (statut hors contrat / sous contrat quand l'école est Montessori).",
 
   "identite": {
     "nom": "Association des Parents d'Élèves de l'École Exemple",

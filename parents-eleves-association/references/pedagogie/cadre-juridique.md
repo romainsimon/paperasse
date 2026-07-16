@@ -112,8 +112,9 @@ Pour une école Montessori, cela permet :
 Mais cela impose :
 
 - s'assurer qu'à 16 ans, chaque enfant a effectivement acquis le socle commun ;
-- préparer les transitions vers le système public si l'enfant en sort (cf.
-  [parents-faq.md](parents-faq.md)).
+- préparer, sur le plan administratif, les transitions vers le système public si
+  l'enfant en sort (inscription en établissement public, positionnement au regard du
+  socle commun).
 
 ## Contrat simple — rare pour Montessori
 

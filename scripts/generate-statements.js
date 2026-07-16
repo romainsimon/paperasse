@@ -407,9 +407,12 @@ function generateBilan(accounts, company, pcgNames, plData) {
     .filter(([a]) => {
       if (a.startsWith('16')) return true; // Emprunts
       if (a.startsWith('40')) return true; // Fournisseurs
-      if (a === '455') return true; // Compte courant associe
+      if (a.startsWith('455')) return true; // Comptes courants d'associes (455, 4551, ...)
       if (a.startsWith('43')) return true; // Organismes sociaux
-      if (a.startsWith('44') && !a.startsWith('445') && !a.startsWith('4456')) return true; // Etat (IS, TVA collectee)
+      // Etat : tous les 44x en solde crediteur (TVA collectee 44571, TVA a decaisser 44551, IS...).
+      // Le filtre directionnel ci-dessous (credit - debit > 0.01) evite tout doublon avec les
+      // creances de l'actif, qui ne retiennent que les soldes debiteurs.
+      if (a.startsWith('44')) return true;
       if (a === '487') return true; // PCA
       return false;
     })

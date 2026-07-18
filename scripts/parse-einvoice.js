@@ -231,7 +231,12 @@ function parseCII(xml) {
     const unitMatch = lineXml.match(/ram:BilledQuantity[^>]*unitCode="([^"]+)"/);
     const unitCode = unitMatch ? unitMatch[1] : null;
 
-    const unitPrice = parseAmount(tag(lineXml, 'ram:ChargeAmount')) ?? 0;
+    // Le prix unitaire est le prix NET (après remise). Sur une ligne avec
+    // remise, GrossPriceProductTradePrice (prix catalogue) précède
+    // NetPriceProductTradePrice — cibler le bloc net, pas le premier
+    // ChargeAmount du document. Repli sur la ligne entière si absent.
+    const netPriceBlock = block(lineXml, 'ram:NetPriceProductTradePrice');
+    const unitPrice = parseAmount(tag(netPriceBlock || lineXml, 'ram:ChargeAmount')) ?? 0;
     const lineTotal = parseAmount(tag(lineXml, 'ram:LineTotalAmount')) ?? 0;
 
     return {

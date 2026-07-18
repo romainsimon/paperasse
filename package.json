@@ -13,6 +13,7 @@
     "facture": "node scripts/generate-facturx.js",
     "validate:facture": "node scripts/validate-facture.js",
     "parse:facture": "node scripts/parse-einvoice.js",
+    "test:parse": "node scripts/test-parse-einvoice.js",
     "fetch": "node integrations/stripe/fetch.js; node integrations/qonto/fetch.js",
     "fetch:qonto": "node integrations/qonto/fetch.js",
     "fetch:stripe": "node integrations/stripe/fetch.js"

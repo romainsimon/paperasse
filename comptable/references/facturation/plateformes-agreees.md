@@ -97,7 +97,7 @@ Pour recommander une PA, demander :
 
 ## Formats selon le réseau d'échange
 
-Trois formats sont définis par la norme européenne EN 16931. Toute PA immatriculée doit être capable d'émettre et de recevoir au moins l'un d'entre eux.
+Trois formats sont définis par la norme européenne EN 16931. Toute PA doit pouvoir émettre au moins l'un d'entre eux, mais doit être capable de recevoir les trois (socle complet Factur-X + CII + UBL).
 
 | Format | Standard | Cas d'usage |
 |--------|----------|-------------|
@@ -113,19 +113,18 @@ Trois formats sont définis par la norme européenne EN 16931. Toute PA immatric
 
 Sources : [Spécification Factur-X (FNFE-MPE)](https://fnfe-mpe.org/factur-x/) · [Peppol BIS Billing 3.0](https://docs.peppol.eu/poacc/billing/3.0/) · [DGFiP — Facturation électronique](https://www.impots.gouv.fr/professionnel/je-passe-la-facturation-electronique)
 
-## PDPs pour éditeurs de logiciels et opérateurs
+## PA pour éditeurs de logiciels et opérateurs
 
-Certaines PDPs immatriculées (ou en cours d'immatriculation) ciblent non pas les entreprises directement, mais les **éditeurs de logiciels** et les **Opérateurs de Dématérialisation (OD)** qui souhaitent intégrer la facturation électronique dans leurs propres produits via API.
+Certaines Plateformes Agréées (PA) ciblent non pas les entreprises directement, mais les **éditeurs de logiciels** et les **Opérateurs de Dématérialisation (OD)** qui souhaitent intégrer la facturation électronique dans leurs propres produits via API.
 
 ### Iopole
 
-- **Statut DGFiP** : immatriculation en cours — rapport d'audit de conformité attendu (source : [liste officielle DGFiP](https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees))
+- **Statut DGFiP** : immatriculée définitivement (n° 0018) depuis le 11 décembre 2025 (source : [liste officielle DGFiP](https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees))
 - **Peppol** : oui
 - **Formats** : Factur-X, CII, UBL
 - **Cible** : éditeurs de logiciels et opérateurs (accès via API)
 - **Site** : https://www.iopole.com
-- **Siège** : 145 Impasse John Locke, 34470 Pérols
-- **Intérêt** : PDP française avec réseau Peppol, adaptée aux intégrateurs qui veulent embarquer la facturation électronique dans leur produit
+- **Intérêt** : PA française avec réseau Peppol, adaptée aux intégrateurs qui veulent embarquer la facturation électronique dans leur produit
 
 ## Devenir PA
 

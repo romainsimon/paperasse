@@ -31,8 +31,9 @@ passée depuis la banque.
    sous-traitants en franchise (art. 293 B), assurances/mutuelles, flux intra-groupe / compte
    courant d'associé.
 5. **Autoliquidation des services intra-UE reçus** (art. 259-1° et 283-2 CGI) : base HT en
-   **ligne A3**, TVA autoliquidée ajoutée en **collectée (08)** ET **déductible (20)** → **net 0** ;
-   penser à la **DES** (déclaration européenne de services).
+   **ligne A3**, TVA autoliquidée ajoutée en **collectée (08)** ET **déductible (20)** → **net 0**.
+   ⚠️ **Pas de DES** dans ce sens : la Déclaration Européenne de Services incombe au *prestataire*
+   qui **rend** le service, pas au preneur qui le reçoit.
 
 ## Utilisation
 
@@ -104,7 +105,8 @@ maintenu.
   et essence = 80 %.
 - **Frais bancaires** (abonnement + commissions Qonto) : TVA 20 % déductible, rarement présents dans
   les factures fournisseurs → réintégrés depuis la transaction.
-- **Autoliquidation intra-UE** : nette de 0 si droit à déduction total ; **DES** obligatoire.
+- **Autoliquidation intra-UE (services reçus)** : nette de 0 si droit à déduction total. La **DES**
+  n'est due que si l'entreprise **rend** des services intra-UE, jamais pour ceux qu'elle reçoit.
 
 ## Ce que le script NE gère PAS (déférer à un humain / au reste du skill `comptable`)
 

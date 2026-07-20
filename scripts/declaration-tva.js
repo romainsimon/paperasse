@@ -8,7 +8,7 @@
  *   - la TVA DÉDUCTIBLE, ancrée sur les décaissements (1 TVA par transaction), rapprochée des
  *     factures fournisseurs analysées par Qonto, complétée par les postes hors factures
  *     (carburant, frais bancaires) et une liste « à justifier » ;
- *   - l'autoliquidation des services intra-UE reçus (net 0, ligne A3 + DES) ;
+ *   - l'autoliquidation des services intra-UE reçus (net 0, ligne A3 ; pas de DES côté preneur) ;
  *   - les cases CA3 (01, A3, 08, 16, 19, 20, 22, 23, 28) et un net à payer par mois.
  *
  * LECTURE SEULE. Ne télédéclare rien, n'écrit rien chez un tiers. La sortie est un BROUILLON à
@@ -236,7 +236,7 @@ function renderText(company, months, results, engine) {
       }
     }
     if (R.autoHtCents > 0) {
-      L.push(`  AUTOLIQ. services intra-UE: base A3 ${eur(R.autoHtCents)} → TVA ${eur(R.autoVatCents)} (collectée+déductible, net 0) + DES à déposer`);
+      L.push(`  AUTOLIQ. services intra-UE reçus: base A3 ${eur(R.autoHtCents)} → TVA ${eur(R.autoVatCents)} (collectée+déductible, net 0). Pas de DES (obligation du prestataire, pas du preneur).`);
     }
     L.push(`  ── CASES CA3 (arrondies €) ──`);
     L.push(`     01 ${String(c['01_base_ht_ventes_prestations']).padStart(7)}  | A3 ${String(c['A3_base_ht_services_intra_ue']).padStart(6)}`);

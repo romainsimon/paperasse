@@ -1,0 +1,3 @@
+[
+  { "supplier_name": "CLOUD FR SARL", "issue_date": "2026-05-05", "payment_date": "2026-05-06", "status": "paid", "total_amount": { "value": "120.00", "currency": "EUR" }, "total_amount_excluding_taxes": { "value": "100.00", "currency": "EUR" }, "total_tax_amount": { "value": "20.00", "currency": "EUR" }, "matched_transactions_ids": ["t1"] }
+]

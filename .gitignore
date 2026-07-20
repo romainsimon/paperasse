@@ -9,3 +9,4 @@ __pycache__/
 evals-workspace/
 evals/.venv/
 evals/uv.lock
+data/declarations-tva/

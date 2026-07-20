@@ -170,6 +170,7 @@ Consulter selon le besoin :
 | [references/formats.md](references/formats.md) | **Formats de sortie (écritures, journal JSON, risques)** |
 | [references/pcg.md](references/pcg.md) | Plan Comptable Général : structure des classes |
 | [references/tva.md](references/tva.md) | TVA : régimes, taux, déclarations, intra-UE |
+| [references/declaration-tva.md](references/declaration-tva.md) | **Déclaration CA3 semi-automatique depuis la banque (Qonto → cases CA3)** |
 | [references/taxes.md](references/taxes.md) | IS, IR, CFE, CVAE, autres impôts |
 | [references/legal-forms.md](references/legal-forms.md) | Spécificités par forme juridique |
 | [references/calendar.md](references/calendar.md) | Échéances fiscales et sociales |
@@ -194,6 +195,8 @@ Consulter selon le besoin :
 | `scripts/fetch_company.py <SIREN>` | Recherche info entreprise via API |
 | `scripts/update_data.py` | Vérifier fraîcheur des données et télécharger MAJ |
 | `scripts/calc.js` | Calculs déterministes (CCA, amortissement, IS, acomptes TVA simplifié, prorata) |
+| `scripts/declaration-tva.js --from <YYYY-MM> --to <YYYY-MM>` | **Reconstituer une CA3 (réel normal) depuis Qonto : collectée, déductible, autoliquidation intra-UE, cases CA3, net à payer. Lecture seule, ne télédéclare rien.** Voir [references/declaration-tva.md](references/declaration-tva.md) |
+| `scripts/declaration-tva.js ... --offline <dir>` | Rejouer sur des dumps déjà extraits (transactions.json, client_invoices.json, supplier_invoices.json) |
 | `scripts/generate-statements.js` | Générer Bilan, Compte de résultat, Balance |
 | `scripts/generate-fec.js` | Générer le FEC |
 | `scripts/generate-pdfs.js` | Convertir les états financiers en PDFs |
@@ -213,6 +216,7 @@ Consulter selon le besoin :
 Commandes npm équivalentes :
 - `npm run facture -- --invoice <facture.json>` : générer Factur-X
 - `npm run validate:facture -- --invoice <facture.json>` : valider
+- `npm run declaration:tva -- --from <YYYY-MM> --to <YYYY-MM>` : reconstituer la CA3 depuis Qonto (brouillon)
 
 Règle de calcul : pour tout calcul chiffré (TVA, IS, amortissement, prorata, CCA), utiliser `node scripts/calc.js` plutôt qu'un calcul mental.
 

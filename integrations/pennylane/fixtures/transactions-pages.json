@@ -1,0 +1,62 @@
+{
+  "pages": [
+    {
+      "has_more": true,
+      "next_cursor": "cursor-page-2",
+      "items": [
+        {
+          "id": 101,
+          "label": "VIR SEPA FOURNISSEUR DEMO",
+          "attachment_required": true,
+          "date": "2025-02-14",
+          "outstanding_balance": "1275.50",
+          "created_at": "2025-02-14T09:00:00Z",
+          "updated_at": "2025-02-14T09:00:00Z",
+          "archived_at": null,
+          "currency": "EUR",
+          "currency_amount": "-120.50",
+          "amount": "-120.50",
+          "currency_fee": "-0.50",
+          "fee": "-0.50",
+          "journal": { "id": 12 },
+          "bank_account": { "id": 53 },
+          "customer": null,
+          "supplier": { "id": 88 },
+          "categories": [
+            { "id": 4, "label": "Hébergement", "weight": "1.0" }
+          ],
+          "matched_invoices": { "url": "https://example.invalid/matched" },
+          "interbank_code": "VIR-DEMO-101"
+        }
+      ]
+    },
+    {
+      "has_more": false,
+      "next_cursor": null,
+      "items": [
+        {
+          "id": 102,
+          "label": null,
+          "attachment_required": false,
+          "date": "2025-02-15",
+          "outstanding_balance": "1320.50",
+          "created_at": "2025-02-15T09:00:00Z",
+          "updated_at": "2025-02-15T09:00:00Z",
+          "archived_at": "2025-03-01T10:00:00Z",
+          "currency": "USD",
+          "currency_amount": "50.00",
+          "amount": "45.00",
+          "currency_fee": null,
+          "fee": null,
+          "journal": { "id": 12 },
+          "bank_account": { "id": 53 },
+          "customer": { "id": 77 },
+          "supplier": null,
+          "categories": [],
+          "matched_invoices": { "url": "https://example.invalid/matched" },
+          "interbank_code": null
+        }
+      ]
+    }
+  ]
+}

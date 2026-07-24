@@ -42,13 +42,14 @@ paperasse/
 │   └── formes-juridiques.json # codes INPI partagés
 ├── scripts/
 │   └── submit-depot-comptes.js
-├── comptable/
-│   ├── SKILL.md
-│   ├── integrations/guichet-unique -> ../../integrations/guichet-unique
-│   └── data/formes-juridiques.json -> ../../data/formes-juridiques.json
-└── notaire/
-    ├── SKILL.md
-    └── integrations/guichet-unique -> ../../integrations/guichet-unique
+└── skills/
+    ├── comptable/
+    │   ├── SKILL.md
+    │   ├── integrations/guichet-unique -> ../../integrations/guichet-unique
+    │   └── data/formes-juridiques.json -> ../../data/formes-juridiques.json
+    └── notaire/
+        ├── SKILL.md
+        └── integrations/guichet-unique -> ../../integrations/guichet-unique
 ```
 
 **Chevauchement ≠ duplication** : si `notaire` et un futur `avocat` font tous les deux des modifications statutaires, c'est fidèle à la réalité (les deux professions le font). La *logique* est partagée via les symlinks, le *framing métier* diffère dans chaque `SKILL.md` (le notaire rédige un acte authentique, l'avocat un acte SSP).
@@ -86,7 +87,7 @@ includes:
 
 ## Evals
 
-Chaque skill devrait avoir des evals qui vérifient les réponses de l'agent. Format : un fichier `evals.json` avec des cas de test (question + critères de validation). Voir `comptable/evals/` pour un exemple complet.
+Chaque skill devrait avoir des evals qui vérifient les réponses de l'agent. Format : un fichier `evals.json` avec des cas de test (question + critères de validation). Voir `skills/comptable/evals/` pour un exemple complet.
 
 Boucle de validation recommandée :
 

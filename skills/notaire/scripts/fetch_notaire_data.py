@@ -1,0 +1,1 @@
+../../../scripts/fetch_notaire_data.py

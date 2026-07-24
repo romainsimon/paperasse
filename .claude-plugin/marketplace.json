@@ -1,0 +1,16 @@
+{
+  "name": "paperasse",
+  "owner": {
+    "name": "romainsimon"
+  },
+  "metadata": {
+    "description": "Skills pour agents IA spécialisés dans la bureaucratie française"
+  },
+  "plugins": [
+    {
+      "name": "paperasse",
+      "source": "./",
+      "description": "Comptabilité, fiscalité, audit, notariat, syndic de copropriété — skills pour agents IA sur la bureaucratie française"
+    }
+  ]
+}

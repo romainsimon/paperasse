@@ -8,31 +8,31 @@
     {
       "slug": "comptable",
       "name": "Expert-Comptable",
-      "path": "comptable/SKILL.md",
+      "path": "skills/comptable/SKILL.md",
       "description": "Comptabilité, TVA, IS, clôture annuelle, FEC, liasse fiscale, facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées, e-reporting)"
     },
     {
       "slug": "controleur-fiscal",
       "name": "Contrôleur Fiscal",
-      "path": "controleur-fiscal/SKILL.md",
+      "path": "skills/controleur-fiscal/SKILL.md",
       "description": "Simulation de contrôle DGFIP, chefs de redressement"
     },
     {
       "slug": "commissaire-aux-comptes",
       "name": "Commissaire aux Comptes",
-      "path": "commissaire-aux-comptes/SKILL.md",
+      "path": "skills/commissaire-aux-comptes/SKILL.md",
       "description": "Audit NEP en 7 phases, opinion motivée"
     },
     {
       "slug": "notaire",
       "name": "Notaire",
-      "path": "notaire/SKILL.md",
+      "path": "skills/notaire/SKILL.md",
       "description": "Frais de notaire, successions, donations, SCI, PACS"
     },
     {
       "slug": "syndic",
       "name": "Syndic de Copropriété",
-      "path": "syndic/SKILL.md",
+      "path": "skills/syndic/SKILL.md",
       "description": "Gestion complète de copropriété, AG, appels de fonds, comptabilité, travaux, contentieux"
     }
   ],

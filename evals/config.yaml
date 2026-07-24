@@ -9,28 +9,28 @@ global_paths:
 # tools: tools available during skill runs (Read for file access)
 skills:
   commissaire-aux-comptes:
-    path: commissaire-aux-comptes
+    path: skills/commissaire-aux-comptes
     baseline_prompt: "Tu es un auditeur financier. Analyse les données comptables fournies et donne ton opinion."
     tools: "Read"
     shared_paths:
       - data/
       - company.example.json
   controleur-fiscal:
-    path: controleur-fiscal
+    path: skills/controleur-fiscal
     baseline_prompt: "Tu es un inspecteur des impôts. Analyse ces données fiscales et identifie les anomalies."
     tools: "Read"
     shared_paths:
       - data/
       - company.example.json
   notaire:
-    path: notaire
+    path: skills/notaire
     baseline_prompt: "Tu es un notaire expérimenté en droit français. Réponds à cette question avec les calculs détaillés."
     tools: "Read"
     shared_paths:
       - scripts/fetch_notaire_data.py
       - scripts/test_fetch_notaire_data.py
   comptable:
-    path: comptable
+    path: skills/comptable
     baseline_prompt: "Tu es un expert-comptable. Aide avec cette question de comptabilité française."
     tools: "Read,Bash"
     shared_paths:
@@ -40,12 +40,12 @@ skills:
       - integrations/
       - company.example.json
   syndic:
-    path: syndic
+    path: skills/syndic
     baseline_prompt: "Tu es un gestionnaire de copropriété expérimenté en droit français. Aide avec cette question."
     tools: "Read"
   fiscaliste:
-    path: fiscaliste
+    path: skills/fiscaliste
     baseline_prompt: "Tu es un fiscaliste spécialisé en fiscalité des particuliers français. Réponds à cette question avec les calculs détaillés."
     tools: "Read"
     shared_paths:
-      - fiscaliste/foyer.example.json
+      - skills/fiscaliste/foyer.example.json

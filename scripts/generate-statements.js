@@ -264,7 +264,7 @@ function generateBilan(accounts, company, pcgNames, plData) {
     .sort(([a], [b]) => a.localeCompare(b));
 
   const amortAccounts = Object.entries(accounts)
-    .filter(([a]) => a.startsWith('28'))
+    .filter(([a]) => a.startsWith('28') || a.startsWith('29'))
     .sort(([a], [b]) => a.localeCompare(b));
 
   let totalImmoBrut = 0;
@@ -273,17 +273,35 @@ function generateBilan(accounts, company, pcgNames, plData) {
   if (immoAccounts.length > 0) {
     md += '| **ACTIF IMMOBILISE** | | | |\n';
 
+    const matchedAmort = new Set();
+
     for (const [acct, bal] of immoAccounts) {
       const brut = round2(bal.debit - bal.credit);
       // Find corresponding amortization account (28 + suffix)
       const amortAcct = '28' + acct.substring(1);
-      const amort = accounts[amortAcct] ? round2(accounts[amortAcct].credit - accounts[amortAcct].debit) : 0;
+      let amort = 0;
+      if (accounts[amortAcct]) {
+        matchedAmort.add(amortAcct);
+        amort = round2(accounts[amortAcct].credit - accounts[amortAcct].debit);
+      }
       const net = round2(brut - amort);
       const name = pcgNames[acct] || acct;
 
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(brut) + ' | ' + fmt(amort) + ' | ' + fmt(net) + ' |\n';
       totalImmoBrut += brut;
       totalAmort += amort;
+    }
+
+    // 28x/29x accounts not matched above (subdivided charts use e.g. 281000 for
+    // 210000, and 29x were counted nowhere): own line so the total stays exact
+    for (const [acct, bal] of amortAccounts) {
+      if (matchedAmort.has(acct)) continue;
+      const amort = round2(bal.credit - bal.debit);
+      if (Math.abs(amort) > 0.01) {
+        const name = pcgNames[acct] || acct;
+        md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | | ' + fmt(amort) + ' | ' + fmt(round2(-amort)) + ' |\n';
+        totalAmort += amort;
+      }
     }
 
     md += '| **Total actif immobilise** | **' + fmt(totalImmoBrut) + '** | **' + fmt(totalAmort) + '** | **' + fmt(round2(totalImmoBrut - totalAmort)) + '** |\n';
@@ -407,10 +425,10 @@ function generateBilan(accounts, company, pcgNames, plData) {
     .filter(([a]) => {
       if (a.startsWith('16')) return true; // Emprunts
       if (a.startsWith('40')) return true; // Fournisseurs
-      if (a === '455') return true; // Compte courant associe
+      if (a.startsWith('455')) return true; // Compte courant associe
       if (a.startsWith('43')) return true; // Organismes sociaux
       if (a.startsWith('44') && !a.startsWith('445') && !a.startsWith('4456')) return true; // Etat (IS, TVA collectee)
-      if (a === '487') return true; // PCA
+      if (a.startsWith('487')) return true; // PCA
       return false;
     })
     .sort(([a], [b]) => a.localeCompare(b));

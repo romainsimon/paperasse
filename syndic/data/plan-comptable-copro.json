@@ -1,119 +1,422 @@
 {
-  "source": "Décret n°2005-240 du 14 mars 2005 relatif à la comptabilité des syndicats de copropriétaires",
-  "last_updated": "2026-03-26",
-  "description": "Plan comptable spécifique aux syndicats de copropriétaires (classes 1 à 7)",
+  "source": "Arrêté du 14 mars 2005 relatif aux comptes du syndicat des copropriétaires, article 7",
+  "source_url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042413155",
+  "texte_parent": "Décret n°2005-240 du 14 mars 2005",
+  "texte_parent_url": "https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006051416",
+  "derniere_modification_du_texte": "2020-12-31",
+  "verifie_le": "2026-08-06",
+  "verifie_contre": "texte intégral de l'article 7 lu sur Légifrance",
+  "avertissement": "Nomenclature FERMÉE. L'article 7 dispose que les comptes retenus sont les seuls utilisables par le syndic. Les subdivisions doivent conserver la racine imposée, et les sous-comptes du 450 requièrent une décision d'assemblée générale. Avant d'affirmer qu'un compte est hors nomenclature, vérifier ici ET sur l'URL source.",
   "classes": [
     {
       "class": 1,
-      "label": "Provisions, avances, subventions, emprunts",
+      "label": "Provisions, avances, subventions et emprunts",
       "accounts": [
-        { "number": "102", "label": "Provisions pour travaux décidés non encore clôturés" },
-        { "number": "103", "label": "Avances" },
-        { "number": "1031", "label": "Avances de trésorerie" },
-        { "number": "1032", "label": "Avances travaux (art. 18-6 loi 1965)" },
-        { "number": "105", "label": "Fonds de travaux (art. 14-2 loi 1965)" },
-        { "number": "110", "label": "Solde en attente sur travaux et opérations exceptionnelles" },
-        { "number": "112", "label": "Solde en attente sur budget prévisionnel" },
-        { "number": "12", "label": "Solde des comptes de gestion" },
-        { "number": "13", "label": "Subventions" },
-        { "number": "16", "label": "Emprunts et dettes assimilées" },
-        { "number": "164", "label": "Emprunts collectifs" }
+        {
+          "number": "102",
+          "label": "Provisions pour travaux décidés"
+        },
+        {
+          "number": "103",
+          "label": "Avances"
+        },
+        {
+          "number": "1031",
+          "label": "Avances de trésorerie"
+        },
+        {
+          "number": "1032",
+          "label": "(supprimé)"
+        },
+        {
+          "number": "1033",
+          "label": "Autres avances"
+        },
+        {
+          "number": "105",
+          "label": "Fonds de travaux"
+        },
+        {
+          "number": "106",
+          "label": "Provisions pour travaux au titre de la délégation de pouvoirs accordée au conseil syndical"
+        },
+        {
+          "number": "12-1",
+          "label": "Solde en attente sur travaux décidés par l'assemblée générale"
+        },
+        {
+          "number": "12-2",
+          "label": "Solde en attente sur travaux délégués au conseil syndical"
+        },
+        {
+          "number": "131",
+          "label": "Subventions accordées en instance de versement"
+        }
       ]
     },
     {
       "class": 4,
       "label": "Copropriétaires et tiers",
       "accounts": [
-        { "number": "401", "label": "Fournisseurs" },
-        { "number": "408", "label": "Fournisseurs - factures non parvenues" },
-        { "number": "411", "label": "Copropriétaires - provisions sur opérations courantes" },
-        { "number": "412", "label": "Copropriétaires - provisions sur travaux de l'art. 14-2" },
-        { "number": "413", "label": "Copropriétaires - avances" },
-        { "number": "414", "label": "Copropriétaires - fonds de travaux" },
-        { "number": "418", "label": "Copropriétaires - produits à recevoir" },
-        { "number": "420", "label": "Personnel - rémunérations dues" },
-        { "number": "421", "label": "Personnel - charges sociales" },
-        { "number": "431", "label": "Sécurité sociale et autres organismes sociaux" },
-        { "number": "432", "label": "État - impôts et taxes" },
-        { "number": "450", "label": "Compte d'attente" },
-        { "number": "459", "label": "Copropriétaires - créditeurs" },
-        { "number": "46", "label": "Débiteurs et créditeurs divers" },
-        { "number": "47", "label": "Comptes transitoires" },
-        { "number": "486", "label": "Charges constatées d'avance" },
-        { "number": "487", "label": "Produits constatés d'avance" }
+        {
+          "number": "401",
+          "label": "Fournisseurs"
+        },
+        {
+          "number": "408",
+          "label": "Fournisseurs - factures non parvenues"
+        },
+        {
+          "number": "409",
+          "label": "Fournisseurs débiteurs"
+        },
+        {
+          "number": "421",
+          "label": "Personnel"
+        },
+        {
+          "number": "431",
+          "label": "Sécurité sociale"
+        },
+        {
+          "number": "432",
+          "label": "Autres organismes sociaux"
+        },
+        {
+          "number": "441",
+          "label": "État et collectivités"
+        },
+        {
+          "number": "442",
+          "label": "État et collectivités"
+        },
+        {
+          "number": "443",
+          "label": "État et collectivités"
+        },
+        {
+          "number": "450",
+          "label": "Copropriétaire individualisé",
+          "note": "C'EST LE COMPTE DES COPROPRIÉTAIRES. Ne pas le confondre avec un compte d'attente : ce sont les 471 et 472."
+        },
+        {
+          "number": "450-1",
+          "label": "Copropriétaire - budget prévisionnel",
+          "creation": "sur décision de l'assemblée générale"
+        },
+        {
+          "number": "450-2",
+          "label": "Copropriétaire - travaux de l'article 14-2 de la loi et opérations exceptionnelles",
+          "creation": "sur décision de l'assemblée générale"
+        },
+        {
+          "number": "450-3",
+          "label": "Copropriétaire - avances",
+          "creation": "sur décision de l'assemblée générale"
+        },
+        {
+          "number": "450-4",
+          "label": "Copropriétaire - emprunts",
+          "creation": "sur décision de l'assemblée générale"
+        },
+        {
+          "number": "450-5",
+          "label": "Copropriétaire - fonds de travaux",
+          "creation": "sur décision de l'assemblée générale"
+        },
+        {
+          "number": "459",
+          "label": "Copropriétaire - créances douteuses"
+        },
+        {
+          "number": "461",
+          "label": "Débiteurs divers"
+        },
+        {
+          "number": "462",
+          "label": "Créditeurs divers"
+        },
+        {
+          "number": "471",
+          "label": "Compte en attente d'imputation débiteur"
+        },
+        {
+          "number": "472",
+          "label": "Compte en attente d'imputation créditeur"
+        },
+        {
+          "number": "486",
+          "label": "Charges payées d'avance"
+        },
+        {
+          "number": "487",
+          "label": "Produits encaissés d'avance",
+          "note": "La classe 48 s'arrête ici. Il n'existe NI 488 NI 489."
+        },
+        {
+          "number": "491",
+          "label": "Dépréciation"
+        },
+        {
+          "number": "492",
+          "label": "Dépréciation"
+        }
       ]
     },
     {
       "class": 5,
-      "label": "Trésorerie",
+      "label": "Comptes financiers",
       "accounts": [
-        { "number": "501", "label": "Banque - compte courant" },
-        { "number": "502", "label": "Banque - livret A" },
-        { "number": "503", "label": "Banque - fonds de placement" },
-        { "number": "51", "label": "Caisse" }
+        {
+          "number": "501",
+          "label": "Fonds placés"
+        },
+        {
+          "number": "502",
+          "label": "Fonds placés"
+        },
+        {
+          "number": "512",
+          "label": "Banques"
+        },
+        {
+          "number": "514",
+          "label": "Banques"
+        },
+        {
+          "number": "53",
+          "label": "Caisse"
+        }
       ]
     },
     {
       "class": 6,
-      "label": "Charges",
+      "label": "Comptes de charges",
       "accounts": [
-        { "number": "60", "label": "Achats de matières et fournitures" },
-        { "number": "601", "label": "Fournitures d'entretien" },
-        { "number": "602", "label": "Fournitures de bureau et documentation" },
-        { "number": "61", "label": "Services extérieurs" },
-        { "number": "611", "label": "Assurance de l'immeuble" },
-        { "number": "612", "label": "Nettoyage des locaux" },
-        { "number": "613", "label": "Espaces verts" },
-        { "number": "614", "label": "Digicode / interphone / vidéosurveillance" },
-        { "number": "615", "label": "Ascenseur - contrat d'entretien" },
-        { "number": "616", "label": "Chauffage collectif - fourniture d'énergie (P1)" },
-        { "number": "617", "label": "Chauffage collectif - entretien (P2/P3)" },
-        { "number": "618", "label": "Eau froide" },
-        { "number": "619", "label": "Électricité parties communes" },
-        { "number": "62", "label": "Autres services extérieurs" },
-        { "number": "621", "label": "Honoraires du syndic" },
-        { "number": "622", "label": "Honoraires - avocat, huissier" },
-        { "number": "623", "label": "Honoraires - expert, géomètre, diagnostiqueur" },
-        { "number": "624", "label": "Frais de recouvrement" },
-        { "number": "625", "label": "Frais postaux et de télécommunications" },
-        { "number": "626", "label": "Frais de copies et de reprographie" },
-        { "number": "63", "label": "Impôts et taxes" },
-        { "number": "631", "label": "Taxe foncière (si applicable)" },
-        { "number": "633", "label": "Taxe d'enlèvement des ordures ménagères" },
-        { "number": "64", "label": "Frais de personnel" },
-        { "number": "641", "label": "Rémunérations - gardien / employé d'immeuble" },
-        { "number": "645", "label": "Charges sociales" },
-        { "number": "65", "label": "Autres charges de gestion courante" },
-        { "number": "66", "label": "Charges financières" },
-        { "number": "661", "label": "Intérêts d'emprunt collectif" },
-        { "number": "662", "label": "Frais bancaires" },
-        { "number": "67", "label": "Charges exceptionnelles" },
-        { "number": "671", "label": "Créances irrécouvrables" },
-        { "number": "672", "label": "Pénalités et amendes" },
-        { "number": "68", "label": "Dotations aux amortissements et provisions" },
-        { "number": "681", "label": "Dotation provision pour impayés" }
+        {
+          "number": "601",
+          "label": "Eau"
+        },
+        {
+          "number": "602",
+          "label": "Electricité"
+        },
+        {
+          "number": "603",
+          "label": "Chauffage, énergie et combustibles"
+        },
+        {
+          "number": "604",
+          "label": "Achats produits d'entretien et petits équipements"
+        },
+        {
+          "number": "605",
+          "label": "Matériel"
+        },
+        {
+          "number": "606",
+          "label": "Fournitures"
+        },
+        {
+          "number": "611",
+          "label": "Nettoyage des locaux"
+        },
+        {
+          "number": "612",
+          "label": "Locations immobilières"
+        },
+        {
+          "number": "613",
+          "label": "Locations mobilières"
+        },
+        {
+          "number": "614",
+          "label": "Contrats de maintenance"
+        },
+        {
+          "number": "615",
+          "label": "Entretien et petites réparations"
+        },
+        {
+          "number": "616",
+          "label": "Primes d'assurances"
+        },
+        {
+          "number": "621",
+          "label": "Rémunérations du syndic sur gestion copropriété"
+        },
+        {
+          "number": "6211",
+          "label": "Rémunération du syndic"
+        },
+        {
+          "number": "6212",
+          "label": "Débours"
+        },
+        {
+          "number": "6213",
+          "label": "Frais postaux"
+        },
+        {
+          "number": "622",
+          "label": "Autres honoraires du syndic"
+        },
+        {
+          "number": "6221",
+          "label": "Honoraires travaux"
+        },
+        {
+          "number": "6222",
+          "label": "Prestations particulières"
+        },
+        {
+          "number": "6223",
+          "label": "Autres honoraires"
+        },
+        {
+          "number": "623",
+          "label": "Rémunérations de tiers intervenants"
+        },
+        {
+          "number": "624",
+          "label": "Frais du conseil syndical"
+        },
+        {
+          "number": "632",
+          "label": "Taxe de balayage"
+        },
+        {
+          "number": "633",
+          "label": "Taxe foncière"
+        },
+        {
+          "number": "634",
+          "label": "Autres impôts et taxes"
+        },
+        {
+          "number": "641",
+          "label": "Salaires"
+        },
+        {
+          "number": "642",
+          "label": "Charges sociales et organismes sociaux"
+        },
+        {
+          "number": "643",
+          "label": "Taxe sur les salaires"
+        },
+        {
+          "number": "644",
+          "label": "Autres"
+        },
+        {
+          "number": "65",
+          "label": "Montant spécifique alloué au conseil syndical"
+        },
+        {
+          "number": "661",
+          "label": "Remboursement d'annuités d'emprunt"
+        },
+        {
+          "number": "662",
+          "label": "Autres charges financières et agios"
+        },
+        {
+          "number": "671",
+          "label": "Travaux décidés par l'assemblée générale"
+        },
+        {
+          "number": "672",
+          "label": "Travaux urgents"
+        },
+        {
+          "number": "673",
+          "label": "Études techniques, diagnostic, consultation"
+        },
+        {
+          "number": "674",
+          "label": "Travaux délégués au conseil syndical"
+        },
+        {
+          "number": "677",
+          "label": "Pertes sur créances irrécouvrables"
+        },
+        {
+          "number": "678",
+          "label": "Charges exceptionnelles"
+        },
+        {
+          "number": "68",
+          "label": "Dotations aux dépréciations sur créances douteuses"
+        }
       ]
     },
     {
       "class": 7,
-      "label": "Produits",
+      "label": "Comptes de produits",
       "accounts": [
-        { "number": "701", "label": "Provisions sur opérations courantes" },
-        { "number": "702", "label": "Provisions sur travaux et opérations exceptionnelles" },
-        { "number": "703", "label": "Cotisations fonds de travaux" },
-        { "number": "71", "label": "Produits liés aux travaux" },
-        { "number": "72", "label": "Produits financiers" },
-        { "number": "721", "label": "Intérêts sur placements" },
-        { "number": "73", "label": "Produits divers" },
-        { "number": "731", "label": "Indemnités d'assurance" },
-        { "number": "732", "label": "Revenus des parties communes (location)" },
-        { "number": "74", "label": "Subventions" },
-        { "number": "741", "label": "Subventions ANAH" },
-        { "number": "742", "label": "MaPrimeRénov' Copropriété" },
-        { "number": "743", "label": "CEE (Certificats d'Économies d'Énergie)" },
-        { "number": "78", "label": "Reprises de provisions" },
-        { "number": "781", "label": "Reprise provision pour impayés" }
+        {
+          "number": "701",
+          "label": "Provisions sur opérations courantes"
+        },
+        {
+          "number": "702",
+          "label": "Provisions sur travaux et opérations exceptionnelles"
+        },
+        {
+          "number": "703",
+          "label": "Avances"
+        },
+        {
+          "number": "704",
+          "label": "Remboursements d'annuités d'emprunts"
+        },
+        {
+          "number": "705",
+          "label": "Affectation du fonds de travaux"
+        },
+        {
+          "number": "706",
+          "label": "Provisions au titre de la délégation de pouvoirs"
+        },
+        {
+          "number": "706-1",
+          "label": "Provisions sur opérations courantes"
+        },
+        {
+          "number": "706-2",
+          "label": "Provisions sur travaux et opérations exceptionnelles"
+        },
+        {
+          "number": "711",
+          "label": "Subventions"
+        },
+        {
+          "number": "712",
+          "label": "Emprunts"
+        },
+        {
+          "number": "713",
+          "label": "Indemnités d'assurances"
+        },
+        {
+          "number": "714",
+          "label": "Produits divers"
+        },
+        {
+          "number": "716",
+          "label": "Produits financiers"
+        },
+        {
+          "number": "718",
+          "label": "Produits exceptionnels"
+        },
+        {
+          "number": "78",
+          "label": "Reprises de dépréciations sur créances douteuses"
+        }
       ]
     }
-  ]
+  ],
+  "note": "Nomenclature reprise integralement de l'article 7 de l'arrete. Avant la correction de 2026-08, ce fichier reprenait le plan comptable general adapte : les copropriétaires y figuraient en 411 a 414 (inexistants en copropriete, le compte est le 450), le 450 etait donne comme compte d'attente (ce sont les 471 et 472) et le 671 comme creances irrecouvrables (c'est le compte des travaux votes, les creances irrecouvrables sont au 677)."
 }

@@ -114,7 +114,7 @@ AG — {{copro.name}} — {{date}}
 Clôture — {{copro.name}} — Exercice {{dates}}
 - [ ] Toutes les factures enregistrées
 - [ ] Rapprochement bancaire (solde comptable = relevé)
-- [ ] Contrôle comptes copropriétaires (411, 412, 413, 414)
+- [ ] Contrôle comptes copropriétaires (450, subdivisions 450-1 à 450-5)
 - [ ] Provisions pour charges à payer
 - [ ] Calcul régularisation (réel vs budget)
 - [ ] Affectation du résultat
@@ -203,7 +203,7 @@ Si une vérification échoue, corriger avant de présenter le résultat.
 
 | Fichier | Contenu |
 |---------|---------|
-| `data/plan-comptable-copro.json` | Plan comptable copro, classes 1 à 7 (décret 2005) |
+| `data/plan-comptable-copro.json` | Plan comptable copro (arrêté du 14 mars 2005, art. 7), classes 1, 4, 5, 6, 7 |
 | `data/majorites.json` | Matrice décision/majorité (art. 24 à 26-1) |
 
 ## Templates

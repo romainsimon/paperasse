@@ -316,11 +316,13 @@ Paperasse est maintenu en open source grâce au soutien de ses sponsors. [Deveni
 
 ---
 
+## Star History
+
 <a href="https://www.star-history.com/?repos=romainsimon%2Fpaperasse&type=date&legend=bottom-right">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=romainsimon/paperasse&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=romainsimon/paperasse&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=romainsimon/paperasse&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=romainsimon/paperasse&type=date&theme=dark&legend=bottom-right&sealed_token=OoDhXCZ4ONGXq4Zzx29kypQyE44toKKfYUlyyMBR6Eir979s5GZtkS1cu90g8EcIaw6VP9tSjC0Wdkoc_-GIkMW7m8CwIwWdOMzW6RK2Moe1nVn10UDO9A" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=romainsimon/paperasse&type=date&legend=bottom-right&sealed_token=OoDhXCZ4ONGXq4Zzx29kypQyE44toKKfYUlyyMBR6Eir979s5GZtkS1cu90g8EcIaw6VP9tSjC0Wdkoc_-GIkMW7m8CwIwWdOMzW6RK2Moe1nVn10UDO9A" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=romainsimon/paperasse&type=date&legend=bottom-right&sealed_token=OoDhXCZ4ONGXq4Zzx29kypQyE44toKKfYUlyyMBR6Eir979s5GZtkS1cu90g8EcIaw6VP9tSjC0Wdkoc_-GIkMW7m8CwIwWdOMzW6RK2Moe1nVn10UDO9A" />
  </picture>
 </a>
 

@@ -270,20 +270,41 @@ function generateBilan(accounts, company, pcgNames, plData) {
   let totalImmoBrut = 0;
   let totalAmort = 0;
 
-  if (immoAccounts.length > 0) {
-    md += '| **ACTIF IMMOBILISE** | | | |\n';
+  // Les 28x/29x suivent la meme ventilation que le compte d'immobilisation
+  // (PCG), mais les exports completent les numeros a 6 chiffres : 281000
+  // amortit 210000, 281830 amortit 218300, 28183 amortit 2183. On apparie
+  // donc par racine (zeros finaux retires, 8/9 en 2e position retire).
+  // Sans appariement sur : '28'/'29' nus (non ventiles dans le PCG) et
+  // racines ambigues (ex. 21 et 210000 dans la meme balance) -> ligne propre.
+  const rootOf = (acct) => acct.replace(/0+$/, '') || acct;
+  const immoByRoot = new Map();
+  const ambiguousRoots = new Set();
+  for (const [acct] of immoAccounts) {
+    const root = rootOf(acct);
+    if (immoByRoot.has(root)) ambiguousRoots.add(root);
+    else immoByRoot.set(root, acct);
+  }
+  const amortByImmo = new Map();
+  const orphanAmort = [];
+  for (const [acct, bal] of amortAccounts) {
+    const amount = round2(bal.credit - bal.debit);
+    const targetRoot = '2' + rootOf(acct).substring(2);
+    const target = (acct === '28' || acct === '29' || ambiguousRoots.has(targetRoot))
+      ? undefined
+      : immoByRoot.get(targetRoot);
+    if (target !== undefined) {
+      amortByImmo.set(target, round2((amortByImmo.get(target) || 0) + amount));
+    } else if (Math.abs(amount) > 0.01) {
+      orphanAmort.push([acct, amount]);
+    }
+  }
 
-    const matchedAmort = new Set();
+  if (immoAccounts.length > 0 || orphanAmort.length > 0) {
+    md += '| **ACTIF IMMOBILISE** | | | |\n';
 
     for (const [acct, bal] of immoAccounts) {
       const brut = round2(bal.debit - bal.credit);
-      // Find corresponding amortization account (28 + suffix)
-      const amortAcct = '28' + acct.substring(1);
-      let amort = 0;
-      if (accounts[amortAcct]) {
-        matchedAmort.add(amortAcct);
-        amort = round2(accounts[amortAcct].credit - accounts[amortAcct].debit);
-      }
+      const amort = amortByImmo.get(acct) || 0;
       const net = round2(brut - amort);
       const name = pcgNames[acct] || acct;
 
@@ -292,16 +313,12 @@ function generateBilan(accounts, company, pcgNames, plData) {
       totalAmort += amort;
     }
 
-    // 28x/29x accounts not matched above (subdivided charts use e.g. 281000 for
-    // 210000, and 29x were counted nowhere): own line so the total stays exact
-    for (const [acct, bal] of amortAccounts) {
-      if (matchedAmort.has(acct)) continue;
-      const amort = round2(bal.credit - bal.debit);
-      if (Math.abs(amort) > 0.01) {
-        const name = pcgNames[acct] || acct;
-        md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | | ' + fmt(amort) + ' | ' + fmt(round2(-amort)) + ' |\n';
-        totalAmort += amort;
-      }
+    // 28x/29x sans immobilisation brute appariee : ligne propre pour que la
+    // depreciation reste visible et que le total actif reste exact
+    for (const [acct, amort] of orphanAmort) {
+      const name = pcgNames[acct] || acct;
+      md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | | ' + fmt(amort) + ' | ' + fmt(round2(-amort)) + ' |\n';
+      totalAmort += amort;
     }
 
     md += '| **Total actif immobilise** | **' + fmt(totalImmoBrut) + '** | **' + fmt(totalAmort) + '** | **' + fmt(round2(totalImmoBrut - totalAmort)) + '** |\n';
@@ -582,4 +599,8 @@ function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = { computeBalances, generatePL, generateBilan, generateBalance };

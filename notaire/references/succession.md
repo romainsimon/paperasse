@@ -156,15 +156,55 @@ Référence complète pour le droit des successions : dévolution, droits, abatt
 
 **Base légale** : art. 757 B et 990 I CGI
 
-| Primes versées | Régime | Base légale |
-|----------------|--------|-------------|
-| Avant 70 ans | Abattement 152 500 EUR par bénéficiaire, puis 20% jusqu'à 700 000 EUR, puis 31,25% | art. 990 I CGI |
-| Après 70 ans | Abattement global 30 500 EUR (tous bénéficiaires), puis droits de succession selon le lien | art. 757 B CGI |
+L'assurance-vie est **hors succession** (art. L132-12 Code des assurances). Les capitaux décès sont versés directement aux bénéficiaires désignés. Le régime fiscal dépend de **trois variables** : date de souscription du contrat, âge à la date du versement, et date du versement.
 
-**Points clés :**
-- L'assurance-vie est hors succession (art. L132-12 Code des assurances)
-- Clause bénéficiaire : vérifier sa rédaction (acceptation, démembrement, etc.)
+### Matrice des régimes fiscaux (3 variables)
+
+| Contrat souscrit | Âge à la date du versement | Date du versement | Régime |
+|------------------|:--------------------------:|-------------------|--------|
+| Avant le 20/11/1991 | Peu importe | Avant le 13/10/1998 | **Exonération totale** : ni 990 I ni droits de succession |
+| Avant le 20/11/1991 | Peu importe | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. (régime dérogatoire — contrat pré-1991) |
+| Après le 20/11/1991 | < 70 ans | Avant le 13/10/1998 | **Exonération totale** : ni 990 I ni droits de succession |
+| Après le 20/11/1991 | < 70 ans | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
+| Après le 20/11/1991 | ≥ 70 ans | Peu importe | **Art. 757 B** : abattement global 30 500 EUR, puis droits de succession sur les primes |
+
+**Le vrai cas d'exonération totale** : les primes versées **avant le 13/10/1998** échappent à toute imposition (ni 990 I ni droits), que le contrat soit pré- ou post-20/11/1991 (pour un contrat post-1991, à condition d'un versement avant 70 ans). C'est le seuil du 13/10/1998 — et non l'âge — qui bascule ces primes anciennes vers l'art. 990 I.
+
+**Le seul cas défavorable** (757 B / plafond 30 500 EUR global) : contrat souscrit **après** le 20/11/1991 **ET** primes versées **après** 70 ans — **quelle que soit la date de versement**. Le seuil du 13/10/1998 ne joue que pour les primes versées **avant** 70 ans (exonération totale avant cette date, art. 990 I à partir).
+
+**Règle clé pour les contrats pré-1991** : primes versées **avant le 13/10/1998** = exonération totale ; primes versées **à partir du 13/10/1998**, même après 70 ans, relèvent de l'art. 990 I (abattement de 152 500 EUR par bénéficiaire) — le régime dérogatoire favorable s'applique dès lors que le contrat a été souscrit avant le 20/11/1991, et l'art. 757 B ne s'y applique jamais. Ne pas fermer ces contrats anciens.
+
+**Attention — l'art. 757 B ne dépend pas du 13/10/1998** : pour un contrat souscrit **après** le 20/11/1991, les primes versées **après 70 ans** relèvent de l'art. 757 B (abattement global 30 500 EUR) quelle que soit leur date de versement, y compris avant le 13/10/1998. L'art. 757 B ne s'applique jamais aux contrats souscrits avant le 20/11/1991.
+
+### Barèmes 990 I et 757 B
+
+| Régime | Assiette | Abattement | Taux |
+|--------|----------|:----------:|------|
+| Art. 990 I | Capital décès (valeur totale au décès, primes + gains latents) par bénéficiaire | 152 500 EUR/bénéf. | 20% jusqu'à 700 000 EUR, puis 31,25% |
+| Art. 757 B | Primes versées (hors gains) au-delà de l'abattement global | 30 500 EUR global (tous bénéficiaires) | Droits de succession selon le lien |
+
+**Sous l'art. 757 B, les gains (intérêts et PV) sont exonérés** — seules les primes sont taxées.
+
+### PV latentes et gains non réalisés au décès
+
+**Le décès n'est pas un fait générateur de l'IR.** Les gains latents ne sont jamais soumis à la fiscalité des rachats au titre de l'IR. **En revanche, les prélèvements sociaux (PS) restent dus sur les gains latents en UC au décès** — ce n'est que l'IR qui est définitivement évité.
+
+| Support | Sort des gains latents au décès |
+|---------|----------------------------------|
+| Unités de compte (UC) | **IR** définitivement exonéré — mais **PS dus** sur les gains constatés au dénouement, nets des PS déjà acquittés le cas échéant |
+| Fonds en euros | PS déjà prélevés annuellement (au fil de l'eau) ; IR jamais dû (pas de rachat) |
+
+**Attention, piège fréquent** : contrairement à une idée reçue, les PV latentes en UC ne sont **pas** exonérées de PS au décès. Depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains UC constatés au dénouement par décès et les déduit du capital avant versement aux bénéficiaires. Le Conseil d'État a validé ce mécanisme (CE 18/02/2026, n° 504077). Ce point diffère du régime des cryptoactifs au décès (où IR et PS sont tous deux purgés) — les deux régimes ne doivent pas être confondus.
+
+**Conséquence pratique** : une AV avec 500 000 EUR de PV latentes en UC transmet ces PV sans IR aux bénéficiaires, mais l'assureur prélève environ 86 000 EUR de PS (17,2%) avant versement. La fiscalité successorale (990 I ou 757 B) s'applique ensuite sur le capital net de ces PS, à des taux et abattements spécifiques, sans rapport avec la fiscalité des rachats de vivant (PFU 30% ou barème).
+
+**Avantage de l'AV pour la transmission** : cumul de l'abattement 152 500 EUR/bénéficiaire ET de la purge définitive de l'IR sur les PV latentes en UC — mais **les PS restent dus** sur ces mêmes PV, contrairement à ce qui est parfois avancé.
+
+### Autres points clés
+
+- Clause bénéficiaire : vérifier sa rédaction (acceptation, démembrement possible pour optimiser la transmission)
 - Contrats non dénoués au décès du conjoint : régime spécifique selon le régime matrimonial
+- Primes manifestement excessives : risque de réintégration dans la succession (art. L132-13 Code des assurances)
 
 ## Options du Conjoint Survivant
 

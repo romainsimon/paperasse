@@ -37,6 +37,54 @@
     }
   },
 
+  "assurance_vie_deces": {
+    "description": "Fiscalité de la transmission AV au décès (distincte des rachats de vivant). Voir aussi skill notaire.",
+    "base_legale": ["art. 990 I CGI", "art. 757 B CGI", "art. L132-12 Code des assurances"],
+    "hors_succession": true,
+
+    "matrice_regimes": {
+      "description": "3 variables déterminent le régime applicable : date souscription contrat, âge au versement, date du versement",
+      "seul_cas_defavorable_757B": {
+        "condition": "Contrat souscrit APRÈS le 20/11/1991 ET primes versées APRÈS 70 ans — quelle que soit la date de versement (le seuil du 13/10/1998 ne concerne que les primes versées AVANT 70 ans)",
+        "regime": "art. 757 B",
+        "abattement": "30 500 EUR global (tous bénéficiaires confondus)",
+        "assiette": "Primes uniquement (les gains/intérêts sont exonérés)",
+        "imposition_surplus": "Droits de succession selon le lien de parenté",
+        "note": "L'art. 757 B s'applique aux primes versées après 70 ans dès lors que le contrat est souscrit à compter du 20/11/1991, y compris pour les versements antérieurs au 13/10/1998. Il ne s'applique jamais aux contrats souscrits avant le 20/11/1991."
+      },
+      "cas_exoneration_totale": {
+        "condition": "Primes versées AVANT le 13/10/1998, sur un contrat pré-20/11/1991 (tout âge) ou sur un contrat post-20/11/1991 avec versement AVANT 70 ans",
+        "regime": "Exonération totale",
+        "imposition": "Ni art. 990 I ni droits de succession — aucune imposition au titre de la transmission",
+        "note": "C'est le seuil du 13/10/1998, et non l'âge, qui fait basculer ces primes anciennes vers l'art. 990 I."
+      },
+      "cas_990I": {
+        "condition": "Primes versées À PARTIR du 13/10/1998 avant 70 ans (tout contrat), OU primes versées à partir du 13/10/1998 sur un contrat pré-20/11/1991 même après 70 ans (dérogation favorable)",
+        "regime": "art. 990 I",
+        "abattement_par_beneficiaire": 152500,
+        "taux": [
+          { "tranche": "0 à 700 000 EUR (après abattement)", "taux": "20%" },
+          { "tranche": "Au-delà de 700 000 EUR", "taux": "31,25%" }
+        ],
+        "assiette": "Capital décès total (primes + gains latents, nets des PS dus sur les gains UC — voir pv_latentes_deces)"
+      }
+    },
+
+    "contrats_pre_1991_derogation": {
+      "description": "Contrats souscrits avant le 20/11/1991 : régime dérogatoire favorable. Primes versées avant le 13/10/1998 = exonération totale ; à partir du 13/10/1998, même après 70 ans, relèvent de l'art. 990 I (jamais 757 B)",
+      "conseil": "Ne jamais fermer un contrat pré-1991 sans vérifier cet avantage successoral",
+      "source": "BOI-RESS-000009 / art. 990 I CGI — interprétation date de souscription"
+    },
+
+    "pv_latentes_deces": {
+      "fait_generateur": false,
+      "description": "Le décès n'est pas un fait générateur de l'IR. Les PV latentes sur UC ne sont en revanche PAS exonérées de PS au décès : depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains UC au dénouement, nets des PS déjà acquittés, et les déduit du capital avant versement. Mécanisme validé par le Conseil d'État (CE 18/02/2026, n° 504077).",
+      "uc": "IR définitivement exonéré (pas de fait générateur) ; PS (17,2%) dus sur les gains constatés au décès, prélevés par l'assureur avant versement du capital — seul l'IR est purgé, pas les PS",
+      "fonds_euros": "PS prélevés annuellement au fil de l'eau (déjà acquittés) ; IR jamais dû",
+      "exemple": "500 000 EUR de PV latentes en UC → environ 86 000 EUR de PS (17,2%) prélevés par l'assureur avant versement aux bénéficiaires"
+    }
+  },
+
   "assurance_vie_rachats": {
     "description": "Fiscalité des rachats de vivant (distincte de la transmission — voir skill notaire)",
 

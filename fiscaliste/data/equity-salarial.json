@@ -69,20 +69,188 @@
     "description": "Plans d'Épargne Entreprise et Plans d'Épargne Retraite Collective — enveloppes collectives",
     "pee": {
       "abondement_employeur": "Exonéré IR et PS dans les plafonds — AVANTAGE MAJEUR vs versement direct",
-      "plafond_abondement_pee_2025": 3709,
-      "plafond_base": "8% × PASS par bénéficiaire (à vérifier annuellement)",
-      "blocage": "5 ans sauf cas de déblocage anticipé (mariage, naissance 3e enfant, achat RP, divorce avec enfant à charge, fin contrat travail, surendettement, invalidité, décès, violences conjugales)",
-      "sortie": "Après 5 ans : exonération IR, PS sur les gains uniquement",
+      "plafond_base": "8% × PASS de l'année de versement — voir per-plafonds.json → epargne_salariale_abondement.pee",
+      "blocage_duree": "5 ans",
+      "deblocage_anticipe_reference": "Art. R. 3332-28 Code du travail — délai 6 mois par cas (sauf décès et surendettement : immédiat)",
+      "deblocage_anticipe_cas": [
+        "Mariage ou PACS du bénéficiaire",
+        "Naissance ou adoption portant la famille à 3 enfants ou plus",
+        "Divorce / séparation / dissolution PACS avec garde d'au moins 1 enfant",
+        "Invalidité (bénéficiaire, conjoint/PACS ou enfant — toute catégorie)",
+        "Décès (bénéficiaire ou conjoint/PACS)",
+        "Rupture du contrat de travail (démission, licenciement, retraite, rupture conventionnelle)",
+        "Création ou reprise d'entreprise (bénéficiaire, conjoint ou enfant)",
+        "Acquisition ou agrandissement de la résidence principale",
+        "Surendettement (sur demande commission de surendettement)",
+        "Violences conjugales (loi n° 2021-1774 du 24 décembre 2021)"
+      ],
+      "sortie": "Après 5 ans : exonération IR, PS sur les gains uniquement (taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026)",
       "dividendes_reinvestis": "Exonérés IR tant qu'ils restent dans l'enveloppe"
     },
-    "perco_pero": {
-      "description": "Équivalent PER collectif",
-      "sortie_retraite": "Rente ou capital, même fiscalité que PER individuel",
+    "perco_pereco": {
+      "description": "Équivalent PER collectif — PERCO remplacé par PERECO (PER d'Entreprise Collectif) depuis loi Pacte",
+      "sortie_retraite": {
+        "compartiment_2_capital": "Capital exonéré IR (seuls les gains soumis aux PS, taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026) — régime distinct du PER individuel",
+        "compartiment_2_rente": "RVCTO (Rente Viagère à Titre Onéreux) — fraction imposable : <50 ans=70%, 50-59=50%, 60-69=40%, 70+=30%",
+        "compartiment_1_capital": "Versements volontaires déduits → imposés au barème comme PER individuel ; gains au PFU",
+        "note": "Compartiment 2 (intéressement/participation/abondement) bénéficie d'un régime fiscal plus favorable que le PER individuel"
+      },
       "abondement_employeur": "Exonéré IR et PS dans les plafonds (plafond distinct du PEE)",
-      "plafond_abondement_perco_2025": 7418,
-      "plafond_base": "16% × PASS par bénéficiaire"
+      "plafond_base": "16% × PASS de l'année de versement — voir per-plafonds.json → epargne_salariale_abondement.pereco",
+      "deblocage_anticipe_reference": "Art. L. 3334-14 Code du travail (PERCO) ; art. L. 224-4 CMF (PERO)",
+      "deblocage_anticipe_cas": [
+        "Décès (bénéficiaire ou conjoint/PACS)",
+        "Invalidité 2e ou 3e catégorie SS (bénéficiaire, conjoint ou enfants)",
+        "Surendettement",
+        "Expiration des droits à l'assurance chômage",
+        "Cessation d'activité non salariée suite à liquidation judiciaire",
+        "Acquisition résidence principale (PERO uniquement — compartiment versements volontaires)"
+      ],
+      "note_pero_vs_pee": "Cas de déblocage beaucoup plus restreints que le PEE. Mariage, naissance, divorce, rupture contrat travail, création entreprise : NON déblocables sur PERCO/PERECO."
     },
-    "arbitrage_vs_per_individuel": "PEE / PERCO = abondement employeur (levier immédiat +30% à +300%). PER individuel = déduction du RNI. À combiner : abonder d'abord PEE/PERCO pour capter l'abondement, puis PER individuel."
+    "arbitrage_vs_per_individuel": "PEE / PERECO = abondement employeur (levier immédiat +30% à +300%). PER individuel = déduction du RNI. À combiner : abonder d'abord PEE/PERECO pour capter l'abondement, puis PER individuel."
+  },
+
+  "pee_perco_tns": {
+    "description": "PEE/PERECO mis en place par un dirigeant TNS dans sa propre société (SARL gérant majoritaire, EURL IS) — cas distinct du salarié classique",
+    "references_legales": {
+      "eligibilite_mandataires": "Art. L. 3332-2 Code du travail — mandataires sociaux inclus parmi les bénéficiaires",
+      "loi_pacte": "Loi n° 2019-486 du 22 mai 2019, art. 150 — ouverture aux entreprises sans salarié",
+      "decret_modalites": "Décret n° 2021-1131 du 30 août 2021 — DUE possible pour entreprises sans salarié",
+      "exoneration_ir": "Art. 81-18° CGI — exonération IR sur abondement dans les plafonds",
+      "exoneration_cotisations": "Art. L. 242-1 CSS modifié — exonération cotisations sociales sur abondement",
+      "dividendes_tns": "Art. L. 131-6 CSS — dividendes SARL > 10% capital+CC soumis aux cotisations TNS",
+      "per_tns_madelin": "Art. 154 bis CGI — PER TNS (ex-Madelin), déduction cotisations du revenu professionnel",
+      "bofip": "BOI-RSA-ES-10-10-20 — épargne salariale, abondement"
+    },
+    "eligibilite_formes_juridiques": {
+      "sarl_gerant_majoritaire": {
+        "eligible": true,
+        "regime_social": "TNS",
+        "note": "Gérant détenant + de 50% des parts (conjoint/partenaire/enfants mineurs cumulés). Inclus depuis loi Pacte."
+      },
+      "eurl_is": {
+        "eligible": true,
+        "regime_social": "TNS",
+        "note": "Gérant associé unique à l'IS. Même règles que SARL gérant majoritaire."
+      },
+      "eurl_ir": {
+        "eligible": true,
+        "regime_social": "TNS",
+        "note": "Déductibilité de l'abondement indirecte (bénéfice → IR associé). Vérifier impact avant mise en place."
+      },
+      "sas_sasu": {
+        "eligible": true,
+        "regime_social": "Assimilé salarié",
+        "note": "Règles droit commun salarié. Pas de cotisations TNS sur dividendes — arbitrage distinct."
+      },
+      "ei": {
+        "eligible": false,
+        "note": "Pas de personnalité morale distincte — impossible de jouer le rôle d'employeur vis-à-vis de soi-même."
+      }
+    },
+    "plafonds": {
+      "source": "per-plafonds.json → epargne_salariale_abondement (PASS de l'année de versement)",
+      "formule_pee": "8% × PASS",
+      "formule_pereco": "16% × PASS",
+      "ratio_max_abondement": 3,
+      "note_ratio": "L'abondement ne peut dépasser 3× le versement du dirigeant",
+      "note_cumul": "PEE et PERECO ont des plafonds distincts et non fongibles"
+    },
+    "fiscalite_abondement": {
+      "deductibilite_is": "Charge déductible du résultat de la société (IS 25% ou 15% PME sur les 42 500 premiers €)",
+      "exoneration_cotisations_tns": "Abondement exclu de l'assiette des cotisations sociales TNS dans les plafonds",
+      "exoneration_ir": "Abondement exclu du revenu imposable du dirigeant (art. 81-18° CGI)",
+      "au_dela_plafond": "Fraction excédentaire soumise aux cotisations TNS et à l'IR — piège à éviter"
+    },
+    "arbitrage_per_tns": {
+      "description": "Comparaison PEE/PERECO (abondement) vs PER TNS (ex-Madelin, art. 154 bis CGI)",
+      "pee_pereco_avantages": [
+        "Liquidité supérieure : PEE débloquable après 5 ans (ou anticipément)",
+        "Double exonération IS + cotisations TNS",
+        "Sortie PEE : exo IR (PS sur gains seulement, taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026)"
+      ],
+      "per_tns_avantages": [
+        "Plafond potentiellement plus élevé pour les forts bénéfices",
+        "Déduction cotisations du revenu professionnel (réduction assiette cotisations TNS)",
+        "Adapté à l'horizon retraite long"
+      ],
+      "ordre_priorite": "1. Saturer PEE + PERECO (11 304 € pour 2025) / 2. PER TNS (ex-Madelin) pour le surplus / 3. PER individuel 163 quatervicies en complément",
+      "tmi_30_41": "PEE/PERECO généralement plus avantageux — double exonération + liquidité",
+      "tmi_45": "PEE reste attractif (sortie PFU gains) ; PER TNS moins pertinent si TMI retraite reste élevé"
+    },
+    "conjoint_salarie": {
+      "description": "Leviers additionnels quand le gérant embauche son conjoint",
+      "ppv": {
+        "nom": "Prime de Partage de la Valeur",
+        "references_legales": "Loi n° 2022-1158 du 16 août 2022 ; loi n° 2023-1107 du 29 novembre 2023",
+        "beneficiaires": "Salariés uniquement (le gérant TNS ne peut pas en bénéficier directement)",
+        "plafond_standard": 3000,
+        "plafond_avec_accord_interessement": 6000,
+        "exoneration_cotisations": "Totale (patronales + salariales) dans le plafond",
+        "exoneration_ir": "Réservée aux entreprises de moins de 50 salariés, pour salariés < 3 SMIC brut/mois (≈ 5 430 €/mois 2025) — jusqu'au 31/12/2026. Entreprises ≥ 50 salariés : exonération de cotisations sociales maintenue mais PPV imposable à l'IR dès le premier euro.",
+        "mise_en_place": "Décision unilatérale de l'employeur (DUE) — pas d'accord requis",
+        "piege_reduction_fillon": {
+          "applicable_depuis": "2025-01-01",
+          "description": "Depuis 2025, la PPV est intégrée dans la rémunération brute servant au calcul de la réduction générale de cotisations patronales (réduction Fillon). Pour les salariés proches du SMIC, la PPV réduit mécaniquement le coefficient Fillon → l'employeur perd des allègements.",
+          "exemple": "PPV 1 500 € pour un salarié au SMIC : coût réel employeur ≈ 2 300 € après perte de réduction Fillon",
+          "recommandation": "Simuler l'impact Fillon avant de verser une PPV à un salarié < 1,6 SMIC. L'intéressement peut s'avérer moins coûteux dans cette zone.",
+          "zone_risque": "Salaire entre 1 et 1,6 SMIC — au-delà, la réduction Fillon est nulle et l'effet disparaît"
+        }
+      },
+      "interessement_participation": {
+        "interessement_pee_plafond_2025": 35325,
+        "interessement_pee_base": "75% × PASS de l'année de versement — voir per-plafonds.json",
+        "exoneration_cotisations": "Oui (si versement direct ou placement PEE)",
+        "exoneration_ir_si_place_pee": true,
+        "exoneration_ir_si_non_place": false,
+        "note_accord": "Accord d'intéressement requis — DUE possible pour TPE/PME depuis loi Pacte. Ouvre le plafond PPV à 6 000 €."
+      },
+      "mutuelle_famille": {
+        "base_legale": "Art. L. 911-7 CSS (mutuelle obligatoire) ; art. 83-1° quater CGI (déductibilité patronale) ; art. R. 242-1-6 CSS (dispense)",
+        "principe": "Mutuelle 'famille' couvrant le salarié (conjoint) + enfants + le gérant (en tant que conjoint du salarié)",
+        "participation_patronale_min": "50% de la cotisation obligatoire",
+        "exoneration_patronale": "Dans la limite de 6% du PASS + 1,5% de la rémunération annuelle brute soumise à cotisations, le total étant plafonné à 12% du PASS (art. D. 242-1 CSS)",
+        "dispense_conjoint_salarie_ailleurs": {
+          "possible_si": "Couverture obligatoire chez l'autre employeur (pas optionnelle)",
+          "formalisme": "Demande écrite conservée au dossier RH",
+          "piege": "Si la couverture chez l'autre employeur est optionnelle, la dispense n'est pas valide",
+          "point_vigilance": "Comparer le niveau de couverture avant de renoncer à la mutuelle de l'autre employeur"
+        }
+      }
+    },
+    "pieges_specifiques_tns": [
+      {
+        "id": 1,
+        "piege": "Dépassement plafond abondement",
+        "detail": "Fraction > 8% PASS (PEE) ou 16% PASS (PERECO) → cotisations TNS + IR sur l'excédent"
+      },
+      {
+        "id": 2,
+        "piege": "Confusion versement volontaire / abondement",
+        "detail": "Le versement du dirigeant provient de sa rémunération nette déjà taxée. Seul l'abondement société est exonéré."
+      },
+      {
+        "id": 3,
+        "piege": "Dividendes SARL et seuil 10% capital",
+        "detail": "Dividendes > 10% (capital + CC + primes) soumis aux cotisations TNS (art. L. 131-6 CSS). Indépendant du PEE mais impact l'optimisation globale."
+      },
+      {
+        "id": 4,
+        "piege": "EURL à l'IR : déductibilité indirecte",
+        "detail": "L'abondement réduit le bénéfice qui remonte directement à l'IR de l'associé — effet réel mais mécanique différente de l'IS."
+      },
+      {
+        "id": 5,
+        "piege": "Formalisme DUE/accord non respecté",
+        "detail": "Sans dépôt DREETS conforme, l'abondement est requalifié en complément de rémunération → cotisations + IR."
+      },
+      {
+        "id": 6,
+        "piege": "Appliquer les règles TNS à une SASU",
+        "detail": "Le président de SASU est assimilé salarié — pas de cotisations TNS sur dividendes. L'arbitrage est fondamentalement différent."
+      }
+    ]
   },
 
   "quotient_revenus_exceptionnels": {

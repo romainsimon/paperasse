@@ -13,16 +13,41 @@
 
   "per_individuel": {
     "description": "Plafond de déduction PER pour les versements 2025 (déclaration 2026)",
-    "calcul": "10% des revenus professionnels nets (salaires après abattement 10%, BNC, BIC) de l'année N-1",
+    "calcul": "max(plancher, 10% × revenus professionnels nets N-1) — salaires après abattement 10%, BNC, BIC, hors revenus du capital",
+    "plancher_formule": "10% × PASS_annee_versement",
     "plancher_euros": 4710,
-    "plancher_base": "10% × PASS 2025 (47 100 €) — garanti même sans revenus",
+    "plafond_absolu_formule": "10% × 8 × PASS_annee_versement",
     "plafond_absolu_euros": 37680,
-    "plafond_absolu_base": "10% × 8 × PASS 2025",
     "report": {
-      "description": "Plafonds non utilisés des 3 années précédentes mobilisables",
-      "ordre": "Utiliser le plafond N en premier, puis les plafonds N-3, N-2, N-1 (ordre FIFO le plus ancien en premier)"
+      "duree_avant_2026": "3 ans",
+      "duree_depuis_2026": "5 ans (loi de finances 2026 — non rétroactif, plafonds antérieurs à 2026 restent à 3 ans)",
+      "ordre": "N en premier, puis N-3, N-2, N-1 (FIFO — le plus ancien en premier pour éviter expiration)"
     },
     "mutualisation_couple": "Les époux/pacsés soumis à imposition commune peuvent mutualiser leurs plafonds (case à cocher sur 2042)"
+  },
+
+  "epargne_salariale_abondement": {
+    "description": "Plafonds d'abondement employeur PEE et PERECO — calculés sur le PASS de l'année de versement",
+    "pee": {
+      "formule": "8% × PASS_annee_versement",
+      "plafond_2024": 3709,
+      "plafond_2025": 3768,
+      "plafond_2026": 3845
+    },
+    "pereco": {
+      "formule": "16% × PASS_annee_versement",
+      "plafond_2024": 7418,
+      "plafond_2025": 7536,
+      "plafond_2026": 7690
+    },
+    "cumul_pee_pereco": {
+      "plafond_2024": 11127,
+      "plafond_2025": 11304,
+      "plafond_2026": 11535,
+      "note": "Plafonds distincts et non fongibles — peuvent être atteints simultanément"
+    },
+    "ratio_max_abondement": 3,
+    "note_ratio": "L'abondement employeur ne peut excéder 3× le versement du bénéficiaire"
   },
 
   "sortie_per": {

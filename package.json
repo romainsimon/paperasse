@@ -15,7 +15,9 @@
     "fetch": "node integrations/stripe/fetch.js; node integrations/qonto/fetch.js",
     "fetch:qonto": "node integrations/qonto/fetch.js",
     "test:qonto": "node integrations/qonto/fetch.test.js",
-    "fetch:stripe": "node integrations/stripe/fetch.js"
+    "fetch:stripe": "node integrations/stripe/fetch.js",
+    "fetch:pennylane": "node integrations/pennylane/fetch.js",
+    "test:pennylane": "node integrations/pennylane/fetch.test.js"
   },
   "dependencies": {
     "marked": "^15.0.0",

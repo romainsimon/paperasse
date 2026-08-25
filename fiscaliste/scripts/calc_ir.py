@@ -263,14 +263,24 @@ def from_foyer(foyer, bareme, pfu_data):
     base_traitements = salaires + chomage
     net_salaires = abattement_salaires(base_traitements, bareme) if base_traitements else 0
 
+    # Pensions et retraites case 1AS/1BS : abattement 10 % (plafond par foyer).
     pensions = r.get("pensions_declarant1", 0) + r.get("pensions_declarant2", 0)
     net_pensions = abattement_pensions(pensions, bareme) if pensions else 0
+
+    # Cases 1AI/1BI — sorties en CAPITAL d'un PER / art. 83, part correspondant
+    # aux versements DÉDUITS à l'entrée. Imposables au barème comme des pensions
+    # mais SANS abattement de 10 % (brochure pratique IR, rubrique pensions).
+    # Les intégrer à `pensions_declarant*` surestime l'abattement et sous-estime le RNI.
+    pensions_sans_abattement = (
+        r.get("pensions_capital_per_declarant1", 0)
+        + r.get("pensions_capital_per_declarant2", 0)
+    )
 
     # Revenus fonciers : déjà au net (micro post-abattement / réel post-charges).
     fonciers = r.get("revenus_fonciers_reels", 0) + r.get("revenus_fonciers_micro", 0)
 
     # Revenus imposables au barème (hors revenus du capital si PFU)
-    revenu_global = net_salaires + net_pensions + fonciers
+    revenu_global = net_salaires + net_pensions + pensions_sans_abattement + fonciers
 
     # Déductions (PER + pension alimentaire + CSG déductible)
     per = d.get("per_declarant1", 0) + d.get("per_declarant2", 0)

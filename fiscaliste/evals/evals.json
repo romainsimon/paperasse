@@ -288,6 +288,20 @@
         "Le skill précise que la distinction 1AP vs 1AJ porte sur la nature du revenu (remplacement vs activité), pas sur l'abattement",
         "L'abattement suit le régime des salaires (plancher commun 509 € / plafond commun 14 555 € sur le total salaires + ARE)"
       ]
+    },
+    {
+      "id": 21,
+      "name": "ir-sortie-capital-per-1ai-sans-abattement",
+      "prompt": "Je suis en couple avec 2 enfants à charge (2 parts, je déclare seul). Mon salaire net imposable (case 1AJ) est de 100 000 €. J'ai débloqué mon PER en capital pour l'achat de ma résidence principale : 10 000 €, correspondant à des versements qui avaient été déduits à l'entrée. Calcule mon impôt sur le revenu pour les revenus 2025.",
+      "expected_output": "Les 100 000 € de salaire subissent l'abattement 10 % (RNI salaires 90 000 €). Les 10 000 € de sortie en capital se déclarent en case 1AI et entrent EN ENTIER dans le RNI, SANS abattement de 10 % — contrairement aux pensions 1AS. RNI total 100 000 €. Barème, plafonnement du quotient familial, décote le cas échéant.",
+      "files": [],
+      "assertions": [
+        "Le skill identifie la case 1AI (et non 1AS) pour une sortie en capital de PER correspondant à des versements déduits",
+        "AUCUN abattement de 10 % n'est appliqué sur les 10 000 € : ils entrent en entier dans le RNI",
+        "Le RNI total est de 100 000 € (90 000 de salaires nets + 10 000 de 1AI), et non 99 000 €",
+        "Le skill distingue explicitement le régime 1AS/1BS (abattement 10 %, plafond 4 446 € par foyer) du régime 1AI/1BI (aucun abattement)",
+        "Le gain de quotient familial est plafonné et le plafonnement est vérifié"
+      ]
     }
   ]
 }

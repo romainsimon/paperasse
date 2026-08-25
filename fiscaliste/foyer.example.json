@@ -24,6 +24,9 @@
 
     "pensions_declarant1": 0,
     "pensions_declarant2": 0,
+    "pensions_capital_per_declarant1": 0,
+    "pensions_capital_per_declarant2": 0,
+    "_commentaire_pensions_capital_per": "Cases 1AI/1BI : sortie en CAPITAL d'un PER ou d'un article 83, pour la part correspondant aux versements DEDUITS a l'entree. Imposable au bareme SANS abattement 10 %, contrairement aux pensions 1AS/1BS. Ne pas melanger avec pensions_declarant*.",
 
     "bnc_regime_normal": 0,
     "_commentaire_bnc": "Case 5QC — BNC professionnels régime normal",

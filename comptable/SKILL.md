@@ -1,7 +1,7 @@
 ---
 name: comptable
 metadata:
-  last_updated: 2026-04-18
+  last_updated: "2026-04-18"
 includes:
   - data/**
   - scripts/**

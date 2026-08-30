@@ -2,7 +2,7 @@
 
 Référence complète : émoluments proportionnels, émoluments fixes, débours.
 
-**Base légale** : Décret n°2016-230 du 26 février 2016, arrêté du 26 février 2016 (et mises à jour ultérieures)
+**Base légale** : Décret n°2016-230 du 26 février 2016 ; barème vente : arrêté du 28 février 2020 (art. A444-91 C. com., en vigueur depuis le 1er janvier 2021, reconduit depuis)
 
 ## Émoluments Proportionnels (Vente Immobilière)
 
@@ -12,10 +12,10 @@ Référence complète : émoluments proportionnels, émoluments fixes, débours.
 
 | Tranche d'assiette | Taux |
 |--------------------|:----:|
-| 0 à 6 500 EUR | 3,945% |
-| 6 501 à 17 000 EUR | 1,627% |
-| 17 001 à 60 000 EUR | 1,085% |
-| Au-delà de 60 000 EUR | 0,814% |
+| 0 à 6 500 EUR | 3,870% |
+| 6 501 à 17 000 EUR | 1,596% |
+| 17 001 à 60 000 EUR | 1,064% |
+| Au-delà de 60 000 EUR | 0,799% |
 
 **TVA** : 20% sur les émoluments.
 
@@ -32,30 +32,30 @@ Référence complète : émoluments proportionnels, émoluments fixes, débours.
 
 | Tranche | Base | Taux | Émolument |
 |---------|-----:|:----:|----------:|
-| 0 - 6 500 | 6 500 | 3,945% | 256,43 |
-| 6 501 - 17 000 | 10 500 | 1,627% | 170,84 |
-| 17 001 - 60 000 | 43 000 | 1,085% | 466,55 |
-| 60 001 - 200 000 | 140 000 | 0,814% | 1 139,60 |
-| **Total HT** | | | **2 033,42** |
-| **TVA (20%)** | | | **406,68** |
-| **Total TTC** | | | **2 440,10** |
+| 0 - 6 500 | 6 500 | 3,870% | 251,55 |
+| 6 501 - 17 000 | 10 500 | 1,596% | 167,58 |
+| 17 001 - 60 000 | 43 000 | 1,064% | 457,52 |
+| 60 001 - 200 000 | 140 000 | 0,799% | 1 118,60 |
+| **Total HT** | | | **1 995,25** |
+| **TVA (20%)** | | | **399,05** |
+| **Total TTC** | | | **2 394,30** |
 
 **Vente à 400 000 EUR :**
 
 | Tranche | Base | Taux | Émolument |
 |---------|-----:|:----:|----------:|
-| 0 - 6 500 | 6 500 | 3,945% | 256,43 |
-| 6 501 - 17 000 | 10 500 | 1,627% | 170,84 |
-| 17 001 - 60 000 | 43 000 | 1,085% | 466,55 |
-| 60 001 - 400 000 | 340 000 | 0,814% | 2 767,60 |
-| **Total HT** | | | **3 661,42** |
-| **TVA (20%)** | | | **732,28** |
-| **Total TTC** | | | **4 393,70** |
+| 0 - 6 500 | 6 500 | 3,870% | 251,55 |
+| 6 501 - 17 000 | 10 500 | 1,596% | 167,58 |
+| 17 001 - 60 000 | 43 000 | 1,064% | 457,52 |
+| 60 001 - 400 000 | 340 000 | 0,799% | 2 716,60 |
+| **Total HT** | | | **3 593,25** |
+| **TVA (20%)** | | | **718,65** |
+| **Total TTC** | | | **4 311,90** |
 
 Avec remise de 20% sur la tranche > 100 000 EUR :
-- Tranche 100 001 à 400 000 = 300 000 × 0,814% = 2 442,00 EUR
-- Remise 20% : -488,40 EUR
-- **Économie : 488,40 EUR HT (586,08 EUR TTC)**
+- Tranche 100 001 à 400 000 = 300 000 × 0,799% = 2 397,00 EUR
+- Remise 20% : -479,40 EUR
+- **Économie : 479,40 EUR HT (575,28 EUR TTC)**
 
 ## Émoluments Proportionnels (Succession)
 
@@ -227,11 +227,11 @@ En dehors des actes tarifés, le notaire peut facturer des honoraires libres pou
 | Poste | Montant |
 |-------|--------:|
 | DMTO (5,81%) | 17 430 EUR |
-| Émoluments HT | 2 847 EUR |
-| TVA émoluments | 569 EUR |
+| Émoluments HT | 2 794 EUR |
+| TVA émoluments | 559 EUR |
 | CSI (0,10%) | 300 EUR |
 | Débours | ~700 EUR |
-| **Total** | **~21 846 EUR** |
+| **Total** | **~21 783 EUR** |
 | **Soit** | **~7,3% du prix** |
 
 ### Succession de 500 000 EUR (actif net, 2 enfants)

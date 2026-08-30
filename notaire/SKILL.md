@@ -1,7 +1,7 @@
 ---
 name: notaire
 metadata:
-  last_updated: 2026-03-24
+  last_updated: "2026-03-24"
 includes:
   - scripts/fetch_notaire_data.py
   - scripts/test_fetch_notaire_data.py

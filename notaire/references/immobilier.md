@@ -18,7 +18,7 @@ Référence complète pour les transactions immobilières : frais de notaire, di
 
 **Total DMTO courant :**
 - Département à 4,50% : **5,81%** du prix
-- Département à 5,00% : **~6,37%** du prix
+- Département à 5,00% : **~6,32%** du prix
 
 **Hausse de 0,5 point (2025) :**
 - Votée par 73 départements (sur 101)

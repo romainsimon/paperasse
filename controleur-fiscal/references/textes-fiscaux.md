@@ -70,8 +70,8 @@ Pour un exercice de moins de 12 mois :
 > b) Manoeuvres frauduleuses : majoration de 80%
 > c) Abus de droit : majoration de 80%
 
-**Art. 1758 A CGI** — Insuffisance de déclaration
-> 10% en cas d'insuffisance de déclaration de bonne foi.
+**Art. 1758 A CGI** : Insuffisance de déclaration (impôt sur le revenu UNIQUEMENT)
+> 10% en cas d'insuffisance de déclaration de bonne foi, pour les déclarations déposées en vue de l'établissement de l'impôt sur le revenu. Ne s'applique pas à l'IS : pour une société à l'IS, le taux de 10% relève de l'art. 1728, 1-a (dépôt tardif ou défaut de déclaration).
 
 ---
 

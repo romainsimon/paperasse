@@ -18,12 +18,12 @@ Intérêts (12 mois) : 150 x 0,20% x 12 = 3,60
 Total : 153,60
 ```
 
-## Majorations (art. 1729 CGI)
+## Majorations (art. 1728 et 1729 CGI)
 
 | Situation | Taux | Condition |
 |-----------|------|-----------|
-| Bonne foi | 0% | Erreur matérielle, première infraction |
-| Insuffisance déclarative | 10% | Art. 1758 A — manquement de bonne foi |
+| Insuffisance de bonne foi (déclaration déposée) | 0% | Intérêt de retard seul : le 10% de l'art. 1758 A ne vise que l'impôt sur le revenu, pas l'IS |
+| Dépôt tardif ou défaut de déclaration | 10% | Art. 1728, 1-a : 40% à défaut de dépôt dans les 30 jours d'une mise en demeure, 80% en cas d'activité occulte |
 | Manquement délibéré | 40% | Intention prouvée de frauder |
 | Manoeuvres frauduleuses | 80% | Stratagèmes, faux documents |
 | Abus de droit | 80% | Montage artificiel |
@@ -34,8 +34,7 @@ Total : 153,60
 Base redressée : X
 IS rappelé : X x 15%
 + Intérêts de retard : IS x 0,20% x nb mois
-+ Majoration 10% (bonne foi) : IS x 10%
-= Total rappel
+= Total rappel (aucune majoration à l'IS pour une insuffisance de bonne foi)
 ```
 
 ### Formule de calcul : manquement délibéré
@@ -88,7 +87,7 @@ IS rappelé : X x 15%
 **Redressement** :
 - Réintégration de l'excédent (% déclaré - % réel) x charges
 - Base : copropriété + électricité + internet + taxe foncière + assurance
-- Pénalité 10% (bonne foi) ou 40% (si récurrent)
+- Majoration : aucune si bonne foi (intérêt de retard seul) ; 40% si manquement délibéré (art. 1729, a)
 
 ### Cas 3 : Charges pré-constitution hors délai
 
@@ -122,8 +121,8 @@ IS rappelé : X x 15%
 | Risque | Probabilité | Impact max | Recommandation |
 |--------|-------------|-----------|----------------|
 | Charges perso en 455 | Élevée | Réintégration totale + 40% | Documenter chaque ligne |
-| Bureau domicile | Moyenne | Réintégration excédent + 10% | Avoir un plan coté |
-| Charges pré-constitution | Moyenne | Réintégration totale + 10% | Vérifier état des actes |
+| Bureau domicile | Moyenne | Réintégration excédent + intérêts de retard | Avoir un plan coté |
+| Charges pré-constitution | Moyenne | Réintégration totale + intérêts de retard | Vérifier état des actes |
 | CA omis (411 créditeur) | Faible | + CA au résultat + 40% | Documenter l'origine |
 | Taux conversion | Faible | Écart de quelques % | Utiliser taux BCE mensuel |
 | Amortissements | Faible | Réintégration excédent | Vérifier calcul exact |

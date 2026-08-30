@@ -294,7 +294,7 @@ Pour déterminer la taille de l'entreprise et l'échéance d'émission : [refere
 Faits à remonter systématiquement dès qu'ils sont pertinents — pièges fréquents :
 
 - **Validation facture** : "description", "quantité" et "prix unitaire" sont **trois mentions distinctes obligatoires**. Une description correcte ne vaut pas pour les deux autres. Flagger chacune séparément.
-- **Nouvelles mentions obligatoires 2026** (factures B2B domestiques) : **SIREN du client** ET **catégorie d'opération** (biens / services / mixte). Ce sont **deux obligations distinctes**, à citer séparément. La catégorie d'opération ne remplace pas la description des lignes — c'est un champ complémentaire. Toujours vérifier les deux pour les factures émises à partir du 1er septembre 2026.
+- **Nouvelles mentions obligatoires 2026** (factures B2B domestiques) : **quatre nouvelles données** : **SIREN du client**, **catégorie d'opération** (biens / services / mixte), **option pour le paiement de la TVA d'après les débits** (le cas échéant) et **adresse de livraison** complète si différente de l'adresse du client. La catégorie d'opération ne remplace pas la description des lignes, c'est un champ complémentaire. Toujours vérifier les quatre pour les factures émises à partir du 1er septembre 2026.
 - **PPF (Portail Public de Facturation)** : depuis octobre 2024, le PPF **ne sert plus à émettre ni recevoir** de factures. Il ne reste qu'annuaire central + concentrateur d'e-reporting. Toute entreprise assujettie TVA doit passer par une PA.
 - **E-reporting** : ne concerne **pas les ventes B2B domestiques entre assujettis** (déjà transmises via e-facturation). Il couvre uniquement B2C, international et encaissements. Un e-commerçant 100% B2B FR n'a donc pas d'e-reporting séparé.
 

@@ -127,6 +127,8 @@ Les factures électroniques doivent être conservées **6 ans** à compter de la
 ## Sanctions
 
 Le non-respect des obligations de facturation électronique expose à :
-- **Amende de 15 EUR par facture** non émise au format électronique (plafond 15 000 EUR par année civile)
-- **Amende de 250 EUR par transmission** manquante en e-reporting (plafond 15 000 EUR par année civile)
+- **Amende de 50 EUR par facture** non émise au format électronique, plafond 15 000 EUR par année civile (art. 1737, III CGI, version en vigueur au 21/02/2026)
+- **Amende de 500 EUR par transmission** manquante en e-reporting, plafond 15 000 EUR par année civile (art. 1788 D, I et II CGI)
+- **Plateforme agréée défaillante** : 750 EUR par transmission, plafond 100 000 EUR par année civile (art. 1788 D, III et IV CGI)
+- **Tolérance première infraction** : pas d'amende (émission, e-reporting) pour la première infraction de l'année en cours et des trois précédentes, si régularisation spontanée ou dans les 30 jours d'une première demande de l'administration
 - Sanctions fiscales classiques en cas de défaut de facturation (50% du montant de la transaction, art. 1737 du CGI)

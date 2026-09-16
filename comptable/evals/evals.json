@@ -185,6 +185,27 @@
         "L'amende pour défaut de transmission est mentionnée (250 EUR par transmission)",
         "L'échéance est correcte (1er septembre 2027 pour PME/micro)"
       ]
+    },
+    {
+      "id": 11,
+      "name": "declaration-tva-ca3",
+      "prompt": "Prépare la déclaration de TVA (CA3, régime réel normal) de mai 2026 pour DEMO SERVICES SAS à partir de ses données bancaires Qonto. La configuration est dans evals/files/company-demo-tva.json et les extractions Qonto sont dans evals/files/tva-demo/ (transactions.json, client_invoices.json, supplier_invoices.json). Utilise scripts/declaration-tva.js en mode --offline. Donne les cases CA3 et le net à payer.",
+      "expected_output": "Le skill exécute scripts/declaration-tva.js en --offline sur les fixtures et restitue : TVA collectée 300 €, déductible certaine 34,17 €, autoliquidation intra-UE (base A3 50 €, net 0) et TVA nette à payer 266 €. Il précise que c'est un brouillon à valider avant dépôt.",
+      "files": [
+        "evals/files/company-demo-tva.json",
+        "evals/files/tva-demo/transactions.json",
+        "evals/files/tva-demo/client_invoices.json",
+        "evals/files/tva-demo/supplier_invoices.json"
+      ],
+      "assertions": [
+        "La TVA collectée du mois est 300 € (factures clients payées en mai, base encaissements)",
+        "La TVA déductible certaine est 34,17 € (facture fournisseur analysée + carburant + frais bancaires)",
+        "Les services intra-UE (INTLADS) sont autoliquidés en ligne A3 (base 50 €) avec un effet net nul",
+        "Les salaires, l'URSSAF et le flux intra-groupe (HOLDING) sont exclus (0 TVA)",
+        "La TVA nette à payer (case 28) est 266 €",
+        "La dépense sans justificatif (FOURNITURE Z) est signalée comme 'à justifier'",
+        "Le résultat est présenté comme un brouillon à valider avant télédéclaration"
+      ]
     }
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "name": "DEMO SERVICES SAS",
+  "legal_form": "SAS",
+  "siren": "111222333",
+  "tax": {
+    "regime_tva": "reel_normal",
+    "regime_is": "reel_normal",
+    "tva_rate": 0.20
+  },
+  "vat": {
+    "base_exigibilite": "encaissements",
+    "classification": {
+      "exclude": [
+        { "pattern": "SALAIRE|DUPONT", "reason": "salaire net (hors champ TVA)" },
+        { "pattern": "URSSAF|DGFIP", "reason": "taxe / charge sociale (hors champ TVA)" },
+        { "pattern": "MUTUELLE", "reason": "assurance exonérée de TVA" }
+      ],
+      "intragroup": [
+        { "pattern": "HOLDING", "reason": "flux intra-groupe / compte courant" }
+      ],
+      "intracom_services": [
+        { "pattern": "INTLADS", "reason": "service intra-UE (autoliquidation A3 + DES)" }
+      ],
+      "fuel_categories": ["gas_station"],
+      "fuel_patterns": ["STATION"],
+      "fuel_deductible_pct": 1.0,
+      "fee_operation_types": ["qonto_fee"],
+      "fee_patterns": ["^Banque$"],
+      "estimate_categories": ["other_expense", "other_service"]
+    }
+  }
+}

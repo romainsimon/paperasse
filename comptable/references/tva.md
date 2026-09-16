@@ -136,8 +136,10 @@ Prestation service intra-UE 500€:
 ```
 
 **Déclaration:**
-- Ligne 2A de la CA3: services
-- DES (Déclaration Européenne de Services)
+- **Service REÇU** (vous êtes le preneur) : autoliquidation sur la **CA3 ligne A3** (base HT) + TVA en lignes 08 puis 20, net 0. **Pas de DES** — c'est le prestataire étranger qui souscrit l'état récapitulatif dans son pays.
+- **Service RENDU** (vous êtes le prestataire à un client assujetti d'un autre État membre) : exonéré (TVA due chez le preneur, art. 259-1°) + **DES** obligatoire (Déclaration Européenne de Services, art. 289 B CGI) sur pro.douane.gouv.fr.
+
+> La **DES est déposée par le prestataire qui *rend* le service**, jamais par celui qui le reçoit. Pour un simple achat de service intra-UE (SaaS, publicité en ligne…), il n'y a donc qu'une autoliquidation en A3, sans DES.
 
 ---
 

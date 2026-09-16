@@ -1,0 +1,11 @@
+[
+  { "id": "t5", "side": "debit", "amount": 25.00, "currency": "EUR", "label": "Banque", "category": "fees", "operation_type": "qonto_fee", "settled_at": "2026-05-01T08:00:00Z", "status": "completed" },
+  { "id": "t3", "side": "debit", "amount": 1500.00, "currency": "EUR", "label": "SALAIRE DUPONT", "category": "other_expense", "operation_type": "transfer", "settled_at": "2026-05-02T08:00:00Z", "status": "completed" },
+  { "id": "t1", "side": "debit", "amount": 120.00, "currency": "EUR", "label": "CLOUD FR SARL", "category": "other_service", "operation_type": "card", "settled_at": "2026-05-06T08:00:00Z", "status": "completed" },
+  { "id": "t2", "side": "debit", "amount": 60.00, "currency": "EUR", "label": "STATION SERVICE X", "category": "gas_station", "operation_type": "card", "settled_at": "2026-05-10T08:00:00Z", "status": "completed" },
+  { "id": "t8", "side": "debit", "amount": 500.00, "currency": "EUR", "label": "HOLDING SAS", "category": "other_expense", "operation_type": "transfer", "settled_at": "2026-05-12T08:00:00Z", "status": "completed" },
+  { "id": "t6", "side": "debit", "amount": 50.00, "currency": "EUR", "label": "INTLADS LTD", "category": "other_service", "operation_type": "card", "settled_at": "2026-05-15T08:00:00Z", "status": "completed" },
+  { "id": "t4", "side": "debit", "amount": 300.00, "currency": "EUR", "label": "URSSAF IDF", "category": "tax", "operation_type": "direct_debit", "settled_at": "2026-05-18T08:00:00Z", "status": "completed" },
+  { "id": "t7", "side": "debit", "amount": 90.00, "currency": "EUR", "label": "FOURNITURE Z", "category": "other_expense", "operation_type": "card", "settled_at": "2026-05-20T08:00:00Z", "status": "completed" },
+  { "id": "c1", "side": "credit", "amount": 1200.00, "currency": "EUR", "label": "CLIENT ALPHA", "category": "other_income", "operation_type": "income", "settled_at": "2026-05-06T09:00:00Z", "status": "completed" }
+]

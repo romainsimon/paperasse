@@ -271,13 +271,61 @@ async function main() {
   console.log('\nTerminé !');
 }
 
+/**
+ * Pagination générique pour les endpoints de facturation Qonto
+ * (client_invoices, supplier_invoices).
+ * @param {string} endpoint - Nom de l'endpoint v2 (ex. 'client_invoices')
+ * @param {string} listKey - Clé du tableau dans la réponse
+ * @param {object} params - Filtres additionnels
+ * @returns {Array} Tous les éléments paginés
+ */
+async function paginate(endpoint, listKey, params = {}) {
+  const headers = await getHeaders();
+  const out = [];
+  let page = 1;
+  // Garde-fou : borne dure à 200 pages pour éviter toute boucle infinie
+  while (page <= 200) {
+    const qs = new URLSearchParams({ ...params, per_page: '100', current_page: String(page) });
+    const res = await fetch(`${QONTO_API_BASE}/${endpoint}?${qs}`, { headers });
+    if (!res.ok) {
+      throw new Error(`Erreur API Qonto (${endpoint}) : ${res.status} ${res.statusText}`);
+    }
+    const data = await res.json();
+    out.push(...(data[listKey] || []));
+    const next = data.meta && data.meta.next_page;
+    if (!next || next === page) break;
+    page = next;
+    await new Promise(resolve => setTimeout(resolve, 200));
+  }
+  return out;
+}
+
+/**
+ * Récupère toutes les factures clients émises (base de la TVA collectée).
+ * Chaque facture porte `vat_amount`, `total_amount`, `issue_date`, `finalized_at`, `paid_at`.
+ */
+async function getAllClientInvoices(params = {}) {
+  return paginate('client_invoices', 'client_invoices', params);
+}
+
+/**
+ * Récupère toutes les factures fournisseurs (base de la TVA déductible).
+ * Chaque facture porte `total_tax_amount`, `total_amount`, `payment_date`, `matched_transactions_ids`.
+ */
+async function getAllSupplierInvoices(params = {}) {
+  return paginate('supplier_invoices', 'supplier_invoices', params);
+}
+
 module.exports = {
   getOrganization,
   getTransactions,
   getAllTransactions,
   transformTransaction,
   buildTransactionsParams,
-  findBalanceDiscontinuities
+  findBalanceDiscontinuities,
+  paginate,
+  getAllClientInvoices,
+  getAllSupplierInvoices
 };
 
 if (require.main === module) {

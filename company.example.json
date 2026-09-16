@@ -24,6 +24,30 @@
     "regime_is": "reel_simplifie",
     "tva_rate": 0.20
   },
+  "vat": {
+    "_comment": "Utilisé par scripts/declaration-tva.js (CA3 réel normal depuis la banque). base_exigibilite: 'encaissements' (défaut services) ou 'debits'. classification: regex sur le libellé des transactions pour la TVA déductible. Voir comptable/references/declaration-tva.md.",
+    "base_exigibilite": "encaissements",
+    "classification": {
+      "exclude": [
+        { "pattern": "NOM_SALARIE", "reason": "salaire net (hors champ TVA)" },
+        { "pattern": "URSSAF|DGFIP", "reason": "taxe / charge sociale (hors champ TVA)" },
+        { "pattern": "NOM_SS_TRAITANT_FRANCHISE", "reason": "franchise en base art. 293 B (0 TVA)" },
+        { "pattern": "ALAN|MUTUELLE", "reason": "assurance / mutuelle exonérée" }
+      ],
+      "intragroup": [
+        { "pattern": "NOM_HOLDING", "reason": "flux intra-groupe / compte courant" }
+      ],
+      "intracom_services": [
+        { "pattern": "INDEED|GOOGLE IRELAND|META", "reason": "service intra-UE (autoliquidation A3 + DES)" }
+      ],
+      "fuel_categories": ["gas_station"],
+      "fuel_patterns": ["TOTAL|ESSO|BP|SHELL"],
+      "fuel_deductible_pct": 1.0,
+      "fee_operation_types": ["qonto_fee"],
+      "fee_patterns": ["^Qonto$"],
+      "estimate_categories": ["hardware_and_equipment", "other_service", "food_and_grocery", "other_expense"]
+    }
+  },
   "banks": [
     {
       "id": "bank-1",

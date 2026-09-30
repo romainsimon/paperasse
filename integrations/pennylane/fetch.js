@@ -6,6 +6,10 @@
  * Variable d'environnement requise :
  * - PENNYLANE_API_TOKEN (token Company avec le scope transactions:readonly)
  *
+ * Prérequis côté Pennylane : offre Essential ou supérieure, et un rôle autorisé
+ * (Executive, Internal Accountant, External Accountant) pour créer le token.
+ * Le connecteur est opt-in : il exige "pennylane": {"enabled": true} dans company.json.
+ *
  * Usage :
  *   node integrations/pennylane/fetch.js
  *   node integrations/pennylane/fetch.js --start 2025-01-01 --end 2025-12-31
@@ -176,10 +180,10 @@ function parseArgs(args) {
   return options;
 }
 
-function isPennylaneDisabled(companyPath) {
+function isPennylaneEnabled(companyPath) {
   if (!fs.existsSync(companyPath)) return false;
   const company = JSON.parse(fs.readFileSync(companyPath, 'utf-8'));
-  return Boolean(company.pennylane && company.pennylane.enabled === false);
+  return Boolean(company.pennylane && company.pennylane.enabled === true);
 }
 
 function writeTransactionsFile(transactions, outputFile) {
@@ -191,8 +195,8 @@ function writeTransactionsFile(transactions, outputFile) {
 
 async function main() {
   const companyPath = path.join(__dirname, '../../company.json');
-  if (isPennylaneDisabled(companyPath)) {
-    console.log('Pennylane est désactivé dans company.json. Ignoré.');
+  if (!isPennylaneEnabled(companyPath)) {
+    console.log('Pennylane n\'est pas activé dans company.json ("pennylane": {"enabled": true}). Ignoré.');
     return;
   }
 
@@ -218,7 +222,7 @@ module.exports = {
   getAllTransactions,
   transformTransaction,
   parseArgs,
-  isPennylaneDisabled,
+  isPennylaneEnabled,
   writeTransactionsFile
 };
 

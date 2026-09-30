@@ -13,7 +13,7 @@ const {
   getAllTransactions,
   transformTransaction,
   parseArgs,
-  isPennylaneDisabled,
+  isPennylaneEnabled,
   writeTransactionsFile
 } = require('./fetch');
 
@@ -169,15 +169,17 @@ async function run() {
 
   console.log('configuration et écriture');
 
-  await test('respecte enabled=false dans company.json', () => {
+  await test('s\'active uniquement avec enabled=true dans company.json (opt-in)', () => {
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'paperasse-pennylane-config-'));
     const companyPath = path.join(tempDir, 'company.json');
     try {
-      assert.strictEqual(isPennylaneDisabled(companyPath), false);
+      assert.strictEqual(isPennylaneEnabled(companyPath), false);
       fs.writeFileSync(companyPath, JSON.stringify({ pennylane: { enabled: false } }));
-      assert.strictEqual(isPennylaneDisabled(companyPath), true);
+      assert.strictEqual(isPennylaneEnabled(companyPath), false);
       fs.writeFileSync(companyPath, JSON.stringify({ pennylane: { enabled: true } }));
-      assert.strictEqual(isPennylaneDisabled(companyPath), false);
+      assert.strictEqual(isPennylaneEnabled(companyPath), true);
+      fs.writeFileSync(companyPath, JSON.stringify({}));
+      assert.strictEqual(isPennylaneEnabled(companyPath), false);
     } finally {
       fs.rmSync(tempDir, { recursive: true, force: true });
     }

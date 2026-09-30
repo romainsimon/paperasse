@@ -69,7 +69,10 @@ Vous pouvez mixer les deux modes (comptes séparés + Connect) dans le même tab
 Le connecteur couvre volontairement un périmètre réduit : la lecture des transactions
 bancaires déjà agrégées dans Pennylane. Il ne crée ni ne modifie aucune donnée distante.
 
-1. Dans Pennylane, créez un **token API Company**.
+1. Dans Pennylane, créez un **token API Company**. Prérequis : une offre **Essential
+   ou supérieure**, et un rôle permettant d'accéder à l'onglet Developers de votre
+   espace société (Executive, Internal Accountant ou External Accountant). Si l'onglet
+   n'apparaît pas dans vos paramètres, votre offre ou vos permissions ne le permettent pas.
 2. Accordez-lui uniquement le scope `transactions:readonly`.
 3. Définissez le token dans votre environnement :
    ```bash
@@ -146,4 +149,8 @@ Les clés API ne sont jamais stockées dans le repo. Elles sont lues depuis les 
 
 Les fixtures de test Pennylane sont entièrement fictives. Les sorties réelles sous
 `data/transactions/` peuvent contenir des libellés et contreparties sensibles : ne les
-commitez pas.
+commitez pas. Le champ `raw` de chaque transaction conserve le payload complet renvoyé
+par l'API Pennylane (comptes bancaires, tiers clients et fournisseurs, factures
+rapprochées et leurs URLs éventuelles) : `data/transactions/pennylane.json` contient
+donc l'intégralité de ces données. Le répertoire est ignoré par Git, mais traitez-le
+comme confidentiel.

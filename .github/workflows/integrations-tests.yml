@@ -1,0 +1,33 @@
+name: Integrations tests
+
+on:
+  pull_request:
+    paths:
+      - "integrations/**"
+      - "package.json"
+  push:
+    branches: [master]
+    paths:
+      - "integrations/**"
+      - "package.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node integration tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run connector tests
+        run: |
+          npm run test:qonto
+          npm run test:pennylane

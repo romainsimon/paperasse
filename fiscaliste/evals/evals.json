@@ -593,6 +593,57 @@
         "Le skill rappelle que ces déficits ne s'imputent jamais sur le revenu global",
         "Le skill cite les cases 5GA à 5GJ et l'art. 156-I-1° ter CGI"
       ]
+    },
+    {
+      "id": 22,
+      "name": "millesime-bareme-annee-passee",
+      "prompt": "Je prépare une réclamation sur mes revenus 2022. Célibataire, 1 part, revenu net imposable 30 000 €. Quel était mon impôt sur le revenu avant réductions et crédits ?",
+      "expected_output": "Barème des revenus 2022 (LFI 2023) : 0 % jusqu'à 10 777 €, 11 % jusqu'à 27 478 €, 30 % jusqu'à 78 570 €. Impôt = (27 478 − 10 777) × 11 % + (30 000 − 27 478) × 30 % = 1 837,11 + 756,60 = 2 593,71 €, soit environ 2 594 €. Pas de décote (seuil 1 840 € pour un célibataire en 2022).",
+      "files": [],
+      "assertions": [
+        "Le skill utilise le barème des revenus 2022 (tranches 10 777 / 27 478 / 78 570), pas celui de 2025",
+        "L'impôt calculé est d'environ 2 594 €",
+        "Le skill vérifie la décote avec le seuil 2022 (1 840 €) et conclut qu'elle ne s'applique pas",
+        "Le skill indique que les valeurs viennent du millésime revenus 2022"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "millesime-absent",
+      "prompt": "Quel était le plafond du quotient familial pour mes revenus 2015 ?",
+      "expected_output": "Le skill ne dispose pas du millésime revenus 2015 (données de 2020 à 2025). Il le dit, n'applique pas les valeurs d'une autre année, et renvoie à une source officielle (BOFiP daté, impots.gouv.fr) pour cette année.",
+      "files": [],
+      "assertions": [
+        "Le skill indique ne pas disposer des données des revenus 2015",
+        "Le skill ne donne pas le plafond 2025 (1 807 €) ni celui d'une autre année comme réponse pour 2015",
+        "Le skill renvoie à une source officielle pour cette année"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "foyer-declaration-deposee-fait-foi",
+      "prompt": "Mon foyer.json multi-année indique pour 2023 une déclaration déposée avec 4BB = 1 200 € et 4BC = 3 100 €, et un déficit foncier restant de 1 200 € au 31/12/2023. En recalculant 2023 à partir de mes revenus, j'obtiens un déficit imputable sur le revenu global de 3 400 €. Quel déficit dois-je reporter en 2024 ?",
+      "expected_output": "Pour une année déposée, ce qui a été déclaré fait foi : le report part des 1 200 € restants au 31/12/2023 (4BB), à imputer sur les revenus fonciers 2024 (case 4BD). L'écart entre 3 100 € déclarés et 3 400 € recalculés sur l'imputation au revenu global est une anomalie à examiner (erreur de calcul ou oubli de charge) ; s'il est confirmé, il relève d'une réclamation sur 2023, pas d'un report modifié de sa propre initiative.",
+      "files": [],
+      "assertions": [
+        "Le skill part du déficit déclaré (1 200 €) et non du recalcul pour le report 2024",
+        "Le skill signale l'écart 3 100 / 3 400 comme une anomalie à vérifier",
+        "Le skill oriente vers une réclamation si l'écart est confirmé, sans modifier silencieusement le report",
+        "Le skill mentionne la case 4BD pour l'imputation des déficits antérieurs"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "seuil-micro-annee-n",
+      "prompt": "Location meublée longue durée : 75 000 € de recettes en 2023 et 76 000 € en 2024. Puis-je rester au micro-BIC pour mes revenus 2025 ?",
+      "expected_output": "Le régime de 2025 s'apprécie en comparant les recettes de 2023 et 2024 au seuil fixé pour 2025 (BOI-BIC-DECLA-10-10-10), soit 77 700 € pour la location meublée de longue durée. 75 000 € et 76 000 € ne dépassent pas ce seuil : le micro-BIC reste applicable en 2025, avec un abattement de 50 %, sauf option pour le réel.",
+      "files": [],
+      "assertions": [
+        "Le skill compare les recettes de N-1 et N-2 au seuil de l'année N (2025)",
+        "Le skill retient le seuil de 77 700 € pour la location meublée de longue durée",
+        "Le skill conclut que le micro-BIC reste applicable en 2025",
+        "Le skill mentionne l'abattement de 50 % et la possibilité d'opter pour le réel"
+      ]
     }
   ]
 }

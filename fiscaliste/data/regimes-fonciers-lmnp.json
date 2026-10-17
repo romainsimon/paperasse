@@ -18,7 +18,9 @@
     "source_reductions_compatibles": "BOI-RFPI-DECLA-10, remarque sous le § 60 : les réductions d'impôt Scellier, Duflot, Pinel et Denormandie (art. 199 septvicies et 199 novovicies) et Malraux (art. 199 tervicies) ne font pas obstacle au micro-foncier ; seules les déductions spécifiques Scellier intermédiaire et Scellier ZRR ne s'appliquent pas.",
     "charges_locatives_incluses": false,
     "source_charges_locatives": "BOI-RFPI-DECLA-10 § 100 : il n'est pas tenu compte des sommes versées par les locataires au titre des charges leur incombant ; les dépenses du bailleur mises par convention à la charge des locataires s'ajoutent aux recettes brutes.",
-    "note": "Revenus fonciers bruts ≤ 15 000 € → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire. Exclusions : voir exclusions et exclusions_sans_immeuble_en_direct (Pinel, Malraux et les autres réductions de reductions_compatibles n'excluent pas le micro)."
+    "note": "Revenus fonciers bruts ≤ 15 000 € → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire. Exclusions : voir exclusions et exclusions_sans_immeuble_en_direct (Pinel, Malraux et les autres réductions de reductions_compatibles n'excluent pas le micro).",
+    "deficits_anterieurs": "Aucun déficit créé en micro, mais les déficits fonciers antérieurs encore reportables au 1er janvier de la 1re année micro s'imputent sur le revenu net micro-foncier (droit commun, 10 ans). Case 4BD.",
+    "source_deficits_anterieurs": "BOI-RFPI-DECLA-10 § 170 ; brochure IR 2026 p. 158"
   },
 
   "regime_reel_foncier": {
@@ -72,7 +74,10 @@
       "note": "Seuil et abattement abaissés par la loi Le Meur. Seuil inchangé pour 2026-2028 (BOI-BAREME-000044)."
     },
 
-    "depassement": "Le micro-BIC s'applique si les recettes de N-1 ou de N-2 n'excèdent pas le seuil : le réel devient obligatoire après deux années consécutives de dépassement (brochure IR 2026, p. 173)."
+    "depassement": "Le micro-BIC s'applique si les recettes de N-1 ou de N-2 n'excèdent pas le seuil : le réel devient obligatoire après deux années consécutives de dépassement (brochure IR 2026, p. 173).",
+
+    "deficits_anterieurs": "Aucun déficit créé en micro-BIC, mais les déficits LMNP des 10 années précédentes non encore imputés (cases 5GA à 5GJ, 2042 C-PRO) s'imputent sur le résultat micro-BIC net (recettes − abattement), dans la limite de ce résultat, les plus anciens d'abord. Jamais sur le revenu global.",
+    "source_deficits_anterieurs": "Art. 156-I-1° ter CGI (« revenus provenant d'une telle activité », sans distinction de régime) ; BOI-BIC-CHAMP-40-20 § 250 ; calculette DGFiP ir-calcul (chap-85, DNPLOCIMPU inclut MLOCNET = micro net). Aucun § BOFiP ne nomme expressément le micro-BIC."
   },
 
   "lmnp_reel": {
@@ -84,7 +89,7 @@
     },
     "limite_amortissements": "Amortissements (immeuble + meubles) déductibles dans la limite du loyer acquis diminué des autres charges : ils ne peuvent ni créer ni accroître un déficit (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57).",
     "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul ; un déficit ne peut provenir que des charges hors amortissements.",
-    "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les seuls revenus de location meublée non professionnelle des 10 années suivantes."
+    "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les revenus LMNP (réel ou micro-BIC) des 10 années suivantes, tant que l'activité reste non professionnelle (art. 156-I-1° ter CGI). Cases 5GA à 5GJ."
   },
 
   "lmp_vs_lmnp": {

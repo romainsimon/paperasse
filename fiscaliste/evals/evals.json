@@ -579,6 +579,20 @@
         "Le skill distingue le versement effectué avant le départ (période de résidence) de celui effectué après",
         "Le skill NE promet PAS une économie d'impôt au taux marginal sur le versement de novembre 2026"
       ]
+    },
+    {
+      "id": 44,
+      "name": "deficit-lmnp-anterieur-micro-bic",
+      "prompt": "J'ai 6 000 € de déficits LMNP de 2022 et 2023, constatés au réel et pas encore imputés. En 2025 je suis passé au micro-BIC avec 10 000 € de loyers meublés longue durée. Puis-je imputer ces déficits ?",
+      "expected_output": "Oui. Résultat micro-BIC net = 10 000 × 50 % = 5 000 €. Les déficits antérieurs (cases 5GA à 5GJ) s'imputent sur ce résultat dans sa limite : 5 000 € imputés, résultat LMNP imposable 0 €, 1 000 € restent reportables (jusqu'à 10 ans après l'année du déficit). Aucune imputation sur le revenu global.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que les déficits LMNP antérieurs s'imputent sur le résultat micro-BIC net",
+        "Le résultat micro-BIC net est calculé après abattement de 50 % (5 000 €)",
+        "L'imputation est limitée au résultat LMNP net (5 000 €), le solde de 1 000 € reste reportable",
+        "Le skill rappelle que ces déficits ne s'imputent jamais sur le revenu global",
+        "Le skill cite les cases 5GA à 5GJ et l'art. 156-I-1° ter CGI"
+      ]
     }
   ]
 }

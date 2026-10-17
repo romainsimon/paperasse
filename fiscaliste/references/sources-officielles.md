@@ -51,10 +51,12 @@ Si une règle ne peut pas être sourcée, **le dire explicitement** et inviter �
 | Traitements et salaires — abattement 10 % | art. 83-3° | BOI-RSA-BASE-30 |
 | Pensions — abattement 10 % | art. 158-5-a | BOI-RSA-PENS-30 |
 | Rémunérations des gérants et associés (art. 62) | art. 62, 211, 154 bis | BOI-RSA-GER |
-| Revenus fonciers — micro | art. 32 | BOI-RFPI-DECLA-20 |
+| Revenus fonciers — micro | art. 32 | BOI-RFPI-DECLA-10 |
 | Revenus fonciers — régime réel | art. 28 et s. | BOI-RFPI-BASE |
 | Déficit foncier | art. 156-I-3° | BOI-RFPI-BASE-30 |
 | LMNP / LMP | art. 155 IV, art. 151 septies | BOI-BIC-CHAMP-40 |
+| Déficits fonciers antérieurs en micro-foncier | art. 32, 156-I-3° | BOI-RFPI-DECLA-10 § 170 |
+| Déficit LMNP (report 10 ans, y compris sur résultat micro-BIC) | art. 156-I-1° ter | BOI-BIC-CHAMP-40-20 § 240-250 |
 
 ### Revenus du capital
 

@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "revenus": 2020,
+    "declaration": 2021,
+    "sources": [
+      "https://bofip.impots.gouv.fr/",
+      "Art. 200 A CGI (PFU 12,8 %)",
+      "Art. L. 136-6 et L. 136-7 CSS (CSG 9,2 %), art. 15 ordonnance n° 96-50 (CRDS 0,5 %), art. L. 245-14 et L. 245-15 CSS (prélèvement de solidarité 7,5 % depuis la LFSS 2019) — total 17,2 %"
+    ]
+  },
+
+  "pfu": {
+    "description": "Prélèvement Forfaitaire Unique (flat tax) sur les revenus du capital 2020. Taux IR fixe (12,8 %) + PS 17,2 %, identiques pour toutes les natures de revenus du capital.",
+    "taux_ir": 0.128,
+    "taux_global_par_categorie": {
+      "revenus_du_patrimoine": {
+        "taux_global": 0.30,
+        "detail_ps": 0.172,
+        "description": "PV mobilières (compte-titres), crypto, LMNP. Base CSS : L. 136-6. PS 17,2 % pour les revenus 2020."
+      },
+      "produits_de_placement_2020": {
+        "taux_global": 0.30,
+        "detail_ps": 0.172,
+        "description": "Dividendes, intérêts, gains PEA à la sortie, PER capital. Base CSS : L. 136-7. PS 17,2 % pour les revenus encaissés en 2020."
+      },
+      "produits_de_placement_2021": {
+        "taux_global": 0.30,
+        "detail_ps": 0.172,
+        "description": "Mêmes revenus que produits_de_placement_2020, mais encaissés en 2021 : taux inchangé (17,2 %)."
+      }
+    }
+  },
+
+  "prelevements_sociaux": {
+    "description": "CSG + CRDS + prélèvement de solidarité. Taux unique de 17,2 % pour les revenus du patrimoine et les produits de placement en 2020.",
+    "composition": {
+      "csg": "9,2 %",
+      "crds": "0,5 %",
+      "prelevement_solidarite": "7,5 %"
+    },
+    "taux_revenus_du_patrimoine_2020": {
+      "valeur": 0.172,
+      "couvre": ["PV mobilières (CTO)", "crypto (PAMC)", "LMNP", "revenus locatifs reclassés"],
+      "base_legale": "art. L. 136-6 CSS"
+    },
+    "taux_produits_de_placement_2020": {
+      "valeur": 0.172,
+      "couvre": ["dividendes", "intérêts", "RCM", "gains PEA à la sortie", "PER capital"],
+      "base_legale": "art. L. 136-7 CSS",
+      "note": "Taux inchangé pour les encaissements 2021"
+    },
+    "taux_produits_de_placement_2021": {
+      "valeur": 0.172,
+      "couvre": ["mêmes revenus que produits_de_placement_2020, mais encaissés en 2021"],
+      "base_legale": "art. L. 136-7 CSS"
+    },
+    "taux_inchanges_17_2": {
+      "valeur": 0.172,
+      "couvre": ["assurance-vie", "contrats de capitalisation", "foncier nu", "SCPI", "PEL/CEL anciens", "PEP"],
+      "note": "En 2020, tous les revenus du capital sont soumis au même taux de 17,2 % (aucune différenciation par nature)."
+    },
+    "dont_csg_deductible_si_bareme": 0.068,
+    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique QUE si option barème progressif. Zéro déductible sous PFU. Elle s'impute en N+1 sur le RNI.",
+    "taux_plus_values_immo": 0.172
+  },
+
+  "dividendes_option_bareme": {
+    "abattement": 0.40,
+    "condition": "Uniquement si option barème progressif globale. Sous PFU : zéro abattement.",
+    "description": "Abattement sur dividendes avant imposition au barème. Option globale : concerne TOUS les revenus du capital de l'année."
+  },
+
+  "arbitrage_pfu_vs_bareme": {
+    "description": "Règle d'orientation rapide — à affiner selon composition des revenus",
+    "tmi_faible_bareme_avantageux": "TMI 0% ou 11%, le barème est presque toujours meilleur (tranche basse + abattement 40% sur dividendes + CSG déductible)",
+    "tmi_eleve_pfu_avantageux": "TMI 30%+, le PFU est souvent meilleur pour intérêts et plus-values. Pour dividendes : arbitrage à faire (abattement 40% peut compenser)",
+    "rappel_option_globale": "L'option barème est globale et irrévocable pour l'année — engage TOUS les revenus du capital",
+    "note_lfss_2026": "Sans objet pour les revenus 2020 : la hausse des PS à 18,6 % (LFSS 2026) ne concerne que les revenus du patrimoine 2025 et les produits de placement encaissés à partir du 01/01/2026."
+  }
+}

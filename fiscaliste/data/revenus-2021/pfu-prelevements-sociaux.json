@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "revenus": 2021,
+    "declaration": 2022,
+    "sources": [
+      "https://bofip.impots.gouv.fr/ (BOI-RPPM-RCM-30, BOI-RPPM-PSOC)",
+      "Art. 200 A CGI (PFU 12,8 %, LFI 2018)",
+      "Art. L. 136-6 et L. 136-7 CSS, art. L. 245-14 et L. 245-15 CSS, art. 15 ord. 96-50 — PS 17,2 % sur tous les revenus du capital (taux en vigueur depuis le 01/01/2018, LFSS 2018)"
+    ]
+  },
+  "pfu": {
+    "description": "Prélèvement Forfaitaire Unique (flat tax) sur les revenus du capital 2021. Taux IR fixe (12,8 %) + PS 17,2 % quelle que soit la nature du revenu.",
+    "taux_ir": 0.128,
+    "taux_global_par_categorie": {
+      "revenus_du_patrimoine": {
+        "taux_global": 0.3,
+        "detail_ps": 0.172,
+        "description": "PV mobilières (compte-titres), crypto, LMNP. Base CSS : L. 136-6. PS 17,2 % pour les revenus 2021."
+      },
+      "produits_de_placement_2021": {
+        "taux_global": 0.3,
+        "detail_ps": 0.172,
+        "description": "Dividendes, intérêts, gains PEA à la sortie, PER capital. Base CSS : L. 136-7. PS 17,2 % pour les revenus encaissés en 2021."
+      },
+      "produits_de_placement_2022": {
+        "taux_global": 0.3,
+        "detail_ps": 0.172,
+        "description": "Mêmes revenus que produits_de_placement_2021, encaissés en 2022 : taux inchangé (17,2 %). La hausse à 18,6 % (LFSS 2026) ne concerne pas cette période."
+      }
+    }
+  },
+  "prelevements_sociaux": {
+    "description": "CSG + CRDS + prélèvement de solidarité. Taux unique de 17,2 % sur l'ensemble des revenus du capital en 2021.",
+    "composition": {
+      "csg": "9,2 %",
+      "crds": "0,5 %",
+      "prelevement_solidarite": "7,5 %"
+    },
+    "taux_revenus_du_patrimoine_2021": {
+      "valeur": 0.172,
+      "couvre": [
+        "PV mobilières (CTO)",
+        "crypto (PAMC)",
+        "LMNP",
+        "revenus fonciers"
+      ],
+      "base_legale": "art. L. 136-6 CSS — 17,2 % pour les revenus 2021"
+    },
+    "taux_produits_de_placement_2021": {
+      "valeur": 0.172,
+      "couvre": [
+        "dividendes",
+        "intérêts",
+        "RCM",
+        "gains PEA à la sortie",
+        "PER capital"
+      ],
+      "base_legale": "art. L. 136-7 CSS — 17,2 % pour les encaissements 2021",
+      "note": "Taux identique aux revenus du patrimoine en 2021 (pas de différenciation avant la LFSS 2026)."
+    },
+    "taux_produits_de_placement_2022": {
+      "valeur": 0.172,
+      "couvre": [
+        "mêmes revenus que produits_de_placement_2021, mais encaissés en 2022"
+      ],
+      "base_legale": "art. L. 136-7 CSS — taux inchangé en 2022"
+    },
+    "taux_inchanges_17_2": {
+      "valeur": 0.172,
+      "couvre": [
+        "assurance-vie",
+        "contrats de capitalisation",
+        "foncier nu",
+        "SCPI",
+        "PEL/CEL anciens",
+        "PEP"
+      ],
+      "note": "En 2021, tous les revenus du capital sont au taux de 17,2 % (taux en vigueur depuis le 01/01/2018)."
+    },
+    "dont_csg_deductible_si_bareme": 0.068,
+    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique QUE si option barème progressif. Zéro déductible sous PFU. Elle s'impute en N+1 sur le RNI.",
+    "taux_plus_values_immo": 0.172
+  },
+  "dividendes_option_bareme": {
+    "abattement": 0.4,
+    "condition": "Uniquement si option barème progressif globale. Sous PFU : zéro abattement.",
+    "description": "Abattement sur dividendes avant imposition au barème. Option globale : concerne TOUS les revenus du capital de l'année."
+  },
+  "arbitrage_pfu_vs_bareme": {
+    "description": "Règle d'orientation rapide — à affiner selon composition des revenus",
+    "tmi_faible_bareme_avantageux": "TMI 0% ou 11%, le barème est presque toujours meilleur (tranche basse + abattement 40% sur dividendes + CSG déductible)",
+    "tmi_eleve_pfu_avantageux": "TMI 30%+, le PFU est souvent meilleur pour intérêts et plus-values. Pour dividendes : arbitrage à faire (abattement 40% peut compenser)",
+    "rappel_option_globale": "L'option barème est globale et irrévocable pour l'année — engage TOUS les revenus du capital",
+    "note_lfss_2026": "Non applicable aux revenus 2021 : la hausse des PS à 18,6 % (LFSS 2026) ne concerne que les revenus du patrimoine 2025 et les produits de placement encaissés à partir du 01/01/2026. En 2021, le PFU est de 30 % pour toutes les catégories."
+  }
+}

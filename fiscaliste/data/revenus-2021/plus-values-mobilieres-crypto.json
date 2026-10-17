@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "revenus": 2021,
+    "declaration": 2022,
+    "sources": [
+      "BOI-RPPM-PVBMI",
+      "BOI-RPPM-PVBMC-30 (crypto)",
+      "BOI-BNC-CHAMP-10-10-20-40 (activité habituelle/BNC)",
+      "Dossier de presse DGFiP « L'impôt s'adapte » 2022, nouveautés revenus 2021 (abattement dirigeants, LFI 2022 art. 19)",
+      "BOI-RPPM-PVBMC-30-30 ; LFI 2022 art. 79 (option barème crypto pour les cessions à compter du 01/01/2023)"
+    ]
+  },
+  "plus_values_mobilieres": {
+    "description": "Plus-values de cession de titres (actions, parts de société, OPC)",
+    "regime_defaut": "PFU 30% (12.8% IR + 17.2% PS) sur le gain net",
+    "option_bareme": "Possible, globale pour tous revenus du capital. Avantage : abattements durée de détention si titres acquis avant 2018.",
+    "abattements_duree_detention_avant_2018": {
+      "description": "UNIQUEMENT si option barème progressif ET titres acquis avant le 1er janvier 2018",
+      "abattement_droit_commun": [
+        {
+          "duree_annees": "≥ 2 et < 8",
+          "taux": 0.5
+        },
+        {
+          "duree_annees": "≥ 8",
+          "taux": 0.65
+        }
+      ],
+      "abattement_renforce_pme": [
+        {
+          "duree_annees": "≥ 1 et < 4",
+          "taux": 0.5
+        },
+        {
+          "duree_annees": "≥ 4 et < 8",
+          "taux": 0.65
+        },
+        {
+          "duree_annees": "≥ 8",
+          "taux": 0.85
+        }
+      ],
+      "note": "L'abattement s'applique à l'IR uniquement, pas aux prélèvements sociaux"
+    },
+    "abattement_dirigeant_retraite": {
+      "montant_fixe": 500000,
+      "description": "Abattement fixe pour dirigeants de PME partant à la retraite, sur la plus-value de cession de leurs titres",
+      "conditions": "Conditions strictes : durée de fonction, taille de la société, cessation des fonctions, etc. Voir BOI-RPPM-PVBMI-20-30.",
+      "validite": "Cessions réalisées entre le 01/01/2018 et le 31/12/2024 (prorogation par la LFI 2022, art. 19). Délai de cession porté de 2 à 3 ans pour les dirigeants partis à la retraite entre le 01/01/2019 et le 31/12/2021."
+    },
+    "moins_values": {
+      "imputation": "Imputables sur les plus-values de même nature (mobilières) de l'année et des 10 années suivantes",
+      "ordre_imputation": "PV de l'année d'abord, puis PV des 10 années suivantes dans l'ordre"
+    }
+  },
+  "crypto_actifs": {
+    "description": "Régime des particuliers — occasionnel (non professionnel)",
+    "fait_generateur": [
+      "Cession contre monnaie fiat (€, USD)",
+      "Cession contre biens ou services",
+      "Échange crypto-to-crypto : NON imposable (sursis d'imposition, article 150 VH bis)"
+    ],
+    "methode_pamc": {
+      "description": "Prix d'Acquisition Moyen Pondéré en Continu",
+      "formule": "plus_value = prix_cession − (prix_total_acquisition_portefeuille × prix_cession / valeur_portefeuille_avant_cession)",
+      "note": "Nécessite de tracer l'historique complet du portefeuille depuis le premier achat"
+    },
+    "taux": {
+      "regime_defaut": "Taux forfaitaire 30% (12.8% IR + 17.2% PS) — art. 200 C CGI",
+      "option_bareme": "Impossible pour les revenus 2021 : l'option pour le barème progressif n'est ouverte qu'à partir des revenus 2023 (LFI 2022). L'option globale de l'art. 200 A ne s'étend pas aux gains d'actifs numériques en 2021."
+    },
+    "formulaire": {
+      "principal": "2086 — détail de chaque cession",
+      "report_2042": "Report du total sur la 2042 C (cases 3AN gain / 3BN perte)"
+    },
+    "exoneration": {
+      "seuil_annuel": 305,
+      "note": "Cessions cumulées ≤ 305 € par an → exonération totale. Au-delà : imposition intégrale (pas seulement la fraction au-delà)"
+    },
+    "activite_habituelle": "Requalification possible en BIC si activité habituelle/professionnelle — fiscalité plus lourde (cotisations sociales TNS)",
+    "transmission_deces": {
+      "principe": "Le décès n'est pas une cession à titre onéreux (art. 150 VH bis CGI). Les PV latentes ne sont pas imposées à l'IR ni aux PS.",
+      "purge_pv_latentes": "Les plus-values latentes accumulées par le défunt sont définitivement exonérées d'IR et de prélèvements sociaux.",
+      "base_cout_heritiers": "Les héritiers reprennent le portefeuille à sa valeur vénale au jour du décès (valeur retenue pour les droits de succession). Cette valeur devient leur nouveau prix total d'acquisition dans la formule PAMC.",
+      "droits_succession": "Droits de succession dus sur la valeur au décès selon le lien familial et les abattements légaux (100 000 EUR par enfant, exonération conjoint survivant).",
+      "points_attention": [
+        "Valorisation : cours de clôture en EUR à la date du décès (exchange centralisé ou explorateur blockchain)",
+        "Accès aux wallets : sans clé privée ou accès exchange transmis aux héritiers, les actifs sont définitivement perdus",
+        "Déclaration de succession obligatoire : actifs numériques à l'actif successoral (art. 750 ter CGI)"
+      ],
+      "sources": [
+        "art. 150 VH bis CGI",
+        "art. 750 ter CGI",
+        "BOI-RPPM-PVBMC-30"
+      ]
+    },
+    "moins_values_note": "Moins-values de cession d'actifs numériques imputables uniquement sur les plus-values de même nature de la même année ; pas de report sur les années suivantes ni d'imputation sur les PV mobilières."
+  }
+}

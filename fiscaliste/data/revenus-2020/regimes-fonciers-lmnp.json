@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "revenus": 2020,
+    "declaration": 2021,
+    "reforme_applicable": "Aucune — régime antérieur à la loi Le Meur (applicable seulement à partir des revenus 2025). Seuils micro revalorisés pour 2020-2022 (art. 50-0 CGI, révision triennale).",
+    "source": "BOI-BIC-CHAMP-40 ; formulaire 2041-GQ (impots.gouv) : seuils micro 176 200 € / 72 600 € applicables de 2020 à 2022"
+  },
+  "micro_foncier": {
+    "description": "Régime simplifié pour revenus fonciers non meublés (location nue)",
+    "seuil_recettes_brutes": 15000,
+    "abattement": 0.3,
+    "note": "Revenus fonciers bruts ≤ 15 000 € → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire. Exclusions : SCI, monument historique, Pinel, Borloo, etc.",
+    "deficits_anterieurs": "Aucun déficit créé en micro, mais les déficits fonciers antérieurs encore reportables au 1er janvier de la 1re année micro s'imputent sur le revenu net micro-foncier (droit commun, 10 ans). Case 4BD.",
+    "source_deficits_anterieurs": "BOI-RFPI-DECLA-10 § 170"
+  },
+  "regime_reel_foncier": {
+    "description": "Revenus fonciers nets = recettes − charges déductibles",
+    "forfait_frais_gestion": 20,
+    "note_forfait_frais_gestion": "Forfait de 20 € par local pour les frais de gestion non déductibles au réel (déclaration 2044, ligne 222), déductible sans justificatif.",
+    "source_forfait_frais_gestion": "Art. 31 I 1° e CGI ; BOI-RFPI-BASE-20-10 § 210",
+    "charges_deductibles": [
+      "Intérêts d'emprunt (imputables uniquement sur revenus fonciers)",
+      "Travaux (entretien, réparation, amélioration — pas construction ni agrandissement)",
+      "Taxe foncière (hors TEOM)",
+      "Primes d'assurance",
+      "Frais de gestion",
+      "Charges de copropriété (fraction non récupérable)"
+    ],
+    "deficit_foncier": {
+      "imputation_revenu_global": 10700,
+      "report_annees": 10,
+      "note_report_annees": "Le déficit non imputé sur le revenu global (fraction d'intérêts d'emprunt et excédent du plafond) se reporte sur les revenus fonciers des 10 années suivantes.",
+      "source_report_annees": "Art. 156 I 3° CGI",
+      "note_travaux_renovation_energetique": "Sans objet pour les revenus 2020 : le plafond majoré à 21 400 € (LFI 2023) ne vise que certaines dépenses de rénovation énergétique payées de 2023 à 2025. En 2020, le plafond est de 10 700 € pour tous les travaux.",
+      "imputation_revenus_fonciers": "Reportable 10 ans au-delà du plafond annuel",
+      "exception_interets": "Les intérêts d'emprunt NE sont JAMAIS imputables sur le revenu global, uniquement sur les revenus fonciers"
+    }
+  },
+  "micro_bic_lmnp": {
+    "description": "Régime micro pour locations meublées non professionnelles",
+    "reforme_le_meur": "Sans objet pour les revenus 2020 (loi Le Meur applicable à partir des revenus 2025). En 2020, la distinction se fait entre meublés de tourisme classés (et chambres d'hôtes) et les autres locations meublées.",
+    "lmnp_longue_duree": {
+      "seuil": 72600,
+      "abattement": 0.5,
+      "note": "Location meublée longue durée (et toute location meublée non classée) — seuil des prestations de services, revalorisé pour 2020-2022"
+    },
+    "meuble_tourisme_classe": {
+      "seuil": 176200,
+      "abattement": 0.71,
+      "note": "Meublés de tourisme classés et chambres d'hôtes — seuil des ventes / fourniture de logement, revalorisé pour 2020-2022"
+    },
+    "meuble_tourisme_non_classe": {
+      "seuil": 72600,
+      "abattement": 0.5,
+      "note": "Meublés de tourisme non classés : même régime que la location meublée longue durée en 2020 (le seuil de 15 000 € / 30 % date de la loi Le Meur, revenus 2025)."
+    },
+    "deficits_anterieurs": "Aucun déficit créé en micro-BIC, mais les déficits LMNP des 10 années précédentes non encore imputés (cases 5GA à 5GJ, 2042 C-PRO) s'imputent sur le résultat micro-BIC net (recettes − abattement), dans la limite de ce résultat, les plus anciens d'abord. Jamais sur le revenu global.",
+    "source_deficits_anterieurs": "Art. 156-I-1° ter CGI (« revenus provenant d'une telle activité », sans distinction de régime) ; BOI-BIC-CHAMP-40-20 § 250 ; calculette DGFiP ir-calcul (chap-85, DNPLOCIMPU inclut MLOCNET = micro net). Aucun § BOFiP ne nomme expressément le micro-BIC."
+  },
+  "lmnp_reel": {
+    "description": "Permet l'amortissement du bien + mobilier + charges",
+    "amortissement": {
+      "bien_immobilier": "Environ 2-3% par an sur 25-40 ans (hors terrain, terrain non amortissable)",
+      "mobilier": "10-20% par an sur 5-10 ans",
+      "gros_travaux": "Amortissables sur leur durée d'usage"
+    },
+    "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul ou déficitaire.",
+    "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les revenus LMNP (réel ou micro-BIC) des 10 années suivantes, tant que l'activité reste non professionnelle (art. 156-I-1° ter CGI). Cases 5GA à 5GJ."
+  },
+  "lmp_vs_lmnp": {
+    "description": "Bascule en LMP (Loueur Meublé Professionnel)",
+    "seuils_cumulatifs": {
+      "seuil_recettes": 23000,
+      "condition_revenus": "ET recettes meublées > revenus d'activité professionnelle du foyer (salaires, BNC, BIC, BA, rémunérations de gérance — art. 155 IV CGI)",
+      "note": "Les DEUX conditions doivent être remplies. Seuil 23 000 € non renouvelable — application dès dépassement."
+    },
+    "consequences_lmp": {
+      "deficits": "Imputables sur le revenu global (contrairement au LMNP)",
+      "plus_values": "Régime des plus-values professionnelles avec exonération totale possible après 5 ans d'activité sous conditions de recettes",
+      "cotisations_sociales": "Cotisations TNS sur le bénéfice (SSI) — charge significative vs LMNP",
+      "ifi": "Biens LMP exonérés d'IFI comme biens professionnels (sous conditions)"
+    },
+    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus professionnels. À surveiller annuellement."
+  },
+  "sci_ir": {
+    "description": "SCI à l'IR (régime par défaut, transparence fiscale)",
+    "principe": "Les revenus et charges remontent directement dans la déclaration des associés au prorata des parts",
+    "nature_revenus": "Revenus fonciers classiques (micro ou réel selon total fonciers du foyer)",
+    "cession_parts_ou_bien": "Plus-values immobilières des particuliers (régime des particuliers)",
+    "note_sci_is": "SCI à l'IS → voir skill `comptable` (hors scope du fiscaliste)"
+  }
+}

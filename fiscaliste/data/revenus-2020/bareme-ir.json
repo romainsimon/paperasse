@@ -1,0 +1,112 @@
+{
+  "_meta": {
+    "revenus": 2020,
+    "declaration": 2021,
+    "lfi": "Loi n° 2020-1721 du 29 décembre 2020 de finances pour 2021",
+    "indexation_bareme_ir": "+0.2%",
+    "sources": [
+      "Loi n° 2020-1721 du 29 décembre 2020 de finances pour 2021, art. 2 (texte adopté AN n° 538 rect., 17/12/2020)",
+      "https://bofip.impots.gouv.fr/bofip/2495-PGP.html/identifiant=BOI-IR-LIQ-20-20-30-20210330",
+      "https://bofip.impots.gouv.fr/bofip/10855-PGP.html/identifiant=BOI-BAREME-000035-20210504",
+      "https://bofip.impots.gouv.fr/bofip/2036-PGP.html/identifiant=BOI-IR-BASE-40-20210330"
+    ],
+    "a_mettre_a_jour": "Millésime historique (revenus 2020) — figé, ne pas mettre à jour."
+  },
+
+  "bareme_ir": {
+    "description": "Tranches appliquées par part de quotient familial (revenus 2020, déclaration 2021)",
+    "tranches": [
+      { "jusqu_a": 10084, "taux": 0.00 },
+      { "de": 10084, "a": 25710, "taux": 0.11 },
+      { "de": 25710, "a": 73516, "taux": 0.30 },
+      { "de": 73516, "a": 158122, "taux": 0.41 },
+      { "au_dela": 158122, "taux": 0.45 }
+    ]
+  },
+
+  "quotient_familial": {
+    "plafond_gain_par_demi_part": 1570,
+    "description": "Avantage fiscal maximum par demi-part supplémentaire liée aux enfants à charge. Au-delà du seuil de revenu, le gain QF stagne."
+  },
+
+  "rattachement_majeur_marie": {
+    "description": "Abattement sur RNI pour enfant majeur marié, pacsé ou ayant un enfant à charge rattaché (art. 196 B CGI). Pas de demi-part QF — abattement forfaitaire à la place.",
+    "abattement_par_personne": 5959,
+    "base_legale": "art. 196 B CGI (montant fixé par l'art. 2 LFI 2021)",
+    "note": "L'abattement s'applique à chaque personne rattachée (conjoint + enfants le cas échéant). Case N (2042)."
+  },
+
+  "pension_alimentaire": {
+    "description": "Plafonds de déduction pour pension alimentaire versée à un enfant majeur (art. 156-II-2° CGI) — revenus 2020",
+    "base_legale": "art. 156-II-2° CGI",
+    "bofip": "BOI-IR-BASE-20-30-20-20",
+    "enfant_celibataire_non_domicilie": 5959,
+    "enfant_marie_ou_charge_de_famille": 11918,
+    "forfait_domicilie_sans_ressources": {
+      "enfant_celibataire": 3542,
+      "enfant_marie_ou_pacse": 7084,
+      "a_verifier": true,
+      "note_verification": "3 542 € confirmé pour 2020 par la fiche impots.gouv « Déclarer un enfant majeur ». 7 084 € = 2 × 3 542 €, obtenu par la même règle de doublement que le millésime 2025 (forfait par personne hébergée) : non trouvé tel quel dans une source officielle de 2021."
+    },
+    "note": "Pension déductible en espèces ou en nature (loyer, frais d'inscription…) dans le même plafond. Exclusif avec le rattachement pour le même enfant."
+  },
+
+  "decote": {
+    "seuil_celibataire": 1722,
+    "seuil_couple": 2849,
+    "plafond_celibataire": 779,
+    "plafond_couple": 1289,
+    "formule_celibataire": "décote = 779 - (0.4525 × impôt_brut) si impôt_brut < 1722",
+    "formule_couple": "décote = 1289 - (0.4525 × impôt_brut) si impôt_brut < 2849",
+    "note": "La décote ne peut pas rendre l'impôt négatif. Première année d'application du taux de 45,25 % (LFI 2020), plafonds indexés par la LFI 2021. Source : BOI-IR-LIQ-20-20-30-20210330."
+  },
+
+  "abattement_salaires_10pct": {
+    "taux": 0.10,
+    "minimum": 442,
+    "maximum": 12652,
+    "description": "Abattement forfaitaire automatique sur traitements et salaires (case 1AJ) ET sur les allocations chômage / ARE (case 1AP), qui sont des revenus de remplacement imposés selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20). Plancher/plafond communs au total salaires + ARE par membre du foyer. ATTENTION terminologie : 1AJ = salaire net imposable du bulletin, AVANT cet abattement. Le RNI = 1AJ × 0.9 (dans la plage standard)."
+  },
+
+  "abattement_pensions_10pct": {
+    "taux": 0.10,
+    "minimum": 394,
+    "maximum": 3858,
+    "description": "Abattement sur pensions et retraites (case 1AS). Plafond par foyer.",
+    "a_verifier": true,
+    "note_verification": "Aucune source officielle de 2021 consultée ne cite ces deux montants. Ils résultent de l'indexation légale (art. 158-5-a CGI : même proportion que la limite de la 1re tranche, 10 064 → 10 084 €) appliquée aux montants revenus 2019 (393 € / 3 850 €, ce dernier cité par la réponse ministérielle QE n° 21770) : 393,78 → 394 € et 3 857,65 → 3 858 €."
+  },
+
+  "cehr": {
+    "description": "Contribution Exceptionnelle sur les Hauts Revenus — basée sur le RFR, pas le RNI. S'ajoute à l'IR net.",
+    "base_legale": "art. 223 sexies CGI",
+    "seuils_celibataire": [
+      { "de": 250000, "a": 500000, "taux": 0.03 },
+      { "au_dela": 500000, "taux": 0.04 }
+    ],
+    "seuils_couple": [
+      { "de": 500000, "a": 1000000, "taux": 0.03 },
+      { "au_dela": 1000000, "taux": 0.04 }
+    ],
+    "note": "Seuils et taux inchangés depuis la création de la contribution (LFI 2012)."
+  },
+
+  "cdhr": {
+    "applicable": false,
+    "description": "Contribution Différentielle sur les Hauts Revenus — n'existe pas pour les revenus 2020.",
+    "base_legale": "art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025)",
+    "plancher_imposition": null,
+    "seuils_rfr": {
+      "celibataire_veuf_separe_divorce": null,
+      "couple_marie_pacse": null
+    },
+    "mecanisme": null,
+    "calendrier": {
+      "acompte": null,
+      "solde": null
+    },
+    "perennisation": null,
+    "note": "Dispositif créé par la LFI 2025, applicable pour la première fois aux revenus 2024. Aucune contribution différentielle sur les revenus 2020 : seule la CEHR s'applique.",
+    "source": "https://www.impots.gouv.fr/actualite/contribution-differentielle-sur-les-hauts-revenus-cdhr"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "revenus": 2022,
+    "declaration": 2023,
+    "sources": [
+      "https://bofip.impots.gouv.fr/",
+      "Art. 200 A CGI (PFU, taux IR 12,8 %) — créé par la LFI 2018 (loi n° 2017-1837 du 30 décembre 2017)",
+      "Art. L. 136-6 et L. 136-7 CSS — CSG sur revenus du capital à 9,2 % depuis le 01/01/2018 (LFSS 2018), PS total 17,2 %",
+      "Aide-mémoire DGFiP (brochure IR) — tableau des prélèvements sociaux sur les revenus du patrimoine et de placement"
+    ]
+  },
+
+  "pfu": {
+    "description": "Prélèvement Forfaitaire Unique (flat tax) sur les revenus du capital 2022. Taux IR fixe (12,8 %) + PS 17,2 % quelle que soit la nature du revenu (pas de différenciation patrimoine / placement en 2022).",
+    "taux_ir": 0.128,
+    "taux_global_par_categorie": {
+      "revenus_du_patrimoine": {
+        "taux_global": 0.30,
+        "detail_ps": 0.172,
+        "description": "PV mobilières (compte-titres), crypto, LMNP. Base CSS : L. 136-6. PS 17,2 % pour les revenus 2022."
+      },
+      "produits_de_placement_2022": {
+        "taux_global": 0.30,
+        "detail_ps": 0.172,
+        "description": "Dividendes, intérêts, gains PEA à la sortie, PER capital. Base CSS : L. 136-7. PS 17,2 % pour les revenus encaissés en 2022."
+      },
+      "produits_de_placement_2023": {
+        "taux_global": 0.30,
+        "detail_ps": 0.172,
+        "description": "Mêmes revenus que produits_de_placement_2022, mais encaissés en 2023 : taux inchangé (17,2 %)."
+      }
+    }
+  },
+
+  "prelevements_sociaux": {
+    "description": "CSG + CRDS + prélèvement de solidarité. Taux unique de 17,2 % sur tous les revenus du capital en 2022.",
+    "composition": {
+      "csg": "9,2 %",
+      "crds": "0,5 %",
+      "prelevement_solidarite": "7,5 %"
+    },
+    "taux_revenus_du_patrimoine_2022": {
+      "valeur": 0.172,
+      "couvre": ["PV mobilières (CTO)", "crypto (PAMC)", "LMNP", "revenus locatifs reclassés"],
+      "base_legale": "art. L. 136-6 CSS — CSG 9,2 % (LFSS 2018)"
+    },
+    "taux_produits_de_placement_2022": {
+      "valeur": 0.172,
+      "couvre": ["dividendes", "intérêts", "RCM", "gains PEA à la sortie", "PER capital"],
+      "base_legale": "art. L. 136-7 CSS — CSG 9,2 % (LFSS 2018)",
+      "note": "Même taux que les revenus du patrimoine en 2022"
+    },
+    "taux_produits_de_placement_2023": {
+      "valeur": 0.172,
+      "couvre": ["mêmes revenus que produits_de_placement_2022, mais encaissés en 2023"],
+      "base_legale": "art. L. 136-7 CSS — taux inchangé en 2023"
+    },
+    "taux_inchanges_17_2": {
+      "valeur": 0.172,
+      "couvre": ["assurance-vie", "contrats de capitalisation", "foncier nu", "SCPI", "PEL/CEL anciens", "PEP"],
+      "note": "En 2022, tous les revenus du capital sont au taux de 17,2 % (aucune hausse en vigueur)"
+    },
+    "dont_csg_deductible_si_bareme": 0.068,
+    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique QUE si option barème progressif. Zéro déductible sous PFU. Elle s'impute en N+1 sur le RNI.",
+    "taux_plus_values_immo": 0.172
+  },
+
+  "dividendes_option_bareme": {
+    "abattement": 0.40,
+    "condition": "Uniquement si option barème progressif globale. Sous PFU : zéro abattement.",
+    "description": "Abattement sur dividendes avant imposition au barème. Option globale : concerne TOUS les revenus du capital de l'année."
+  },
+
+  "arbitrage_pfu_vs_bareme": {
+    "description": "Règle d'orientation rapide — à affiner selon composition des revenus",
+    "tmi_faible_bareme_avantageux": "TMI 0% ou 11%, le barème est presque toujours meilleur (tranche basse + abattement 40% sur dividendes + CSG déductible)",
+    "tmi_eleve_pfu_avantageux": "TMI 30%+, le PFU est souvent meilleur pour intérêts et plus-values. Pour dividendes : arbitrage à faire (abattement 40% peut compenser)",
+    "rappel_option_globale": "L'option barème est globale et irrévocable pour l'année — engage TOUS les revenus du capital",
+    "note_lfss_2026": "Sans objet pour les revenus 2022 : PFU de 30 % sur l'ensemble des revenus du capital. La hausse des PS à 18,6 % (LFSS 2026) ne concerne que les revenus à partir de 2025."
+  }
+}

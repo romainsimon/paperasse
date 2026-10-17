@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "revenus": 2022,
+    "declaration": 2023,
+    "pass_2021": 41136,
+    "pass_2022": 41136,
+    "pass_2023": 43992,
+    "sources": [
+      "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_som/aide_memoire.pdf",
+      "BOI-IR-BASE-20-50-20"
+    ]
+  },
+
+  "per_individuel": {
+    "description": "Plafond de déduction PER pour les versements 2022 (déclaration 2023)",
+    "calcul": "10% des revenus professionnels nets (salaires après abattement 10%, BNC, BIC) de l'année N-1",
+    "plancher_euros": 4114,
+    "plancher_base": "10% × PASS 2021 (41 136 €) — garanti même sans revenus",
+    "plafond_absolu_euros": 32909,
+    "plafond_absolu_base": "10% × 8 × PASS 2021",
+    "report": {
+      "description": "Plafonds non utilisés des 3 années précédentes mobilisables",
+      "ordre": "Utiliser le plafond N en premier, puis les plafonds N-3, N-2, N-1 (ordre FIFO le plus ancien en premier)"
+    },
+    "mutualisation_couple": "Les époux/pacsés soumis à imposition commune peuvent mutualiser leurs plafonds (case à cocher sur 2042)"
+  },
+
+  "sortie_per": {
+    "versements_deduits_entree": "Imposés à la sortie comme revenu (pension ou capital selon choix)",
+    "versements_non_deduits": "Sortie partiellement exonérée — seuls les gains sont imposés (PFU)",
+    "cas_sortie_anticipee": "Autorisée pour : achat résidence principale, accidents de la vie (décès conjoint, invalidité, surendettement, fin droits chômage, cessation activité non salariée)"
+  },
+
+  "arbitrage_per": {
+    "description": "Le PER est un report d'imposition, pas une exonération. L'avantage net dépend du différentiel TMI entrée / sortie.",
+    "gagnant": "TMI entrée > TMI sortie → gain net",
+    "perdant": "TMI entrée < TMI sortie → perte nette (rare mais possible si carrière ascendante ou sortie en capital massif)",
+    "neutre": "TMI égaux → gain = seulement la capitalisation sur l'économie d'impôt (effet levier)",
+    "piege_sortie_capital": "Sortie en capital = imposition du capital versé + imposition séparée des gains au PFU. Bien distinguer versements (barème) et gains (PFU)."
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "_meta": {
+    "revenus": 2021,
+    "declaration": 2022,
+    "lfi": "Loi n° 2021-1900 du 30 décembre 2021 de finances pour 2022 (art. 2)",
+    "indexation_bareme_ir": "+1.4%",
+    "sources": [
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01",
+      "https://bofip.impots.gouv.fr/bofip/13469-PGP.html/ACTU-2022-00008",
+      "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640"
+    ],
+    "a_mettre_a_jour": "Millésime historique (revenus 2021) — figé, à ne modifier qu'en cas de correction sourcée."
+  },
+  "bareme_ir": {
+    "description": "Tranches appliquées par part de quotient familial (revenus 2021, déclaration 2022)",
+    "tranches": [
+      {
+        "jusqu_a": 10225,
+        "taux": 0.0
+      },
+      {
+        "de": 10225,
+        "a": 26070,
+        "taux": 0.11
+      },
+      {
+        "de": 26070,
+        "a": 74545,
+        "taux": 0.3
+      },
+      {
+        "de": 74545,
+        "a": 160336,
+        "taux": 0.41
+      },
+      {
+        "au_dela": 160336,
+        "taux": 0.45
+      }
+    ]
+  },
+  "quotient_familial": {
+    "plafond_gain_par_demi_part": 1592,
+    "description": "Avantage fiscal maximum par demi-part supplémentaire liée aux enfants à charge. Au-delà du seuil de revenu, le gain QF stagne."
+  },
+  "rattachement_majeur_marie": {
+    "description": "Abattement sur RNI pour enfant majeur marié, pacsé ou ayant un enfant à charge rattaché (art. 196 B CGI). Pas de demi-part QF — abattement forfaitaire à la place.",
+    "abattement_par_personne": 6042,
+    "base_legale": "art. 196 B CGI",
+    "note": "L'abattement s'applique à chaque personne rattachée (conjoint + enfants le cas échéant). Case N (2042)."
+  },
+  "pension_alimentaire": {
+    "description": "Plafonds de déduction pour pension alimentaire versée à un enfant majeur (art. 156-II-2° CGI) — revenus 2021",
+    "base_legale": "art. 156-II-2° CGI",
+    "bofip": "BOI-IR-BASE-20-30-20-20",
+    "enfant_celibataire_non_domicilie": 6042,
+    "enfant_marie_ou_charge_de_famille": 12084,
+    "forfait_domicilie_sans_ressources": {
+      "enfant_celibataire": 3592,
+      "enfant_marie_ou_pacse": 7184,
+      "a_verifier": true,
+      "note_verification": "3 592 € trouvé uniquement sur une source secondaire (toutsurmesfinances.com, plafonds déclaration 2022) ; aucune source DGFiP/BOFiP datée retrouvée pour les revenus 2021. 7 184 € = doublement par analogie avec la structure du millésime 2025, non vérifié."
+    },
+    "note": "Pension déductible en espèces ou en nature (loyer, frais d'inscription…) dans le même plafond. Exclusif avec le rattachement pour le même enfant."
+  },
+  "decote": {
+    "seuil_celibataire": 1746,
+    "seuil_couple": 2888,
+    "plafond_celibataire": 790,
+    "plafond_couple": 1307,
+    "formule_celibataire": "décote = 790 - (0.4525 × impôt_brut) si impôt_brut < 1746",
+    "formule_couple": "décote = 1307 - (0.4525 × impôt_brut) si impôt_brut < 2888",
+    "note": "La décote ne peut pas rendre l'impôt négatif. Montants 790 € / 1 307 € : art. 197-I-4-a CGI (version en vigueur au 01/01/2022, LFI 2022 art. 2). Seuils = montant / 45,25 %, arrondis. Source : BOI-IR-LIQ-20-20-30."
+  },
+  "abattement_salaires_10pct": {
+    "taux": 0.1,
+    "minimum": 448,
+    "maximum": 12829,
+    "description": "Abattement forfaitaire automatique sur traitements et salaires (case 1AJ) ET sur les allocations chômage / ARE (case 1AP), qui sont des revenus de remplacement imposés selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20). Plancher/plafond communs au total salaires + ARE par membre du foyer. ATTENTION terminologie : 1AJ = salaire net imposable du bulletin, AVANT cet abattement. Le RNI = 1AJ × 0.9 (dans la plage standard)."
+  },
+  "abattement_pensions_10pct": {
+    "taux": 0.1,
+    "minimum": 400,
+    "maximum": 3912,
+    "description": "Abattement sur pensions et retraites (case 1AS). Plafond par foyer.",
+    "note_calcul": "Montants revalorisés comme la limite supérieure de la 1re tranche (10 225 / 10 084), art. 83-3° et 158-5-a CGI ; valeurs reprises des barèmes IPP (baremes.ipp.eu) et cohérentes avec ce calcul."
+  },
+  "cehr": {
+    "description": "Contribution Exceptionnelle sur les Hauts Revenus — basée sur le RFR, pas le RNI. S'ajoute à l'IR net.",
+    "base_legale": "art. 223 sexies CGI",
+    "seuils_celibataire": [
+      {
+        "de": 250000,
+        "a": 500000,
+        "taux": 0.03
+      },
+      {
+        "au_dela": 500000,
+        "taux": 0.04
+      }
+    ],
+    "seuils_couple": [
+      {
+        "de": 500000,
+        "a": 1000000,
+        "taux": 0.03
+      },
+      {
+        "au_dela": 1000000,
+        "taux": 0.04
+      }
+    ],
+    "note": "Seuils et taux inchangés depuis la création (LFI 2012) ; applicables aux revenus 2021."
+  },
+  "cdhr": {
+    "applicable": false,
+    "description": "Contribution Différentielle sur les Hauts Revenus — n'existe pas pour les revenus 2021.",
+    "base_legale": "art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025)",
+    "plancher_imposition": null,
+    "seuils_rfr": {
+      "celibataire_veuf_separe_divorce": null,
+      "couple_marie_pacse": null
+    },
+    "mecanisme": null,
+    "calendrier": {
+      "acompte": null,
+      "solde": null
+    },
+    "perennisation": null,
+    "note": "Dispositif créé par la LFI 2025, applicable à partir des revenus 2025. Aucune CDHR due sur les revenus 2021 ; seule la CEHR s'applique.",
+    "source": "https://www.impots.gouv.fr/actualite/contribution-differentielle-sur-les-hauts-revenus-cdhr"
+  }
+}

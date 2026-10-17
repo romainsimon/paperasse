@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "revenus": 2021,
+    "declaration": 2022,
+    "pass_2020": 41136,
+    "pass_2021": 41136,
+    "pass_2022": 41136,
+    "note_pass": "PASS gelé à 41 136 € de 2020 à 2022.",
+    "sources": [
+      "https://www.lafinancepourtous.com/2021/01/15/plafond-annuel-de-la-securite-sociale-plafond-inchange-pour-2021/ (PASS 2021 inchangé, arrêté du 22/12/2020)",
+      "BOI-IR-BASE-20-50-20",
+      "art. 163 quatervicies CGI"
+    ]
+  },
+  "per_individuel": {
+    "description": "Plafond de déduction PER pour les versements 2021 (déclaration 2022)",
+    "calcul": "10% des revenus professionnels nets (salaires après abattement 10%, BNC, BIC) de l'année N-1 (2020), retenus dans la limite de 8 PASS de l'année N-1",
+    "plancher_euros": 4114,
+    "plancher_base": "10% × PASS 2020 (41 136 €) = 4 113,60 €, arrondi à 4 114 € — garanti même sans revenus",
+    "plafond_absolu_euros": 32909,
+    "plafond_absolu_base": "10% × 8 × PASS 2020 (41 136 €) = 32 908,80 €, arrondi à 32 909 €",
+    "report": {
+      "description": "Plafonds non utilisés des 3 années précédentes mobilisables",
+      "ordre": "Utiliser le plafond N en premier, puis les plafonds N-3, N-2, N-1 (ordre FIFO le plus ancien en premier)"
+    },
+    "mutualisation_couple": "Les époux/pacsés soumis à imposition commune peuvent mutualiser leurs plafonds (case à cocher sur 2042)"
+  },
+  "sortie_per": {
+    "versements_deduits_entree": "Imposés à la sortie comme revenu (pension ou capital selon choix)",
+    "versements_non_deduits": "Sortie partiellement exonérée — seuls les gains sont imposés (PFU)",
+    "cas_sortie_anticipee": "Autorisée pour : achat résidence principale, accidents de la vie (décès conjoint, invalidité, surendettement, fin droits chômage, cessation activité non salariée)"
+  },
+  "arbitrage_per": {
+    "description": "Le PER est un report d'imposition, pas une exonération. L'avantage net dépend du différentiel TMI entrée / sortie.",
+    "gagnant": "TMI entrée > TMI sortie → gain net",
+    "perdant": "TMI entrée < TMI sortie → perte nette (rare mais possible si carrière ascendante ou sortie en capital massif)",
+    "neutre": "TMI égaux → gain = seulement la capitalisation sur l'économie d'impôt (effet levier)",
+    "piege_sortie_capital": "Sortie en capital = imposition du capital versé + imposition séparée des gains au PFU. Bien distinguer versements (barème) et gains (PFU)."
+  }
+}

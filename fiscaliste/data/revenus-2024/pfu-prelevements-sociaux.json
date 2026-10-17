@@ -1,0 +1,97 @@
+{
+  "_meta": {
+    "revenus": 2024,
+    "declaration": 2025,
+    "sources": [
+      "https://bofip.impots.gouv.fr/",
+      "Art. L. 136-6, L. 136-7 et L. 136-8 CSS (CSG 9,2 %), ordonnance n° 96-50 (CRDS 0,5 %), art. L. 245-14 et L. 245-15 CSS (prélèvement de solidarité 7,5 %) — PS 17,2 % sur tous les revenus du capital 2024",
+      "Art. 200 A CGI (PFU 12,8 %)",
+      "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2025/pdf_integral/Brochure-IR-2025.pdf"
+    ]
+  },
+  "pfu": {
+    "description": "Prélèvement Forfaitaire Unique (flat tax) sur les revenus du capital 2024. Taux IR fixe (12,8 %) + PS 17,2 % quelle que soit la nature du revenu (la différenciation LFSS 2026 ne s'applique pas aux revenus 2024).",
+    "taux_ir": 0.128,
+    "taux_global_par_categorie": {
+      "revenus_du_patrimoine": {
+        "taux_global": 0.3,
+        "detail_ps": 0.172,
+        "description": "PV mobilières (compte-titres), crypto, LMNP. Base CSS : L. 136-6. PS 17,2 % pour les revenus 2024 (la hausse à 18,6 % de la LFSS 2026 ne vise que les revenus 2025 et suivants)."
+      },
+      "produits_de_placement_2024": {
+        "taux_global": 0.3,
+        "detail_ps": 0.172,
+        "description": "Dividendes, intérêts, gains PEA à la sortie, PER capital. Base CSS : L. 136-7. PS 17,2 % pour les revenus encaissés en 2024."
+      },
+      "produits_de_placement_2025": {
+        "taux_global": 0.3,
+        "detail_ps": 0.172,
+        "description": "Mêmes revenus que produits_de_placement_2024, mais encaissés en 2025 : PS toujours 17,2 % (passage à 18,6 % seulement pour les encaissements à compter du 01/01/2026, LFSS 2026 art. 12)."
+      }
+    }
+  },
+  "prelevements_sociaux": {
+    "description": "CSG + CRDS + prélèvement de solidarité. Taux unique de 17,2 % sur l'ensemble des revenus du capital 2024.",
+    "composition": {
+      "csg": "9,2 %",
+      "crds": "0,5 %",
+      "prelevement_solidarite": "7,5 %"
+    },
+    "taux_revenus_du_patrimoine_2024": {
+      "valeur": 0.172,
+      "couvre": [
+        "PV mobilières (CTO)",
+        "crypto (PAMC)",
+        "LMNP",
+        "revenus locatifs reclassés"
+      ],
+      "base_legale": "art. L. 136-6 CSS dans sa rédaction antérieure à la LFSS 2026 — CSG 9,2 %"
+    },
+    "taux_produits_de_placement_2024": {
+      "valeur": 0.172,
+      "couvre": [
+        "dividendes",
+        "intérêts",
+        "RCM",
+        "gains PEA à la sortie",
+        "PER capital"
+      ],
+      "base_legale": "art. L. 136-7 CSS — CSG 9,2 %",
+      "note": "Taux 17,2 % pour les encaissements 2024 et 2025 ; passage à 18,6 % pour les encaissements à compter du 01/01/2026"
+    },
+    "taux_produits_de_placement_2025": {
+      "valeur": 0.172,
+      "couvre": [
+        "mêmes revenus que produits_de_placement_2024, mais encaissés en 2025"
+      ],
+      "base_legale": "art. L. 136-7 CSS — la hausse LFSS 2026 ne vise que les encaissements à compter du 01/01/2026"
+    },
+    "taux_inchanges_17_2": {
+      "valeur": 0.172,
+      "couvre": [
+        "assurance-vie",
+        "contrats de capitalisation",
+        "foncier nu",
+        "SCPI",
+        "PEL/CEL anciens",
+        "PEP"
+      ],
+      "note": "Taux 17,2 % — en 2024, il s'applique de toute façon à l'ensemble des revenus du capital"
+    },
+    "dont_csg_deductible_si_bareme": 0.068,
+    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique QUE si option barème progressif. Zéro déductible sous PFU. Elle s'impute en N+1 sur le RNI.",
+    "taux_plus_values_immo": 0.172
+  },
+  "dividendes_option_bareme": {
+    "abattement": 0.4,
+    "condition": "Uniquement si option barème progressif globale. Sous PFU : zéro abattement.",
+    "description": "Abattement sur dividendes avant imposition au barème. Option globale : concerne TOUS les revenus du capital de l'année."
+  },
+  "arbitrage_pfu_vs_bareme": {
+    "description": "Règle d'orientation rapide — à affiner selon composition des revenus",
+    "tmi_faible_bareme_avantageux": "TMI 0% ou 11%, le barème est presque toujours meilleur (tranche basse + abattement 40% sur dividendes + CSG déductible)",
+    "tmi_eleve_pfu_avantageux": "TMI 30%+, le PFU est souvent meilleur pour intérêts et plus-values. Pour dividendes : arbitrage à faire (abattement 40% peut compenser)",
+    "rappel_option_globale": "L'option barème est globale et irrévocable pour l'année — engage TOUS les revenus du capital",
+    "note_lfss_2026": "Sans effet sur les revenus 2024 (PS 17,2 % partout, PFU 30 %). La LFSS 2026 porte les PS à 18,6 % sur les revenus du patrimoine dès les revenus 2025 et sur les produits de placement encaissés à compter du 01/01/2026."
+  }
+}

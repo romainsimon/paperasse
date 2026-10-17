@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "description": "Foyer fiscal sur plusieurs années de revenus. Copier en foyer.json à la racine du projet. Chaque année porte ses revenus et, une fois déposée, ce qui a été réellement déclaré et ce que l'avis d'impôt a retenu. Les montants de cet exemple sont fictifs.",
+    "format": "multi-annees",
+    "annee_courante": 2025
+  },
+
+  "foyer": {
+    "_commentaire": "Ce qui ne change pas d'une année à l'autre. Une année peut surcharger ces champs dans sa propre section foyer (mariage, naissance).",
+    "situation": "pacse",
+    "_situation_options": ["celibataire", "marie", "pacse", "divorce", "veuf"],
+    "annee_naissance_declarant1": 1985,
+    "annee_naissance_declarant2": 1987,
+    "nb_enfants_charge": 2,
+    "nb_enfants_alternee": 0,
+    "nb_enfants_invalides": 0,
+    "residence_fiscale": "FR",
+    "departement_residence": "94"
+  },
+
+  "annees": {
+    "2023": {
+      "foyer": { "nb_enfants_charge": 1 },
+      "revenus": {
+        "salaires_declarant1": 68000,
+        "salaires_declarant2": 41000,
+        "revenus_fonciers_reels": 0,
+        "_commentaire_fonciers": "Résultat 2044 négatif : voir declaration_deposee.cases (4BB / 4BC) et reports."
+      },
+      "deductions": { "per_declarant1": 0, "per_declarant2": 0 },
+      "declaration_deposee": {
+        "statut": "deposee",
+        "_statut_options": ["a_deposer", "deposee", "rectifiee"],
+        "date_depot": "2024-05-22",
+        "formulaires": ["2042", "2044"],
+        "cases": {
+          "4BA": 0,
+          "4BB": 1200,
+          "4BC": 3100,
+          "4BD": 0,
+          "_commentaire": "Cases telles que déposées. 4BB = déficit imputable sur les revenus fonciers ; 4BC = déficit imputable sur le revenu global (plafond 10 700 €) ; 4BD = déficits antérieurs non encore imputés."
+        },
+        "avis": {
+          "date_etablissement": "2024-07-25",
+          "revenu_fiscal_de_reference": 98400,
+          "nombre_de_parts": 2.5,
+          "impot_net": 7450,
+          "prelevements_sociaux": 0
+        },
+        "reports": {
+          "deficits_fonciers": [
+            { "annee_origine": 2023, "montant_restant": 1200, "annee_expiration": 2033 }
+          ],
+          "deficits_lmnp": [],
+          "amortissements_differes_lmnp": 0,
+          "_commentaire": "Restant reportable au 31/12 de l'année, après imputation. C'est le point de départ de l'année suivante."
+        }
+      }
+    },
+
+    "2024": {
+      "revenus": {
+        "salaires_declarant1": 70500,
+        "salaires_declarant2": 43000,
+        "revenus_fonciers_reels": 2400
+      },
+      "deductions": { "per_declarant1": 0, "per_declarant2": 0 },
+      "declaration_deposee": {
+        "statut": "deposee",
+        "date_depot": "2025-05-12",
+        "formulaires": ["2042", "2044"],
+        "cases": { "4BA": 3600, "4BB": 0, "4BC": 0, "4BD": 1200 },
+        "avis": {
+          "date_etablissement": "2025-07-24",
+          "revenu_fiscal_de_reference": 106700,
+          "nombre_de_parts": 3,
+          "impot_net": 8210,
+          "prelevements_sociaux": 413
+        },
+        "reports": { "deficits_fonciers": [], "deficits_lmnp": [], "amortissements_differes_lmnp": 0 }
+      }
+    },
+
+    "2025": {
+      "revenus": {
+        "salaires_declarant1": 72000,
+        "salaires_declarant2": 44500,
+        "revenus_fonciers_reels": 3100
+      },
+      "deductions": { "per_declarant1": 2000, "per_declarant2": 0 },
+      "declaration_deposee": { "statut": "a_deposer" }
+    }
+  }
+}

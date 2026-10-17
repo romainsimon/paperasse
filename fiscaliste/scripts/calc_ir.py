@@ -34,8 +34,14 @@ Ne couvre PAS :
     - Régimes spéciaux (revenus exceptionnels, non-résidents, DOM-TOM)
     - IFI (script distinct à créer si besoin)
 
-Les valeurs viennent de data/bareme-ir-2025.json. Pour une autre année,
-exposer --bareme data/bareme-ir-XXXX.json.
+Les valeurs viennent du millésime de l'année de revenus :
+data/revenus-AAAA/bareme-ir.json et data/revenus-AAAA/pfu-prelevements-sociaux.json.
+Sans --annee, l'année courante (fichiers data/*.json à la racine ; le dossier
+de l'année courante en contient des liens). Un foyer.json multi-année (clé "annees") est calculé pour
+--annee, ou pour sa dernière année par défaut. --bareme / --pfu restent
+disponibles pour forcer un fichier précis.
+
+    python fiscaliste/scripts/calc_ir.py --foyer foyer.json --annee 2023
 """
 
 import argparse
@@ -47,6 +53,28 @@ REPO_ROOT = Path(__file__).parent.parent
 DATA_DIR = REPO_ROOT / "data"
 DEFAULT_BAREME = DATA_DIR / "bareme-ir-2025.json"
 DEFAULT_PFU = DATA_DIR / "pfu-prelevements-sociaux.json"
+
+
+def millesime_dir(annee):
+    """Dossier des données d'une année de revenus. Échoue si le millésime n'existe pas :
+    calculer une année avec les règles d'une autre est l'erreur que les millésimes évitent."""
+    path = DATA_DIR / f"revenus-{annee}"
+    if not path.is_dir():
+        disponibles = sorted(p.name.removeprefix("revenus-") for p in DATA_DIR.glob("revenus-*") if p.is_dir())
+        sys.exit(f"Millésime revenus-{annee} absent. Années disponibles : {', '.join(disponibles)}")
+    return path
+
+
+def annee_du_foyer(foyer, annee):
+    """Pour un foyer multi-année, l'année demandée ou la plus récente ; None pour un foyer mono-année."""
+    annees = foyer.get("annees")
+    if not annees:
+        return None
+    if annee is None:
+        return max(int(a) for a in annees)
+    if str(annee) not in annees:
+        sys.exit(f"Le foyer ne contient pas l'année {annee} (années : {', '.join(sorted(annees))})")
+    return annee
 
 
 def load_json(path):
@@ -200,8 +228,10 @@ def ps_capital(base_patrimoine, base_placement, pfu_data):
       encaissements 2025 (18,6 % à partir du 01/01/2026).
     """
     ps = pfu_data["prelevements_sociaux"]
-    taux_patrimoine = ps["taux_revenus_du_patrimoine_2025"]["valeur"]
-    taux_placement = ps["taux_produits_de_placement_2025"]["valeur"]
+    # Les clés portent l'année de revenus du millésime (taux_revenus_du_patrimoine_2025…).
+    annee = pfu_data["_meta"]["revenus"]
+    taux_patrimoine = ps[f"taux_revenus_du_patrimoine_{annee}"]["valeur"]
+    taux_placement = ps[f"taux_produits_de_placement_{annee}"]["valeur"]
     return {
         "patrimoine": {"base": base_patrimoine, "taux": taux_patrimoine,
                        "montant": round(base_patrimoine * taux_patrimoine)},
@@ -251,11 +281,19 @@ def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
     }
 
 
-def from_foyer(foyer, bareme, pfu_data):
-    """Déduit les paramètres à partir d'un foyer.json."""
-    f = foyer["foyer"]
-    r = foyer["revenus"]
-    d = foyer.get("deductions", {})
+def from_foyer(foyer, bareme, pfu_data, annee=None):
+    """Déduit les paramètres à partir d'un foyer.json, mono-année ou multi-année."""
+    if annee is not None:
+        donnees = foyer["annees"][str(annee)]
+        # La situation peut changer d'une année à l'autre (mariage, naissance) : la
+        # section foyer de l'année complète celle du foyer.
+        f = {**foyer.get("foyer", {}), **donnees.get("foyer", {})}
+        r = donnees.get("revenus", {})
+        d = donnees.get("deductions", {})
+    else:
+        f = foyer["foyer"]
+        r = foyer["revenus"]
+        d = foyer.get("deductions", {})
 
     # Parts
     situation = f.get("situation", "celibataire")
@@ -615,7 +653,7 @@ def afficher_reductions_credits(rc):
 
 
 def main():
-    p = argparse.ArgumentParser(description="Calculateur IR déterministe — revenus 2025")
+    p = argparse.ArgumentParser(description="Calculateur IR déterministe, par année de revenus")
     p.add_argument("--rni", type=float, help="Revenu net imposable (après abattements et déductions)")
     p.add_argument("--parts", type=float, help="Nombre de parts fiscales")
     p.add_argument("--parts-base", type=float, help="Parts hors enfants (1 célib, 2 couple)")
@@ -629,22 +667,30 @@ def main():
     p.add_argument("--base-pfu", type=float, default=0,
                    help="Revenus du capital soumis à l'IR forfaitaire du PFU (12,8 %%)")
     p.add_argument("--foyer", type=str, help="Chemin vers un foyer.json")
-    p.add_argument("--bareme", type=str, default=str(DEFAULT_BAREME))
-    p.add_argument("--pfu", type=str, default=str(DEFAULT_PFU))
+    p.add_argument("--annee", type=int, help="Année de revenus (millésime data/revenus-AAAA/)")
+    p.add_argument("--bareme", type=str, help="Fichier barème explicite (prioritaire sur --annee)")
+    p.add_argument("--pfu", type=str, help="Fichier PFU / PS explicite (prioritaire sur --annee)")
     p.add_argument("--json", action="store_true", help="Sortie JSON")
     args = p.parse_args()
 
-    bareme = load_json(args.bareme)
-    pfu_data = load_json(args.pfu) if Path(args.pfu).exists() else None
+    foyer = load_json(args.foyer) if args.foyer else None
+    annee_foyer = annee_du_foyer(foyer, args.annee) if foyer else None
+    annee = args.annee if args.annee is not None else annee_foyer
 
-    if args.foyer:
-        foyer = load_json(args.foyer)
+    dossier = millesime_dir(annee) if annee is not None else None
+    bareme_path = args.bareme or (dossier / "bareme-ir.json" if dossier else DEFAULT_BAREME)
+    pfu_path = args.pfu or (dossier / "pfu-prelevements-sociaux.json" if dossier else DEFAULT_PFU)
+
+    bareme = load_json(bareme_path)
+    pfu_data = load_json(pfu_path) if Path(pfu_path).exists() else None
+
+    if foyer:
         residence = (foyer.get("foyer") or {}).get("residence_fiscale", "FR")
         if residence not in ("FR", "", None) or "non_resident" in foyer:
             sys.exit("Non-résident : calcul non pris en charge par ce script (taux minimum de l'art. 197 A, "
                      "retenue à la source de l'art. 119 bis, 2, prélèvements sociaux propres aux non-résidents). "
                      "Voir references/non-residents.md.")
-        result = from_foyer(foyer, bareme, pfu_data)
+        result = from_foyer(foyer, bareme, pfu_data, annee_foyer)
     else:
         if args.rni is None or args.parts is None:
             p.error("--rni et --parts requis sauf si --foyer est utilisé")

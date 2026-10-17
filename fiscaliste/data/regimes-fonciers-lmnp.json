@@ -25,6 +25,9 @@
 
   "regime_reel_foncier": {
     "description": "Revenus fonciers nets = recettes − charges déductibles",
+    "forfait_frais_gestion": 20,
+    "note_forfait_frais_gestion": "Forfait de 20 € par local pour les frais de gestion non déductibles au réel (déclaration 2044, ligne 222), déductible sans justificatif.",
+    "source_forfait_frais_gestion": "Art. 31 I 1° e CGI ; BOI-RFPI-BASE-20-10 § 210",
     "charges_deductibles": [
       "Intérêts d'emprunt (compensés en priorité par les loyers ; seul leur excédent sur les loyers est cantonné aux revenus fonciers)",
       "Travaux (entretien, réparation, amélioration — pas construction ni agrandissement)",
@@ -35,6 +38,9 @@
     ],
     "deficit_foncier": {
       "imputation_revenu_global": 10700,
+      "report_annees": 10,
+      "note_report_annees": "Le déficit non imputé sur le revenu global (fraction d'intérêts d'emprunt et excédent du plafond) se reporte sur les revenus fonciers des 10 années suivantes.",
+      "source_report_annees": "Art. 156 I 3° CGI",
       "note_travaux_renovation_energetique": "Sur option (2044), la limite de 10 700 € est rehaussée du montant des dépenses de rénovation énergétique qui font passer un logement d'une classe E, F ou G à une classe A à D, dans la limite de 21 400 € : devis accepté à compter du 05/11/2022, dépenses payées jusqu'au 31/12/2027, deux DPE à fournir (LFR 2022-1499 art. 12 ; BOI-RFPI-BASE-30-20 du 16/09/2025 § 210 à 310 ; prorogé par la LF 2026, loi 2026-103 art. 47)",
       "condition_location": "Le bien doit rester loué nu jusqu'au 31 décembre de la troisième année qui suit l'imputation ; à défaut, le déficit imputé sur le revenu global est réintégré (BOI-RFPI-BASE-30-20 § 20 et § 340 à 370)",
       "ordre_imputation": "Les loyers bruts compensent d'abord les intérêts d'emprunt ; seul l'excédent d'intérêts est cantonné aux revenus fonciers (BOI-RFPI-BASE-30-20 § 110)",

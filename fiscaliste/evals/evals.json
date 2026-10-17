@@ -622,7 +622,7 @@
     {
       "id": 24,
       "name": "foyer-declaration-deposee-fait-foi",
-      "prompt": "Mon foyer.json multi-année indique pour 2023 une déclaration déposée avec 4BB = 1 200 € et 4BC = 3 100 €, et un déficit foncier restant de 1 200 € au 31/12/2023. En recalculant 2023 à partir de mes revenus, j'obtiens un déficit imputable sur le revenu global de 3 400 €. Quel déficit dois-je reporter en 2024 ?",
+      "prompt": "Mon foyer.json multi-année indique pour 2023 une déclaration déposée avec 4BC = 3 100 € (déficit imputé sur le revenu global) et 4BB = 1 200 € (déficit reportable sur les revenus fonciers), soit un déficit foncier restant de 1 200 € au 31/12/2023. En recalculant 2023 à partir de mes revenus, j'obtiens 3 400 € imputables sur le revenu global au lieu des 3 100 € déclarés. Quel déficit dois-je reporter en 2024 ?",
       "expected_output": "Pour une année déposée, ce qui a été déclaré fait foi : le report part des 1 200 € restants au 31/12/2023 (4BB), à imputer sur les revenus fonciers 2024 (case 4BD). L'écart entre 3 100 € déclarés et 3 400 € recalculés sur l'imputation au revenu global est une anomalie à examiner (erreur de calcul ou oubli de charge) ; s'il est confirmé, il relève d'une réclamation sur 2023, pas d'un report modifié de sa propre initiative.",
       "files": [],
       "assertions": [

@@ -82,7 +82,9 @@ une section par année de revenus sous `annees`, avec les revenus et, une fois l
 - **Ce qui a été déposé fait foi** pour une année passée. Le recalcul sert à repérer un écart
   (oubli, erreur, réclamation possible), jamais à remplacer silencieusement la déclaration.
 - **Les reports partent de la dernière année déposée** : `reports.deficits_fonciers`,
-  `deficits_lmnp`, `amortissements_differes_lmnp` au 31/12 de cette année.
+  `deficits_lmnp`, `amortissements_differes_lmnp` au 31/12 de cette année. L'année suivante, les
+  déficits fonciers antérieurs s'imputent case **4BD** (2044 / 2042) et les déficits LMNP antérieurs
+  cases **5GA à 5GJ** (2042 C PRO).
 - **Prescription** : une réclamation porte sur les années dont le délai n'est pas expiré
   (en général jusqu'au 31/12 de la 2e année suivant la mise en recouvrement, art. R* 196-1 LPF).
 

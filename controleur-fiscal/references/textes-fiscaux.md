@@ -67,8 +67,9 @@ Pour un exercice de moins de 12 mois :
 
 **Art. 1729 CGI** — Majorations
 > a) Manquement délibéré : majoration de 40%
-> b) Manoeuvres frauduleuses : majoration de 80%
-> c) Abus de droit : majoration de 80%
+> b) Abus de droit (art. L. 64 LPF) : majoration de 80%, ramenée à 40% s'il n'est pas établi que le contribuable a eu l'initiative principale des actes ou en a été le principal bénéficiaire
+> c) Manoeuvres frauduleuses, dissimulation d'une partie du prix ou application de l'art. 792 bis : majoration de 80%
+> (Rédaction en vigueur depuis le 01/01/2009, LEGIARTI000020051904, vérifiée le 19/10/2026.)
 
 **Art. 1758 A CGI** : Insuffisance de déclaration (impôt sur le revenu UNIQUEMENT)
 > 10% en cas d'insuffisance de déclaration de bonne foi, pour les déclarations déposées en vue de l'établissement de l'impôt sur le revenu. Ne s'applique pas à l'IS : pour une société à l'IS, le taux de 10% relève de l'art. 1728, 1-a (dépôt tardif ou défaut de déclaration).

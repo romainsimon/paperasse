@@ -16,16 +16,16 @@
     "note_pea_pme": "PEA-PME plafond séparé (225 000 €) et plafond combiné PEA + PEA-PME à 225 000 €",
 
     "avant_5_ans": {
-      "retrait": "Tout retrait entraîne clôture du plan",
+      "retrait": "Tout retrait avant 5 ans entraîne la clôture du plan, sauf dans les cas ci-dessous (art. L. 221-32 CMF, rédaction issue de la loi PACTE n° 2019-486 du 22/05/2019 ; BOI-ANNX-000072)",
       "imposition_gains": "PFU 30% (ou barème sur option)",
       "exceptions_cloture_sans_penalite": [
-        "Licenciement, invalidité, mise à la retraite",
-        "Création/reprise d'entreprise (réinvestissement dans les 3 mois)"
+        "Licenciement, invalidité ou mise à la retraite anticipée du titulaire ou de son conjoint / partenaire de PACS : retrait sans clôture, versements toujours possibles ; gain imposé (art. 200 A CGI) et PS",
+        "Création ou reprise d'entreprise (sommes affectées dans les 3 mois) : retrait sans clôture, exonéré d'IR (PS dus), mais plus aucun versement possible"
       ]
     },
 
     "apres_5_ans": {
-      "retrait": "Libre sans clôture",
+      "retrait": "Libre, sans clôture du plan ni blocage des versements (loi PACTE n° 2019-486 du 22/05/2019)",
       "imposition_ir": "EXONÉRATION TOTALE d'IR sur les gains",
       "ps_dus": "Prélèvements sociaux 17.2% dus sur les gains à chaque retrait",
       "note_historique_taux_ps": "Les gains acquis avant certaines dates peuvent bénéficier de taux PS historiques plus faibles (taux par couches)"
@@ -61,10 +61,10 @@
         "8_ans_plus": "PFL 7.5% OU barème (après abattement)"
       },
       "versements_apres_27_sept_2017": {
-        "description": "PFU sur les gains, avec modulation selon encours et ancienneté",
+        "description": "PFU sur les gains, modulé selon l'ancienneté du contrat et le montant des primes versées. Le seuil de 150 000 € s'apprécie sur les primes versées et non remboursées au 31/12 de l'année précédant le rachat, tous contrats confondus, par bénéficiaire — pas sur l'encours (BOI-RPPM-RCM-20-15 § 140 à 190)",
         "contrat_moins_8_ans": "PFU 30% (12.8% IR + 17.2% PS)",
-        "contrat_plus_8_ans_encours_moins_150k": "PFU 24.7% (7.5% IR + 17.2% PS) après abattement annuel",
-        "contrat_plus_8_ans_encours_plus_150k": "PFU 30% (12.8% IR + 17.2% PS) pour la fraction au-delà de 150 000 € de versements nets"
+        "contrat_plus_8_ans_encours_moins_150k": "PFU 24.7% (7.5% IR + 17.2% PS) après abattement annuel, si les primes non remboursées n'excèdent pas 150 000 € (seuil ci-dessus)",
+        "contrat_plus_8_ans_encours_plus_150k": "PFU 30% (12.8% IR + 17.2% PS) sur la fraction des produits correspondant aux primes post-27/09/2017 qui excèdent le seuil de 150 000 € de primes non remboursées"
       }
     },
 

@@ -70,7 +70,7 @@
   "pee_perco": {
     "description": "Plans d'Épargne Entreprise et Plans d'Épargne Retraite Collective — enveloppes collectives",
     "pee": {
-      "abondement_employeur": "Exonéré IR et PS dans les plafonds — AVANTAGE MAJEUR vs versement direct",
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans les plafonds, mais soumis à la CSG/CRDS (9,7 %) — art. 81, 18° bis CGI ; service-public F2142. AVANTAGE MAJEUR vs versement direct",
       "plafond_abondement_pee_2020": 3290.88,
       "plafond_base": "8% × PASS 2020 (41 136 €) par bénéficiaire",
       "blocage": "5 ans sauf cas de déblocage anticipé (mariage, naissance 3e enfant, achat RP, divorce avec enfant à charge, fin contrat travail, surendettement, invalidité, décès, violences conjugales)",
@@ -80,7 +80,7 @@
     "perco_pero": {
       "description": "Équivalent PER collectif (PERCO, remplacé pour les nouveaux plans par le PER collectif depuis le 01/10/2019, loi PACTE)",
       "sortie_retraite": "Rente ou capital, même fiscalité que PER individuel",
-      "abondement_employeur": "Exonéré IR et PS dans les plafonds (plafond distinct du PEE)",
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans les plafonds (plafond distinct du PEE), mais soumis à la CSG/CRDS (9,7 %)",
       "plafond_abondement_perco_2020": 6581.76,
       "plafond_base": "16% × PASS 2020 (41 136 €) par bénéficiaire"
     },

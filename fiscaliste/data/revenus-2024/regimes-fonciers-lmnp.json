@@ -9,7 +9,7 @@
     "description": "Régime simplifié pour revenus fonciers non meublés (location nue)",
     "seuil_recettes_brutes": 15000,
     "abattement": 0.3,
-    "note": "Revenus fonciers bruts ≤ 15 000 € → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire. Exclusions : SCI, monument historique, Pinel, Borloo, etc.",
+    "note": "Revenus fonciers bruts ≤ 15 000 € → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire. Exclusions (art. 32, 2 CGI ; BOI-RFPI-DECLA-10) : monuments historiques, immeubles en nue-propriété, déduction au titre de l'amortissement (Périssol, Besson neuf, Robien, Borloo neuf), déductions spécifiques (conventionnement Anah, Borloo ancien, Cosse, Scellier intermédiaire, Scellier ZRR, Robien ZRR), réduction Loc'Avantages (art. 199 tricies, conventions conclues à compter du 01/03/2022), réductions logements touristiques (art. 199 decies EA et F), parts de SCI ou SCPI portant ces dispositifs. Parts de sociétés non soumises à l'IS ou de FPI : exclusion seulement si ce sont les seuls revenus fonciers du foyer. Les réductions Pinel, Duflot, Scellier et Denormandie n'excluent pas le micro-foncier.",
     "deficits_anterieurs": "Aucun déficit créé en micro, mais les déficits fonciers antérieurs encore reportables au 1er janvier de la 1re année micro s'imputent sur le revenu net micro-foncier (droit commun, 10 ans). Case 4BD.",
     "source_deficits_anterieurs": "BOI-RFPI-DECLA-10 § 170 ; brochure IR 2025, rubrique micro-foncier"
   },
@@ -31,7 +31,7 @@
       "report_annees": 10,
       "note_report_annees": "Le déficit non imputé sur le revenu global (fraction d'intérêts d'emprunt et excédent du plafond) se reporte sur les revenus fonciers des 10 années suivantes.",
       "source_report_annees": "Art. 156 I 3° CGI",
-      "note_travaux_renovation_energetique": "Plafond temporairement doublé à 21 400 € pour travaux de rénovation énergétique globale (loi climat)",
+      "note_travaux_renovation_energetique": "Sur option, la limite de 10 700 € est rehaussée du montant des dépenses de rénovation énergétique faisant passer un logement d'une classe E, F ou G à une classe A à D, payées du 01/01/2023 au 31/12/2025 et dont le devis a été accepté à compter du 05/11/2022 (2e LFR 2022, loi n° 2022-1499 du 01/12/2022, art. 12 ; art. 156, I, 3° CGI ; BOI-RFPI-BASE-30-20 § 210 à 310), dans la limite de 21 400 € (ce n'est pas un doublement du plafond).",
       "imputation_revenus_fonciers": "Reportable 10 ans au-delà du plafond annuel",
       "exception_interets": "Les intérêts d'emprunt NE sont JAMAIS imputables sur le revenu global, uniquement sur les revenus fonciers"
     }
@@ -71,7 +71,7 @@
     "description": "Bascule en LMP (Loueur Meublé Professionnel)",
     "seuils_cumulatifs": {
       "seuil_recettes": 23000,
-      "condition_revenus": "ET recettes meublées > 50% des autres revenus professionnels du foyer (salaires, BNC, BIC, revenus dirigeants)",
+      "condition_revenus": "ET recettes meublées > total des autres revenus d'activité du foyer soumis à l'IR : traitements et salaires au sens de l'art. 79 (pensions et rentes viagères comprises), BIC hors location meublée, BA, BNC, rémunérations art. 62 ; revenus nets, hors revenus exonérés et déficits antérieurs (art. 155, IV, 2 CGI ; BOI-BIC-CHAMP-40-10 § 150 à 165)",
       "note": "Les DEUX conditions doivent être remplies. Seuil 23 000 € non renouvelable — application dès dépassement."
     },
     "consequences_lmp": {

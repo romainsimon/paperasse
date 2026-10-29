@@ -746,6 +746,20 @@
       "check_instructions": "Millésime figé. Plancher 4 399 €, plafond 35 194 € (notice 2041 GX revenus 2024 et aide-mémoire brochure IR 2025)."
     },
     {
+      "id": "per-plafonds",
+      "name": "PER — plancher, plafond, mutualisation",
+      "file": "revenus-2025/per-plafonds.json",
+      "annee_revenus": 2025,
+      "source_officielle": "PASS 2024 = 46 368 € (plafond des versements 2025 calculé sur le PASS N-1)",
+      "article_cgi": "art. 163 quatervicies CGI",
+      "bofip": "BOI-IR-BASE-20-50-20",
+      "verification_manuelle": "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2026/pdf_som/12-charges_ded_rev_225a236.pdf",
+      "update_frequency": "fige",
+      "last_fetched": "2026-10-29",
+      "next_check": null,
+      "check_instructions": "Millésime figé (fichier, pas un lien vers la racine). Plancher 4 637 €, plafond 37 094 € (brochure pratique IR 2026, charges déductibles)."
+    },
+    {
       "id": "ifi",
       "name": "IFI — barème et seuils",
       "file": "revenus-2024/ifi-bareme.json",

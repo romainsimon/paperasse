@@ -70,6 +70,8 @@ réclamation, un contrôle sur les années non prescrites ou un report de défic
   AAAA (`bareme-ir.json`, `regimes-fonciers-lmnp.json`, `pfu-prelevements-sociaux.json`…).
   Les fichiers `data/*.json` à la racine sont ceux de l'année courante ; le dossier de
   l'année courante en contient des liens, les années passées des copies figées.
+  Exception : `revenus-2025/per-plafonds.json` est une copie figée (plafonds des versements 2025
+  sur le PASS 2024 : 4 637 / 37 094 €).
 - **Identifier l'année de revenus** avant tout calcul. Revenus AAAA = déclaration AAAA+1.
 - **Valeur signalée `a_verifier`** : la citer avec cette réserve, ne pas la présenter comme certaine.
 - **Seuils micro (foncier, BIC)** : le régime de l'année N s'apprécie en comparant les recettes

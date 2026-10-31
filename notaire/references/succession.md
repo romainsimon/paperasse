@@ -179,6 +179,49 @@ Référence complète pour le droit des successions : dévolution, droits, abatt
 
 **Conversion de l'usufruit en rente viagère** (art. 759-762 C. civ.) : demandée par tout héritier ou le conjoint.
 
+## Plan d'Épargne Retraite (PER) et Succession
+
+**Base légale** : art. 757 B et 990 I CGI ; art. L. 224-1 Code monétaire et financier
+
+Un PER souscrit sous forme assurance est **hors succession** et se transmet par la clause bénéficiaire, comme une assurance-vie. Mais **le régime fiscal n'est pas le même** : le critère est l'âge du titulaire **au décès**, et non son âge au versement des primes.
+
+| Âge du titulaire au décès | Régime | Assiette | Abattement |
+|---------------------------|--------|----------|------------|
+| Avant 70 ans | Prélèvement de l'art. 990 I CGI | Sommes dues au bénéficiaire | 152 500 EUR par bénéficiaire, puis 20% jusqu'à 700 000 EUR de part taxable, puis 31,25% |
+| À partir de 70 ans révolus | Droits de mutation par décès, art. 757 B CGI | **Intégralité des sommes dues par l'assureur, produits compris** | 30 500 EUR global (tous bénéficiaires et tous contrats du même assuré), puis droits de succession selon le lien |
+
+L'art. 757 B CGI vise expressément le plan d'épargne retraite de l'art. L. 224-1 CoMoFi et le sous-compte français du PEPP (art. L. 225-1 CoMoFi), pour le « décès après l'âge de soixante-dix ans du titulaire ».
+
+**Deux différences avec l'assurance-vie — les deux comptent :**
+
+| Critère | Assurance-vie | PER assurance |
+|---------|---------------|---------------|
+| Âge qui déclenche le basculement 990 I → 757 B | Âge de l'assuré **au versement** de chaque prime | Âge du titulaire **au décès** |
+| Régimes applicables à un même contrat | Deux possibles (primes avant et après 70 ans) | Un seul, pour tout le plan |
+| Assiette sous l'art. 757 B | **Seules les primes** versées après 70 ans ; les produits sont exonérés | **Intégralité des sommes dues**, produits compris |
+
+**Sources** : [BOI-ENR-DMTG-10-10-20-20 § 155](https://bofip.impots.gouv.fr/bofip/3456-PGP.html) (le PER entre dans le champ des droits de mutation dès lors que le décès du titulaire survient après 70 ans révolus ; l'âge auquel les primes ont été versées n'est pas pris en compte) et [§ 197](https://bofip.impots.gouv.fr/bofip/3456-PGP.html) (contrairement aux autres contrats, la totalité des sommes dues est comprise dans l'assiette, les primes comme les produits) ; [BOI-TCAS-AUT-60 § 55](https://bofip.impots.gouv.fr/bofip/1335-PGP.html) (les sommes versées au titre d'un PER relèvent du prélèvement de l'art. 990 I lorsque l'art. 757 B ne s'applique pas, soit un décès avant 70 ans — tous les PER sont concernés, individuels comme d'entreprise).
+
+**Rentes viagères exclues du prélèvement de l'art. 990 I**
+
+Le deuxième alinéa du I de l'art. 990 I CGI écarte le prélèvement pour les rentes viagères constituées dans le cadre d'une activité professionnelle, d'un PERP (art. L. 144-2 C. ass.), d'un PER (art. L. 224-28 CoMoFi) ou d'un sous-compte français du PEPP, à **deux conditions cumulatives** :
+
+1. des primes versées régulièrement, dans leur montant et leur périodicité, pendant **au moins quinze ans** ;
+2. une entrée en jouissance **au plus tôt** à la liquidation de la pension du redevable dans un régime obligatoire d'assurance vieillesse, ou à l'âge fixé en application de l'art. L. 351-1 CSS.
+
+Rarement rempli sur un PER individuel alimenté par versements libres : vérifier l'historique des versements avant de conclure à l'exonération (BOI-TCAS-AUT-60 § 55, qui réserve l'exception aux PER dénoués en rente remplissant ces conditions).
+
+**PER compte-titres (PER bancaire)** : pas de clause bénéficiaire. Les sommes sont **intégrées à l'actif successoral** et relèvent des droits de succession de droit commun ; les art. 990 I et 757 B ne valent que pour le PER assurance. Déterminer la forme du plan avant toute analyse.
+
+**À vérifier au dossier :**
+- la **forme du plan** (assurance ou compte-titres) — elle détermine s'il y a actif successoral ou clause bénéficiaire ;
+- l'**âge du titulaire au décès**, seule donnée qui commande le régime : ne pas reconstituer l'historique des versements comme pour une assurance-vie ;
+- le **montant total dû par l'assureur**, produits compris, si le décès est survenu à 70 ans révolus — et non les seules primes ;
+- la **qualité des bénéficiaires** : les exonérations de droits de mutation (conjoint, partenaire de PACS, art. 796-0 bis CGI) jouent dans les deux régimes ;
+- l'**existence de plusieurs contrats** sur la tête du même assuré : l'abattement de 30 500 EUR de l'art. 757 B est global.
+
+**Piège** : un PER ouvert tôt et conservé jusqu'à un décès après 70 ans fait basculer l'intégralité du plan — versements **et** gains accumulés depuis l'ouverture — sous le seul abattement global de 30 500 EUR. Une assurance-vie alimentée avant 70 ans conserve au contraire l'abattement de 152 500 EUR par bénéficiaire, quelle que soit la date du décès. Sur un plan ancien, l'écart d'assiette pèse plus lourd que l'écart de taux.
+
 ## Attestation Immobilière
 
 **Base légale** : Décret n°55-22 du 4 janvier 1955, art. 28-3°

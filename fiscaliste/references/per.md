@@ -174,7 +174,7 @@ Le PER individuel est le plus souvent souscrit sous forme assurance. En cas de d
 - L'art. 757 B CGI vise expressément le plan d'épargne retraite de l'art. L. 224-1 CoMoFi et le sous-compte français du PEPP (art. L. 225-1 CoMoFi), pour le « décès après l'âge de soixante-dix ans du titulaire ».
 - **BOI-ENR-DMTG-10-10-20-20 § 155** : le PER entre dans le champ des droits de mutation dès lors que le décès du titulaire survient après 70 ans révolus ; l'âge auquel les primes ont été versées **n'est pas pris en compte**.
 - **BOI-ENR-DMTG-10-10-20-20 § 197** : contrairement aux autres contrats, la totalité des sommes dues par l'assureur est comprise dans l'assiette — les primes **comme** les produits.
-- **BOI-TCAS-AUT-60 § 55** : les sommes versées au titre d'un PER relèvent du prélèvement de l'art. 990 I lorsque l'art. 757 B ne s'applique pas, soit lorsque l'assuré-souscripteur décède avant 70 ans. Tous les PER sont concernés (individuel, collectif, obligatoire), les PER étant exclus de l'exonération des contrats de groupe.
+- **BOI-TCAS-AUT-60 § 55** : les sommes versées au titre d'un PER relèvent du prélèvement de l'art. 990 I lorsque l'art. 757 B ne s'applique pas, soit lorsque le titulaire décède avant 70 ans. Tous les PER sont concernés (individuel, collectif, obligatoire), les PER étant exclus de l'exonération des contrats de groupe.
 
 #### Ne pas transposer le régime de l'assurance-vie
 
@@ -182,12 +182,12 @@ C'est la confusion la plus coûteuse du sujet : les deux régimes portent les m�
 
 | Critère | Assurance-vie | PER assurance |
 |---|---|---|
-| Âge qui déclenche le basculement 990 I → 757 B | Âge du souscripteur **au versement** de chaque prime | Âge du titulaire **au décès** |
+| Âge qui déclenche le basculement 990 I → 757 B | Âge de l'**assuré** **au versement** de chaque prime — et non du souscripteur, qui peut être une autre personne (§ 140) | Âge du titulaire **au décès** |
 | Nombre de régimes applicables à un même contrat | Deux possibles : primes versées avant 70 ans sous 990 I, primes versées après sous 757 B | Un seul, pour tout le plan |
 | Assiette sous l'art. 757 B | **Seules les primes** versées après 70 ans ; les produits sont exonérés | **Intégralité des sommes dues**, produits compris |
-| Versements effectués après 70 ans, titulaire décédé avant 70 ans | Ces primes relèvent de l'art. 757 B | Sans effet : l'art. 990 I s'applique à tout le plan |
+| Versements effectués après 70 ans, titulaire décédé avant 70 ans | Ces primes relèvent de l'art. 757 B (contrat souscrit à compter du 20/11/1991 ; l'art. 757 B ne s'applique jamais à un contrat antérieur) | Sans effet : l'art. 990 I s'applique à tout le plan |
 
-Sources : art. 757 B CGI ; BOI-ENR-DMTG-10-10-20-20 § 155 et § 197 pour le PER, § 160 à 170 pour l'assiette de droit commun (primes seules, produits exclus).
+Sources : art. 757 B CGI ; BOI-ENR-DMTG-10-10-20-20 § 155 et § 197 pour le PER, § 140 pour l'âge de l'assuré en assurance-vie, § 160 à 170 pour l'assiette de droit commun (primes seules, produits exclus).
 
 **Conséquence pratique** : sur un PER, un décès survenu à 70 ans révolus fait basculer l'intégralité du plan — versements *et* gains accumulés depuis l'ouverture — sous le seul abattement global de 30 500 €, là où une assurance-vie alimentée avant 70 ans conserve l'abattement de 152 500 € par bénéficiaire quelle que soit la date du décès. Sur un plan ancien et chargé en gains, l'écart d'assiette est le facteur dominant, bien avant le taux.
 

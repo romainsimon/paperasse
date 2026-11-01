@@ -93,7 +93,7 @@
       "note": "Rarement rempli sur un PER individuel alimenté par versements libres. BOI-TCAS-AUT-60 § 55 réserve l'exception aux PER individuels dénoués en rente remplissant ces conditions."
     },
     "contraste_assurance_vie": {
-      "age_retenu_av": "Âge du souscripteur au versement de chaque prime",
+      "age_retenu_av": "Âge de l'ASSURÉ au versement de chaque prime, et non du souscripteur, qui peut être une autre personne (BOI-ENR-DMTG-10-10-20-20 § 140)",
       "age_retenu_per": "Âge du titulaire au décès",
       "assiette_757B_av": "Seules les primes versées après 70 ans ; produits exonérés (BOI-ENR-DMTG-10-10-20-20 § 160 à 170)",
       "assiette_757B_per": "Intégralité des sommes dues, produits compris (§ 197)",

@@ -7,28 +7,99 @@
     "pass_2026": 48060,
     "sources": [
       "https://www.urssaf.fr/accueil/actualites/plafond-annuel-securite-sociale.html",
-      "BOI-IR-BASE-20-50-20"
+      "BOI-IR-BASE-20-50-20",
+      "art. 757 B CGI",
+      "art. 990 I CGI",
+      "BOI-TCAS-AUT-60 § 55",
+      "BOI-ENR-DMTG-10-10-20-20 § 155 et § 197"
     ]
   },
 
   "per_individuel": {
-    "description": "Plafond de déduction PER pour les versements 2025 (déclaration 2026)",
-    "calcul": "10% des revenus professionnels nets (salaires après abattement 10%, BNC, BIC) de l'année N-1",
-    "plancher_euros": 4710,
-    "plancher_base": "10% × PASS 2025 (47 100 €) — garanti même sans revenus",
-    "plafond_absolu_euros": 37680,
-    "plafond_absolu_base": "10% × 8 × PASS 2025",
+    "description": "Plafond de déduction PER (art. 163 quatervicies) pour les versements 2025 (déclaration 2026)",
+    "calcul": "max(plancher, 10% × revenus professionnels nets N-1) — salaires après abattement 10%, BNC, BIC, hors revenus du capital",
+    "plancher_formule": "10% × PASS de l'année précédant le versement (BOI-IR-BASE-20-50-20 § 80)",
+    "plancher_euros": 4637,
+    "plafond_absolu_formule": "10% × 8 × PASS de l'année précédant le versement",
+    "plafond_absolu_euros": 37094,
+    "par_annee_de_versement": {
+      "2025": { "pass_reference": 46368, "plancher": 4637, "plafond_absolu": 37094 },
+      "2026": { "pass_reference": 47100, "plancher": 4710, "plafond_absolu": 37680 }
+    },
+    "source_table": "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2026/pdf_integral/Brochure-IR-2026.pdf#page=53",
     "report": {
-      "description": "Plafonds non utilisés des 3 années précédentes mobilisables",
-      "ordre": "Utiliser le plafond N en premier, puis les plafonds N-3, N-2, N-1 (ordre FIFO le plus ancien en premier)"
+      "duree_avant_2026": "3 ans",
+      "duree_depuis_2026": "5 ans (loi de finances 2026 — non rétroactif, plafonds antérieurs à 2026 restent à 3 ans)",
+      "ordre": "N en premier, puis N-3, N-2, N-1 (FIFO — le plus ancien en premier pour éviter expiration)"
     },
     "mutualisation_couple": "Les époux/pacsés soumis à imposition commune peuvent mutualiser leurs plafonds (case à cocher sur 2042)"
+  },
+
+  "epargne_salariale_abondement": {
+    "description": "Plafonds d'abondement employeur PEE et PERECO — calculés sur le PASS de l'année de versement",
+    "pee": {
+      "formule": "8% × PASS de l'année de versement",
+      "plafond_2024": 3709,
+      "plafond_2025": 3768,
+      "plafond_2026": 3845
+    },
+    "pereco": {
+      "formule": "16% × PASS de l'année de versement",
+      "plafond_2024": 7418,
+      "plafond_2025": 7536,
+      "plafond_2026": 7690
+    },
+    "cumul_pee_pereco": {
+      "plafond_2024": 11127,
+      "plafond_2025": 11304,
+      "plafond_2026": 11535,
+      "note": "Plafonds distincts et non fongibles — peuvent être atteints simultanément"
+    },
+    "ratio_max_abondement": 3,
+    "note_ratio": "L'abondement employeur ne peut excéder 3× le versement du bénéficiaire"
   },
 
   "sortie_per": {
     "versements_deduits_entree": "Imposés à la sortie comme revenu (pension ou capital selon choix)",
     "versements_non_deduits": "Sortie partiellement exonérée — seuls les gains sont imposés (PFU)",
     "cas_sortie_anticipee": "Autorisée pour : achat résidence principale, accidents de la vie (décès conjoint, invalidité, surendettement, fin droits chômage, cessation activité non salariée)"
+  },
+
+  "transmission_deces": {
+    "description": "Transmission du PER au décès du titulaire. Le régime dépend de l'âge du titulaire AU DÉCÈS, et non de l'âge au versement des primes comme en assurance-vie.",
+    "base_legale": ["art. 757 B CGI", "art. 990 I CGI", "art. L. 224-1 CoMoFi", "art. L. 225-1 CoMoFi"],
+    "critere_age": "Âge du titulaire au décès — BOI-ENR-DMTG-10-10-20-20 § 155 : l'âge auquel les primes ont été versées n'est pas pris en compte",
+    "deces_avant_70_ans": {
+      "regime": "art. 990 I CGI — prélèvement",
+      "abattement_par_beneficiaire": 152500,
+      "taux": 0.20,
+      "seuil_part_taxable": 700000,
+      "taux_au_dela": 0.3125,
+      "source": "BOI-TCAS-AUT-60 § 55 — les sommes versées au titre d'un PER relèvent du 990 I lorsque le 757 B ne s'applique pas, soit un décès avant 70 ans ; tous les PER sont concernés (individuel, collectif, obligatoire)"
+    },
+    "deces_a_partir_de_70_ans": {
+      "regime": "art. 757 B CGI — droits de mutation par décès selon le lien de parenté",
+      "abattement_global": 30500,
+      "assiette": "Intégralité des sommes dues par l'assureur, produits compris",
+      "source": "BOI-ENR-DMTG-10-10-20-20 § 197 — contrairement aux autres contrats, la totalité des sommes dues est comprise dans l'assiette, les primes comme les produits"
+    },
+    "rentes_viageres_exclues_990I": {
+      "base_legale": "art. 990 I, I, 2e alinéa CGI",
+      "plans_vises": ["activité professionnelle", "PERP (art. L. 144-2 C. ass.)", "PER (art. L. 224-28 CoMoFi)", "sous-compte français du PEPP (art. L. 225-1 CoMoFi)"],
+      "conditions_cumulatives": [
+        "primes versées régulièrement, dans leur montant et leur périodicité, pendant au moins quinze ans",
+        "entrée en jouissance au plus tôt à la liquidation de la pension dans un régime obligatoire d'assurance vieillesse, ou à l'âge fixé en application de l'art. L. 351-1 CSS"
+      ],
+      "note": "Rarement rempli sur un PER individuel alimenté par versements libres. BOI-TCAS-AUT-60 § 55 réserve l'exception aux PER individuels dénoués en rente remplissant ces conditions."
+    },
+    "contraste_assurance_vie": {
+      "age_retenu_av": "Âge de l'ASSURÉ au versement de chaque prime, et non du souscripteur, qui peut être une autre personne (BOI-ENR-DMTG-10-10-20-20 § 140)",
+      "age_retenu_per": "Âge du titulaire au décès",
+      "assiette_757B_av": "Seules les primes versées après 70 ans ; produits exonérés (BOI-ENR-DMTG-10-10-20-20 § 160 à 170)",
+      "assiette_757B_per": "Intégralité des sommes dues, produits compris (§ 197)",
+      "piege": "Ne pas transposer le régime de l'assurance-vie au PER : ni le critère d'âge ni l'assiette ne coïncident."
+    },
+    "per_compte_titres": "Le PER bancaire (compte-titres) est intégré à l'actif successoral et relève des droits de succession de droit commun ; les art. 990 I et 757 B ne valent que pour le PER assurance (service-public F34982)."
   },
 
   "arbitrage_per": {

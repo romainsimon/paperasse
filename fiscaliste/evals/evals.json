@@ -220,11 +220,11 @@
       "id": 16,
       "name": "per-mutualisation-couple",
       "prompt": "Mon conjoint ne travaille pas (parent au foyer), moi je gagne 70 000 € (salaire net imposable). Mon plafond PER est déjà bien utilisé. Peut-il verser sur son PER et déduire quand même ?",
-      "expected_output": "Oui via la mutualisation couple (case à cocher sur 2042). Le conjoint sans revenu pro a un plafond plancher de 4 710 € (10 % × PASS). Mutualisation = les plafonds des deux conjoints sont additionnés. Économie selon TMI : 4 710 × 30 % = 1 413 €. Le versement peut être fait sur le PER du conjoint sans revenu pro et déduit du revenu imposable commun.",
+      "expected_output": "Oui via la mutualisation couple (case à cocher sur 2042). Le conjoint sans revenu pro a un plafond plancher de 4 637 € pour les versements 2025 (10 % × PASS 2024, PASS de l'année précédant le versement). Mutualisation = les plafonds des deux conjoints sont additionnés. Économie selon TMI : 4 637 × 30 % = 1 391 €. Le versement peut être fait sur le PER du conjoint sans revenu pro et déduit du revenu imposable commun.",
       "files": [],
       "assertions": [
         "Le skill identifie la possibilité de mutualisation couple",
-        "Le plafond plancher 4 710 € est cité",
+        "Le plafond plancher 4 637 € (versements 2025, PASS 2024) est cité",
         "Le skill précise qu'il faut COCHER la case de mutualisation sur 2042",
         "L'économie d'impôt est chiffrée en appliquant le TMI du foyer",
         "Le skill recommande de vérifier l'avis d'imposition N-1 pour le plafond officiel DGFIP"
@@ -287,6 +287,73 @@
         "Le skill indique la case 1AP/1BP (et non 1AJ) pour déclarer l'ARE",
         "Le skill précise que la distinction 1AP vs 1AJ porte sur la nature du revenu (remplacement vs activité), pas sur l'abattement",
         "L'abattement suit le régime des salaires (plancher commun 509 € / plafond commun 14 555 € sur le total salaires + ARE)"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "tns-dirigeant-seul-pee-refuse",
+      "prompt": "Je suis gérant associé unique de mon EURL à l'IS, sans aucun salarié. Je veux mettre en place un PEE et un PERECO dans ma société pour me faire abonder au maximum. Combien puis-je me verser d'abondement exonéré en 2026 ?",
+      "expected_output": "Impossible : le PEE et le PERECO ne sont ouverts au chef d'entreprise ou au mandataire social que si l'entreprise emploie au moins un salarié en plus du dirigeant et moins de 250 salariés (art. L. 3332-2 C. trav. ; service-public F2142). Un dirigeant seul ne peut pas non plus conclure d'accord d'intéressement (art. L. 3312-3). Aucun abondement exonéré n'est donc possible. Alternatives : déduction des cotisations PER au titre de l'art. 154 bis CGI (10 % du bénéfice dans la limite de 8 PASS + 15 % de la fraction entre 1 et 8 PASS, plancher 10 % du PASS) puis PER individuel (163 quatervicies). Si un salarié réel est embauché (le conjoint compte), le plan devient possible, ouvert à tous les salariés avec le même abondement.",
+      "files": [],
+      "assertions": [
+        "Le skill refuse le PEE et le PERECO pour un dirigeant sans aucun salarié",
+        "Le skill cite la condition d'au moins un salarié en plus du dirigeant (art. L. 3332-2 du Code du travail ou fiche service-public F2142)",
+        "Le skill NE propose PAS de montant d'abondement exonéré (3 845 € / 7 690 €) pour ce cas",
+        "Le skill NE prétend PAS que la loi Pacte a supprimé la condition de salarié",
+        "Le skill mentionne aussi l'impossibilité d'un accord d'intéressement pour un dirigeant seul salarié",
+        "Le skill oriente vers le PER (art. 154 bis pour le TNS, puis 163 quatervicies)",
+        "Le skill précise qu'avec un salarié réel le plan doit être ouvert à tous les salariés, avec le même abondement"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "tns-sarl-avec-conjoint-salarie-pee",
+      "prompt": "Je suis gérant majoritaire d'une SARL à l'IS qui emploie ma femme comme salariée. Puis-je bénéficier d'un PEE avec abondement, et à quelles conditions ?",
+      "expected_output": "Oui : l'entreprise emploie au moins un salarié en plus du dirigeant et moins de 250, le gérant peut donc adhérer au PEE (art. L. 3332-2). Le plan doit être ouvert à tous les salariés ; l'abondement suit les mêmes règles pour tous, dans la limite de 3 fois le versement et 8 % du PASS (3 845 € en 2026). L'abondement est déductible du résultat, exonéré d'IR et de cotisations, mais soumis à la CSG/CRDS (9,7 %) ; forfait social nul sous 50 salariés. Les versements du gérant sont plafonnés au quart du revenu professionnel imposé l'année précédente. L'emploi de la conjointe doit être réel.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme l'éligibilité grâce à la présence d'un salarié en plus du dirigeant",
+        "Le skill rappelle que le plan doit être ouvert à tous les salariés avec les mêmes règles d'abondement",
+        "Le plafond d'abondement PEE 2026 est correct (8 % × 48 060 € ≈ 3 845 €) avec la limite de 3 fois le versement",
+        "Le skill mentionne la CSG/CRDS due sur l'abondement (pas d'exonération totale des prélèvements sociaux)",
+        "Le skill rappelle que l'emploi du conjoint doit être réel"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "per-deces-age-au-versement-mauvaise-premisse",
+      "prompt": "Mon père a 72 ans et détient un PER assurance ouvert à 55 ans, sur lequel il n'a plus rien versé depuis ses 68 ans. C'est comme l'assurance-vie : comme toutes les primes ont été versées avant 70 ans, mes frères et moi aurons chacun l'abattement de 152 500 € et seuls les versements seront taxés, pas les gains. Confirmez-vous ?",
+      "expected_output": "Non, la prémisse est fausse sur les deux points. Sur un PER, c'est l'âge du titulaire AU DÉCÈS qui détermine le régime, pas l'âge au versement des primes : l'art. 757 B CGI vise le décès après 70 ans du titulaire d'un plan de l'art. L. 224-1 CoMoFi, et le BOI-ENR-DMTG-10-10-20-20 § 155 précise que l'âge auquel les primes ont été versées n'est pas pris en compte. Un décès à 72 ans relève donc de l'art. 757 B : abattement global de 30 500 € pour l'ensemble des bénéficiaires, puis droits de succession selon le lien de parenté — et non 152 500 € par bénéficiaire. Second point : l'assiette porte sur l'intégralité des sommes dues par l'assureur, produits compris (§ 197), et non sur les seules primes comme pour une assurance-vie ordinaire (§ 160 à 170). Les gains accumulés depuis l'ouverture à 55 ans sont donc taxables. L'arrêt des versements à 68 ans ne change rien.",
+      "files": [
+        "fiscaliste/references/per.md",
+        "fiscaliste/data/per-plafonds.json"
+      ],
+      "assertions": [
+        "Le skill corrige la prémisse : sur un PER, le critère est l'âge du titulaire au décès, pas l'âge au versement des primes",
+        "Le skill applique l'art. 757 B CGI (décès à 72 ans) et l'abattement global de 30 500 €",
+        "Le skill n'annonce PAS l'abattement de 152 500 € par bénéficiaire de l'art. 990 I",
+        "Le skill n'indique PAS que les primes versées avant 70 ans échappent à la taxation",
+        "Le skill précise que l'assiette comprend l'intégralité des sommes dues, produits compris, et n'exonère PAS les gains",
+        "Le skill cite l'art. 757 B CGI et le BOI-ENR-DMTG-10-10-20-20 (§ 155 pour l'âge, § 197 pour l'assiette)",
+        "Le skill n'indique PAS que l'arrêt des versements à 68 ans modifie le régime applicable"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "per-deces-avant-70-ans-et-rente-exclue-990i",
+      "prompt": "Titulaire d'un PER assurance décédé à 64 ans, capital de 400 000 € réparti entre deux bénéficiaires désignés. Quel régime ? Et si le plan avait été dénoué en rente viagère, l'exonération du 990 I serait-elle automatique ?",
+      "expected_output": "Décès avant 70 ans : le prélèvement de l'art. 990 I CGI s'applique (BOI-TCAS-AUT-60 § 55 — les sommes versées au titre d'un PER relèvent du 990 I lorsque l'art. 757 B ne s'applique pas). Chaque bénéficiaire dispose de l'abattement de 152 500 €, soit 200 000 € − 152 500 € = 47 500 € de part taxable chacun, taxée à 20 % (le seuil de 700 000 € de part taxable n'est pas atteint), soit 9 500 € par bénéficiaire. L'exonération des rentes viagères n'est pas automatique : le deuxième alinéa du I de l'art. 990 I la réserve aux rentes issues notamment d'un PER (art. L. 224-28 CoMoFi) sous deux conditions cumulatives — des primes versées régulièrement, dans leur montant et leur périodicité, pendant au moins quinze ans, et une entrée en jouissance au plus tôt à la liquidation de la pension dans un régime obligatoire d'assurance vieillesse ou à l'âge de l'art. L. 351-1 CSS. Il faut donc vérifier l'historique des versements avant de conclure.",
+      "files": [
+        "fiscaliste/references/per.md",
+        "fiscaliste/data/per-plafonds.json"
+      ],
+      "assertions": [
+        "Le skill applique l'art. 990 I CGI pour un décès avant 70 ans",
+        "L'abattement de 152 500 € est appliqué par bénéficiaire et le calcul donne 47 500 € de part taxable et 9 500 € de prélèvement par bénéficiaire",
+        "Le skill applique le taux de 20 % et n'applique PAS le taux de 31,25 % (seuil de 700 000 € de part taxable non atteint)",
+        "Le skill n'annonce PAS une exonération automatique des rentes viagères au titre du 990 I",
+        "Le skill énonce les deux conditions cumulatives de l'exclusion des rentes (quinze ans de versements réguliers en montant et périodicité, entrée en jouissance au plus tôt à la liquidation de la retraite)",
+        "Le skill n'applique PAS l'abattement global de 30 500 € de l'art. 757 B"
       ]
     }
   ]

@@ -16,7 +16,7 @@ Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
 
 ### PER (Plan d'Épargne Retraite)
 
-- Déduction dans la limite du plafond (10% revenus pro, plancher 4 710 €, plafond 37 680 €)
+- Déduction dans la limite du plafond (10% revenus pro N-1, plancher 4 637 €, plafond 37 094 € pour les versements 2025 — PASS 2024)
 - Économie immédiate = versement × TMI
 - Mutualisation couple, report plafonds non utilisés sur 3 ans → détails listés dans SKILL.md sous "Rappels PER"
 

@@ -160,7 +160,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 
 **Ordre de priorité** :
 
-1. **Saturer l'abondement employeur PEE / PERCO** en priorité absolue (l'abondement est un match gratuit, rendement immédiat 50 % à 300 %).
+1. **Examiner d'abord l'abondement employeur PEE / PERECO** s'il existe (l'employeur ajoute 50 % à 300 % du versement, sous réserve du blocage et des frais).
 2. **Ensuite** envisager un versement PER individuel si :
    - TMI actuel ≥ 30 % (économie immédiate significative)
    - TMI estimé à la retraite < TMI actuel (gain net en report d'imposition)
@@ -168,7 +168,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 
 **Calcul du plafond mobilisable** :
 
-- Plafond N = 10 % des revenus pro N-1 (salaires après abattement 10 %), dans les bornes 4 710 € et 37 680 € (revenus 2025).
+- Plafond N = 10 % des revenus pro N-1 (salaires après abattement 10 %), dans les bornes 4 637 € et 37 094 € pour les versements 2025 (PASS 2024) ; 4 710 € et 37 680 € pour les versements 2026.
 - + plafonds non utilisés N-3, N-2, N-1 (report 3 ans, ordre FIFO).
 - + plafond du conjoint si mutualisation cochée (imposition commune).
 

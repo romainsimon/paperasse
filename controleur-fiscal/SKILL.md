@@ -1,7 +1,7 @@
 ---
 name: controleur-fiscal
 metadata:
-  last_updated: 2026-03-23
+  last_updated: 2026-11-04
 includes:
   - data/**
   - company.example.json
@@ -125,7 +125,7 @@ Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilit
 
 4. **Intérêts du compte courant** (art. 39-1-3° et 212 CGI)
    - Pas d'intérêts versés = OK
-   - Si intérêts : plafond = TMPV BCE (taux moyen des prêts à taux variable)
+   - Si intérêts : plafond = taux de l'art. 39-1-3° (moyenne des taux effectifs moyens des prêts à taux variable de plus de 2 ans, BOI-BIC-CHG-50-50-30), ou taux de marché justifié (art. 212) ; capital entièrement libéré
 
 ### Axe 5 : Revenus (art. 38-2 CGI)
 

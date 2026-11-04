@@ -33,15 +33,18 @@
 - Mention obligatoire sur factures: "TVA non applicable, art. 293 B du CGI"
 
 **Dépassement du seuil:**
-- TVA applicable dès le 1er jour du mois de dépassement
-- Devenir redevable immédiatement
+- Dépassement du seuil de base (85 000 € / 37 500 €) sans dépasser le seuil majoré : franchise maintenue jusqu'au 31 décembre, TVA due à compter du 1er janvier suivant
+- Dépassement du seuil majoré (93 500 € / 41 250 €) : TVA applicable dès le jour du dépassement (et non plus au 1er jour du mois de dépassement, règle en vigueur depuis le 1er janvier 2025)
 - Demander un numéro de TVA intracommunautaire
+- Source : https://entreprendre.service-public.gouv.fr/vosdroits/F21746 (vérifié le 01/01/2026)
 
 ### 2. Régime Réel Simplifié
 
 **Seuils (2026):**
-- Services: 37 500 € à 254 000 €
-- Ventes: 85 000 € à 840 000 €
+- Services (dont location meublée): 37 500 € à 286 000 € (seuil majoré en cours d'année : 323 000 €)
+- Ventes, restauration, fourniture de logement: 85 000 € à 945 000 € (seuil majoré en cours d'année : 1 040 000 €)
+- Et TVA due au titre de N-1 inférieure à 15 000 €
+- Source : https://entreprendre.service-public.gouv.fr/vosdroits/F23575 (vérifié le 17/02/2026)
 
 **Obligations:**
 - Déclaration annuelle CA12 (avant le 2ème jour ouvré suivant le 1er mai)
@@ -66,8 +69,9 @@ Régularisation annuelle (TVA à payer):
 ### 3. Régime Réel Normal
 
 **Seuils:**
-- Services: > 254 000 €
-- Ventes: > 840 000 €
+- Services: > 286 000 € (ou > 323 000 € en cours d'année, bascule rétroactive au 1er janvier)
+- Ventes: > 945 000 € (ou > 1 040 000 € en cours d'année, bascule rétroactive au 1er janvier)
+- Ou TVA due N-1 ≥ 15 000 €
 - Ou sur option
 
 **Obligations:**

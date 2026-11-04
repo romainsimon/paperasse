@@ -284,10 +284,10 @@ Terminer par un tableau récapitulatif :
 
 ### Pénalités potentielles
 - Intérêts de retard : 0,2%/mois (art. 1727 CGI)
-- Insuffisance déclarative : 10% (art. 1758 A CGI)
+- Dépôt tardif ou défaut de déclaration : 10% (art. 1728, 1-a CGI ; le 10% de l'art. 1758 A ne vise que l'impôt sur le revenu)
 - Manquement délibéré : 40% (art. 1729 a CGI)
-- Manoeuvres frauduleuses : 80% (art. 1729 b CGI)
-- Abus de droit : 80% (art. 1729 b CGI)
+- Abus de droit : 80% (art. 1729 b CGI), ramenée à 40% s'il n'est pas établi que le contribuable a eu l'initiative principale des actes ou en a été le principal bénéficiaire
+- Manoeuvres frauduleuses : 80% (art. 1729 c CGI)
 
 ### Opinion du vérificateur
 [Conclusion : comptabilité probante ou non, régularité, sincérité]

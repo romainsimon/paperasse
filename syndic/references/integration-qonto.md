@@ -41,7 +41,7 @@ Les transactions sont catégorisées selon le plan comptable des copropriétés 
 
 | Fournisseur type | Compte PCG copro |
 |------------------|-----------------|
-| Nettoyage (Mellano, etc.) | 612 |
+| Nettoyage (prestataire de nettoyage) | 612 |
 | Espaces verts | 613 |
 | Assurance immeuble | 611 |
 | Chauffage (Engie, etc.) | 616/617 |

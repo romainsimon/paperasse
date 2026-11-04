@@ -145,7 +145,7 @@ Mutation — Lot {{n}} — Vendeur → Acquéreur
 - [ ] Pré-état daté transmis (gratuit, avant compromis)
 - [ ] Documents joints (fiche synthétique, PV AG, règlement)
 - [ ] État daté transmis au notaire (max 380 EUR TTC)
-- [ ] Compte vendeur vérifié (impayés → opposition art. 20 sous 15 jours)
+- [ ] Compte vendeur vérifié (impayés → opposition art. 20 par acte de commissaire de justice, dans les 15 jours de la réception de l'avis de mutation)
 - [ ] Registre copropriétaires mis à jour
 - [ ] Acquéreur informé (modalités, prochain appel)
 ```

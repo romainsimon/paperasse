@@ -240,7 +240,7 @@ Sommes mises à disposition de la société par les associés:
 - Déductibles dans la limite d'un taux égal à la **moyenne annuelle des taux effectifs moyens pratiqués par les établissements de crédit pour des prêts à taux variable aux entreprises d'une durée initiale supérieure à deux ans**. Ce taux est publié par trimestre et dépend de la date de clôture de l'exercice : par exemple **4,33 %** pour un exercice de 12 mois clos entre le 30/06/2026 et le 29/09/2026 (BOI-BIC-CHG-50-50-30, version du 05/08/2026)
 - Condition préalable : le capital social doit être entièrement libéré
 - Excédent = réintégration fiscale (et, pour l'associé, revenu distribué)
-- Entre sociétés liées, un taux supérieur est admis si la société prouve qu'il correspond aux conditions du marché (art. 212 CGI)
+- Un taux supérieur est admis si la société prouve qu'elle aurait pu obtenir ce taux d'établissements financiers indépendants (art. 212 CGI) : entre entreprises liées, et, pour les exercices clos à compter du 31/12/2025, pour les intérêts versés à des entreprises associées non liées, y compris des associés personnes physiques ayant le statut d'entreprise (loi n° 2026-103, art. 14 ; BOI-IS-BASE-35-20 du 15/07/2026). Les associés simples apporteurs de capitaux restent au taux de référence.
 
 **Convention de compte courant:** Recommandée (taux, remboursement, garanties).
 

@@ -174,5 +174,5 @@ Le notaire est responsable du calcul, du prélèvement et du versement à la rec
 ### Non-résidents
 
 - Prélèvement de 19% IR (ou taux conventionnel)
-- Représentant fiscal obligatoire si PV > 150 000 EUR et résidence hors UE/EEE
+- Représentant fiscal accrédité obligatoire si le prix de cession dépasse 150 000 EUR et que le cédant réside hors UE/EEE (dispense automatique si le prix est inférieur ou égal à 150 000 EUR : BOI-RFPI-PVINR-30-20 § 180)
 - Prélèvements sociaux : 7,5% (au lieu de 17,2%) pour les affiliés à un régime de sécurité sociale UE/EEE/Suisse

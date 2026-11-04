@@ -30,8 +30,8 @@ Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
 ### CSG déductible
 
 - 6,8% de la CSG prélevée sur les revenus du capital
-- **Uniquement si option barème progressif** sur les revenus du capital N-1
-- Imputée sur le RNI de N+1
+- **Uniquement si option barème progressif** sur les revenus du capital
+- Déduite du revenu global de l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts : ligne 2BH, calcul automatique) ; de l'année suivante (ligne 6DE préremplie) pour les PS établis par voie de rôle (plus-values, revenus d'un courtier étranger sans 2778)
 - **Zéro sous PFU**
 
 ### Autres déductions notables

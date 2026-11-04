@@ -102,7 +102,7 @@ Option pour être au réel normal pour la TVA tout en restant au réel simplifi�
 ```
 Achat intracommunautaire 1000€:
   Débit 604/607 Achats             1 000,00
-  Débit 4452 TVA due intracom        200,00
+  Débit 445662 TVA déductible intracom 200,00
   Crédit 401 Fournisseur           1 000,00
   Crédit 4452 TVA due intracom       200,00
 ```
@@ -134,7 +134,7 @@ Note: La TVA due et la TVA déductible s'annulent si droit à déduction total.
 ```
 Prestation service intra-UE 500€:
   Débit 604 Achats prestations       500,00
-  Débit 4452 TVA due intracom        100,00
+  Débit 445662 TVA déductible intracom 100,00
   Crédit 401 Fournisseur             500,00
   Crédit 4452 TVA due intracom       100,00
 ```

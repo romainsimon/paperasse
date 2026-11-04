@@ -33,13 +33,13 @@
       "name": "PER — plancher, plafond, mutualisation",
       "file": "per-plafonds.json",
       "annee_revenus": 2025,
-      "source_officielle": "PASS 2025 = 47 100 € (décret)",
+      "source_officielle": "art. 163 quatervicies CGI ; brochure IR 2026 (charges déductibles : versements 2025 bornés par le PASS 2024 = 46 368 €, versements 2026 par le PASS 2025 = 47 100 €) ; LFI 2026 art. 9 et 10 (report à 5 ans, 70 ans)",
       "article_cgi": "art. 163 quatervicies CGI",
       "bofip": "BOI-IR-BASE-20-50-20",
       "update_frequency": "annual",
       "last_fetched": "2026-04-12",
       "next_check": "2027-01-15",
-      "check_instructions": "Recalculer plancher (10% × PASS) et plafond (10% × 8 × PASS) après publication du PASS de l'année N."
+      "check_instructions": "Recalculer plancher (10 % × PASS N-1) et plafond (10 % × 8 × PASS N-1) : les versements de l'année N sont bornés par le PASS de N-1, pas de N."
     },
     {
       "id": "ifi",
@@ -59,11 +59,11 @@
       "name": "Equity salarial — RSU, BSPCE, stock-options",
       "file": "equity-salarial.json",
       "annee_revenus": 2025,
-      "source_officielle": "Plusieurs lois : loi Macron 2015 (RSU plans qualifiants), LFI 2018 (BSPCE)",
+      "source_officielle": "Plusieurs lois : loi Macron 2015 et LF 2018 art. 28 (actions gratuites qualifiantes : seuil 300 000 €, abattement 50 %), LFI 2018 (BSPCE)",
       "article_cgi": "art. 80 quaterdecies (RSU), art. 80 bis (SO), art. 163 bis G (BSPCE)",
-      "bofip": "BOI-RSA-ES",
+      "bofip": "BOI-RSA-ES-20-20-20 (version du 21/05/2026), BOI-RSA-ES-20-30 (21/05/2026), BOI-RSA-ES-20-40-30 (12/08/2025, BSPCE) ; cases : formulaire 2042 C millésime 2026",
       "update_frequency": "annual",
-      "last_fetched": "2026-04-12",
+      "last_fetched": "2026-10-17",
       "next_check": "2026-12-30",
       "check_instructions": "Vérifier plafonds plans qualifiants et taux BSPCE selon ancienneté."
     },
@@ -111,26 +111,29 @@
       "name": "PEA et assurance-vie",
       "file": "pea-assurance-vie.json",
       "annee_revenus": 2025,
-      "source_officielle": "PACTE 2019 (PEA), art. 125-0 A CGI (AV)",
-      "article_cgi": "art. 157-5° bis (PEA), art. 125-0 A, 200 A (AV)",
-      "bofip": "BOI-RPPM-RCM-40-50 (PEA), BOI-RPPM-RCM-20-10-20-50 (AV)",
+      "source_officielle": "PACTE 2019 (PEA), art. 125-0 A CGI (AV rachats), art. 990 I et 757 B CGI (AV décès), art. L. 136-7 et L. 136-8 CSS (PS)",
+      "article_cgi": "art. 157-5° bis (PEA), art. 125-0 A, 200 A (AV rachats), art. 990 I, 757 B (AV décès)",
+      "bofip": "BOI-RPPM-RCM-40-50 (PEA), BOI-RPPM-RCM-20-10-20-50 (AV rachats), BOI-TCAS-AUT-60 (prélèvement 990 I), BOI-ENR-DMTG-10-10-20-20 (art. 757 B)",
+      "jurisprudence": "CE 18/02/2026 n° 504077 (PS sur gains UC au dénouement par décès, inédit au Lebon)",
       "update_frequency": "rare",
       "last_fetched": "2026-04-12",
+      "section_deces_last_fetched": "2026-10-31",
+      "check_instructions_deces": "Abattement 152 500 €/bénéficiaire et taux 20 % / 31,25 % (990 I), abattement global 30 500 € (757 B), matrice 20/11/1991 et 13/10/1998 (BOI-TCAS-AUT-60 § 70 à 90), exonération des bénéficiaires de l'art. 796-0 bis (§ 120). Vérifier que les produits du 3° du II de l'art. L. 136-7 CSS restent visés par la dérogation à 9,2 % du IV de l'art. L. 136-8 CSS — c'est ce qui maintient les PS de l'AV à 17,2 % malgré la LFSS 2026.",
       "next_check": "2027-01-15",
-      "check_instructions": "Plafonds PEA 150 k€ / PEA-PME 225 k€. Abattements AV 4 600 € / 9 200 €. Seuil 150 k€ AV."
+      "check_instructions": "Plafonds PEA 150 k€ / PEA-PME 225 k€ (commun). Abattements AV 4 600 € / 9 200 €. Seuil AV de 150 k€ de primes : personnel, au 31/12 N-1 (BOI-RPPM-RCM-20-15). Cases 2042 (2VV, 2WW, 3VT) à relire chaque millésime."
     },
     {
       "id": "niches",
       "name": "Niches fiscales (réductions, crédits, plafond global)",
       "file": "niches-fiscales.json",
       "annee_revenus": 2025,
-      "source_officielle": "LFI annuelle",
-      "article_cgi": "art. 200-0 A (plafond global), 200 (dons), 199 sexdecies (emploi dom), 200 quater B (garde)",
+      "source_officielle": "LFI annuelle ; LFI 2026 (loi n° 2026-103 du 19/02/2026, art. 28) pour la limite de 2 000 € des dons à 75 % ; brochure pratique IR 2026 (p. 237-263, 319-320, fiche de calculs p. 382) pour parametres_calcul_rici",
+      "article_cgi": "art. 197 I-5 (ordre d'imputation), 200-0 A (plafond global), 200 (dons), 199 sexdecies (emploi dom), 200 quater B (garde), 199 novovicies (Pinel), 199 quater F (scolarité), 1665 bis (avance de janvier)",
       "bofip": "BOI-IR-RICI",
       "update_frequency": "annual",
-      "last_fetched": "2026-04-12",
+      "last_fetched": "2026-10-29",
       "next_check": "2026-12-30",
-      "check_instructions": "Vérifier plafond global 10 000 € / 18 000 € outre-mer, taux dons 66% / 75% (1 000 € Coluche), plafonds emploi à domicile et garde."
+      "check_instructions": "Vérifier plafond global 10 000 € / 18 000 € outre-mer, taux dons 66% / 75% (1 000 € puis 2 000 € depuis le 14/10/2025), plafonds emploi à domicile et garde."
     },
     {
       "id": "remuneration-art62",

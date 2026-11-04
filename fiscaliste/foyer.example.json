@@ -25,6 +25,9 @@
 
     "pensions_declarant1": 0,
     "pensions_declarant2": 0,
+    "pensions_capital_per_declarant1": 0,
+    "pensions_capital_per_declarant2": 0,
+    "_commentaire_pensions_capital_per": "Cases 1AI/1BI : sortie en CAPITAL d'un PER (PERIN, PERO, PERECO), pour la part correspondant aux versements DEDUITS a l'entree. Imposable au bareme SANS abattement 10 %, contrairement aux pensions 1AS/1BS. Ne pas melanger avec pensions_declarant*.",
 
     "bnc_regime_normal": 0,
     "_commentaire_bnc": "Case 5QC — BNC professionnels régime normal",
@@ -45,7 +48,8 @@
 
     "crypto_plus_values": 0,
     "revenus_chomage": 0,
-    "_commentaire_chomage": "Case 1AP (pas 1AJ) — saisir le NET IMPOSABLE; l'abattement 10% s'applique comme pour les salaires (BOI-RSA-BASE-30-50-20)"
+    "revenus_chomage_declarant2": 0,
+    "_commentaire_chomage": "Case 1AP / 1BP (pas 1AJ) — saisir le NET IMPOSABLE; l'abattement 10% s'applique comme pour les salaires (BOI-RSA-BASE-30-50-20), avec plancher et plafond par déclarant (CGI art. 83, 3°). revenus_chomage = déclarant 1"
   },
 
   "deductions": {
@@ -78,10 +82,58 @@
   },
 
   "niches_fiscales": {
+    "_commentaire": "Bloc historique, non lu par scripts/calc_ir.py. Pour le calcul, remplir reductions_credits ci-dessous.",
     "dons_associations": 0,
     "pinel_reduction": 0,
     "fcpi_fip_versements": 0,
     "emploi_a_domicile": 0,
     "garde_enfant_exterieur": 0
+  },
+
+  "reductions_credits": {
+    "_commentaire": "Optionnel. Présent, ce bloc fait calculer par scripts/calc_ir.py les réductions et crédits, le plafonnement global des niches et l'impôt net. Montants versés, avant plafonds : le script applique les limites (data/niches-fiscales.json → parametres_calcul_rici).",
+    "dons_interet_general": 0,
+    "_commentaire_dons": "7UF : 66 % dans la limite de 20 % du revenu imposable. 7UD (01/01-13/10/2025) et 7UQ (14/10-31/12/2025) : 75 % jusqu'à 1 000 € puis 2 000 €, l'excédent passe à 66 %. dons_reports_anterieurs = total des excédents des 5 années précédentes (7XS à 7XY)",
+    "dons_aide_personnes_avant_14_10": 0,
+    "dons_aide_personnes_depuis_14_10": 0,
+    "dons_reports_anterieurs": 0,
+
+    "pinel_reductions_annuelles": 0,
+    "_commentaire_pinel": "Fraction de l'année déjà connue (avis précédent, ligne « Invest. Pinel »). Ou détailler pinel_investissements pour la calculer : periode = initiale / prorogation_1 / prorogation_2 (cette dernière pour un engagement de 6 ans seulement) ; taux_maintenu = Pinel+ ou QPV acquis en 2023-2024 ; outre_mer = plafond global de 18 000 €",
+    "pinel_investissements": [],
+    "_exemple_pinel_investissement": { "prix_revient": 250000, "surface_m2": 55, "annee_investissement": 2021, "engagement_ans": 9, "periode": "initiale", "taux_maintenu": false, "outre_mer": false },
+
+    "scolarite": { "college": 0, "lycee": 0, "superieur": 0, "college_alternee": 0, "lycee_alternee": 0, "superieur_alternee": 0 },
+
+    "emploi_domicile": {
+      "depenses": 0,
+      "aides": 0,
+      "personnes_plus_65_ans": 0,
+      "premiere_annee_emploi_direct": false,
+      "invalidite": false,
+      "avance_immediate_percue": 0
+    },
+    "_commentaire_emploi": "7DB dépenses, 7DR aides, 7DQ première année d'emploi direct, 7DG invalidité, 7HB avance immédiate (ajoutée au solde). Majoration de 1 500 € par enfant à charge calculée depuis foyer.nb_enfants_charge / nb_enfants_alternee",
+
+    "garde_enfants": [],
+    "_exemple_garde_enfant": { "depenses": 4000, "aides": 600, "alternee": false },
+    "_commentaire_garde": "Un objet par enfant de moins de 6 ans au 01/01 (nés après le 31/12/2018 pour 2025) ; aides = CMG, aide employeur/CSE",
+
+    "autres_reductions_dans_plafond": 0,
+    "autres_reductions_plafond_18000": 0,
+    "autres_reductions_hors_plafond": 0,
+    "autres_credits_dans_plafond": 0,
+    "autres_credits_hors_plafond": 0,
+    "_commentaire_autres": "Montants de réduction ou de crédit déjà calculés pour les dispositifs non modélisés (FCPI, SOFICA, Girardin, Denormandie, cotisations syndicales…), rangés selon le plafonnement global (art. 200-0 A)",
+    "prelevement_forfaitaire_deja_verse": 0,
+    "_commentaire_2ck": "2CK : prélèvement forfaitaire non libératoire de 12,8 % déjà retenu par la banque, imputé comme un crédit"
+  },
+
+  "prelevement_a_la_source": {
+    "retenue_a_la_source": 0,
+    "acomptes_ir": 0,
+    "acomptes_ps": 0,
+    "avance_rici_percue": 0,
+    "_commentaire": "Montants de l'année des revenus (récapitulatif « Gérer mon prélèvement à la source »). acomptes_ps = acomptes de PS prélevés sur le compte, plus les PS déjà retenus par la banque sur les dividendes et intérêts (sinon le solde les compte deux fois). avance_rici_percue = avance de 60 % versée mi-janvier de l'année de la déclaration (8EA, art. 1665 bis) : elle est reprise dans le solde"
   }
 }

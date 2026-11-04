@@ -167,13 +167,13 @@
       "id": 12,
       "name": "deficit-foncier-imputation",
       "prompt": "Foncier nu au réel : loyers bruts 15 000 €, charges courantes 4 000 €, travaux déductibles 18 000 €, intérêts d'emprunt 6 000 €. Quel est mon déficit foncier et combien s'impute sur mon revenu global ?",
-      "expected_output": "Résultat foncier = 15 000 − 4 000 − 18 000 − 6 000 = −13 000 €. Le déficit foncier s'impute sur le revenu global dans la limite de 10 700 €, hors intérêts d'emprunt. Part intérêts (6 000 €) reste imputable uniquement sur les revenus fonciers des 10 années suivantes. Part hors intérêts : 13 000 − 6 000 = 7 000 € ≤ 10 700 € → entièrement imputable sur le revenu global. Solde sur revenus fonciers futurs : 6 000 €.",
+      "expected_output": "Résultat foncier = 15 000 − 4 000 − 18 000 − 6 000 = −13 000 €. Les loyers bruts (15 000 €) s'imputent d'abord sur les intérêts d'emprunt (6 000 €), qu'ils couvrent entièrement : tout le déficit de 13 000 € provient des autres charges (BOI-RFPI-BASE-30-20 § 110). Imputation sur le revenu global dans la limite de 10 700 € ; les 2 300 € restants se reportent sur les revenus fonciers des 10 années suivantes.",
       "files": [],
       "assertions": [
         "Le déficit foncier est calculé correctement (−13 000 €)",
-        "Le skill distingue la part intérêts d'emprunt et le reste",
+        "Le skill impute les loyers d'abord sur les intérêts d'emprunt et conclut qu'aucune part du déficit ne provient des intérêts",
         "La limite de 10 700 € d'imputation sur revenu global est citée",
-        "Les intérêts d'emprunt sont exclus de l'imputation sur revenu global",
+        "Le skill impute 10 700 € sur le revenu global et reporte 2 300 € sur les revenus fonciers",
         "Le report 10 ans sur revenus fonciers uniquement est mentionné pour la part non imputée"
       ]
     },

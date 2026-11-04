@@ -29,7 +29,7 @@ Voir `data/regimes-fonciers-lmnp.json` → `micro_foncier`.
 Obligatoire au-delà de 15 000 € bruts ou sur option irrévocable pour 3 ans.
 
 **Charges déductibles** :
-- Intérêts d'emprunt (imputables uniquement sur les revenus fonciers)
+- Intérêts d'emprunt (compensés en priorité par les loyers ; seul leur excédent sur les loyers est cantonné aux revenus fonciers)
 - Travaux d'entretien, réparation, amélioration (pas construction, pas agrandissement)
 - Taxe foncière (hors TEOM récupérable)
 - Primes d'assurance (PNO, GLI)
@@ -44,13 +44,18 @@ Voir `data/regimes-fonciers-lmnp.json` → `regime_reel_foncier.deficit_foncier`
 
 **Mécanisme** :
 - Charges > recettes → déficit
-- **Imputable sur le revenu global dans la limite de 10 700 €** par an (ou 21 400 € pour travaux de rénovation énergétique globale — dispositif temporaire)
-- Au-delà : reportable sur les revenus fonciers des **10 années suivantes**
-- **Exception critique** : les intérêts d'emprunt **ne sont JAMAIS imputables sur le revenu global**, uniquement sur les revenus fonciers
+- **Ordre d'imputation** : les loyers bruts compensent **d'abord les intérêts d'emprunt**, puis les autres charges (BOI-RFPI-BASE-30-20 § 110). Seul l'excédent d'intérêts sur les loyers est cantonné aux revenus fonciers ; tant que les loyers couvrent les intérêts, tout le déficit provient des autres charges.
+- **Imputable sur le revenu global dans la limite de 10 700 €** par an. Sur option (déclaration 2044), cette limite est **rehaussée du montant des dépenses** de rénovation énergétique qui font passer un logement d'une classe E, F ou G à une classe A à D, **dans la limite de 21 400 €** : devis accepté à compter du 05/11/2022, dépenses payées jusqu'au 31/12/2027, deux DPE à fournir (avant et après travaux) (BOI-RFPI-BASE-30-20 du 16/09/2025 § 210 à 310 ; prorogation à 2027 par la LF 2026, loi 2026-103 art. 47)
+- **Condition de maintien** : le bien doit rester loué nu jusqu'au **31 décembre de la troisième année qui suit l'imputation** ; à défaut, le déficit imputé sur le revenu global est réintégré (BOI-RFPI-BASE-30-20 § 20 et § 340 à 370)
+- Au-delà de la limite : reportable sur les revenus fonciers des **10 années suivantes**
+- Si le revenu global ne suffit pas à absorber la part imputable : l'excédent forme un **déficit global reportable 6 ans** sur le revenu global (art. 156-I, 1er alinéa CGI ; BOI-RFPI-BASE-30-20 § 160)
+- **Exception critique** : la part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers **n'est JAMAIS imputable sur le revenu global**, uniquement sur les revenus fonciers
+
+**Exemple** : loyers 15 000 €, charges 4 000 €, travaux 18 000 €, intérêts 6 000 € → déficit 13 000 €. Les loyers (15 000 €) couvrent les intérêts (6 000 €) : tout le déficit vient des autres charges. 10 700 € s'imputent sur le revenu global, 2 300 € se reportent sur les revenus fonciers des 10 années suivantes.
 
 **Stratégie d'optimisation** :
 - Concentrer les travaux importants sur une année → déficit imputable sur revenu global
-- Attention à ne pas vendre le bien avant 3 ans après imputation (sinon reprise du déficit)
+- Attention à ne pas vendre ni cesser de louer nu le bien avant le 31 décembre de la 3e année qui suit l'imputation (sinon réintégration du déficit)
 
 ## LMNP (Location Meublée Non Professionnelle)
 
@@ -125,7 +130,7 @@ Voir `data/regimes-fonciers-lmnp.json` → `sci_ir`.
 | Régime | Formulaire |
 |--------|-----------|
 | Micro-foncier | 2042 case 4BE |
-| Régime réel foncier | 2044 (ou 2044 spéciale) |
+| Régime réel foncier | 2044 (ou 2044 spéciale), report sur la 2042 : 4BA bénéfice, 4BB déficit imputable sur les revenus fonciers, 4BC déficit imputable sur le revenu global, 4BD déficits antérieurs non encore imputés |
 | Micro-BIC LMNP | 2042 C-PRO (cases 5ND, 5NG, etc.) |
 | Réel LMNP / LMP | 2031 + 2033 (liasse BIC) + 2042 C-PRO |
 | SCI IR | Déclaration 2072 (SCI) + report sur 2044 (associés) |

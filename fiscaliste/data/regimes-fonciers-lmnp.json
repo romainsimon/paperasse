@@ -16,7 +16,7 @@
   "regime_reel_foncier": {
     "description": "Revenus fonciers nets = recettes − charges déductibles",
     "charges_deductibles": [
-      "Intérêts d'emprunt (imputables uniquement sur revenus fonciers)",
+      "Intérêts d'emprunt (compensés en priorité par les loyers ; seul leur excédent sur les loyers est cantonné aux revenus fonciers)",
       "Travaux (entretien, réparation, amélioration — pas construction ni agrandissement)",
       "Taxe foncière (hors TEOM)",
       "Primes d'assurance",
@@ -25,9 +25,18 @@
     ],
     "deficit_foncier": {
       "imputation_revenu_global": 10700,
-      "note_travaux_renovation_energetique": "Plafond temporairement doublé à 21 400 € pour travaux de rénovation énergétique globale (loi climat)",
+      "note_travaux_renovation_energetique": "Sur option (2044), la limite de 10 700 € est rehaussée du montant des dépenses de rénovation énergétique qui font passer un logement d'une classe E, F ou G à une classe A à D, dans la limite de 21 400 € : devis accepté à compter du 05/11/2022, dépenses payées jusqu'au 31/12/2027, deux DPE à fournir (LFR 2022-1499 art. 12 ; BOI-RFPI-BASE-30-20 du 16/09/2025 § 210 à 310 ; prorogé par la LF 2026, loi 2026-103 art. 47)",
+      "condition_location": "Le bien doit rester loué nu jusqu'au 31 décembre de la troisième année qui suit l'imputation ; à défaut, le déficit imputé sur le revenu global est réintégré (BOI-RFPI-BASE-30-20 § 20 et § 340 à 370)",
+      "ordre_imputation": "Les loyers bruts compensent d'abord les intérêts d'emprunt ; seul l'excédent d'intérêts est cantonné aux revenus fonciers (BOI-RFPI-BASE-30-20 § 110)",
       "imputation_revenus_fonciers": "Reportable 10 ans au-delà du plafond annuel",
-      "exception_interets": "Les intérêts d'emprunt NE sont JAMAIS imputables sur le revenu global, uniquement sur les revenus fonciers"
+      "insuffisance_revenu_global": "Si le revenu global ne suffit pas à absorber la part imputable, l'excédent forme un déficit global reportable 6 ans sur le revenu global (art. 156-I, 1er alinéa CGI ; BOI-RFPI-BASE-30-20 § 160)",
+      "cases_2042": {
+        "4BA": "Bénéfice foncier (revenus fonciers imposables)",
+        "4BB": "Déficit imputable sur les revenus fonciers",
+        "4BC": "Déficit imputable sur le revenu global",
+        "4BD": "Déficits antérieurs non encore imputés"
+      },
+      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est jamais imputable sur le revenu global, uniquement sur les revenus fonciers. Les loyers compensant d'abord les intérêts, un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 €"
     }
   },
 

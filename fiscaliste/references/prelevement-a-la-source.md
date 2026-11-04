@@ -7,7 +7,7 @@ Deux mécanismes selon la nature du revenu :
 | Mécanisme | Revenus concernés | Acteur du prélèvement |
 |-----------|-------------------|----------------------|
 | **Retenue à la source** | Salaires, pensions, allocations chômage | Employeur / Pôle emploi / caisse de retraite |
-| **Acompte contemporain** | BIC, BNC, BA, revenus fonciers, pensions alimentaires reçues, rentes viagères à titre onéreux | DGFIP par prélèvement bancaire mensuel ou trimestriel |
+| **Acompte contemporain** | BIC, BNC, BA, revenus fonciers, pensions alimentaires reçues, rentes viagères à titre onéreux, rémunérations des gérants et associés de l'art. 62 (art. 204 C, B, 1° ; voir [remuneration-dirigeants.md](remuneration-dirigeants.md)) | DGFIP par prélèvement bancaire mensuel ou trimestriel |
 
 ## Taux de prélèvement
 
@@ -65,6 +65,8 @@ Problème classique : les crédits/réductions (emploi à domicile, garde d'enfa
 - Si les dépenses N sont < N−2 → **remboursement de l'excédent à la DGFIP** (prélèvement septembre N+1)
 
 **Option renoncement** : possibilité de renoncer à l'acompte en décembre N (espace impots.gouv.fr) si on sait qu'on ne refera pas la dépense.
+
+**Calcul du solde** (avis d'impôt, rubrique « Calcul du solde ») : impôt net − retenue à la source − acomptes prélevés + **avance perçue sur les réductions et crédits d'impôt** (+ avance immédiate services à la personne 7HB). L'avance de janvier est donc **déduite du remboursement** de l'été : l'oublier surestime le remboursement de 60 % des réductions et crédits de N−2. Base légale : art. 1665 bis CGI ; brochure IR 2026, p. 237. Calcul : `scripts/calc_ir.py` avec les blocs `reductions_credits` et `prelevement_a_la_source` du foyer.json.
 
 ## Acompte contemporain : calage et modulation
 

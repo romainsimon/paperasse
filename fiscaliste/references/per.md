@@ -134,7 +134,7 @@ L'abondement est un complément versé par l'entreprise pour chaque euro versé 
 | **PERCO / PERECO + abondement** | Idem (capital issu de l'épargne salariale exonéré d'IR à la sortie) + blocage jusqu'à la retraite |
 | **PER individuel** | Uniquement économie d'impôt immédiate × TMI, pas de match employeur |
 
-**Règle** : un abondement employeur de 100 % représente un rendement immédiat de 100 %. Aucune défiscalisation PER n'égale ce rendement. Toujours saturer PEE/PERCO en premier si l'option existe.
+Un abondement de 100 % double le versement dès l'entrée (environ 90 % net de CSG/CRDS), ce qu'aucune déduction PER ne procure. Il reste à comparer la durée de blocage, les frais et les supports.
 
 ## Mécanique pratique
 

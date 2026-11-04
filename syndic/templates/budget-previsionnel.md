@@ -32,12 +32,13 @@
 | 13 | **Imprévus** (2-5%) | {{reel}} | {{budget}} | — | Marge de sécurité |
 | | **TOTAL CHARGES** | **{{total_reel}}** | **{{total_budget}}** | **{{ecart_total}}%** | |
 
-## Fonds de travaux (art. 14-2 loi 1965)
+## Fonds de travaux (art. 14-2-1 loi 1965)
 
 | | Montant |
 |--|--------:|
 | Budget prévisionnel | {{total_budget}} EUR |
-| Cotisation minimum (5%) | {{minimum_5pct}} EUR |
+| Cotisation minimum (5% du budget) | {{minimum_5pct}} EUR |
+| Minimum si PPT adopté (2,5% des travaux du PPT) | {{minimum_ppt}} EUR |
 | **Cotisation proposée** | **{{cotisation_proposee}} EUR** |
 
 ## Synthèse par copropriétaire (clé de répartition principale)

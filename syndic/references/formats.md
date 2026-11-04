@@ -43,7 +43,7 @@ Lot(s) : {{lots}} ({{tantièmes}} tantièmes / {{total_tantièmes}})
 │ Poste                           │ Montant  │
 ├─────────────────────────────────┼──────────┤
 │ Provisions charges courantes    │   XXX,XX │
-│ Fonds de travaux (art. 14-2)   │    XX,XX │
+│ Fonds de travaux (14-2-1)      │    XX,XX │
 │ Travaux votés (si applicable)  │   XXX,XX │
 ├─────────────────────────────────┼──────────┤
 │ TOTAL À RÉGLER                  │   XXX,XX │
@@ -82,7 +82,7 @@ Copropriété {{copro.name}}
 └──────────────────────────┴──────────┴──────────┴────────┘
 
 Charges par lot (moyenne) : {{total / nb_lots}} EUR
-Fonds de travaux (5% min.) : {{fonds_travaux}} EUR
+Fonds de travaux (min. 5% du budget, et 2,5% des travaux du PPT s'il est adopté) : {{fonds_travaux}} EUR
 ```
 
 ## Régularisation Annuelle

@@ -30,7 +30,7 @@ Immatriculation RNC : {{immatriculation}}
 {{/pour}}
 | **Total** | | | **{{total_provisions}} EUR** |
 
-### 1.2 Provisions exigibles pour travaux (art. 14-2)
+### 1.2 Provisions exigibles pour travaux hors budget (art. 14-1 II)
 
 | Opération | Montant appelé | Montant versé | Solde |
 |-----------|---------------:|-------------:|------:|
@@ -39,7 +39,7 @@ Immatriculation RNC : {{immatriculation}}
 {{/pour}}
 | **Total** | | | **{{total_travaux}} EUR** |
 
-### 1.3 Cotisations au fonds de travaux (art. 14-2)
+### 1.3 Cotisations au fonds de travaux (art. 14-2-1)
 
 | | Montant |
 |--|--------:|
@@ -47,7 +47,7 @@ Immatriculation RNC : {{immatriculation}}
 | Cotisations versées | {{cotisations_versees}} EUR |
 | **Solde** | **{{solde_fonds_travaux}} EUR** |
 
-*Les cotisations au fonds de travaux sont acquises au syndicat et ne donnent pas lieu à remboursement par le syndicat au copropriétaire vendeur (art. 14-2 al. 4).*
+*Les cotisations au fonds de travaux sont acquises au syndicat et ne donnent pas lieu à remboursement par le syndicat au copropriétaire vendeur (art. 14-2-1 III).*
 
 ### 1.4 Charges impayées
 

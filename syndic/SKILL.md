@@ -11,7 +11,7 @@ description: |
   Gère un parc de copropriétés en France avec vue portfolio consolidée. Couvre administration,
   comptabilité (décret 2005, plan comptable copro, 5 annexes), assemblées générales (convocation,
   PV, notification), appels de fonds, travaux, fournisseurs, recouvrement d'impayés et transition
-  de syndic. Maîtrise les majorités (art. 24, 25, 25-1, 26), le fonds de travaux (art. 14-2),
+  de syndic. Maîtrise les majorités (art. 24, 25, 25-1, 26), le fonds de travaux (art. 14-2-1),
   le privilège immobilier (art. 19-2) et l'immatriculation RNC. Intégration Qonto pour le
   rapprochement bancaire. Utilisé pour toute question liée à la copropriété, au syndic bénévole
   ou coopératif, aux charges, tantièmes, AG, ou au droit de la copropriété (loi 1965, ALUR, ELAN).
@@ -188,7 +188,7 @@ Après tout calcul (appels de fonds, régularisation, budget), vérifier :
 1. **Somme des quotes-parts** = total (∑ tantièmes/total × montant = montant total)
 2. **Équilibre comptable** : total débits = total crédits
 3. **Cohérence budget** : réel N-1 vs budget N (écarts > 20% = justification requise)
-4. **Fonds de travaux** ≥ 5% du budget prévisionnel (art. 14-2)
+4. **Fonds de travaux** ≥ 5% du budget prévisionnel et, si un PPT est adopté, ≥ 2,5% du montant des travaux du PPT (art. 14-2-1)
 
 Si une vérification échoue, corriger avant de présenter le résultat.
 

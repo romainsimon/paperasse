@@ -29,7 +29,6 @@ Les abstentions ne comptent PAS dans le calcul.
 - Décision d'engager un diagnostic technique global (DTG)
 - Suppression du poste de gardien ou de concierge (si pas de changement d'affectation du local)
 - Autorisation permanente de la police d'accéder aux parties communes
-- Cotisation au fonds de travaux (montant ≥ 5% du budget prévisionnel)
 
 ## Article 25 : Majorité Absolue
 
@@ -37,6 +36,7 @@ Les abstentions ne comptent PAS dans le calcul.
 
 **Décisions relevant de l'art. 25 :**
 
+- Cotisation au fonds de travaux d'un montant supérieur au minimum légal (art. 14-2-1 I ; passerelle art. 25-1). Le minimum (5 % du budget, et 2,5 % des travaux du PPT s'il est adopté) s'impose sans vote
 - Élection et révocation du syndic
 - Élection et révocation des membres du conseil syndical
 - Autorisation donnée au syndic de contracter un emprunt au nom du syndicat
@@ -100,7 +100,7 @@ Si la résolution n'a pas recueilli la majorité de l'art. 25 mais a obtenu au m
 | Budget prévisionnel | Art. 24 |
 | Travaux de conservation / entretien courant | Art. 24 |
 | Travaux urgents (conservation immeuble) | Art. 24 |
-| Cotisation fonds de travaux | Art. 24 |
+| Cotisation fonds de travaux supérieure au minimum légal | Art. 25 (passerelle 25-1) |
 | Élection / révocation du syndic | Art. 25 |
 | Élection conseil syndical | Art. 25 |
 | Travaux d'amélioration | Art. 25 |

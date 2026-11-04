@@ -127,6 +127,12 @@ Les factures électroniques doivent être conservées **6 ans** à compter de la
 ## Sanctions
 
 Le non-respect des obligations de facturation électronique expose à :
-- **Amende de 15 EUR par facture** non émise au format électronique (plafond 15 000 EUR par année civile)
-- **Amende de 250 EUR par transmission** manquante en e-reporting (plafond 15 000 EUR par année civile)
+- **Amende de 50 EUR par facture** non émise au format électronique, plafond 15 000 EUR par année civile (art. 1737, III CGI, version en vigueur au 21/02/2026)
+- **Amende de 500 EUR par transmission** manquante en e-reporting, plafond 15 000 EUR par année civile (art. 1788 D, I et II CGI)
+- **Plateforme agréée défaillante** : 750 EUR par transmission, plafond 100 000 EUR par année civile (art. 1788 D, III et IV CGI)
+- **Plateforme agréée, transmission des données de facturation** (art. 289 E) : amende de 50 EUR par facture, plafond 45 000 EUR par année civile (art. 1737, IV CGI, version en vigueur au 21/02/2026)
+- À surveiller : au 01/01/2027, les art. 1737 et 1788 D ne sont pas abrogés mais modifiés (ordonnance n° 2025-1247 du 17/12/2025, ordonnance n° 2026-671 du 27/07/2026, art. 2) pour renvoyer aux articles du CIBS issus de la recodification de la TVA ; revérifier les renvois avant toute citation en 2027.
+- **Tolérance première infraction** : pas d'amende (émission, e-reporting) pour la première infraction de l'année en cours et des trois précédentes, si régularisation spontanée ou dans les 30 jours d'une première demande de l'administration
+- **Défaut de plateforme agréée pour la réception** : amende de 500 EUR si l'entreprise n'a pas choisi de plateforme dans les trois mois suivant une mise en demeure de l'administration, puis 1 000 EUR par nouvelle période de trois mois sans régularisation (art. 1737, IV bis CGI ; FAQ impots.gouv.fr « J'approfondis la facturation électronique », version du 01/09/2026, question 2.5)
+- **Phase de démarrage** : la DGFiP annonce ne pas appliquer les sanctions aux entreprises en difficulté mais engagées dans une trajectoire sérieuse et documentée de mise en conformité ; ce n'est ni un report ni une suspension de l'obligation (guide pratique DGFiP de démarrage au 1er septembre 2026, p. 2 et question 29 : https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/guide_pratique_facturation_electronique.pdf)
 - Sanctions fiscales classiques en cas de défaut de facturation (50% du montant de la transaction, art. 1737 du CGI)

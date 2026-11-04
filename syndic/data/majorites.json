@@ -17,7 +17,6 @@
         "Autorisation de travaux d'accessibilité aux personnes handicapées",
         "Travaux d'économies d'énergie (hors changement équipement collectif)",
         "Décision d'engager un DTG (diagnostic technique global)",
-        "Cotisation au fonds de travaux (montant ≥ 5% du budget)",
         "Suppression du poste de gardien (sans changement d'affectation du local)",
         "Autorisation permanente de la police d'accéder aux parties communes"
       ]
@@ -40,7 +39,8 @@
         "Suppression gardiennage avec changement d'affectation du local",
         "Modalités de réalisation des travaux obligatoires",
         "Travaux d'économies d'énergie impliquant changement d'équipement collectif",
-        "Délégation de pouvoir au conseil syndical (art. 21-1)"
+        "Délégation de pouvoir au conseil syndical (art. 21-1)",
+        "Cotisation au fonds de travaux d'un montant supérieur au minimum légal (art. 14-2-1 I : majorité des voix de tous les copropriétaires ; passerelle art. 25-1)"
       ]
     },
     "art_26": {

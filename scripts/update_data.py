@@ -63,7 +63,7 @@ def find_skills():
 def parse_skill_date(skill_path):
     """Extract last_updated from SKILL.md frontmatter."""
     content = (skill_path / "SKILL.md").read_text()
-    match = re.search(r"last_updated:\s*(\d{4}-\d{2}-\d{2})", content)
+    match = re.search(r"last_updated:\s*[\"']?(\d{4}-\d{2}-\d{2})", content)
     if match:
         return datetime.strptime(match.group(1), "%Y-%m-%d").date()
     return None

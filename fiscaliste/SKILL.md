@@ -233,7 +233,7 @@ Des **scénarios illustratifs** sont fournis dans [`examples/`](examples/README.
 4. RNI ÷ nombre de parts → quotient
 5. Barème progressif sur le quotient → impôt par part
 6. × nombre de parts → impôt brut
-7. Plafonnement du gain QF (si enfants à charge) — **toujours comparer gain réel vs gain max (N × 1 802 €)**
+7. Plafonnement du gain QF (si enfants à charge) — **toujours comparer gain réel vs gain max (N × 1 807 €)**
 8. Décote (si impôt brut < seuil)
 9. Réductions d'impôt (Pinel, dons, FCPI…) → impôt après réductions
 10. Crédits d'impôt (garde d'enfant, emploi à domicile) → impôt net final

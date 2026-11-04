@@ -83,7 +83,7 @@ L'AG peut décider d'un paiement en une ou plusieurs fois.
 
 **Caractéristiques :**
 - Le fonds est attaché aux lots (pas au copropriétaire). En cas de vente, les cotisations restent acquises au syndicat.
-- Les sommes sont déposées sur un compte séparé rémunéré (livret A syndic, par exemple)
+- Les sommes sont déposées sur un compte séparé rémunéré au nom du syndicat (art. 18 II loi 1965 ; livret A syndic, par exemple)
 - Un montant supérieur au minimum se vote à la majorité de l'art. 25 (passerelle 25-1)
 - L'AG peut décider de suspendre les cotisations lorsque le fonds dépasse le budget prévisionnel ; si un PPT est adopté, seulement lorsque le fonds dépasse en outre 50% du montant des travaux qu'il prévoit (art. 14-2-1 II)
 

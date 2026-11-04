@@ -1,6 +1,6 @@
 # Rémunération des dirigeants relevant de l'article 62 du CGI
 
-Imposition à l'IR des rémunérations versées aux gérants majoritaires de SARL/EURL à l'IS et aux autres dirigeants visés par l'article 62 du CGI. Le côté société (déductibilité de la rémunération, écritures, arbitrage rémunération / dividendes) relève du skill `comptable` ([legal-forms.md](../../comptable/references/legal-forms.md)).
+Imposition à l'IR des rémunérations versées aux gérants majoritaires de SARL/EURL à l'IS et aux autres dirigeants visés par l'article 62 du CGI. Le côté société (déductibilité de la rémunération, écritures, arbitrage rémunération / dividendes) relève du skill `comptable` (fichier `references/legal-forms.md`).
 
 Valeurs chiffrées : revenus 2025 (déclaration 2026), notice 2041-NOT n° 50796#26.
 

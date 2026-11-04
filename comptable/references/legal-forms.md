@@ -93,7 +93,7 @@
 **Option IS:**
 - Rémunération déductible du résultat
 - Imposée à l'IR de l'associé (traitements et salaires)
-- Côté IR du gérant (art. 62 CGI : case 1GB, montant net imposable, acomptes PAS) : voir skill `fiscaliste`, [references/remuneration-dirigeants.md](../../fiscaliste/references/remuneration-dirigeants.md)
+- Côté IR du gérant (art. 62 CGI : case 1GB, montant net imposable, acomptes PAS) : voir skill `fiscaliste`, fichier `references/remuneration-dirigeants.md`
 
 **Écriture (EURL à l'IS):**
 ```

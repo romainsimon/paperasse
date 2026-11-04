@@ -185,6 +185,36 @@
         "L'amende pour défaut de transmission est mentionnée (250 EUR par transmission)",
         "L'échéance est correcte (1er septembre 2027 pour PME/micro)"
       ]
+    },
+    {
+      "id": 11,
+      "name": "frais-pro-president-sasu-ik-repas",
+      "prompt": "Je suis président de ma SASU DevStudio (régime réel normal de TVA), sans contrat de travail. Cette année j'ai fait 5 800 km pro avec ma voiture perso (5 CV, essence) et je me suis remboursé 30 déjeuners à 21,40 EUR au forfait, sans tickets, parce que c'est la limite URSSAF. Je compte aussi récupérer la TVA sur mes billets de train et mes nuits d'hôtel. Combien d'IK puis-je me verser, et est-ce que le reste est OK ?",
+      "expected_output": "Le skill calcule les IK sur le kilométrage annuel avec le barème (5 800 x 0,357 + 1 395 = 3 465,60 EUR), signale que le président de SAS n'a pas droit aux allocations forfaitaires de repas (remboursement au réel uniquement, sinon rémunération soumise à cotisations) et que la TVA sur le transport de personnes et l'hébergement n'est pas déductible.",
+      "files": [],
+      "assertions": [
+        "Les IK sont calculées sur le kilométrage annuel avec la tranche 5 001 à 20 000 km du barème 5 CV",
+        "Le montant d'IK annuel est 3 465,60 EUR",
+        "Le skill indique que le président de SAS/SASU sans contrat de travail n'a pas droit aux allocations forfaitaires de repas (réel uniquement, seules les IK sont forfaitaires)",
+        "Les 30 repas sans justificatif sont qualifiés de rémunération soumise à cotisations ou de charge non justifiée",
+        "Le skill indique que la TVA sur les billets de train (transport de personnes) n'est pas déductible",
+        "Le skill indique que la TVA sur l'hôtel (hébergement des dirigeants) n'est pas déductible"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "frais-pro-regularisation-ik-annuelle",
+      "prompt": "Ma SAS (régime réel normal de TVA) a un salarié qui utilise sa voiture perso 5 CV. On lui a payé chaque mois ses IK à 0,636 EUR/km. Au 31/12 il a fait 5 800 km pro, soit 3 688,80 EUR versés. Est-ce correct et comment je le comptabilise ?",
+      "expected_output": "Le skill explique que le barème s'applique au kilométrage annuel : plafond 3 465,60 EUR, donc 223,20 EUR versés en trop, à régulariser ou à soumettre à cotisations. Il propose l'écriture en 6251 sans TVA déductible.",
+      "files": [],
+      "assertions": [
+        "Le skill explique que la formule de la tranche du kilométrage annuel s'applique au total des km de l'année (pas trajet par trajet)",
+        "Le plafond annuel calculé est 3 465,60 EUR",
+        "L'excédent de 223,20 EUR est identifié",
+        "L'excédent est présenté comme à régulariser ou soumis à cotisations sociales",
+        "Les IK sont comptabilisées en compte 625 (6251 Voyages et déplacements ou subdivision équivalente)",
+        "Le skill précise qu'il n'y a pas de TVA déductible sur les IK"
+      ]
     }
   ]
 }

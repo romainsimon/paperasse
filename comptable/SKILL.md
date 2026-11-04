@@ -9,7 +9,7 @@ includes:
   - integrations/**
   - company.example.json
 description: |
-  Comptabilité, fiscalité et facturation pour entreprises françaises. Gère écritures PCG, déclarations TVA, IS/IR, clôture annuelle, liasse fiscale (2033/2065), FEC, états financiers, et chaîne facturation (mentions obligatoires, numérotation, Factur-X/UBL/CII, plateformes agréées PDP/PA, e-reporting, réforme 2026, PEPPOL). Utiliser dès qu'une question porte sur comptabilité française, TVA, impôts, bilan, compte de résultat, amortissement, PCA, clôture, facture, avoir, devis, acompte, facturation électronique, ou e-invoicing.
+  Comptabilité, fiscalité et facturation pour entreprises françaises. Gère écritures PCG, déclarations TVA, IS/IR, clôture annuelle, liasse fiscale (2033/2065), FEC, états financiers, et chaîne facturation (mentions obligatoires, numérotation, Factur-X/UBL/CII, plateformes agréées PDP/PA, e-reporting, réforme 2026, PEPPOL). Utiliser dès qu'une question porte sur comptabilité française, TVA, impôts, bilan, compte de résultat, amortissement, PCA, clôture, notes de frais, indemnités kilométriques, facture, avoir, devis, acompte, facturation électronique, ou e-invoicing.
 ---
 
 # Expert-Comptable IA
@@ -176,6 +176,7 @@ Consulter selon le besoin :
 | [references/closing.md](references/closing.md) | Clôture : amortissements, provisions, cut-offs |
 | [references/cloture-workflow.md](references/cloture-workflow.md) | **Workflow complet de clôture annuelle (12 étapes)** |
 | [references/regional.md](references/regional.md) | DOM-TOM, Alsace-Moselle, Corse |
+| [references/frais-professionnels.md](references/frais-professionnels.md) | Notes de frais, IK (barème kilométrique), allocations forfaitaires URSSAF, TVA sur frais, cas du dirigeant |
 | [references/facturation/setup-facturation.md](references/facturation/setup-facturation.md) | Setup des champs facturation dans company.json |
 | [references/facturation/reforme-2026.md](references/facturation/reforme-2026.md) | Réforme 2026 : calendrier, obligations par taille d'entreprise |
 | [references/facturation/mentions-obligatoires.md](references/facturation/mentions-obligatoires.md) | Mentions obligatoires (factures, avoirs), bases légales |
@@ -193,7 +194,7 @@ Consulter selon le besoin :
 |--------|-------|
 | `scripts/fetch_company.py <SIREN>` | Recherche info entreprise via API |
 | `scripts/update_data.py` | Vérifier fraîcheur des données et télécharger MAJ |
-| `scripts/calc.js` | Calculs déterministes (CCA, amortissement, IS, acomptes TVA simplifié, prorata) |
+| `scripts/calc.js` | Calculs déterministes (CCA, amortissement, IS, acomptes TVA simplifié, prorata, IK) |
 | `scripts/generate-statements.js` | Générer Bilan, Compte de résultat, Balance |
 | `scripts/generate-fec.js` | Générer le FEC |
 | `scripts/generate-pdfs.js` | Convertir les états financiers en PDFs |
@@ -214,7 +215,7 @@ Commandes npm équivalentes :
 - `npm run facture -- --invoice <facture.json>` : générer Factur-X
 - `npm run validate:facture -- --invoice <facture.json>` : valider
 
-Règle de calcul : pour tout calcul chiffré (TVA, IS, amortissement, prorata, CCA), utiliser `node scripts/calc.js` plutôt qu'un calcul mental.
+Règle de calcul : pour tout calcul chiffré (TVA, IS, amortissement, prorata, CCA, IK), utiliser `node scripts/calc.js` plutôt qu'un calcul mental. Les IK se calculent sur le kilométrage **annuel** cumulé (`node scripts/calc.js ik --km <annuel> --cv <cv> [--deja-verse <montant>]`), jamais trajet par trajet.
 
 ## Templates
 

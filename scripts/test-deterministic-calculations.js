@@ -74,6 +74,41 @@ function testProrata() {
   assert.match(output, /Resultat: 136,99 EUR/);
 }
 
+function testIKBaremeAnnuel() {
+  // Exemple officiel URSSAF : 5 800 km en 5 CV
+  const output = runCalc(["ik", "--km=5800", "--cv=5"]);
+  assert.match(output, /Tranche: de 5 001 a 20 000 km/);
+  assert.match(output, /IK annuelle: 3465,60 EUR/);
+}
+
+function testIKRegularisationTropVerse() {
+  // 5 800 km payes au taux de la 1re tranche (0,636) = 3 688,80 EUR
+  const output = runCalc(["ik", "--km=5800", "--cv=5", "--deja-verse=3688.80"]);
+  assert.match(output, /Trop-verse a regulariser: 223,20 EUR/);
+}
+
+function testIKElectrique() {
+  const output = runCalc(["ik", "--km=3000", "--cv=4", "--electrique"]);
+  assert.match(output, /IK annuelle: 2181,60 EUR/);
+}
+
+function testIKPuissancePlafonnee() {
+  const output = runCalc(["ik", "--km=25000", "--cv=11"]);
+  assert.match(output, /Categorie: 7 CV et plus/);
+  assert.match(output, /IK annuelle: 11750,00 EUR/);
+}
+
+function testIKMoto() {
+  const output = runCalc(["ik", "--km=4000", "--cv=3", "--vehicule=moto"]);
+  assert.match(output, /IK annuelle: 1486,00 EUR/);
+}
+
+function testIKElectriqueArrondiUnique() {
+  // 1001 x 0,529 x 1,2 = 635,4348 -> 635,43 (un seul arrondi)
+  const output = runCalc(["ik", "--km=1001", "--cv=3", "--electrique"]);
+  assert.match(output, /IK annuelle: 635,43 EUR/);
+}
+
 // ---------------------------------------------------------------------------
 // Bilan : appariement immobilisations / amortissements-depreciations
 // ---------------------------------------------------------------------------
@@ -185,6 +220,12 @@ function main() {
   testISProratedReducedRate();
   testTVAAcomptesRS();
   testProrata();
+  testIKBaremeAnnuel();
+  testIKRegularisationTropVerse();
+  testIKElectrique();
+  testIKPuissancePlafonnee();
+  testIKMoto();
+  testIKElectriqueArrondiUnique();
   testBilanAmortComptesCompletes();
   testBilanAmortSubdivision();
   testBilanDepreciation29x();

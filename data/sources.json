@@ -134,6 +134,18 @@
       "update_frequency": "monthly",
       "skill": "notaire",
       "description": "Fichier des personnes décédées (INSEE). Utile pour vérifier un décès dans le cadre d'une succession. Paramètres: q (nom), birthDate, deathDate."
+    },
+    {
+      "id": "bareme-kilometrique",
+      "name": "Barème kilométrique fiscal",
+      "file": "bareme-kilometrique.json",
+      "source_page": "https://bofip.impots.gouv.fr/bofip/2185-PGP.html",
+      "license": "Licence Ouverte v2.0",
+      "provider": "DGFIP (BOI-BAREME-000001, CGI annexe IV art. 6 B)",
+      "update_frequency": "annual",
+      "last_fetched": "2026-10-04",
+      "skill": "comptable",
+      "description": "Barème des indemnités kilométriques (autos, deux-roues, cyclomoteurs) et majoration véhicules électriques. Saisi à la main depuis le BOFiP et l'aide impots.gouv.fr revenus 2025 : vérifier chaque printemps la parution d'un nouvel arrêté."
     }
   ]
 }

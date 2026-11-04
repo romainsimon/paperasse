@@ -296,7 +296,7 @@ Achat intra-UE ou import sans autoliquidation = TVA non déductible.
 
 ### 2. TVA sur acomptes
 
-- **Biens:** TVA exigible à la livraison, pas à l'acompte
+- **Biens:** TVA exigible à l'encaissement de l'acompte, à hauteur du montant encaissé (acomptes encaissés depuis le 1er janvier 2023, art. 269, 2-a CGI ; BOI-TVA-BASE-20-10), puis à la livraison pour le solde. L'acompte ne déclenche l'exigibilité que si les éléments de la livraison (biens désignés avec précision) sont connus à son versement
 - **Services:** TVA exigible à l'encaissement de l'acompte
 
 ### 3. Déduction TVA non admise

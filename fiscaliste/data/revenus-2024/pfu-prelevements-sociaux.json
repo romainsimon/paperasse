@@ -50,7 +50,7 @@
       "note": "Taux 17,2 % — en 2024, il s'applique de toute façon à l'ensemble des revenus du capital"
     },
     "dont_csg_deductible_si_bareme": 0.068,
-    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique qu'aux revenus imposés au barème : sur option globale pour les revenus du capital, ou de plein droit (produits d'assurance-vie sur primes antérieures au 27/09/2017 sans prélèvement libératoire, ligne 2DF, quelle que soit l'option). Zéro déductible sur les revenus imposés au PFU. Déduite du revenu global de l'année de son paiement (art. 154 quinquies, II CGI) : l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts), l'année suivante pour les PS établis par voie de rôle (plus-values mobilières, revenus d'un courtier étranger sans 2778). CSG sur plus-values immobilières non déductible.",
+    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique qu'aux revenus imposés au barème : sur option globale pour les revenus du capital, ou de plein droit (produits d'assurance-vie sur versements antérieurs au 27/09/2017 sans prélèvement libératoire). Zéro déductible sur les revenus imposés au PFU, sauf ligne 2DF (associés de sociétés à l'IS relevant du régime des non-salariés) : 6,8 % quelle que soit l'option. Déduite du revenu global de l'année de son paiement (art. 154 quinquies, II CGI) : l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts), l'année suivante pour les PS établis par voie de rôle (plus-values mobilières, revenus d'un courtier étranger sans 2778). CSG sur plus-values immobilières non déductible.",
     "taux_plus_values_immo": 0.172,
     "taux_revenus_du_patrimoine_2024": {
       "valeur": 0.172,

@@ -16,9 +16,9 @@ Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
 
 ### PER (Plan d'Épargne Retraite)
 
-- Déduction dans la limite du plafond (10% revenus pro, plancher 4 710 €, plafond 37 680 €)
-- Économie immédiate = versement × TMI
-- Mutualisation couple, report plafonds non utilisés sur 3 ans → détails listés dans SKILL.md sous "Rappels PER"
+- Déduction dans la limite du plafond : 10 % des revenus pro N-1, bornes calculées sur le PASS de N-1 (versements 2025 : plancher 4 637 €, plafond 37 094 € ; versements 2026 : 4 710 € et 37 680 €)
+- Économie immédiate = versement × TMI ; le RFR n'est pas réduit (réintégration, art. 1417, IV CGI)
+- Mutualisation couple, report des plafonds non utilisés sur 3 ans (5 ans pour les reliquats nés à partir de 2026, LFI 2026 ; fenêtre complète en 2031) → détails listés dans SKILL.md sous "Rappels PER"
 
 ### Pension alimentaire
 

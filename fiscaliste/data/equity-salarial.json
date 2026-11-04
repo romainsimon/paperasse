@@ -93,20 +93,30 @@
   },
   "pee_perco": {
     "description": "Plans d'Épargne Entreprise et Plans d'Épargne Retraite Collective — enveloppes collectives",
+    "sources": "service-public F2142 (vérifiée le 01/01/2026), art. L. 3332-11 et R. 3324-22 C. trav., art. L. 136-7, II-7° CSS, LFSS 2026 art. 12, BOI-ANNX-000513 (PER d'entreprise)",
     "pee": {
-      "abondement_employeur": "Exonéré IR et PS dans les plafonds — AVANTAGE MAJEUR vs versement direct",
-      "plafond_abondement_pee_2025": 3709,
-      "plafond_base": "8% × PASS par bénéficiaire (à vérifier annuellement)",
-      "blocage": "5 ans sauf cas de déblocage anticipé (mariage, naissance 3e enfant, achat RP, divorce avec enfant à charge, fin contrat travail, surendettement, invalidité, décès, violences conjugales)",
-      "sortie": "Après 5 ans : exonération IR, PS sur les gains uniquement",
-      "dividendes_reinvestis": "Exonérés IR tant qu'ils restent dans l'enveloppe"
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans le plafond, mais SOUMIS à la CSG et à la CRDS (revenus d'activité, 9,7 %) et, côté employeur, au forfait social le cas échéant. Avantage majeur vs versement direct.",
+      "plafond_abondement_pee": {
+        "2024": 3709.44,
+        "2025": 3768,
+        "2026": 3844.80,
+        "base": "8 % du PASS de l'année (46 368 € en 2024, 47 100 € en 2025, 48 060 € en 2026), sans dépasser 3 fois le versement du salarié ; porté à 14,4 % du PASS si l'abondement est investi en titres de l'entreprise"
+      },
+      "blocage": "5 ans, sauf déblocage anticipé (art. R. 3324-22 C. trav.) : mariage ou PACS ; naissance ou adoption du 3e enfant ; divorce, séparation ou dissolution de PACS avec garde d'au moins un enfant ; violences conjugales ; invalidité (titulaire, conjoint ou partenaire, enfant) ; décès (titulaire, conjoint ou partenaire) ; rupture du contrat de travail, cessation d'activité de l'entrepreneur individuel, fin du mandat social ; création ou reprise d'entreprise (titulaire, conjoint ou partenaire, enfant), acquisition de parts de SCOP ; acquisition ou agrandissement de la résidence principale ; remise en état de la résidence principale après catastrophe naturelle ; rénovation énergétique de la résidence principale ; surendettement ; activité de proche aidant ; achat d'un véhicule propre ou d'un vélo à assistance électrique. Demande dans les 6 mois de l'événement, sauf rupture du contrat, décès, invalidité, violences, surendettement et proche aidant (à tout moment).",
+      "sortie": "Après 5 ans ou déblocage anticipé : versements et gains exonérés d'IR ; prélèvements sociaux sur les seuls gains (produits de placement, art. L. 136-7, II-7° CSS) : 17,2 % jusqu'au 31/12/2025, 18,6 % à compter du 01/01/2026 (LFSS 2026), sous réserve des taux historiques pour les gains issus de versements antérieurs à 2018. La LFSS 2026 (art. 12, II, 2°) exclut aussi de la hausse les produits acquis ou constatés avant le 01/01/2026 mentionnés au V de l'art. 8 de la LFSS 2018 ; portée à confirmer au BOFiP. Ce n'est pas un PFU : pas d'IR à la sortie.",
+      "dividendes_reinvestis": "Exonérés IR tant qu'ils restent dans l'enveloppe",
+      "participation_interessement": "Exonérés d'IR s'ils sont affectés au PEE ou au PERCO dans les 15 jours (soumis à CSG/CRDS 9,7 %) ; imposés comme salaire s'ils sont perçus directement. Plafond d'exonération de chacun : 75 % du PASS (36 045 € pour 2026, service-public.fr F2142 ; 35 325 € pour 2025)."
     },
-    "perco_pero": {
-      "description": "Équivalent PER collectif",
-      "sortie_retraite": "Rente ou capital, même fiscalité que PER individuel",
-      "abondement_employeur": "Exonéré IR et PS dans les plafonds (plafond distinct du PEE)",
-      "plafond_abondement_perco_2025": 7418,
-      "plafond_base": "16% × PASS par bénéficiaire"
+    "perco_pereco": {
+      "description": "PERCO (ancien) et PER d'entreprise collectif (PERECO, loi PACTE) : épargne retraite d'entreprise",
+      "sortie_retraite": "Rente ou capital. Sommes issues de l'intéressement, de la participation et de l'abondement : capital EXONÉRÉ d'IR (versements et gains, art. 81, 18° et 4° bis-b CGI), PS sur les seuls gains (art. L. 136-7, II-7° bis CSS). Seuls les versements volontaires déduits suivent le régime du PER individuel (capital au barème sans abattement de 10 %, gains au PFU). Source : BOI-ANNX-000513.",
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans le plafond, soumis à CSG/CRDS (plafond distinct du PEE)",
+      "plafond_abondement_perco": {
+        "2024": 7418.88,
+        "2025": 7536,
+        "2026": 7689.60,
+        "base": "16 % du PASS de l'année, sans dépasser 3 fois le versement du salarié"
+      }
     },
     "arbitrage_vs_per_individuel": "PEE / PERCO = abondement employeur (levier immédiat +30% à +300%). PER individuel = déduction du RNI. À combiner : abonder d'abord PEE/PERCO pour capter l'abondement, puis PER individuel."
   },

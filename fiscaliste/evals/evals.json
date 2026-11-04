@@ -223,13 +223,13 @@
     {
       "id": 16,
       "name": "per-mutualisation-couple",
-      "prompt": "Mon conjoint ne travaille pas (parent au foyer), moi je gagne 70 000 € (salaire net imposable). Mon plafond PER est déjà bien utilisé. Peut-il verser sur son PER et déduire quand même ?",
-      "expected_output": "Oui via la mutualisation couple (case à cocher sur 2042). Le conjoint sans revenu pro a un plafond plancher de 4 710 € (10 % × PASS). Mutualisation = les plafonds des deux conjoints sont additionnés. Économie selon TMI : 4 710 × 30 % = 1 413 €. Le versement peut être fait sur le PER du conjoint sans revenu pro et déduit du revenu imposable commun.",
+      "prompt": "Mon conjoint ne travaille pas (parent au foyer), moi je gagne 70 000 € (salaire net imposable). Mon plafond PER est déjà bien utilisé. Peut-il verser sur son PER en 2025 et déduire quand même ?",
+      "expected_output": "Oui. Le conjoint sans revenu professionnel a son propre plafond plancher de 4 637 € pour les versements 2025 (10 % du PASS 2024 ; 4 710 € pour les versements 2026), augmenté de ses reliquats 2022 à 2024 non utilisés : il peut verser et déduire jusqu'à ce montant sur son propre PER, sans mutualisation (brochure IR 2026, charges déductibles, exemple ; BOI-IR-BASE-20-50-30). La mutualisation des plafonds du couple (case 6QR) ne sert qu'au-delà, pour utiliser le reliquat de plafond de l'autre conjoint ; comme le plafond du déclarant est déjà bien utilisé, elle n'apporte rien ou presque ici. Économie au TMI 30 % : 4 637 × 30 % = 1 391 €. Le versement est déduit du revenu imposable commun ; le RFR n'est pas réduit (art. 1417, IV, 1°, a).",
       "files": [],
       "assertions": [
-        "Le skill identifie la possibilité de mutualisation couple",
-        "Le plafond plancher 4 710 € est cité",
-        "Le skill précise qu'il faut COCHER la case de mutualisation sur 2042",
+        "Le skill identifie le plafond propre du conjoint sans revenu (plancher), déductible sans mutualisation",
+        "Le plafond plancher 4 637 € (versements 2025, PASS 2024) est cité, et non 4 710 €",
+        "Le skill situe correctement la mutualisation (case 6QR) : utile seulement au-delà du plafond propre du conjoint",
         "L'économie d'impôt est chiffrée en appliquant le TMI du foyer",
         "Le skill recommande de vérifier l'avis d'imposition N-1 pour le plafond officiel DGFIP"
       ]

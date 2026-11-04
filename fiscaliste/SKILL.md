@@ -115,13 +115,15 @@ La LFSS 2026 (loi n° 2025-1403 du 30/12/2025, art. 12) a porté la CSG sur les 
 - **CSG déductible : 6,8 %** — **uniquement si option barème** ; déduite l'année même pour les revenus dont les PS sont prélevés à la source (dividendes, intérêts), l'année suivante pour les PS par voie de rôle (plus-values)
 - **Option barème globale** : concerne TOUS les revenus du capital de l'année
 
-### PER (versements 2025)
+### PER (versements 2025, déclaration 2026)
 
-- **Plancher de déduction : 4 710 €** (10 % × PASS 2025 = 47 100 €)
-- **Plafond de déduction : 37 680 €** (10 % × 8 × PASS 2025)
-- **Plafond personnalisé : 10 %** des revenus professionnels N-1 (après abattement 10 %)
-- **Report** : plafonds non utilisés des 3 années précédentes mobilisables (FIFO ancien en premier)
-- **Mutualisation couple** : case à cocher sur 2042
+- **Plafond personnalisé : 10 %** des revenus d'activité de l'année N-1 (2024) nets de frais (salaires et ARE après abattement 10 %, BIC, BNC, BA), retenus dans la limite de 8 PASS de N-1 ; **le PASS de référence est celui de l'année qui précède le versement** (art. 163 quatervicies CGI ; brochure IR 2026, charges déductibles)
+- **Versements 2025 : plancher 4 637 €, plafond 37 094 €** (10 % et 80 % du PASS 2024 = 46 368 €)
+- **Versements 2026 : plancher 4 710 €, plafond 37 680 €** (PASS 2025 = 47 100 €) ; versements 2027 : 4 806 € et 38 448 € (PASS 2026 = 48 060 €)
+- **Report** : plafonds non utilisés des 3 années précédentes (2022 à 2024 pour les versements 2025) ; **5 ans pour les reliquats nés à partir de 2026** (LFI 2026, art. 9 et 10 ; BOI-IR-BASE-20-50-30 § 80) : les versements 2026 n'utilisent que les reliquats 2023 à 2025, la fenêtre complète de cinq ans n'est atteinte qu'en 2031. Imputation sur le plafond de l'année d'abord, puis sur les reliquats du plus ancien au plus récent
+- **Mutualisation couple** : case 6QR sur la 2042 ; sans objet l'année qui suit les 70 ans d'un conjoint
+- **70 ans et plus** : versements non déductibles à compter du 01/01/2026 (LFI 2026, art. 9)
+- **RFR** : le versement déduit est réintégré dans le RFR (art. 1417, IV CGI) : sans effet sur la CEHR, la CDHR et les seuils de CSG sur l'ARE ou les pensions
 
 ### IFI
 

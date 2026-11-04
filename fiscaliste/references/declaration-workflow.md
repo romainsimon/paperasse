@@ -172,8 +172,8 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 
 **Calcul du plafond mobilisable** :
 
-- Plafond N = 10 % des revenus pro N-1 (salaires après abattement 10 %), dans les bornes 4 710 € et 37 680 € (revenus 2025).
-- + plafonds non utilisés N-3, N-2, N-1 (report 3 ans, ordre FIFO).
+- Plafond N = 10 % des revenus pro N-1 (salaires et ARE après abattement 10 %), dans les bornes 4 637 € et 37 094 € pour les versements 2025 (PASS 2024 ; 4 710 € et 37 680 € pour les versements 2026).
+- + plafonds non utilisés N-3, N-2, N-1 (report 3 ans ; 5 ans pour les reliquats nés à partir de 2026, fenêtre complète en 2031, BOI-IR-BASE-20-50-30 § 80 ; imputation du plus ancien au plus récent).
 - + plafond du conjoint si mutualisation cochée (imposition commune).
 
 **Saisie** : cases 6NS (déclarant 1) / 6NT (déclarant 2).

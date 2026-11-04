@@ -33,13 +33,13 @@
       "name": "PER — plancher, plafond, mutualisation",
       "file": "per-plafonds.json",
       "annee_revenus": 2025,
-      "source_officielle": "PASS 2025 = 47 100 € (décret)",
+      "source_officielle": "art. 163 quatervicies CGI ; brochure IR 2026 (charges déductibles : versements 2025 bornés par le PASS 2024 = 46 368 €, versements 2026 par le PASS 2025 = 47 100 €) ; LFI 2026 art. 9 et 10 (report à 5 ans, 70 ans)",
       "article_cgi": "art. 163 quatervicies CGI",
       "bofip": "BOI-IR-BASE-20-50-20",
       "update_frequency": "annual",
       "last_fetched": "2026-04-12",
       "next_check": "2027-01-15",
-      "check_instructions": "Recalculer plancher (10% × PASS) et plafond (10% × 8 × PASS) après publication du PASS de l'année N."
+      "check_instructions": "Recalculer plancher (10 % × PASS N-1) et plafond (10 % × 8 × PASS N-1) : les versements de l'année N sont bornés par le PASS de N-1, pas de N."
     },
     {
       "id": "ifi",

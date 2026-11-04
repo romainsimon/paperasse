@@ -6,7 +6,7 @@
   },
 
   "plafonnement_global": {
-    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est perdu (pas reportable).",
+    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est en principe perdu ; seule la fraction de la réduction IR-PME (art. 199 terdecies-0 A) qui excède le plafond global est reportable sur les 5 années suivantes (impots.gouv.fr, réduction pour investissement dans une PME).",
     "plafond_metropole": 10000,
     "plafond_investissements_outre_mer": 18000,
     "note": "Le plafond s'applique APRÈS calcul de toutes les réductions, pas avant. Piège classique : cumuler Pinel + FCPI + outre-mer sans vérifier le plafond global."

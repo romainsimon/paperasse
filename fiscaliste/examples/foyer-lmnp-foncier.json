@@ -20,7 +20,7 @@
 
     "revenus_fonciers_micro": 0,
     "revenus_fonciers_reels": -8500,
-    "_commentaire_foncier": "Régime réel : loyers bruts 14 500 € − charges/travaux 23 000 € = −8 500 € de déficit. Imputation max 10 700 € sur revenu global (hors intérêts d'emprunt), reste reportable 10 ans.",
+    "_commentaire_foncier": "Régime réel : loyers bruts 14 500 € − charges/travaux 23 000 € = −8 500 € de déficit. Imputation sur le revenu global dans la limite de 10 700 € ; seule la part due à l'excédent des intérêts d'emprunt sur les loyers (ici aucune, les loyers les couvrant) en serait exclue et reportée 10 ans sur les revenus fonciers.",
     "deficit_foncier_anterieur": 0,
 
     "lmnp_reel_resultat": 0,

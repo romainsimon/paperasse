@@ -48,6 +48,6 @@
     "dons_associations": 5000,
     "fcpi_fip_versements": 10000,
     "emploi_a_domicile": 12000,
-    "_commentaire_plafond": "Attention plafond global 10 000 € sur FCPI — les dons et emploi à domicile sont hors plafond."
+    "_commentaire_plafond": "Attention plafond global 10 000 € : FCPI, emploi à domicile et garde d'enfant y entrent ; les dons sont hors plafond (comme les autres avantages sans contrepartie ou liés à la situation personnelle)."
   }
 }

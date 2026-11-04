@@ -40,7 +40,7 @@ Phase 4 : Vérification et suivi
 
 | Source | Document | Usage |
 |--------|----------|-------|
-| Employeur | Bulletin de décembre + attestation fiscale | Salaires imposables (1AJ), gain RSU (1TT) |
+| Employeur | Bulletin de décembre + attestation fiscale ; état individuel des actions gratuites | Salaires imposables (1AJ, décote ESPP comprise) ; gain d'acquisition AGA (1TZ + 1WZ sous 300 000 €, 1TT au-delà) |
 | France Travail (ex-Pôle emploi) | Attestation fiscale annuelle | ARE (1AP, pas 1AJ — abattement 10 % applicable malgré tout) |
 | Banque / courtier | IFU (Imprimé Fiscal Unique) | Intérêts, dividendes, PV mobilières |
 | Assurance-vie | Relevé annuel | Rachats, produits imposables |
@@ -78,7 +78,7 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 | Catégorie | Case 2042 | Annexe éventuelle |
 |-----------|-----------|-------------------|
 | Salaires | 1AJ / 1BJ | — |
-| Gain acquisition RSU | 1TT / 1UT | — |
+| Gain d'acquisition AGA, plan qualifiant | 1TZ + 1WZ (ou 1UZ / 1VZ) jusqu'à 300 000 €, 1TT / 1UT au-delà et pour les AGA 2012-2015 ; plan non qualifiant : salaire 1AJ | — |
 | Pensions | 1AS / 1BS | — |
 | Allocations chômage | 1AP / 1BP | — |
 | Indemnités journalières maladie imposables | 1AJ / 1BJ (avec les salaires ; 1AM = autres pensions de source étrangère) | — |

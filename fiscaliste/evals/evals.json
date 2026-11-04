@@ -85,16 +85,16 @@
       "id": 6,
       "name": "rsu-vesting-quotient",
       "prompt": "J'ai reçu un vesting RSU de 100 000 € cette année. Mon salaire habituel est 60 000 €. Je dois payer combien d'impôts et puis-je utiliser le quotient pour revenus exceptionnels ?",
-      "expected_output": "Gain acquisition 100 000 € = imposé comme salaire (1TT). Total imposable salaires : 160 000 € + abattement 10%. CSG 9,7% sur RSU + contribution salariale 10% éventuelle. Quotient : comparer impôt avec/sans quotient (coefficient 4). À 160k€ on est en TMI 41%, quotient peut lisser si on revient en 30% sans RSU. La PV ultérieure (cession après vesting) sera imposée séparément au PFU.",
+      "expected_output": "Demander la date de l'AGE et le caractère qualifiant du plan. Cas courant (plan qualifiant, AGE après 2017) : rien n'est dû au titre du vesting, le gain d'acquisition de 100 000 € est imposé l'année de la cession des actions. Cette année-là : barème après abattement de 50 % (50 000 € s'ajoutent aux 60 000 € de salaire ; 2042 C cases 1TZ + 1WZ), PS 18,6 % sur les 100 000 € (18 600 €), ni CSG d'activité ni contribution salariale sous 300 000 €. Quotient (coefficient 4) : possible seulement si le gain est exceptionnel par nature et par montant (le BOFiP exclut les revenus du cadre normal de l'activité), comparer l'impôt avec/sans. La PV de cession (prix de vente − valeur au vesting) est imposée séparément au PFU 31,4 % ou au barème sur option. Fraction > 300 000 € : salaire (1TT), CSG 9,7 %, contribution salariale 10 %. Plan non qualifiant : salaire ordinaire l'année du vesting, via la paie, sans contribution de 10 %. Vérifier que la période de conservation du plan est échue avant la vente.",
       "files": [],
       "assertions": [
-        "Le skill identifie le gain RSU comme SALAIRE (pas comme PV mobilière)",
-        "L'abattement 10% salaire s'applique sur le total salaires + RSU",
-        "La CSG 9,7% sur le gain RSU est mentionnée",
-        "La contribution salariale 10% sur plans qualifiants est évoquée",
-        "Le mécanisme du quotient (coefficient 4) est expliqué",
+        "Le skill ne taxe rien au vesting : le gain d'acquisition est imposé l'année de la cession",
+        "Le skill ne traite PAS le gain d'un plan qualifiant comme un salaire ordinaire sous 300 000 € : barème après abattement de 50 %",
+        "Les prélèvements sociaux de 18,6 % (revenus du patrimoine) sur le gain avant abattement sont mentionnés, sans CSG d'activité ni contribution salariale",
+        "Le régime salaire avec contribution de 10 % (1TT, CSG 9,7 %) est réservé à la fraction > 300 000 € ; un plan non qualifiant est un salaire ordinaire de l'année du vesting, sans contribution de 10 %",
+        "Le mécanisme du quotient (coefficient 4) est expliqué, avec la réserve sur son caractère exceptionnel",
         "Le skill chiffre (ou explique comment chiffrer) les 2 scénarios avec/sans quotient",
-        "Le skill distingue gain d'acquisition (salaire) et future PV de cession (PFU)"
+        "Le skill distingue gain d'acquisition (barème après abattement) et future PV de cession (PFU 31,4 %)"
       ]
     },
     {
@@ -180,14 +180,16 @@
     {
       "id": 13,
       "name": "pea-retrait-avant-5-ans",
-      "prompt": "J'ai ouvert mon PEA il y a 3 ans, valorisation 40 000 € pour 30 000 € de versements. Si je retire maintenant, quelle fiscalité ?",
-      "expected_output": "Retrait avant 5 ans : clôture du PEA + imposition des gains (10 000 €) au PFU 30 % (12,8 % IR + 17,2 % PS), soit 3 000 €. Conseil : attendre 5 ans si possible pour exonération IR (seuls PS 17,2 % restent dus).",
+      "prompt": "J'ai ouvert mon PEA il y a 3 ans, valorisation 40 000 € pour 30 000 € de versements. Si je retire maintenant (en 2026), quelle fiscalité ?",
+      "expected_output": "Retrait avant 5 ans : clôture du PEA + imposition des gains (10 000 €) à 12,8 % d'IR + 18,6 % de PS (produits de placement, taux applicable aux retraits depuis le 01/01/2026, LFSS 2026), soit 3 140 € (3 000 € pour un retrait effectué en 2025). Exceptions sans clôture : retrait affecté dans les 3 mois à la création ou reprise d'une entreprise (gain exonéré d'IR, PS dus, plus de versements possibles) ; licenciement, invalidité ou retraite anticipée du titulaire ou de son conjoint (gain imposable, versements toujours possibles). Conseil : attendre 5 ans si possible pour l'exonération d'IR (seuls les PS, 18,6 %, restent dus). Réserve : la LFSS 2026 (art. 12, II-2°) exclut de la hausse les produits « acquis ou constatés avant le 1er janvier 2026 » ; si cette clause vaut pour les gains de PEA, la fraction du gain acquise avant 2026 resterait à 17,2 %. Non commenté au BOFiP à ce jour : se fier au décompte de l'établissement.",
       "files": [],
       "assertions": [
-        "Le skill identifie le retrait avant 5 ans comme entraînant clôture du PEA",
-        "L'imposition au PFU 30 % sur les gains (10 000 €) est calculée",
+        "Le skill identifie le retrait avant 5 ans comme entraînant clôture du PEA, hors exceptions",
+        "L'imposition à 12,8 % + 18,6 % (31,4 %) sur les gains (10 000 €) est calculée pour un retrait en 2026",
+        "Le skill mentionne au moins l'exception création ou reprise d'entreprise (exonération d'IR sans clôture)",
         "Le skill recommande d'attendre 5 ans pour économiser 12,8 % d'IR",
-        "Le skill précise qu'après 5 ans les PS 17,2 % restent dus (pas d'exonération totale)"
+        "Le skill précise qu'après 5 ans les PS (18,6 % depuis 2026) restent dus (pas d'exonération totale)",
+        "Le skill signale la réserve sur la clause transitoire de la LFSS 2026 (gains acquis avant 2026)"
       ]
     },
     {
@@ -208,12 +210,12 @@
       "id": 15,
       "name": "bspce-anciennete-penalite",
       "prompt": "J'ai exercé des BSPCE et cédé les actions avec 50 000 € de plus-value. Je suis dans la société depuis 2 ans seulement. Quelle fiscalité ?",
-      "expected_output": "Ancienneté < 3 ans → pénalité : 30 % IR + 20 % PS = 50 % global. 50 000 × 50 % = 25 000 €. Si l'utilisateur attend 1 an de plus (≥ 3 ans), taux 30 % global = 15 000 €. Gain à attendre : 10 000 € (si les BSPCE sont encore valables).",
+      "expected_output": "Ancienneté < 3 ans : 30 % d'IR sans option pour le barème (CGI art. 163 bis G) + 18,6 % de PS (revenus du patrimoine, LFSS 2026) = 48,6 %, soit 24 300 € sur 50 000 €. À 3 ans d'ancienneté (bons attribués depuis 2018) : 12,8 % ou barème sur option + 18,6 % = 31,4 %, soit 15 700 €. Écart : 8 600 € (si les BSPCE sont encore valables). Cases 2042 C : 3SK (moins de 3 ans) ou 3TJ (au moins 3 ans) pour des titres souscrits jusqu'au 31/12/2024.",
       "files": [],
       "assertions": [
         "Le skill identifie l'ancienneté < 3 ans comme déclenchant la pénalité",
-        "Le taux 50 % (30 % IR + 20 % PS) est appliqué",
-        "Le skill chiffre l'écart avec le régime favorable (30 %)",
+        "Le taux de 48,6 % (30 % IR + 18,6 % PS) est appliqué, sans prélèvement de 20 %",
+        "Le skill chiffre l'écart avec le régime à 31,4 % (12,8 % + 18,6 %)",
         "Le skill suggère d'attendre 3 ans d'ancienneté si possible",
         "Le skill rappelle les conditions d'éligibilité société (SAS/SA française, < 15 ans, IS, 25 % personnes physiques)"
       ]

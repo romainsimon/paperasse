@@ -11,7 +11,7 @@
 
   "plus_values_mobilieres": {
     "description": "Plus-values de cession de titres (actions, parts de société, OPC)",
-    "regime_defaut": "PFU 30% (12.8% IR + 17.2% PS) sur le gain net",
+    "regime_defaut": "PFU 31.4% (12.8% IR + 18.6% PS) sur le gain net — LFSS 2026 (loi n° 2025-1403, art. 12), revenus du patrimoine (CSS L. 136-6) dès les revenus 2025 ; 30% (17.2% PS) jusqu'aux revenus 2024",
     "option_bareme": "Possible, globale pour tous revenus du capital. Avantage : abattements durée de détention si titres acquis avant 2018.",
 
     "abattements_duree_detention_avant_2018": {

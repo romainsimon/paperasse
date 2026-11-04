@@ -59,11 +59,11 @@
       "name": "Equity salarial — RSU, BSPCE, stock-options",
       "file": "equity-salarial.json",
       "annee_revenus": 2025,
-      "source_officielle": "Plusieurs lois : loi Macron 2015 (RSU plans qualifiants), LFI 2018 (BSPCE)",
+      "source_officielle": "Plusieurs lois : loi Macron 2015 et LF 2018 art. 28 (actions gratuites qualifiantes : seuil 300 000 €, abattement 50 %), LFI 2018 (BSPCE)",
       "article_cgi": "art. 80 quaterdecies (RSU), art. 80 bis (SO), art. 163 bis G (BSPCE)",
-      "bofip": "BOI-RSA-ES",
+      "bofip": "BOI-RSA-ES-20-20-20 (version du 21/05/2026), BOI-RSA-ES-20-30 (21/05/2026), BOI-RSA-ES-20-40-30 (12/08/2025, BSPCE) ; cases : formulaire 2042 C millésime 2026",
       "update_frequency": "annual",
-      "last_fetched": "2026-04-12",
+      "last_fetched": "2026-10-17",
       "next_check": "2026-12-30",
       "check_instructions": "Vérifier plafonds plans qualifiants et taux BSPCE selon ancienneté."
     },
@@ -117,7 +117,7 @@
       "update_frequency": "rare",
       "last_fetched": "2026-04-12",
       "next_check": "2027-01-15",
-      "check_instructions": "Plafonds PEA 150 k€ / PEA-PME 225 k€. Abattements AV 4 600 € / 9 200 €. Seuil 150 k€ AV."
+      "check_instructions": "Plafonds PEA 150 k€ / PEA-PME 225 k€ (commun). Abattements AV 4 600 € / 9 200 €. Seuil AV de 150 k€ de primes : personnel, au 31/12 N-1 (BOI-RPPM-RCM-20-15). Cases 2042 (2VV, 2WW, 3VT) à relire chaque millésime."
     },
     {
       "id": "niches",

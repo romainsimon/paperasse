@@ -28,7 +28,7 @@ Un fichier par année. Classé par mois, du plus ancien au plus récent dans cha
 ## Janvier
 
 - **2026-01-02** : Envoi appel de fonds T1 (24 copropriétaires, total 7 350 EUR)
-- **2026-01-15** : Réception facture Mellano (nettoyage janvier, 395,47 EUR)
+- **2026-01-15** : Réception facture du prestataire de nettoyage (janvier, 395,00 EUR)
 - **2026-01-20** : Relance amiable lot 7 (impayé 1 400 EUR, email)
 
 ## Février
@@ -47,7 +47,7 @@ Un fichier par année. Classé par mois, du plus ancien au plus récent dans cha
 | Envoi de courrier (email, LRAR) | Envoi LRAR mise en demeure lot 7 (n° suivi 1A XXX) |
 | Réception de document | Réception AR LRAR convocation AG (lot 12, signé 15/03) |
 | Appel téléphonique | Appel Veolia (contestation facture, interlocuteur M. Dupont) |
-| Paiement effectué | Règlement facture Mellano février (395,47 EUR, virement) |
+| Paiement effectué | Règlement facture du prestataire de nettoyage, février (395,00 EUR, virement) |
 | Paiement reçu | Paiement lot 7 reçu (1 400 EUR, virement, solde impayé) |
 | Devis reçu | Réception devis ravalement ABC Façades (42 000 EUR) |
 | Décision | Décision conseil syndical : mise en concurrence assurance |

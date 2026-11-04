@@ -45,7 +45,8 @@
       "taux_reduction_dons_aide_personnes": 0.75,
       "plafond_assiette_standard": "20% du revenu imposable",
       "plafond_dons_aide_personnes": 1000,
-      "note_aide_personnes": "Plafond majoré pour dons aux associations venant en aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.)"
+      "plafond_dons_aide_personnes_depuis_14_10_2025": 2000,
+      "note_aide_personnes": "Plafond majoré pour dons aux associations venant en aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.). Limite portée à 2 000 € (y compris les versements antérieurs) pour les versements du 14/10 au 31/12/2025 : voir parametres_calcul_rici.dons."
     },
     "emploi_a_domicile": {
       "taux_credit": 0.50,

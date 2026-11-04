@@ -130,7 +130,7 @@
       "update_frequency": "annual",
       "last_fetched": "2026-10-29",
       "next_check": "2026-12-30",
-      "check_instructions": "Vérifier plafond global 10 000 € / 18 000 € outre-mer, taux dons 66% / 75% (1 000 € Coluche), plafonds emploi à domicile et garde."
+      "check_instructions": "Vérifier plafond global 10 000 € / 18 000 € outre-mer, taux dons 66% / 75% (1 000 € puis 2 000 € depuis le 14/10/2025), plafonds emploi à domicile et garde."
     }
   ]
 }

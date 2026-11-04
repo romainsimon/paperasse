@@ -82,7 +82,21 @@ Au-delà des plafonds : régime réel obligatoire.
 - Mobilier : 10-20%/an sur 5-10 ans
 - Gros travaux : amortissables sur leur durée d'usage
 
-**Résultat fiscal** : souvent nul ou déficitaire grâce aux amortissements → pas d'IR sur les loyers pendant des années.
+**Résultat fiscal** : souvent nul ou déficitaire grâce aux amortissements → pas d'IR sur les loyers pendant des années. Cette économie est en partie reprise à la revente (voir « Cession d'un bien LMNP »).
+
+### Cession d'un bien LMNP
+
+Voir `data/plus-values-immo-abattements.json` → `reintegration_amortissements`.
+
+Pour les **cessions réalisées depuis le 15/02/2025**, le prix d'acquisition retenu pour la plus-value des particuliers est **minoré des amortissements admis en déduction** au titre de la location meublée (art. 39 C CGI). Base légale : art. 150 VB, III CGI, modifié par l'art. 84 de la LF 2025 (loi n° 2025-127).
+
+- La règle s'applique **quelle que soit la date de mise en location** : les amortissements déduits avant 2025 sont aussi réintégrés (réponse ministérielle QE n° 10097, JOAN 24/03/2026).
+- **Seuls les amortissements admis en déduction** (effectivement déduits) sont retranchés : rien pour les années au micro-BIC, ni pour les amortissements excédentaires reportés (art. 39 C, II) non encore imputés. Les amortissements des travaux de construction, reconstruction, agrandissement ou amélioration ne sont pas retranchés (art. 150 VB, III, 1er alinéa) : ces travaux, déjà pris en compte pour l'IR, ne majorent pas non plus le prix d'acquisition (art. 150 VB, II, 4°).
+- Depuis le 21/02/2026, la même minoration vise les amortissements du **statut du bailleur privé** en location nue (art. 31, I, 1°, i et j CGI, créé par l'art. 47 de la LFI 2026, loi n° 2026-103) : la règle n'est donc pas propre au LMNP.
+- Exceptions (par renvoi du III de l'art. 150 VB) : résidences pour étudiants et personnes âgées (CCH art. L. 631-12 et L. 631-13), établissements médico-sociaux (CASF art. L. 312-1, I, 6° et 7°), résidences services agréées (C. trav. art. L. 7232-1), accueil familial salarié, unités de soins de longue durée.
+- La plus-value reste celle des particuliers (19 % + PS, abattements pour durée de détention) : seule l'assiette augmente.
+
+**Rappel au contribuable** : comparer micro-BIC et réel en intégrant le coût de cette réintégration si une revente est envisagée.
 
 **Déficit LMNP** : NON imputable sur le revenu global (contrairement au LMP). Reportable sur les BIC meublés des **10 années suivantes**.
 

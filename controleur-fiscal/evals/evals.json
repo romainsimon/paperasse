@@ -33,7 +33,7 @@
         "Axe 2 (IS) : le résultat fiscal est recalculé, le taux réduit PME est vérifié",
         "Axe 5 (Revenus) : l'abonnement annuel Client Alpha (12 000 EUR) est identifié comme PCA potentiel",
         "Axe 5 (Revenus) : le CA total est recoupé avec les payouts Stripe",
-        "Axe 6 (TVA) : le seuil franchise en base (36 800 EUR) est vérifié contre le CA total",
+        "Axe 6 (TVA) : le seuil de franchise en base applicable à l'exercice contrôlé (37 500 EUR pour les services en 2026) est vérifié contre le CA total",
         "Axe 7 (Immobilisations) : le MacBook Pro (1 800 EUR) est vérifié pour usage professionnel",
         "Un rapport est produit avec des chefs de redressement au format standardisé",
         "La synthèse inclut le total des droits rappelés potentiels"

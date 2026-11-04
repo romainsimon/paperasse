@@ -39,7 +39,7 @@
       "seuil": 77700,
       "seuil_revenus_2026_2028": 83600,
       "abattement": 0.50,
-      "note": "Location meublée longue durée (bail >9 mois). Seuil 77 700 € pour les revenus 2025 ; 83 600 € pour 2026-2028 (BOI-BAREME-000044)."
+      "note": "Autres locations meublées (longue durée, bail mobilité...), définies par exclusion des meublés de tourisme, sans critère de durée de bail. Seuil 77 700 € pour les revenus 2025 ; 83 600 € pour 2026-2028 (BOI-BAREME-000044)."
     },
 
     "meuble_tourisme_classe": {
@@ -75,7 +75,7 @@
     "seuils_cumulatifs": {
       "seuil_recettes": 23000,
       "condition_revenus": "ET recettes meublées > montant des autres revenus d'activité du foyer (traitements et salaires au sens de l'art. 79, pensions et rentes viagères comprises, BIC hors location meublée, BA, BNC, rémunérations de l'art. 62) — art. 155 IV 2 CGI",
-      "note": "Les DEUX conditions doivent être remplies. Seuil 23 000 € non renouvelable — application dès dépassement."
+      "note": "Les DEUX conditions doivent être remplies, appréciées chaque année au niveau du foyer fiscal (BOI-BIC-CHAMP-40-10 § 50, 120 et 150)."
     },
     "consequences_lmp": {
       "deficits": "Imputables sur le revenu global (contrairement au LMNP)",

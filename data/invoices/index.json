@@ -1,15 +1,6 @@
 {
   "_comment": "Piste d'audit stripe_id -> invoice_number. Maintenu automatiquement par scripts/import-stripe-invoices.js. Garantit l'idempotence des imports et permet a upload-qonto-attachments.js de matcher payouts -> factures.",
-  "invoices": {
-    "F-2026-001": {
-      "date": "2026-11-04",
-      "due_date": "2026-12-04",
-      "client": "TechSolutions SAS",
-      "amount_ht": 5000.00,
-      "amount_ttc": 5000.00,
-      "status": "sent"
-    }
-  },
+  "invoices": {},
   "stripe_map": {},
   "last_sync": null
 }

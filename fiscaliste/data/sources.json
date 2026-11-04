@@ -33,13 +33,13 @@
       "name": "PER — plancher, plafond, mutualisation",
       "file": "per-plafonds.json",
       "annee_revenus": 2025,
-      "source_officielle": "PASS 2025 = 47 100 € (décret)",
+      "source_officielle": "art. 163 quatervicies CGI ; brochure IR 2026 (charges déductibles : versements 2025 bornés par le PASS 2024 = 46 368 €, versements 2026 par le PASS 2025 = 47 100 €) ; LFI 2026 art. 9 et 10 (report à 5 ans, 70 ans)",
       "article_cgi": "art. 163 quatervicies CGI",
       "bofip": "BOI-IR-BASE-20-50-20",
       "update_frequency": "annual",
       "last_fetched": "2026-04-12",
       "next_check": "2027-01-15",
-      "check_instructions": "Recalculer plancher (10% × PASS) et plafond (10% × 8 × PASS) après publication du PASS de l'année N."
+      "check_instructions": "Recalculer plancher (10 % × PASS N-1) et plafond (10 % × 8 × PASS N-1) : les versements de l'année N sont bornés par le PASS de N-1, pas de N."
     },
     {
       "id": "ifi",
@@ -59,11 +59,11 @@
       "name": "Equity salarial — RSU, BSPCE, stock-options",
       "file": "equity-salarial.json",
       "annee_revenus": 2025,
-      "source_officielle": "Plusieurs lois : loi Macron 2015 (RSU plans qualifiants), LFI 2018 (BSPCE)",
+      "source_officielle": "Plusieurs lois : loi Macron 2015 et LF 2018 art. 28 (actions gratuites qualifiantes : seuil 300 000 €, abattement 50 %), LFI 2018 (BSPCE)",
       "article_cgi": "art. 80 quaterdecies (RSU), art. 80 bis (SO), art. 163 bis G (BSPCE)",
-      "bofip": "BOI-RSA-ES",
+      "bofip": "BOI-RSA-ES-20-20-20 (version du 21/05/2026), BOI-RSA-ES-20-30 (21/05/2026), BOI-RSA-ES-20-40-30 (12/08/2025, BSPCE) ; cases : formulaire 2042 C millésime 2026",
       "update_frequency": "annual",
-      "last_fetched": "2026-04-12",
+      "last_fetched": "2026-10-17",
       "next_check": "2026-12-30",
       "check_instructions": "Vérifier plafonds plans qualifiants et taux BSPCE selon ancienneté."
     },
@@ -120,7 +120,7 @@
       "section_deces_last_fetched": "2026-10-31",
       "check_instructions_deces": "Abattement 152 500 €/bénéficiaire et taux 20 % / 31,25 % (990 I), abattement global 30 500 € (757 B), matrice 20/11/1991 et 13/10/1998 (BOI-TCAS-AUT-60 § 70 à 90), exonération des bénéficiaires de l'art. 796-0 bis (§ 120). Vérifier que les produits du 3° du II de l'art. L. 136-7 CSS restent visés par la dérogation à 9,2 % du IV de l'art. L. 136-8 CSS — c'est ce qui maintient les PS de l'AV à 17,2 % malgré la LFSS 2026.",
       "next_check": "2027-01-15",
-      "check_instructions": "Plafonds PEA 150 k€ / PEA-PME 225 k€. Abattements AV 4 600 € / 9 200 €. Seuil 150 k€ AV."
+      "check_instructions": "Plafonds PEA 150 k€ / PEA-PME 225 k€ (commun). Abattements AV 4 600 € / 9 200 €. Seuil AV de 150 k€ de primes : personnel, au 31/12 N-1 (BOI-RPPM-RCM-20-15). Cases 2042 (2VV, 2WW, 3VT) à relire chaque millésime."
     },
     {
       "id": "niches",

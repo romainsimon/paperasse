@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse" alt="GitHub stars"></a>
-  <img src="https://img.shields.io/badge/evals-88%25_with_skill_%7C_75%25_without_%7C_%2B13%25_delta-brightgreen" alt="Evals: 88% with skill | 75% without | +13% delta">
+  <img src="https://img.shields.io/badge/evals-84%25_with_skill_%7C_65%25_without_%7C_%2B19%25_delta-brightgreen" alt="Evals: 84% with skill | 65% without | +19% delta">
   <a href="https://github.com/romainsimon/paperasse/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romainsimon/paperasse?style=flat&color=blue" alt="License"></a>
 </p>
 
@@ -234,17 +234,19 @@ python evals/generate_review.py evals-workspace/iteration-xxx/
 
 Pour les PRs, un workflow GitHub Actions `Evals Smoke` résout les skills impactés par rapport à la branche de base, restaure le cache `evals-workspace/cache`, et exécute uniquement la sélection nécessaire.
 
-**Derniers résultats** (claude-sonnet-4-6, grading haiku) :
+**Derniers résultats** (4 novembre 2026, 70 scénarios, un passage par scénario, claude-sonnet-4-6, grading haiku) :
 
 | Skill | With Skill | Without Skill | Delta |
 |-------|-----------|--------------|-------|
-| commissaire-aux-comptes | 100% | 75% | **+25%** |
-| notaire | 96% | 92% | +4% |
-| controleur-fiscal | 91% | 87% | +4% |
-| comptable | 89% | 77% | **+12%** |
-| fiscaliste | 84% | 64% | **+20%** |
-| syndic | 83% | 68% | **+16%** |
-| **Aggregate** | **88%** | **75%** | **+13%** |
+| commissaire-aux-comptes | 100% | 69% | **+31%** |
+| fiscaliste | 87% | 59% | **+29%** |
+| comptable | 88% | 66% | **+22%** |
+| syndic | 76% | 64% | **+12%** |
+| notaire | 82% | 79% | +3% |
+| controleur-fiscal | 66% | 73% | -7% |
+| **Aggregate** | **84%** | **65%** | **+19%** |
+
+Le jeu d'evals a beaucoup grossi depuis avril (scénarios plus difficiles, sans skill comme avec) : les chiffres ne se comparent pas directement aux résultats précédents. `controleur-fiscal` passe sous la baseline sur ce passage (un scénario en timeout, un autre à 3/7) et fait l'objet d'un travail de suivi.
 
 Le format `evals.json` est compatible avec le [framework officiel anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/skill-creator).
 

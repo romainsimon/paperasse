@@ -155,7 +155,7 @@ Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilit
 ### Axe 6 : TVA
 
 **Si franchise en base (art. 293 B CGI) :**
-1. Seuil franchise en base services : 36 800 (tolérance 39 100)
+1. Seuil franchise en base services : 37 500 € (tolérance 41 250 €) en 2026 ; ventes : 85 000 € (tolérance 93 500 €) (art. 293 B CGI, service-public F21746). Pour un exercice antérieur, appliquer le seuil de l'année contrôlée
 2. Annualisation si exercice < 12 mois
 3. Mention sur les factures : « TVA non applicable, art. 293 B du CGI »
 4. Cessions d'immobilisations : soumises à TVA ou exonérées ?

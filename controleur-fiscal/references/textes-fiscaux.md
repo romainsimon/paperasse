@@ -45,8 +45,7 @@ Pour un exercice de moins de 12 mois :
 
 **Art. 293 B CGI** — Franchise en base
 > Les assujettis établis en France [...] dont le chiffre d'affaires annuel n'excède pas :
-> - 36 800 pour les prestations de services
-> (seuil majoré : 39 100)
+> - 37 500 € pour les prestations de services (seuil majoré : 41 250 €) et 85 000 € pour les ventes (seuil majoré : 93 500 €), seuils 2026
 
 **Art. 283-2 CGI** — Autoliquidation
 > Lorsque le prestataire n'est pas établi en France, la taxe est acquittée par le preneur.

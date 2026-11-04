@@ -50,6 +50,7 @@ Si une règle ne peut pas être sourcée, **le dire explicitement** et inviter �
 |-------|------------|-------|
 | Traitements et salaires — abattement 10 % | art. 83-3° | BOI-RSA-BASE-30 |
 | Pensions — abattement 10 % | art. 158-5-a | BOI-RSA-PENS-30 |
+| Rémunérations des gérants et associés (art. 62) | art. 62, 211, 154 bis | BOI-RSA-GER |
 | Revenus fonciers — micro | art. 32 | BOI-RFPI-DECLA-20 |
 | Revenus fonciers — régime réel | art. 28 et s. | BOI-RFPI-BASE |
 | Déficit foncier | art. 156-I-3° | BOI-RFPI-BASE-30 |
@@ -77,7 +78,7 @@ Si une règle ne peut pas être sourcée, **le dire explicitement** et inviter �
 | Assurance-vie souscrite hors de France | art. 1649 AA CGI | BOI-IR-DECLA-20-20 § 150-160 |
 | Comptes d'actifs numériques à l'étranger (3916-bis) | art. 1649 bis C CGI | BOI-RPPM-PVBMC-30-30 § 70-80 |
 | Amendes et majoration de 80 % | art. 1736 IV et X, 1766, 1729-0 A CGI | BOI-CF-INF-20-10-50 |
-| Délai de reprise de 10 ans | art. L. 169 al. 4 LPF | BOI-CF-PGR-10-50 |
+| Délai de reprise de 10 ans | art. L. 169 LPF | BOI-CF-PGR-10-50 |
 
 ### Equity salarial
 
@@ -94,7 +95,7 @@ Si une règle ne peut pas être sourcée, **le dire explicitement** et inviter �
 |-------|------------|-------|
 | PER individuel — déduction | art. 163 quatervicies | BOI-IR-BASE-20-50-20 |
 | Plafond de déduction | art. 163 quatervicies-I-2 | idem |
-| Sortie en capital — part capital | art. 158-5-b bis | idem |
+| Sortie en capital, part capital | art. 158, 5-b quinquies | idem |
 | Mutualisation couple | art. 163 quatervicies-I-2° | idem |
 
 ### IFI

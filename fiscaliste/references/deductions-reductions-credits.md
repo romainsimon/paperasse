@@ -16,9 +16,9 @@ Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
 
 ### PER (Plan d'Épargne Retraite)
 
-- Déduction dans la limite du plafond (10% revenus pro, plancher 4 710 €, plafond 37 680 €)
-- Économie immédiate = versement × TMI
-- Mutualisation couple, report plafonds non utilisés sur 3 ans → détails listés dans SKILL.md sous "Rappels PER"
+- Déduction dans la limite du plafond : 10 % des revenus pro N-1, bornes calculées sur le PASS de N-1 (versements 2025 : plancher 4 637 €, plafond 37 094 € ; versements 2026 : 4 710 € et 37 680 €)
+- Économie immédiate = versement × TMI ; le RFR n'est pas réduit (réintégration, art. 1417, IV CGI)
+- Mutualisation couple, report des plafonds non utilisés sur 3 ans (5 ans pour les reliquats nés à partir de 2026, LFI 2026 ; fenêtre complète en 2031) → détails listés dans SKILL.md sous "Rappels PER"
 
 ### Pension alimentaire
 
@@ -30,8 +30,8 @@ Voir `data/niches-fiscales.json` → `distinction_mecanismes`.
 ### CSG déductible
 
 - 6,8% de la CSG prélevée sur les revenus du capital
-- **Uniquement si option barème progressif** sur les revenus du capital N-1
-- Imputée sur le RNI de N+1
+- **Uniquement si option barème progressif** sur les revenus du capital
+- Déduite du revenu global de l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts : ligne 2BH, calcul automatique) ; de l'année suivante (ligne 6DE préremplie) pour les PS établis par voie de rôle (plus-values, revenus d'un courtier étranger sans 2778)
 - **Zéro sous PFU**
 
 ### Autres déductions notables
@@ -51,10 +51,13 @@ Voir `data/niches-fiscales.json` → `dispositifs_dans_plafond`.
 | **Denormandie** | Similaire Pinel, ancien avec travaux | Ciblé centres-villes dégradés |
 | **Loc'Avantages** | Selon conventionnement et loyer | Alternative au Pinel |
 | **FCPI / FIP** | 18% à 25% des versements | Plafond versements distinct |
-| **Malraux** | 22% ou 30% des travaux | Hors plafond dans certains cas |
-| **Monuments historiques** | Déduction travaux sans plafond | Conditions strictes (ouverture public) |
+| **Malraux** (opérations engagées avant le 01/01/2013) | 22% ou 30% des travaux | Les opérations engagées depuis 2013 sont hors plafond |
+| **Objets mobiliers classés MH** | Réduction sur les travaux de conservation (art. 199 duovicies) | Conditions strictes |
 | **Investissement forestier** | 18% des versements | Engagement 8 ans minimum |
-| **Corse / outre-mer** (certaines formes) | Variable | Vérifier plafonds spécifiques |
+| **Investissement en Corse** | Variable | |
+| **Outre-mer (199 undecies A à D, dont Girardin), SOFICA, Pinel / Denormandie outre-mer** | Variable | Plafond majoré à **18 000 €** |
+| **Emploi d'un salarié à domicile** | Crédit d'impôt 50 % | Entre dans le plafond (art. 200-0 A) |
+| **Garde des jeunes enfants hors du domicile** | Crédit d'impôt 50 % | Entre dans le plafond (art. 200-0 A) |
 
 ### Dispositifs hors plafond global
 
@@ -64,8 +67,9 @@ Voir `data/niches-fiscales.json` → `dispositifs_hors_plafond`.
 |-----------|------------------|
 | **Dons associations** | 66% ou 75% (aide aux personnes en difficulté) |
 | **Cotisations syndicales** | 66% |
-| **Girardin industriel outre-mer** | Variable, sous conditions |
-| **Investissement outre-mer** (catégories spécifiques) | Variable |
+| **Malraux** (opérations engagées depuis le 01/01/2013) | 22% ou 30% des travaux |
+| **Monuments historiques** (immeubles) | Déduction des charges sur le revenu global : ce n'est pas une réduction d'impôt |
+| **Frais de scolarité** | Réduction forfaitaire |
 
 ### Frais de scolarité des enfants (cases 7EA/7EC/7EF)
 
@@ -98,9 +102,9 @@ Source : BOFiP BOI-IR-RICI-30 · art. 199 quater F CGI
 
 **Taux standard : 66%** de réduction, dans la limite de 20% du revenu imposable.
 
-**Taux majoré : 75%** pour les dons à des associations d'aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.), dans la limite de **1 000 €** par an. Au-delà : taux 66%.
+**Taux majoré : 75%** pour les dons à des associations d'aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.), dans la limite de **1 000 €** pour les versements du 01/01 au 13/10/2025 (case 7UD), limite portée à **2 000 €**, versements antérieurs compris, pour les versements du 14/10 au 31/12/2025 (case 7UQ ; LFI 2026, loi n° 2026-103 du 19/02/2026, art. 28). Au-delà : taux 66%. Les dons à 75 % ne comptent pas dans la limite de 20 %.
 
-**Report** : les dons dépassant le plafond de 20% sont reportables sur les 5 années suivantes.
+**Report** : la base à 66 % (7UF + excédent des dons à 75 % + reports 7XS à 7XY) qui dépasse 20 % du revenu imposable se reporte sur les 5 années suivantes ; les reports les plus anciens s'imputent avant les versements de l'année (brochure IR 2026, p. 241-245).
 
 ### Abrogé : frais de comptabilité et d'adhésion AGA/OGA (art. 199 quater B)
 
@@ -118,17 +122,21 @@ d'avantage fiscal direct.
 
 - **Taux : 50%** des dépenses éligibles
 - **Plafond général : 12 000 €** par an (donc crédit max 6 000 €)
-- **Majoration** : +1 500 € par enfant à charge ou personne de + 65 ans dans le foyer (plafond max 15 000 €)
+- **Majoration** : +1 500 € par enfant à charge (750 € en résidence alternée) ou personne de + 65 ans dans le foyer (plafond max 15 000 €)
+- **Première année d'emploi direct** (case 7DQ) : plafond 15 000 €, 18 000 € après majorations
+- **Invalidité** (case 7DG) : plafond 20 000 €, sans majoration
+- **Aides perçues** (APA, PCH, CESU préfinancé, case 7DR) : déduites des dépenses (7DB)
 - **Éligible** : ménage, garde d'enfant à domicile, soutien scolaire, petit bricolage, jardinage, etc.
 - **Entreprise agréée ou emploi direct** avec déclaration URSSAF
 
-**Avance immédiate (depuis 2022)** : possible via CESU+ — l'URSSAF avance le crédit directement, pas d'attente de remboursement.
+**Avance immédiate (depuis 2022)** : possible via CESU+ — l'URSSAF avance le crédit directement, pas d'attente de remboursement. Le montant perçu (case 7HB) est **ajouté au solde** de l'impôt l'année suivante.
 
 ### Garde d'enfant hors domicile
 
 - **Taux : 50%** des dépenses
-- **Plafond : 3 500 € par enfant** (donc crédit max 1 750 € par enfant)
-- **Âge limite** : enfant de moins de 6 ans au 1er janvier
+- **Plafond : 3 500 € par enfant** (donc crédit max 1 750 € par enfant), 1 750 € en résidence alternée
+- **Âge limite** : enfant de moins de 6 ans au 1er janvier (nés après le 31/12/2018 pour les revenus 2025)
+- **Aides déduites** : CMG (complément de libre choix du mode de garde) et aide de l'employeur ou du CSE viennent en déduction des dépenses (brochure IR 2026, p. 247)
 - **Éligibles** : crèche, assistante maternelle agréée, garde partagée
 
 ### Cotisations syndicales
@@ -143,27 +151,38 @@ Voir `data/niches-fiscales.json` → `plafonnement_global`.
 
 **Plafond : 10 000 €** par an (18 000 € pour investissements outre-mer spécifiques).
 
-**Mécanique** :
-1. Calculer toutes les réductions et crédits éligibles
-2. Distinguer ceux **dans le plafond** vs **hors plafond**
-3. Sommer les "dans le plafond"
-4. Si total > 10 000 € → l'excédent est **perdu** (pas reportable)
+**Mécanique** (art. 200-0 A ; brochure IR 2026, p. 319-320) :
+1. Calculer l'impôt avec **tous** les avantages, puis l'impôt **sans** les avantages plafonnés
+2. La différence est l'avantage effectivement obtenu (une réduction non imputée faute d'impôt ne compte pas)
+3. Si cette différence > 10 000 € → l'excédent est **ajouté à l'impôt** (perdu, pas reportable)
+4. Avantages outre-mer et SOFICA : les avantages du plafond de 10 000 € (retenus dans cette limite) + ces avantages sont comparés à 18 000 €, l'excédent est aussi ajouté
 
 **Pièges fréquents** :
 - Cumuler Pinel + FCPI + Girardin sans vérifier le plafond → partie perdue
-- Confondre "dans plafond" et "hors plafond" (les dons et l'emploi à domicile sont hors plafond)
+- Confondre "dans plafond" et "hors plafond" : les dons et le mécénat sont hors plafond, mais l'emploi à domicile et la garde d'enfant **y entrent** (art. 200-0 A, brochure IR 2026 p. 319-320)
 
 ## Ordre d'application (après impôt brut)
 
 ```
-Impôt brut après QF et décote
-  ↓ − réductions d'impôt (plancher 0)
+Impôt du barème après QF et décote
+  ↓ − réductions d'impôt (dans la limite de cet impôt, plancher 0)
 Impôt après réductions
-  ↓ − crédits d'impôt (peut être négatif = remboursement)
-Impôt net final
+  ↓ + impositions à taux proportionnel (IR 12,8 % du PFU…)
+  ↓ + excédent du plafonnement global des niches
+Impôt avant crédits
+  ↓ − crédits d'impôt et prélèvement forfaitaire déjà versé (2CK) (peut être négatif = remboursement)
+Impôt net
+  ↓ + CEHR − retenue à la source − acomptes + avance RICI perçue en janvier (+ avance immédiate 7HB)
+Solde IR (puis solde des prélèvements sociaux)
 ```
 
-**Pourquoi distinguer l'ordre** : si l'impôt est déjà faible, une réduction est "perdue" (plancher 0) alors qu'un crédit reste remboursable.
+Sources : CGI art. 197, I-5 (les réductions s'imputent sur l'impôt du barème, avant les crédits et les prélèvements non libératoires, sans remboursement) ; brochure IR 2026, fiche de calculs p. 382 ; art. 1665 bis (avance).
+
+**Pourquoi distinguer l'ordre** : si l'impôt est déjà faible, une réduction est "perdue" (plancher 0) alors qu'un crédit reste remboursable. Les réductions ne s'imputent pas sur l'IR forfaitaire du PFU.
+
+**Avance de janvier (art. 1665 bis)** : 60 % des réductions et crédits de l'avant-dernière année (dons, Pinel/Denormandie, Loc'Avantages, Scellier, Censi-Bouvard, DOM, services à la personne, garde, EHPAD, cotisations syndicales) sont versés mi-janvier. L'avance perçue (8EA) est **reprise** à la liquidation : elle diminue le remboursement de l'été. Ne pas l'oublier dans une estimation du solde.
+
+**Calcul déterministe** : `scripts/calc_ir.py --foyer foyer.json` avec un bloc `reductions_credits` (et `prelevement_a_la_source` pour le solde) ; voir `foyer.example.json` et `examples/foyer-reductions-credits.json`.
 
 ## Stratégies d'optimisation
 

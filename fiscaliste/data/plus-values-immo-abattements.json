@@ -62,9 +62,9 @@
       "bailleur_prive_art_31_I_1_i_j": "2026-02-21"
     },
     "regle": "Le prix d'acquisition est minoré du montant des amortissements admis en déduction au titre de l'art. 39 C CGI (location meublée non professionnelle) ou des i et j du 1° du I de l'art. 31 CGI (statut du bailleur privé en location nue, créé par la LFI 2026). En LMNP, la minoration vise aussi les amortissements déduits avant 2025, quelle que soit la date de mise en location.",
-    "amortissements_concernes": "Seuls les amortissements admis en déduction sont retranchés : rien à réintégrer pour les années au micro-BIC (abattement forfaitaire, aucun amortissement déduit), ni pour les amortissements excédentaires reportés (art. 39 C, II) non encore imputés.",
+    "amortissements_concernes": "Seuls les amortissements admis en déduction sont retranchés : rien à réintégrer pour les années au micro-BIC (abattement forfaitaire, aucun amortissement déduit), ni pour les amortissements excédentaires reportés (art. 39 C, II) non encore imputés. Ne sont pas retranchés non plus les amortissements de dépenses de construction, reconstruction, agrandissement ou amélioration (art. 150 VB, III, 1er alinéa, renvoi au II, 4°) : ces travaux, déjà pris en compte pour l'IR, ne majorent pas le prix d'acquisition et leurs amortissements ne le minorent pas.",
     "exceptions": [
-      "Résidences pour étudiants, jeunes de moins de 30 ans en formation ou en apprentissage et personnes de plus de 65 ans (CCH art. L. 631-12 et L. 631-13)",
+      "Résidences pour étudiants, personnes de moins de 30 ans en formation ou en stage, personnes en contrat de professionnalisation ou d'apprentissage et personnes de plus de 65 ans (CCH art. L. 631-12 et L. 631-13)",
       "Établissements et services médico-sociaux pour personnes âgées ou handicapées (CASF art. L. 312-1, I, 6° et 7°), y compris les services d'aide à domicile autorisés (CASF art. L. 313-1) qui en relèvent",
       "Résidences avec services pour personnes âgées ou handicapées agréées (C. trav. art. L. 7232-1)",
       "Logements de l'accueil familial salarié gérés par un groupement de coopération sociale ou médico-sociale (CASF art. L. 444-1 à L. 444-9)",

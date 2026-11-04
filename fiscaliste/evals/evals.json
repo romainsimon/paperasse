@@ -268,13 +268,13 @@
       "id": 19,
       "name": "plafond-niches-global",
       "prompt": "En 2025 j'ai : 4 000 € de dons (réduction 66 %), 6 000 € d'emploi à domicile (crédit 50 %), 3 000 € de versements FCPI (réduction 25 %), 5 000 € de réduction Pinel. Ai-je un problème avec le plafond global ?",
-      "expected_output": "Calcul des niches : dons (hors plafond : 2 640 €), emploi à domicile (hors plafond, crédit 3 000 €), FCPI (DANS plafond : 750 €), Pinel (DANS plafond : 5 000 €). Total DANS plafond = 750 + 5 000 = 5 750 € ≤ 10 000 € → pas de dépassement. Total hors plafond = 5 640 €. Total économie fiscale = 11 390 €. Attention : seules les niches DANS le plafond (Pinel + FCPI) sont comptabilisées pour le plafond 10 000 €.",
+      "expected_output": "Calcul des niches : dons (hors plafond : 2 640 €), emploi à domicile (DANS plafond, crédit 3 000 €), FCPI (DANS plafond : 750 €), Pinel (DANS plafond : 5 000 €). Total DANS plafond = 750 + 3 000 + 5 000 = 8 750 € ≤ 10 000 € → pas de dépassement, mais il ne reste que 1 250 € de marge. Total hors plafond = 2 640 € (dons). Total économie fiscale = 11 390 €. Attention : le crédit emploi à domicile entre dans le plafond global (art. 200-0 A CGI) ; seuls les dons sont exclus ici.",
       "files": [],
       "assertions": [
-        "Le skill distingue niches DANS plafond (Pinel, FCPI) et HORS plafond (dons, emploi à domicile)",
+        "Le skill distingue niches DANS plafond (Pinel, FCPI, emploi à domicile) et HORS plafond (dons)",
         "Les montants des réductions/crédits sont correctement calculés",
         "Le skill additionne uniquement les niches dans le plafond pour vérifier les 10 000 €",
-        "Le skill conclut correctement sur le respect du plafond (5 750 € < 10 000 €)",
+        "Le skill conclut correctement sur le respect du plafond (8 750 € < 10 000 €)",
         "Le skill rappelle que l'excédent au-delà du plafond serait perdu (non reportable)"
       ]
     },

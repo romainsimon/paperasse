@@ -51,10 +51,13 @@ Voir `data/niches-fiscales.json` → `dispositifs_dans_plafond`.
 | **Denormandie** | Similaire Pinel, ancien avec travaux | Ciblé centres-villes dégradés |
 | **Loc'Avantages** | Selon conventionnement et loyer | Alternative au Pinel |
 | **FCPI / FIP** | 18% à 25% des versements | Plafond versements distinct |
-| **Malraux** | 22% ou 30% des travaux | Hors plafond dans certains cas |
-| **Monuments historiques** | Déduction travaux sans plafond | Conditions strictes (ouverture public) |
+| **Malraux** (opérations engagées avant le 01/01/2013) | 22% ou 30% des travaux | Les opérations engagées depuis 2013 sont hors plafond |
+| **Objets mobiliers classés MH** | Réduction sur les travaux de conservation (art. 199 duovicies) | Conditions strictes |
 | **Investissement forestier** | 18% des versements | Engagement 8 ans minimum |
-| **Corse / outre-mer** (certaines formes) | Variable | Vérifier plafonds spécifiques |
+| **Investissement en Corse** | Variable | |
+| **Outre-mer (199 undecies A à D, dont Girardin), SOFICA, Pinel / Denormandie outre-mer** | Variable | Plafond majoré à **18 000 €** |
+| **Emploi d'un salarié à domicile** | Crédit d'impôt 50 % | Entre dans le plafond (art. 200-0 A) |
+| **Garde des jeunes enfants hors du domicile** | Crédit d'impôt 50 % | Entre dans le plafond (art. 200-0 A) |
 
 ### Dispositifs hors plafond global
 
@@ -64,8 +67,9 @@ Voir `data/niches-fiscales.json` → `dispositifs_hors_plafond`.
 |-----------|------------------|
 | **Dons associations** | 66% ou 75% (aide aux personnes en difficulté) |
 | **Cotisations syndicales** | 66% |
-| **Girardin industriel outre-mer** | Variable, sous conditions |
-| **Investissement outre-mer** (catégories spécifiques) | Variable |
+| **Malraux** (opérations engagées depuis le 01/01/2013) | 22% ou 30% des travaux |
+| **Monuments historiques** (immeubles) | Déduction des charges sur le revenu global : ce n'est pas une réduction d'impôt |
+| **Frais de scolarité** | Réduction forfaitaire |
 
 ### Frais de scolarité des enfants (cases 7EA/7EC/7EF)
 
@@ -151,7 +155,7 @@ Voir `data/niches-fiscales.json` → `plafonnement_global`.
 
 **Pièges fréquents** :
 - Cumuler Pinel + FCPI + Girardin sans vérifier le plafond → partie perdue
-- Confondre "dans plafond" et "hors plafond" (les dons et l'emploi à domicile sont hors plafond)
+- Confondre "dans plafond" et "hors plafond" : les dons et le mécénat sont hors plafond, mais l'emploi à domicile et la garde d'enfant **y entrent** (art. 200-0 A, brochure IR 2026 p. 319-320)
 
 ## Ordre d'application (après impôt brut)
 

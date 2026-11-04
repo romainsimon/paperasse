@@ -85,7 +85,7 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 | Indemnités journalières maladie imposables | 1AJ / 1BJ (avec les salaires ; 1AM = autres pensions de source étrangère) | — |
 | BNC régime normal | 5QC / 5RC | 2035 |
 | Micro-BNC | 5HQ / 5IQ (professionnel) ; 5KU / 5LU (non professionnel) | — |
-| Revenus fonciers réels | 4BA | **2044** |
+| Revenus fonciers réels | 4BA (bénéfice), 4BB / 4BC / 4BD (déficits) | **2044** |
 | Micro-foncier (nu) | 4BE | — |
 | LMNP micro-BIC longue durée | 5NI / 5OI / 5PI | — |
 | LMNP micro-BIC meublé de tourisme non classé | 5NH / 5OH / 5PH | — |
@@ -147,19 +147,19 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 
 Le réel est avantageux dès que charges réelles > 30 % des loyers (crédit immobilier, travaux, assurance PNO, taxe foncière).
 
-**Déficit foncier** : imputable sur le revenu global dans la limite de 10 700 € / an, reportable 10 ans sur revenus fonciers uniquement.
+**Déficit foncier** : imputable sur le revenu global dans la limite de 10 700 € / an (limite rehaussée, sur option, du montant des dépenses de rénovation énergétique E/F/G vers A-D payées de 2023 à 2027, sans dépasser 21 400 €), reportable 10 ans sur revenus fonciers uniquement ; les loyers sont réputés couvrir d'abord les intérêts d'emprunt ; location nue à maintenir jusqu'au 31 décembre de la troisième année suivant l'imputation.
 
 **Location meublée (LMNP)** :
 
 | Recettes annuelles | Régime | Abattement |
 |--------------------|--------|------------|
-| ≤ 77 700 € (longue durée ou meublé classé ; 83 600 € pour 2026-2028) | Micro-BIC | 50 % |
+| ≤ 77 700 € en 2025, ≤ 83 600 € en 2026-2028 (longue durée ou meublé classé) | Micro-BIC | 50 % |
 | ≤ 15 000 € (meublé tourisme non classé) | Micro-BIC | 30 % |
-| > seuils deux années consécutives OU sur option | Réel — annexe 2031 | Amortissements + charges réelles |
+| > seuils deux années consécutives OU sur option | Réel, annexe 2031 | Amortissements + charges réelles |
 
-Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souvent le résultat nul ; il ne peut ni créer ni accroître un déficit (art. 39 C). Le déficit LMNP (issu des charges) est **non imputable sur le revenu global** (reportable 10 ans sur les seuls revenus de location meublée non professionnelle).
+Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) ramène souvent le résultat à zéro, sans pouvoir créer ni accroître un déficit (art. 39 C). Le déficit LMNP (issu des charges) est **non imputable sur le revenu global** (reportable 10 ans sur les seuls bénéfices de location meublée non professionnelle). À la revente, les amortissements admis en déduction sont retranchés du prix d'acquisition pour la plus-value (art. 150 VB, III, cessions depuis le 15/02/2025), sauf ceux des dépenses de construction, reconstruction, agrandissement ou amélioration.
 
-**Bascule LMP** : si recettes > 23 000 € ET recettes > autres revenus d'activité du foyer, pensions et rentes viagères comprises → statut LMP (régime différent, exonération IFI possible, cotisations sociales SSI).
+**Bascule LMP** : si recettes > 23 000 € ET recettes > total des autres revenus d'activité du foyer (salaires, pensions et rentes viagères comprises, BIC, BA, BNC) → statut LMP (déficits sur le revenu global, plus-values professionnelles, cotisations sociales SSI ; exonération IFI seulement sous des critères propres, dont la profession principale, art. 975, V CGI).
 
 ### Étape 6 : Mobilisation du PER
 

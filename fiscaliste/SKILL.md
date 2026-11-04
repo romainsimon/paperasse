@@ -91,10 +91,10 @@ Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi de finances
 | **Chômage (ARE)** | 1AP/1BP | **10 %** — l'ARE est un revenu de remplacement imposé selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20) ; l'abattement de 10 % s'applique sur le total salaires + ARE. Se déclare en 1AP/1BP (pas en 1AJ), mais bénéficie bien de l'abattement. |
 | Dividendes (option barème) | 2DC | 40 % |
 | Dividendes (PFU) | 2DC | Aucun |
-| Micro-BNC | 5TE | 34 % (plafond 77 700 €) |
+| Micro-BNC | 5HQ (activité professionnelle) / 5KU (non professionnelle) — 5TE seulement en versement libératoire | 34 % (plafond 77 700 €) |
 | Micro-foncier (nu) | 4BE | 30 % (plafond 15 000 €) |
-| Micro-BIC LMNP longue durée | 5ND | 50 % (plafond 77 700 €) |
-| Micro-BIC LMNP meublé tourisme non classé | 5ND | 30 % (plafond 15 000 €) |
+| Micro-BIC LMNP longue durée | 5NI | 50 % (plafond 77 700 €) |
+| Micro-BIC LMNP meublé tourisme non classé | 5NH | 30 % (plafond 15 000 €) |
 | Micro-BIC LMNP meublé tourisme classé | 5NG | 50 % (plafond 77 700 €) |
 
 ### PFU et prélèvements sociaux

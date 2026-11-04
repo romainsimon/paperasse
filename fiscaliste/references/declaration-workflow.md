@@ -83,11 +83,15 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 | Allocations chômage | 1AP / 1BP | — |
 | Indemnités journalières maladie imposables | 1AJ / 1BJ (avec les salaires ; 1AM = autres pensions de source étrangère) | — |
 | BNC régime normal | 5QC / 5RC | 2035 |
-| Micro-BNC | 5HQ / 5IQ | — |
+| Micro-BNC | 5HQ / 5IQ (professionnel) ; 5KU / 5LU (non professionnel) | — |
 | Revenus fonciers réels | 4BA | **2044** |
 | Micro-foncier (nu) | 4BE | — |
-| LMNP micro-BIC longue durée | 5ND / 5OD | — |
-| LMNP réel | 5NA / 5OA | **2031 + 2033-A à D** |
+| LMNP micro-BIC longue durée | 5NI / 5OI / 5PI | — |
+| LMNP micro-BIC meublé de tourisme non classé | 5NH / 5OH / 5PH | — |
+| LMNP micro-BIC meublé de tourisme classé, chambres d'hôtes | 5NG / 5OG / 5PG | — |
+| LMNP réel (bénéfice) | 5NA / 5OA / 5PA | **2031 + 2033-A à D** |
+| LMNP réel (déficit de l'année) | 5NY / 5OY / 5PY | **2031 + 2033-A à D** |
+| LMNP déficits antérieurs non encore déduits | 5GA à 5GJ (déficits 2015 à 2024, une case par année, au niveau du foyer) | — |
 | Dividendes (PFU ou barème) | 2DC | — |
 | Intérêts / produits de placement | 2TR | — |
 | Plus-values mobilières | 3VG | **2074** (si détail) |

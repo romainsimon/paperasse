@@ -59,7 +59,7 @@ La confusion la plus fréquente concerne le "salaire net imposable".
 | Dividendes (option barème) | 2DC | 40% | data/pfu-prelevements-sociaux.json |
 | Dividendes (PFU) | 2DC | Aucun abattement | — |
 | BNC régime normal | 5QC | Aucun abattement | — |
-| Micro-BNC | 5TE | 34% (plafond 77 700 €) | — |
+| Micro-BNC | 5HQ (professionnel) / 5KU (non professionnel) ; 5TE seulement en versement libératoire | 34% (plafond 77 700 €) | — |
 
 **Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), **pas** dans les salaires 1AJ, mais elle bénéficie quand même de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20). La distinction de case n'enlève donc PAS l'abattement ; elle sert au prélèvement à la source et aux calculs qui distinguent revenus d'activité et de remplacement (certaines prestations). L'ARE compte en revanche pour le plafond de déduction PER de l'année suivante, comme les salaires (brochure IR 2026, charges déductibles : « allocations de chômage » dans les revenus retenus).
 

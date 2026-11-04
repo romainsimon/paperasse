@@ -21,7 +21,7 @@ Conformément au budget prévisionnel voté lors de l'Assemblée Générale du {
 | Poste | Montant |
 |-------|--------:|
 | Provisions sur charges courantes | {{montant_provisions}} EUR |
-| Cotisation fonds de travaux (art. 14-2) | {{montant_fonds_travaux}} EUR |
+| Cotisation fonds de travaux (art. 14-2-1) | {{montant_fonds_travaux}} EUR |
 {{#si travaux_votes}}
 | Appel travaux : {{description_travaux}} | {{montant_travaux}} EUR |
 {{/si}}

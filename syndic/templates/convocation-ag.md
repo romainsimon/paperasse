@@ -28,7 +28,7 @@ Le syndic de la copropriété {{copro.name}} a l'honneur de vous convoquer à l'
 3. Approbation de la régularisation des charges de l'exercice clos — Vote art. 24
 4. Quitus au syndic pour sa gestion de l'exercice écoulé — Vote art. 24
 5. Vote du budget prévisionnel pour l'exercice {{exercice_suivant}} — Vote art. 24
-6. Fixation de la cotisation au fonds de travaux (art. 14-2 de la loi du 10 juillet 1965) — Vote art. 24
+6. Fixation de la cotisation au fonds de travaux (art. 14-2-1 de la loi du 10 juillet 1965) — Vote art. 25 si le montant dépasse le minimum légal
 
 ### Troisième partie : Syndic et conseil syndical
 

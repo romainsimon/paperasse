@@ -65,7 +65,7 @@ Le syndic assure, dans le cadre de sa mission de gestion courante :
 - Paiement des fournisseurs
 - Suivi des impayés et relances
 - Préparation des comptes annuels et des 5 annexes
-- Gestion du fonds de travaux (art. 14-2)
+- Gestion du fonds de travaux (art. 14-2-1)
 
 ### 3.3 Assemblées Générales
 

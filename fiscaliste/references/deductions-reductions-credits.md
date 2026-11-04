@@ -55,7 +55,7 @@ Voir `data/niches-fiscales.json` → `dispositifs_dans_plafond`.
 | **Objets mobiliers classés MH** | Réduction sur les travaux de conservation (art. 199 duovicies) | Conditions strictes |
 | **Investissement forestier** | 18% des versements | Engagement 8 ans minimum |
 | **Investissement en Corse** | Variable | |
-| **Outre-mer (199 undecies A à D, dont Girardin) et SOFICA** | Variable | Plafond majoré à **18 000 €** |
+| **Outre-mer (199 undecies A à D, dont Girardin), SOFICA, Pinel / Denormandie outre-mer** | Variable | Plafond majoré à **18 000 €** |
 | **Emploi d'un salarié à domicile** | Crédit d'impôt 50 % | Entre dans le plafond (art. 200-0 A) |
 | **Garde des jeunes enfants hors du domicile** | Crédit d'impôt 50 % | Entre dans le plafond (art. 200-0 A) |
 
@@ -155,7 +155,7 @@ Voir `data/niches-fiscales.json` → `plafonnement_global`.
 
 **Pièges fréquents** :
 - Cumuler Pinel + FCPI + Girardin sans vérifier le plafond → partie perdue
-- Confondre "dans plafond" et "hors plafond" : les dons et le mécénat sont hors plafond, mais l'emploi à domicile et la garde d'enfant **y entrent** (art. 200-0 A, brochure IR 2026 p. 318-320)
+- Confondre "dans plafond" et "hors plafond" : les dons et le mécénat sont hors plafond, mais l'emploi à domicile et la garde d'enfant **y entrent** (art. 200-0 A, brochure IR 2026 p. 319-320)
 
 ## Ordre d'application (après impôt brut)
 

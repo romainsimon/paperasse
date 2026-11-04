@@ -23,14 +23,14 @@
       "Frais de garde des jeunes enfants hors du domicile (crédit d'impôt 50 %, art. 200 quater B)",
       "Malraux pour les opérations engagées avant le 01/01/2013 uniquement",
       "Travaux de conservation d'objets mobiliers classés monuments historiques (art. 199 duovicies)",
-      "Investissements outre-mer (art. 199 undecies A à D, dont Girardin) et SOFICA : plafond majoré à 18 000 €",
+      "Investissements outre-mer (art. 199 undecies A à D, dont Girardin ; seule la fraction non rétrocédée des 199 undecies B et C compte), SOFICA et Pinel / Denormandie outre-mer : plafond majoré à 18 000 €",
       "Investissement forestier",
       "Investissement corse"
     ]
   },
 
   "dispositifs_hors_plafond": {
-    "note": "Dispositifs exclus du plafond global (avantages sans contrepartie : dons, mécénat ; avantages liés à la situation personnelle). Source : art. 200-0 A CGI, brochure pratique IR 2026 p. 318-320",
+    "note": "Dispositifs exclus du plafond global (avantages sans contrepartie : dons, mécénat ; avantages liés à la situation personnelle). Source : art. 200-0 A CGI, brochure pratique IR 2026 p. 319-320",
     "liste": [
       "Dons aux associations (réduction 66% ou 75% selon type)",
       "Malraux pour les opérations engagées depuis le 01/01/2013",

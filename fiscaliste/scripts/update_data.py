@@ -49,7 +49,7 @@ def check_skill_freshness():
         return
     import re
     content = skill.read_text()
-    m = re.search(r"last_updated:\s*(\d{4}-\d{2}-\d{2})", content)
+    m = re.search(r"last_updated:\s*[\"']?(\d{4}-\d{2}-\d{2})", content)
     if not m:
         print(f"  {YELLOW}SKILL.md : pas de last_updated{RESET}")
         return

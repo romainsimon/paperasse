@@ -72,7 +72,7 @@ mon-skill/
 ---
 name: Mon Skill
 description: Description courte du skill
-last_updated: 2026-03-25
+last_updated: "2026-03-25"
 includes:
   - data/**
   - company.example.json

@@ -1,7 +1,7 @@
 ---
 name: commissaire-aux-comptes
 metadata:
-  last_updated: 2026-03-23
+  last_updated: "2026-11-04"
 includes:
   - data/**
   - company.example.json

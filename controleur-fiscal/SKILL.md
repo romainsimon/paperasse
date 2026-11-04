@@ -286,7 +286,7 @@ Terminer par un tableau récapitulatif :
 - Intérêts de retard : 0,2%/mois (art. 1727 CGI)
 - Dépôt tardif ou défaut de déclaration : 10% (art. 1728, 1-a CGI ; le 10% de l'art. 1758 A ne vise que l'impôt sur le revenu)
 - Manquement délibéré : 40% (art. 1729 a CGI)
-- Abus de droit : 80% (art. 1729 b CGI), ramenée à 40% si le contribuable n'a eu ni l'initiative principale ni le bénéfice principal des actes
+- Abus de droit : 80% (art. 1729 b CGI), ramenée à 40% s'il n'est pas établi que le contribuable a eu l'initiative principale des actes ou en a été le principal bénéficiaire
 - Manoeuvres frauduleuses : 80% (art. 1729 c CGI)
 
 ### Opinion du vérificateur

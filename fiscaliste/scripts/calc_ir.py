@@ -13,15 +13,20 @@ Usage:
     python fiscaliste/scripts/calc_ir.py --parts 2 --rni 90000 --json
 
 Couvre :
-    - Abattement 10 % salaires et pensions
+    - Abattement 10 % salaires et pensions (salaires : plancher et plafond par
+      déclarant, CGI art. 83, 3° ; pensions : plancher par pensionné, plafond
+      par foyer, CGI art. 158, 5-a ; plancher limité au revenu)
     - Barème progressif tranche par tranche
-    - Quotient familial (avec plafonnement)
+    - Quotient familial (avec plafonnement ; enfants en résidence alternée
+      décomptés après les enfants à charge exclusive)
     - Décote célibataire / couple
     - PS différenciés LFSS 2026 : 18,6 % revenus du patrimoine (PV mobilières,
       crypto) / 17,2 % produits de placement 2025 (dividendes, intérêts).
       Les PS sur le résultat LMNP ne sont PAS calculés (le champ
       lmnp_reel_resultat du foyer.json n'alimente pas la base PS)
-    - CEHR
+    - IR forfaitaire du PFU : 12,8 % des revenus du capital (CGI art. 200 A),
+      sauf option globale pour le barème (non calculée par ce script)
+    - CEHR (RFR incluant les versements PER déduits, CGI art. 1417, IV)
 
 Ne couvre PAS :
     - Réductions / crédits d'impôt (à retrancher manuellement après)
@@ -55,14 +60,24 @@ def load_json(path):
 def abattement_salaires(brut_1aj, bareme):
     cfg = bareme["abattement_salaires_10pct"]
     abatt = max(cfg["minimum"], min(cfg["maximum"], brut_1aj * cfg["taux"]))
+    # Le plancher ne peut excéder le revenu : net jamais négatif
+    abatt = min(abatt, brut_1aj)
     return round(brut_1aj - abatt)
 
 
-def abattement_pensions(brut_1as, bareme):
+def abattement_pensions(pensions_par_declarant, bareme):
+    """Pensions nettes du foyer (CGI art. 158, 5-a).
+
+    Le minimum s'apprécie par pensionné, limité au montant de sa pension ;
+    le maximum s'applique au total du foyer.
+    """
     cfg = bareme["abattement_pensions_10pct"]
-    # plafond par foyer, pas par personne — laissons l'appelant agréger
-    abatt = max(cfg["minimum"], min(cfg["maximum"], brut_1as * cfg["taux"]))
-    return round(brut_1as - abatt)
+    abatt_par_declarant = [
+        min(brut, max(cfg["minimum"], brut * cfg["taux"]))
+        for brut in pensions_par_declarant if brut
+    ]
+    abatt = min(cfg["maximum"], sum(abatt_par_declarant))
+    return round(sum(pensions_par_declarant) - abatt)
 
 
 # ─────────────────────────────────────────────────────
@@ -200,7 +215,7 @@ def ps_capital(base_patrimoine, base_placement, pfu_data):
 # ─────────────────────────────────────────────────────
 
 def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
-         base_ps_placement=0, pfu_data=None):
+         base_ps_placement=0, pfu_data=None, base_pfu_ir=0):
     qf = impot_avec_qf(rni, parts, parts_base, bareme)
     dec = decote(qf["impot_brut"], parts_base, bareme)
     impot_apres_decote = max(0, qf["impot_brut"] - dec)
@@ -211,6 +226,7 @@ def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
         ps_detail = None
     ps = ps_detail["total"] if ps_detail else 0
     cehr_montant = cehr(rfr, parts_base, bareme) if rfr else 0
+    ir_pfu = round(base_pfu_ir * pfu_data["pfu"]["taux_ir"]) if base_pfu_ir and pfu_data else 0
 
     return {
         "rni": rni,
@@ -225,10 +241,11 @@ def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
         },
         "decote": round(dec),
         "impot_apres_decote": impot_apres_decote,
+        "ir_pfu": {"base": base_pfu_ir, "montant": ir_pfu},
         "prelevements_sociaux": ps,
         "ps_details": ps_detail,
         "cehr": cehr_montant,
-        "total_a_payer": impot_apres_decote + ps + cehr_montant,
+        "total_a_payer": impot_apres_decote + ir_pfu + ps + cehr_montant,
         "_note": "Avant réductions et crédits d'impôt. Les additionner manuellement.",
     }
 
@@ -246,26 +263,26 @@ def from_foyer(foyer, bareme, pfu_data):
     enfants_alternee = f.get("nb_enfants_alternee", 0)
     # Les 2 premiers enfants = 0,5 part chacun ; à partir du 3e = 1 part
     demi_parts_enfants = 0.5 * min(enfants, 2) + 1.0 * max(0, enfants - 2)
-    demi_parts_alt = 0.25 * min(enfants_alternee, 2) + 0.5 * max(0, enfants_alternee - 2)
+    # Résidence alternée : décomptés après les enfants à charge exclusive ;
+    # 0,25 part pour le 1er ou le 2e enfant à charge, 0,5 à partir du 3e
+    rangs_alt = range(enfants + 1, enfants + enfants_alternee + 1)
+    demi_parts_alt = sum(0.25 if rang <= 2 else 0.5 for rang in rangs_alt)
     parts = parts_base + demi_parts_enfants + demi_parts_alt
 
-    # Limitation connue : salaires + ARE partagent ici un seul plafond d'abattement
-    # (14 555 €). Correct pour un même déclarant ; un foyer où salaire et ARE
-    # relèvent de deux conjoints distincts aurait droit à deux plafonds. Non géré
-    # (limitation préexistante) — voir issue dédiée plutôt que d'élargir cette PR.
-    #
     # Revenu net catégoriel salaires + ARE (abattement 10 %).
     # L'ARE est un revenu de remplacement imposé selon les règles des T&S
-    # (BOI-RSA-BASE-30-50-20) : même abattement 10 % et même plafond (14 555 €)
-    # que les salaires. On l'intègre donc à la base salaires.
-    salaires = r.get("salaires_declarant1", 0) + r.get("salaires_declarant2", 0)
-    chomage = r.get("revenus_chomage", 0)
-    base_traitements = salaires + chomage
-    net_salaires = abattement_salaires(base_traitements, bareme) if base_traitements else 0
+    # (BOI-RSA-BASE-30-50-20) : même abattement 10 % que les salaires.
+    # Plancher et plafond s'appliquent à chaque membre du foyer (CGI art. 83, 3°) :
+    # l'abattement se calcule déclarant par déclarant, ARE comprise.
+    # revenus_chomage = ARE du déclarant 1 (champ historique).
+    traitements_par_declarant = [
+        r.get("salaires_declarant1", 0) + r.get("revenus_chomage_declarant1", r.get("revenus_chomage", 0)),
+        r.get("salaires_declarant2", 0) + r.get("revenus_chomage_declarant2", 0),
+    ]
+    net_salaires = sum(abattement_salaires(t, bareme) for t in traitements_par_declarant if t)
 
-    # Pensions et retraites case 1AS/1BS : abattement 10 % (plafond par foyer).
-    pensions = r.get("pensions_declarant1", 0) + r.get("pensions_declarant2", 0)
-    net_pensions = abattement_pensions(pensions, bareme) if pensions else 0
+    pensions_par_declarant = [r.get("pensions_declarant1", 0), r.get("pensions_declarant2", 0)]
+    net_pensions = abattement_pensions(pensions_par_declarant, bareme) if any(pensions_par_declarant) else 0
 
     # Cases 1AI/1BI — sorties en CAPITAL d'un PER (PERIN, PERO, PERECO), part correspondant
     # aux versements DÉDUITS à l'entrée. Imposables au barème comme des pensions
@@ -294,9 +311,16 @@ def from_foyer(foyer, bareme, pfu_data):
     base_ps_placement = r.get("dividendes_bruts", 0) + r.get("interets_rcm", 0)
     base_ps_patrimoine = r.get("plus_values_mobilieres", 0) + r.get("crypto_plus_values", 0)
 
-    # RFR approximatif : RNI + revenus du capital taxés au PFU + abattements réintégrés
-    # Simplification : RNI + bases PS
-    rfr_approx = rni + base_ps_placement + base_ps_patrimoine
+    # IR forfaitaire du PFU (12,8 %, CGI art. 200 A ; art. 150 VH bis pour les
+    # crypto-actifs). Sous option barème, ces revenus relèvent du barème : le
+    # script ne gère pas cette option et ne compte alors pas d'IR forfaitaire.
+    option_capital = foyer.get("options_fiscales", {}).get("revenus_capital", "pfu")
+    base_pfu_ir = base_ps_placement + base_ps_patrimoine if option_capital == "pfu" else 0
+
+    # RFR approximatif : RNI + revenus du capital taxés au PFU + versements PER
+    # déduits, réintégrés au RFR (CGI art. 1417, IV-1°-a). Simplification :
+    # RNI + bases PS + PER
+    rfr_approx = rni + base_ps_placement + base_ps_patrimoine + per
 
     return calc(
         rni=rni,
@@ -307,6 +331,7 @@ def from_foyer(foyer, bareme, pfu_data):
         base_ps_patrimoine=base_ps_patrimoine,
         base_ps_placement=base_ps_placement,
         pfu_data=pfu_data,
+        base_pfu_ir=base_pfu_ir,
     )
 
 
@@ -322,6 +347,8 @@ def main():
                    help="Base PS produits de placement (dividendes, intérêts) : 17,2 %% en 2025")
     p.add_argument("--base-ps", type=float, default=0,
                    help="(déprécié) alias de --base-ps-placement, comportement 17,2 %% historique")
+    p.add_argument("--base-pfu", type=float, default=0,
+                   help="Revenus du capital soumis à l'IR forfaitaire du PFU (12,8 %%)")
     p.add_argument("--foyer", type=str, help="Chemin vers un foyer.json")
     p.add_argument("--bareme", type=str, default=str(DEFAULT_BAREME))
     p.add_argument("--pfu", type=str, default=str(DEFAULT_PFU))
@@ -347,6 +374,7 @@ def main():
             base_ps_patrimoine=args.base_ps_patrimoine,
             base_ps_placement=args.base_ps_placement + args.base_ps,
             pfu_data=pfu_data,
+            base_pfu_ir=args.base_pfu,
         )
 
     if args.json:
@@ -363,6 +391,8 @@ def main():
             print(f"    └ gain QF réel / max .......... {qf['gain_qf_reel']:>6} / {qf['gain_qf_max']} € ({status})")
         print(f"  Décote .......................... {-result['decote']:>10} €")
         print(f"  Impôt après décote .............. {result['impot_apres_decote']:>10} €")
+        if result["ir_pfu"]["montant"]:
+            print(f"  IR forfaitaire PFU 12,8% ........ {result['ir_pfu']['montant']:>10} €")
         if result["prelevements_sociaux"]:
             det = result.get("ps_details") or {}
             pat = det.get("patrimoine", {})

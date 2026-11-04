@@ -54,14 +54,14 @@ La confusion la plus fréquente concerne le "salaire net imposable".
 | Revenu | Case 2042 | Abattement | Source |
 |--------|-----------|-----------|--------|
 | Salaires | 1AJ/1BJ | 10% (min 509 €, max 14 555 €) ou frais réels | data/bareme-ir-2025.json |
-| Pensions / retraites | 1AS/1BS | 10% (min 450 €, max 4 446 €) par foyer | data/bareme-ir-2025.json |
+| Pensions / retraites | 1AS/1BS | 10% (min 454 € par pensionné, max 4 439 € par foyer) | data/bareme-ir-2025.json |
 | Allocations chômage (ARE) | 1AP/1BP | **10 %** (revenu de remplacement imposé selon les règles des T&S, BOI-RSA-BASE-30-50-20 ; l'abattement porte sur le total salaires + ARE, plafond commun 14 555 €) | — |
 | Dividendes (option barème) | 2DC | 40% | data/pfu-prelevements-sociaux.json |
 | Dividendes (PFU) | 2DC | Aucun abattement | — |
 | BNC régime normal | 5QC | Aucun abattement | — |
 | Micro-BNC | 5TE | 34% (plafond 77 700 €) | — |
 
-**Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), **pas** dans les salaires 1AJ — mais elle bénéficie quand même de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20). La distinction de case n'enlève donc PAS l'abattement ; elle compte pour les calculs qui distinguent revenus d'activité et de remplacement (l'ARE n'est pas un revenu d'activité, ex. plafond PER).
+**Précision** : l'ARE se déclare en 1AP/1BP (revenu de remplacement), **pas** dans les salaires 1AJ, mais elle bénéficie quand même de l'abattement de 10 % comme les salaires (BOI-RSA-BASE-30-50-20). La distinction de case n'enlève donc PAS l'abattement ; elle sert au prélèvement à la source et aux calculs qui distinguent revenus d'activité et de remplacement (certaines prestations). L'ARE compte en revanche pour le plafond de déduction PER de l'année suivante, comme les salaires (brochure IR 2026, charges déductibles : « allocations de chômage » dans les revenus retenus).
 
 **Précision AGA/OGA** : la majoration de 25 % du bénéfice pour non-adhésion à un organisme de gestion agréé (AGA/OGA) est **supprimée** (LF 2021, art. 34 ; art. 158-7 CGI). Extinction progressive (coefficients 1,20 / 1,15 / 1,10) puis disparition totale depuis l'imposition des revenus 2023. Tous les BNC en déclaration contrôlée se déclarent en 5QC/5RC, adhérent ou non, sans distinction. La réduction d'impôt pour frais de comptabilité qui accompagnait l'adhésion (art. 199 quater B) est elle aussi **abrogée** par la LF 2025 (dernière application : revenus 2024).
 
@@ -141,7 +141,7 @@ Mécanisme de collecte en temps réel — pas d'imposition supplémentaire.
 **Points souvent mal compris** :
 - **Taux personnalisé** : calculé par la DGFIP sur N-2 puis N-1. Peut être individualisé au sein du couple.
 - **Taux neutre** : appliqué par défaut si le salarié ne communique pas son taux (équivalent célibataire sans enfant). Peut entraîner sur/sous-prélèvement.
-- **Acomptes** : pour les revenus hors salaires (fonciers, BNC, dividendes), prélevés directement (mensuels ou trimestriels).
+- **Acomptes** : pour les revenus fonciers, BIC, BNC, BA, rentes viagères à titre onéreux et pensions alimentaires, prélevés directement (mensuels ou trimestriels). Les dividendes, intérêts, plus-values mobilières et gains d'actionnariat salarié sont hors PAS (prélèvement forfaitaire de 12,8 % à la source par l'établissement payeur français ou via la 2778, solde à la déclaration).
 - **Régularisation** : en N+1 lors de la déclaration. Si les revenus changent fortement (vesting, chômage, départ retraite), actualiser le taux en cours d'année sur impots.gouv.fr.
 - **Impact cash-flow** : un vesting RSU en fin d'année peut déclencher un solde à payer significatif en N+1.
 

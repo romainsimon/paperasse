@@ -226,6 +226,33 @@ function testCalcIrDecoteArrondie() {
   assert.strictEqual(r.impot_apres_decote, r.impot_brut_apres_qf - r.decote);
 }
 
+function testAnalyseFec() {
+  // controleur-fiscal : contrôles déterministes du FEC d'exemple des evals
+  const { analyser } = require(path.join(ROOT, "controleur-fiscal", "scripts", "analyse-fec.js"));
+  const fs = require("fs");
+  const fec = path.join(ROOT, "controleur-fiscal", "evals", "files", "fec-webagency.txt");
+  const r = analyser(fs.readFileSync(fec, "utf8"), { fec, debut: "20250101", fin: "20251231" });
+  assert.strictEqual(r.format.colonnes, 18);
+  assert.ok(r.totaux_debit_credit.equilibre, "FEC d'exemple équilibré");
+  assert.strictEqual(r.numerotation, "continue sur l'ensemble des journaux");
+  assert.strictEqual(r.anomalies.length, 0, "aucune anomalie de forme attendue : " + JSON.stringify(r.anomalies));
+  assert.strictEqual(r.compte_courant_455.solde, "100.00");
+  assert.match(r.compte_courant_455.sens, /^débiteur/);
+  assert.ok(r.a_examiner.some((x) => /netflix/i.test(x.libelle)), "l'abonnement Netflix doit être signalé");
+  // FEC fautif : déséquilibre, date hors exercice, montant négatif, compte hors PCG, trou de numérotation
+  const entete = fs.readFileSync(fec, "utf8").split("\n")[0];
+  const bad = [entete,
+    "BQ|Banque|001|20250105|5121|Banque|||A|20250105|Test|10.00|0.00|||20250105||",
+    "BQ|Banque|001|20250105|706|Ventes|||A|20250105|Test|0.00|10.00|||20250105||",
+    "BQ|Banque|004|20240105|9999|Bidon|||B|20240105|Test|10.00|5.00|||20240105||",
+    "BQ|Banque|005|20250105|5121|Banque|||C|20250105|Test|-3.00|0.00|||20250105||"].join("\n");
+  const b = analyser(bad, { fec: "bad", debut: "20250101", fin: "20251231" });
+  const types = new Set(b.anomalies.map((a) => a.controle));
+  for (const t of ["dates", "montants", "equilibre_ecriture", "equilibre_global", "numerotation", "pcg"]) {
+    assert.ok(types.has(t), "anomalie attendue : " + t);
+  }
+}
+
 function main() {
   testCCA();
   testAmortissementLineaire();
@@ -242,6 +269,7 @@ function main() {
   testIKMoto();
   testIKElectriqueArrondiUnique();
   testCalcIrDecoteArrondie();
+  testAnalyseFec();
   testBilanAmortComptesCompletes();
   testBilanAmortSubdivision();
   testBilanDepreciation29x();

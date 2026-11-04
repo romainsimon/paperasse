@@ -113,7 +113,7 @@ function testIKElectriqueArrondiUnique() {
 // Bilan : appariement immobilisations / amortissements-depreciations
 // ---------------------------------------------------------------------------
 
-const { generateBilan } = require(path.join(ROOT, "scripts", "generate-statements.js"));
+const { generateBilan, checkBilanEquilibre } = require(path.join(ROOT, "scripts", "generate-statements.js"));
 
 const FIXTURE_COMPANY = {
   fiscal_year: { start: "2025-01-01", end: "2025-12-31", is_first_year: false },
@@ -253,6 +253,69 @@ function testAnalyseFec() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Bilan : comptes de tiers classes selon le sens du solde (#105)
+// ---------------------------------------------------------------------------
+
+// Cote du bilan ou figure la ligne du compte ('actif' ou 'passif')
+function bilanSide(md, acct) {
+  const [actif, passif] = md.split("## PASSIF");
+  if (actif.includes(acct + " —")) return "actif";
+  if (passif.includes(acct + " —")) return "passif";
+  assert.fail("ligne " + acct + " absente du bilan:\n" + md);
+}
+
+function testBilanDettes42xEt4457x() {
+  // Repro #105 : 42x et TVA collectee 4457x omis du passif
+  const { md, totalActif, totalPassif } = runBilan({
+    "512000": { debit: 3000, credit: 0 },
+    "421000": { debit: 0, credit: 1000 },
+    "445710": { debit: 0, credit: 500 },
+    "101000": { debit: 0, credit: 1500 },
+  });
+  assert.strictEqual(bilanSide(md, "421000"), "passif", "421000 crediteur attendu au passif:\n" + md);
+  assert.strictEqual(bilanSide(md, "445710"), "passif", "445710 crediteur attendu au passif:\n" + md);
+  assert.strictEqual(totalActif, 3000, "total actif attendu 3000: " + totalActif);
+  assert.strictEqual(totalPassif, 3000, "total passif attendu 3000: " + totalPassif);
+}
+
+function testBilanCompteCourantDebiteur() {
+  // Repro #105 : 455x debiteur omis de l'actif
+  const { md, totalActif, totalPassif } = runBilan({
+    "512000": { debit: 500, credit: 0 },
+    "455100": { debit: 200, credit: 0 },
+    "101000": { debit: 0, credit: 700 },
+  });
+  assert.strictEqual(bilanSide(md, "455100"), "actif", "455100 debiteur attendu a l'actif:\n" + md);
+  assert.strictEqual(totalActif, 700, "total actif attendu 700: " + totalActif);
+  assert.strictEqual(totalPassif, 700, "total passif attendu 700: " + totalPassif);
+}
+
+function testBilanComptes419457467() {
+  // #105 : 419 (clients crediteurs), 457 et 467 traites nulle part
+  const { md, totalActif, totalPassif } = runBilan({
+    "512000": { debit: 1000, credit: 0 },
+    "467000": { debit: 300, credit: 0 },
+    "419100": { debit: 0, credit: 400 },
+    "457000": { debit: 0, credit: 250 },
+    "101000": { debit: 0, credit: 650 },
+  });
+  assert.strictEqual(bilanSide(md, "467000"), "actif", "467000 debiteur attendu a l'actif:\n" + md);
+  assert.strictEqual(bilanSide(md, "419100"), "passif", "419100 crediteur attendu au passif:\n" + md);
+  assert.strictEqual(bilanSide(md, "457000"), "passif", "457000 crediteur attendu au passif:\n" + md);
+  assert.strictEqual(totalActif, 1300, "total actif attendu 1300: " + totalActif);
+  assert.strictEqual(totalPassif, 1300, "total passif attendu 1300: " + totalPassif);
+}
+
+function testBilanControleEquilibre() {
+  // Un ecart Actif / Passif doit lever une erreur explicite
+  assert.doesNotThrow(() => checkBilanEquilibre({ totalActif: 700, totalPassif: 700, ecart: 0 }));
+  assert.throws(
+    () => checkBilanEquilibre({ totalActif: 500, totalPassif: 700, ecart: -200 }),
+    /Bilan desequilibre/,
+  );
+}
+
 function main() {
   testCCA();
   testAmortissementLineaire();
@@ -276,6 +339,10 @@ function main() {
   testBilanAmortOrphelin();
   testBilanAmortNu();
   testBilanCollisionRacines();
+  testBilanDettes42xEt4457x();
+  testBilanCompteCourantDebiteur();
+  testBilanComptes419457467();
+  testBilanControleEquilibre();
   console.log("Deterministic calculation tests passed.");
 }
 

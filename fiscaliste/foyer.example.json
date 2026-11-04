@@ -44,7 +44,8 @@
 
     "crypto_plus_values": 0,
     "revenus_chomage": 0,
-    "_commentaire_chomage": "Case 1AP (pas 1AJ) — saisir le NET IMPOSABLE; l'abattement 10% s'applique comme pour les salaires (BOI-RSA-BASE-30-50-20)"
+    "revenus_chomage_declarant2": 0,
+    "_commentaire_chomage": "Case 1AP / 1BP (pas 1AJ) — saisir le NET IMPOSABLE; l'abattement 10% s'applique comme pour les salaires (BOI-RSA-BASE-30-50-20), avec plancher et plafond par déclarant (CGI art. 83, 3°). revenus_chomage = déclarant 1"
   },
 
   "deductions": {

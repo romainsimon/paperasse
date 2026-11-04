@@ -187,7 +187,7 @@ Un PER souscrit sous forme assurance est **hors succession** et se transmet par 
 
 | Âge du titulaire au décès | Régime | Assiette | Abattement |
 |---------------------------|--------|----------|------------|
-| Avant 70 ans | Prélèvement de l'art. 990 I CGI | Sommes dues au bénéficiaire | 152 500 EUR par bénéficiaire, puis 20% jusqu'à 700 000 EUR de part taxable, puis 31,25% |
+| Avant 70 ans | Prélèvement de l'art. 990 I CGI | Valeur de rachat au jour du décès si le plan est réputé rachetable (âge de liquidation atteint ou cas de déblocage anticipé ouvert), sinon règles des contrats non rachetables ; jamais plus que le capital versé (BOI-TCAS-AUT-60 § 180, remarque 2, et § 190) | 152 500 EUR par bénéficiaire, puis 20% jusqu'à 700 000 EUR de part taxable, puis 31,25% |
 | À partir de 70 ans révolus | Droits de mutation par décès, art. 757 B CGI | **Intégralité des sommes dues par l'assureur, produits compris** | 30 500 EUR global (tous bénéficiaires et tous contrats du même assuré), puis droits de succession selon le lien |
 
 L'art. 757 B CGI vise expressément le plan d'épargne retraite de l'art. L. 224-1 CoMoFi et le sous-compte français du PEPP (art. L. 225-1 CoMoFi), pour le « décès après l'âge de soixante-dix ans du titulaire ».
@@ -210,6 +210,8 @@ Le deuxième alinéa du I de l'art. 990 I CGI écarte le prélèvement pour les 
 2. une entrée en jouissance **au plus tôt** à la liquidation de la pension du redevable dans un régime obligatoire d'assurance vieillesse, ou à l'âge fixé en application de l'art. L. 351-1 CSS.
 
 Rarement rempli sur un PER individuel alimenté par versements libres : vérifier l'historique des versements avant de conclure à l'exonération (BOI-TCAS-AUT-60 § 55, qui réserve l'exception aux PER dénoués en rente remplissant ces conditions).
+
+Primes versées avant le 13/10/1998 et transférées sur un PER ouvert depuis le 01/10/2019 : pas de prélèvement 990 I en cas de décès avant 70 ans (BOI-TCAS-AUT-60 § 80, tableau, note *).
 
 **PER compte-titres (PER bancaire)** : pas de clause bénéficiaire. Les sommes sont **intégrées à l'actif successoral** et relèvent des droits de succession de droit commun ; les art. 990 I et 757 B ne valent que pour le PER assurance. Déterminer la forme du plan avant toute analyse.
 

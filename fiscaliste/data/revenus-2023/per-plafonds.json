@@ -14,7 +14,7 @@
 
   "per_individuel": {
     "description": "Plafond de déduction PER pour les versements 2023 (déclaration 2024)",
-    "calcul": "10% des revenus professionnels nets (salaires après abattement 10%, BNC, BIC) de l'année N-1",
+    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires après abattement 10 %, BNC, BIC), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83, PERO, Madelin, abondement PERCO exonéré)",
     "plancher_euros": 4114,
     "plancher_base": "10% × PASS 2022 (41 136 €) — garanti même sans revenus. Le plafond des versements N se calcule avec le PASS de N-1 (art. 163 quatervicies CGI)",
     "plafond_absolu_euros": 32909,
@@ -27,9 +27,9 @@
   },
 
   "sortie_per": {
-    "versements_deduits_entree": "Imposés à la sortie comme revenu (pension ou capital selon choix)",
-    "versements_non_deduits": "Sortie partiellement exonérée — seuls les gains sont imposés (PFU)",
-    "cas_sortie_anticipee": "Autorisée pour : achat résidence principale, accidents de la vie (décès conjoint, invalidité, surendettement, fin droits chômage, cessation activité non salariée)"
+    "versements_deduits_entree": "Capital : barème sans abattement de 10 % (art. 158, 5-b quinquies CGI) ; gains au PFU 12,8 % ou barème sur option, plus PS. Rente : rente viagère à titre gratuit (barème après abattement de 10 %).",
+    "versements_non_deduits": "Capital exonéré d'IR, seuls les gains sont imposés (PFU) ; rente imposée comme rente viagère à titre onéreux",
+    "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale (imposé comme une sortie en capital), accidents de la vie (décès du conjoint, invalidité, surendettement, expiration des droits au chômage, cessation d'activité non salariée après liquidation judiciaire) : versements et gains exonérés d'IR, PS sur les gains"
   },
 
   "arbitrage_per": {

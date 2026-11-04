@@ -6,7 +6,7 @@
   },
 
   "plafonnement_global": {
-    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est perdu (pas reportable).",
+    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est en principe perdu ; seule la fraction de la réduction IR-PME (art. 199 terdecies-0 A) qui excède le plafond global est reportable sur les 5 années suivantes.",
     "plafond_metropole": 10000,
     "plafond_investissements_outre_mer": 18000,
     "note": "Le plafond s'applique APRÈS calcul de toutes les réductions, pas avant. Piège classique : cumuler Pinel + FCPI + outre-mer sans vérifier le plafond global."
@@ -20,22 +20,23 @@
       "Censi-Bouvard (location meublée en résidence services)",
       "FCPI / FIP (souscription)",
       "Souscription au capital de PME (IR-PME / Madelin)",
-      "Malraux (dans certaines conditions)",
-      "Monuments historiques (partiellement)",
+      "Emploi d'un salarié à domicile (crédit d'impôt 50 %, art. 199 sexdecies)",
+      "Frais de garde des jeunes enfants hors du domicile (crédit d'impôt 50 %, art. 200 quater B)",
+      "Malraux pour les opérations engagées avant le 01/01/2013 uniquement",
+      "Travaux de conservation d'objets mobiliers classés monuments historiques (art. 199 duovicies)",
+      "Investissements outre-mer (art. 199 undecies A à D, dont Girardin ; seule la fraction non rétrocédée des 199 undecies B et C compte), SOFICA et Pinel / Denormandie outre-mer : plafond majoré à 18 000 €",
       "Investissement forestier",
       "Investissement corse"
     ]
   },
 
   "dispositifs_hors_plafond": {
-    "note": "Dispositifs exclus du plafond global — à vérifier systématiquement",
+    "note": "Dispositifs exclus du plafond global (avantages sans contrepartie : dons, mécénat ; avantages liés à la situation personnelle). Source : art. 200-0 A CGI ; BOI-IR-LIQ-20-20-10-10",
     "liste": [
       "Dons aux associations (réduction 66% ou 75% selon type)",
-      "Emploi à domicile (crédit d'impôt 50%)",
-      "Garde d'enfant hors domicile (crédit d'impôt 50%)",
-      "Girardin industriel outre-mer (sous conditions)",
+      "Malraux pour les opérations engagées depuis le 01/01/2013",
+      "Monuments historiques : déduction des charges sur le revenu global (art. 156 II 1° ter) — ce n'est pas une réduction d'impôt",
       "Cotisations syndicales (crédit d'impôt 66%)",
-      "Investissement outre-mer (certaines catégories)",
       "Frais de scolarité des enfants (réduction forfaitaire 7EA/7EC/7EF)"
     ]
   },

@@ -21,7 +21,7 @@
     "note_forfait_frais_gestion": "Forfait de 20 € par local pour les frais de gestion non déductibles au réel (déclaration 2044, ligne 222), déductible sans justificatif.",
     "source_forfait_frais_gestion": "Art. 31 I 1° e CGI ; BOI-RFPI-BASE-20-10 § 210",
     "charges_deductibles": [
-      "Intérêts d'emprunt (imputables uniquement sur revenus fonciers)",
+      "Intérêts d'emprunt (compensés en priorité par les loyers ; seul leur excédent sur les loyers est cantonné aux revenus fonciers)",
       "Travaux (entretien, réparation, amélioration — pas construction ni agrandissement)",
       "Taxe foncière (hors TEOM)",
       "Primes d'assurance",
@@ -35,7 +35,7 @@
       "source_report_annees": "Art. 156 I 3° CGI",
       "note_travaux_renovation_energetique": "Sur option, la limite de 10 700 € est rehaussée du montant des dépenses de rénovation énergétique faisant passer un logement d'une classe E, F ou G à une classe A à D, payées du 01/01/2023 au 31/12/2025 et dont le devis a été accepté à compter du 05/11/2022 (2e LFR 2022, loi n° 2022-1499 du 01/12/2022, art. 12 ; art. 156, I, 3° CGI ; BOI-RFPI-BASE-30-20 § 210 à 310), dans la limite de 21 400 € (ce n'est pas un doublement du plafond).",
       "imputation_revenus_fonciers": "Reportable 10 ans au-delà du plafond annuel",
-      "exception_interets": "Les intérêts d'emprunt NE sont JAMAIS imputables sur le revenu global, uniquement sur les revenus fonciers"
+      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est jamais imputable sur le revenu global, uniquement sur les revenus fonciers. Les loyers compensant d'abord les intérêts (BOI-RFPI-BASE-30-20 § 110), un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 €"
     }
   },
 
@@ -68,7 +68,7 @@
       "mobilier": "10-20% par an sur 5-10 ans",
       "gros_travaux": "Amortissables sur leur durée d'usage"
     },
-    "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul ou déficitaire.",
+    "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul : les amortissements (immeuble + meubles) sont déductibles dans la limite du loyer acquis diminué des autres charges et ne peuvent ni créer ni accroître un déficit (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57) ; un déficit ne peut provenir que des charges hors amortissements.",
     "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les revenus LMNP (réel ou micro-BIC) des 10 années suivantes, tant que l'activité reste non professionnelle (art. 156-I-1° ter CGI). Cases 5GA à 5GJ."
   },
 
@@ -77,7 +77,7 @@
     "seuils_cumulatifs": {
       "seuil_recettes": 23000,
       "condition_revenus": "ET recettes meublées > total des autres revenus d'activité du foyer soumis à l'IR : traitements et salaires au sens de l'art. 79 (pensions et rentes viagères comprises), BIC hors location meublée, BA, BNC, rémunérations art. 62 ; revenus nets, hors revenus exonérés et déficits antérieurs (art. 155, IV, 2 CGI ; BOI-BIC-CHAMP-40-10 § 150 à 165)",
-      "note": "Les DEUX conditions doivent être remplies. Seuil 23 000 € non renouvelable — application dès dépassement."
+      "note": "Les DEUX conditions doivent être remplies, appréciées chaque année au niveau du foyer fiscal (art. 155, IV CGI ; BOI-BIC-CHAMP-40-10 § 50, 120 et 150)."
     },
     "consequences_lmp": {
       "deficits": "Imputables sur le revenu global (contrairement au LMNP)",
@@ -85,7 +85,7 @@
       "cotisations_sociales": "Cotisations TNS sur le bénéfice (SSI) — charge significative vs LMNP",
       "ifi": "Biens LMP exonérés d'IFI comme biens professionnels (sous conditions)"
     },
-    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus professionnels. À surveiller annuellement."
+    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus d'activité. Les pensions de retraite comptent dans ces revenus : au départ en retraite, la bascule se produit si les recettes meublées dépassent la pension et les autres revenus d'activité (cas fréquent quand la pension est inférieure à l'ancien salaire). À surveiller annuellement."
   },
 
   "sci_ir": {

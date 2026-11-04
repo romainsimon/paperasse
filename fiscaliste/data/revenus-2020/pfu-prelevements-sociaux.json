@@ -60,7 +60,7 @@
       "note": "En 2020, tous les revenus du capital sont soumis au même taux de 17,2 % (aucune différenciation par nature)."
     },
     "dont_csg_deductible_si_bareme": 0.068,
-    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique QUE si option barème progressif. Zéro déductible sous PFU. Elle s'impute en N+1 sur le RNI.",
+    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique QUE si option barème progressif. Zéro déductible sous PFU. Déduite du revenu global de l'année de son paiement (art. 154 quinquies, II CGI) : l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts), l'année suivante pour les PS établis par voie de rôle (plus-values, revenus d'un courtier étranger sans 2778).",
     "taux_plus_values_immo": 0.172
   },
 

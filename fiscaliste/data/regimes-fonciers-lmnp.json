@@ -44,7 +44,7 @@
         "4BC": "Déficit imputable sur le revenu global",
         "4BD": "Déficits antérieurs non encore imputés"
       },
-      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est jamais imputable sur le revenu global, uniquement sur les revenus fonciers. Les loyers compensant d'abord les intérêts, un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 €"
+      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est pas imputable sur le revenu global, uniquement sur les revenus fonciers (sauf monuments historiques, BOI-RFPI-SPEC-30-20-10 § 80). Les loyers compensant d'abord les intérêts, un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 € (15 300 € pour un logement en amortissement Périssol ou dispositif Cosse ; rehaussée, jusqu'à 21 400 €, pour les travaux de rénovation énergétique : voir note_travaux_renovation_energetique ; brochure IR 2026)"
     }
   },
 
@@ -101,7 +101,7 @@
       "cotisations_location_courte_duree": "Indépendamment du statut LMP, la location meublée de courte durée (clientèle de passage) dont les recettes dépassent 23 000 €/an est soumise aux cotisations sociales (art. L. 611-1, 6° CSS)",
       "ifi": "Biens LMP exonérés d'IFI comme biens professionnels (sous conditions)"
     },
-    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus d'activité. Les pensions de retraite comptent dans ces revenus : au départ en retraite, la bascule se produit si les recettes meublées dépassent la pension et les autres revenus d'activité (cas fréquent quand la pension est inférieure à l'ancien salaire). À surveiller annuellement."
+    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus d'activité. Les pensions de retraite comptent dans ces revenus : au départ en retraite, la bascule se produit si les recettes meublées dépassent 23 000 € et le total des pensions et autres revenus d'activité nets (cas fréquent quand la pension est inférieure à l'ancien salaire). À surveiller annuellement."
   },
 
   "sci_ir": {

@@ -639,6 +639,11 @@ def main():
 
     if args.foyer:
         foyer = load_json(args.foyer)
+        residence = (foyer.get("foyer") or {}).get("residence_fiscale", "FR")
+        if residence not in ("FR", "", None) or "non_resident" in foyer:
+            sys.exit("Non-résident : calcul non pris en charge par ce script (taux minimum de l'art. 197 A, "
+                     "retenue à la source de l'art. 119 bis, 2, prélèvements sociaux propres aux non-résidents). "
+                     "Voir references/non-residents.md.")
         result = from_foyer(foyer, bareme, pfu_data)
     else:
         if args.rni is None or args.parts is None:

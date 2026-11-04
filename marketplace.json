@@ -24,6 +24,12 @@
       "description": "Audit NEP en 7 phases, opinion motivée"
     },
     {
+      "slug": "fiscaliste",
+      "name": "Fiscaliste Particuliers",
+      "path": "fiscaliste/SKILL.md",
+      "description": "Fiscalité personnelle : IR (barème, QF, décote, plafonnement), IFI, PFU ou barème, PEA, assurance-vie, LMNP, RSU/BSPCE/stock-options, crypto"
+    },
+    {
       "slug": "notaire",
       "name": "Notaire",
       "path": "notaire/SKILL.md",

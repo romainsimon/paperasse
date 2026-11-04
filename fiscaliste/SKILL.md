@@ -1,7 +1,7 @@
 ---
 name: fiscaliste
 metadata:
-  last_updated: 2026-05-30
+  last_updated: 2026-10-19
 includes:
   - data/**
   - references/**
@@ -87,7 +87,7 @@ Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi de finances
 | Revenu | Case 2042 | Abattement |
 |--------|-----------|------------|
 | Salaires | 1AJ/1BJ | 10 % (min 509 €, max 14 555 €) ou frais réels |
-| Pensions / retraites | 1AS/1BS | 10 % (min 450 €, max 4 446 €) par foyer |
+| Pensions / retraites | 1AS/1BS | 10 % (min 454 € par pensionné, max 4 439 € par foyer) |
 | **Chômage (ARE)** | 1AP/1BP | **10 %** — l'ARE est un revenu de remplacement imposé selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20) ; l'abattement de 10 % s'applique sur le total salaires + ARE. Se déclare en 1AP/1BP (pas en 1AJ), mais bénéficie bien de l'abattement. |
 | Dividendes (option barème) | 2DC | 40 % |
 | Dividendes (PFU) | 2DC | Aucun |
@@ -187,7 +187,7 @@ python fiscaliste/scripts/calc_ir.py --rni 45000 --parts 1
 python fiscaliste/scripts/calc_ir.py --rni 126000 --parts 3 --parts-base 2
 ```
 
-Le script applique : barème 2025, quotient familial avec plafonnement, décote, PS différenciés selon la nature du revenu (18,6 % sur revenus du patrimoine dès 2025 ; 17,2 % sur produits de placement 2025 ; 17,2 % inchangé sur AV/foncier nu/SCPI/PEL-CEL), CEHR. Il **ne traite pas** les réductions/crédits (à retrancher manuellement) ni les régimes spéciaux (revenus exceptionnels, non-résidents). Pour la CDHR (plancher 20 % sur RFR > 250/500 k€), voir [references/cas-speciaux.md](references/cas-speciaux.md) — calculée automatiquement par l'administration.
+Le script applique : abattement de 10 % sur les salaires et l'ARE **par déclarant** (plancher et plafond pour chaque membre du foyer), abattement de 10 % sur les pensions (minimum par pensionné, maximum par foyer ; plancher jamais supérieur au revenu), barème 2025, quotient familial avec plafonnement (enfants en résidence alternée décomptés après ceux à charge exclusive), décote, IR forfaitaire du PFU (12,8 %, art. 200 A CGI) sauf option barème, PS différenciés selon la nature du revenu (18,6 % sur revenus du patrimoine dès 2025 ; 17,2 % sur produits de placement 2025 ; PS sur les revenus fonciers et l'assurance-vie non calculés, taux maintenu à 17,2 %), CEHR (RFR incluant les versements PER déduits, art. 1417, IV CGI). Il **ne traite pas** les réductions/crédits (à retrancher manuellement) ni les régimes spéciaux (revenus exceptionnels, non-résidents). Pour la CDHR (plancher 20 % sur RFR > 250/500 k€), voir [references/cas-speciaux.md](references/cas-speciaux.md) — calculée automatiquement par l'administration.
 
 Pour la fraîcheur des données : `python fiscaliste/scripts/update_data.py`.
 

@@ -66,9 +66,9 @@
 
   "abattement_pensions_10pct": {
     "taux": 0.10,
-    "minimum": 450,
-    "maximum": 4446,
-    "description": "Abattement sur pensions et retraites (case 1AS). Plafond par foyer."
+    "minimum": 454,
+    "maximum": 4439,
+    "description": "Abattement sur pensions et retraites (cases 1AS/1BS), CGI art. 158, 5-a. Minimum par pensionné (limité au montant de sa pension), maximum par foyer. Montants : brochure pratique IR 2026, pensions."
   },
 
   "cehr": {

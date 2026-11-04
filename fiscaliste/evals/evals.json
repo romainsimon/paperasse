@@ -288,6 +288,59 @@
         "Le skill précise que la distinction 1AP vs 1AJ porte sur la nature du revenu (remplacement vs activité), pas sur l'abattement",
         "L'abattement suit le régime des salaires (plancher commun 509 € / plafond commun 14 555 € sur le total salaires + ARE)"
       ]
+    },
+    {
+      "id": 27,
+      "name": "calc-ir-abattement-par-declarant-et-ir-pfu",
+      "prompt": "Nous sommes mariés, sans enfant. Chacun de nous a 150 000 € de salaires (cases 1AJ et 1BJ), et nous avons encaissé 5 000 € de dividendes en 2025, au PFU. Aucun autre revenu, aucune déduction. Quel est notre revenu net imposable et combien allons-nous payer au total (impôt au barème, PFU et prélèvements sociaux) ?",
+      "expected_output": "L'abattement de 10 % est plafonné à 14 555 € pour chaque membre du foyer (CGI art. 83, 3°) : 150 000 − 14 555 = 135 445 € par conjoint, soit un RNI de 270 890 € (et non 285 445 € avec un seul plafond). Impôt au barème 2025 sur 2 parts : environ 78 666 €. Dividendes au PFU : IR forfaitaire de 12,8 % = 640 € (art. 200 A CGI) et prélèvements sociaux de 17,2 % = 860 € (encaissement 2025). Total ≈ 80 166 € avant réductions et crédits. Pas de CEHR (RFR ≈ 275 890 € < 500 000 € pour un couple).",
+      "files": [],
+      "assertions": [
+        "Le skill applique le plafond de 14 555 € à chaque déclarant, et non une seule fois pour le foyer",
+        "Le RNI est d'environ 270 890 €",
+        "Le skill compte l'IR forfaitaire du PFU (12,8 % × 5 000 = 640 €) en plus des prélèvements sociaux",
+        "Les prélèvements sociaux sur les dividendes encaissés en 2025 sont de 17,2 % (860 €)",
+        "Le total avant réductions et crédits est d'environ 80 166 €",
+        "Le skill indique qu'aucune CEHR n'est due"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "calc-ir-abattement-pensions-minimum-par-pensionne",
+      "prompt": "Nous sommes mariés, retraités, sans enfant. Mon conjoint perçoit 3 000 € de pension (case 1AS) et moi 4 000 € (case 1BS) en 2025. Aucun autre revenu. Quel est notre revenu net imposable ?",
+      "expected_output": "L'abattement de 10 % sur les pensions ne peut être inférieur à 454 € pour chaque pensionné, le maximum de 4 439 € s'appréciant pour le foyer (CGI art. 158, 5-a ; brochure IR 2026). 10 % de 3 000 € et de 4 000 € étant inférieurs au minimum, chacun bénéficie de 454 € : abattement total 908 €, RNI = 7 000 − 908 = 6 092 € (et non 6 300 € en appliquant le minimum une seule fois au total du foyer). Aucun impôt dû.",
+      "files": [],
+      "assertions": [
+        "Le skill applique le minimum de 454 € à chaque pensionné, et non une seule fois pour le foyer",
+        "Le skill précise que le maximum de 4 439 € s'apprécie par foyer",
+        "Le RNI est de 6 092 €",
+        "Le skill indique qu'aucun impôt n'est dû"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "calc-ir-abattement-plancher-limite-au-revenu",
+      "prompt": "Nous sommes pacsés, sans enfant. J'ai 100 000 € de salaires (case 1AJ) et mon partenaire a perçu 300 € d'ARE (case 1BP) en 2025. Aucun autre revenu. Quel est notre revenu net imposable et notre impôt ?",
+      "expected_output": "Abattement de 10 % calculé par déclarant : 10 000 € pour le déclarant 1 (RNI salaires 90 000 €). Pour le déclarant 2, le plancher de 509 € ne peut excéder le revenu : abattement limité à 300 €, net 0 € (et non −209 €). RNI = 90 000 €. Impôt au barème sur 2 parts : environ 13 208 €.",
+      "files": [],
+      "assertions": [
+        "Le skill limite l'abattement du déclarant 2 au montant de son ARE (net de 0 €, jamais négatif)",
+        "Le RNI est de 90 000 € (et non 89 791 €)",
+        "L'impôt au barème est d'environ 13 208 €"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "calc-ir-rfr-reintegre-per-cehr",
+      "prompt": "Je suis célibataire, sans enfant, avec 300 000 € de salaires (case 1AJ) en 2025. J'ai versé 30 000 € sur mon PER, entièrement déductibles. Aucun autre revenu. Quel est mon impôt, CEHR comprise ?",
+      "expected_output": "Abattement de 10 % plafonné à 14 555 € : 285 445 €, moins 30 000 € de PER = RNI 255 445 €. Impôt au barème sur 1 part : environ 91 474 €. Les versements PER déduits sont réintégrés dans le revenu fiscal de référence (CGI art. 1417, IV-1°-a) : RFR = 285 445 €, CEHR = 3 % × (285 445 − 250 000) ≈ 1 063 € (et non 163 € sur un RFR de 255 445 €). Total ≈ 92 537 € avant réductions et crédits.",
+      "files": [],
+      "assertions": [
+        "Le skill réintègre les versements PER déduits dans le RFR (art. 1417, IV CGI)",
+        "Le RFR est d'environ 285 445 €",
+        "La CEHR est d'environ 1 063 €",
+        "Le total avant réductions et crédits est d'environ 92 537 €"
+      ]
     }
   ]
 }

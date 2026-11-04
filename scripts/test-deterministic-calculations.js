@@ -211,6 +211,21 @@ function testBilanCollisionRacines() {
   assert.strictEqual(totalActif, 11800, "total actif attendu 11800: " + totalActif);
 }
 
+function testCalcIrDecoteArrondie() {
+  // Impôt et décote arrondis à l'euro : l'impôt après décote doit être entier (art. 1657, 1 CGI)
+  let out;
+  try {
+    out = execFileSync("python3", [path.join(ROOT, "fiscaliste", "scripts", "calc_ir.py"), "--rni", "20000", "--parts", "1", "--json"], { encoding: "utf8" });
+  } catch (err) {
+    if (err.code === "ENOENT") { console.log("python3 absent : test calc_ir ignoré"); return; }
+    throw err;
+  }
+  const r = JSON.parse(out);
+  assert.ok(r.decote > 0, "la décote doit jouer pour 20 000 € de RNI sur 1 part");
+  assert.ok(Number.isInteger(r.impot_apres_decote), "impôt après décote non entier : " + r.impot_apres_decote);
+  assert.strictEqual(r.impot_apres_decote, r.impot_brut_apres_qf - r.decote);
+}
+
 function main() {
   testCCA();
   testAmortissementLineaire();
@@ -226,6 +241,7 @@ function main() {
   testIKPuissancePlafonnee();
   testIKMoto();
   testIKElectriqueArrondiUnique();
+  testCalcIrDecoteArrondie();
   testBilanAmortComptesCompletes();
   testBilanAmortSubdivision();
   testBilanDepreciation29x();

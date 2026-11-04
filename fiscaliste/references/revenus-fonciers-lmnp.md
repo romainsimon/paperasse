@@ -86,6 +86,7 @@ Seuils 2026-2028 : BOI-BAREME-000044 (19/08/2026). Le plafond s'apprécie sur le
 - Gros travaux : amortissables sur leur durée d'usage
 
 **Limite des amortissements** : déductibles dans la limite du loyer acquis diminué des autres charges → ils **ne peuvent ni créer ni accroître un déficit** (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57).
+
 **Résultat fiscal** : souvent nul ou déficitaire grâce aux amortissements → pas d'IR sur les loyers pendant des années. Cette économie est en partie reprise à la revente (voir « Cession d'un bien LMNP »).
 
 ### Cession d'un bien LMNP

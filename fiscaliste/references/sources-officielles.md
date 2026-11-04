@@ -70,6 +70,16 @@ Si une règle ne peut pas être sourcée, **le dire explicitement** et inviter �
 | Prélèvements sociaux | art. L. 136-1 et s. CSS | BOI-RPPM-PSOC |
 | Crypto — PAMC | art. 150 VH bis | BOI-RPPM-PVBMC |
 
+### Comptes et contrats à l'étranger
+
+| Règle | Article CGI / LPF | BOFiP |
+|-------|------------|-------|
+| Déclaration des comptes à l'étranger (3916) | art. 1649 A al. 2 CGI | BOI-CF-CPF-30-20 |
+| Assurance-vie souscrite hors de France | art. 1649 AA CGI | BOI-IR-DECLA-20-20 § 150-160 |
+| Comptes d'actifs numériques à l'étranger (3916-bis) | art. 1649 bis C CGI | BOI-RPPM-PVBMC-30-30 § 70-80 |
+| Amendes et majoration de 80 % | art. 1736 IV et X, 1766, 1729-0 A CGI | BOI-CF-INF-20-10-50 |
+| Délai de reprise de 10 ans | art. L. 169 LPF | BOI-CF-PGR-10-50 |
+
 ### Equity salarial
 
 | Règle | Article CGI | BOFiP |

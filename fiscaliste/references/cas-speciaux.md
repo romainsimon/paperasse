@@ -263,6 +263,7 @@ Délai pendant lequel la DGFIP peut redresser :
 | IR | 3 ans (jusqu'au 31 décembre de la 3e année suivant celle de l'imposition) |
 | IFI | 3 ans si la déclaration déposée révèle suffisamment l'exigibilité (LPF art. L. 180) ; 6 ans sinon (LPF art. L. 186) |
 | Tous impôts | **10 ans** en cas d'activité occulte ou fraude |
+| IR / IS | **10 ans** sur les revenus liés à un compte, un contrat ou un compte d'actifs numériques étranger non déclaré (art. L. 169 LPF ; pour les comptes, si le total des soldes a excédé 50 000 € dans l'année — voir [comptes-etrangers.md](comptes-etrangers.md)) |
 | TVA | 3 ans |
 
 **Conservation des documents** : minimum 6 ans (conseil : 10 ans pour couvrir tous les cas).

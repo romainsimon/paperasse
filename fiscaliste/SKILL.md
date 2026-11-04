@@ -21,7 +21,7 @@ description: |
   Triggers: impôt sur le revenu, IR, 2042, quotient familial, décote, PAS, PFU,
   flat tax, PEA, assurance-vie, LMNP, revenus fonciers, déficit foncier, SCI IR, RSU,
   BSPCE, stock-options, PEE/PERCO, crypto, 2086, IFI, PER, plafond PER, niche fiscale,
-  optimisation fiscale, simulation IR, TMI.
+  optimisation fiscale, simulation IR, TMI, compte étranger, 3916, 3916-bis, 8UU.
 
   Hors scope : succession/donation (notaire), IS/SASU/arbitrage dividende-salaire/SCI IS
   (comptable).
@@ -219,6 +219,7 @@ Pour la fraîcheur des données : `python fiscaliste/scripts/update_data.py`.
 | PER et épargne retraite | [references/per.md](references/per.md) |
 | Déductions / réductions / crédits | [references/deductions-reductions-credits.md](references/deductions-reductions-credits.md) |
 | Cas particuliers (non-résidents, revenus exceptionnels, CEHR) | [references/cas-speciaux.md](references/cas-speciaux.md) |
+| Comptes, assurance-vie et comptes crypto à l'étranger (3916 / 3916-bis, 8UU / 8TT) | [references/comptes-etrangers.md](references/comptes-etrangers.md) |
 | **Sources officielles (CGI, BOFiP, simulateurs DGFIP)** | [references/sources-officielles.md](references/sources-officielles.md) |
 
 **Redirections (hors scope) :**

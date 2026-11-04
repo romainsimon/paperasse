@@ -468,6 +468,53 @@
         "Le skill mentionne la possibilité d'une modulation à la hausse sans seuil minimum (art. 204 J)",
         "Le skill cite l'article 204 C du CGI ou la notice 2041-NOT pour le mécanisme d'acompte",
         "Le skill n'invente pas de taux de prélèvement sans données sur le foyer"
+        ]
+      },
+      {
+      "id": 51,
+      "name": "comptes-etrangers-neobanque-iban-fr-et-exchange-crypto",
+      "prompt": "Je suis résident fiscal français. J'ai un compte dans une néobanque européenne dont l'IBAN commence par FR, mais l'appli indique que la banque est agréée en Lituanie. J'ai aussi un compte sur une plateforme crypto dont la société est établie à Malte ; je n'ai rien vendu en 2025, j'ai juste acheté et gardé. Est-ce que je dois déclarer quelque chose dans ma déclaration 2026 ?",
+      "expected_output": "Oui, a priori deux comptes à déclarer sur le formulaire 3916-3916 bis, en cochant la case 8UU de la 2042. Néobanque : l'art. 1649 A al. 2 CGI vise les comptes ouverts hors de France auprès d'un établissement (BOI-CF-CPF-30-20 § 120) ; le critère est l'établissement teneur du compte, pas le préfixe de l'IBAN. La doctrine ne traite pas expressément le cas de l'IBAN FR : vérifier l'entité contractante dans les conditions générales et, en cas de doute, déclarer par prudence. Amende en cas d'omission : 1 500 € par compte et par année (art. 1736 IV-2). Plateforme crypto : compte d'actifs numériques ouvert auprès d'une entité établie à l'étranger, à déclarer même sans cession (art. 1649 bis C, rubrique 4 du 3916-bis) ; amende 750 € par compte non déclaré (1 500 € si la valeur des comptes a dépassé 50 000 € dans l'année), art. 1736 X. Aucune annexe 2086 n'est due en l'absence de cession.",
+      "files": [],
+      "assertions": [
+        "Le skill conclut que les deux comptes sont a priori à déclarer sur le formulaire 3916-3916 bis",
+        "Le skill indique la case 8UU de la 2042",
+        "Le skill explique que le critère est l'établissement auprès duquel le compte est ouvert, et non le préfixe de l'IBAN",
+        "Le skill signale que la doctrine ne tranche pas expressément le cas de l'IBAN FR et recommande de vérifier l'entité contractante / de déclarer par prudence",
+        "Le skill indique que le compte crypto à l'étranger se déclare même en l'absence de cession (art. 1649 bis C)",
+        "Le skill cite l'amende de 1 500 € par compte bancaire non déclaré (art. 1736 IV) et celle de 750 € par compte d'actifs numériques non déclaré (art. 1736 X)",
+        "Le skill NE dit PAS qu'une annexe 2086 est due alors qu'aucune cession n'a eu lieu"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "comptes-etrangers-compte-clos-dans-annee",
+      "prompt": "J'avais un compte bancaire en Allemagne ouvert pendant un ancien job, je l'ai fermé en mars 2025. Il était presque vide et je ne l'utilisais plus depuis des années. Je n'ai jamais rempli de 3916. Pour ma déclaration des revenus 2025 je n'ai plus de compte à l'étranger, donc rien à faire ?",
+      "expected_output": "Non. La déclaration est due au titre de chaque année au cours de laquelle le compte a été ouvert, détenu, utilisé ou clos (BOI-CF-CPF-30-20 § 180) : le compte clos en mars 2025 doit figurer sur le 3916 joint à la déclaration des revenus 2025 (case 8UU), avec sa date de clôture. Depuis le 01/01/2019, même un compte non utilisé est à déclarer, sans seuil de solde (§ 120). Pour les années antérieures non prescrites, l'amende de 1 500 € par compte et par année est encourue (art. 1736 IV-2, BOI-CF-INF-20-10-50 § 20) ; on peut régulariser en déposant les 3916 manquants et solliciter une remise gracieuse (art. L. 247 LPF), sans barème d'atténuation publié. À partir de la déclaration des revenus 2026, le compte n'est plus à déclarer.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que le compte clos en 2025 doit être déclaré au titre de 2025 (année de clôture)",
+        "Le skill indique la case 8UU et le formulaire 3916-3916 bis, avec la date de clôture",
+        "Le skill précise qu'un compte inactif ou presque vide reste à déclarer (pas de seuil, comptes non utilisés inclus depuis 2019)",
+        "Le skill mentionne l'exposition à l'amende de 1 500 € par compte et par année non prescrite pour les années antérieures non déclarées",
+        "Le skill propose une régularisation (dépôt des 3916 manquants) et mentionne la possibilité de demande gracieuse (art. L. 247 LPF) sans inventer de barème de réduction",
+        "Le skill indique que le compte n'est plus à déclarer à partir des revenus 2026"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "comptes-etrangers-foyer-assurance-vie-sanctions",
+      "prompt": "Nous sommes pacsés avec un enfant à charge. Ma partenaire a un compte courant en Belgique, notre fils (17 ans, rattaché) a un compte jeune ouvert pendant un échange scolaire en Espagne, et j'ai un contrat d'assurance-vie souscrit auprès d'un assureur luxembourgeois. Qu'est-ce qu'on déclare, et qu'est-ce qu'on risque si on oublie ?",
+      "expected_output": "La déclaration porte sur les comptes du déclarant, des membres du foyer fiscal et des personnes rattachées (BOI-CF-CPF-30-20 § 120) : le compte belge de la partenaire et le compte espagnol de l'enfant sont à déclarer (un 3916 par compte, case 8UU). Le contrat d'assurance-vie luxembourgeois relève de l'art. 1649 AA (case 8TT, même formulaire 3916-3916 bis, avec références du contrat, versements et rachats de l'année, valeur de rachat au 1er janvier). Sanctions : 1 500 € par compte non déclaré (art. 1736 IV-2) et 1 500 € par contrat (art. 1766), portés à 10 000 € pour un État sans convention d'assistance administrative (ce qui n'est pas le cas a priori de la Belgique, de l'Espagne ou du Luxembourg, à vérifier au BOI-ANNX-000270), pour chaque année non prescrite. Si des revenus liés à ces comptes ou contrats sont rectifiés : majoration de 80 % (art. 1729-0 A, plancher égal à l'amende, sans cumul) et délai de reprise porté à 10 ans (art. L. 169 LPF ; pour les comptes, si les soldes cumulés ont dépassé 50 000 € dans l'année). Les sommes transférées via un compte non déclaré sont présumées être des revenus, sauf preuve contraire (art. 1649 A al. 3).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que les comptes de la partenaire et de l'enfant rattaché sont à déclarer (comptes du foyer fiscal)",
+        "Le skill indique un formulaire 3916 par compte et la case 8UU",
+        "Le skill indique que le contrat d'assurance-vie étranger se déclare au titre de l'art. 1649 AA avec la case 8TT",
+        "Le skill cite l'amende de 1 500 € par compte (art. 1736 IV) et par contrat (art. 1766), portée à 10 000 € pour un État sans convention d'assistance administrative",
+        "Le skill mentionne la majoration de 80 % (art. 1729-0 A) en cas de rectification de revenus liés",
+        "Le skill mentionne le délai de reprise de 10 ans (art. L. 169 LPF) et la condition des 50 000 € pour les comptes",
+        "Le skill mentionne la présomption de revenus sur les transferts via un compte non déclaré, réfragable (preuve contraire)"
       ]
     }
   ]

@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "revenus": 2025,
+    "declaration": 2026,
+    "sources": [
+      "BOI-CF-CPF-30-20 (version du 26/05/2021)",
+      "BOI-CF-INF-20-10-50 (version du 26/05/2021)",
+      "BOI-RPPM-PVBMC-30-30 § 70-80 (version du 23/04/2024)",
+      "BOI-CF-PGR-10-50 § 100-215 (version du 18/06/2019)",
+      "Formulaire n° 3916-3916 bis, millésime mars 2026",
+      "Formulaire n° 2042, millésime 2026 (revenus 2025)"
+    ]
+  },
+
+  "formulaire": {
+    "numero": "3916-3916 bis",
+    "cerfa": "11916",
+    "joint_a": "2042",
+    "date_limite": "Celle de la déclaration de revenus",
+    "cases_2042": {
+      "8UU": "Comptes ouverts, détenus, utilisés ou clos à l'étranger (cocher, joindre le 3916-3916 bis)",
+      "8TT": "Contrats de capitalisation ou d'assurance-vie souscrits à l'étranger (cocher, joindre le 3916-3916 bis)"
+    }
+  },
+
+  "comptes_bancaires": {
+    "article_cgi": "art. 1649 A al. 2",
+    "perimetre": "Chaque compte ouvert, détenu, utilisé ou clos dans l'année par le déclarant, un membre du foyer fiscal ou une personne rattachée ; comptes non utilisés inclus depuis le 01/01/2019",
+    "exclusion_comptes_paiement_en_ligne": {
+      "conditions_cumulatives": [
+        "Compte destiné aux paiements d'achats ou encaissements de ventes de biens en ligne",
+        "Ouverture subordonnée à un compte ouvert en France auquel il est adossé",
+        "Encaissements annuels de ventes ≤ 10 000 € (tous comptes de ce type cumulés)"
+      ],
+      "source": "BOI-CF-CPF-30-20 § 85"
+    },
+    "amende_par_compte": 1500,
+    "amende_par_compte_etat_sans_convention": 10000,
+    "article_sanction": "art. 1736 IV-2"
+  },
+
+  "contrats_assurance_vie": {
+    "article_cgi": "art. 1649 AA",
+    "amende_par_contrat": 1500,
+    "amende_par_contrat_etat_sans_convention": 10000,
+    "article_sanction": "art. 1766"
+  },
+
+  "comptes_actifs_numeriques": {
+    "article_cgi": "art. 1649 bis C",
+    "amende_par_compte": 750,
+    "amende_par_omission_inexactitude": 125,
+    "plafond_par_declaration": 10000,
+    "seuil_valeur_venale_majoration": 50000,
+    "amende_par_compte_si_valeur_superieure_seuil": 1500,
+    "amende_par_omission_si_valeur_superieure_seuil": 250,
+    "article_sanction": "art. 1736 X"
+  },
+
+  "majoration_droits": {
+    "taux": 0.80,
+    "article_cgi": "art. 1729-0 A",
+    "plancher": "Montant de l'amende (1 500 € ou 10 000 €), à laquelle elle se substitue",
+    "note": "Vise les comptes (1649 A), contrats (1649 AA), trusts (1649 AB) et, depuis le 16/02/2025 (LF 2025 art. 59), les actifs numériques / crypto-actifs à déclarer au titre du 1649 bis C (plancher : amende du X de l'art. 1736)"
+  },
+
+  "delai_reprise": {
+    "annees": 10,
+    "article": "art. L. 169 LPF (vise 1649 A, 1649 AA, 1649 AB et 1649 bis C)",
+    "condition_comptes_1649_A": "Total des soldes créditeurs des comptes étrangers > 50 000 € à un moment quelconque de l'année",
+    "seuil_soldes": 50000,
+    "portee": "Revenus afférents à l'obligation non respectée uniquement (BOI-CF-PGR-10-50 § 210)"
+  }
+}

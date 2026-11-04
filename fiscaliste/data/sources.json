@@ -148,6 +148,20 @@
       "last_fetched": "2026-11-01",
       "next_check": "2027-04-15",
       "check_instructions": "À la publication de la notice 2041-NOT de la campagne suivante : vérifier l'intitulé et la numérotation des cases 1GB à 1JB, 1AK et 1GK à 1GQ, le plancher/plafond de la déduction de 10 %, les taux CSG (9,2 %), CSG déductible (6,8 pts) et CRDS (0,5 %), et les règles du volet social (DSEC, DSAA, abattement 26 %)."
+    },
+    {
+      "id": "comptes-etrangers",
+      "name": "Comptes, contrats d'assurance-vie et comptes d'actifs numériques à l'étranger (3916 / 3916-bis)",
+      "file": "comptes-etrangers.json",
+      "annee_revenus": 2025,
+      "source_officielle": "Formulaire n° 3916-3916 bis (millésime mars 2026) et 2042 millésime 2026 (cases 8UU / 8TT) ; amendes art. 1736 IV et X, 1766 CGI",
+      "article_cgi": "art. 1649 A, 1649 AA, 1649 bis C, 1736 IV et X, 1766, 1729-0 A CGI ; art. L. 169 LPF",
+      "bofip": "BOI-CF-CPF-30-20, BOI-CF-INF-20-10-50, BOI-RPPM-PVBMC-30-30, BOI-CF-PGR-10-50",
+      "verification_manuelle": "https://bofip.impots.gouv.fr/bofip/10841-PGP.html/identifiant=BOI-CF-INF-20-10-50-20210526",
+      "update_frequency": "annual",
+      "last_fetched": "2026-11-01",
+      "next_check": "2027-04-15",
+      "check_instructions": "À l'ouverture de la campagne déclarative : vérifier les cases 8UU / 8TT sur la 2042 du millésime, la notice du 3916-3916 bis (montants d'amendes, liste des codes PSAN) et toute modification des art. 1736 IV / X CGI et L. 169 LPF par la LFI."
     }
   ]
 }

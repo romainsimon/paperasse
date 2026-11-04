@@ -99,6 +99,8 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 | Plus-values crypto | 3AN / 3BN | **2086** |
 | Plus-value immobilière | 3VZ | **2048-IMM** (notaire) |
 | Revenus étrangers | — | **2047** |
+| Comptes ouverts, détenus, utilisés ou clos à l'étranger (bancaires, paiement, actifs numériques) | 8UU (cocher) | **3916-3916 bis** |
+| Assurance-vie / contrat de capitalisation souscrit hors de France | 8TT (cocher) | **3916-3916 bis** |
 | Patrimoine immobilier net > 1,3 M€ | — | **2042-IFI** |
 | Dons, emploi à domicile, garde d'enfant | — | **2042-RICI** |
 
@@ -214,6 +216,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 | Plus-values mobilières détaillées (plusieurs lignes, reports moins-values) | **2074** |
 | Cessions crypto > 305 € | **2086** (obligatoire même si PV nulle) |
 | Revenus étrangers | **2047** |
+| Compte, compte d'actifs numériques ou contrat d'assurance-vie à l'étranger (ouvert, détenu, utilisé ou clos dans l'année) | **3916-3916 bis** (voir [comptes-etrangers.md](comptes-etrangers.md)) |
 | Patrimoine immobilier net > 1,3 M€ au 1er janvier | **2042-IFI** (annexes 1 à 6), case 0IF de la 2042 |
 | Réductions / crédits (dons, emploi à domicile, garde enfant, Pinel, FCPI…) | **2042-RICI** |
 | Plus-value immobilière (hors RP) | **2048-IMM** (en principe pris en charge par le notaire au moment de la vente) |
@@ -282,7 +285,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 
 ## Pièges fréquents
 
-1. **Oublier un compte étranger** — obligation de déclarer l'ouverture (formulaire 3916) sous peine d'amende 1 500 € par compte.
+1. **Oublier un compte étranger** — tout compte ouvert, détenu, utilisé ou clos à l'étranger dans l'année (y compris néobanque étrangère, compte inactif, compte clos, comptes des membres du foyer) se déclare sur le 3916-3916 bis avec la case 8UU ; amende de 1 500 € par compte et par année (art. 1649 A, 1736 IV CGI). Détail, cas IBAN FR et régularisation : [comptes-etrangers.md](comptes-etrangers.md).
 2. **Ne pas cocher 2OP** alors que le barème serait favorable au TMI 11 %.
 3. **ARE en 1AJ au lieu de 1AP** : l'abattement 10 % s'applique dans les deux cas, mais la mauvaise case fausse le prélèvement à la source et la distinction revenu d'activité / remplacement (prestations) ; l'ARE compte pour le plafond PER.
 4. **Oublier le quotient** pour un vesting RSU massif.
@@ -295,7 +298,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 
 - Obligation déclarative : art. 170 CGI
 - Option PFU / barème : art. 200 A CGI
-- Déclaration comptes étrangers : art. 1649 A CGI
+- Déclaration comptes, contrats et comptes d'actifs numériques à l'étranger : art. 1649 A, 1649 AA, 1649 bis C CGI (BOI-CF-CPF-30-20)
 - Revenus fonciers : art. 14 à 33 quinquies CGI
 - BIC LMNP : art. 35 CGI
 - Plus-values mobilières : art. 150-0 A CGI

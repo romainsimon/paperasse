@@ -267,7 +267,7 @@ def from_foyer(foyer, bareme, pfu_data):
     pensions = r.get("pensions_declarant1", 0) + r.get("pensions_declarant2", 0)
     net_pensions = abattement_pensions(pensions, bareme) if pensions else 0
 
-    # Cases 1AI/1BI — sorties en CAPITAL d'un PER / art. 83, part correspondant
+    # Cases 1AI/1BI — sorties en CAPITAL d'un PER (PERIN, PERO, PERECO), part correspondant
     # aux versements DÉDUITS à l'entrée. Imposables au barème comme des pensions
     # mais SANS abattement de 10 % (brochure pratique IR, rubrique pensions).
     # Les intégrer à `pensions_declarant*` surestime l'abattement et sous-estime le RNI.

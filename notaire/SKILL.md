@@ -107,6 +107,11 @@ Déterminer le domaine et le workflow applicable :
 - Composition du patrimoine (immobilier, mobilier, comptes, assurance-vie, PER)
 - Donations antérieures (< 15 ans)
 
+**Points de calcul à ne pas oublier (succession) :**
+- **Assurance-vie et PER** : hors succession civile mais taxés (990 I / 757 B). Appliquer [references/succession.md](references/succession.md), sections « Assurance-Vie et Succession » (statut des bénéficiaires exonérés d'abord, matrice des régimes, prélèvements sociaux sur les unités de compte) et « Plan d'Épargne Retraite (PER) et Succession ».
+- **Passif** : forfait de 1 500 EUR de frais funéraires sans justificatif (art. 775 CGI), ou le montant réel s'il est supérieur et justifié.
+- **Frais** : estimer les émoluments (acte de notoriété, attestation immobilière, déclaration de succession) avec [references/tarifs-emoluments.md](references/tarifs-emoluments.md), section « Émoluments Proportionnels (Succession) ».
+
 **Pour une donation :**
 - Lien de parenté donateur/donataire
 - Nature du bien donné (argent, immobilier, valeurs mobilières)

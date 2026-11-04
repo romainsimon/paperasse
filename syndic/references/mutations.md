@@ -99,7 +99,7 @@ Le syndic peut **faire opposition au versement du prix de vente** pour garantir 
 
 ## Certificat avant la vente (art. 20 II)
 
-Avant l'acte authentique, le notaire notifie au syndic le nom du candidat acquéreur (ou des dirigeants et associés s'il s'agit d'une société), et de leur conjoint ou partenaire de PACS.
+Avant l'acte authentique, le notaire notifie au syndic le nom du candidat acquéreur ou, si l'acquéreur est une SCI ou une SNC, de ses mandataires sociaux et associés, ainsi que de leurs conjoints ou partenaires de PACS.
 
 - Le syndic délivre **dans le mois** un certificat de moins d'un mois attestant que l'acquéreur n'est pas copropriétaire de l'immeuble ou, s'il l'est, qu'il n'a pas fait l'objet d'une mise en demeure de payer restée infructueuse depuis plus de **45 jours**.
 - Si l'acquéreur copropriétaire n'est pas à jour, le notaire informe les parties que **la vente ne peut pas avoir lieu**.
@@ -112,7 +112,7 @@ Avant l'acte authentique, le notaire notifie au syndic le nom du candidat acqué
 Le notaire notifie la mutation au syndic (art. 6 décret 1967). Le syndic doit ensuite :
 
 1. **Mettre à jour le registre des copropriétaires** (nom, adresse, lot, tantièmes)
-2. **Transférer le compte copropriétaire** (solde du vendeur → acquéreur)
+2. **Ouvrir le compte de l'acquéreur** et arrêter celui du vendeur : le solde dû par le vendeur reste à sa charge (opposition art. 20) et n'est pas reporté sur l'acquéreur ; l'acquéreur supporte les provisions exigibles après la mutation et les sommes que l'art. 6-2 du décret lui attribue
 3. **Informer l'acquéreur** des modalités de paiement des charges
 4. **Mettre à jour le RNC** si nécessaire
 
@@ -144,6 +144,6 @@ Mutation — Lot {{n}} — Vendeur : {{vendeur}} → Acquéreur : {{acquereur}}
 - [ ] Avis de mutation reçu du notaire (LRAR, dans les 15 jours du transfert de propriété)
 - [ ] Opposition formée si impayés : acte extrajudiciaire (commissaire de justice), dans les 15 jours de la réception de l'avis, montant et causes de la créance énoncés
 - [ ] Registre copropriétaires mis à jour
-- [ ] Compte copropriétaire transféré
+- [ ] Compte acquéreur ouvert, compte vendeur arrêté (répartition art. 6-2 décret)
 - [ ] Acquéreur informé (modalités paiement, prochain appel)
 ```

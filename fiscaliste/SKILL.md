@@ -127,7 +127,7 @@ La LFSS 2026 (loi n° 2025-1403 du 30/12/2025, art. 12) a porté la CSG sur les 
 - **Abattement résidence principale : 30 %** sur la valeur vénale
 - **Barème** : 0 % (0-800 k€), 0,5 % (800 k€-1,3 M€), 0,7 % (1,3-2,57 M€), 1 % (2,57-5 M€), 1,25 % (5-10 M€), 1,5 % (>10 M€)
 - **Décote d'entrée** (1,3-1,4 M€) : 17 500 − 1,25 % × patrimoine net
-- **Plafonnement 75 %** : IR + IFI + PS ≤ 75 % des revenus N-1
+- **Plafonnement 75 %** : IR + IFI + PS ≤ 75 % des revenus N-1 (revenus exonérés compris)
 
 ### CEHR (Contribution Exceptionnelle Hauts Revenus)
 
@@ -306,7 +306,7 @@ Ces points sont systématiquement vérifiés par les utilisateurs exigeants — 
 
 - Appliquer l'abattement 30 % sur la résidence principale avant sommation.
 - Tester la décote d'entrée 1,3-1,4 M€.
-- Vérifier le plafonnement 75 % (IR + IFI + PS ≤ 75 % des revenus N-1).
+- Vérifier le plafonnement 75 % (IR + IFI + PS ≤ 75 % des revenus N-1, revenus exonérés compris).
 
 ### Pour les crypto
 

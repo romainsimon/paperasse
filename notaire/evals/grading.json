@@ -343,7 +343,7 @@
         "id": 2,
         "description": "Le forfait frais d'acquisition (7,5%) est applique au prix d'achat",
         "result": "PASS",
-        "evidence": "Forfait frais d'acquisition = 7,5% x 180 000 = 13 500 EUR. Art. 150 VB-II-4 CGI. Source : references/plus-value.md."
+        "evidence": "Forfait frais d'acquisition = 7,5% x 180 000 = 13 500 EUR. Art. 150 VB-II-3 CGI. Source : references/plus-value.md."
       },
       {
         "id": 3,

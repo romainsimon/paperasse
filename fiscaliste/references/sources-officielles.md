@@ -84,7 +84,7 @@ Si une règle ne peut pas être sourcée, **le dire explicitement** et inviter �
 |-------|------------|-------|
 | PER individuel — déduction | art. 163 quatervicies | BOI-IR-BASE-20-50-20 |
 | Plafond de déduction | art. 163 quatervicies-I-2 | idem |
-| Sortie en capital — part capital | art. 158-5-b bis | idem |
+| Sortie en capital, part capital | art. 158, 5-b quinquies | idem |
 | Mutualisation couple | art. 163 quatervicies-I-2° | idem |
 
 ### IFI

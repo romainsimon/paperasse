@@ -156,15 +156,86 @@ Référence complète pour le droit des successions : dévolution, droits, abatt
 
 **Base légale** : art. 757 B et 990 I CGI
 
-| Primes versées | Régime | Base légale |
-|----------------|--------|-------------|
-| Avant 70 ans | Abattement 152 500 EUR par bénéficiaire, puis 20% jusqu'à 700 000 EUR, puis 31,25% | art. 990 I CGI |
-| Après 70 ans | Abattement global 30 500 EUR (tous bénéficiaires), puis droits de succession selon le lien | art. 757 B CGI |
+L'assurance-vie est **hors succession** (art. L132-12 Code des assurances). Les capitaux décès sont versés directement aux bénéficiaires désignés. Le régime fiscal dépend de **trois variables** : date de souscription du contrat, âge de l'assuré à la date du versement, et date du versement.
 
-**Points clés :**
-- L'assurance-vie est hors succession (art. L132-12 Code des assurances)
-- Clause bénéficiaire : vérifier sa rédaction (acceptation, démembrement, etc.)
+### Préalable — bénéficiaires exonérés de droits de mutation
+
+**La matrice ci-dessous ne s'applique qu'à un bénéficiaire taxable.** Le conjoint survivant, le partenaire de PACS (art. 796-0 bis CGI) et les frères et soeurs remplissant les conditions de l'art. 796-0 ter CGI sont exonérés dans **les deux** régimes :
+
+| Régime | Effet de l'exonération | Base |
+|--------|------------------------|------|
+| Art. 990 I | Le bénéficiaire **n'est pas assujetti** au prélèvement | Art. 990 I, I, dernier alinéa (renvoi aux art. 795, 795-0 A, 796-0 bis et 796-0 ter CGI) ; [BOI-TCAS-AUT-60 § 120](https://bofip.impots.gouv.fr/bofip/1335-PGP.html) |
+| Art. 757 B | Sa part est **retirée de l'assiette**, et l'abattement global de 30 500 EUR est réparti entre les seuls bénéficiaires taxables | [BOI-ENR-DMTG-10-10-20-20 § 220](https://bofip.impots.gouv.fr/bofip/3456-PGP.html) |
+
+- **L'abattement ne se reporte pas** : la fraction des 152 500 EUR non utilisée par un bénéficiaire exonéré ne profite pas aux autres bénéficiaires du contrat (BOI-TCAS-AUT-60 § 310).
+- **Les PS sur gains UC restent dus** : ils pèsent sur le contrat (le souscripteur est seul contribuable), pas sur le bénéficiaire. L'exonération de DMTG ne les neutralise pas — voir plus bas.
+
+→ **Cas pratique le plus courant** : conjoint ou partenaire de PACS désigné bénéficiaire unique = aucune imposition au titre de la transmission, quel que soit le régime de la matrice. Ne pas dérouler les barèmes dans ce cas.
+
+### Matrice des régimes fiscaux (3 variables)
+
+| Contrat souscrit | Âge de l'**assuré** au versement | Date du versement | Régime |
+|------------------|:--------------------------------:|-------------------|--------|
+| Avant le 20/11/1991 | Peu importe | Avant le 13/10/1998 | **Exonération totale** : ni 990 I ni droits de succession |
+| Avant le 20/11/1991 | Peu importe | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. (régime dérogatoire — contrat pré-1991) |
+| À compter du 20/11/1991 | < 70 ans | Avant le 13/10/1998 | **Exonération totale** : ni 990 I ni droits de succession |
+| À compter du 20/11/1991 | < 70 ans | À partir du 13/10/1998 | **Art. 990 I** : abattement 152 500 EUR/bénéf. |
+| À compter du 20/11/1991 | ≥ 70 ans | Peu importe | **Art. 757 B** : abattement global 30 500 EUR, puis droits de succession sur les primes |
+
+**L'âge de 70 ans est celui de l'assuré**, sur la tête duquel le contrat est souscrit — et non celui du souscripteur, qui peut être une autre personne (BOI-ENR-DMTG-10-10-20-20 § 140). Le seuil du 20/11/1991 s'entend des contrats conclus **à compter de** cette date (art. 757 B CGI) : un contrat souscrit le 20/11/1991 relève du régime de droit commun, pas du régime dérogatoire.
+
+**Condition de domicile du prélèvement 990 I** (art. 990 I, I) : le prélèvement n'est dû que si le bénéficiaire a son domicile fiscal en France au moment du décès **et** l'a eu pendant au moins six des dix années précédentes, **ou** si l'assuré a son domicile fiscal en France au moment de son décès. Hors de ces cas, pas de prélèvement.
+
+**Le vrai cas d'exonération totale** : les primes versées **avant le 13/10/1998** échappent à toute imposition (ni 990 I ni droits), que le contrat soit pré- ou post-20/11/1991 (pour un contrat post-1991, à condition d'un versement avant 70 ans). C'est le seuil du 13/10/1998 — et non l'âge — qui bascule ces primes anciennes vers l'art. 990 I.
+
+**Sources officielles** : [BOI-TCAS-AUT-60](https://bofip.impots.gouv.fr/bofip/1335-PGP.html) (prélèvement art. 990 I, tableau des régimes selon dates de souscription et de versement) ; [BOI-ENR-DMTG-10-10-20-20](https://bofip.impots.gouv.fr/bofip/3456-PGP.html) (art. 757 B, contrats d'assurance dans l'actif successoral). Réserve : l'exonération des primes versées avant le 13/10/1998 sur contrat pré-1991 suppose que le contrat n'ait pas subi de modification substantielle de son économie après le 20/11/1991.
+
+**Le seul cas défavorable** (757 B / plafond 30 500 EUR global) : contrat souscrit **à compter du** 20/11/1991 **ET** primes versées **après** 70 ans — **quelle que soit la date de versement**. Le seuil du 13/10/1998 ne joue que pour les primes versées **avant** 70 ans (exonération totale avant cette date, art. 990 I à partir).
+
+**Règle clé pour les contrats pré-1991** : primes versées **avant le 13/10/1998** = exonération totale ; primes versées **à partir du 13/10/1998**, même après 70 ans, relèvent de l'art. 990 I (abattement de 152 500 EUR par bénéficiaire) — le régime dérogatoire favorable s'applique dès lors que le contrat a été souscrit avant le 20/11/1991, et l'art. 757 B ne s'y applique jamais. Ne pas fermer ces contrats anciens.
+
+**Attention — l'art. 757 B ne dépend pas du 13/10/1998** : pour un contrat souscrit **à compter du** 20/11/1991, les primes versées **après 70 ans** relèvent de l'art. 757 B (abattement global 30 500 EUR) quelle que soit leur date de versement, y compris avant le 13/10/1998. L'art. 757 B ne s'applique jamais aux contrats souscrits avant le 20/11/1991.
+
+### Barèmes 990 I et 757 B
+
+| Régime | Assiette | Abattement | Taux |
+|--------|----------|:----------:|------|
+| Art. 990 I | Fraction rachetable : **valeur de rachat au jour du décès** (§ 180). Fraction non rachetable d'un contrat mixte : capital-décès au titre de la prévoyance (capital dû moins valeur de rachat) multiplié par le taux de mortalité à l'âge de l'assuré au décès (§ 230) ; contrat entièrement non rachetable : prime annuelle, ou prime unique versée à la conclusion (§ 180). Plafond : l'assiette ne peut excéder le **capital réellement versé** au décès (§ 190) | 152 500 EUR/bénéf. | 20% jusqu'à 700 000 EUR, puis 31,25% |
+| Art. 757 B | Primes versées (hors gains) au-delà de l'abattement global | 30 500 EUR global (tous bénéficiaires) | Droits de succession selon le lien |
+
+Paragraphes cités : [BOI-TCAS-AUT-60](https://bofip.impots.gouv.fr/bofip/1335-PGP.html) § 180, 190 et 230.
+
+**Sous l'art. 757 B, les gains (intérêts et PV) sont exonérés** — seules les primes sont taxées.
+
+**Contrats « vie-génération »** (art. 990 I, I bis) : abattement proportionnel de **20 %** appliqué **avant** l'abattement de 152 500 EUR. Réservé aux contrats souscrits à compter du 01/01/2014 (ou antérieurs et transformés entre 2014 et 2016) dont les primes sont investies en unités de compte comportant au moins 33 % d'actifs éligibles (logement social ou intermédiaire, PME/ETI, économie sociale et solidaire). BOI-TCAS-AUT-60 § 281 à 290.
+
+**Ne pas transposer au PER assurantiel** : pour un plan d'épargne retraite (art. L. 224-1 CoMoFi), c'est l'âge du titulaire **au décès** qui commande, et non l'âge au versement des primes — 990 I si le décès survient avant 70 ans, art. 757 B s'il survient après, et l'assiette porte alors sur l'**intégralité** des sommes dues, produits compris, et non sur les seules primes. BOI-TCAS-AUT-60 § 55 ; BOI-ENR-DMTG-10-10-20-20 § 155 et 197.
+
+### PV latentes et gains non réalisés au décès
+
+**Le décès n'est pas un fait générateur de l'IR.** Les gains latents ne sont jamais soumis à la fiscalité des rachats au titre de l'IR. **En revanche, les prélèvements sociaux (PS) restent dus sur les gains latents en UC au décès** — ce n'est que l'IR qui est définitivement évité.
+
+| Support | Sort des gains latents au décès |
+|---------|----------------------------------|
+| Unités de compte (UC) | **IR** définitivement exonéré — mais **PS dus** sur les gains constatés au dénouement, nets des PS déjà acquittés le cas échéant |
+| Fonds en euros | PS déjà prélevés annuellement (au fil de l'eau) ; IR jamais dû (pas de rachat) |
+
+**Attention, piège fréquent** : contrairement à une idée reçue, les PV latentes en UC ne sont **pas** exonérées de PS au décès. Depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains UC constatés au dénouement par décès et les déduit du capital avant versement aux bénéficiaires. Saisi de ce mécanisme, le Conseil d'État a refusé d'admettre le pourvoi et de renvoyer la QPC, en jugeant que le souscripteur « a seul la qualité de contribuable » et que le prélèvement opéré par l'assureur « n'a ni pour objet ni pour effet d'assujettir ce bénéficiaire à une imposition » (CE 18/02/2026, n° 504077, pts 7 et 8 — décision inédite au Lebon, qui ne tranche pas le fond). Ce point diffère du régime des cryptoactifs au décès (où IR et PS sont tous deux purgés) — les deux régimes ne doivent pas être confondus.
+
+**Conséquence pratique** : une AV avec 500 000 EUR de PV latentes en UC transmet ces PV sans IR aux bénéficiaires, mais l'assureur prélève environ 86 000 EUR de PS (17,2%) avant versement. La fiscalité successorale (990 I ou 757 B) s'applique ensuite, à des taux et abattements spécifiques, sans rapport avec la fiscalité des rachats de vivant (PFU 30% ou barème).
+
+**Articulation avec l'assiette du 990 I** : l'assiette est la valeur de rachat au jour du décès (§ 180), plafonnée au capital réellement versé (§ 190). L'assureur prélevant les PS avant versement, ce capital réellement versé — et donc le plafond du § 190 — est net de ces PS. Ni l'art. 990 I ni le BOFiP n'énoncent de déduction d'assiette au titre des PS : l'effet passe par le plafond du § 190, pas par une règle d'assiette.
+
+**Taux des PS maintenu à 17,2 %** : la hausse de CSG de la LFSS 2026 (art. 12, de 9,2 % à 10,6 %, soit 18,6 % de PS) ne s'applique pas aux produits d'assurance-vie. Ceux du 3° du II de l'art. L. 136-7 CSS — dont les gains UC constatés au dénouement par décès — sont visés par la dérogation à 9,2 % du IV de l'art. L. 136-8 CSS (IV, 4°). Les PS restent donc à **17,2 %** sur ces gains.
+
+**Avantage de l'AV pour la transmission** : cumul de l'abattement 152 500 EUR/bénéficiaire ET de la purge définitive de l'IR sur les PV latentes en UC — mais **les PS restent dus** sur ces mêmes PV, contrairement à ce qui est parfois avancé.
+
+### Autres points clés
+
+- Clause bénéficiaire : vérifier sa rédaction (acceptation, démembrement possible pour optimiser la transmission)
+- **Démembrement de la clause bénéficiaire** : usufruitier et nu-propriétaire sont tous deux bénéficiaires, au prorata de la part leur revenant selon le barème de l'art. 669 CGI, et l'abattement de 152 500 EUR est réparti entre eux **dans les mêmes proportions** (art. 990 I, I). L'usufruitier ne peut pas dépasser 152 500 EUR d'abattement sur l'ensemble des contrats d'un même assuré (BOI-TCAS-AUT-60 § 310, exemple § 320)
 - Contrats non dénoués au décès du conjoint : régime spécifique selon le régime matrimonial
+- Primes manifestement excessives : risque de réintégration dans la succession (art. L132-13 Code des assurances)
 
 ## Options du Conjoint Survivant
 

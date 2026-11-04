@@ -30,9 +30,35 @@
 
 - **Hors succession** (art. L132-12 Code des assurances)
 - Clause bénéficiaire : vérifier systématiquement (acceptée ou non)
-- Primes avant 70 ans : abattement **152 500 EUR/bénéficiaire** puis 20% jusqu'à 700k, 31,25% au-delà (art. 990 I CGI)
-- Primes après 70 ans : abattement global **30 500 EUR** puis droits de succession sur le surplus des primes (art. 757 B CGI). Les intérêts sont exonérés.
-- Attention aux **primes manifestement excessives** (réintégration possible dans la succession)
+- Le régime fiscal dépend de **3 variables** : date de souscription, âge de l'**assuré** au versement, date du versement — voir le tableau complet dans `succession.md`
+
+**Bénéficiaire exonéré de droits de mutation — à vérifier avant tout calcul :**
+- Conjoint survivant, partenaire de PACS (art. 796-0 bis CGI), frères et soeurs sous conditions (art. 796-0 ter CGI) : **exonérés dans les deux régimes**
+- **Art. 990 I** : non assujettis au prélèvement (art. 990 I, I, dernier alinéa ; [BOI-TCAS-AUT-60](https://bofip.impots.gouv.fr/bofip/1335-PGP.html) § 120)
+- **Art. 757 B** : leur part est retirée de l'assiette, l'abattement global de 30 500 EUR étant réparti entre les seuls bénéficiaires taxables ([BOI-ENR-DMTG-10-10-20-20](https://bofip.impots.gouv.fr/bofip/3456-PGP.html) § 220)
+- La fraction d'abattement de 152 500 EUR non utilisée par un bénéficiaire exonéré **ne profite pas** aux autres (BOI-TCAS-AUT-60 § 310)
+- En revanche les **PS sur gains UC restent dus** : ils pèsent sur le contrat, pas sur le bénéficiaire (voir plus bas)
+
+**Régime de droit commun :**
+- **Exonération totale** (ni 990 I ni droits) : primes versées **avant le 13/10/1998**, que ce soit sur un contrat pré-20/11/1991 (tout âge) ou sur un contrat post-1991 avec versement avant 70 ans
+- Primes versées avant 70 ans **à partir du 13/10/1998** : abattement **152 500 EUR/bénéficiaire** puis 20%/31,25% (art. 990 I CGI)
+- Primes après 70 ans sur contrat souscrit à compter du 20/11/1991 : abattement global **30 500 EUR** puis droits de succession sur les primes uniquement — les gains sont exonérés (art. 757 B CGI), **quelle que soit la date de versement** (le seuil du 13/10/1998 ne joue que pour les primes versées avant 70 ans)
+
+**Contrats souscrits avant le 20/11/1991 — cas dérogatoire favorable :**
+- Primes versées **avant le 13/10/1998** : exonération totale
+- Primes versées **à partir du 13/10/1998**, même après 70 ans, relèvent de l'art. 990 I (abattement 152 500 EUR/bénéf.)
+- Assiette du 990 I : valeur de rachat au jour du décès, plafonnée au capital réellement versé (BOI-TCAS-AUT-60 § 180 et 190)
+- Le plafond défavorable de 30 500 EUR ne s'applique **jamais** à ces contrats anciens
+- **Ne jamais fermer un contrat pré-1991** sans vérifier cet avantage successoral
+- Sources : [BOI-TCAS-AUT-60](https://bofip.impots.gouv.fr/bofip/1335-PGP.html), [BOI-ENR-DMTG-10-10-20-20](https://bofip.impots.gouv.fr/bofip/3456-PGP.html) — exonération sous réserve d'absence de modification substantielle du contrat après le 20/11/1991
+
+**PV latentes au décès :**
+- UC : l'**IR** est définitivement exonéré (le décès n'est pas un fait générateur), mais les **PS restent dus** sur les gains constatés au dénouement, prélevés par l'assureur avant versement du capital (LFSS 2010, art. L136-7 II 3° CSS). Seul l'IR est purgé, pas les PS — ne pas confondre avec le régime des cryptoactifs où IR et PS sont tous deux purgés au décès.
+- Taux des PS : **17,2 %**, maintenu. La hausse de CSG de la LFSS 2026 (art. 12) ne touche pas les produits du 3° du II de l'art. L136-7 CSS, visés par la dérogation à 9,2 % du IV de l'art. L136-8 CSS.
+- Portée de la jurisprudence : le Conseil d'État a refusé d'admettre le pourvoi et de renvoyer la QPC contestant ce mécanisme, le souscripteur étant seul contribuable et le prélèvement par l'assureur n'imposant pas le bénéficiaire (CE 18/02/2026, n° 504077, pts 7 et 8 — inédit au Lebon).
+- Fonds € : PS prélevés chaque année au fil de l'eau (déjà acquittés) ; IR jamais dû
+
+- Attention aux **primes manifestement excessives** (réintégration possible dans la succession, art. L132-13 Code des assurances)
 
 ## SCI : IR vs IS et Impact sur la Plus-Value
 

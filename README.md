@@ -135,17 +135,18 @@ Les 4 skills s'enchaînent pour couvrir tout le cycle comptable :
 
 ---
 
-## Intégrations (Qonto, Stripe)
+## Intégrations (Qonto, Stripe, Pennylane)
 
 Des connecteurs pour récupérer automatiquement les transactions bancaires et les paiements. Configuration dans `company.json`, clés API en variables d'environnement.
 
 ```bash
-npm run fetch          # Récupère Qonto + Stripe
-npm run fetch:qonto    # Qonto seulement
-npm run fetch:stripe   # Stripe seulement
+npm run fetch           # Récupère Qonto + Stripe
+npm run fetch:qonto     # Qonto seulement
+npm run fetch:stripe    # Stripe seulement
+npm run fetch:pennylane # Transactions bancaires Pennylane seulement
 ```
 
-Supporte plusieurs comptes Stripe et Stripe Connect. Voir `integrations/` pour le détail de la configuration.
+Supporte plusieurs comptes Stripe, Stripe Connect et les transactions bancaires Pennylane. Voir `integrations/` pour le détail de la configuration.
 
 ---
 

@@ -36,6 +36,10 @@
     "enabled": false,
     "_comment": "Mettre enabled a true si vous utilisez Qonto. Env vars: QONTO_ID, QONTO_API_SECRET"
   },
+  "pennylane": {
+    "enabled": false,
+    "_comment": "Mettre enabled a true si vous utilisez Pennylane. Env var: PENNYLANE_API_TOKEN (scope transactions:readonly)"
+  },
   "stripe_accounts": [
     {
       "id": "main",

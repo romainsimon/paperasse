@@ -294,6 +294,23 @@
       ]
     },
     {
+      "id": 25,
+      "name": "av-pv-latentes-uc-deces-ps-dus",
+      "prompt": "Mon oncle est décédé en 2026. Son assurance-vie en unités de compte valait 800 000 EUR pour 500 000 EUR de primes versées, soit 300 000 EUR de plus-values latentes. Comme pour les cryptos, le décès purge tout, non ? Je n'ai rien à payer sur ces gains ?",
+      "expected_output": "Le skill corrige la prémisse : le décès n'est pas un fait générateur de l'IR, donc l'IR est définitivement purgé sur les 300 000 EUR de gains — mais les prélèvements sociaux restent dus. Depuis la LFSS 2010 (art. L. 136-7, II, 3° CSS), l'assureur prélève les PS sur les gains UC au dénouement par décès, nets des PS déjà acquittés, et les déduit du capital avant versement : environ 51 600 EUR à 17,2 %. Le taux reste 17,2 % et non 18,6 % car les produits du 3° du II de l'art. L. 136-7 CSS sont visés par la dérogation à 9,2 % du IV de l'art. L. 136-8 CSS, malgré la hausse de CSG de la LFSS 2026. Le raisonnement crypto (où IR ET PS sont purgés) ne se transpose pas. La fiscalité de transmission (990 I / 757 B) relève du skill notaire.",
+      "files": [],
+      "assertions": [
+        "Le skill corrige la prémisse de l'utilisateur : les PS ne sont pas purgés au décès sur les UC",
+        "L'IR est identifié comme définitivement purgé (le décès n'est pas un fait générateur)",
+        "Les PS sont calculés à 17,2 % sur les gains UC, soit environ 51 600 EUR",
+        "Le skill ne retient pas le taux de 18,6 % de la LFSS 2026 pour l'assurance-vie",
+        "Le skill cite l'art. L. 136-7 II 3° CSS comme base du prélèvement par l'assureur",
+        "Le skill précise que les PS sont prélevés par l'assureur avant versement du capital",
+        "Le skill refuse explicitement de transposer le régime des cryptoactifs à l'assurance-vie en UC",
+        "La fiscalité de transmission (990 I / 757 B) est renvoyée au skill notaire"
+        ]
+      },
+      {
       "id": 21,
       "name": "ir-sortie-capital-per-1ai-sans-abattement",
       "prompt": "Je vis en concubinage (ni marié ni pacsé) et je déclare seul mes 2 enfants à charge (2 parts). Mon salaire net imposable (case 1AJ) est de 100 000 €. J'ai débloqué mon PER en capital pour l'achat de ma résidence principale : 10 000 €, correspondant à des versements qui avaient été déduits à l'entrée. Calcule mon impôt sur le revenu pour les revenus 2025.",

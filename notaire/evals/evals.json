@@ -78,6 +78,26 @@
         "Le montant total de l'impôt est présenté (IR + PS + surtaxe éventuelle)",
         "L'analyse suit une structure claire avec chaque étape de calcul détaillée"
       ]
+    },
+    {
+      "id": 5,
+      "name": "assurance-vie-deces-conjoint-et-enfant",
+      "prompt": "Mon père est décédé en mars 2026 à 82 ans. Il avait une assurance-vie souscrite en 2005, sur laquelle il a versé 400 000 EUR : 250 000 EUR avant ses 70 ans et 150 000 EUR après. Le contrat vaut 700 000 EUR au décès, entièrement investi en unités de compte. Les bénéficiaires sont ma mère (son épouse) pour 60 % et moi pour 40 %. Qu'est-ce qu'on va payer ?",
+      "expected_output": "Le skill vérifie D'ABORD le statut des bénéficiaires : l'épouse est exonérée de DMTG (art. 796-0 bis CGI), donc ni prélèvement 990 I (art. 990 I, I, dernier alinéa) ni droits 757 B sur sa part. Contrat souscrit à compter du 20/11/1991 : les primes versées avant 70 ans relèvent du 990 I (abattement 152 500 EUR par bénéficiaire), celles versées après 70 ans du 757 B (abattement global 30 500 EUR, assiette limitée aux primes). Pour le 757 B, la part de l'épouse est retirée de l'assiette avant répartition de l'abattement (BOI-ENR-DMTG-10-10-20-20 § 220). La fraction d'abattement non utilisée par l'épouse exonérée ne profite pas au fils (BOI-TCAS-AUT-60 § 310). Les PS de 17,2 % sont dus sur les 300 000 EUR de gains UC et prélevés par l'assureur avant versement ; seul l'IR est purgé.",
+      "files": [],
+      "assertions": [
+        "Le skill vérifie le statut des bénéficiaires avant d'appliquer la matrice",
+        "L'épouse est identifiée comme exonérée de droits de mutation (art. 796-0 bis CGI)",
+        "L'exonération de l'épouse est appliquée AUSSI au prélèvement de l'art. 990 I, pas seulement aux droits de succession",
+        "Pour l'art. 757 B, la part de l'épouse est retirée de l'assiette avant répartition de l'abattement de 30 500 EUR",
+        "Le skill précise que la fraction d'abattement non utilisée par un bénéficiaire exonéré ne profite pas aux autres",
+        "Le contrat souscrit en 2005 est rattaché au régime de droit commun (souscription à compter du 20/11/1991)",
+        "Les primes versées avant 70 ans relèvent de l'art. 990 I et celles versées après 70 ans de l'art. 757 B",
+        "L'âge de 70 ans retenu est celui de l'assuré",
+        "Les prélèvements sociaux de 17,2 % sont dus sur les gains des unités de compte malgré le décès",
+        "Le skill distingue l'IR (définitivement purgé) des PS (dus) sur les plus-values latentes en UC",
+        "L'analyse suit une structure faits / hypothèses / calculs / résultat"
+      ]
     }
   ]
 }

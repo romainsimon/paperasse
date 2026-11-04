@@ -126,15 +126,38 @@ Taux dégressif selon ancienneté du contrat. Prélèvement libératoire (PFL) o
 
 ### Option barème
 
-**Avantageuse si TMI ≤ 11%** — le barème peut être meilleur que le PFU après 8 ans (car abattement annuel + taux IR faible).
+**Avantageuse surtout pour un foyer non imposable (TMI 0 %)**. Après 8 ans, à TMI 11 %, le barème (11 % moins l'économie de CSG déductible, soit environ 10,25 %) reste plus cher que le PFU à 7,5 % ; il ne devient intéressant que sur la fraction des produits taxée à 12,8 % (primes au-delà de 150 000 €). L'option étant globale, chiffrer sur l'ensemble des revenus du capital de l'année.
 
 Option **globale** pour l'année (tous les revenus de capitaux mobiliers et plus-values). Irrévocable jusqu'aux revenus 2025 ; la LFI 2026 (loi n° 2026-103, art. 126 ; art. 200 A CGI) a supprimé ce caractère irrévocable (brochure IR 2026, nouveautés).
+
+**Important** : l'abattement annuel (4 600 EUR / 9 200 EUR après 8 ans) s'applique **aussi bien au PFU qu'au barème** — ce n'est pas un avantage propre à l'option barème. La comparaison PFU vs barème se fait donc à abattement égal : seul le taux d'IR diffère : 7,5 % sous PFU sur les produits liés aux primes jusqu'à 150 000 € et 12,8 % au-delà, contre la TMI sous barème, avec en plus la CSG déductible de 6,8 points sous barème.
 
 ### Contrats très anciens (avant 1983)
 
 Régime de faveur pour les contrats souscrits **avant le 1er janvier 1983** : exonération totale d'IR sur les gains.
 
 Extrêmement rare — à vérifier si le contrat est très ancien.
+
+## PV Latentes au Décès — Fiscalité Spécifique
+
+> **Périmètre** : ce qui suit concerne la fiscalité au décès de l'assuré. La transmission successorale AV (990 I / 757 B) est couverte par le skill `notaire`.
+
+**Le décès n'est pas un fait générateur de l'IR.** Les gains non réalisés au moment du décès ne sont jamais soumis à la fiscalité des rachats au titre de l'IR — mais, pour les UC, les **prélèvements sociaux restent dus** (voir ci-dessous).
+
+| Support | Sort des gains latents au décès |
+|---------|----------------------------------|
+| Unités de compte (UC) | **IR** définitivement exonéré (le décès n'est pas un rachat) — mais **PS dus** sur les gains constatés au dénouement, nets des PS déjà acquittés le cas échéant |
+| Fonds en euros | PS déjà prélevés annuellement (au fil de l'eau) ; IR jamais dû (pas de rachat) |
+
+**Attention — piège fréquent : les PV latentes en UC ne sont PAS exonérées de prélèvements sociaux au décès.** Depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains constatés en UC lors du dénouement par décès et les déduit du capital avant versement aux bénéficiaires. Saisi de ce mécanisme, le Conseil d'État a refusé d'admettre le pourvoi et de renvoyer la QPC, en jugeant que le souscripteur « a seul la qualité de contribuable » et que le prélèvement opéré par l'assureur « n'a ni pour objet ni pour effet d'assujettir ce bénéficiaire à une imposition » (CE 18/02/2026, n° 504077, pts 7 et 8 — inédit au Lebon, la décision ne tranchant pas le fond). **Seul l'IR est définitivement évité — pas les PS.**
+
+**Conséquence** : un contrat AV avec 300 000 EUR de PV latentes en UC transmet ces gains sans IR (7,5 % ou 12,8 % selon l'âge du contrat et les primes, s'il s'était agi d'un rachat), mais l'assureur prélève environ 51 600 EUR de PS (17,2%) avant versement du capital aux bénéficiaires. La fiscalité successorale (990 I ou 757 B) s'applique ensuite — son assiette est la valeur de rachat au jour du décès, plafonnée au capital réellement versé, donc net des PS prélevés (BOI-TCAS-AUT-60 § 180 et 190). Ni l'art. 990 I ni le BOFiP n'énoncent de déduction d'assiette au titre des PS : l'effet passe par ce plafond.
+
+**Pourquoi 17,2 % et non 18,6 %** : la LFSS 2026 (art. 12) porte la CSG sur les revenus du capital de 9,2 % à 10,6 %, soit 18,6 % de PS, mais les produits du 3° du II de l'art. L. 136-7 CSS — dont les gains UC constatés au dénouement par décès, et les intérêts des fonds en euros inscrits en compte — sont visés par la dérogation à 9,2 % du IV de l'art. L. 136-8 CSS (IV, 4°). Les PS de l'assurance-vie restent donc à **17,2 %**, conformément à `data/pfu-prelevements-sociaux.json` (`taux_inchanges_17_2`).
+
+Point souvent mal compris : **seul l'IR est purgé au décès sur les PV latentes en UC — les PS restent dus**. C'est différent des fonds en euros, où les PS ont déjà été prélevés au fil de l'eau (rien à prélever de plus au décès), et différent aussi du régime des cryptoactifs (voir `crypto.md`), où IR et PS sont tous deux purgés au décès — ne pas transposer ce raisonnement à l'assurance-vie en UC.
+
+**Ne pas transposer au PER assurantiel non plus** (voir `per.md`) : au décès du titulaire d'un PER, c'est l'âge **au décès** qui commande le régime de transmission — art. 990 I avant 70 ans, art. 757 B après, l'assiette portant alors sur l'intégralité des sommes dues, produits compris (BOI-TCAS-AUT-60 § 55 ; BOI-ENR-DMTG-10-10-20-20 § 155 et 197). L'âge au versement des primes, déterminant pour l'assurance-vie, est ici sans effet. Détail dans le skill `notaire`.
 
 ## Stratégies courantes
 

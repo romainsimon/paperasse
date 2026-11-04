@@ -36,10 +36,12 @@ Ne couvre PAS :
 
 Les valeurs viennent du millésime de l'année de revenus :
 data/revenus-AAAA/bareme-ir.json et data/revenus-AAAA/pfu-prelevements-sociaux.json.
-Sans --annee, l'année courante (fichiers data/*.json à la racine ; le dossier
-de l'année courante en contient des liens). Un foyer.json multi-année (clé "annees") est calculé pour
---annee, ou pour sa dernière année par défaut. --bareme / --pfu restent
-disponibles pour forcer un fichier précis.
+L'année courante, avec ou sans --annee, se lit dans les fichiers data/*.json à la
+racine (le dossier de l'année courante n'en contient que des liens). Un foyer.json
+multi-année (clé "annees") est calculé pour --annee, ou pour sa dernière année par
+défaut. --bareme / --pfu restent disponibles pour forcer un fichier précis.
+Les réductions, crédits et le solde ne sont calculés que pour les années dont le
+millésime porte parametres_calcul_rici ; les autres années sont refusées.
 
     python fiscaliste/scripts/calc_ir.py --foyer foyer.json --annee 2023
 """
@@ -53,16 +55,22 @@ REPO_ROOT = Path(__file__).parent.parent
 DATA_DIR = REPO_ROOT / "data"
 DEFAULT_BAREME = DATA_DIR / "bareme-ir-2025.json"
 DEFAULT_PFU = DATA_DIR / "pfu-prelevements-sociaux.json"
+DEFAULT_NICHES = DATA_DIR / "niches-fiscales.json"
 
 
-def millesime_dir(annee):
-    """Dossier des données d'une année de revenus. Échoue si le millésime n'existe pas :
-    calculer une année avec les règles d'une autre est l'erreur que les millésimes évitent."""
+def fichiers_millesime(annee):
+    """Fichiers de données d'une année de revenus. L'année courante se lit à la racine, ce
+    qui marche aussi quand une installation n'a pas conservé les liens de son dossier.
+    Échoue si le millésime n'existe pas : calculer une année avec les règles d'une autre
+    est l'erreur que les millésimes évitent."""
+    if annee is None or annee == load_json(DEFAULT_BAREME)["_meta"]["revenus"]:
+        return {"bareme": DEFAULT_BAREME, "pfu": DEFAULT_PFU, "niches": DEFAULT_NICHES}
     path = DATA_DIR / f"revenus-{annee}"
     if not path.is_dir():
         disponibles = sorted(p.name.removeprefix("revenus-") for p in DATA_DIR.glob("revenus-*") if p.is_dir())
         sys.exit(f"Millésime revenus-{annee} absent. Années disponibles : {', '.join(disponibles)}")
-    return path
+    return {"bareme": path / "bareme-ir.json", "pfu": path / "pfu-prelevements-sociaux.json",
+            "niches": path / "niches-fiscales.json"}
 
 
 def annee_du_foyer(foyer, annee):
@@ -75,6 +83,20 @@ def annee_du_foyer(foyer, annee):
     if str(annee) not in annees:
         sys.exit(f"Le foyer ne contient pas l'année {annee} (années : {', '.join(sorted(annees))})")
     return annee
+
+
+def foyer_de_l_annee(foyer, annee):
+    """Vue mono-année d'un foyer multi-année. La situation peut changer d'une année à l'autre
+    (mariage, naissance) : la section foyer de l'année complète celle du foyer, et les blocs
+    de l'année (revenus, reductions_credits, options_fiscales...) remplacent ceux du foyer."""
+    if annee is None:
+        return foyer
+    donnees = foyer["annees"][str(annee)]
+    vue = {k: v for k, v in foyer.items() if k != "annees"}
+    vue.update({k: v for k, v in donnees.items() if k != "declaration_deposee"})
+    vue["foyer"] = {**foyer.get("foyer", {}), **donnees.get("foyer", {})}
+    vue.setdefault("revenus", {})
+    return vue
 
 
 def load_json(path):
@@ -281,19 +303,11 @@ def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
     }
 
 
-def from_foyer(foyer, bareme, pfu_data, annee=None):
-    """Déduit les paramètres à partir d'un foyer.json, mono-année ou multi-année."""
-    if annee is not None:
-        donnees = foyer["annees"][str(annee)]
-        # La situation peut changer d'une année à l'autre (mariage, naissance) : la
-        # section foyer de l'année complète celle du foyer.
-        f = {**foyer.get("foyer", {}), **donnees.get("foyer", {})}
-        r = donnees.get("revenus", {})
-        d = donnees.get("deductions", {})
-    else:
-        f = foyer["foyer"]
-        r = foyer["revenus"]
-        d = foyer.get("deductions", {})
+def from_foyer(foyer, bareme, pfu_data):
+    """Déduit les paramètres à partir d'un foyer.json (mono-année, voir foyer_de_l_annee)."""
+    f = foyer["foyer"]
+    r = foyer["revenus"]
+    d = foyer.get("deductions", {})
 
     # Parts
     situation = f.get("situation", "celibataire")
@@ -391,10 +405,7 @@ def from_foyer(foyer, bareme, pfu_data, annee=None):
 # plus le solde des PS.
 #
 # Paramètres : data/niches-fiscales.json (parametres_calcul_rici,
-# plafonnement_global, frais_scolarite).
-
-DEFAULT_NICHES = DATA_DIR / "niches-fiscales.json"
-
+# plafonnement_global, frais_scolarite), du millésime de l'année calculée.
 
 def reduction_dons(rc, rni, cfg):
     """Réduction dons (art. 200) : 75 % puis 66 % dans la limite de 20 % du revenu imposable."""
@@ -676,21 +687,20 @@ def main():
     foyer = load_json(args.foyer) if args.foyer else None
     annee_foyer = annee_du_foyer(foyer, args.annee) if foyer else None
     annee = args.annee if args.annee is not None else annee_foyer
+    foyer = foyer_de_l_annee(foyer, annee_foyer) if foyer else None
 
-    dossier = millesime_dir(annee) if annee is not None else None
-    bareme_path = args.bareme or (dossier / "bareme-ir.json" if dossier else DEFAULT_BAREME)
-    pfu_path = args.pfu or (dossier / "pfu-prelevements-sociaux.json" if dossier else DEFAULT_PFU)
-
-    bareme = load_json(bareme_path)
+    fichiers = fichiers_millesime(annee)
+    bareme = load_json(args.bareme or fichiers["bareme"])
+    pfu_path = args.pfu or fichiers["pfu"]
     pfu_data = load_json(pfu_path) if Path(pfu_path).exists() else None
 
     if foyer:
-        residence = (foyer.get("foyer") or {}).get("residence_fiscale", "FR")
+        residence = foyer["foyer"].get("residence_fiscale", "FR")
         if residence not in ("FR", "", None) or "non_resident" in foyer:
             sys.exit("Non-résident : calcul non pris en charge par ce script (taux minimum de l'art. 197 A, "
                      "retenue à la source de l'art. 119 bis, 2, prélèvements sociaux propres aux non-résidents). "
                      "Voir references/non-residents.md.")
-        result = from_foyer(foyer, bareme, pfu_data, annee_foyer)
+        result = from_foyer(foyer, bareme, pfu_data)
     else:
         if args.rni is None or args.parts is None:
             p.error("--rni et --parts requis sauf si --foyer est utilisé")
@@ -706,8 +716,13 @@ def main():
             pfu_data=pfu_data,
             base_pfu_ir=args.base_pfu,
         )
-    if args.foyer and ("reductions_credits" in foyer or "prelevement_a_la_source" in foyer):
-        result["reductions_credits"] = reductions_credits(foyer, result, load_json(DEFAULT_NICHES), pfu_data)
+    if foyer and ("reductions_credits" in foyer or "prelevement_a_la_source" in foyer):
+        niches = load_json(fichiers["niches"])
+        if "parametres_calcul_rici" not in niches:
+            sys.exit(f"Réductions, crédits et solde non disponibles pour les revenus {annee} : "
+                     f"{fichiers['niches'].name} de ce millésime ne porte pas parametres_calcul_rici. "
+                     "Retirer reductions_credits et prelevement_a_la_source pour obtenir l'impôt avant réductions.")
+        result["reductions_credits"] = reductions_credits(foyer, result, niches, pfu_data)
 
     if args.json:
         print(json.dumps(result, indent=2, ensure_ascii=False))

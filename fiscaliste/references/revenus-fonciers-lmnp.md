@@ -65,13 +65,13 @@ Voir `data/regimes-fonciers-lmnp.json` → `micro_bic_lmnp`.
 
 **Réforme loi Le Meur (nov. 2024), applicable revenus 2025** — la distinction clé est désormais **classé / non classé**, plus résidence principale.
 
-| Type de location | Seuil | Abattement |
-|------------------|-------|-----------|
-| LMNP longue durée | 77 700 € | 50% |
-| Meublé de tourisme classé | 77 700 € | 50% |
-| **Meublé de tourisme non classé** | **15 000 €** | **30%** |
+| Type de location | Seuil revenus 2025 | Seuil 2026-2028 | Abattement |
+|------------------|-------|-------|-----------|
+| LMNP longue durée | 77 700 € | 83 600 € | 50% |
+| Meublé de tourisme classé | 77 700 € | 83 600 € | 50% |
+| **Meublé de tourisme non classé** | **15 000 €** | **15 000 €** | **30%** |
 
-Au-delà des plafonds : régime réel obligatoire.
+Seuils 2026-2028 : BOI-BAREME-000044 (19/08/2026). Le plafond s'apprécie sur les recettes de N-1 ou N-2 : le régime réel devient obligatoire après **deux années consécutives** de dépassement.
 
 ### Régime réel LMNP
 
@@ -82,6 +82,7 @@ Au-delà des plafonds : régime réel obligatoire.
 - Mobilier : 10-20%/an sur 5-10 ans
 - Gros travaux : amortissables sur leur durée d'usage
 
+**Limite des amortissements** : déductibles dans la limite du loyer acquis diminué des autres charges → ils **ne peuvent ni créer ni accroître un déficit** (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57).
 **Résultat fiscal** : souvent nul ou déficitaire grâce aux amortissements → pas d'IR sur les loyers pendant des années. Cette économie est en partie reprise à la revente (voir « Cession d'un bien LMNP »).
 
 ### Cession d'un bien LMNP
@@ -98,7 +99,9 @@ Pour les **cessions réalisées depuis le 15/02/2025**, le prix d'acquisition re
 
 **Rappel au contribuable** : comparer micro-BIC et réel en intégrant le coût de cette réintégration si une revente est envisagée.
 
-**Déficit LMNP** : NON imputable sur le revenu global (contrairement au LMP). Reportable sur les BIC meublés des **10 années suivantes**.
+**Résultat fiscal** : souvent nul grâce aux amortissements → pas d'IR sur les loyers pendant des années. Un déficit ne peut provenir que des charges hors amortissements.
+
+**Déficit LMNP** : NON imputable sur le revenu global (contrairement au LMP). Reportable sur les seuls revenus de location meublée non professionnelle des **10 années suivantes**.
 
 ### Bascule LMP vs LMNP
 
@@ -106,15 +109,17 @@ Voir `data/regimes-fonciers-lmnp.json` → `lmp_vs_lmnp`.
 
 **Conditions LMP (cumulatives)** :
 1. Recettes meublées > 23 000 €
-2. ET recettes meublées > 50% des autres revenus professionnels du foyer (salaires + BNC + BIC + rémunérations dirigeant)
+2. ET recettes meublées > montant des autres revenus d'activité du foyer (traitements et salaires au sens de l'art. 79, **pensions et rentes viagères comprises**, BIC hors location meublée, BA, BNC, rémunérations de l'art. 62) — art. 155 IV 2 CGI
 
 **Conséquences LMP** :
 - Déficits imputables sur le revenu global
-- Plus-values professionnelles (exonération possible après 5 ans sous conditions de recettes)
+- Plus-values professionnelles : exonération art. 151 septies après 5 ans d'activité, totale si recettes < 90 000 €, partielle si < 126 000 €
 - Cotisations sociales TNS sur le bénéfice (SSI) — charge significative
 - Biens exonérés d'IFI comme biens professionnels (sous conditions)
 
-**Attention bascule involontaire** : une baisse des revenus professionnels (chômage, retraite) peut faire basculer en LMP malgré des loyers inchangés. À surveiller.
+**Location meublée de courte durée** : indépendamment du statut LMP, des recettes > 23 000 €/an rendent les revenus passibles des cotisations sociales (art. L. 611-1, 6° CSS).
+
+**Attention bascule involontaire** : une baisse des autres revenus d'activité (cessation, temps partiel) peut faire basculer en LMP malgré des loyers inchangés. Les pensions de retraite restent comptées, mais elles sont souvent inférieures à l'ancien salaire : au départ en retraite, la bascule se produit dès que les recettes meublées dépassent la pension et les autres revenus d'activité du foyer. À surveiller.
 
 ## SCI à l'IR
 
@@ -155,6 +160,7 @@ Voir `data/regimes-fonciers-lmnp.json` → `sci_ir`.
 - Revenus fonciers : art. 14 à 33 quater CGI
 - Déficit foncier : art. 156-I-3° CGI
 - LMNP : art. 35-I-5° bis CGI
-- LMP : art. 155-IV CGI
+- LMP : art. 155-IV CGI ; exonération des plus-values : art. 151 septies CGI
+- Limite des amortissements : art. 39 C CGI
 - SCI : art. 8 CGI (transparence)
 - BOFiP : BOI-RFPI (fonciers) et BOI-BIC-CHAMP-40 (meublés)

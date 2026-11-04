@@ -280,11 +280,13 @@ Ces points sont systématiquement vérifiés par les utilisateurs exigeants — 
 
 ### Pour un LMNP
 
-- Micro-BIC **longue durée** : abattement **50 %**, plafond **77 700 €**.
-- Micro-BIC **meublé tourisme non classé** : abattement **30 %**, plafond 15 000 € (Loi Le Meur).
-- Micro-BIC **meublé tourisme classé** : abattement 50 %, plafond 77 700 €.
-- Seuil LMP : recettes > **23 000 €** ET > 50 % des autres revenus pro du foyer.
-- Déficit LMNP au réel : **non imputable sur le revenu global** (reportable 10 ans sur BIC non pro).
+- Micro-BIC **longue durée** : abattement **50 %**, plafond **77 700 €** (revenus 2025 ; **83 600 €** pour 2026-2028, BOI-BAREME-000044).
+- Micro-BIC **meublé tourisme non classé** : abattement **30 %**, plafond 15 000 € (Loi Le Meur ; inchangé 2026-2028).
+- Micro-BIC **meublé tourisme classé** : abattement 50 %, plafond 77 700 € (83 600 € pour 2026-2028).
+- Plafond apprécié sur N-1 ou N-2 : le réel devient obligatoire après **deux années consécutives** de dépassement.
+- Seuil LMP : recettes > **23 000 €** ET recettes > autres revenus d'activité du foyer, **pensions et rentes viagères comprises** (art. 155 IV 2 CGI, renvoi à l'art. 79).
+- Amortissements au réel : plafonnés au loyer diminué des autres charges, ils **ne peuvent ni créer ni accroître un déficit** (art. 39 C ; BOI-BIC-CHAMP-40-20 § 57).
+- Déficit LMNP au réel : **non imputable sur le revenu global** (reportable 10 ans sur les seuls revenus de location meublée non professionnelle).
 
 ### Pour un déficit foncier (régime réel)
 

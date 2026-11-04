@@ -70,14 +70,14 @@
       "id": 5,
       "name": "lmnp-micro-vs-reel",
       "prompt": "J'ai un appartement loué meublé, recettes 18 000 €/an (longue durée). Je suis au micro-BIC avec abattement 50%. Un ami me dit que je devrais passer au réel. Bonne idée ?",
-      "expected_output": "Micro-BIC = 18 000 × 50% = 9 000 € imposables. Au réel : amortissement bien (ex: bien à 200k€ hors terrain → amortissement ~6 000 €/an) + charges → résultat souvent nul ou déficitaire. Nuance : déficit LMNP non imputable sur revenu global. Évoquer bascule LMP si recettes > 23 000 € ET > 50% autres revenus pro.",
+      "expected_output": "Micro-BIC = 18 000 × 50% = 9 000 € imposables. Au réel : amortissement bien (ex: bien à 200k€ hors terrain → amortissement ~6 000 €/an) + charges → résultat souvent nul (l'amortissement ne peut pas créer de déficit, art. 39 C). Nuance : déficit LMNP non imputable sur revenu global. Évoquer bascule LMP si recettes > 23 000 € ET > autres revenus d'activité du foyer, pensions comprises.",
       "files": [],
       "assertions": [
         "Le skill reconnaît le régime micro-BIC LMNP longue durée (abattement 50%, seuil 77 700 €)",
         "Le calcul micro est donné (18 000 × 50% = 9 000 € de base imposable)",
         "Le skill explique le principe du réel : amortissements + charges",
         "Le skill rappelle que le déficit LMNP n'est PAS imputable sur le revenu global",
-        "La règle de bascule LMP (23 000 € ET > 50% autres revenus pro) est mentionnée",
+        "La règle de bascule LMP (23 000 € ET > autres revenus d'activité du foyer, pensions comprises) est mentionnée",
         "La recommandation est nuancée : ça dépend de la valeur du bien et des charges réelles"
       ]
     },

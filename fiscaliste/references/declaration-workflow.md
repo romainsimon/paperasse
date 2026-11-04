@@ -150,13 +150,13 @@ Le réel est avantageux dès que charges réelles > 30 % des loyers (crédit imm
 
 | Recettes annuelles | Régime | Abattement |
 |--------------------|--------|------------|
-| ≤ 77 700 € (longue durée ou meublé classé) | Micro-BIC | 50 % |
+| ≤ 77 700 € (longue durée ou meublé classé ; 83 600 € pour 2026-2028) | Micro-BIC | 50 % |
 | ≤ 15 000 € (meublé tourisme non classé) | Micro-BIC | 30 % |
-| > seuils OU sur option | Réel — annexe 2031 | Amortissements + charges réelles |
+| > seuils deux années consécutives OU sur option | Réel — annexe 2031 | Amortissements + charges réelles |
 
-Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souvent le résultat nul ou déficitaire. Le déficit LMNP est **non imputable sur le revenu global** (reportable 10 ans sur BIC non pro uniquement).
+Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souvent le résultat nul ; il ne peut ni créer ni accroître un déficit (art. 39 C). Le déficit LMNP (issu des charges) est **non imputable sur le revenu global** (reportable 10 ans sur les seuls revenus de location meublée non professionnelle).
 
-**Bascule LMP** : si recettes > 23 000 € ET > 50 % des autres revenus pro du foyer → statut LMP (régime différent, exonération IFI possible, cotisations sociales SSI).
+**Bascule LMP** : si recettes > 23 000 € ET recettes > autres revenus d'activité du foyer, pensions et rentes viagères comprises → statut LMP (régime différent, exonération IFI possible, cotisations sociales SSI).
 
 ### Étape 6 : Mobilisation du PER
 

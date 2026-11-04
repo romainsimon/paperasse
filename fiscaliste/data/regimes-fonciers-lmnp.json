@@ -46,21 +46,25 @@
 
     "lmnp_longue_duree": {
       "seuil": 77700,
+      "seuil_revenus_2026_2028": 83600,
       "abattement": 0.50,
-      "note": "Location meublée longue durée (bail >9 mois) — inchangé"
+      "note": "Autres locations meublées (longue durée, bail mobilité...), définies par exclusion des meublés de tourisme, sans critère de durée de bail. Seuil 77 700 € pour les revenus 2025 ; 83 600 € pour 2026-2028 (BOI-BAREME-000044)."
     },
 
     "meuble_tourisme_classe": {
       "seuil": 77700,
+      "seuil_revenus_2026_2028": 83600,
       "abattement": 0.50,
-      "note": "Meublés de tourisme classés (catégorie étoilée) — inchangé"
+      "note": "Meublés de tourisme classés (catégorie étoilée) et chambres d'hôtes. Seuil 77 700 € pour les revenus 2025 ; 83 600 € pour 2026-2028 (BOI-BAREME-000044)."
     },
 
     "meuble_tourisme_non_classe": {
       "seuil": 15000,
       "abattement": 0.30,
-      "note": "Seuil et abattement abaissés par la loi Le Meur. Au-delà de 15 000 € : régime réel obligatoire."
-    }
+      "note": "Seuil et abattement abaissés par la loi Le Meur. Seuil inchangé pour 2026-2028 (BOI-BAREME-000044)."
+    },
+
+    "depassement": "Le micro-BIC s'applique si les recettes de N-1 ou de N-2 n'excèdent pas le seuil : le réel devient obligatoire après deux années consécutives de dépassement (brochure IR 2026, p. 173)."
   },
 
   "lmnp_reel": {
@@ -70,24 +74,26 @@
       "mobilier": "10-20% par an sur 5-10 ans",
       "gros_travaux": "Amortissables sur leur durée d'usage"
     },
-    "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul ou déficitaire.",
-    "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les BIC des 10 années suivantes."
+    "limite_amortissements": "Amortissements (immeuble + meubles) déductibles dans la limite du loyer acquis diminué des autres charges : ils ne peuvent ni créer ni accroître un déficit (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57).",
+    "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul ; un déficit ne peut provenir que des charges hors amortissements.",
+    "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les seuls revenus de location meublée non professionnelle des 10 années suivantes."
   },
 
   "lmp_vs_lmnp": {
     "description": "Bascule en LMP (Loueur Meublé Professionnel)",
     "seuils_cumulatifs": {
       "seuil_recettes": 23000,
-      "condition_revenus": "ET recettes meublées > 50% des autres revenus professionnels du foyer (salaires, BNC, BIC, revenus dirigeants)",
-      "note": "Les DEUX conditions doivent être remplies. Seuil 23 000 € non renouvelable — application dès dépassement."
+      "condition_revenus": "ET recettes meublées > montant des autres revenus d'activité du foyer (traitements et salaires au sens de l'art. 79, pensions et rentes viagères comprises, BIC hors location meublée, BA, BNC, rémunérations de l'art. 62) — art. 155 IV 2 CGI",
+      "note": "Les DEUX conditions doivent être remplies, appréciées chaque année au niveau du foyer fiscal (BOI-BIC-CHAMP-40-10 § 50, 120 et 150)."
     },
     "consequences_lmp": {
       "deficits": "Imputables sur le revenu global (contrairement au LMNP)",
-      "plus_values": "Régime des plus-values professionnelles avec exonération totale possible après 5 ans d'activité sous conditions de recettes",
+      "plus_values": "Régime des plus-values professionnelles : exonération (art. 151 septies) après 5 ans d'activité, totale si recettes < 90 000 €, partielle si < 126 000 € (BOI-BIC-CHAMP-40-20 § 410-420)",
       "cotisations_sociales": "Cotisations TNS sur le bénéfice (SSI) — charge significative vs LMNP",
+      "cotisations_location_courte_duree": "Indépendamment du statut LMP, la location meublée de courte durée (clientèle de passage) dont les recettes dépassent 23 000 €/an est soumise aux cotisations sociales (art. L. 611-1, 6° CSS)",
       "ifi": "Biens LMP exonérés d'IFI comme biens professionnels (sous conditions)"
     },
-    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus professionnels. À surveiller annuellement."
+    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus d'activité. Les pensions de retraite comptent dans ces revenus : au départ en retraite, la bascule se produit si les recettes meublées dépassent la pension et les autres revenus d'activité (cas fréquent quand la pension est inférieure à l'ancien salaire). À surveiller annuellement."
   },
 
   "sci_ir": {

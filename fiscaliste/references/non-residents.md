@@ -89,7 +89,7 @@ Réserve : pour les charges payées et dépenses engagées **avant** le départ,
 ### Non-résidents « Schumacker »
 
 Un non-résident qui tire de France l'essentiel de ses revenus imposables est assimilé à un résident pour le calcul de l'impôt (BOI-IR-DOMIC-40) :
-- condition : revenus de source française **≥ 75 %** du revenu mondial imposable (§ 30) ; à défaut, ≥ 50 % s'il prouve ne bénéficier d'aucun mécanisme de minoration de son imposition dans son État de résidence (§ 70) ;
+- conditions (§ 30) : être domicilié dans un autre État de l'Union européenne, ou dans un État de l'EEE lié à la France par une convention comportant une clause d'assistance administrative ; revenus de source française **≥ 75 %** du revenu mondial imposable ; ne pas bénéficier, dans l'État de résidence, de mécanismes suffisants de minoration de l'impôt. À défaut des 75 %, ≥ 50 % s'il prouve ne bénéficier d'aucun mécanisme de minoration de son imposition dans son État de résidence (§ 70) ;
 - effets : charges déductibles, réductions et crédits d'impôt admis comme pour un résident (§ 90) ; taux minimum de l'article 197 A non applicable (§ 110).
 
 ## 4. Investissement Pinel / Duflot / Denormandie et départ
@@ -148,7 +148,7 @@ Version en vigueur depuis le 01/01/2024 (modifiée par la loi n° 2023-1322 du 2
 - **Date du transfert** : le jour précédant celui à compter duquel le contribuable cesse d'être soumis en France à une obligation fiscale sur l'ensemble de ses revenus (III).
 - **Sursis de paiement** : **automatique** en cas de transfert dans un État de l'UE ou un État ayant conclu avec la France une convention d'assistance administrative et une convention d'assistance au recouvrement, non ETNC (IV) ; **sur option** pour les autres États, avec désignation d'un représentant fiscal et constitution de garanties (V).
 - **Dégrèvement** : l'impôt en sursis est dégrevé si les titres sont toujours détenus à l'expiration d'un délai de **2 ans** après le transfert, ou **5 ans** si la valeur globale des titres excède **2 570 000 €** (art. 167 bis ; fiche impots.gouv « Je quitte la France, suis-je concerné par l'Exit Tax ? », modifiée le 10/03/2026). Retour en France, donation ou décès : dégrèvement également possible selon les conditions de l'article.
-- **Formulaires** : **2074-ETD** au titre de l'année du transfert, déposée l'année suivante avec la déclaration de revenus ; **2074-ETS3** les années suivantes en cas de sursis (transferts depuis le 01/01/2014), ou version allégée **2074-ETSL** si sursis total et aucun événement dans l'année.
+- **Formulaires** : **2074-ETD** au titre de l'année du transfert, déposée l'année suivante avec la déclaration de revenus ; **2074-ETS3** les années suivantes en cas de sursis (transferts depuis le 01/01/2014), ou version allégée **2074-ETSL** si sursis total et aucun événement dans l'année (pour les transferts depuis 2019, vérifier la dispense prévue par la notice de l'année).
 
 Réserve : la doctrine BOFiP (BOI-RPPM-PVBMI-50-10) n'a pas été refondue depuis 2012-2013 et mentionne encore les anciens seuils et délais ; se fier au texte légal et aux formulaires de l'année.
 

@@ -39,7 +39,7 @@
   "exonerations": {
     "residence_principale": "Exonération totale IR + PS à condition d'occuper effectivement le bien à la date de cession (pas de mise en location préalable)",
     "premiere_cession_logement_autre_que_rp": "Exonération sous conditions de remploi (construction/acquisition d'une RP dans les 24 mois), pas de détention d'une RP dans les 4 ans",
-    "expatries": "Exonération partielle pour les non-résidents qui vendent leur ancienne résidence en France",
+    "expatries": "Non-résidents, sous conditions (voir references/non-residents.md § 6) : exonération totale de l'ancienne résidence principale cédée au plus tard le 31/12 de l'année suivant le départ, sans mise à disposition entre-temps, après un départ vers l'UE ou un État lié par des conventions d'assistance administrative et de recouvrement (art. 244 bis A, I-1) ; à défaut, exonération limitée à 150 000 € de plus-value nette pour un ressortissant UE / EEE domicilié en France au moins 2 ans (art. 150 U, II, 2°)",
     "petit_prix": "Exonération si prix ≤ 15 000 € (par quote-part si indivision)",
     "duree_detention": "≥ 22 ans pour l'IR, ≥ 30 ans pour les PS"
   },

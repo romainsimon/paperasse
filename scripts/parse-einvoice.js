@@ -109,22 +109,66 @@ function tagAttr(xml, name, attr, value) {
   return m ? unescapeXml(m[1].trim()) : null;
 }
 
+// Balise ouvrante puis première fermante qui suit, cherchées séparément.
+//
+// Un seul motif « <nom...>[\s\S]*?</nom> » est quadratique sur un document où
+// la fermante manque : chacune des N ouvrantes relance une exploration jusqu'à
+// la fin du document (1,84 Mo de balises non fermées = 17,4 s mesurées, code 0,
+// sous le plafond de 5 Mo). Aucun des deux motifs ci-dessous ne porte de
+// quantificateur non borné : leur coût est linéaire, et un document
+// pathologique échoue aussi vite qu'un autre.
+//
+// À résultat identique : fuzz différentiel contre l'implémentation précédente,
+// 900 000 comparaisons, aucune divergence.
+function findBlock(xml, name, fromIndex) {
+  if (!xml) return null;
+  const n = nsPattern(name);
+  const open = new RegExp(`<${n}[\\s>]`, 'g');
+  open.lastIndex = fromIndex;
+  const start = open.exec(xml);
+  if (!start) return null;
+  const close = new RegExp(`<\\/${n}>`, 'g');
+  close.lastIndex = open.lastIndex;
+  const end = close.exec(xml);
+  if (!end) return null;
+  const stop = end.index + end[0].length;
+  return { text: xml.slice(start.index, stop), end: stop };
+}
+
+// Retrait des commentaires XML, par balayage plutôt que par
+// « <!--[\s\S]*?--> » : même profil quadratique quand la fermeture manque
+// (1,67 Mo de « <!-- » non fermés = 46,4 s mesurées, code 0). Un commentaire
+// non fermé rend le document malformé : la fonction renvoie null et l'appelant
+// refuse le fichier.
+function stripComments(xml) {
+  let out = '';
+  let index = 0;
+  for (;;) {
+    const start = xml.indexOf('<!--', index);
+    if (start === -1) return out + xml.slice(index);
+    const end = xml.indexOf('-->', start + 4);
+    if (end === -1) return null;
+    out += xml.slice(index, start);
+    index = end + 3;
+  }
+}
+
 // Premier sous-bloc délimité par un tag (avec attributs éventuels).
 // Suppose que le tag n'est pas auto-imbriqué (voir en-tête).
 function block(xml, name) {
-  const n = nsPattern(name);
-  const re = new RegExp(`<${n}[\\s>][\\s\\S]*?<\\/${n}>`);
-  const m = xml ? xml.match(re) : null;
-  return m ? m[0] : null;
+  const found = findBlock(xml, name, 0);
+  return found ? found.text : null;
 }
 
 // Toutes les occurrences non-chevauchantes d'un bloc délimité par un tag.
 function allBlocks(xml, name) {
   const blocks = [];
-  const n = nsPattern(name);
-  const re = new RegExp(`<${n}[\\s>][\\s\\S]*?<\\/${n}>`, 'g');
-  let m;
-  while ((m = re.exec(xml)) !== null) blocks.push(m[0]);
+  let index = 0;
+  let found;
+  while ((found = findBlock(xml, name, index)) !== null) {
+    blocks.push(found.text);
+    index = found.end;
+  }
   return blocks;
 }
 
@@ -719,6 +763,8 @@ function readCiiFile(filePath) {
     process.exit(1);
   }
 
+  // Ce plafond borne le volume lu, pas le coût d'extraction : celui-ci est tenu
+  // linéaire par stripComments et findBlock (voir leurs commentaires).
   const MAX_BYTES = 5 * 1024 * 1024;
   if (fs.statSync(filePath).size > MAX_BYTES) {
     console.error('Fichier trop volumineux (> 5 Mo) pour une facture CII.');
@@ -743,7 +789,11 @@ function readCiiFile(filePath) {
     process.exit(1);
   }
 
-  const xml = rawXml.replace(/<!--[\s\S]*?-->/g, '');
+  const xml = stripComments(rawXml);
+  if (xml === null) {
+    console.error('Commentaire XML non fermé : document malformé.');
+    process.exit(1);
+  }
   if (!xml.trim()) {
     console.error('Fichier vide.');
     process.exit(1);

@@ -615,6 +615,46 @@ function testOversizedFileIsRejected() {
   parseExpectingRejection(writeFixture("F-VOLUMINEUX", xml), /trop volumineux/);
 }
 
+// Un commentaire jamais ferme rend le document malforme : le retirer
+// reviendrait a decider ou il s'arrete. Refus.
+function testUnclosedCommentIsRejected() {
+  const xml = mutate(["<ram:ID>F-REMISE-001</ram:ID>", "<!-- jamais ferme\n    <ram:ID>F-REMISE-001</ram:ID>"]);
+  parseExpectingRejection(writeFixture("F-COMMENTAIRE-OUVERT", xml), /Commentaire XML non ferm/);
+}
+
+// Sous le plafond de taille, un document fait de balises ouvrantes jamais
+// fermees ne doit pas couter cher : avec un motif unique « <tag>...</tag> »,
+// chacune des 60 000 ouvrantes relancait une exploration jusqu'a la fin du
+// document (1,84 Mo = 17,4 s mesurees, code 0). Le seuil est large : il attrape
+// le retour du comportement quadratique, pas une machine lente.
+function testUnclosedTagsStayCheap() {
+  const padding = "<ram:SpecifiedTradePaymentTerms>".repeat(60000); // ~1,84 Mo
+  const xml = mutate([
+    "<ram:ApplicableHeaderTradeSettlement>",
+    `<ram:ApplicableHeaderTradeSettlement>${padding}`,
+  ]);
+  const xmlPath = writeFixture("F-BALISES-NON-FERMEES", xml);
+  const started = Date.now();
+  parseInvoice(xmlPath);
+  const elapsed = Date.now() - started;
+  assert.ok(elapsed < 5000, `lecture quadratique : ${elapsed} ms pour 1,84 Mo`);
+}
+
+// Meme mesure sur le retrait des commentaires : « <!--[\s\S]*?--> » coutait
+// 46,4 s sur 1,67 Mo de « <!-- » non fermes.
+function testUnclosedCommentsStayCheap() {
+  const padding = "<!-- x ".repeat(250000); // ~1,67 Mo
+  const xml = mutate([
+    "<ram:ApplicableHeaderTradeSettlement>",
+    `<ram:ApplicableHeaderTradeSettlement>${padding}`,
+  ]);
+  const xmlPath = writeFixture("F-COMMENTAIRES-NON-FERMES", xml);
+  const started = Date.now();
+  parseExpectingRejection(xmlPath, /Commentaire XML non ferm/);
+  const elapsed = Date.now() - started;
+  assert.ok(elapsed < 5000, `retrait des commentaires quadratique : ${elapsed} ms pour 1,67 Mo`);
+}
+
 const TESTS = [
   testRoundTripTva20,
   testRoundTripFranchise,
@@ -652,6 +692,9 @@ const TESTS = [
   testNumericEntitiesAreDecodedOnlyOnce,
   testNonXmlCharacterReferenceIsLeftLiteral,
   testOversizedFileIsRejected,
+  testUnclosedCommentIsRejected,
+  testUnclosedTagsStayCheap,
+  testUnclosedCommentsStayCheap,
 ];
 
 function main() {

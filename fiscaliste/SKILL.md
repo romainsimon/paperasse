@@ -88,6 +88,7 @@ Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi de finances
 |--------|-----------|------------|
 | Salaires | 1AJ/1BJ | 10 % (min 509 €, max 14 555 €) ou frais réels |
 | Pensions / retraites | 1AS/1BS | 10 % (min 454 € par pensionné, max 4 439 € par foyer) |
+| Rémunération gérant art. 62 (gérant majoritaire SARL/EURL à l'IS) | 1GB/1HB | **10 %** — même déduction que les salaires (plancher/plafond communs) ou frais réels 1AK ; montant net de cotisations, CSG non déductible et CRDS réintégrées. Voir [references/remuneration-dirigeants.md](references/remuneration-dirigeants.md). |
 | **Chômage (ARE)** | 1AP/1BP | **10 %** — l'ARE est un revenu de remplacement imposé selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20) ; l'abattement de 10 % s'applique sur le total salaires + ARE. Se déclare en 1AP/1BP (pas en 1AJ), mais bénéficie bien de l'abattement. |
 | Dividendes (option barème) | 2DC | 40 % |
 | Dividendes (PFU) | 2DC | Aucun |
@@ -206,6 +207,7 @@ Pour la fraîcheur des données : `python fiscaliste/scripts/update_data.py`.
 |---------|-----------|
 | **Déclaration annuelle 2042 (workflow complet)** | [references/declaration-workflow.md](references/declaration-workflow.md) |
 | Calcul / simulation IR | [references/ir-mecanisme.md](references/ir-mecanisme.md) |
+| Rémunération des gérants art. 62 (gérant majoritaire SARL/EURL à l'IS, case 1GB, acomptes) | [references/remuneration-dirigeants.md](references/remuneration-dirigeants.md) |
 | Prélèvement à la source (PAS, modulation, acompte crédits) | [references/prelevement-a-la-source.md](references/prelevement-a-la-source.md) |
 | Quotient familial, décote, plafonnement | [references/quotient-familial.md](references/quotient-familial.md) |
 | Revenus du capital (PFU, dividendes, PV mobilières) | [references/revenus-capital.md](references/revenus-capital.md) |

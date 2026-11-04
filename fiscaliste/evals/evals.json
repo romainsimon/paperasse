@@ -421,6 +421,53 @@
         "Les dons à 75 % ne sont pas comptés dans la limite de 20 %",
         "La réduction totale est de 8 628 € et l'impôt net de 676 €",
         "L'excédent de 1 500 € est reportable sur les 5 années suivantes (art. 200 CGI)"
+        ]
+      },
+      {
+      "id": 54,
+      "name": "gerant-art62-montant-1gb",
+      "prompt": "Je suis gérant associé unique d'une EURL à l'IS. En 2025, l'EURL m'a versé 48 000 € de rémunération nette et a payé directement à l'URSSAF mes cotisations et contributions personnelles pour 20 000 €, dont 1 104 € de CSG non déductible et 230 € de CRDS d'après le décompte. Quel montant je déclare, dans quelle case, et quel est mon revenu net imposable après abattement ?",
+      "expected_output": "La rémunération relève de l'art. 62 CGI (associé unique d'EURL à l'IS, BOI-RSA-GER-10-10-20 § 80) : case 1GB (déclarant 1), pas 1AJ. Montant brut fiscal = rémunération nette + cotisations prises en charge par la société (avantage en espèces, BOI-RSA-GER-10-20 § 10) = 48 000 + 20 000 = 68 000 €. Déductible : cotisations obligatoires (art. 62 → 154 bis) et CSG déductible (6,8 pts, art. 154 quinquies) ; la CSG non déductible (2,4 pts) et la CRDS (0,5 %) restent imposables. Déductible = 20 000 − 1 104 − 230 = 18 666 €. Case 1GB = 68 000 − 18 666 = 49 334 € (= 48 000 + 1 104 + 230). L'abattement de 10 % est appliqué par l'administration (ne pas le retrancher) : 4 933 €, dans les bornes 509 € / 14 555 € ; revenu net catégoriel 44 401 €. Le montant brut déclaré en DSEC (volet social) est différent du montant 1GB.",
+      "files": [],
+      "assertions": [
+        "Le skill indique la case 1GB (et non 1AJ) pour la rémunération du gérant associé unique d'EURL à l'IS",
+        "Le skill rattache cette rémunération à l'article 62 du CGI",
+        "Le montant déclaré en 1GB est 49 334 € (rémunération nette 48 000 € + CSG non déductible 1 104 € + CRDS 230 €)",
+        "Le skill explique que la CSG non déductible et la CRDS ne sont pas déductibles (seuls 6,8 points de CSG le sont, art. 154 quinquies)",
+        "Le skill ne demande PAS de retrancher soi-même l'abattement de 10 % du montant porté en 1GB",
+        "L'abattement de 10 % est chiffré à environ 4 933 € et le revenu net catégoriel à environ 44 401 €",
+        "Le skill ne déclare PAS en 1GB le brut social (68 000 €) ni la seule rémunération nette (48 000 €)"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "sas-vs-eurl-case-1aj-1gb",
+      "prompt": "Ma sœur est présidente d'une SAS dont elle détient 100 % des actions, je suis gérant associé unique d'une EURL à l'IS, et mon frère est gérant d'une SARL où il détient exactement 50 % des parts (l'autre associé, non gérant et sans lien familial avec lui, détient l'autre moitié). Dans quelle case de la 2042 chacun déclare sa rémunération, et est-ce que l'impôt est prélevé sur la fiche de paie ?",
+      "expected_output": "Présidente de SAS : dirigeant relevant du régime fiscal des salariés (art. 80 ter ; les dirigeants de SA/SAS n'entrent jamais dans l'art. 62, BOI-RSA-GER-10-30 § 90 et § 180), quel que soit le pourcentage détenu → case 1AJ, retenue à la source par la société. Gérant associé unique d'EURL à l'IS : art. 62 (BOI-RSA-GER-10-10-20 § 80) → case 1GB, pas de retenue par la société, acomptes prélevés par l'administration fiscale (art. 204 C ; notice 2041-NOT). Gérant détenant exactement 50 % : la gérance n'est pas majoritaire (BOI-RSA-GER-10-10-10 § 40) → traitements et salaires (art. 80 ter), case 1AJ. La majorité s'apprécie en ajoutant les parts du conjoint, du partenaire de PACS soumis à imposition commune et des enfants non émancipés (art. 211 CGI ; BOI-RSA-GER-10-10-10-10). Les trois bénéficient de la déduction de 10 % ou des frais réels.",
+      "files": [],
+      "assertions": [
+        "Le skill place la rémunération de la présidente de SAS en case 1AJ (traitements et salaires, art. 80 ter), même avec 100 % du capital",
+        "Le skill place la rémunération du gérant associé unique d'EURL à l'IS en case 1GB (art. 62)",
+        "Le skill indique qu'un gérant détenant exactement 50 % des parts n'est pas majoritaire et relève de la case 1AJ",
+        "Le skill précise que la SAS applique une retenue à la source alors que la rémunération art. 62 donne lieu à des acomptes prélevés par l'administration",
+        "Le skill mentionne que les parts du conjoint / partenaire de PACS / enfants non émancipés comptent pour apprécier la majorité",
+        "Le skill NE dit PAS que la rémunération du président de SAS majoritaire relève de l'article 62"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "gerant-art62-pas-acomptes-hausse",
+      "prompt": "Je suis gérant majoritaire de SARL à l'IS. J'ai déclaré 40 000 € en case 1GB pour 2025. En 2026, ma rémunération passe à environ 110 000 €. Mon expert-comptable dit que la société ne prélève pas d'impôt sur ma rémunération. Comment fonctionne mon prélèvement à la source et que se passe-t-il si je ne fais rien ?",
+      "expected_output": "Les rémunérations art. 62 ne sont pas soumises à la retenue à la source : elles donnent lieu à un acompte prélevé par l'administration fiscale sur le compte bancaire, mensuellement ou trimestriellement (art. 204 C, B, 1° CGI ; notice 2041-NOT 2026 p. 2 et p. 8). La société ne prélève donc rien. Les acomptes de septembre 2026 à août 2027 sont calculés sur les revenus 2025 déclarés (40 000 €), ils ne reflètent pas la hausse. Sans action, l'impôt supplémentaire sur 2026 sera réclamé en solde à l'été/automne 2027 après la déclaration des revenus 2026, en plus des acomptes en cours. Le contribuable peut augmenter l'assiette de l'acompte ou son taux sans seuil minimum (art. 204 J, II, modulation à la hausse sur impots.gouv.fr « Gérer mon prélèvement à la source ») ; la modulation à la baisse n'est possible qu'au-delà d'un écart de plus de 5 % (art. 204 J, III). Le skill chiffre ou invite à chiffrer l'écart avec les autres revenus du foyer, sans inventer de taux.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que la rémunération art. 62 n'est pas soumise à la retenue à la source mais à un acompte prélevé par l'administration fiscale",
+        "Le skill confirme que la société n'a pas à prélever l'impôt sur la rémunération du gérant majoritaire",
+        "Le skill explique que les acomptes en cours reposent sur la dernière déclaration (revenus 2025) et ne tiennent pas compte de la hausse",
+        "Le skill indique que, sans action, l'insuffisance sera régularisée en solde l'année suivante après la déclaration",
+        "Le skill mentionne la possibilité d'une modulation à la hausse sans seuil minimum (art. 204 J)",
+        "Le skill cite l'article 204 C du CGI ou la notice 2041-NOT pour le mécanisme d'acompte",
+        "Le skill n'invente pas de taux de prélèvement sans données sur le foyer"
       ]
     }
   ]

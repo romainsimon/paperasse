@@ -79,6 +79,7 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 |-----------|-----------|-------------------|
 | Salaires | 1AJ / 1BJ | — |
 | Gain d'acquisition AGA, plan qualifiant | 1TZ + 1WZ (ou 1UZ / 1VZ) jusqu'à 300 000 €, 1TT / 1UT au-delà et pour les AGA 2012-2015 ; plan non qualifiant : salaire 1AJ | — |
+| Rémunération gérant art. 62 (gérant majoritaire SARL/EURL à l'IS) | 1GB / 1HB | — (voir [remuneration-dirigeants.md](remuneration-dirigeants.md)) |
 | Pensions | 1AS / 1BS | — |
 | Allocations chômage | 1AP / 1BP | — |
 | Indemnités journalières maladie imposables | 1AJ / 1BJ (avec les salaires ; 1AM = autres pensions de source étrangère) | — |

@@ -7,7 +7,7 @@ Deux mécanismes selon la nature du revenu :
 | Mécanisme | Revenus concernés | Acteur du prélèvement |
 |-----------|-------------------|----------------------|
 | **Retenue à la source** | Salaires, pensions, allocations chômage | Employeur / Pôle emploi / caisse de retraite |
-| **Acompte contemporain** | BIC, BNC, BA, revenus fonciers, pensions alimentaires reçues, rentes viagères à titre onéreux | DGFIP par prélèvement bancaire mensuel ou trimestriel |
+| **Acompte contemporain** | BIC, BNC, BA, revenus fonciers, pensions alimentaires reçues, rentes viagères à titre onéreux, rémunérations des gérants et associés de l'art. 62 (art. 204 C, B, 1° ; voir [remuneration-dirigeants.md](remuneration-dirigeants.md)) | DGFIP par prélèvement bancaire mensuel ou trimestriel |
 
 ## Taux de prélèvement
 

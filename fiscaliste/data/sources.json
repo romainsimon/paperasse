@@ -134,6 +134,20 @@
       "last_fetched": "2026-10-29",
       "next_check": "2026-12-30",
       "check_instructions": "Vérifier plafond global 10 000 € / 18 000 € outre-mer, taux dons 66% / 75% (1 000 € puis 2 000 € depuis le 14/10/2025), plafonds emploi à domicile et garde."
+    },
+    {
+      "id": "remuneration-art62",
+      "name": "Rémunérations des gérants et associés (art. 62 CGI)",
+      "file": null,
+      "annee_revenus": 2025,
+      "source_officielle": "Art. 62, 154 bis, 154 quinquies, 204 C et 204 J CGI ; art. L. 136-3 et L. 136-8 CSS ; ordonnance n° 96-50 art. 19 ; déclaration 2042 n° 10330*30 (p. 3), notice 2041-NOT n° 50796#26 (p. 2, 7, 8, 19, 27), notice 2041-DRI (§ 6.3 et 6.4)",
+      "article_cgi": "art. 62, 80 ter, 154 bis, 154 quinquies, 204 C, 211 CGI",
+      "bofip": "BOI-RSA-GER-10-10-20221123, BOI-RSA-GER-10-10-10-20120912, BOI-RSA-GER-10-10-10-10-20120912, BOI-RSA-GER-10-10-20-20221215, BOI-RSA-GER-10-20-20160302, BOI-RSA-GER-10-30-20250716, BOI-RSA-GER-20-20120912",
+      "verification_manuelle": "https://www.impots.gouv.fr/sites/default/files/formulaires/2042/2026/2042_5477.pdf",
+      "update_frequency": "annual",
+      "last_fetched": "2026-11-01",
+      "next_check": "2027-04-15",
+      "check_instructions": "À la publication de la notice 2041-NOT de la campagne suivante : vérifier l'intitulé et la numérotation des cases 1GB à 1JB, 1AK et 1GK à 1GQ, le plancher/plafond de la déduction de 10 %, les taux CSG (9,2 %), CSG déductible (6,8 pts) et CRDS (0,5 %), et les règles du volet social (DSEC, DSAA, abattement 26 %)."
     }
   ]
 }

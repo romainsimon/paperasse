@@ -21,6 +21,7 @@
     "salaires_declarant1": 72000,
     "salaires_declarant2": 48000,
     "_commentaire_salaires": "Montants case 1AJ / 1BJ du bulletin de salaire, AVANT abattement forfaitaire 10% appliqué par la DGFIP",
+    "_commentaire_remuneration_art62": "Rémunération de gérant majoritaire SARL/EURL à l'IS (art. 62 CGI) : se déclare en case 1GB / 1HB, pas en 1AJ, mais partage la même déduction de 10 % que les salaires (notice 2041-NOT 2026, fiche 2041 FDC). Pour calc_ir.py, l'ajouter à salaires_declarant1/2 (montant net de cotisations, CSG non déductible et CRDS incluses). Voir references/remuneration-dirigeants.md",
 
     "pensions_declarant1": 0,
     "pensions_declarant2": 0,

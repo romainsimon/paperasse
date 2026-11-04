@@ -1,7 +1,7 @@
 ---
 name: fiscaliste
 metadata:
-  last_updated: 2026-10-19
+  last_updated: 2026-11-04
 includes:
   - data/**
   - references/**
@@ -74,8 +74,8 @@ Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi de finances
 ### Quotient familial
 
 - **Plafond du gain par demi-part supplémentaire : 1 807 €** (enfant à charge)
-- Parent isolé (case T) : plafond 4 273 € pour la première part liée à l'enfant
-- Veuf avec enfant à charge : plafond 4 273 €
+- Parent isolé (case T) : avantage des deux premières demi-parts (part du premier enfant) limité à 4 262 € (art. 197, I-2 CGI ; 4 262 € / 2 par quart de part en résidence alternée)
+- Veuf avec enfant à charge : demi-parts plafonnées à 1 807 € chacune, plus une réduction d'impôt complémentaire de 2 011 € au maximum quand le plafonnement s'applique (art. 197, I-2 CGI)
 
 ### Décote (plancher à 0)
 
@@ -105,11 +105,12 @@ La LFSS 2026 (loi n° 2025-1403 du 30/12/2025, art. 12) a porté la CSG sur les 
 |---|---|---|---|---|
 | **Revenus du patrimoine** : PV mobilières (CTO), crypto, LMNP | L. 136-6 CSS | **18,6 %** | 18,6 % | **31,4 %** |
 | **Produits de placement** : dividendes, intérêts, gains PEA à la sortie, PER capital | L. 136-7 CSS | 17,2 % | **18,6 % (à partir du 01/01/2026)** | 30 % |
-| **Cas inchangés** : AV, foncier nu, SCPI, PEL/CEL anciens, livrets réglementés | n/a | 17,2 % | 17,2 % | n/a |
+| **Dividendes et intérêts non prélevés à la source** (établissement payeur hors de France sans 2778-DIV, PS établis par voie de rôle) | L. 136-6 CSS | **18,6 %** | 18,6 % | **31,4 %** |
+| **Cas restés à 17,2 %** (art. L. 136-8, IV CSS) : assurance-vie et capitalisation, revenus fonciers (nu, SCPI), PV immobilières, épargne logement (PEL/CEL), PEP | L. 136-8 IV | 17,2 % | 17,2 % | 30 % (AV < 8 ans) |
 
 **Conséquence pratique** : pour la déclaration 2026 (revenus 2025), une PV mobilière sur compte-titres est imposée à **31,4 % au PFU** (12,8 % IR + 18,6 % PS), alors qu'un dividende encaissé en 2025 reste à **30 %** (12,8 % IR + 17,2 % PS). Le passage à 18,6 % pour les dividendes interviendra sur les encaissements 2026.
 
-- **CSG déductible : 6,8 %** — **uniquement si option barème** sur revenus du capital N-1
+- **CSG déductible : 6,8 %** — **uniquement si option barème** ; déduite l'année même pour les revenus dont les PS sont prélevés à la source (dividendes, intérêts), l'année suivante pour les PS par voie de rôle (plus-values)
 - **Option barème globale** : concerne TOUS les revenus du capital de l'année
 
 ### PER (versements 2025)
@@ -139,11 +140,11 @@ Base : RFR, pas RNI. S'ajoute à l'IR net. Art. 223 sexies CGI.
 
 ### CDHR (Contribution Différentielle sur les Hauts Revenus)
 
-Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %** sur les foyers à hauts RFR. Art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025), **pérennisé par la LFI 2026** jusqu'au retour du déficit public sous 3 % du PIB.
+Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %** d'un revenu de référence retraité. Art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025) pour les revenus 2025, prorogé et modifié par l'art. 2 LFI 2026 (loi n° 2026-103) : due jusqu'à l'année pour laquelle le projet de loi d'approbation des comptes constate un déficit du budget général sous 3 % du PIB (BOI-IR-CDHR-10 du 30/06/2026).
 
-Seuils RFR : > 250 000 € (célibataire) / > 500 000 € (couple). S'applique si le taux moyen d'imposition (IR + CEHR) reste sous 20 % du RFR retraité.
+Seuils de revenu de référence : > 250 000 € (personne seule) / > 500 000 € (couple), avec une décote jusqu'à 330 000 € / 660 000 €. CDHR = 20 % × revenu de référence − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € pour un couple), si positif. Le revenu de référence n'intègre pas l'abattement de 50 % sur les gains d'actions gratuites ni l'abattement de 40 % sur les dividendes.
 
-Calcul automatique par l'administration après dépôt de la 2042. Acompte de 95 % à verser entre le 1er et le 15 décembre via le service "Prélèvement à la source" sur impots.gouv.fr.
+Calcul automatique par l'administration après dépôt de la 2042. Acompte de 95 % à verser entre le 1er et le 15 décembre de l'année des revenus via le service "Gérer mon prélèvement à la source" sur impots.gouv.fr ; pénalité de 20 % en cas de défaut, de retard ou d'acompte inférieur de plus de 20 % au dû. Acompte et pénalités reconduits pour les revenus 2026 (LFI 2026, art. 2).
 
 Détail dans [references/cas-speciaux.md](references/cas-speciaux.md) section CDHR.
 
@@ -229,11 +230,11 @@ Des **scénarios illustratifs** sont fournis dans [`examples/`](examples/README.
 
 1. Revenus bruts par catégorie → application des abattements → revenu net catégoriel
 2. Somme des revenus nets catégoriels → revenu brut global
-3. Déductions (PER, pension alimentaire, CSG déductible N-1) → RNI
+3. Déductions (PER, pension alimentaire, CSG déductible) → RNI
 4. RNI ÷ nombre de parts → quotient
 5. Barème progressif sur le quotient → impôt par part
 6. × nombre de parts → impôt brut
-7. Plafonnement du gain QF (si enfants à charge) — **toujours comparer gain réel vs gain max (N × 1 807 €)**
+7. Plafonnement du gain QF (si enfants à charge) : **toujours comparer gain réel vs gain max (N × 1 807 €)**
 8. Décote (si impôt brut < seuil)
 9. Réductions d'impôt (Pinel, dons, FCPI…) → impôt après réductions
 10. Crédits d'impôt (garde d'enfant, emploi à domicile) → impôt net final
@@ -288,7 +289,7 @@ Ces points sont systématiquement vérifiés par les utilisateurs exigeants — 
 ### Pour un arbitrage PFU vs barème
 
 - Chiffrer les deux scénarios systématiquement.
-- Rappeler que l'option barème est **globale** (tous revenus du capital) et **irrévocable pour l'année**.
+- Rappeler que l'option barème est **globale** (tous revenus du capital de l'année). Elle était irrévocable jusqu'aux revenus 2025 ; la LFI 2026 (loi n° 2026-103, art. 126 ; art. 200 A CGI) a supprimé ce caractère irrévocable (brochure IR 2026, nouveautés).
 - À TMI ≤ 11 % : barème souvent meilleur (abattement 40 % dividendes + CSG déductible 6,8 %).
 - À TMI ≥ 30 % : PFU souvent meilleur.
 

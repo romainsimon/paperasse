@@ -24,7 +24,14 @@
 
   "quotient_familial": {
     "plafond_gain_par_demi_part": 1807,
-    "description": "Avantage fiscal maximum par demi-part supplémentaire liée aux enfants à charge. Au-delà du seuil de revenu, le gain QF stagne."
+    "description": "Avantage fiscal maximum par demi-part supplémentaire liée aux enfants à charge (1 807 € / 2 par quart de part en résidence alternée). Au-delà du seuil de revenu, le gain QF stagne.",
+    "plafond_parent_isole_premier_enfant": 4262,
+    "plafond_parent_isole_note": "Case T : avantage des deux premières demi-parts (part du premier enfant) limité à 4 262 € (4 262 € / 2 en résidence alternée).",
+    "reduction_complementaire_veuf_enfant_a_charge": 2011,
+    "reduction_complementaire_veuf_note": "Veuf avec enfant à charge : quand le plafonnement de 1 807 € par demi-part s'applique aux deux premières demi-parts (3 614 €), réduction d'impôt complémentaire de 2 011 € au maximum.",
+    "plafond_demi_part_case_L": 1079,
+    "plafond_demi_part_case_L_note": "Demi-part des personnes seules ayant élevé seules un enfant pendant au moins cinq ans (case L).",
+    "base_legale": "art. 197, I-2 CGI (LFI 2026, loi n° 2026-103, art. 4) ; brochure IR 2026, calcul de l'impôt"
   },
 
   "rattachement_majeur_marie": {
@@ -68,7 +75,7 @@
     "taux": 0.10,
     "minimum": 454,
     "maximum": 4439,
-    "description": "Abattement sur pensions et retraites (cases 1AS/1BS), CGI art. 158, 5-a. Minimum par pensionné (limité au montant de sa pension), maximum par foyer. Montants : brochure pratique IR 2026, pensions."
+    "description": "Abattement sur pensions et retraites (cases 1AS/1BS) : minimum 454 € par pensionné (limité au montant de sa pension), plafond 4 439 € pour l'ensemble des pensions du foyer (art. 158, 5-a CGI, revenus 2025 ; brochure IR 2026)."
   },
 
   "cehr": {
@@ -86,19 +93,30 @@
   },
 
   "cdhr": {
-    "description": "Contribution Différentielle sur les Hauts Revenus — distincte de la CEHR. Impose un plancher d'imposition à 20 % sur les foyers à hauts RFR. Calcul automatique par l'administration après dépôt de la 2042.",
-    "base_legale": "art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025), pérennisé par la LFI 2026",
+    "description": "Contribution Différentielle sur les Hauts Revenus, distincte de la CEHR. Impose un plancher d'imposition à 20 % d'un revenu de référence retraité. Calcul automatique par l'administration après dépôt de la 2042.",
+    "base_legale": "Art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025) pour les revenus 2025, prorogé et modifié par l'art. 2 LFI 2026 (loi n° 2026-103 du 19/02/2026). Doctrine : BOI-IR-CDHR-10 (30/06/2026).",
     "plancher_imposition": 0.20,
-    "seuils_rfr": {
+    "seuils_revenu_de_reference": {
       "celibataire_veuf_separe_divorce": 250000,
       "couple_marie_pacse": 500000
     },
-    "mecanisme": "La CDHR vient combler la différence si IR + CEHR < 20 % du RFR retraité. Distincte de la CEHR (les deux peuvent s'appliquer simultanément).",
+    "decote_jusqu_a": {
+      "celibataire_veuf_separe_divorce": 330000,
+      "couple_marie_pacse": 660000,
+      "formule": "cotisation de 20 % diminuée de max(0, 20 % × RREF − 82,5 % × (RREF − seuil))"
+    },
+    "majorations_imputees": {
+      "par_personne_a_charge": 1500,
+      "imposition_commune": 12500
+    },
+    "mecanisme": "CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € si imposition commune), si positif. RREF = RFR sans quotient, revenus exceptionnels retenus pour le quart, hors abattement de 40 % sur dividendes, abattement de 50 % sur gains d'actions gratuites et abattement fixe dirigeant (les abattements pour durée de détention restent réintégrés). IR retraité = IR après réductions et crédits, majoré de certains crédits et réductions réintégrés, diminué des 3/4 de l'impôt sur les revenus exceptionnels au quotient. Les deux contributions peuvent s'appliquer simultanément.",
     "calendrier": {
-      "acompte": "95 % du montant estimé à verser entre le 1er et le 15 décembre de l'année des revenus, via le service 'Prélèvement à la source' sur impots.gouv.fr",
+      "acompte": "95 % du montant estimé, à verser entre le 1er et le 15 décembre de l'année des revenus (1er au 15 décembre 2025 pour les revenus 2025), via le service 'Gérer mon prélèvement à la source' sur impots.gouv.fr ; reporté en 8HR / 8HS",
+      "penalite": "20 % en cas de défaut ou de retard de paiement de l'acompte, ou si l'acompte est inférieur de plus de 20 % à 95 % de la contribution due (LFI 2025, art. 10, III-C)",
+      "revenus_2026": "acompte et pénalités reconduits (LFI 2026, art. 2) ; dates de l'acompte 2026 à confirmer sur impots.gouv.fr",
       "solde": "calculé automatiquement par l'administration après dépôt de la 2042 au printemps suivant"
     },
-    "perennisation": "Initialement transitoire (revenus 2024), pérennisée par la LFI 2026 jusqu'au retour du déficit public sous 3 % du PIB",
-    "source": "https://www.impots.gouv.fr/actualite/contribution-differentielle-sur-les-hauts-revenus-cdhr"
+    "duree": "Première année : revenus 2025. Due jusqu'à l'imposition des revenus de l'année pour laquelle la loi d'approbation des comptes constate un déficit du budget général inférieur à 3 % du PIB (brochure IR 2026, nouveautés ; BOFiP ACTU-2026-00104).",
+    "source": "https://bofip.impots.gouv.fr/bofip/15095-PGP.html/identifiant=BOI-IR-CDHR-10-20260630"
   }
 }

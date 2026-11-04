@@ -115,9 +115,8 @@ Valeur des parts × fraction immobilière. Possible décote pour illiquidité.
 
 ## Déclaration
 
-- Déclaration 2042-IFI jointe à la 2042
-- Annexes : 2042-IFI-K (évaluation des biens)
-- Date limite : même que la déclaration IR
+- Déclaration 2042-IFI (annexes 1 à 6), déposée avec la déclaration de revenus, case 0IF cochée sur la 2042 ; 2042-IFI-COV si aucune déclaration de revenus n'est déposée
+- Date limite : même que la déclaration IR ; avis en août, paiement au 15 septembre
 
 ### Documents à préparer
 

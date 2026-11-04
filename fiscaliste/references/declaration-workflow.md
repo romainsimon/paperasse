@@ -209,7 +209,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) rend souven
 | Plus-values mobilières détaillées (plusieurs lignes, reports moins-values) | **2074** |
 | Cessions crypto > 305 € | **2086** (obligatoire même si PV nulle) |
 | Revenus étrangers | **2047** |
-| Patrimoine immobilier net > 1,3 M€ au 1er janvier | **2042-IFI + 2042-IFI-K** |
+| Patrimoine immobilier net > 1,3 M€ au 1er janvier | **2042-IFI** (annexes 1 à 6), case 0IF de la 2042 |
 | Réductions / crédits (dons, emploi à domicile, garde enfant, Pinel, FCPI…) | **2042-RICI** |
 | Plus-value immobilière (hors RP) | **2048-IMM** (en principe pris en charge par le notaire au moment de la vente) |
 | Frais réels salariés (option vs abattement 10 %) | Détail à joindre (tableau) |

@@ -250,7 +250,7 @@ Délai pendant lequel la DGFIP peut redresser :
 | Impôt | Délai standard |
 |-------|----------------|
 | IR | 3 ans (jusqu'au 31 décembre de la 3e année suivant celle de l'imposition) |
-| IFI | 3 ans si la déclaration a été déposée (L 180 LPF) ; 6 ans sinon (L 186 LPF) |
+| IFI | 3 ans si la déclaration déposée révèle suffisamment l'exigibilité (LPF art. L. 180) ; 6 ans sinon (LPF art. L. 186) |
 | Tous impôts | **10 ans** en cas d'activité occulte ou fraude |
 | TVA | 3 ans |
 

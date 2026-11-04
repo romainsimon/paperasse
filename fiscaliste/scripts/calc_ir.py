@@ -219,7 +219,7 @@ def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
          base_ps_placement=0, pfu_data=None, base_pfu_ir=0):
     qf = impot_avec_qf(rni, parts, parts_base, bareme)
     dec = decote(qf["impot_brut"], parts_base, bareme)
-    impot_apres_decote = max(0, qf["impot_brut"] - dec)
+    impot_apres_decote = max(0, qf["impot_brut"] - round(dec))
 
     if (base_ps_patrimoine or base_ps_placement) and pfu_data:
         ps_detail = ps_capital(base_ps_patrimoine, base_ps_placement, pfu_data)

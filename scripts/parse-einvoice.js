@@ -32,6 +32,11 @@
  *      catégorie (BR-S-09 pour la catégorie S, TVA nulle imposée par BR-E-09,
  *      BR-Z-09, BR-AE-09, BR-IC-09, BR-G-09 et BR-O-09 pour les autres) et la
  *      couverture de la base HT totale par les bases de la ventilation.
+ *   5. Lecture du XML : le fichier est refusé au-delà de 5 Mo, et refusé s'il
+ *      contient un DOCTYPE, une déclaration d'entité, une instruction de
+ *      traitement (hors déclaration XML) ou une section CDATA. Ces
+ *      constructions permettent de faire lire à ce script autre chose que ce
+ *      qu'un parseur XML — et donc qu'une plateforme agréée — lirait.
  *
  * Limites connues (assumées, jamais compensées par une valeur devinée)
  *   - Pas de validation XSD, pas de Schematron : aucune dépendance XML dans ce
@@ -96,7 +101,10 @@ function tag(xml, name) {
 // Gère les guillemets simples et doubles.
 function tagAttr(xml, name, attr, value) {
   const n = nsPattern(name);
-  const re = new RegExp(`<${n}[^>]*${attr}=["']${value}["'][^>]*>([^<]*)<\\/${n}>`);
+  // La valeur vient du document : elle est échappée avant d'entrer dans la
+  // regex, sinon « EUR( » fait planter le script et « .* » passe partout.
+  const v = String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`<${n}[^>]*${attr}=["']${v}["'][^>]*>([^<]*)<\\/${n}>`);
   const m = xml.match(re);
   return m ? unescapeXml(m[1].trim()) : null;
 }
@@ -120,15 +128,21 @@ function allBlocks(xml, name) {
   return blocks;
 }
 
-// &amp; est décodé en DERNIER : sinon « &amp;lt; » donnerait « < » (double
-// décodage) au lieu de « &lt; ».
+// Décodage en UNE SEULE passe : un remplacement par entité ferait un double
+// décodage (« &amp;lt; » donnerait « < » au lieu de « &lt; »).
+// Les entités numériques sont décodées (« SOCI&#201;T&#xC9; » est du XML valide
+// et courant sur les raisons sociales françaises), mais uniquement vers les
+// caractères autorisés par XML 1.0 : « &#0; » reste littéral plutôt que de
+// faire entrer un caractère NUL dans la sortie JSON.
+const XML_ENTITIES = { lt: '<', gt: '>', quot: '"', apos: "'", amp: '&' };
+
 function unescapeXml(str) {
-  return str
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&amp;/g, '&');
+  return str.replace(/&(?:#x([0-9a-fA-F]{1,6})|#([0-9]{1,7})|(lt|gt|quot|apos|amp));/g, (m, hex, dec, named) => {
+    if (named) return XML_ENTITIES[named];
+    const cp = hex ? parseInt(hex, 16) : Number(dec);
+    const isXmlChar = cp === 0x9 || cp === 0xa || cp === 0xd || (cp >= 0x20 && cp <= 0xd7ff) || (cp >= 0xe000 && cp <= 0xfffd) || (cp >= 0x10000 && cp <= 0x10ffff);
+    return isXmlChar ? String.fromCodePoint(cp) : m;
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -531,10 +545,12 @@ function buildInvoice(parts) {
   const uniqueRates = [...new Set(standardRows.map(r => r.rate))];
   const tvaRate = uniqueRates.length === 1 ? uniqueRates[0] : null;
 
-  // Présence d'une catégorie non taxée (exonération, autoliquidation, export…).
-  // Ne pas confondre avec la franchise en base art. 293 B CGI, qui utilise
-  // ExemptionReasonCode = "VATEX-FR-FRANCHISE" — vérifier tax_breakdown.
-  const tvaExempt = taxBreakdown.some(r => !RATED_VAT_CATEGORIES.includes(r.category_code));
+  // Présence d'AU MOINS UNE catégorie non taxée (exonération, autoliquidation,
+  // export…). Ce n'est pas « la facture est exonérée » : une facture à 20 %
+  // avec une ligne de débours le positionne aussi. Le détail est dans
+  // tax_breakdown. Ne pas confondre non plus avec la franchise en base
+  // art. 293 B CGI, qui utilise ExemptionReasonCode = "VATEX-FR-FRANCHISE".
+  const hasUntaxedCategory = taxBreakdown.some(r => !RATED_VAT_CATEGORIES.includes(r.category_code));
 
   return {
     number: doc.number,
@@ -566,7 +582,7 @@ function buildInvoice(parts) {
       ttc: totals.grandTotal,
       due_payable: totals.duePayable,
       ...(tvaRate !== null ? { tva_rate: tvaRate } : {}),
-      tva_exempt: tvaExempt,
+      has_untaxed_category: hasUntaxedCategory,
     },
     tax_breakdown: taxBreakdown,
     lines,
@@ -589,6 +605,11 @@ function parseCII(xml) {
   const buyer = parseBuyer(agreement, errors);
 
   const currency = readText(tag(settlement, 'ram:InvoiceCurrencyCode'), { id: 'BT-5', label: 'Devise de facturation (BT-5)', required: true }, errors);
+  // La devise entre dans une RegExp (tagAttr, recherche de BT-110 par
+  // currencyID) : elle est d'abord contrainte au code ISO 4217.
+  if (currency !== null && !/^[A-Z]{3}$/.test(currency)) {
+    errors.push({ id: 'BT-5_INVALID', message: `Devise de facturation (BT-5) : code ISO 4217 attendu, reçu « ${currency} »` });
+  }
   const paymentTermsBlock = block(settlement, 'ram:SpecifiedTradePaymentTerms') || '';
   const dueDate = parseDate102(tag(paymentTermsBlock, 'udt:DateTimeString'), { id: 'BT-9', label: "Date d'échéance (BT-9)", required: false }, errors);
 
@@ -698,7 +719,31 @@ function readCiiFile(filePath) {
     process.exit(1);
   }
 
-  const xml = fs.readFileSync(filePath, 'utf8');
+  const MAX_BYTES = 5 * 1024 * 1024;
+  if (fs.statSync(filePath).size > MAX_BYTES) {
+    console.error('Fichier trop volumineux (> 5 Mo) pour une facture CII.');
+    process.exit(1);
+  }
+
+  const rawXml = fs.readFileSync(filePath, 'utf8');
+
+  // Refus du contenu non textuel AVANT tout retrait de commentaire : l'ordre
+  // compte. Un <!-- <ram:ID>F-FAKE-999</ram:ID> --> placé avant le vrai ram:ID
+  // ferait lire à ce script une valeur qu'aucun parseur XML — donc aucune
+  // plateforme agréée — ne lirait. Même chose pour une instruction de
+  // traitement ou une section CDATA contenant une balise. Vu le contrat
+  // « code 0 = importable », ces documents sont refusés plutôt que devinés.
+  if (/<!DOCTYPE|<!ENTITY/i.test(rawXml)) {
+    console.error("DOCTYPE ou déclaration d'entité refusés.");
+    process.exit(1);
+  }
+  const afterProlog = rawXml.replace(/^\s*<\?xml\b[^?]*\?>/, '');
+  if (/<\?|<!\[CDATA\[/.test(afterProlog)) {
+    console.error('Instructions de traitement et sections CDATA refusées.');
+    process.exit(1);
+  }
+
+  const xml = rawXml.replace(/<!--[\s\S]*?-->/g, '');
   if (!xml.trim()) {
     console.error('Fichier vide.');
     process.exit(1);

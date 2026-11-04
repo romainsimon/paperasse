@@ -12,6 +12,9 @@
  * 3. Refus : chaque controle bloquant du parseur a un test qui le declenche
  *    (profil, date, decimal, rapprochements, champ obligatoire absent).
  *    Ces tests assertent le code de sortie non nul ET l'identifiant d'erreur.
+ * 4. Lecture du XML : contenu non textuel (commentaire, instruction de
+ *    traitement, CDATA, DOCTYPE/ENTITY), devise hors ISO 4217, entites
+ *    numeriques et plafond de taille. Un cas par refus.
  *
  * Usage : npm run test:parse
  */
@@ -45,6 +48,22 @@ function parseExpectingErrors(xmlPath) {
     const payload = JSON.parse(err.stdout);
     assert.strictEqual(payload.ok, false);
     return payload.errors;
+  }
+  throw new assert.AssertionError({ message: `${path.basename(xmlPath)} aurait du etre refusee` });
+}
+
+// Refus prononce AVANT le parsing : le script ecrit sur stderr et sort en 1
+// sans emettre de JSON. parseExpectingErrors ne convient donc pas.
+function parseExpectingRejection(xmlPath, messageRe) {
+  try {
+    execFileSync(process.execPath, [PARSE_SCRIPT, "--invoice", xmlPath, "--json"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+  } catch (err) {
+    assert.strictEqual(err.status, 1, "le parseur doit sortir en code 1");
+    assert.match(err.stderr, messageRe);
+    return;
   }
   throw new assert.AssertionError({ message: `${path.basename(xmlPath)} aurait du etre refusee` });
 }
@@ -138,7 +157,7 @@ function testRoundTripTva20() {
   assert.strictEqual(parsed.totals.ttc, 2088);
   assert.strictEqual(parsed.totals.due_payable, 2088);
   assert.strictEqual(parsed.totals.tva_rate, 0.2);
-  assert.strictEqual(parsed.totals.tva_exempt, false);
+  assert.strictEqual(parsed.totals.has_untaxed_category, false);
 
   assert.strictEqual(parsed.tax_breakdown.length, 1);
   assert.strictEqual(parsed.tax_breakdown[0].category_code, "S");
@@ -170,7 +189,7 @@ function testRoundTripFranchise() {
   assert.strictEqual(parsed.totals.tva, 0);
   assert.strictEqual(parsed.totals.ttc, 1740);
   assert.strictEqual(parsed.totals.due_payable, 1740);
-  assert.strictEqual(parsed.totals.tva_exempt, true);
+  assert.strictEqual(parsed.totals.has_untaxed_category, true);
   assert.strictEqual("tva_rate" in parsed.totals, false); // aucune ligne S
 
   assert.strictEqual(parsed.tax_breakdown.length, 1);
@@ -489,6 +508,113 @@ function testMissingSellerNameIsRejected() {
   assertHasError(parseExpectingErrors(writeFixture("F-SANS-VENDEUR", xml)), "BT-27_MISSING");
 }
 
+// Un commentaire place avant le vrai ram:ID ne doit pas etre lu comme une
+// valeur : tout parseur XML — donc toute plateforme agreee — lirait la valeur
+// suivante. Les commentaires sont retires avant extraction.
+function testCommentIsNotReadAsContent() {
+  const xml = mutate([
+    "<ram:ID>F-REMISE-001</ram:ID>",
+    "<!-- <ram:ID>F-FAKE-999</ram:ID> -->\n    <ram:ID>F-REMISE-001</ram:ID>",
+  ]);
+  const parsed = parseInvoice(writeFixture("F-COMMENTAIRE", xml));
+  assert.strictEqual(parsed.number, "F-REMISE-001");
+}
+
+function testCommentedSellerNameIsNotReadAsContent() {
+  const xml = mutate([
+    "<ram:Name>VENDEUR SAS</ram:Name>",
+    "<!-- <ram:Name>VENDEUR FANTOME</ram:Name> -->\n        <ram:Name>VENDEUR SAS</ram:Name>",
+  ]);
+  const parsed = parseInvoice(writeFixture("F-COMMENTAIRE-VENDEUR", xml));
+  assert.strictEqual(parsed.seller.name, "VENDEUR SAS");
+}
+
+// Instruction de traitement : son contenu n'est pas du texte de document, mais
+// ce parseur par regex y verrait une balise. Refus plutot que devinette.
+function testProcessingInstructionIsRejected() {
+  const xml = mutate([
+    "<ram:ID>F-REMISE-001</ram:ID>",
+    "<?x <ram:ID>F-FAKE-999</ram:ID>?>\n    <ram:ID>F-REMISE-001</ram:ID>",
+  ]);
+  parseExpectingRejection(writeFixture("F-PI", xml), /Instructions de traitement/);
+}
+
+// La declaration XML en tete de document, elle, reste acceptee : c'est la seule
+// exception au refus des « <? ». Testee avec et sans BOM.
+function testXmlDeclarationIsStillAccepted() {
+  assert.ok(VALID_CII.startsWith("<?xml "), "la fixture doit porter une declaration XML");
+  assert.strictEqual(parseInvoice(writeFixture("F-DECL-XML", VALID_CII)).number, "F-REMISE-001");
+  assert.strictEqual(parseInvoice(writeFixture("F-DECL-XML-BOM", "\uFEFF" + VALID_CII)).number, "F-REMISE-001");
+}
+
+function testCdataSectionIsRejected() {
+  const xml = mutate([
+    "<ram:ID>F-REMISE-001</ram:ID>",
+    "<![CDATA[<ram:ID>F-FAKE-999</ram:ID>]]>\n    <ram:ID>F-REMISE-001</ram:ID>",
+  ]);
+  parseExpectingRejection(writeFixture("F-CDATA", xml), /sections CDATA/);
+}
+
+function testDoctypeIsRejected() {
+  const xml = mutate([
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE rsm:CrossIndustryInvoice>',
+  ]);
+  parseExpectingRejection(writeFixture("F-DOCTYPE", xml), /DOCTYPE/);
+}
+
+function testEntityDeclarationIsRejected() {
+  const xml = mutate([
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<?xml version="1.0" encoding="UTF-8"?>\n<!ENTITY xxe "F-FAKE-999">',
+  ]);
+  parseExpectingRejection(writeFixture("F-ENTITY", xml), /entit/i);
+}
+
+// La devise est injectee dans une RegExp pour retrouver BT-110 par currencyID :
+// une valeur non echappee ferait planter le script (« EUR( ») ou matcherait
+// n'importe quoi (« .* »). Elle est d'abord contrainte a un code ISO 4217.
+function testInvalidCurrencyCodeIsRejected() {
+  for (const bogus of ["EUR(", ".*", "eur", "EURO"]) {
+    const xml = mutate([
+      "<ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>",
+      `<ram:InvoiceCurrencyCode>${bogus}</ram:InvoiceCurrencyCode>`,
+    ]);
+    assertHasError(parseExpectingErrors(writeFixture("F-DEVISE-KO", xml)), "BT-5_INVALID");
+  }
+}
+
+// Entites numeriques : du XML valide et courant sur les raisons sociales
+// francaises. Decimal et hexadecimal, en une seule passe.
+function testNumericEntitiesAreDecoded() {
+  const xml = mutate(["<ram:Name>VENDEUR SAS</ram:Name>", "<ram:Name>SOCI&#201;T&#xC9;</ram:Name>"]);
+  assert.strictEqual(parseInvoice(writeFixture("F-ENTITES-NUM", xml)).seller.name, "SOCIÉTÉ");
+}
+
+// Une entite numerique issue d'un « &amp;#233; » ne doit pas etre decodee une
+// seconde fois : le document dit « &#233; », pas « é ».
+function testNumericEntitiesAreDecodedOnlyOnce() {
+  const xml = mutate(["<ram:Name>VENDEUR SAS</ram:Name>", "<ram:Name>CAF&amp;#233;</ram:Name>"]);
+  assert.strictEqual(parseInvoice(writeFixture("F-ENTITES-DOUBLE", xml)).seller.name, "CAF&#233;");
+}
+
+// Hors du jeu de caracteres XML 1.0 : « &#0; » reste litteral plutot que de
+// faire entrer un caractere NUL dans la sortie JSON.
+function testNonXmlCharacterReferenceIsLeftLiteral() {
+  const xml = mutate(["<ram:Name>VENDEUR SAS</ram:Name>", "<ram:Name>VENDEUR&#0;SAS</ram:Name>"]);
+  assert.strictEqual(parseInvoice(writeFixture("F-ENTITE-NUL", xml)).seller.name, "VENDEUR&#0;SAS");
+}
+
+// Au-dela de 5 Mo, le fichier est refuse sans etre lu.
+function testOversizedFileIsRejected() {
+  const padding = "<ram:Foo>".repeat(600000); // ~5,4 Mo
+  const xml = mutate([
+    "<ram:ApplicableHeaderTradeSettlement>",
+    `<ram:ApplicableHeaderTradeSettlement>${padding}`,
+  ]);
+  parseExpectingRejection(writeFixture("F-VOLUMINEUX", xml), /trop volumineux/);
+}
+
 const TESTS = [
   testRoundTripTva20,
   testRoundTripFranchise,
@@ -514,6 +640,18 @@ const TESTS = [
   testSignedDecimalIsAccepted,
   testMissingDuePayableIsRejected,
   testMissingSellerNameIsRejected,
+  testCommentIsNotReadAsContent,
+  testCommentedSellerNameIsNotReadAsContent,
+  testProcessingInstructionIsRejected,
+  testXmlDeclarationIsStillAccepted,
+  testCdataSectionIsRejected,
+  testDoctypeIsRejected,
+  testEntityDeclarationIsRejected,
+  testInvalidCurrencyCodeIsRejected,
+  testNumericEntitiesAreDecoded,
+  testNumericEntitiesAreDecodedOnlyOnce,
+  testNonXmlCharacterReferenceIsLeftLiteral,
+  testOversizedFileIsRejected,
 ];
 
 function main() {

@@ -30,7 +30,7 @@ Adopter la posture d'un inspecteur des finances publiques en vérification de co
 
 **Ne jamais démarrer le contrôle sans les informations minimales.** Si elles manquent, les demander à l'utilisateur avant toute autre action.
 
-Si un fichier `company.json` existe, **le lire en premier** et reprendre en tête du rapport ce qu'il donne : forme juridique, régime IS / IR, régime TVA (réel ou franchise), dates et durée de l'exercice, dirigeant.
+Si un fichier `company.json` existe ou que son contenu est fourni dans la conversation, **le lire en premier** et reprendre en tête du rapport ce qu'il donne : forme juridique, régime IS / IR, régime TVA (réel ou franchise), dates et durée de l'exercice, dirigeant.
 
 Informations requises :
 
@@ -44,19 +44,19 @@ Informations requises :
 
 **Périmètre** : si l'utilisateur cible certains axes (« concentre-toi sur… »), ne traiter que ceux-là et lister les autres en une ligne « non examinés ». Sinon, traiter les 9 axes. Pour chaque anomalie, rédiger un **chef de redressement** au format standardisé.
 
-**Commencer par le script d'analyse du FEC** (ne pas en réécrire un, ne pas charger `data/pcg_*.json` en entier) :
+**Si tu peux exécuter des commandes, commencer par le script d'analyse du FEC** (ne pas en réécrire un, ne pas charger `data/pcg_*.json` en entier) :
 
 ```bash
 node scripts/analyse-fec.js --fec <FEC> --company company.json
 ```
 
-Il fait les contrôles de l'axe 1, la balance par compte, le détail du compte 455 (mouvements, solde, intérêts) et liste les écritures à examiner (libellés personnels, déplacements le week-end, montants ronds). Ses résultats sont des constats : la qualification (chef de redressement, base légale, montant, risque) reste à faire dans le rapport. Ajouter `--json` pour une sortie structurée.
+Sinon (lecture seule, ou FEC et `company.json` collés dans la conversation), faire les mêmes contrôles directement sur les données fournies, sans chercher d'autres fichiers. Le script fait les contrôles de l'axe 1, la balance par compte, le détail du compte 455 (mouvements, solde, intérêts) et liste les écritures à examiner (libellés personnels, déplacements le week-end, montants ronds). Ses résultats sont des constats : la qualification (chef de redressement, base légale, montant, risque) reste à faire dans le rapport. Ajouter `--json` pour une sortie structurée.
 
 ---
 
 ### Axe 1 : Examen du FEC (art. L. 47 A-I LPF)
 
-Lancer `scripts/analyse-fec.js` (contrôles 1 à 8 ci-dessous), puis lire le FEC seulement pour les lignes signalées.
+Lancer `scripts/analyse-fec.js` si possible (contrôles 1 à 8 ci-dessous), puis lire le FEC seulement pour les lignes signalées. Sans exécution possible, faire ces contrôles sur le FEC fourni.
 
 **Contrôles obligatoires :**
 1. Conformité format (18 colonnes, séparateur `|`)
@@ -164,6 +164,9 @@ Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilit
 
 **Si franchise en base (art. 293 B CGI) :**
 1. Seuil franchise en base services : 37 500 € (tolérance 41 250 €) en 2026 ; ventes : 85 000 € (tolérance 93 500 €) (art. 293 B CGI, service-public F21746). Pour un exercice antérieur, appliquer le seuil de l'année contrôlée
+   - La franchise s'applique à l'année N si le CA de N-1 ne dépasse pas le seuil de base **et** si le CA de N ne dépasse pas le seuil majoré (art. 293 B, I).
+   - CA de N entre le seuil de base et le seuil majoré : franchise maintenue pour N, **perdue au 1er janvier N+1** (le CA de N-1 dépasse alors le seuil de base).
+   - CA de N au-delà du seuil majoré : TVA due sur les opérations réalisées à compter de la date du dépassement (art. 293 B, II).
 2. Annualisation si exercice < 12 mois
 3. Mention sur les factures : « TVA non applicable, art. 293 B du CGI »
 4. Cessions d'immobilisations : soumises à TVA ou exonérées ?

@@ -44,6 +44,7 @@ Un IBAN commençant par « FR » peut être attribué par un établissement agr�
 - Comptes d'actifs numériques ouverts, détenus, utilisés ou clos auprès d'« entreprises, personnes morales, institutions ou organismes établis à l'étranger » (art. 1649 bis C ; BOI-RPPM-PVBMC-30-30 § 70). Rubrique 4 du formulaire ; le nom du prestataire (PSAN) est indiqué à l'aide de la liste de codes figurant dans la notice du formulaire, ou à défaut par son nom, son adresse postale et l'URL de la plateforme.
 - Le critère est, là aussi, le lieu d'établissement de l'entité contractante, à vérifier dans les conditions générales de la plateforme.
 - **Réserve** : un portefeuille auto-hébergé (clé privée détenue par l'utilisateur, sans entité teneuse de compte) n'entre pas dans la lettre du texte, qui vise les comptes ouverts « auprès » d'une entité. La doctrine ne le commente pas expressément.
+- **À partir de la déclaration 2027 (revenus 2026)** : depuis le 01/07/2026, l'art. 1649 bis C vise les « portefeuilles de crypto-actifs » au sens du règlement (UE) 2023/1114 (MiCA) ouverts, détenus, utilisés ou clos auprès d'entités établies à l'étranger, ainsi que les crypto-actifs uniques et non fongibles (NFT) ; l'amende du X de l'art. 1736 se compte par portefeuille ou par NFT non déclaré (mêmes montants). Vérifier la notice du 3916-3916 bis 2027.
 
 ### Contrats d'assurance-vie souscrits hors de France
 
@@ -76,18 +77,18 @@ Le souscripteur déclare les références du contrat, la date d'effet et la dur�
 
 ### Majoration de 80 % (art. 1729-0 A CGI)
 
-Lorsque l'administration rectifie l'impôt à raison de sommes figurant sur un compte ou un contrat étranger non déclaré, le rappel est assorti d'une **majoration de 80 %** (BOI-CF-INF-20-10-50 § 90-100). Elle ne peut être inférieure à l'amende de 1 500 € ou 10 000 €, à laquelle elle se substitue (pas de cumul, § 110), et elle exclut les majorations des art. 1728, 1729 et 1758 sur les mêmes droits (§ 120). Tel que commenté au BOFiP (§ 90), l'art. 1729-0 A ne vise pas les comptes d'actifs numériques de l'art. 1649 bis C.
+Lorsque l'administration rectifie l'impôt à raison de sommes figurant sur un compte ou un contrat étranger non déclaré, le rappel est assorti d'une **majoration de 80 %** (BOI-CF-INF-20-10-50 § 90-100). Elle ne peut être inférieure à l'amende de 1 500 € ou 10 000 €, à laquelle elle se substitue (pas de cumul, § 110), et elle exclut les majorations des art. 1728, 1729 et 1758 sur les mêmes droits (§ 120). Depuis le 16/02/2025 (loi n° 2025-127, art. 59), l'art. 1729-0 A vise aussi les actifs qui auraient dû être déclarés au titre de l'art. 1649 bis C (I, d), avec un plancher égal à l'amende du X de l'art. 1736 ; le BOFiP de 2021 n'est pas à jour sur ce point.
 
 ### Présomption de revenus (art. 1649 A, al. 3 et art. 1649 AA, al. 2)
 
 Les sommes, titres ou valeurs transférés vers ou depuis l'étranger par l'intermédiaire d'un compte non déclaré constituent, **sauf preuve contraire**, des revenus imposables (BOI-CF-CPF-30-20 § 235). La présomption est simple : le contribuable peut démontrer qu'il s'agit de revenus déjà imposés, de sommes exonérées ou hors champ (par exemple un virement entre ses propres comptes de fonds déjà fiscalisés) (§ 240). Le même mécanisme existe pour les contrats d'assurance-vie non déclarés (§ 250). En outre, l'administration peut demander l'origine et les modalités d'acquisition des avoirs (art. L. 23 C LPF, § 230).
 
-### Délai de reprise porté à 10 ans (art. L. 169, al. 4 LPF)
+### Délai de reprise porté à 10 ans (art. L. 169 LPF)
 
-- En cas de manquement aux obligations des art. 1649 A ou 1649 AA (ainsi que 123 bis, 209 B et 1649 AB), l'administration peut rectifier l'IR jusqu'au **31 décembre N + 10** (au lieu de N + 3), quel que soit l'État concerné (BOI-CF-PGR-10-50 § 100, § 187 et § 200).
+- En cas de manquement aux obligations des art. 1649 A, 1649 AA ou 1649 bis C (ainsi que 123 bis, 209 B et 1649 AB), l'administration peut rectifier l'IR jusqu'au **31 décembre N + 10** (au lieu de N + 3), quel que soit l'État concerné (BOI-CF-PGR-10-50 § 100, § 187 et § 200).
 - Le délai prorogé ne vise que les revenus afférents à l'obligation non respectée (§ 210), pas l'ensemble de la déclaration.
 - Pour les comptes (1649 A), il ne s'applique que si le total des soldes créditeurs des comptes étrangers a **excédé 50 000 € à un moment quelconque de l'année** (§ 215, rédaction issue de la loi n° 2018-898 du 23 octobre 2018).
-- **Réserve** : les art. 1649 bis C (actifs numériques) ne figurent pas dans la liste de l'al. 4 de L. 169 telle que commentée au BOFiP (version du 18/06/2019) ; vérifier la version en vigueur de L. 169 sur Légifrance avant de conclure.
+- La condition des 50 000 € ne vise que les comptes de l'art. 1649 A : pour les contrats (1649 AA) et les comptes d'actifs numériques (1649 bis C), le délai de 10 ans s'applique sans seuil (art. L. 169 LPF, version en vigueur au 01/01/2026).
 
 ## Régulariser un oubli
 
@@ -111,7 +112,7 @@ Les sommes, titres ou valeurs transférés vers ou depuis l'étranger par l'inte
 - Assurance-vie étrangère : art. 1649 AA CGI ; CGI ann. III art. 344 C — BOI-IR-DECLA-20-20 § 150-160 (version du 26/05/2021)
 - Comptes d'actifs numériques à l'étranger : art. 1649 bis C CGI ; CGI ann. III art. 344 G decies, 344 G undecies — BOI-RPPM-PVBMC-30-30 § 70-80 (version du 23/04/2024)
 - Sanctions : art. 1736 IV et X, 1766, 1729-0 A CGI — BOI-CF-INF-20-10-50 (version du 26/05/2021)
-- Délai de reprise de 10 ans : art. L. 169 al. 4 LPF — BOI-CF-PGR-10-50 § 100-215 (version du 18/06/2019)
+- Délai de reprise de 10 ans : art. L. 169 LPF — BOI-CF-PGR-10-50 § 100-215 (version du 18/06/2019)
 - Remise / transaction : art. L. 247 LPF — BOI-CTX-GCX-10-20 (version du 16/06/2021)
 - Formulaire et notice : n° 3916-3916 bis (CERFA n° 11916), millésime mars 2026 ; 2042 millésime 2026, cases 8UU et 8TT
 - Rép. min. n° 15613, JOAN 20/10/2026, p. 9749

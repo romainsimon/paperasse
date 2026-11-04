@@ -61,12 +61,12 @@
     "taux": 0.80,
     "article_cgi": "art. 1729-0 A",
     "plancher": "Montant de l'amende (1 500 € ou 10 000 €), à laquelle elle se substitue",
-    "note": "Vise les comptes (1649 A), contrats (1649 AA) et trusts (1649 AB) ; pas les comptes d'actifs numériques (BOI-CF-INF-20-10-50 § 90-110)"
+    "note": "Vise les comptes (1649 A), contrats (1649 AA), trusts (1649 AB) et, depuis le 16/02/2025 (LF 2025 art. 59), les actifs numériques / crypto-actifs à déclarer au titre du 1649 bis C (plancher : amende du X de l'art. 1736)"
   },
 
   "delai_reprise": {
     "annees": 10,
-    "article": "art. L. 169 al. 4 LPF",
+    "article": "art. L. 169 LPF (vise 1649 A, 1649 AA, 1649 AB et 1649 bis C)",
     "condition_comptes_1649_A": "Total des soldes créditeurs des comptes étrangers > 50 000 € à un moment quelconque de l'année",
     "seuil_soldes": 50000,
     "portee": "Revenus afférents à l'obligation non respectée uniquement (BOI-CF-PGR-10-50 § 210)"

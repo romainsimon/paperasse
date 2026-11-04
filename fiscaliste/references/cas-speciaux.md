@@ -93,7 +93,7 @@ Voir `data/bareme-ir-2025.json` → `cehr`. Base légale : art. 223 sexies CGI.
 ### À ne pas oublier
 
 - S'ajoute à l'IR net (ne se déduit pas) ; le quotient des revenus exceptionnels allège l'IR, pas la CEHR
-- **Lissage** (art. 223 sexies, II CGI ; brochure IR 2026, case 8TD) : si le RFR de l'année est au moins égal à 1,5 fois la moyenne des RFR des deux années précédentes, si chacun de ces deux RFR est resté sous le seuil d'assujettissement (250 000 € ou 500 000 €), et si les revenus passibles de l'IR en France ont excédé la moitié du RFR mondial de chacune de ces deux années (sinon cocher 8TD : calcul de droit commun), la fraction du RFR qui dépasse cette moyenne est divisée par deux pour le calcul, puis la contribution supplémentaire obtenue est multipliée par deux. Cas d'usage : une année isolée de grosses cessions. Mariage, Pacs, divorce, séparation ou décès dans l'année ou les deux années précédentes : les RFR retenus sont ceux des foyers successifs auxquels le contribuable a appartenu, et le lissage passe par une réclamation (brochure IR 2026, « Divers », p. 325).
+- **Lissage** (art. 223 sexies, II CGI ; brochure IR 2026, case 8TD) : si le RFR de l'année est au moins égal à 1,5 fois la moyenne des RFR des deux années précédentes, si chacun de ces deux RFR est resté sous le seuil d'assujettissement (250 000 € ou 500 000 €), et si les revenus passibles de l'IR en France ont excédé la moitié du RFR mondial de chacune de ces deux années (sinon cocher 8TD : calcul de droit commun), la fraction du RFR qui dépasse cette moyenne est divisée par deux pour le calcul, puis la contribution supplémentaire obtenue est multipliée par deux. Cas d'usage : une année isolée de grosses cessions. Mariage, Pacs, divorce, séparation ou décès dans l'année ou les deux années précédentes : les RFR retenus sont ceux des foyers successifs auxquels le contribuable a appartenu, et le lissage passe par une réclamation (brochure IR 2026, « Divers », p. 326).
 
 ## CDHR (Contribution Différentielle sur les Hauts Revenus)
 
@@ -103,8 +103,7 @@ Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %**
 
 ### Base légale
 
-- Revenus 2025 : **art. 10 de la LFI 2025** (loi n° 2025-127 du 14/02/2025), première année d'application
-- Revenus 2026 et suivants : **art. 224 CGI**, codifié par la LFI 2026 (loi n° 2026-103 du 19/02/2026, art. 2), applicable jusqu'à l'imposition des revenus de l'année pour laquelle la loi d'approbation des comptes constate un déficit du budget général inférieur à 3 % du PIB (brochure IR 2026, nouveautés ; BOFiP ACTU-2026-00104)
+- **Art. 224 CGI**, créé par l'art. 10 de la LFI 2025 (loi n° 2025-127 du 14/02/2025 ; revenus 2025, première année d'application), prorogé et modifié par la LFI 2026 (loi n° 2026-103 du 19/02/2026, art. 2) : applicable jusqu'à l'imposition des revenus de l'année pour laquelle le projet de loi d'approbation des comptes constate un déficit du budget général inférieur à 3 % du PIB (brochure IR 2026, nouveautés ; BOFiP ACTU-2026-00104)
 - Doctrine : BOI-IR-CDHR-10 (version du 30/06/2026)
 
 ### Seuils de revenu de référence
@@ -117,12 +116,12 @@ Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %**
 ### Mécanisme (BOI-IR-CDHR-10 § 100 à 370 ; brochure IR 2026, « Divers »)
 
 ```
-CDHR = 20 % × RREF − décote − (IR retraité + CEHR + 1 500 € par personne à charge + 12 500 € si imposition commune)
+CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € si imposition commune)
 ```
 (retenue si positive)
 
 - **RREF** (revenu de référence) : le RFR calculé sans le quotient, dans lequel les revenus exceptionnels taxés au quotient sont retenus pour le quart, et diminué des abattements réintégrés dans le RFR autres que les abattements pour durée de détention : l'abattement de 40 % sur les dividendes, l'abattement de 50 % sur les gains d'acquisition d'actions gratuites (art. 200 A, 3) et l'abattement fixe des dirigeants n'y sont donc pas réintégrés.
-- **IR retraité** : IR après réductions et crédits, majoré de certains crédits et réductions d'impôt réintégrés et de l'impôt sur les plus-values immobilières, diminué des trois quarts de l'impôt afférent aux revenus exceptionnels taxés au quotient.
+- **IR retraité** : IR après réductions et crédits, majoré de certains crédits et réductions d'impôt réintégrés, diminué des trois quarts de l'impôt afférent aux revenus exceptionnels taxés au quotient.
 - **Décote** : si le RREF est inférieur ou égal à 330 000 € (personne seule) ou 660 000 € (couple), la cotisation de 20 % est diminuée de la différence, si elle est positive, entre cette cotisation et 82,5 % × (RREF − 250 000 € ou 500 000 €).
 
 Un foyer dont les revenus sont surtout des salaires au barème dépasse en général le plancher de 20 % et n'en paie rien ; la CDHR touche ceux dont l'IR effectif est faible au regard du RFR (revenus au PFU à 12,8 %, dividendes, plus-values, abattements importants). Elle est calculée par l'administration après dépôt de la 2042 ; les cases 8KD à 8KG servent à ventiler les revenus exceptionnels et les revenus à taux proportionnel.

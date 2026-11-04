@@ -94,7 +94,7 @@
 
   "cdhr": {
     "description": "Contribution Différentielle sur les Hauts Revenus, distincte de la CEHR. Impose un plancher d'imposition à 20 % d'un revenu de référence retraité. Calcul automatique par l'administration après dépôt de la 2042.",
-    "base_legale": "Revenus 2025 : art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025). Revenus 2026 et suivants : art. 224 CGI, codifié par la LFI 2026 (loi n° 2026-103 du 19/02/2026, art. 2). Doctrine : BOI-IR-CDHR-10 (30/06/2026).",
+    "base_legale": "Art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025) pour les revenus 2025, prorogé et modifié par l'art. 2 LFI 2026 (loi n° 2026-103 du 19/02/2026). Doctrine : BOI-IR-CDHR-10 (30/06/2026).",
     "plancher_imposition": 0.20,
     "seuils_revenu_de_reference": {
       "celibataire_veuf_separe_divorce": 250000,
@@ -109,7 +109,7 @@
       "par_personne_a_charge": 1500,
       "imposition_commune": 12500
     },
-    "mecanisme": "CDHR = 20 % × RREF − décote − (IR retraité + CEHR + 1 500 € par personne à charge + 12 500 € si imposition commune), si positif. RREF = RFR sans quotient, revenus exceptionnels retenus pour le quart, hors abattement de 40 % sur dividendes, abattement de 50 % sur gains d'actions gratuites et abattement fixe dirigeant (les abattements pour durée de détention restent réintégrés). IR retraité = IR après réductions et crédits, majoré de certains crédits et réductions réintégrés et de l'impôt sur les PV immobilières, diminué des 3/4 de l'impôt sur les revenus exceptionnels au quotient. Les deux contributions peuvent s'appliquer simultanément.",
+    "mecanisme": "CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € si imposition commune), si positif. RREF = RFR sans quotient, revenus exceptionnels retenus pour le quart, hors abattement de 40 % sur dividendes, abattement de 50 % sur gains d'actions gratuites et abattement fixe dirigeant (les abattements pour durée de détention restent réintégrés). IR retraité = IR après réductions et crédits, majoré de certains crédits et réductions réintégrés, diminué des 3/4 de l'impôt sur les revenus exceptionnels au quotient. Les deux contributions peuvent s'appliquer simultanément.",
     "calendrier": {
       "acompte": "95 % du montant estimé, à verser entre le 1er et le 15 décembre de l'année des revenus (1er au 15 décembre 2025 pour les revenus 2025), via le service 'Gérer mon prélèvement à la source' sur impots.gouv.fr ; reporté en 8HR / 8HS",
       "penalite": "20 % en cas de défaut ou de retard de paiement de l'acompte, ou si l'acompte est inférieur de plus de 20 % à 95 % de la contribution due (LFI 2025, art. 10, III-C)",

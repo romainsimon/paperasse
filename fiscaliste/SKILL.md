@@ -1,7 +1,7 @@
 ---
 name: fiscaliste
 metadata:
-  last_updated: 2026-05-30
+  last_updated: 2026-11-04
 includes:
   - data/**
   - references/**
@@ -140,9 +140,9 @@ Base : RFR, pas RNI. S'ajoute à l'IR net. Art. 223 sexies CGI.
 
 ### CDHR (Contribution Différentielle sur les Hauts Revenus)
 
-Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %** d'un revenu de référence retraité. Revenus 2025 : art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025). Revenus 2026 et suivants : art. 224 CGI, codifié par la LFI 2026 (loi n° 2026-103, art. 2), jusqu'à l'année où la loi d'approbation des comptes constate un déficit du budget général sous 3 % du PIB (BOI-IR-CDHR-10 du 30/06/2026).
+Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %** d'un revenu de référence retraité. Art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025) pour les revenus 2025, prorogé et modifié par l'art. 2 LFI 2026 (loi n° 2026-103) : due jusqu'à l'année pour laquelle le projet de loi d'approbation des comptes constate un déficit du budget général sous 3 % du PIB (BOI-IR-CDHR-10 du 30/06/2026).
 
-Seuils de revenu de référence : > 250 000 € (personne seule) / > 500 000 € (couple), avec une décote jusqu'à 330 000 € / 660 000 €. CDHR = 20 % × revenu de référence − décote − (IR retraité + CEHR + 1 500 € par personne à charge + 12 500 € pour un couple), si positif. Le revenu de référence n'intègre pas l'abattement de 50 % sur les gains d'actions gratuites ni l'abattement de 40 % sur les dividendes.
+Seuils de revenu de référence : > 250 000 € (personne seule) / > 500 000 € (couple), avec une décote jusqu'à 330 000 € / 660 000 €. CDHR = 20 % × revenu de référence − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € pour un couple), si positif. Le revenu de référence n'intègre pas l'abattement de 50 % sur les gains d'actions gratuites ni l'abattement de 40 % sur les dividendes.
 
 Calcul automatique par l'administration après dépôt de la 2042. Acompte de 95 % à verser entre le 1er et le 15 décembre de l'année des revenus via le service "Gérer mon prélèvement à la source" sur impots.gouv.fr ; pénalité de 20 % en cas de défaut, de retard ou d'acompte inférieur de plus de 20 % au dû. Acompte et pénalités reconduits pour les revenus 2026 (LFI 2026, art. 2).
 

@@ -226,6 +226,80 @@ function testCalcIrDecoteArrondie() {
   assert.strictEqual(r.impot_apres_decote, r.impot_brut_apres_qf - r.decote);
 }
 
+function runCalcIrFoyer(foyer, args = []) {
+  // Écrit le foyer dans un fichier temporaire et renvoie la sortie JSON de calc_ir.py
+  // (null sans python3 ; { refus } si le script s'arrête avec un message)
+  const fs = require("fs");
+  const os = require("os");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "calc-ir-"));
+  const fichier = path.join(dir, "foyer.json");
+  fs.writeFileSync(fichier, JSON.stringify(foyer));
+  try {
+    const out = execFileSync("python3", [path.join(ROOT, "fiscaliste", "scripts", "calc_ir.py"), "--foyer", fichier, "--json", ...args],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    return JSON.parse(out);
+  } catch (err) {
+    if (err.code === "ENOENT") return null;
+    if (err.status === 1 && err.stderr) return { refus: String(err.stderr) };
+    throw err;
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+function testCalcIrRevenusCapitalEtPs() {
+  // Option barème, crypto, LMNP, PS fonciers, RCM sans PS à la source (revenus 2025)
+  const couple = { foyer: { situation: "marie" }, revenus: { salaires_declarant1: 40000, salaires_declarant2: 30000, dividendes_bruts: 20000, interets_rcm: 2000 } };
+  const pfu = runCalcIrFoyer({ ...couple, options_fiscales: { revenus_capital: "pfu" } });
+  if (pfu === null) { console.log("python3 absent : tests calc_ir ignorés"); return; }
+  assert.strictEqual(pfu.rni, 63000);
+  assert.strictEqual(pfu.ir_pfu.montant, 2816);
+  assert.strictEqual(pfu.total_a_payer, 11708);
+
+  // 2OP : abattement de 40 %, CSG déductible de l'année sur la ligne 2BH (6,8 % × 22 000 = 1 496 €)
+  const bareme = runCalcIrFoyer({ ...couple, options_fiscales: { revenus_capital: "bareme" } });
+  assert.strictEqual(bareme.rni, 75504);
+  assert.strictEqual(bareme.ir_pfu.montant, 0);
+  assert.strictEqual(bareme.prelevements_sociaux, 3784);
+  assert.strictEqual(bareme.total_a_payer, 12643);
+
+  // LMNP au barème et aux PS de 18,6 %, hors IR de 12,8 % ; foncier nu à 17,2 %
+  const lmnp = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 50000, lmnp_reel_resultat: 10000 } });
+  assert.strictEqual(lmnp.ir_pfu.montant, 0);
+  assert.strictEqual(lmnp.ps_details.patrimoine.montant, 1860);
+  assert.strictEqual(lmnp.total_a_payer, 11464);
+  const lmnpFoncier = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 50000, lmnp_reel_resultat: 6000, revenus_fonciers_micro: 7000 } });
+  assert.strictEqual(lmnpFoncier.rni, 58000);
+  assert.strictEqual(lmnpFoncier.ps_details.patrimoine.montant, 1116);
+  assert.strictEqual(lmnpFoncier.ps_details.foncier.montant, 1204);
+  assert.strictEqual(lmnpFoncier.total_a_payer, 12824);
+
+  // La 2OP ne couvre pas la crypto, qui garde son IR de 12,8 % ; option 3CN indépendante
+  const celib = { foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, dividendes_bruts: 2000, crypto_plus_values: 10000 } };
+  const deuxOp = runCalcIrFoyer({ ...celib, options_fiscales: { revenus_capital: "bareme" } });
+  assert.strictEqual(deuxOp.ir_pfu.montant, 1280);
+  assert.strictEqual(deuxOp.total_a_payer, 7707);
+  const troisCn = runCalcIrFoyer({ ...celib, options_fiscales: { revenus_capital: "pfu", crypto: "bareme" } });
+  assert.strictEqual(troisCn.rni, 46000);
+  assert.strictEqual(troisCn.ir_pfu.montant, 256);
+  assert.strictEqual(troisCn.total_a_payer, 9364);
+
+  // Dividendes sans PS à la source : PS par voie de rôle au taux des revenus du patrimoine (18,6 %)
+  const sansPs = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, dividendes_bruts: 5000, rcm_sans_ps_a_la_source: true } });
+  assert.strictEqual(sansPs.ps_details.patrimoine.montant, 930);
+  assert.strictEqual(sansPs.ps_details.placement.montant, 0);
+  assert.strictEqual(sansPs.total_a_payer, 5474);
+  const boolTexte = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, dividendes_bruts: 5000, rcm_sans_ps_a_la_source: "false" } });
+  assert.match(boolTexte.refus || "", /booléen JSON attendu/, "un booléen en texte doit être refusé");
+
+  // Option crypto au barème (art. 200 C) : ouverte aux cessions depuis le 01/01/2023
+  const cryptoSeule = { foyer: { situation: "celibataire" }, revenus: { crypto_plus_values: 10000 }, options_fiscales: { crypto: "bareme" } };
+  assert.match(runCalcIrFoyer(cryptoSeule, ["--annee", "2022"]).refus || "", /depuis le 01\/01\/2023/);
+  const crypto2023 = runCalcIrFoyer(cryptoSeule, ["--annee", "2023"]);
+  assert.strictEqual(crypto2023.ir_pfu.montant, 0);
+  assert.strictEqual(crypto2023.rni, 10000);
+}
+
 function testAnalyseFec() {
   // controleur-fiscal : contrôles déterministes du FEC d'exemple des evals
   const { analyser } = require(path.join(ROOT, "controleur-fiscal", "scripts", "analyse-fec.js"));
@@ -360,6 +434,7 @@ function main() {
   testIKMoto();
   testIKElectriqueArrondiUnique();
   testCalcIrDecoteArrondie();
+  testCalcIrRevenusCapitalEtPs();
   testAnalyseFec();
   testBilanAmortComptesCompletes();
   testBilanAmortSubdivision();

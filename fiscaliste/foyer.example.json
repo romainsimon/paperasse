@@ -37,14 +37,16 @@
     "_commentaire_dividendes": "Case 2DC — dividendes avec droit abattement 40% si option barème",
     "interets_rcm": 0,
     "plus_values_mobilieres": 0,
-    "_commentaire_pv_mobi": "Case 3VG — plus-values de cession de titres",
+    "_commentaire_pv_mobi": "Case 3VG : plus-values de cession de titres. Sous option barème, calc_ir.py n'applique pas l'abattement pour durée de détention (titres acquis avant 2018) : saisir le montant brut (l'abattement ne réduit que la base de l'IR, pas celle des PS) ; l'IR calculé est alors surestimé",
+    "rcm_sans_ps_a_la_source": false,
+    "_commentaire_rcm_source": "true si les dividendes et intérêts n'ont pas supporté les prélèvements sociaux à l'encaissement (établissement payeur hors de France, sans formulaire 2778) : PS établis par voie de rôle au taux des revenus du patrimoine (18,6 % pour les revenus 2025), CSG déductible seulement l'année suivante sous option barème",
 
     "revenus_fonciers_micro": 0,
     "revenus_fonciers_reels": 0,
     "deficit_foncier_anterieur": 0,
 
     "lmnp_reel_resultat": 0,
-    "_commentaire_lmnp": "Résultat après amortissements, positif seulement",
+    "_commentaire_lmnp": "Résultat après amortissements, positif seulement. Imposé au barème et soumis aux PS des revenus du patrimoine (18,6 % pour les revenus 2025), jamais à l'IR forfaitaire de 12,8 %",
 
     "crypto_plus_values": 0,
     "revenus_chomage": 0,
@@ -63,7 +65,9 @@
   "options_fiscales": {
     "revenus_capital": "pfu",
     "_options": ["pfu", "bareme"],
-    "_commentaire_option": "L'option barème est globale : elle s'applique à TOUS les revenus du capital de l'année"
+    "_commentaire_option": "L'option barème (case 2OP) est globale : elle s'applique à TOUS les revenus du capital de l'année (dividendes, intérêts, plus-values mobilières), sauf les actifs numériques",
+    "crypto": "pfu",
+    "_commentaire_crypto": "Option distincte pour les plus-values sur actifs numériques (art. 200 C CGI, case 3CN) : \"pfu\" ou \"bareme\", indépendante de revenus_capital"
   },
 
   "patrimoine_ifi": {

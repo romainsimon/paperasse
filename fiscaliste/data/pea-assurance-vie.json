@@ -88,7 +88,7 @@
           { "tranche": "0 à 700 000 EUR (après abattement)", "taux": "20%" },
           { "tranche": "Au-delà de 700 000 EUR", "taux": "31,25%" }
         ],
-        "assiette": "Fraction rachetable : valeur de rachat du contrat au jour du décès (BOI-TCAS-AUT-60 § 180). Fraction non rachetable : primes versées (§ 230). Plafond : l'assiette ne peut excéder le capital réellement versé en cas de décès (§ 190)",
+        "assiette": "Fraction rachetable : valeur de rachat du contrat au jour du décès (BOI-TCAS-AUT-60 § 180). Fraction non rachetable d'un contrat mixte : capital-décès au titre de la prévoyance (capital dû moins valeur de rachat) multiplié par le taux de mortalité à l'âge de l'assuré au décès (§ 230) ; contrat entièrement non rachetable : prime annuelle, ou prime unique versée à la conclusion (§ 180). Plafond : l'assiette ne peut excéder le capital réellement versé en cas de décès (§ 190)",
         "articulation_ps": "L'assureur prélevant les PS sur les gains UC avant versement, le capital réellement versé — et donc le plafond du § 190 — est net de ces PS. Ni l'art. 990 I ni le BOFiP n'énoncent de déduction d'assiette au titre des PS : l'effet passe par le plafond du § 190, et non par une règle d'assiette",
         "contrats_vie_generation": "Art. 990 I, I bis : abattement proportionnel de 20 % appliqué AVANT l'abattement de 152 500 EUR. Contrats souscrits à compter du 01/01/2014 (ou antérieurs et transformés entre 2014 et 2016) dont les primes sont investies en UC comportant au moins 33 % d'actifs éligibles (logement social ou intermédiaire, PME/ETI, ESS). BOI-TCAS-AUT-60 § 281 à 290",
         "demembrement_clause_beneficiaire": "Usufruitier et nu-propriétaire sont tous deux bénéficiaires, au prorata du barème de l'art. 669 CGI, et l'abattement de 152 500 EUR est réparti entre eux dans les mêmes proportions (art. 990 I, I). L'usufruitier ne peut dépasser 152 500 EUR d'abattement sur l'ensemble des contrats d'un même assuré (BOI-TCAS-AUT-60 § 310, exemple § 320)"
@@ -147,6 +147,6 @@
       }
     },
 
-    "option_bareme_avantageuse_si": "TMI ≤ 11% — le barème peut être meilleur que le PFU après 8 ans (car abattement annuel + taux IR faible)"
+    "option_bareme_avantageuse_si": "TMI 0 % ; à TMI 11 %, seulement sur la fraction des produits taxée à 12,8 % (primes > 150 000 €). L'abattement de 4 600 / 9 200 € s'applique dans les deux régimes."
   }
 }

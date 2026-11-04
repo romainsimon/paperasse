@@ -200,7 +200,7 @@ L'assurance-vie est **hors succession** (art. L132-12 Code des assurances). Les 
 
 | Régime | Assiette | Abattement | Taux |
 |--------|----------|:----------:|------|
-| Art. 990 I | Fraction rachetable : **valeur de rachat au jour du décès** (§ 180). Fraction non rachetable : primes versées (§ 230). Plafond : l'assiette ne peut excéder le **capital réellement versé** au décès (§ 190) | 152 500 EUR/bénéf. | 20% jusqu'à 700 000 EUR, puis 31,25% |
+| Art. 990 I | Fraction rachetable : **valeur de rachat au jour du décès** (§ 180). Fraction non rachetable d'un contrat mixte : capital-décès au titre de la prévoyance (capital dû moins valeur de rachat) multiplié par le taux de mortalité à l'âge de l'assuré au décès (§ 230) ; contrat entièrement non rachetable : prime annuelle, ou prime unique versée à la conclusion (§ 180). Plafond : l'assiette ne peut excéder le **capital réellement versé** au décès (§ 190) | 152 500 EUR/bénéf. | 20% jusqu'à 700 000 EUR, puis 31,25% |
 | Art. 757 B | Primes versées (hors gains) au-delà de l'abattement global | 30 500 EUR global (tous bénéficiaires) | Droits de succession selon le lien |
 
 Paragraphes cités : [BOI-TCAS-AUT-60](https://bofip.impots.gouv.fr/bofip/1335-PGP.html) § 180, 190 et 230.

@@ -299,8 +299,11 @@ Achat intra-UE ou import sans autoliquidation = TVA non déductible.
 
 TVA non déductible sur:
 - Véhicules de tourisme (sauf véhicules utilitaires)
-- Carburant essence (déductible à 80%)
-- Gazole (déductible à 100%)
+- Carburant (art. 298, 4-1° a et c CGI, version en vigueur depuis le 01/01/2022 ; abrogé au 01/01/2027 par l'ord. n° 2025-1247 et repris à droit constant dans le CIBS) :
+  - Véhicules exclus du droit à déduction (véhicules conçus pour transporter des personnes ou à usage mixte, y compris pick-up N1 double cabine, et véhicules pris en location sans déduction de la TVA sur le loyer) : gazole, essence, E85 → 20 % de la TVA non déductible (soit 80 % déductible) ; GPL, GNV → 50 % non déductible (soit 50 % déductible)
+  - Véhicules non exclus (utilitaires, taxis de transport public, auto-écoles, loueurs) : TVA sur carburant déductible en totalité
+  - Électricité d'un véhicule exclu fonctionnant exclusivement à l'électricité : déductible en totalité (art. 273 septies B CGI)
+  - Usage privé (dirigeant, salariés) : non déductible ; si la TVA a été déduite à l'achat, régulariser par livraison à soi-même (art. 257, II-1-2° CGI ; BOI-TVA-DED-30-30-40 § 70-80)
 - Cadeaux > 73 € TTC par bénéficiaire/an
 - Dépenses de logement pour dirigeants
 - Services liés à des opérations exonérées sans droit à déduction

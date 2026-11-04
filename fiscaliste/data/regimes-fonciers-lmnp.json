@@ -37,6 +37,7 @@
       "Charges de copropriété (fraction non récupérable)"
     ],
     "deficit_foncier": {
+      "imputation_revenu_global": 10700,
       "report_annees": 10,
       "note_report_annees": "Le déficit non imputé sur le revenu global (fraction d'intérêts d'emprunt et excédent du plafond) se reporte sur les revenus fonciers des 10 années suivantes.",
       "source_report_annees": "Art. 156 I 3° CGI",

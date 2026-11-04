@@ -8,6 +8,7 @@
       "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2025/pdf_integral/Brochure-IR-2025.pdf (aide-mémoire : abattement AV 4 600 € / 9 200 € en 2024)"
     ]
   },
+
   "pea_classique": {
     "description": "Plan d'Épargne en Actions — enveloppe fiscale actions européennes",
     "plafond_versements": 150000,
@@ -33,6 +34,7 @@
       "strategie_cumul": "PEA pour performance actions européennes, AV pour diversification et transmission — les deux enveloppes sont complémentaires"
     }
   },
+
   "assurance_vie_rachats": {
     "description": "Fiscalité des rachats de vivant (distincte de la transmission — voir skill notaire)",
     "principe_proportionnalite": {

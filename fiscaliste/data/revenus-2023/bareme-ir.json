@@ -92,10 +92,16 @@
     "base_legale": "art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025)",
     "note": "Dispositif créé par la LFI 2025, applicable à partir des revenus 2025. Aucune CDHR due au titre des revenus 2023 : seule la CEHR s'applique.",
     "plancher_imposition": null,
-    "seuils_rfr": null,
-    "mecanisme": null,
-    "calendrier": null,
-    "perennisation": null,
+    "seuils_rfr": {
+      "celibataire_veuf_separe_divorce": null,
+      "couple_marie_pacse": null
+    },
+    "mecanisme": "Sans objet pour les revenus 2023 (CDHR applicable à partir des revenus 2025).",
+    "calendrier": {
+      "acompte": "Sans objet pour les revenus 2023 (CDHR applicable à partir des revenus 2025).",
+      "solde": "Sans objet pour les revenus 2023 (CDHR applicable à partir des revenus 2025)."
+    },
+    "perennisation": "Sans objet pour les revenus 2023 (CDHR applicable à partir des revenus 2025).",
     "source": "https://www.impots.gouv.fr/actualite/contribution-differentielle-sur-les-hauts-revenus-cdhr"
   }
 }

@@ -4,12 +4,14 @@
     "declaration": 2025,
     "source": "BOI-IR-LIQ-20-20-10 ; brochure pratique IR 2025 (aide-mémoire réductions et crédits d'impôt 2024)"
   },
+
   "plafonnement_global": {
     "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est perdu (pas reportable).",
     "plafond_metropole": 10000,
     "plafond_investissements_outre_mer": 18000,
     "note": "Le plafond s'applique APRÈS calcul de toutes les réductions, pas avant. Piège classique : cumuler Pinel + FCPI + outre-mer sans vérifier le plafond global."
   },
+
   "dispositifs_dans_plafond": {
     "note": "Dispositifs entrant dans le plafond global de 10 000 €",
     "liste": [
@@ -23,6 +25,7 @@
       "Investissement corse"
     ]
   },
+
   "dispositifs_hors_plafond": {
     "note": "Dispositifs exclus du plafond global — à vérifier systématiquement",
     "liste": [
@@ -35,6 +38,7 @@
       "Frais de scolarité des enfants (réduction forfaitaire 7EA/7EC/7EF)"
     ]
   },
+
   "exemples_avantages_classiques": {
     "dons_associations": {
       "taux_reduction_standard": 0.66,
@@ -44,17 +48,18 @@
       "note_aide_personnes": "Plafond majoré pour dons aux associations venant en aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.)"
     },
     "emploi_a_domicile": {
-      "taux_credit": 0.5,
+      "taux_credit": 0.50,
       "plafond_depenses_general": 12000,
       "majoration_enfants": "+1 500 € par enfant à charge (plafond max 15 000 €)",
       "note": "Crédit d'impôt — remboursé même si impôt nul"
     },
     "garde_enfant_exterieur": {
-      "taux_credit": 0.5,
+      "taux_credit": 0.50,
       "plafond_depenses_par_enfant": 3500,
       "age_limite": "Enfant de moins de 6 ans au 1er janvier"
     }
   },
+
   "frais_scolarite": {
     "cases": {
       "college": {
@@ -75,11 +80,7 @@
     },
     "conditions": "Enfant à charge ou rattaché, scolarisé au 31 décembre de l'année d'imposition",
     "garde_alternee": "Réduction divisée par deux entre les deux foyers (cases 7EB/7ED/7EG)",
-    "exclusions": [
-      "apprentissage",
-      "congé formation",
-      "contrat d'études avec l'employeur"
-    ],
+    "exclusions": ["apprentissage", "congé formation", "contrat d'études avec l'employeur"],
     "pieges": [
       "Job étudiant à côté des études (contrat sans lien avec la formation) : éligible — la condition BOFiP vise les contrats structurellement liés à la formation, pas un emploi indépendant",
       "Stage indemnisé obligatoire intégré au cursus : éligible (prévu explicitement par BOFiP BOI-IR-RICI-30)",
@@ -92,35 +93,23 @@
     "cgi": "art. 199 quater F",
     "source_verifiee": "2026-10-17"
   },
+
   "distinction_mecanismes": {
     "description": "Distinction fondamentale entre déduction, réduction et crédit",
     "deduction": {
       "sapplique_sur": "Revenu imposable (avant calcul de l'impôt)",
       "remboursable_si_excedent": "Non applicable",
-      "exemples": [
-        "PER",
-        "Pension alimentaire",
-        "CSG déductible"
-      ]
+      "exemples": ["PER", "Pension alimentaire", "CSG déductible"]
     },
     "reduction": {
       "sapplique_sur": "Impôt calculé",
       "remboursable_si_excedent": "Non — impôt minimum = 0",
-      "exemples": [
-        "Pinel",
-        "Dons",
-        "Malraux",
-        "FCPI"
-      ]
+      "exemples": ["Pinel", "Dons", "Malraux", "FCPI"]
     },
     "credit": {
       "sapplique_sur": "Impôt calculé",
       "remboursable_si_excedent": "Oui — remboursé si > impôt dû",
-      "exemples": [
-        "Emploi à domicile",
-        "Garde d'enfant",
-        "Cotisations syndicales"
-      ]
+      "exemples": ["Emploi à domicile", "Garde d'enfant", "Cotisations syndicales"]
     }
   }
 }

@@ -24,8 +24,8 @@
       "revenus": {
         "salaires_declarant1": 68000,
         "salaires_declarant2": 41000,
-        "revenus_fonciers_reels": 0,
-        "_commentaire_fonciers": "Résultat 2044 négatif : voir declaration_deposee.cases (4BB / 4BC) et reports."
+        "revenus_fonciers_reels": -3100,
+        "_commentaire_fonciers": "Part du déficit imputée sur le revenu global (4BC). Le reste du résultat 2044 : voir declaration_deposee.cases (4BB) et reports."
       },
       "deductions": { "per_declarant1": 0, "per_declarant2": 0 },
       "declaration_deposee": {
@@ -42,9 +42,9 @@
         },
         "avis": {
           "date_etablissement": "2024-07-25",
-          "revenu_fiscal_de_reference": 98400,
+          "revenu_fiscal_de_reference": 95000,
           "nombre_de_parts": 2.5,
-          "impot_net": 7450,
+          "impot_net": 13313,
           "prelevements_sociaux": 0
         },
         "reports": {
@@ -72,9 +72,9 @@
         "cases": { "4BA": 3600, "4BB": 0, "4BC": 0, "4BD": 1200 },
         "avis": {
           "date_etablissement": "2025-07-24",
-          "revenu_fiscal_de_reference": 106700,
+          "revenu_fiscal_de_reference": 104550,
           "nombre_de_parts": 3,
-          "impot_net": 8210,
+          "impot_net": 14114,
           "prelevements_sociaux": 413
         },
         "reports": { "deficits_fonciers": [], "deficits_lmnp": [], "amortissements_differes_lmnp": 0 }

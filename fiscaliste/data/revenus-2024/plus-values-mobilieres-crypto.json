@@ -9,6 +9,7 @@
       "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2025/pdf_integral/Brochure-IR-2025.pdf"
     ]
   },
+
   "plus_values_mobilieres": {
     "description": "Plus-values de cession de titres (actions, parts de société, OPC)",
     "regime_defaut": "PFU 30% (12.8% IR + 17.2% PS) sur le gain net",
@@ -16,28 +17,13 @@
     "abattements_duree_detention_avant_2018": {
       "description": "UNIQUEMENT si option barème progressif ET titres acquis avant le 1er janvier 2018",
       "abattement_droit_commun": [
-        {
-          "duree_annees": "≥ 2 et < 8",
-          "taux": 0.5
-        },
-        {
-          "duree_annees": "≥ 8",
-          "taux": 0.65
-        }
+        { "duree_annees": "≥ 2 et < 8", "taux": 0.50 },
+        { "duree_annees": "≥ 8", "taux": 0.65 }
       ],
       "abattement_renforce_pme": [
-        {
-          "duree_annees": "≥ 1 et < 4",
-          "taux": 0.5
-        },
-        {
-          "duree_annees": "≥ 4 et < 8",
-          "taux": 0.65
-        },
-        {
-          "duree_annees": "≥ 8",
-          "taux": 0.85
-        }
+        { "duree_annees": "≥ 1 et < 4", "taux": 0.50 },
+        { "duree_annees": "≥ 4 et < 8", "taux": 0.65 },
+        { "duree_annees": "≥ 8", "taux": 0.85 }
       ],
       "note": "L'abattement s'applique à l'IR uniquement, pas aux prélèvements sociaux"
     },
@@ -52,6 +38,7 @@
       "ordre_imputation": "PV de l'année d'abord, puis PV des 10 années suivantes dans l'ordre"
     }
   },
+
   "crypto_actifs": {
     "description": "Régime des particuliers — occasionnel (non professionnel)",
     "fait_generateur": [
@@ -87,11 +74,7 @@
         "Accès aux wallets : sans clé privée ou accès exchange transmis aux héritiers, les actifs sont définitivement perdus",
         "Déclaration de succession obligatoire : actifs numériques à l'actif successoral (art. 750 ter CGI)"
       ],
-      "sources": [
-        "art. 150 VH bis CGI",
-        "art. 750 ter CGI",
-        "BOI-RPPM-PVBMC-30"
-      ]
+      "sources": ["art. 150 VH bis CGI", "art. 750 ter CGI", "BOI-RPPM-PVBMC-30"]
     }
   }
 }

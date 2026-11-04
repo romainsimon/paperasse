@@ -46,7 +46,7 @@
       "enfant_celibataire": 3542,
       "enfant_marie_ou_pacse": 7084,
       "a_verifier": true,
-      "note_verification": "3 542 € confirmé pour 2020 par la fiche impots.gouv « Déclarer un enfant majeur ». 7 084 € = 2 × 3 542 €, obtenu par la même règle de doublement que le millésime 2025 (forfait par personne hébergée) : non trouvé tel quel dans une source officielle de 2021."
+      "note_verification": "3 542 € : aide-mémoire de la brochure IR 2024, colonne 2020 (https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_som/aide_memoire.pdf). 7 084 € = 2 × 3 542 €, obtenu par la même règle de doublement que le millésime 2025 (forfait par personne hébergée) : non trouvé tel quel dans une source officielle."
     },
     "note": "Pension déductible en espèces ou en nature (loyer, frais d'inscription…) dans le même plafond. Exclusif avec le rattachement pour le même enfant."
   },
@@ -73,8 +73,7 @@
     "minimum": 394,
     "maximum": 3858,
     "description": "Abattement sur pensions et retraites (case 1AS). Plafond par foyer.",
-    "a_verifier": true,
-    "note_verification": "Aucune source officielle de 2021 consultée ne cite ces deux montants. Ils résultent de l'indexation légale (art. 158-5-a CGI : même proportion que la limite de la 1re tranche, 10 064 → 10 084 €) appliquée aux montants revenus 2019 (393 € / 3 850 €, ce dernier cité par la réponse ministérielle QE n° 21770) : 393,78 → 394 € et 3 857,65 → 3 858 €."
+    "source": "Aide-mémoire de la brochure IR 2024, colonne 2020 : https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_som/aide_memoire.pdf"
   },
 
   "cehr": {

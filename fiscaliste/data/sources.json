@@ -321,7 +321,7 @@
       "update_frequency": "fige",
       "last_fetched": "2026-10-17",
       "next_check": null,
-      "check_instructions": "Millésime historique figé. Tranches 10 225 / 26 070 / 74 545 / 160 336, plafond QF 1 592 €, décote 790 € / 1 307 €, abattement 196 B 6 042 € vérifiés sur Légifrance. Abattements 10 % (448 / 12 829 ; 400 / 3 912) issus des barèmes IPP, cohérents avec l'indexation. Forfait hébergement enfant majeur (3 592 €) à confirmer."
+      "check_instructions": "Millésime historique figé. Tranches 10 225 / 26 070 / 74 545 / 160 336, plafond QF 1 592 €, décote 790 € / 1 307 €, abattement 196 B 6 042 € vérifiés sur Légifrance. Abattements 10 % (448 / 12 829 ; 400 / 3 912) et forfait hébergement enfant majeur (3 592 €) : aide-mémoire de la brochure IR 2024. Reste à confirmer le forfait doublé de 7 184 €."
     },
     {
       "id": "pfu-ps",
@@ -344,7 +344,7 @@
       "source_officielle": "PASS 2020 = PASS 2021 = 41 136 € (gel du PASS, arrêté du 22/12/2020)",
       "article_cgi": "art. 163 quatervicies CGI",
       "bofip": "BOI-IR-BASE-20-50-20",
-      "verification_manuelle": "https://www.lafinancepourtous.com/2021/01/15/plafond-annuel-de-la-securite-sociale-plafond-inchange-pour-2021/",
+      "verification_manuelle": "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_som/aide_memoire.pdf",
       "update_frequency": "fige",
       "last_fetched": "2026-10-17",
       "next_check": null,
@@ -744,20 +744,6 @@
       "last_fetched": "2026-10-17",
       "next_check": null,
       "check_instructions": "Millésime figé. Plancher 4 399 €, plafond 35 194 € (notice 2041 GX revenus 2024 et aide-mémoire brochure IR 2025)."
-    },
-    {
-      "id": "per-plafonds",
-      "name": "PER — plancher, plafond, mutualisation",
-      "file": "revenus-2025/per-plafonds.json",
-      "annee_revenus": 2025,
-      "source_officielle": "PASS 2024 = 46 368 € (plafond des versements 2025 calculé sur le PASS N-1)",
-      "article_cgi": "art. 163 quatervicies CGI",
-      "bofip": "BOI-IR-BASE-20-50-20",
-      "verification_manuelle": "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2026/pdf_som/12-charges_ded_rev_225a236.pdf",
-      "update_frequency": "fige",
-      "last_fetched": "2026-10-29",
-      "next_check": null,
-      "check_instructions": "Millésime figé (fichier, pas un lien vers la racine). Plancher 4 637 €, plafond 37 094 € (brochure pratique IR 2026, charges déductibles)."
     },
     {
       "id": "ifi",

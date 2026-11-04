@@ -5,14 +5,16 @@
     "reforme_applicable": "Aucune — la loi Le Meur (loi n° 2024-1039 du 19/11/2024) ne s'applique qu'à partir des revenus 2025. Seuils micro revalorisés pour 2020-2022 (art. 50-0 CGI).",
     "source": "BOI-BIC-CHAMP-40 ; art. 50-0 CGI (version applicable aux revenus 2021)"
   },
+
   "micro_foncier": {
     "description": "Régime simplifié pour revenus fonciers non meublés (location nue)",
     "seuil_recettes_brutes": 15000,
-    "abattement": 0.3,
+    "abattement": 0.30,
     "note": "Revenus fonciers bruts ≤ 15 000 € → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire. Exclusions (art. 32, 2 CGI ; BOI-RFPI-DECLA-10) : monuments historiques, immeubles en nue-propriété, déduction au titre de l'amortissement (Périssol, Besson neuf, Robien, Borloo neuf), déductions spécifiques (conventionnement Anah, Borloo ancien, Cosse, Scellier intermédiaire, Scellier ZRR, Robien ZRR), réductions logements touristiques (art. 199 decies EA et F), parts de SCI ou SCPI portant ces dispositifs. Parts de sociétés non soumises à l'IS ou de FPI : exclusion seulement si ce sont les seuls revenus fonciers du foyer. Les réductions Pinel, Duflot, Scellier et Denormandie n'excluent pas le micro-foncier.",
     "deficits_anterieurs": "Aucun déficit créé en micro, mais les déficits fonciers antérieurs encore reportables au 1er janvier de la 1re année micro s'imputent sur le revenu net micro-foncier (droit commun, 10 ans). Case 4BD.",
     "source_deficits_anterieurs": "BOI-RFPI-DECLA-10 § 170"
   },
+
   "regime_reel_foncier": {
     "description": "Revenus fonciers nets = recettes − charges déductibles",
     "forfait_frais_gestion": 20,
@@ -36,12 +38,13 @@
       "exception_interets": "Les intérêts d'emprunt NE sont JAMAIS imputables sur le revenu global, uniquement sur les revenus fonciers"
     }
   },
+
   "micro_bic_lmnp": {
     "description": "Régime micro pour locations meublées non professionnelles",
     "reforme_le_meur": "Non applicable aux revenus 2021 (loi Le Meur applicable à partir des revenus 2025). En 2021, la distinction est entre meublés de tourisme classés / chambres d'hôtes (176 200 €, 71 %) et autres locations meublées, y compris meublés de tourisme non classés (72 600 €, 50 %).",
     "lmnp_longue_duree": {
       "seuil": 72600,
-      "abattement": 0.5,
+      "abattement": 0.50,
       "note": "Location meublée hors meublé de tourisme classé — seuil 72 600 € (revalorisation triennale 2020-2022)"
     },
     "meuble_tourisme_classe": {
@@ -51,12 +54,13 @@
     },
     "meuble_tourisme_non_classe": {
       "seuil": 72600,
-      "abattement": 0.5,
+      "abattement": 0.50,
       "note": "Meublés de tourisme non classés : même régime que la location meublée classique en 2021 (72 600 €, 50 %). Au-delà : régime réel."
     },
     "deficits_anterieurs": "Aucun déficit créé en micro-BIC, mais les déficits LMNP des 10 années précédentes non encore imputés (cases 5GA à 5GJ, 2042 C-PRO) s'imputent sur le résultat micro-BIC net (recettes − abattement), dans la limite de ce résultat, les plus anciens d'abord. Jamais sur le revenu global.",
     "source_deficits_anterieurs": "Art. 156-I-1° ter CGI (« revenus provenant d'une telle activité », sans distinction de régime) ; BOI-BIC-CHAMP-40-20 § 250. Aucun § BOFiP ne nomme expressément le micro-BIC."
   },
+
   "lmnp_reel": {
     "description": "Permet l'amortissement du bien + mobilier + charges",
     "amortissement": {
@@ -67,6 +71,7 @@
     "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul ou déficitaire.",
     "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les revenus LMNP (réel ou micro-BIC) des 10 années suivantes, tant que l'activité reste non professionnelle (art. 156-I-1° ter CGI). Cases 5GA à 5GJ."
   },
+
   "lmp_vs_lmnp": {
     "description": "Bascule en LMP (Loueur Meublé Professionnel)",
     "seuils_cumulatifs": {
@@ -82,6 +87,7 @@
     },
     "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus professionnels. À surveiller annuellement."
   },
+
   "sci_ir": {
     "description": "SCI à l'IR (régime par défaut, transparence fiscale)",
     "principe": "Les revenus et charges remontent directement dans la déclaration des associés au prorata des parts",

@@ -35,6 +35,14 @@
  *     --montant 1000
  *     --jours 50
  *     [--base 365]
+ *
+ *   ik                                     // indemnites kilometriques (bareme fiscal)
+ *     --km 8000                            // kilometrage professionnel ANNUEL cumule
+ *     --cv 5                               // puissance administrative (CV)
+ *     [--vehicule auto|moto|cyclo]         // defaut: auto
+ *     [--electrique]                       // majoration vehicule 100 % electrique
+ *     [--deja-verse 2500]                  // IK deja versees sur l'annee
+ *     [--bareme data/bareme-kilometrique.json]
  */
 
 function fail(msg) {
@@ -273,6 +281,74 @@ function cmdTVAAcomptesRS(args) {
   ]);
 }
 
+function parseKmRateToMillis(value, label) {
+  const raw = String(value).trim().replace(",", ".");
+  if (!/^\d+(\.\d{1,3})?$/.test(raw)) fail("taux kilometrique invalide (" + label + "): " + value);
+  const [euros, decimals = ""] = raw.split(".");
+  return BigInt(euros + decimals.padEnd(3, "0")); // 1 EUR = 1000 millis
+}
+
+function loadBareme(file) {
+  const fs = require("fs");
+  const path = require("path");
+  const resolved = path.resolve(file || path.join(__dirname, "..", "data", "bareme-kilometrique.json"));
+  if (!fs.existsSync(resolved)) fail("bareme introuvable: " + resolved);
+  return JSON.parse(fs.readFileSync(resolved, "utf8"));
+}
+
+function cmdIK(args) {
+  const km = BigInt(parseIntStrict(args.km, "km"));
+  if (km < 0n) fail("--km doit etre >= 0");
+  if (km > 1000000n) fail("--km invraisemblable (> 1 000 000)");
+  const vehicule = args.vehicule || "auto";
+  const bareme = loadBareme(args.bareme);
+  const categories = Object.prototype.hasOwnProperty.call(bareme.vehicules, vehicule) ? bareme.vehicules[vehicule] : null;
+  if (!categories) fail("--vehicule inconnu: " + vehicule + " (attendu: " + Object.keys(bareme.vehicules).join(", ") + ")");
+
+  if (args.cv !== undefined && parseIntStrict(args.cv, "cv") < 1) fail("--cv doit etre >= 1");
+
+  let categorie;
+  if (categories.length === 1) {
+    categorie = categories[0];
+  } else {
+    const cv = parseIntStrict(args.cv, "cv");
+    categorie = categories.find((c) => (c.cv_min === null || cv >= c.cv_min) && (c.cv_max === null || cv <= c.cv_max));
+    if (!categorie) fail("aucune categorie de puissance pour --cv " + cv);
+  }
+
+  const tranche = categorie.tranches.find((t) => t.km_max === null || km <= BigInt(t.km_max));
+  if (!tranche) fail("aucune tranche pour " + km + " km");
+
+  const tauxMillis = parseKmRateToMillis(tranche.taux_km, categorie.libelle);
+  const fixeCents = parseAmountToCents(String(tranche.fixe), "fixe");
+  if (args.electrique !== undefined && ![true, "true", "false"].includes(args.electrique)) {
+    fail("--electrique ne prend pas de valeur (ou true/false): " + args.electrique);
+  }
+  const electrique = args.electrique === true || args.electrique === "true";
+  const millis = km * tauxMillis + fixeCents * 10n;
+  const majorationPct = electrique ? BigInt(bareme.majoration_electrique_pct) : 0n;
+  const annuelle = roundDivSigned(millis * (100n + majorationPct), 1000n); // un seul arrondi, au centime
+
+  const dejaVerse = args["deja-verse"] !== undefined ? parseAmountToCents(args["deja-verse"], "deja-verse") : 0n;
+  if (dejaVerse < 0n) fail("--deja-verse doit etre >= 0");
+  const regularisation = annuelle - dejaVerse;
+
+  const rows = [
+    ["Bareme", bareme.libelle],
+    ["Categorie", categorie.libelle],
+    ["Tranche", tranche.libelle],
+    ["Formule", "IK annuelle = km annuels x " + String(tranche.taux_km).replace(".", ",") + (fixeCents > 0n ? " + " + formatCents(fixeCents) : "")],
+    ["Km annuels", String(km)],
+  ];
+  if (electrique) rows.push(["Majoration electrique", bareme.majoration_electrique_pct + " %"]);
+  rows.push(["IK annuelle", formatCents(annuelle)]);
+  if (args["deja-verse"] !== undefined) {
+    rows.push(["Deja verse", formatCents(dejaVerse)]);
+    rows.push([regularisation >= 0n ? "Complement a verser" : "Trop-verse a regulariser", formatCents(regularisation < 0n ? -regularisation : regularisation)]);
+  }
+  printResult("Calcul Indemnites Kilometriques", rows);
+}
+
 function help() {
   console.log("Calculateur comptable/fiscal deterministe");
   console.log("");
@@ -284,6 +360,7 @@ function help() {
   console.log("  is");
   console.log("  tva-acomptes-rs");
   console.log("  prorata");
+  console.log("  ik");
 }
 
 function main() {
@@ -311,6 +388,9 @@ function main() {
     case "prorata":
       cmdProrata(args);
       break;
+    case "ik":
+      cmdIK(args);
+      break;
     default:
       fail("commande inconnue: " + cmd + ". Lancez: node scripts/calc.js --help");
   }
@@ -323,6 +403,7 @@ if (require.main === module) {
 module.exports = {
   cmdAmortissementLineaire,
   cmdCCA,
+  cmdIK,
   cmdIS,
   cmdProrata,
   cmdTVAAcomptesRS,

@@ -9,5 +9,6 @@ Jeu de foyers typiques pour illustrer les cas principaux couverts par le skill. 
 | [foyer-lmnp-foncier.json](foyer-lmnp-foncier.json) | Couple pacsé avec foncier réel + LMNP | Déficit foncier (10 700 €), LMNP amortissement |
 | [foyer-ifi-cehr.json](foyer-ifi-cehr.json) | Couple TMI 45 %, IFI, CEHR | Plafonnement IFI 75 %, CEHR progressive, plafond niches 10 k€ |
 | [foyer-expatrie-non-resident.json](foyer-expatrie-non-resident.json) | Non-résident (Portugal) | Taux minimum non-résident, retenue à la source, convention fiscale |
+| [foyer-reductions-credits.json](foyer-reductions-credits.json) | Couple marié, 2 enfants, Pinel + salarié à domicile + crèche | Plafonnement global des niches (13 350 € > 10 000 €), avance RICI de janvier dans le solde (`calc_ir.py` : bloc `reductions_credits`) |
 
 Le fichier [`foyer.example.json`](../foyer.example.json) à la racine reste le **template canonique** à copier (structure complète commentée). Ces exemples sont des **scénarios concrets** simplifiés pour évaluer le skill ou démonstration.

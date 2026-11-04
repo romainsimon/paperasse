@@ -11,7 +11,7 @@ Voir `data/pea-assurance-vie.json` pour les taux et seuils.
 | Plan | Plafond |
 |------|---------|
 | PEA classique | 150 000 € |
-| PEA-PME | Variable (à vérifier) — plafond combiné avec PEA ≤ 225 000 € |
+| PEA-PME | 225 000 €, plafond commun avec le PEA : PEA + PEA-PME ≤ 225 000 €, dont PEA ≤ 150 000 € (art. L. 221-32-1 CMF) |
 | PEA jeune (enfant majeur rattaché) | 20 000 € |
 
 Les plafonds concernent les **versements**, pas la valeur du plan. Un plan peut dépasser 150 000 € de valorisation grâce aux gains.
@@ -23,9 +23,9 @@ Les plafonds concernent les **versements**, pas la valeur du plan. Un plan peut 
 - **Tout retrait entraîne la clôture** du plan
 - Imposition des gains : 12,8 % IR (ou barème sur option globale) + PS produits de placement, 17,2 % pour un retrait en 2025 puis **18,6 % à compter du 01/01/2026** (LFSS 2026), soit PFU 31,4 %
 
-**Exceptions** (clôture sans pénalité) :
-- Licenciement, invalidité, mise à la retraite
-- Création/reprise d'entreprise (réinvestissement dans les 3 mois)
+**Exceptions** (BOI-ANNX-000072, version du 30/07/2024 ; BOI-RPPM-RCM-40-50-40) : deux cas évitent la clôture, avec des effets différents.
+- **Création ou reprise d'entreprise** (par le titulaire, son conjoint ou partenaire, un ascendant ou un descendant), sommes affectées dans les 3 mois : pas de clôture, gain **exonéré d'IR**, prélèvements sociaux dus, mais **plus aucun versement possible** ensuite.
+- **Licenciement, invalidité ou mise à la retraite anticipée** du titulaire, de son conjoint ou partenaire, ou liquidation judiciaire de la société dont les titres figurent au plan : pas de clôture et versements toujours possibles, mais le gain reste **imposable** (12,8 % ou barème sur option, plus PS). Déclaration en 3VT (2042 C) dans les deux cas de retrait imposable.
 
 #### Après 5 ans
 
@@ -33,12 +33,12 @@ Les plafonds concernent les **versements**, pas la valeur du plan. Un plan peut 
 - **EXONÉRATION TOTALE d'IR** sur les gains
 - **Prélèvements sociaux** dus sur les gains à chaque retrait, au taux applicable à la date du retrait :
   - **Retraits avant le 01/01/2026** : 17,2 %
-  - **Retraits à partir du 01/01/2026** : **18,6 %** (LFSS 2026, art. 12, modifiant L. 136-7 CSS) — applicable sur la **totalité du gain au retrait**, y compris la fraction acquise avant 2026
+  - **Retraits à partir du 01/01/2026** : **18,6 %** (LFSS 2026, art. 12, modifiant L. 136-7 CSS) sur le gain constaté au retrait, sous réserve des « taux historiques » ci-dessous
 - Référence : les gains PEA sont qualifiés de "produits de placement" (PS prélevés à la source au moment du retrait), pas de "revenus du patrimoine"
 
 ### Taux historiques PS
 
-Les gains acquis avant certaines dates peuvent bénéficier de taux PS historiques plus faibles (par couches, selon l'historique des taux). Point technique rarement exploité manuellement — le PEA applique automatiquement la règle.
+Pour un plan ouvert avant 2018, la fraction du gain acquise avant le 01/01/2018 (et, pour les plans qui avaient moins de 5 ans à cette date, la fraction acquise pendant les 5 premières années du plan, au plus tard fin 2022) reste taxée aux taux en vigueur lors de son acquisition (« taux historiques », LFSS 2018 art. 8, V-C). La LFSS 2026 (art. 12, II-2°) exclut en outre de la hausse à 18,6 % ces produits « acquis ou constatés avant le 1er janvier 2026 » ; la portée exacte de cette clause n'est pas encore commentée au BOFiP (BOI-RPPM-PSOC). Calcul par couches fait par l'établissement : ne pas le reconstituer à la main, lire le relevé.
 
 ### Composition éligible
 
@@ -111,27 +111,53 @@ Taux dégressif selon ancienneté du contrat. Prélèvement libératoire (PFL) o
 
 #### Versements après le 27 septembre 2017
 
-**Règle** : PFU 30% sur les gains, avec modulation selon encours et ancienneté.
+**Règle** : PFU 30 % sur les gains (12,8 % IR + 17,2 % PS, l'assurance-vie restant à 17,2 % après la LFSS 2026), avec un taux d'IR réduit à 7,5 % selon l'ancienneté du contrat et le montant des **primes** versées (pas l'encours).
 
 | Situation | Taux |
 |-----------|------|
-| Contrat < 8 ans | PFU 30% (12,8% IR + 17,2% PS) |
-| Contrat ≥ 8 ans, encours < 150 000 € | PFU 24,7% (7,5% IR + 17,2% PS) après abattement |
-| Contrat ≥ 8 ans, encours ≥ 150 000 € | PFU 30% sur la fraction au-delà de 150 000 € de **versements nets** |
+| Contrat < 8 ans | 12,8 % IR + 17,2 % PS (30 %) |
+| Contrat ≥ 8 ans, primes nettes ≤ 150 000 € | 7,5 % IR (après abattement de 4 600 / 9 200 €) + 17,2 % PS (24,7 %) ; cases 2VV |
+| Contrat ≥ 8 ans, primes nettes > 150 000 € | 7,5 % sur la fraction des produits correspondant à 150 000 € de primes, 12,8 % au-delà (case 2WW) ; PS 17,2 % sur tout |
 
-**Seuil 150 000 €** : s'apprécie sur l'ensemble des contrats AV du foyer, au moment du rachat.
+**Seuil 150 000 €** (art. 200 A, 1-B-2° et art. 125-0 A, II-2°-b CGI ; BOI-RPPM-RCM-20-15 § 140 à 190) :
+- **seuil personnel**, par bénéficiaire du rachat, et non par foyer : dans un couple, chacun a son propre seuil de 150 000 € (co-souscription : en principe la totalité des primes du contrat est retenue pour chaque co-souscripteur ; par tolérance, la moitié pour les époux et partenaires de Pacs, § 170) ;
+- apprécié sur les **primes versées non remboursées au 31 décembre de l'année qui précède le rachat**, tous contrats d'assurance-vie et de capitalisation du bénéficiaire confondus, français ou étrangers, quel que soit leur régime ;
+- fraction des produits à 7,5 % = produits × (150 000 € − primes antérieures au 27/09/2017 non remboursées) / primes postérieures au 27/09/2017 non remboursées (§ 190).
 
 ### Option barème
 
-**Avantageuse si TMI ≤ 11%** — le barème peut être meilleur que le PFU après 8 ans (car abattement annuel + taux IR faible).
+**Avantageuse surtout pour un foyer non imposable (TMI 0 %)**. Après 8 ans, à TMI 11 %, le barème (11 % moins l'économie de CSG déductible, soit environ 10,25 %) reste plus cher que le PFU à 7,5 % ; il ne devient intéressant que sur la fraction des produits taxée à 12,8 % (primes au-delà de 150 000 €). L'option étant globale, chiffrer sur l'ensemble des revenus du capital de l'année.
 
-Option **globale** et irrévocable pour l'année.
+Option **globale** pour l'année (tous les revenus de capitaux mobiliers et plus-values). Irrévocable jusqu'aux revenus 2025 ; la LFI 2026 (loi n° 2026-103, art. 126 ; art. 200 A CGI) a supprimé ce caractère irrévocable (brochure IR 2026, nouveautés).
+
+**Important** : l'abattement annuel (4 600 EUR / 9 200 EUR après 8 ans) s'applique **aussi bien au PFU qu'au barème** — ce n'est pas un avantage propre à l'option barème. La comparaison PFU vs barème se fait donc à abattement égal : seul le taux d'IR diffère : 7,5 % sous PFU sur les produits liés aux primes jusqu'à 150 000 € et 12,8 % au-delà, contre la TMI sous barème, avec en plus la CSG déductible de 6,8 points sous barème.
 
 ### Contrats très anciens (avant 1983)
 
 Régime de faveur pour les contrats souscrits **avant le 1er janvier 1983** : exonération totale d'IR sur les gains.
 
 Extrêmement rare — à vérifier si le contrat est très ancien.
+
+## PV Latentes au Décès — Fiscalité Spécifique
+
+> **Périmètre** : ce qui suit concerne la fiscalité au décès de l'assuré. La transmission successorale AV (990 I / 757 B) est couverte par le skill `notaire`.
+
+**Le décès n'est pas un fait générateur de l'IR.** Les gains non réalisés au moment du décès ne sont jamais soumis à la fiscalité des rachats au titre de l'IR — mais, pour les UC, les **prélèvements sociaux restent dus** (voir ci-dessous).
+
+| Support | Sort des gains latents au décès |
+|---------|----------------------------------|
+| Unités de compte (UC) | **IR** définitivement exonéré (le décès n'est pas un rachat) — mais **PS dus** sur les gains constatés au dénouement, nets des PS déjà acquittés le cas échéant |
+| Fonds en euros | PS déjà prélevés annuellement (au fil de l'eau) ; IR jamais dû (pas de rachat) |
+
+**Attention — piège fréquent : les PV latentes en UC ne sont PAS exonérées de prélèvements sociaux au décès.** Depuis la LFSS 2010 (art. L136-7 II 3° CSS), l'assureur prélève les PS sur les gains constatés en UC lors du dénouement par décès et les déduit du capital avant versement aux bénéficiaires. Saisi de ce mécanisme, le Conseil d'État a refusé d'admettre le pourvoi et de renvoyer la QPC, en jugeant que le souscripteur « a seul la qualité de contribuable » et que le prélèvement opéré par l'assureur « n'a ni pour objet ni pour effet d'assujettir ce bénéficiaire à une imposition » (CE 18/02/2026, n° 504077, pts 7 et 8 — inédit au Lebon, la décision ne tranchant pas le fond). **Seul l'IR est définitivement évité — pas les PS.**
+
+**Conséquence** : un contrat AV avec 300 000 EUR de PV latentes en UC transmet ces gains sans IR (7,5 % ou 12,8 % selon l'âge du contrat et les primes, s'il s'était agi d'un rachat), mais l'assureur prélève environ 51 600 EUR de PS (17,2%) avant versement du capital aux bénéficiaires. La fiscalité successorale (990 I ou 757 B) s'applique ensuite — son assiette est la valeur de rachat au jour du décès, plafonnée au capital réellement versé, donc net des PS prélevés (BOI-TCAS-AUT-60 § 180 et 190). Ni l'art. 990 I ni le BOFiP n'énoncent de déduction d'assiette au titre des PS : l'effet passe par ce plafond.
+
+**Pourquoi 17,2 % et non 18,6 %** : la LFSS 2026 (art. 12) porte la CSG sur les revenus du capital de 9,2 % à 10,6 %, soit 18,6 % de PS, mais les produits du 3° du II de l'art. L. 136-7 CSS — dont les gains UC constatés au dénouement par décès, et les intérêts des fonds en euros inscrits en compte — sont visés par la dérogation à 9,2 % du IV de l'art. L. 136-8 CSS (IV, 4°). Les PS de l'assurance-vie restent donc à **17,2 %**, conformément à `data/pfu-prelevements-sociaux.json` (`taux_inchanges_17_2`).
+
+Point souvent mal compris : **seul l'IR est purgé au décès sur les PV latentes en UC — les PS restent dus**. C'est différent des fonds en euros, où les PS ont déjà été prélevés au fil de l'eau (rien à prélever de plus au décès), et différent aussi du régime des cryptoactifs (voir `crypto.md`), où IR et PS sont tous deux purgés au décès — ne pas transposer ce raisonnement à l'assurance-vie en UC.
+
+**Ne pas transposer au PER assurantiel non plus** (voir `per.md`) : au décès du titulaire d'un PER, c'est l'âge **au décès** qui commande le régime de transmission — art. 990 I avant 70 ans, art. 757 B après, l'assiette portant alors sur l'intégralité des sommes dues, produits compris (BOI-TCAS-AUT-60 § 55 ; BOI-ENR-DMTG-10-10-20-20 § 155 et 197). L'âge au versement des primes, déterminant pour l'assurance-vie, est ici sans effet. Détail dans le skill `notaire`.
 
 ## Stratégies courantes
 
@@ -154,23 +180,24 @@ L'ancienneté compte. Un contrat ouvert avec 100 € prend date → 8 ans plus t
 
 ### Rachats PEA
 
-- Pas de déclaration spécifique tant que le plan n'est pas clôturé
-- À la clôture : 2042 case 3VT (gains PEA imposables)
-- PS prélevés par l'établissement
+- Retrait ou rachat **avant 5 ans**, avec clôture ou sans clôture (licenciement, invalidité, retraite anticipée) : gain net en case **3VT** de la 2042 C (« Gain sur retrait ou rachat du PEA ou du PEA-PME avant expiration de la 5e année ») ; retrait pour création d'entreprise exonéré d'IR : rien en 3VT
+- **Après 5 ans** : rien à déclarer, PS prélevés par l'établissement
 
-### Rachats AV
+### Rachats AV (2042 millésime 2026, cadre 2)
 
-- 2042 case 2CG (gains imposables au PFU)
-- 2042 case 2BH (gains imposables au barème si option)
-- Attestation annuelle de l'assureur requise
+- Produits des primes versées **avant le 27/09/2017**, contrat ≥ 8 ans : 2DH (produits soumis au prélèvement libératoire), 2CH (autres produits, imposés au barème)
+- Produits des primes versées **depuis le 27/09/2017**, contrat ≥ 8 ans : **2VV** (fraction imposable à 7,5 %, primes ≤ 150 000 €) et **2WW** (fraction à 12,8 %, primes > 150 000 €)
+- Contrat < 8 ans : primes versées avant le 27/09/2017 en 2XX (produits soumis au prélèvement libératoire) ou 2YY (autres produits) ; primes versées depuis le 27/09/2017 en 2ZZ (2042 millésime 2026 ; vérifier l'IFU de l'assureur)
+- **2CG et 2BH ne déclarent pas le gain** : elles signalent les revenus déjà soumis aux prélèvements sociaux par l'assureur (2CG sans CSG déductible, 2BH avec CSG déductible si option barème), pour éviter une seconde perception des PS
+- Attestation annuelle (IFU) de l'assureur requise
 
 ## Pièges fréquents
 
 1. **Oublier la proportionnalité** → surévaluer ce qu'on peut retirer "sans impôt"
 2. **8 ans du versement** au lieu du contrat → mauvais calcul
-3. **Seuil 150 000 € en global** (tous contrats AV du foyer), pas par contrat
-4. **Option barème irrévocable** pour l'année
-5. **Retrait PEA avant 5 ans** pour un petit besoin → clôture automatique
+3. **Seuil 150 000 €** : personnel (par bénéficiaire, pas par foyer ni par contrat), apprécié sur les primes non remboursées au 31/12 N-1, tous contrats du bénéficiaire confondus
+4. **Option barème globale** : elle engage tous les revenus du capital de l'année (plus irrévocable depuis la LFI 2026)
+5. **Retrait PEA avant 5 ans** pour un petit besoin → clôture automatique (sauf les deux cas d'exception, aux effets différents)
 6. **PEA composé d'actions non éligibles** → régularisation DGFIP possible
 
 ## Références CGI / BOFiP
@@ -178,5 +205,6 @@ L'ancienneté compte. Un contrat ouvert avec 100 € prend date → 8 ans plus t
 - PEA : art. 163 quinquies D CGI, art. L. 221-30 Code monétaire et financier
 - Assurance-vie fiscalité rachats : art. 125-0 A CGI
 - Abattement annuel AV : art. 125-0 A-I-2° CGI
-- Seuil 150 000 € : art. 125-0 A-I-2° bis CGI
-- BOFiP : BOI-RPPM-RCM-40-50 (PEA) et BOI-RPPM-RCM-20-10-20-50 (AV)
+- Seuil 150 000 € : art. 200 A, 1-B-2° CGI (renvoi au b du 2 du II de l'art. 125-0 A)
+- PEA-PME : art. L. 221-32-1 CMF
+- BOFiP : BOI-RPPM-RCM-40-50 et BOI-ANNX-000072 (PEA, tableau des retraits), BOI-RPPM-RCM-20-10-20-50 et BOI-RPPM-RCM-20-15 (AV, seuil de 150 000 €)

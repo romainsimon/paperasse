@@ -56,8 +56,8 @@ Pour un exercice de moins de 12 mois :
 **Art. 39-1-3° CGI** — Intérêts des comptes courants
 > Les intérêts servis aux associés à raison des sommes qu'ils laissent ou mettent à la disposition de la société, en sus de leur part du capital [...] dans la limite du taux moyen des prêts à taux variable.
 
-**Art. 212 CGI** — Plafonnement intérêts
-> Les intérêts servis aux associés [...] ne sont déductibles que dans la mesure où le capital a été entièrement libéré.
+**Art. 212 CGI** : intérêts entre entreprises liées et associées
+> Les intérêts servis au-delà du taux de l'art. 39-1-3° restent déductibles si l'entreprise prouve qu'elle aurait pu obtenir ce taux d'établissements financiers indépendants (I-a) ; extension aux entreprises associées non liées pour les exercices clos à compter du 31/12/2025 (LF 2026, art. 14). La condition de capital entièrement libéré relève de l'art. 39-1-3°.
 
 ### Pénalités
 

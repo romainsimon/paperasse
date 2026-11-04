@@ -515,6 +515,69 @@
         "Le skill mentionne la majoration de 80 % (art. 1729-0 A) en cas de rectification de revenus liés",
         "Le skill mentionne le délai de reprise de 10 ans (art. L. 169 LPF) et la condition des 50 000 € pour les comptes",
         "Le skill mentionne la présomption de revenus sur les transferts via un compte non déclaré, réfragable (preuve contraire)"
+        ]
+      },
+      {
+      "id": 57,
+      "name": "annee-depart-juillet-pinel",
+      "prompt": "Je suis parti m'installer à l'étranger le 15 juillet 2025 (je n'ai plus aucun lien avec la France sauf deux appartements loués nus au régime réel). L'un des deux est un Pinel acheté en 2020, quand j'habitais en France. Comment je déclare mes revenus 2025 en 2026, auprès de quel service, et est-ce que je perds ma réduction Pinel ?",
+      "expected_output": "Année du départ = une seule imposition sur deux périodes (art. 167 CGI, BOI-IR-DOMIC-20) : une déclaration 2042 pour l'ensemble des revenus du 01/01 au 15/07/2025, et une 2042-NR pour les revenus de source française perçus après le départ (date de départ indiquée sur la 2042-NR). Une seule 2044 pour l'année entière, résultat ventilé au prorata entre la 2042 et la 2042-NR (lignes 4BA/4BB/4BC). Dépôt auprès du dernier service des impôts des particuliers ; le SIPNR devient gestionnaire ensuite. Pas de déclaration provisoire au départ. Pinel : investissement réalisé à compter du 01/01/2019 alors que le contribuable était domicilié en France, le départ n'entraîne pas de remise en cause et la réduction continue de s'imputer sur l'impôt calculé selon l'art. 197 A, sans remboursement de l'excédent (BOI-IR-RICI-360-40 § 90 ; brochure IR 2026 p. 65). Les revenus fonciers restent soumis aux acomptes du PAS. Impôt de la période non-résident : taux minimum 20 %/30 % (seuil 29 579 € pour 2025) ou taux moyen sur option. Réserve sur l'application d'une convention fiscale.",
+      "files": [],
+      "assertions": [
+        "Le skill indique deux déclarations l'année du départ : 2042 (revenus du 1er janvier à la date de départ) et 2042-NR (revenus de source française après le départ)",
+        "Le skill précise qu'il s'agit d'une seule imposition et non de deux avis distincts",
+        "Le skill indique une seule 2044 pour l'année entière dont le résultat est réparti au prorata entre 2042 et 2042-NR",
+        "Le skill indique le dépôt auprès du dernier service des impôts, le SIPNR devenant gestionnaire ensuite",
+        "Le skill indique que la réduction Pinel n'est pas remise en cause par le départ et reste imputable pour un investissement réalisé à compter du 01/01/2019, sans remboursement",
+        "Le skill NE dit PAS que le départ entraîne la reprise de la réduction Pinel",
+        "Le skill mentionne le taux minimum de l'article 197 A et l'option pour le taux moyen",
+        "Le skill renvoie à la convention fiscale applicable sans en détailler une"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "foncier-non-resident-ps-7-5",
+      "prompt": "Je vis en Espagne depuis 2023, je suis affilié à la sécurité sociale espagnole et je ne cotise plus à aucun régime français. Mon seul revenu en France : un appartement loué nu, 12 000 € de revenu foncier net (réel) en 2025. Combien je paie d'impôt et de prélèvements sociaux en France ?",
+      "expected_output": "Revenus fonciers d'un immeuble situé en France : imposables en France (art. 164 B CGI ; principe de l'art. 6 du modèle OCDE, convention à vérifier). IR : barème mais taux minimum de 20 % jusqu'à 29 579 € (revenus 2025, art. 197 A) → 12 000 × 20 % = 2 400 €, sauf option pour le taux moyen (case 8TM + 2041-TM, revenu mondial) s'il est plus favorable. Pas de décote. Prélèvements sociaux : personne affiliée à un régime de sécurité sociale d'un État de l'EEE et non à la charge d'un régime français → exonérée de CSG et CRDS (art. L. 136-6 I ter CSS), reste redevable du prélèvement de solidarité de 7,5 % (art. 235 ter CGI) → 900 € au lieu de 17,2 % (2 064 €). L'exonération n'est pas automatique : cocher 8SH/8SI sur la 2042-C, affiliation effective au 31/12. Les revenus fonciers restent soumis aux acomptes du PAS.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que les revenus fonciers d'un immeuble situé en France sont imposables en France",
+        "Le skill applique le taux minimum de 20 % (revenu ≤ 29 579 € pour les revenus 2025), soit 2 400 €",
+        "Le skill mentionne l'option pour le taux moyen calculé sur le revenu mondial (8TM / 2041-TM) si plus favorable",
+        "Le skill applique 7,5 % de prélèvement de solidarité (900 €) et non 17,2 % ni 18,6 %",
+        "Le skill indique que l'exonération de CSG/CRDS suppose une affiliation à un régime EEE/Suisse/Royaume-Uni et l'absence de prise en charge par un régime français",
+        "Le skill indique les cases 8SH/8SI et que l'exonération n'est pas automatique",
+        "Le skill NE fait PAS bénéficier le non-résident de la décote"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "vente-ex-rp-14-mois-apres-depart",
+      "prompt": "J'ai quitté la France pour le Portugal fin juin 2025. Mon ancienne résidence principale à Lyon est restée vide depuis, je la vends en août 2026 (14 mois après mon départ). Est-ce que je paie une plus-value en France ? Et si je l'avais louée entre-temps ?",
+      "expected_output": "Cession par un non-résident : régime de l'art. 244 bis A CGI (19 % + PS). Exonération de l'ancienne résidence principale (art. 244 bis A I-1, cessions depuis 2019 ; BOI-RFPI-PVINR-10-20 § 440 à 530) si : logement = résidence principale au jour du transfert ; départ vers un État de l'UE ou lié par conventions d'assistance administrative et de recouvrement ; cession au plus tard le 31/12 de l'année suivant le transfert (ici 31/12/2026 → août 2026 respecte le délai) ; pas de mise à disposition de tiers entre le départ et la vente ; pas de bénéfice antérieur de l'art. 150 U II 2°. Ici exonération totale. Si le bien a été loué (ou prêté) entre-temps : exonération perdue ; reste l'exonération de l'art. 150 U II 2° plafonnée à 150 000 € de plus-value nette (ressortissant UE/EEE, 2 ans de domicile continu en France, cession dans les 10 ans), non cumulable. Excédent : 19 % + PS (7,5 % seulement si affilié à un régime de sécurité sociale UE/EEE/Suisse et non à la charge d'un régime français).",
+      "files": [],
+      "assertions": [
+        "Le skill identifie l'exonération de l'ancienne résidence principale des non-résidents (art. 244 bis A CGI)",
+        "Le skill cite la condition de cession au plus tard le 31 décembre de l'année suivant celle du départ et conclut qu'une vente en août 2026 la respecte",
+        "Le skill cite la condition d'absence de mise à disposition de tiers entre le départ et la cession",
+        "Le skill cite la condition de transfert vers un État de l'UE ou lié par des conventions d'assistance",
+        "Le skill indique que la location entre-temps fait perdre cette exonération",
+        "Le skill mentionne l'exonération alternative de 150 000 € (art. 150 U II 2°) et son caractère non cumulable",
+        "Le skill NE dit PAS que l'exonération de la résidence principale de droit commun (vendeur résident) s'applique telle quelle"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "versement-per-apres-depart",
+      "prompt": "Je pars vivre à l'étranger en mars 2026. Je garde un appartement loué en France (environ 10 000 €/an de loyers nets) et mon nouveau salaire sera payé à l'étranger. Si je verse 10 000 € sur mon PER en novembre 2026, est-ce que je pourrai le déduire ?",
+      "expected_output": "Après le départ, le contribuable est non-résident : aucune charge du revenu global ne peut être déduite de ses revenus de source française (art. 164 A CGI ; brochure IR 2026 p. 65). La déduction des versements PER (art. 163 quatervicies) est une déduction du revenu global → non admise pour un versement effectué pendant la période de non-résidence. La 2042-NR ne comporte pas de case de versements d'épargne retraite (rubrique 6 limitée à la CSG déductible). Exception : non-résident « Schumacker » (revenus de source française ≥ 75 % du revenu mondial, BOI-IR-DOMIC-40 § 30 et 90) — non rempli ici puisque le salaire est étranger. Un versement effectué avant la date de départ relève de la période de résidence (2042) : traitement à vérifier, la doctrine consultée n'étant pas explicite. Pas de conseil d'optimisation au-delà.",
+      "files": [],
+      "assertions": [
+        "Le skill indique qu'un versement PER effectué après le départ n'est pas déductible pour un non-résident (art. 164 A CGI)",
+        "Le skill explique que la déduction PER est une charge du revenu global",
+        "Le skill mentionne l'exception des non-résidents Schumacker (≥ 75 % des revenus de source française) et constate qu'elle ne s'applique pas ici",
+        "Le skill distingue le versement effectué avant le départ (période de résidence) de celui effectué après",
+        "Le skill NE promet PAS une économie d'impôt au taux marginal sur le versement de novembre 2026"
       ]
     }
   ]

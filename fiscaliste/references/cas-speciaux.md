@@ -2,24 +2,9 @@
 
 ## Non-résidents fiscaux
 
-### Définition résidence fiscale
+Départ de France, année du départ (2042 + 2042-NR), taux minimum 20 % / 30 % (art. 197 A CGI) et option pour le taux moyen, non-résidents « Schumacker », revenus fonciers et prélèvements sociaux (7,5 % pour les affiliés à un régime de sécurité sociale de l'EEE, de la Suisse ou du Royaume-Uni), Pinel après le départ, vente de l'ancienne résidence principale et exit tax : voir [non-residents.md](non-residents.md).
 
-Un contribuable est résident fiscal français si l'un de ces critères est rempli (article 4 B CGI) :
-- Foyer ou lieu de séjour principal en France
-- Exercice d'une activité professionnelle principale en France
-- Centre des intérêts économiques en France
-
-**La nationalité n'est pas un critère.**
-
-### Règles applicables aux non-résidents
-
-- Imposés uniquement sur les **revenus de source française** (article 164 A CGI)
-- Taux minimum : 20% sur la fraction ≤ 27 519 € et 30% au-delà (revenus 2025)
-- Pas de quotient familial au-delà de 2 parts
-- Pas de décote
-- Application des conventions fiscales bilatérales (crédit d'impôt, exonérations)
-
-**Ce skill ne couvre PAS la fiscalité des non-résidents en détail.** Pour les cas complexes, orienter vers un avocat fiscaliste spécialisé en fiscalité internationale.
+Critères du domicile fiscal : article 4 B CGI (foyer ou lieu de séjour principal, activité professionnelle principale, centre des intérêts économiques). La nationalité n'est pas un critère. Les conventions fiscales priment sur le droit interne : pour les cas complexes (double résidence, revenus d'activité, dirigeants), orienter vers un avocat fiscaliste spécialisé en fiscalité internationale.
 
 ## Revenus exceptionnels : quotient
 
@@ -183,11 +168,7 @@ Les deux peuvent s'appliquer simultanément : la CEHR est toujours due au-delà 
 
 ### Exit tax
 
-Article 167 bis CGI — imposition immédiate des plus-values latentes sur titres détenus lors du départ à l'étranger, si :
-- Résidence fiscale française pendant au moins 6 ans sur les 10 dernières années
-- Détention de titres > seuils (plusieurs catégories de seuils)
-
-Sursis de paiement possible dans certains cas. Régime complexe.
+Article 167 bis CGI — imposition des plus-values latentes sur titres lors du transfert du domicile fiscal hors de France (6 ans de domicile sur les 10 dernières années ; participations ≥ 50 % des bénéfices sociaux ou valeur globale > 800 000 €). Seuils, sursis, dégrèvement et formulaires 2074-ETD / 2074-ETS : voir [non-residents.md](non-residents.md) § 7.
 
 ### Retour en France
 
@@ -316,7 +297,7 @@ Recouvrement : URSSAF, l'année suivante, d'après les données transmises par l
 ## Références CGI / BOFiP
 
 - Résidence fiscale : art. 4 B CGI
-- Non-résidents : art. 164 A à 165 CGI
+- Non-résidents : art. 164 A à 165 et 197 A CGI (détail : [non-residents.md](non-residents.md))
 - Revenus exceptionnels : art. 163-0 A CGI
 - CEHR : art. 223 sexies CGI
 - Exit tax : art. 167 bis CGI

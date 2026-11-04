@@ -162,6 +162,20 @@
       "last_fetched": "2026-11-01",
       "next_check": "2027-04-15",
       "check_instructions": "À l'ouverture de la campagne déclarative : vérifier les cases 8UU / 8TT sur la 2042 du millésime, la notice du 3916-3916 bis (montants d'amendes, liste des codes PSAN) et toute modification des art. 1736 IV / X CGI et L. 169 LPF par la LFI."
+    },
+    {
+      "id": "non-residents",
+      "name": "Départ de France et non-résidents (année du départ, taux minimum, PS 7,5 %, ex-RP, exit tax)",
+      "reference": "references/non-residents.md",
+      "annee_revenus": 2025,
+      "source_officielle": "Brochure pratique IR 2026 p. 64-66 ; formulaire 2042-NR n° 11942*24 ; fiche DINR « Les particularités de la fiscalité des non-résidents » (03/2026) ; fiches impots.gouv.fr International > Particulier",
+      "article_cgi": "art. 4 A, 4 B, 164 A, 164 B, 164 C, 167, 167 bis, 197 A, 204 H, 235 ter, 244 bis A, 150 U II CGI ; art. L. 136-6 I bis/I ter et L. 136-7 I bis CSS",
+      "bofip": "BOI-IR-DOMIC-20, BOI-IR-DOMIC-40, BOI-IR-RICI-360-40, BOI-IR-RICI-360-60, BOI-RFPI-PVINR-10-20, BOI-RFPI-PVINR-20-20",
+      "verification_manuelle": "https://www.impots.gouv.fr/international-particulier/questions/aupres-de-qui-dois-je-declarer-mes-revenus",
+      "update_frequency": "annual",
+      "last_fetched": "2026-11-01",
+      "next_check": "2027-04-15",
+      "check_instructions": "Après la LFI et la nouvelle brochure : seuil du taux minimum (limite de la 2e tranche du barème ; 29 579 € pour les revenus 2025, la brochure 2026 imprime 29 574 €), seuil de 305 €, taux du prélèvement de solidarité (7,5 %) et des PS foncier (17,2 %), millésime 2042-NR, seuils exit tax (800 000 € / 2 570 000 €) et formulaires 2074-ETD / 2074-ETS."
     }
   ]
 }

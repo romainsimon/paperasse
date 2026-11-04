@@ -14,7 +14,7 @@
 
   "per_individuel": {
     "description": "Plafond de déduction PER pour les versements 2024 (déclaration 2025)",
-    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires après abattement 10 %, BNC, BIC), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83, PERO, Madelin, abondement PERCO exonéré)",
+    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires après abattement 10 %, BNC, BIC), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83 2°, PERO, PERECO ; Madelin et art. 154 bis-0 A pour la seule fraction excédant 15 % du bénéfice compris entre 1 et 8 PASS ; sommes versées par l'entreprise ou le salarié au PERCO ou PERECO et exonérées au titre de l'art. 81, 18°)",
     "plancher_euros": 4399,
     "plancher_base": "10% × PASS 2023 (43 992 €) — garanti même sans revenus. Le PASS retenu est celui de l'année N-1 (art. 163 quatervicies CGI).",
     "plafond_absolu_euros": 35194,
@@ -28,7 +28,7 @@
 
   "sortie_per": {
     "versements_non_deduits": "Capital exonéré d'IR, seuls les gains sont imposés (PFU) ; rente imposée comme rente viagère à titre onéreux",
-    "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale (imposé comme une sortie en capital), accidents de la vie (décès du conjoint, invalidité, surendettement, expiration des droits au chômage, cessation d'activité non salariée après liquidation judiciaire) : versements et gains exonérés d'IR, PS sur les gains",
+    "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale, sauf droits issus des versements obligatoires (imposé comme une sortie en capital) ; accidents de la vie (décès du conjoint ou partenaire de PACS ; invalidité du titulaire, de ses enfants, de son conjoint ou partenaire ; surendettement ; expiration des droits au chômage ou, pour certains anciens mandataires, absence de contrat de travail ou de mandat depuis 2 ans ; cessation d'activité non salariée après liquidation judiciaire ou situation justifiant le retrait selon le président du tribunal de commerce) : versements et gains exonérés d'IR, PS sur les gains ; depuis le 01/01/2024, titulaire de moins de 18 ans (I-7°), imposé comme une sortie en capital",
     "versements_deduits_entree": "Capital : barème sans abattement de 10 % (art. 158, 5-b quinquies CGI) ; gains au PFU 12,8 % ou barème sur option, plus PS. Rente : rente viagère à titre gratuit (barème après abattement de 10 %)."
   },
 

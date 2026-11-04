@@ -44,8 +44,7 @@
     "forfait_domicilie_sans_ressources": {
       "enfant_celibataire": 3592,
       "enfant_marie_ou_pacse": 7184,
-      "a_verifier": true,
-      "note_verification": "3 592 € : aide-mémoire de la brochure IR 2024, colonne 2021 (https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_som/aide_memoire.pdf). 7 184 € = doublement par analogie avec la structure du millésime 2025, non vérifié."
+      "source": "Brochure pratique IR 2022 (revenus 2021), p. 207 : « 3 592 € × 2 lorsque l’enfant est marié ou pacsé », soit 7 184 €. Copie hébergée par la CFDT, l’URL impots.gouv.fr de cette édition ne répond plus : https://www.cfdt-ufetam.org/download.php?file=wp-content/uploads/2022/04/brochure_ir_2022.pdf"
     },
     "note": "Pension déductible en espèces ou en nature (loyer, frais d'inscription…) dans le même plafond. Exclusif avec le rattachement pour le même enfant."
   },
@@ -71,7 +70,7 @@
     "taux": 0.10,
     "minimum": 400,
     "maximum": 3912,
-    "description": "Abattement sur pensions et retraites (cases 1AS/1BS) : minimum par pensionné (limité au montant de sa pension), plafond pour l'ensemble des pensions du foyer (art. 158, 5-a CGI).",
+    "description": "Abattement sur pensions et retraites (lignes 1AS à 1DS) : minimum par pensionné (limité au montant de sa pension), plafond pour l'ensemble des pensions du foyer (art. 158, 5-a CGI).",
     "note_calcul": "Montants revalorisés comme la limite supérieure de la 1re tranche (10 225 / 10 084), art. 83-3° et 158-5-a CGI ; aide-mémoire de la brochure IR 2024, colonne 2021 : https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2024/pdf_som/aide_memoire.pdf"
   },
 

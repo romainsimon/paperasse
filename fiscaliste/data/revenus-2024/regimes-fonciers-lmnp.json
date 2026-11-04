@@ -35,7 +35,7 @@
       "source_report_annees": "Art. 156 I 3° CGI",
       "note_travaux_renovation_energetique": "Sur option, la limite de 10 700 € est rehaussée du montant des dépenses de rénovation énergétique faisant passer un logement d'une classe E, F ou G à une classe A à D, payées du 01/01/2023 au 31/12/2025 et dont le devis a été accepté à compter du 05/11/2022 (2e LFR 2022, loi n° 2022-1499 du 01/12/2022, art. 12 ; art. 156, I, 3° CGI ; BOI-RFPI-BASE-30-20 § 210 à 310), dans la limite de 21 400 € (ce n'est pas un doublement du plafond).",
       "imputation_revenus_fonciers": "Reportable 10 ans au-delà du plafond annuel",
-      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est jamais imputable sur le revenu global, uniquement sur les revenus fonciers. Les loyers compensant d'abord les intérêts (BOI-RFPI-BASE-30-20 § 110), un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 €"
+      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est pas imputable sur le revenu global, uniquement sur les revenus fonciers (sauf monuments historiques, BOI-RFPI-SPEC-30-20-10 § 80). Les loyers compensant d'abord les intérêts (BOI-RFPI-BASE-30-20 § 110), un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 € (15 300 € pour les déductions f et o de l'art. 31, I, 1° ; rehaussée, jusqu'à 21 400 €, pour les travaux de rénovation énergétique : voir note_travaux_renovation_energetique)"
     }
   },
 
@@ -68,7 +68,7 @@
       "mobilier": "10-20% par an sur 5-10 ans",
       "gros_travaux": "Amortissables sur leur durée d'usage"
     },
-    "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul : les amortissements (immeuble + meubles) sont déductibles dans la limite du loyer acquis diminué des autres charges et ne peuvent ni créer ni accroître un déficit (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57) ; un déficit ne peut provenir que des charges hors amortissements.",
+    "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul : les amortissements (immeuble + meubles) sont déductibles dans la limite du loyer acquis diminué des autres charges et ne peuvent ni créer ni accroître un déficit (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57), la fraction écartée restant reportable (art. 39 C, II, 3) ; un déficit ne peut provenir que des charges hors amortissements.",
     "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les revenus LMNP (réel ou micro-BIC) des 10 années suivantes, tant que l'activité reste non professionnelle (art. 156-I-1° ter CGI). Cases 5GA à 5GJ."
   },
 
@@ -85,7 +85,7 @@
       "cotisations_sociales": "Cotisations TNS sur le bénéfice (SSI) — charge significative vs LMNP",
       "ifi": "Biens LMP exonérés d'IFI comme biens professionnels (sous conditions)"
     },
-    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus d'activité. Les pensions de retraite comptent dans ces revenus : au départ en retraite, la bascule se produit si les recettes meublées dépassent la pension et les autres revenus d'activité (cas fréquent quand la pension est inférieure à l'ancien salaire). À surveiller annuellement."
+    "bascule_involontaire": "Attention : passage LMP possible en cas de hausse des recettes meublées OU baisse des autres revenus d'activité. Les pensions de retraite comptent dans ces revenus : au départ en retraite, la bascule se produit si les recettes meublées dépassent 23 000 € et le total des pensions et autres revenus d'activité nets (cas fréquent quand la pension est inférieure à l'ancien salaire). À surveiller annuellement."
   },
 
   "sci_ir": {

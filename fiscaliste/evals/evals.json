@@ -292,6 +292,20 @@
       ]
     },
     {
+      "id": 21,
+      "name": "ir-sortie-capital-per-1ai-sans-abattement",
+      "prompt": "Je vis en concubinage (ni marié ni pacsé) et je déclare seul mes 2 enfants à charge (2 parts). Mon salaire net imposable (case 1AJ) est de 100 000 €. J'ai débloqué mon PER en capital pour l'achat de ma résidence principale : 10 000 €, correspondant à des versements qui avaient été déduits à l'entrée. Calcule mon impôt sur le revenu pour les revenus 2025.",
+      "expected_output": "Les 100 000 € de salaire subissent l'abattement 10 % (RNI salaires 90 000 €). Les 10 000 € de sortie en capital se déclarent en case 1AI et entrent EN ENTIER dans le RNI, SANS abattement de 10 % — contrairement aux pensions 1AS. RNI total 100 000 €. Barème, plafonnement du quotient familial, décote le cas échéant.",
+      "files": [],
+      "assertions": [
+        "Le skill identifie la case 1AI (et non 1AS) pour une sortie en capital de PER correspondant à des versements déduits",
+        "AUCUN abattement de 10 % n'est appliqué sur les 10 000 € : ils entrent en entier dans le RNI",
+        "Le RNI total est de 100 000 € (90 000 de salaires nets + 10 000 de 1AI), et non 99 000 €",
+        "Le skill distingue explicitement le régime 1AS/1BS (abattement 10 %, minimum 454 € par pensionné, plafond 4 439 € par foyer) du régime 1AI/1BI (aucun abattement)",
+        "Le gain de quotient familial est plafonné et le plafonnement est vérifié"
+        ]
+      },
+      {
       "id": 27,
       "name": "calc-ir-abattement-par-declarant-et-ir-pfu",
       "prompt": "Nous sommes mariés, sans enfant. Chacun de nous a 150 000 € de salaires (cases 1AJ et 1BJ), et nous avons encaissé 5 000 € de dividendes en 2025, au PFU. Aucun autre revenu, aucune déduction. Quel est notre revenu net imposable et combien allons-nous payer au total (impôt au barème, PFU et prélèvements sociaux) ?",

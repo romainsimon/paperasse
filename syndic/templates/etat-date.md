@@ -30,7 +30,7 @@ Immatriculation RNC : {{immatriculation}}
 {{/pour}}
 | **Total** | | | **{{total_provisions}} EUR** |
 
-### 1.2 Provisions exigibles pour travaux (art. 14-2)
+### 1.2 Provisions exigibles pour travaux hors budget (art. 14-1 II)
 
 | Opération | Montant appelé | Montant versé | Solde |
 |-----------|---------------:|-------------:|------:|

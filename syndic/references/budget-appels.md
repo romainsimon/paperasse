@@ -77,7 +77,7 @@ L'AG peut décider d'un paiement en une ou plusieurs fois.
 
 ### Fonds de Travaux (art. 14-2-1 loi 1965)
 
-**Obligatoire** pour tout immeuble à destination totale ou partielle d'habitation, à l'issue d'une période de **10 ans suivant la réception des travaux** de construction, **quel que soit le nombre de lots** (art. 14-2-1 I, dans sa rédaction issue de la loi Climat et résilience). Il n'y a plus de dispense liée au nombre de lots ni au DTG.
+**Obligatoire** pour tout immeuble à destination totale ou partielle d'habitation, à l'issue d'une période de **10 ans suivant la réception des travaux** de construction, **quel que soit le nombre de lots** (art. 14-2-1 I, dans sa rédaction issue de la loi Climat et résilience). Il n'y a plus de dispense liée au nombre de lots ni au DTG. Applicable à toutes les copropriétés depuis le 1er janvier 2025 (loi n° 2021-1104, art. 171 VI : 2023 au-delà de 200 lots, 2024 de 51 à 200 lots, en comptant les lots à usage de logements, de bureaux ou de commerces).
 
 **Minimum** : 5% du budget prévisionnel et, si un plan pluriannuel de travaux (PPT, art. 14-2) est adopté, au moins 2,5% du montant des travaux qu'il prévoit.
 

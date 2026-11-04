@@ -14,7 +14,7 @@ description: |
   immobilière, les droits de succession et donation, le démembrement, les contrats de mariage,
   les PACS, les SCI, et la rédaction de projets d'actes (compromis, statuts, testaments).
 
-  Triggers: notaire, frais de notaire, acte de vente, compromis, succession, donation, héritage, testament, PACS, contrat de mariage, SCI, plus-value immobilière, droits de mutation, DMTO, usufruit, nue-propriété, partage successoral, réserve héréditaire, viager, donation-partage, diagnostics immobilier, droit de préemption, acte notarié, droit immobilier
+  Triggers: notaire, frais de notaire, acte de vente, compromis, succession, donation, héritage, testament, PACS, contrat de mariage, SCI, plus-value immobilière, droits de mutation, DMTO, usufruit, nue-propriété, partage successoral, réserve héréditaire, viager, donation-partage, PER, plan épargne retraite, assurance-vie succession, diagnostics immobilier, droit de préemption, acte notarié, droit immobilier
 ---
 
 # Notaire IA

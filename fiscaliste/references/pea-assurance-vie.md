@@ -125,7 +125,7 @@ Taux dégressif selon ancienneté du contrat. Prélèvement libératoire (PFL) o
 
 **Avantageuse si TMI ≤ 11%** — le barème peut être meilleur que le PFU après 8 ans (car abattement annuel + taux IR faible).
 
-Option **globale** et irrévocable pour l'année.
+Option **globale** pour l'année (irrévocable jusqu'aux revenus 2025, caractère irrévocable supprimé par la LFI 2026, art. 126).
 
 ### Contrats très anciens (avant 1983)
 
@@ -169,7 +169,7 @@ L'ancienneté compte. Un contrat ouvert avec 100 € prend date → 8 ans plus t
 1. **Oublier la proportionnalité** → surévaluer ce qu'on peut retirer "sans impôt"
 2. **8 ans du versement** au lieu du contrat → mauvais calcul
 3. **Seuil 150 000 € en global** (tous contrats AV du foyer), pas par contrat
-4. **Option barème irrévocable** pour l'année
+4. **Option barème globale** pour l'année (plus irrévocable depuis la LFI 2026)
 5. **Retrait PEA avant 5 ans** pour un petit besoin → clôture automatique
 6. **PEA composé d'actions non éligibles** → régularisation DGFIP possible
 

@@ -88,6 +88,7 @@ Dernière MAJ: [date] — Vérifier les barèmes de la dernière loi de finances
 |--------|-----------|------------|
 | Salaires | 1AJ/1BJ | 10 % (min 509 €, max 14 555 €) ou frais réels |
 | Pensions / retraites | 1AS/1BS | 10 % (min 454 € par pensionné, max 4 439 € par foyer) |
+| Sortie en capital de PER (part des versements déduits) | 1AI/1BI | **Aucun abattement** : barème, pas de 10 % (art. 158, 5-b quinquies ; voir [references/per.md](references/per.md)) |
 | Rémunération gérant art. 62 (gérant majoritaire SARL/EURL à l'IS) | 1GB/1HB | **10 %** — même déduction que les salaires (plancher/plafond communs) ou frais réels 1AK ; montant net de cotisations, CSG non déductible et CRDS réintégrées. Voir [references/remuneration-dirigeants.md](references/remuneration-dirigeants.md). |
 | **Chômage (ARE)** | 1AP/1BP | **10 %** — l'ARE est un revenu de remplacement imposé selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20) ; l'abattement de 10 % s'applique sur le total salaires + ARE. Se déclare en 1AP/1BP (pas en 1AJ), mais bénéficie bien de l'abattement. |
 | Dividendes (option barème) | 2DC | 40 % |

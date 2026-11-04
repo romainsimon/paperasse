@@ -55,6 +55,7 @@ La confusion la plus fréquente concerne le "salaire net imposable".
 |--------|-----------|-----------|--------|
 | Salaires | 1AJ/1BJ | 10% (min 509 €, max 14 555 €) ou frais réels | data/bareme-ir-2025.json |
 | Pensions / retraites | 1AS/1BS | 10% (min 454 € par pensionné, max 4 439 € par foyer) | data/bareme-ir-2025.json |
+| Sortie en capital de PER (part des versements déduits) | 1AI/1BI | Aucun abattement (art. 158, 5-b quinquies CGI) | references/per.md |
 | Allocations chômage (ARE) | 1AP/1BP | **10 %** (revenu de remplacement imposé selon les règles des T&S, BOI-RSA-BASE-30-50-20 ; l'abattement porte sur le total salaires + ARE, plafond commun 14 555 €) | — |
 | Dividendes (option barème) | 2DC | 40% | data/pfu-prelevements-sociaux.json |
 | Dividendes (PFU) | 2DC | Aucun abattement | — |

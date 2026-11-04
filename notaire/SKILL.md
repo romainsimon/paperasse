@@ -104,7 +104,7 @@ Déterminer le domaine et le workflow applicable :
 - Situation matrimoniale (régime matrimonial, conjoint survivant)
 - Héritiers (enfants, conjoint, parents, frères/soeurs)
 - Existence d'un testament ou donation au dernier vivant
-- Composition du patrimoine (immobilier, mobilier, comptes, assurance-vie)
+- Composition du patrimoine (immobilier, mobilier, comptes, assurance-vie, PER)
 - Donations antérieures (< 15 ans)
 
 **Pour une donation :**
@@ -223,7 +223,7 @@ Les templates utilisent des placeholders `{{variable}}` à remplir selon le cont
 |---------|---------|
 | [references/immobilier.md](references/immobilier.md) | Vente immobilière : DMTO, diagnostics, urbanisme, préemption, copropriété |
 | [references/plus-value.md](references/plus-value.md) | Plus-value immobilière : calcul, abattements, surtaxe, exonérations |
-| [references/succession.md](references/succession.md) | Successions : dévolution, droits, abattements, partage, conjoint survivant |
+| [references/succession.md](references/succession.md) | Successions : dévolution, droits, abattements, partage, conjoint survivant, assurance-vie et PER au décès (990 I / 757 B : pour un PER, l'âge du titulaire au décès décide, et après 70 ans l'assiette inclut les produits) |
 | [references/donation.md](references/donation.md) | Donations : droits, abattements, démembrement, donation-partage, Dutreil |
 | [references/famille.md](references/famille.md) | Famille : mariage, PACS, régimes matrimoniaux, testament, protection |
 | [references/societes.md](references/societes.md) | Sociétés : SCI, apport immobilier, cession de parts, fiscalité |

@@ -127,13 +127,13 @@
       "name": "Niches fiscales (réductions, crédits, plafond global)",
       "file": "niches-fiscales.json",
       "annee_revenus": 2025,
-      "source_officielle": "LFI annuelle",
-      "article_cgi": "art. 200-0 A (plafond global), 200 (dons), 199 sexdecies (emploi dom), 200 quater B (garde)",
+      "source_officielle": "LFI annuelle ; LFI 2026 (loi n° 2026-103 du 19/02/2026, art. 28) pour la limite de 2 000 € des dons à 75 % ; brochure pratique IR 2026 (p. 237-263, 319-320, fiche de calculs p. 382) pour parametres_calcul_rici",
+      "article_cgi": "art. 197 I-5 (ordre d'imputation), 200-0 A (plafond global), 200 (dons), 199 sexdecies (emploi dom), 200 quater B (garde), 199 novovicies (Pinel), 199 quater F (scolarité), 1665 bis (avance de janvier)",
       "bofip": "BOI-IR-RICI",
       "update_frequency": "annual",
-      "last_fetched": "2026-04-12",
+      "last_fetched": "2026-10-29",
       "next_check": "2026-12-30",
-      "check_instructions": "Vérifier plafond global 10 000 € / 18 000 € outre-mer, taux dons 66% / 75% (1 000 € Coluche), plafonds emploi à domicile et garde."
+      "check_instructions": "Vérifier plafond global 10 000 € / 18 000 € outre-mer, taux dons 66% / 75% (1 000 € puis 2 000 € depuis le 14/10/2025), plafonds emploi à domicile et garde."
     }
   ]
 }

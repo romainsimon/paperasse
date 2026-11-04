@@ -66,6 +66,8 @@ Problème classique : les crédits/réductions (emploi à domicile, garde d'enfa
 
 **Option renoncement** : possibilité de renoncer à l'acompte en décembre N (espace impots.gouv.fr) si on sait qu'on ne refera pas la dépense.
 
+**Calcul du solde** (avis d'impôt, rubrique « Calcul du solde ») : impôt net − retenue à la source − acomptes prélevés + **avance perçue sur les réductions et crédits d'impôt** (+ avance immédiate services à la personne 7HB). L'avance de janvier est donc **déduite du remboursement** de l'été : l'oublier surestime le remboursement de 60 % des réductions et crédits de N−2. Base légale : art. 1665 bis CGI ; brochure IR 2026, p. 237. Calcul : `scripts/calc_ir.py` avec les blocs `reductions_credits` et `prelevement_a_la_source` du foyer.json.
+
 ## Acompte contemporain : calage et modulation
 
 Pour les indépendants, fonciers, pensions :

@@ -375,6 +375,52 @@
         "Le RFR est d'environ 285 445 €",
         "La CEHR est d'environ 1 063 €",
         "Le total avant réductions et crédits est d'environ 92 537 €"
+        ]
+      },
+      {
+      "id": 41,
+      "name": "plafonnement-global-pinel-garde-emploi-domicile",
+      "prompt": "Couple marié, 2 enfants à charge dont un de 3 ans. Revenu net imposable 2025 : 126 000 €, impôt après quotient familial et décote : 20 394 €. Nous avons un Pinel acheté 280 000 € en 2020 (60 m², engagement 9 ans, en métropole), 12 000 € de salarié à domicile (aucune aide) et 5 000 € de crèche pour le petit, dont 1 000 € de CMG. Quel est notre impôt net ?",
+      "expected_output": "Réduction Pinel : 280 000 × 18 % / 9 = 5 600 €. Crédit emploi à domicile : plafond 12 000 + 2 × 1 500 = 15 000 €, dépenses 12 000 € → 6 000 €. Crédit garde : (5 000 − 1 000) limité à 3 500 € → 1 750 €. Les trois avantages entrent dans le plafonnement global (art. 200-0 A) : 13 350 € > 10 000 €, donc 3 350 € réintégrés. Impôt net = 20 394 − 5 600 + 3 350 − 6 000 − 1 750 = 10 394 €. Vérifiable avec calc_ir.py --foyer examples/foyer-reductions-credits.json.",
+      "files": [],
+      "assertions": [
+        "La réduction Pinel annuelle est de 5 600 € (18 % sur 9 ans, soit 2 % par an de 280 000 €)",
+        "Le crédit emploi à domicile est de 6 000 € (plafond 15 000 € non atteint)",
+        "Le crédit garde est calculé sur 3 500 € après déduction du CMG, soit 1 750 €",
+        "Le skill inclut l'emploi à domicile ET la garde d'enfants dans le plafonnement global de 10 000 € (art. 200-0 A)",
+        "L'excédent de 3 350 € est ajouté à l'impôt",
+        "L'impôt net final est de 10 394 €",
+        "La réduction Pinel s'impute avant les crédits, qui sont restituables"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "solde-avance-rici-janvier",
+      "prompt": "Couple marié, 1 enfant. Impôt 2025 après quotient familial et décote : 6 001 €. 1 000 € de dons à une association d'intérêt général et 8 000 € de ménage à domicile en 2025. Le prélèvement à la source a retenu 6 000 € en 2025 et nous avons reçu 2 796 € d'avance de réductions et crédits d'impôt en janvier 2026. Combien allons-nous être remboursés cet été ?",
+      "expected_output": "Réduction dons : 66 % × 1 000 = 660 €. Crédit emploi à domicile : 50 % × 8 000 = 4 000 € (plafond 13 500 €). Impôt net = 6 001 − 660 − 4 000 = 1 341 €. Solde = 1 341 − 6 000 (PAS) + 2 796 (avance de janvier déjà perçue, art. 1665 bis) = −1 863 € : remboursement de 1 863 €. Oublier l'avance conduirait à attendre 4 659 €.",
+      "files": [],
+      "assertions": [
+        "La réduction pour dons est de 660 € (66 %)",
+        "Le crédit emploi à domicile est de 4 000 €",
+        "L'impôt net est de 1 341 €",
+        "Le skill réintègre l'avance de 60 % perçue en janvier (2 796 €) dans le solde (art. 1665 bis CGI)",
+        "Le remboursement annoncé est de 1 863 €, et non 4 659 €",
+        "Le skill explique que l'avance de janvier est une avance sur le remboursement, pas un gain supplémentaire"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "dons-au-dela-20-pct-et-plafond-75",
+      "prompt": "Célibataire, revenu net imposable 2025 : 54 000 €, impôt après décote : 9 304 €. J'ai donné 12 000 € à une fondation d'intérêt général, 800 € aux Restos du cœur en mars et 1 500 € en novembre 2025. Quelle réduction pour mes dons et que devient l'excédent ?",
+      "expected_output": "Dons aux organismes d'aide aux personnes en difficulté : 75 % dans la limite de 1 000 € pour les versements jusqu'au 13/10/2025, limite portée à 2 000 € (y compris les versements antérieurs) pour les versements du 14/10 au 31/12/2025 (LFI 2026, art. 28). Retenus : 800 + 1 200 = 2 000 € → 1 500 €. Les 300 € restants passent au taux de 66 %. Base à 66 % = 12 000 + 300 = 12 300 €, limitée à 20 % du revenu imposable = 10 800 € → 7 128 €. Réduction totale 8 628 €, impôt net 676 €. Excédent de 1 500 € reportable sur les 5 années suivantes.",
+      "files": [],
+      "assertions": [
+        "Le skill applique la limite de 2 000 € pour les dons à 75 % versés à partir du 14/10/2025 (1 000 € auparavant)",
+        "La fraction des dons à 75 % au-delà du plafond (300 €) bascule au taux de 66 %",
+        "La limite de 20 % du revenu imposable (10 800 €) est appliquée à la base à 66 %",
+        "Les dons à 75 % ne sont pas comptés dans la limite de 20 %",
+        "La réduction totale est de 8 628 € et l'impôt net de 676 €",
+        "L'excédent de 1 500 € est reportable sur les 5 années suivantes (art. 200 CGI)"
       ]
     }
   ]

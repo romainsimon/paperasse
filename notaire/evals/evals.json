@@ -78,6 +78,44 @@
         "Le montant total de l'impôt est présenté (IR + PS + surtaxe éventuelle)",
         "L'analyse suit une structure claire avec chaque étape de calcul détaillée"
       ]
+    },
+    {
+      "id": 5,
+      "name": "assurance-vie-deces-conjoint-et-enfant",
+      "prompt": "Mon père est décédé en mars 2026 à 82 ans. Il avait une assurance-vie souscrite en 2005, sur laquelle il a versé 400 000 EUR : 250 000 EUR avant ses 70 ans et 150 000 EUR après. Le contrat vaut 700 000 EUR au décès, entièrement investi en unités de compte. Les bénéficiaires sont ma mère (son épouse) pour 60 % et moi pour 40 %. Qu'est-ce qu'on va payer ?",
+      "expected_output": "Le skill vérifie D'ABORD le statut des bénéficiaires : l'épouse est exonérée de DMTG (art. 796-0 bis CGI), donc ni prélèvement 990 I (art. 990 I, I, dernier alinéa) ni droits 757 B sur sa part. Contrat souscrit à compter du 20/11/1991 : les primes versées avant 70 ans relèvent du 990 I (abattement 152 500 EUR par bénéficiaire), celles versées après 70 ans du 757 B (abattement global 30 500 EUR, assiette limitée aux primes). Pour le 757 B, la part de l'épouse est retirée de l'assiette avant répartition de l'abattement (BOI-ENR-DMTG-10-10-20-20 § 220). La fraction d'abattement non utilisée par l'épouse exonérée ne profite pas au fils (BOI-TCAS-AUT-60 § 310). Les PS de 17,2 % sont dus sur les 300 000 EUR de gains UC et prélevés par l'assureur avant versement ; seul l'IR est purgé.",
+      "files": [],
+      "assertions": [
+        "Le skill vérifie le statut des bénéficiaires avant d'appliquer la matrice",
+        "L'épouse est identifiée comme exonérée de droits de mutation (art. 796-0 bis CGI)",
+        "L'exonération de l'épouse est appliquée AUSSI au prélèvement de l'art. 990 I, pas seulement aux droits de succession",
+        "Pour l'art. 757 B, la part de l'épouse est retirée de l'assiette avant répartition de l'abattement de 30 500 EUR",
+        "Le skill précise que la fraction d'abattement non utilisée par un bénéficiaire exonéré ne profite pas aux autres",
+        "Le contrat souscrit en 2005 est rattaché au régime de droit commun (souscription à compter du 20/11/1991)",
+        "Les primes versées avant 70 ans relèvent de l'art. 990 I et celles versées après 70 ans de l'art. 757 B",
+        "L'âge de 70 ans retenu est celui de l'assuré",
+        "Les prélèvements sociaux de 17,2 % sont dus sur les gains des unités de compte malgré le décès",
+        "Le skill distingue l'IR (définitivement purgé) des PS (dus) sur les plus-values latentes en UC",
+        "L'analyse suit une structure faits / hypothèses / calculs / résultat"
+        ]
+      },
+      {
+      "id": 6,
+      "name": "per-deces-apres-70-ans-assiette-integrale",
+      "prompt": "Je règle une succession. Le défunt est décédé à 74 ans. Il détenait un PER assurance ouvert à 52 ans, alimenté par des versements libres jusqu'à ses 66 ans, aujourd'hui valorisé 300 000 EUR dont 110 000 EUR de gains. Deux neveux sont désignés bénéficiaires. Comme pour l'assurance-vie, toutes les primes ont été versées avant 70 ans : les neveux bénéficient donc de l'abattement de 152 500 EUR chacun et les gains sont exonérés, c'est bien cela ?",
+      "expected_output": "Non, la prémisse ne vaut pas pour un PER. Deux corrections. (1) Le critère n'est pas l'âge au versement mais l'âge du titulaire AU DÉCÈS : l'art. 757 B CGI vise le décès après 70 ans du titulaire d'un plan de l'art. L. 224-1 CoMoFi, et le BOI-ENR-DMTG-10-10-20-20 § 155 précise que l'âge auquel les primes ont été versées n'est pas pris en compte. Un décès à 74 ans relève donc de l'art. 757 B, et non du prélèvement de l'art. 990 I : pas d'abattement de 152 500 EUR par bénéficiaire, mais un abattement global de 30 500 EUR pour l'ensemble des bénéficiaires et tous les contrats du même assuré, puis les droits de succession selon le lien de parenté : ici des neveux, taxés à 55 % après leur abattement personnel de 7 967 EUR chacun (art. 779 V CGI) s'il n'est pas déjà absorbé par l'actif successoral. (2) L'assiette porte sur l'intégralité des sommes dues par l'assureur, produits compris (§ 197), et non sur les seules primes comme pour une assurance-vie ordinaire (§ 160 à 170) : les 110 000 EUR de gains sont donc taxables. Base taxable : 300 000 − 30 500 = 269 500 EUR. Vérifier par ailleurs la forme du plan (un PER compte-titres serait intégré à l'actif successoral) et l'existence d'autres contrats sur la tête du défunt, l'abattement de 30 500 EUR étant global.",
+      "files": [],
+      "assertions": [
+        "Le skill corrige la prémisse : sur un PER, le régime dépend de l'âge du titulaire au décès, pas de l'âge au versement des primes",
+        "Le skill applique l'art. 757 B CGI pour un décès à 74 ans",
+        "Le skill n'applique PAS l'abattement de 152 500 EUR par bénéficiaire ni le prélèvement de l'art. 990 I",
+        "Le skill retient une assiette portant sur l'intégralité des sommes dues, produits compris, et n'exonère PAS les 110 000 EUR de gains",
+        "L'abattement de 30 500 EUR est présenté comme global (tous bénéficiaires et tous contrats du même assuré), et non par bénéficiaire",
+        "La base taxable de 269 500 EUR est calculée (300 000 − 30 500)",
+        "Le skill applique le tarif des droits de succession entre oncle et neveux (55 %, après l'abattement personnel de 7 967 EUR par neveu s'il reste disponible) et non un taux de 20 % ou 31,25 %",
+        "Le skill cite l'art. 757 B CGI et le BOI-ENR-DMTG-10-10-20-20 (§ 155 pour l'âge retenu, § 197 pour l'assiette)",
+        "Le skill invite à vérifier la forme du plan (assurance ou compte-titres)"
+      ]
     }
   ]
 }

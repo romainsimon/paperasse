@@ -2,7 +2,7 @@
   "_meta": {
     "revenus": 2025,
     "declaration": 2026,
-    "source": "BOI-RFPI-PVI"
+    "source": "BOI-RFPI-PVI ; art. 150 U, 150 VB, 150 VC, 150 VD, 1609 nonies G CGI ; BOI-RFPI-PVI-20-10-20-20 (20/12/2013) ; BOI-RFPI-PVI-20-20 (18/07/2023) ; BOI-RFPI-TPVIE-20 (18/07/2023) ; LF 2025 art. 84 ; LFI 2026 art. 47 ; brochure IR 2026 et 2042 C millésime 2026"
   },
 
   "regime_general": {
@@ -10,7 +10,9 @@
     "taux_ir": 0.19,
     "taux_ps": 0.172,
     "taux_total_sans_abattement": 0.362,
-    "formule": "Plus-value imposable = prix_cession − prix_acquisition_majoré (frais acquisition + travaux) avec application des abattements durée de détention"
+    "note_lfss_2026": "Les plus-values immobilières restent à 17,2 % de PS (CSG 9,2 %, art. L. 136-8, IV CSS) : exclues de la hausse à 18,6 % de la LFSS 2026",
+    "formule": "Plus-value imposable = prix_cession (net des frais de cession) − prix_acquisition_majoré (frais acquisition + travaux) − amortissements admis en déduction (art. 150 VB, III : LMNP réel pour les cessions depuis le 15/02/2025, bailleur privé depuis le 21/02/2026, hors amortissements de travaux déjà pris en compte pour l'IR), avec application des abattements durée de détention",
+    "duree_detention": "Comptée par périodes de douze mois de date à date, de l'acte d'acquisition (ou de la réalisation de la condition suspensive) à l'acte de cession : aucun abattement avant la fin de la sixième année (BOI-RFPI-PVI-20-20 § 20 à 40). Moins-values immobilières non imputables, même la même année (art. 150 VD CGI)"
   },
 
   "abattements_ir": {
@@ -40,20 +42,55 @@
     "residence_principale": "Exonération totale IR + PS à condition d'occuper effectivement le bien à la date de cession (pas de mise en location préalable)",
     "premiere_cession_logement_autre_que_rp": "Exonération sous conditions de remploi (construction/acquisition d'une RP dans les 24 mois), pas de détention d'une RP dans les 4 ans",
     "expatries": "Non-résidents, sous conditions (voir references/non-residents.md § 6) : exonération totale de l'ancienne résidence principale cédée au plus tard le 31/12 de l'année suivant le départ, sans mise à disposition entre-temps, après un départ vers l'UE ou un État lié par des conventions d'assistance administrative et de recouvrement (art. 244 bis A, I-1) ; à défaut, exonération limitée à 150 000 € de plus-value nette pour un ressortissant UE / EEE domicilié en France au moins 2 ans (art. 150 U, II, 2°)",
-    "petit_prix": "Exonération si prix ≤ 15 000 € (par quote-part si indivision)",
-    "duree_detention": "≥ 22 ans pour l'IR, ≥ 30 ans pour les PS"
+    "petit_prix": "Exonération si prix ≤ 15 000 € (apprécié en pleine propriété et par quote-part indivise, art. 150 U, II, 6°)",
+    "duree_detention": "≥ 22 ans pour l'IR, ≥ 30 ans pour les PS",
+    "retraites_invalides": "Titulaires d'une pension de vieillesse ou d'une carte d'invalidité, non assujettis à l'IFI et dont le RFR de l'avant-dernière année n'excède pas la limite de l'art. 1417, I (art. 150 U, III)",
+    "expropriation": "Remploi de l'intégralité de l'indemnité d'expropriation (ou de délaissement) dans les douze mois de sa perception (art. 150 U, II, 4°)",
+    "logement_social": "Cession à un organisme de logement social ou à une collectivité pour y réaliser des logements sociaux, cessions jusqu'au 31/12/2027 (art. 150 U, II, 7° et 8°, prorogés par la LFI 2026, art. 52)",
+    "cases_2042_c": "3VZ : plus-value nette déjà imposée à 19 % (retenue pour le revenu fiscal de référence) ; 3VW : plus-value exonérée au titre de la première cession d'un logement autre que la RP sous condition de remploi"
   },
 
   "prix_acquisition_majore": {
-    "description": "Le prix d'acquisition peut être majoré pour réduire la PV taxable",
-    "frais_acquisition": "7.5% forfaitaire OU frais réels sur justificatifs (notaire, droits enregistrement)",
-    "travaux": "15% forfaitaire si détention ≥ 5 ans, OU travaux réels sur justificatifs (construction, reconstruction, agrandissement, amélioration) - si non déjà déduits des revenus fonciers"
+    "description": "Le prix d'acquisition peut être majoré pour réduire la PV taxable (art. 150 VB, II), puis minoré des amortissements déduits (art. 150 VB, III)",
+    "frais_acquisition": "Acquisition à titre onéreux (achat, adjudication) : frais réels justifiés (droits d'enregistrement, émoluments et honoraires du notaire ou de l'avocat, commission d'agence à la charge de l'acquéreur) OU forfait de 7,5 % du prix stipulé dans l'acte (art. 150 VB, II, 3° CGI). Acquisition à titre gratuit (succession, donation) : frais réels seulement (frais d'acte, droits de mutation au prorata), pas de forfait (BOI-RFPI-PVI-20-10-20-20 § 80).",
+    "travaux_reels": "Dépenses de construction, reconstruction, agrandissement ou amélioration supportées par le vendeur et RÉALISÉES PAR UNE ENTREPRISE depuis l'acquisition, justifiées par ses factures, non déjà déduites pour l'IR (revenus fonciers au réel, années de micro-foncier pour l'amélioration, amortissements LMNP) et n'ayant pas ouvert droit à réduction ou crédit d'impôt (art. 150 VB, II, 4° ; BOI-RFPI-PVI-20-10-20-20 § 120 à 340). EXCLUS : entretien et réparations même grosses, réparations locatives (peintures, papiers peints, moquettes) sauf indissociables de travaux d'amélioration, intérêts d'emprunt, travaux faits par le vendeur lui-même ou par une main d'œuvre non professionnelle, matériaux achetés par le vendeur même posés par une entreprise (seule la pose facturée compte).",
+    "travaux_forfait_15": "Alternative sans justificatif : 15 % du prix d'acquisition stipulé dans l'acte, pour un immeuble bâti cédé PLUS de cinq ans après son acquisition (périodes de douze mois depuis la date de l'acte), non applicable aux terrains nus ; simple faculté, sans avoir à prouver la réalité des travaux (art. 150 VB, II, 4° ; BOI-RFPI-PVI-20-10-20-20 § 350 à 400). Pour un achat-rénovation-revente fait soi-même en moins de cinq ans, aucune majoration pour travaux n'est possible hors factures d'entreprise.",
+    "minoration_amortissements": "Le prix d'acquisition est ensuite minoré des amortissements admis en déduction (art. 150 VB, III) : voir la clé reintegration_amortissements (dates d'effet, amortissements concernés, exceptions)."
   },
 
   "surtaxe_pv_importantes": {
-    "description": "Surtaxe sur les plus-values immobilières imposables > 50 000 €",
+    "description": "Taxe sur les plus-values immobilières élevées (art. 1609 nonies G CGI ; BOI-RFPI-TPVIE-20, 18/07/2023), acquittée avec la 2048-IMM par le notaire",
     "seuil_declenchement": 50000,
-    "taux_progressif": "2% à 6% selon le montant de la PV imposable (après abattements)",
+    "assiette": "Plus-value nette imposable à l'IR, après abattement pour durée de détention IR (pas l'abattement PS) ; seuil de 50 000 € apprécié par cédant : par quote-part pour les indivisaires, concubins et partenaires de PACS, et, par tolérance, par quote-part de chaque époux pour un bien de communauté (§ 20 à 50). Terrains à bâtir hors champ.",
+    "bareme": [
+      { "de": 50001, "a": 60000, "formule": "2 % × PV − (60 000 − PV) × 1/20" },
+      { "de": 60001, "a": 100000, "formule": "2 % × PV" },
+      { "de": 100001, "a": 110000, "formule": "3 % × PV − (110 000 − PV) × 1/10" },
+      { "de": 110001, "a": 150000, "formule": "3 % × PV" },
+      { "de": 150001, "a": 160000, "formule": "4 % × PV − (160 000 − PV) × 15/100" },
+      { "de": 160001, "a": 200000, "formule": "4 % × PV" },
+      { "de": 200001, "a": 210000, "formule": "5 % × PV − (210 000 − PV) × 20/100" },
+      { "de": 210001, "a": 250000, "formule": "5 % × PV" },
+      { "de": 250001, "a": 260000, "formule": "6 % × PV − (260 000 − PV) × 25/100" },
+      { "au_dela": 260000, "formule": "6 % × PV" }
+    ],
     "application": "Cumulative avec IR + PS"
+  },
+  "reintegration_amortissements": {
+    "applicable_cessions_depuis": {
+      "lmnp_art_39_C": "2025-02-15",
+      "bailleur_prive_art_31_I_1_i_j": "2026-02-21"
+    },
+    "regle": "Le prix d'acquisition est minoré du montant des amortissements admis en déduction au titre de l'art. 39 C CGI (location meublée non professionnelle) ou des i et j du 1° du I de l'art. 31 CGI (statut du bailleur privé en location nue, créé par la LFI 2026). En LMNP, la minoration vise aussi les amortissements déduits avant 2025, quelle que soit la date de mise en location.",
+    "amortissements_concernes": "Seuls les amortissements admis en déduction sont retranchés : rien à réintégrer pour les années au micro-BIC (abattement forfaitaire, aucun amortissement déduit), ni pour les amortissements excédentaires reportés (art. 39 C, II) non encore imputés. Ne sont pas retranchés non plus les amortissements de dépenses de construction, reconstruction, agrandissement ou amélioration (art. 150 VB, III, 1er alinéa, renvoi au II, 4°) : ces travaux, déjà pris en compte pour l'IR, ne majorent pas le prix d'acquisition et leurs amortissements ne le minorent pas.",
+    "exceptions": [
+      "Résidences pour étudiants, personnes de moins de 30 ans en formation ou en stage, personnes en contrat de professionnalisation ou d'apprentissage et personnes de plus de 65 ans (CCH art. L. 631-12 et L. 631-13)",
+      "Établissements et services médico-sociaux pour personnes âgées ou handicapées (CASF art. L. 312-1, I, 6° et 7°), y compris les services d'aide à domicile autorisés (CASF art. L. 313-1) qui en relèvent",
+      "Résidences avec services pour personnes âgées ou handicapées agréées (C. trav. art. L. 7232-1)",
+      "Logements de l'accueil familial salarié gérés par un groupement de coopération sociale ou médico-sociale (CASF art. L. 444-1 à L. 444-9)",
+      "Unités de soins de longue durée (CSP art. L. 6143-5, I, avant-dernier alinéa)"
+    ],
+    "base_legale": "Art. 150 VB, III CGI, version en vigueur depuis le 21/02/2026 : créé par l'art. 84 de la LF 2025 (loi n° 2025-127), étendu au bailleur privé par l'art. 47 de la LFI 2026 (loi n° 2026-103)",
+    "source": "Réponse ministérielle QE n° 10097, JOAN 24/03/2026 (amortissements LMNP antérieurs à 2025)"
   }
 }

@@ -12,7 +12,7 @@ description: |
   comptabilité (décret 2005, plan comptable copro, 5 annexes), assemblées générales (convocation,
   PV, notification), appels de fonds, travaux, fournisseurs, recouvrement d'impayés et transition
   de syndic. Maîtrise les majorités (art. 24, 25, 25-1, 26), le fonds de travaux (art. 14-2-1),
-  le privilège immobilier (art. 19-2) et l'immatriculation RNC. Intégration Qonto pour le
+  l'hypothèque légale du syndicat (art. 19 et 19-1) et l'immatriculation RNC. Intégration Qonto pour le
   rapprochement bancaire. Utilisé pour toute question liée à la copropriété, au syndic bénévole
   ou coopératif, aux charges, tantièmes, AG, ou au droit de la copropriété (loi 1965, ALUR, ELAN).
 ---
@@ -49,7 +49,7 @@ Lire [references/calendrier.md](references/calendrier.md). Consolider les éché
 | Majorités : art. 24, 25, 25-1, 26, unanimité | [references/majorites.md](references/majorites.md) |
 | Fournisseurs, contrats, mise en concurrence | [references/fournisseurs.md](references/fournisseurs.md) |
 | Travaux, carnet d'entretien, DTG, aides | [references/travaux.md](references/travaux.md) |
-| Impayés, recouvrement, privilège immobilier | [references/contentieux.md](references/contentieux.md) |
+| Impayés, recouvrement, hypothèque légale du syndicat | [references/contentieux.md](references/contentieux.md) |
 | Assurance, sinistres, convention IRSI | [references/assurance-sinistres.md](references/assurance-sinistres.md) |
 | Vente de lot, état daté, opposition art. 20 | [references/mutations.md](references/mutations.md) |
 | Changement de syndic, reprise archives | [references/transition.md](references/transition.md) |
@@ -135,7 +135,7 @@ Recouvrement — Lot {{n}} — {{montant}} EUR
 - [ ] Si pas de réponse : déchéance du terme (art. 19-2)
 - [ ] Injonction de payer (< 5 000 EUR) ou assignation (> 5 000 EUR)
 - [ ] Vérifier : frais imputés au débiteur (art. 10-1)
-- [ ] Vérifier : privilège immobilier (exercice en cours + 2 échus)
+- [ ] Vérifier : hypothèque légale spéciale sur le lot vendu (année courante et quatre dernières années échues, art. 2402, 3° C. civ.)
 ```
 
 ### Vente de lot (mutation)

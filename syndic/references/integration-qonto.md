@@ -54,7 +54,7 @@ Les transactions sont catégorisées selon le plan comptable des copropriétés 
 ## Rapprochement bancaire
 
 Croiser les transactions Qonto avec :
-1. Les appels de fonds émis (comptes 411, 412, 414)
+1. Les appels de fonds émis (comptes 450-1, 450-2, 450-5)
 2. Les paiements fournisseurs (compte 401)
 3. Le solde comptable (compte 501)
 

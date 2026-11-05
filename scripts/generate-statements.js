@@ -294,7 +294,7 @@ function generateBilan(accounts, company, pcgNames, plData) {
       : immoByRoot.get(targetRoot);
     if (target !== undefined) {
       amortByImmo.set(target, round2((amortByImmo.get(target) || 0) + amount));
-    } else if (Math.abs(amount) > 0.01) {
+    } else if (Math.abs(amount) >= 0.01) {
       orphanAmort.push([acct, amount]);
     }
   }
@@ -336,27 +336,25 @@ function generateBilan(accounts, company, pcgNames, plData) {
   let totalStocks = 0;
   for (const [acct, bal] of stockAccounts) {
     const amount = round2(bal.debit - bal.credit);
-    if (Math.abs(amount) > 0.01) {
+    if (Math.abs(amount) >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' | | ' + fmt(amount) + ' |\n';
       totalStocks += amount;
     }
   }
 
-  // Creances (411, 416, 418, 44566, etc.)
+  // Creances : comptes de tiers (classe 4, hors 49x) a solde debiteur.
+  // Chaque compte est classe selon le sens de son solde, quel que soit son
+  // numero (455 debiteur, 467, 4456, 486 CCA...) : un compte debiteur a
+  // l'actif, un compte crediteur au passif (dettes ci-dessous).
   const creanceAccounts = Object.entries(accounts)
-    .filter(([a]) => {
-      if (a.startsWith('41') && !a.startsWith('419')) return true;
-      if (a.startsWith('44') && (a.startsWith('445') || a.startsWith('4456'))) return true;
-      if (a.startsWith('486')) return true; // CCA
-      return false;
-    })
+    .filter(([a]) => a.startsWith('4') && !a.startsWith('49'))
     .sort(([a], [b]) => a.localeCompare(b));
 
   let totalCreances = 0;
   for (const [acct, bal] of creanceAccounts) {
     const amount = round2(bal.debit - bal.credit);
-    if (amount > 0.01) {
+    if (amount >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' | | ' + fmt(amount) + ' |\n';
       totalCreances += amount;
@@ -374,7 +372,7 @@ function generateBilan(accounts, company, pcgNames, plData) {
   let totalTreso = 0;
   for (const [acct, bal] of tresoAccounts) {
     const amount = round2(bal.debit - bal.credit);
-    if (amount > 0.01) {
+    if (amount >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' | | ' + fmt(amount) + ' |\n';
       totalTreso += amount;
@@ -402,7 +400,7 @@ function generateBilan(accounts, company, pcgNames, plData) {
   let totalCP = 0;
   for (const [acct, bal] of cpAccounts) {
     const amount = round2(bal.credit - bal.debit);
-    if (Math.abs(amount) > 0.01) {
+    if (Math.abs(amount) >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
       totalCP += amount;
@@ -425,7 +423,7 @@ function generateBilan(accounts, company, pcgNames, plData) {
     md += '| **PROVISIONS** | |\n';
     for (const [acct, bal] of provAccounts) {
       const amount = round2(bal.credit - bal.debit);
-      if (Math.abs(amount) > 0.01) {
+      if (Math.abs(amount) >= 0.01) {
         const name = pcgNames[acct] || acct;
         md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
         totalProvisions += amount;
@@ -435,40 +433,26 @@ function generateBilan(accounts, company, pcgNames, plData) {
     md += '| | |\n';
   }
 
-  // Dettes (class 4 credit balances, 16x emprunts, 455 compte courant, 487 PCA)
+  // Dettes (16x emprunts, comptes de tiers a solde crediteur : 40x, 42x,
+  // 43x, 44x dont TVA collectee, 455, 419, 457, 467, 487 PCA..., et comptes
+  // financiers a solde crediteur : 512 en decouvert, 519 concours bancaires)
   md += '| **DETTES** | |\n';
 
   const detteAccounts = Object.entries(accounts)
-    .filter(([a]) => {
-      if (a.startsWith('16')) return true; // Emprunts
-      if (a.startsWith('40')) return true; // Fournisseurs
-      if (a.startsWith('455')) return true; // Compte courant associe
-      if (a.startsWith('43')) return true; // Organismes sociaux
-      if (a.startsWith('44') && !a.startsWith('445') && !a.startsWith('4456')) return true; // Etat (IS, TVA collectee)
-      if (a.startsWith('487')) return true; // PCA
-      return false;
-    })
+    .filter(([a]) => a.startsWith('16') || (a.startsWith('4') && !a.startsWith('49')) || (a.startsWith('5') && !a.startsWith('59')))
     .sort(([a], [b]) => a.localeCompare(b));
 
   let totalDettes = 0;
   for (const [acct, bal] of detteAccounts) {
     const amount = round2(bal.credit - bal.debit);
-    if (amount > 0.01) {
+    if (amount >= 0.01) {
       const name = pcgNames[acct] || acct;
-      md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
+      // Client crediteur (411 en avance, hors 419) ou banque en decouvert
+      // (51x hors 519) : signale
+      const suffix = (acct.startsWith('41') && !acct.startsWith('419'))
+        || (acct.startsWith('51') && !acct.startsWith('519')) ? ' (solde crediteur)' : '';
+      md += '| &nbsp;&nbsp;' + acct + ' — ' + name + suffix + ' | ' + fmt(amount) + ' |\n';
       totalDettes += amount;
-    }
-  }
-
-  // Handle 411 credit balance (unusual, but possible)
-  for (const [acct, bal] of Object.entries(accounts)) {
-    if (acct.startsWith('41') && !acct.startsWith('419')) {
-      const amount = round2(bal.credit - bal.debit);
-      if (amount > 0.01) {
-        const name = pcgNames[acct] || acct;
-        md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' (solde crediteur) | ' + fmt(amount) + ' |\n';
-        totalDettes += amount;
-      }
     }
   }
 
@@ -496,6 +480,16 @@ function generateBilan(accounts, company, pcgNames, plData) {
   }
 
   return { md, totalActif, totalPassif, ecart };
+}
+
+// Controle final : un compte repris ni a l'actif ni au passif ne doit pas
+// passer inapercu.
+function checkBilanEquilibre({ totalActif, totalPassif, ecart }) {
+  if (Math.abs(ecart) >= 0.01) {
+    throw new Error('Bilan desequilibre : Actif ' + fmt(totalActif) + ' EUR, Passif '
+      + fmt(totalPassif) + ' EUR, ecart ' + fmt(ecart) + ' EUR. Verifier les comptes de la balance'
+      + ' absents du bilan (39x, 49x, 59x et 169 ne sont pas encore repris) et l\'equilibre des ecritures.');
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -594,8 +588,11 @@ function main() {
   console.log('  Actif    : ' + fmt(bilanResult.totalActif) + ' EUR');
   console.log('  Passif   : ' + fmt(bilanResult.totalPassif) + ' EUR');
 
-  if (Math.abs(bilanResult.ecart) > 0.01) {
-    console.log('\n  ATTENTION : bilan desequilibre de ' + fmt(bilanResult.ecart) + ' EUR');
+  try {
+    checkBilanEquilibre(bilanResult);
+  } catch (err) {
+    console.error('\nErreur : ' + err.message);
+    process.exit(1);
   }
 }
 
@@ -603,4 +600,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { computeBalances, generatePL, generateBilan, generateBalance };
+module.exports = { computeBalances, generatePL, generateBilan, checkBilanEquilibre, generateBalance };

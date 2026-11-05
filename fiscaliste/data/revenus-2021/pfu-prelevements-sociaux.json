@@ -38,7 +38,7 @@
       "crds": "0,5 %",
       "prelevement_solidarite": "7,5 %"
     },
-    "taux_inchanges_17_2": {
+    "taux_fonciers_assurance_vie": {
       "valeur": 0.172,
       "couvre": ["assurance-vie", "contrats de capitalisation", "foncier nu", "SCPI", "PEL/CEL anciens", "PEP"],
       "note": "En 2021, tous les revenus du capital sont au taux de 17,2 % (taux en vigueur depuis le 01/01/2018)."

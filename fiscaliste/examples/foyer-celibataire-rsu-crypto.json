@@ -31,7 +31,7 @@
 
   "deductions": {
     "per_declarant1": 10000,
-    "_commentaire_per": "Plafond personnalisé = 10 % des 95 000 € = 9 500 € + reliquat N-1 éventuel"
+    "_commentaire_per": "Plafond = 10 % des revenus d'activité N-1 nets de frais (8 550 € si le salaire 2024 était aussi de 95 000 €, après abattement de 10 %) + reliquats des 3 années précédentes ; à lire sur l'avis N-1. Le script déduit le versement sans contrôler ce plafond."
   },
 
   "options_fiscales": {

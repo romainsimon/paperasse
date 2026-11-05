@@ -20,18 +20,33 @@ Couvre :
     - Quotient familial (avec plafonnement ; enfants en résidence alternée
       décomptés après les enfants à charge exclusive)
     - Décote célibataire / couple
-    - PS différenciés LFSS 2026 : 18,6 % revenus du patrimoine (PV mobilières,
-      crypto) / 17,2 % produits de placement 2025 (dividendes, intérêts).
-      Les PS sur le résultat LMNP ne sont PAS calculés (le champ
-      lmnp_reel_resultat du foyer.json n'alimente pas la base PS)
+    - PS par nature de revenu, aux taux du millésime (revenus 2025, LFSS 2026) :
+      18,6 % revenus du patrimoine (PV mobilières, crypto, résultat LMNP, RCM
+      sans PS à la source) / 17,2 % produits de placement 2025 (dividendes,
+      intérêts) / 17,2 % revenus fonciers nets
     - IR forfaitaire du PFU : 12,8 % des revenus du capital (CGI art. 200 A),
-      sauf option globale pour le barème (non calculée par ce script)
-    - CEHR (RFR incluant les versements PER déduits, CGI art. 1417, IV)
+      ou option globale pour le barème (options_fiscales.revenus_capital,
+      case 2OP : dividendes après abattement de 40 %, intérêts, PV mobilières ;
+      CSG déductible de 6,8 % des dividendes et intérêts de la ligne 2BH
+      déduite l'année même). Option distincte pour les actifs numériques
+      (options_fiscales.crypto, case 3CN, art. 200 C)
+    - Résultat LMNP au réel (lmnp_reel_resultat) : au barème et aux PS des
+      revenus du patrimoine, jamais à l'IR forfaitaire de 12,8 %
+    - CEHR (RFR incluant les versements PER déduits et l'abattement de 40 %,
+      CGI art. 1417, IV)
 
 Ne couvre PAS :
     - Réductions / crédits d'impôt sans bloc reductions_credits dans le
       foyer.json (voir la section « Réductions, crédits d'impôt » plus bas)
-    - Régimes spéciaux (revenus exceptionnels, non-résidents, DOM-TOM)
+    - Régimes spéciaux (revenus exceptionnels, non-résidents : refusés, DOM-TOM)
+    - Abattement pour durée de détention des PV mobilières au barème (titres
+      acquis avant 2018) : non appliqué, l'IR est alors surestimé (saisir la
+      plus-value brute : l'abattement ne réduit pas la base des PS)
+    - Option crypto au barème avant les revenus 2023 (refusée, art. 200 C)
+    - CSG déductible reportée sur l'année suivante (PV mobilières, crypto au
+      barème, RCM sans PS à la source, revenus fonciers, LMNP) : à saisir en
+      csg_deductible_n1 l'année suivante
+    - Contrôle du plafond PER, CDHR, assurance-vie
     - IFI (script distinct à créer si besoin)
 
 Les valeurs viennent du millésime de l'année de revenus :
@@ -242,25 +257,28 @@ def cehr(rfr, parts_base, bareme):
 # PS sur revenus du capital
 # ─────────────────────────────────────────────────────
 
-def ps_capital(base_patrimoine, base_placement, pfu_data):
-    """PS différenciés LFSS 2026 (revenus 2025).
+def ps_capital(base_patrimoine, base_placement, pfu_data, base_foncier=0):
+    """PS par nature de revenu, aux taux du millésime (revenus 2025 : LFSS 2026).
 
-    - Revenus du patrimoine (PV mobilières CTO, crypto, LMNP) : 18,6 % dès 2025.
-    - Produits de placement (dividendes, intérêts, RCM) : 17,2 % pour les
+    - Revenus du patrimoine (PV mobilières CTO, crypto, résultat LMNP, RCM sans
+      PS à la source) : 18,6 % dès les revenus 2025.
+    - Produits de placement (dividendes, intérêts) : 17,2 % pour les
       encaissements 2025 (18,6 % à partir du 01/01/2026).
+    - Revenus fonciers nets : 17,2 % (CSG maintenue à 9,2 %, art. L. 136-8, IV CSS).
     """
     ps = pfu_data["prelevements_sociaux"]
     # Les clés portent l'année de revenus du millésime (taux_revenus_du_patrimoine_2025…).
     annee = pfu_data["_meta"]["revenus"]
-    taux_patrimoine = ps[f"taux_revenus_du_patrimoine_{annee}"]["valeur"]
-    taux_placement = ps[f"taux_produits_de_placement_{annee}"]["valeur"]
-    return {
-        "patrimoine": {"base": base_patrimoine, "taux": taux_patrimoine,
-                       "montant": round(base_patrimoine * taux_patrimoine)},
-        "placement": {"base": base_placement, "taux": taux_placement,
-                      "montant": round(base_placement * taux_placement)},
-        "total": round(base_patrimoine * taux_patrimoine) + round(base_placement * taux_placement),
+    taux = {
+        "patrimoine": ps[f"taux_revenus_du_patrimoine_{annee}"]["valeur"],
+        "placement": ps[f"taux_produits_de_placement_{annee}"]["valeur"],
+        "foncier": ps["taux_fonciers_assurance_vie"]["valeur"],
     }
+    bases = {"patrimoine": base_patrimoine, "placement": base_placement, "foncier": base_foncier}
+    detail: dict = {k: {"base": bases[k], "taux": taux[k], "montant": round(bases[k] * taux[k])}
+                    for k in bases}
+    detail["total"] = sum(detail[k]["montant"] for k in bases)
+    return detail
 
 
 # ─────────────────────────────────────────────────────
@@ -268,20 +286,21 @@ def ps_capital(base_patrimoine, base_placement, pfu_data):
 # ─────────────────────────────────────────────────────
 
 def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
-         base_ps_placement=0, pfu_data=None, base_pfu_ir=0):
+         base_ps_placement=0, pfu_data=None, base_pfu_ir=0, base_ps_foncier=0,
+         options=None, avertissements=None):
     qf = impot_avec_qf(rni, parts, parts_base, bareme)
     dec = decote(qf["impot_brut"], parts_base, bareme)
     impot_apres_decote = max(0, qf["impot_brut"] - round(dec))
 
-    if (base_ps_patrimoine or base_ps_placement) and pfu_data:
-        ps_detail = ps_capital(base_ps_patrimoine, base_ps_placement, pfu_data)
+    if (base_ps_patrimoine or base_ps_placement or base_ps_foncier) and pfu_data:
+        ps_detail = ps_capital(base_ps_patrimoine, base_ps_placement, pfu_data, base_ps_foncier)
     else:
         ps_detail = None
     ps = ps_detail["total"] if ps_detail else 0
     cehr_montant = cehr(rfr, parts_base, bareme) if rfr else 0
     ir_pfu = round(base_pfu_ir * pfu_data["pfu"]["taux_ir"]) if base_pfu_ir and pfu_data else 0
 
-    return {
+    result = {
         "rni": rni,
         "parts": parts,
         "parts_base": parts_base,
@@ -301,6 +320,12 @@ def calc(rni, parts, parts_base, bareme, rfr=None, base_ps_patrimoine=0,
         "total_a_payer": impot_apres_decote + ir_pfu + ps + cehr_montant,
         "_note": "Avant réductions et crédits d'impôt. Les additionner manuellement.",
     }
+    if options is not None:
+        result["options_fiscales"] = options
+        result["rfr_approx"] = rfr
+    if avertissements:
+        result["_avertissements"] = avertissements
+    return result
 
 
 def from_foyer(foyer, bareme, pfu_data):
@@ -348,32 +373,149 @@ def from_foyer(foyer, bareme, pfu_data):
 
     # Revenus fonciers : déjà au net (micro post-abattement / réel post-charges).
     fonciers = r.get("revenus_fonciers_reels", 0) + r.get("revenus_fonciers_micro", 0)
+    avertissements = []
+    # Déficits fonciers des dix années précédentes (case 4BD) : imputés sur le revenu
+    # foncier net positif de l'année, réel ou micro, jamais au-delà (art. 156, I, 3° CGI).
+    # L'IR et les PS portent sur le net après cette imputation (brochure IR 2026, p. 61).
+    deficit_anterieur = r.get("deficit_foncier_anterieur", 0)
+    if deficit_anterieur < 0:
+        sys.exit(f"revenus.deficit_foncier_anterieur = {deficit_anterieur} : montant positif attendu "
+                 "(déficits fonciers antérieurs restant à imputer, case 4BD)")
+    if deficit_anterieur:
+        impute = min(deficit_anterieur, max(0, fonciers))
+        fonciers -= impute
+        if impute < deficit_anterieur:
+            avertissements.append(
+                f"Déficits fonciers antérieurs : {impute} € imputés sur les revenus fonciers de "
+                f"l'année, {deficit_anterieur - impute} € restent reportables sur les revenus "
+                "fonciers des années suivantes, dans la limite de dix ans (art. 156, I, 3° CGI).")
+    # LMNP au réel : résultat BIC non professionnel après amortissements, positif
+    # seulement. Imposé au barème, et soumis aux PS des revenus du patrimoine.
+    lmnp = max(0, r.get("lmnp_reel_resultat", 0))
 
-    # Revenus imposables au barème (hors revenus du capital si PFU)
-    revenu_global = net_salaires + net_pensions + pensions_sans_abattement + fonciers
+    # Revenus du capital et options (art. 200 A, 2 et 200 C CGI)
+    opt = foyer.get("options_fiscales", {})
+    dividendes = r.get("dividendes_bruts", 0)
+    interets = r.get("interets_rcm", 0)
+    pv_mobilieres = r.get("plus_values_mobilieres", 0)
+    crypto = r.get("crypto_plus_values", 0)
+    # Une moins-value nette ne s'impute que sur des plus-values de même nature, jamais
+    # sur le revenu global ni sur les dividendes et intérêts : celle des valeurs
+    # mobilières se reporte sur les dix années suivantes (art. 150-0 D, 11 CGI), celle
+    # des actifs numériques ne s'impute que sur les plus-values de la même année
+    # (art. 150 VH bis CGI).
+    if pv_mobilieres < 0:
+        avertissements.append(
+            f"Moins-value nette de valeurs mobilières ({-pv_mobilieres} €) : retenue pour 0 €, "
+            "reportable sur les plus-values de même nature des dix années suivantes "
+            "(art. 150-0 D, 11 CGI).")
+        pv_mobilieres = 0
+    if crypto < 0:
+        avertissements.append(
+            f"Moins-value nette d'actifs numériques ({-crypto} €) : retenue pour 0 €, "
+            "imputable sur les seules plus-values de même nature de l'année (art. 150 VH bis CGI).")
+        crypto = 0
+    # Option globale pour le barème (case 2OP) : dividendes, intérêts et plus-values
+    # mobilières de l'année. Elle ne couvre pas les actifs numériques, qui ont leur
+    # propre option (case 3CN, art. 200 C ; notice 2086).
+    option_capital = opt.get("revenus_capital", "pfu")
+    option_crypto = opt.get("crypto", "pfu")
+    for nom, valeur in (("revenus_capital", option_capital), ("crypto", option_crypto)):
+        if valeur not in ("pfu", "bareme"):
+            sys.exit(f"options_fiscales.{nom} = {valeur!r} : valeurs possibles \"pfu\" ou \"bareme\"")
+    # Dividendes et intérêts payés sans PS à l'encaissement (établissement payeur hors
+    # de France, sans formulaire 2778) : PS établis par voie de rôle au titre des
+    # revenus du patrimoine (18,6 % pour les revenus 2025), et CSG déductible
+    # seulement l'année suivante. true = tous les dividendes et intérêts ; un montant =
+    # la part qui n'a pas supporté les PS à la source (foyer qui en encaisse en France
+    # et à l'étranger).
+    saisie_sans_ps = r.get("rcm_sans_ps_a_la_source", False)
+    rcm_total = dividendes + interets
+    if isinstance(saisie_sans_ps, bool):
+        rcm_sans_ps_source = rcm_total if saisie_sans_ps else 0
+    elif isinstance(saisie_sans_ps, (int, float)) and 0 <= saisie_sans_ps <= rcm_total:
+        rcm_sans_ps_source = saisie_sans_ps
+    else:
+        sys.exit(f"revenus.rcm_sans_ps_a_la_source = {saisie_sans_ps!r} : booléen JSON (true ou false) "
+                 f"ou montant de dividendes et intérêts sans PS à la source, entre 0 et {rcm_total} €")
+    # L'option pour le barème des actifs numériques vaut pour les cessions réalisées
+    # depuis le 01/01/2023 (art. 200 C CGI, issu de la LF 2022) : pas avant.
+    annee_revenus = bareme["_meta"]["revenus"]
+    if option_crypto == "bareme" and annee_revenus < 2023:
+        sys.exit(f"options_fiscales.crypto = \"bareme\" : option ouverte aux cessions réalisées depuis le "
+                 f"01/01/2023 (art. 200 C CGI), pas aux revenus {annee_revenus}.")
+
+    # Revenus imposables au barème
+    revenu_global = net_salaires + net_pensions + pensions_sans_abattement + fonciers + lmnp
+    abattement_40 = 0
+    csg_ded_annee = 0
+    if option_capital == "bareme" and pfu_data:
+        abattement_40 = round(dividendes * pfu_data["dividendes_option_bareme"]["abattement"])
+        revenu_global += dividendes - abattement_40 + interets + pv_mobilieres
+        # CSG déductible (6,8 %) des dividendes et intérêts dont les PS ont été prélevés
+        # à la source (ligne 2BH) : déduite automatiquement du revenu global de l'année
+        # même (brochure IR 2026, RCM, p. 132). Celle des plus-values et des PS établis
+        # par voie de rôle ne se déduit que l'année suivante.
+        csg_ded_annee = round((rcm_total - rcm_sans_ps_source)
+                              * pfu_data["prelevements_sociaux"]["dont_csg_deductible_si_bareme"])
+        if pv_mobilieres:
+            avertissements.append(
+                "Option barème : plus-values mobilières imposées sans abattement pour durée de "
+                "détention (titres acquis avant 2018, art. 150-0 D, 1 ter et 1 quater), non géré : "
+                "si les titres y ouvrent droit, l'IR calculé est surestimé (l'abattement ne réduit "
+                "que la base de l'IR, pas celle des PS). La CSG déductible (6,8 %) des plus-values "
+                "se déduira du revenu global de l'année suivante.")
+        if rcm_sans_ps_source:
+            avertissements.append(
+                "Option barème : la CSG déductible (6,8 %) des dividendes et intérêts sans PS "
+                "à la source se déduira du revenu global de l'année suivante.")
+    elif option_capital == "bareme":
+        sys.exit("Option barème : fichier PFU / PS du millésime introuvable (abattement de 40 % et CSG déductible).")
+    if option_capital == "bareme" and option_crypto == "pfu" and crypto:
+        avertissements.append(
+            "La case 2OP ne couvre pas les actifs numériques : plus-values crypto laissées au PFU "
+            "(12,8 %). Pour les imposer au barème, options_fiscales.crypto = \"bareme\" (case 3CN).")
+    if option_crypto == "bareme":
+        revenu_global += crypto
+        if crypto:
+            avertissements.append(
+                "Crypto au barème (case 3CN) : la CSG déductible (6,8 %) se déduira du revenu "
+                "global de l'année suivante.")
 
     # Déductions (PER + pension alimentaire + CSG déductible)
     per = d.get("per_declarant1", 0) + d.get("per_declarant2", 0)
     pension_alim = d.get("pension_alimentaire_enfant_majeur", 0)
     csg_ded = d.get("csg_deductible_n1", 0)
-    rni = max(0, revenu_global - per - pension_alim - csg_ded)
+    rni = max(0, revenu_global - per - pension_alim - csg_ded - csg_ded_annee)
 
-    # Base PS sur revenus du capital, séparée par nature (LFSS 2026) :
+    # Bases PS, séparées par nature (LFSS 2026) :
     # - produits de placement (dividendes, intérêts) : 17,2 % sur les encaissements 2025
-    # - revenus du patrimoine (PV mobilières, crypto) : 18,6 % dès les revenus 2025
-    base_ps_placement = r.get("dividendes_bruts", 0) + r.get("interets_rcm", 0)
-    base_ps_patrimoine = r.get("plus_values_mobilieres", 0) + r.get("crypto_plus_values", 0)
+    # - revenus du patrimoine (PV mobilières, crypto, LMNP, RCM sans PS à la source) :
+    #   18,6 % dès les revenus 2025
+    # - revenus fonciers nets : 17,2 %
+    base_ps_placement = rcm_total - rcm_sans_ps_source
+    base_ps_patrimoine = pv_mobilieres + crypto + lmnp + rcm_sans_ps_source
+    base_ps_foncier = max(0, fonciers)
+    # La CSG déductible de ces PS établis par voie de rôle (revenus fonciers, LMNP)
+    # ne se déduit que du revenu global de l'année suivante (brochure IR 2026, p. 62).
+    if base_ps_foncier or lmnp:
+        avertissements.append(
+            "Revenus fonciers et LMNP : la CSG déductible (6,8 %) de leurs PS se déduira du "
+            "revenu global de l'année suivante (csg_deductible_n1).")
 
-    # IR forfaitaire du PFU (12,8 %, CGI art. 200 A ; art. 150 VH bis pour les
-    # crypto-actifs). Sous option barème, ces revenus relèvent du barème : le
-    # script ne gère pas cette option et ne compte alors pas d'IR forfaitaire.
-    option_capital = foyer.get("options_fiscales", {}).get("revenus_capital", "pfu")
-    base_pfu_ir = base_ps_placement + base_ps_patrimoine if option_capital == "pfu" else 0
+    # IR forfaitaire du PFU (12,8 %, CGI art. 200 A ; art. 200 C pour les actifs
+    # numériques) sur les revenus du capital restés hors barème. Le LMNP n'en fait
+    # jamais partie : il est au barème.
+    base_pfu_ir = 0
+    if option_capital == "pfu":
+        base_pfu_ir += dividendes + interets + pv_mobilieres
+    if option_crypto == "pfu":
+        base_pfu_ir += crypto
 
-    # RFR approximatif : RNI + revenus du capital taxés au PFU + versements PER
-    # déduits, réintégrés au RFR (CGI art. 1417, IV-1°-a). Simplification :
-    # RNI + bases PS + PER
-    rfr_approx = rni + base_ps_placement + base_ps_patrimoine + per
+    # RFR approximatif (CGI art. 1417, IV ; brochure IR 2026, p. 335) : RNI + revenus
+    # taxés au PFU + versements PER déduits (IV-1°-a) + abattement de 40 % des
+    # dividendes au barème.
+    rfr_approx = rni + base_pfu_ir + per + abattement_40
 
     return calc(
         rni=rni,
@@ -385,6 +527,9 @@ def from_foyer(foyer, bareme, pfu_data):
         base_ps_placement=base_ps_placement,
         pfu_data=pfu_data,
         base_pfu_ir=base_pfu_ir,
+        base_ps_foncier=base_ps_foncier,
+        options={"revenus_capital": option_capital, "crypto": option_crypto},
+        avertissements=avertissements,
     )
 
 
@@ -757,12 +902,19 @@ def main():
                 print(f"  PS {pat['taux']*100:.1f}% revenus patrimoine ...... {pat['montant']:>10} €")
             if pla.get("base"):
                 print(f"  PS {pla['taux']*100:.1f}% produits placement ...... {pla['montant']:>10} €")
+            fon = det.get("foncier", {})
+            if fon.get("base"):
+                print(f"  PS {fon['taux']*100:.1f}% revenus fonciers ........ {fon['montant']:>10} €")
             print(f"  PS total revenus capital ........ {result['prelevements_sociaux']:>10} €")
         if result["cehr"]:
             print(f"  CEHR ............................ {result['cehr']:>10} €")
         print(f"  ─────────────────────────────────────────────────")
         print(f"  TOTAL (avant réductions/crédits)  {result['total_a_payer']:>10} €")
         print()
+        for a in result.get("_avertissements", []):
+            print(f"  ! {a}")
+        if result.get("_avertissements"):
+            print()
         if "reductions_credits" in result:
             afficher_reductions_credits(result["reductions_credits"])
 

@@ -67,7 +67,7 @@ Selon date d'attribution :
 
 | Options attribuées | Régime |
 |------|--------|
-| Avant le 28/09/2012 | Taux forfaitaires de faveur selon la durée de portage (cases 3VD / 3VI / 3VF), ou option salaire ; contribution salariale 10 % si attribuées depuis le 16/10/2007 (case 3VN) |
+| Avant le 28/09/2012 | Titres indisponibles 4 ans (5 ans si attribution avant le 27/04/2000). Attribution du 27/04/2000 au 27/09/2012 : 30 % jusqu'à 152 500 € de gain annuel et 41 % au-delà, 18 % et 30 % si les titres sont conservés deux ans de plus (cases 3VD / 3VI / 3VF) ; attribution du 20/09/1995 au 26/04/2000 : 30 %. Ou option salaire ; contribution salariale 10 % si attribuées depuis le 16/10/2007 (case 3VN) |
 | À compter du 28/09/2012 (plans qualifiés) | Imposé **l'année de la cession**, de la conversion au porteur ou de la mise en location des titres (art. 80 bis, II bis CGI) : salaire au barème (case 1TT / 1UT), CSG/CRDS d'activité 9,7 %, contribution salariale 10 % (L. 137-14 CSS ; [BOI-RSA-ES-20-30](https://bofip.impots.gouv.fr/bofip/2389-PGP.html/identifiant=BOI-RSA-ES-20-30-20260521) § 30 et § 150). Une moins-value de cession sous la valeur à la levée s'impute sur le gain de levée (brochure IR 2026). La plus-value au-delà de la valeur à la levée est une PV mobilière (3VG / 3VH) |
 | Plan non qualifié (options étrangères sans sous-plan conforme au code de commerce) | Salaire de droit commun, en principe l'année de la levée, par la paie (BOI-RSA-ES-20-10-20-50 § 1) |
 

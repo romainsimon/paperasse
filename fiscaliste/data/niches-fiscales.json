@@ -6,7 +6,7 @@
   },
 
   "plafonnement_global": {
-    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est en principe perdu ; seule la fraction de la réduction IR-PME (art. 199 terdecies-0 A) qui excède le plafond global est reportable sur les 5 années suivantes (impots.gouv.fr, réduction pour investissement dans une PME).",
+    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est en principe perdu. Exception : lorsque la réduction pour souscription au capital de PME ou d'ESUS (versements depuis le 01/01/2013, en direct ou via une holding éligible, hors FCPI et FIP ; art. 199 terdecies-0 A, II et 199 terdecies-0 AA) ou de sociétés foncières solidaires (art. 199 terdecies-0 AB, I, 2, 3°) dépasse à elle seule, avec ses reports, le plafond de 10 000 €, cette fraction est reportable sur les 5 années suivantes. Les autres avantages du foyer, plafonnés ou non, ne comptent pas pour apprécier cet excédent : une réduction PME de 9 000 € plus 7 700 € d'autres crédits ne donne aucun report (BOI-IR-RICI-90-20-10 § 190, exemple 3 ; brochure IR 2026 p. 289 et 291).",
     "plafond_metropole": 10000,
     "plafond_investissements_outre_mer": 18000,
     "note": "Le plafond s'applique APRÈS calcul de toutes les réductions, pas avant. Piège classique : cumuler Pinel + FCPI + outre-mer sans vérifier le plafond global."
@@ -23,7 +23,7 @@
       "Frais de garde des jeunes enfants hors du domicile (crédit d'impôt 50 %, art. 200 quater B)",
       "Malraux pour les opérations engagées avant le 01/01/2013 uniquement",
       "Travaux de conservation d'objets mobiliers classés monuments historiques (art. 199 duovicies)",
-      "Investissements outre-mer (art. 199 undecies A à D, dont Girardin ; seule la fraction non rétrocédée des 199 undecies B et C compte), SOFICA et Pinel / Denormandie outre-mer : plafond majoré à 18 000 €",
+      "Investissements outre-mer (art. 199 undecies A, B et C, dont Girardin ; seule la fraction non rétrocédée des 199 undecies B et C compte), SOFICA et Pinel / Denormandie outre-mer : plafond majoré à 18 000 €",
       "Investissement forestier",
       "Investissement corse"
     ]

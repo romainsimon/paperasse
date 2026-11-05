@@ -117,8 +117,9 @@ Si l'on a choisi de ne pas déduire les versements (case à cocher à la souscri
 ### Sortie anticipée autorisée
 
 Cas de déblocage avant la retraite (art. L. 224-4 CMF) :
-- Achat de la résidence principale : le capital issu de versements déduits est imposé au barème (sans abattement de 10 %) et les gains au PFU, comme une sortie à la retraite
+- Achat de la résidence principale (sauf droits issus de versements obligatoires) : le capital issu de versements déduits est imposé au barème (sans abattement de 10 %) et les gains au PFU, comme une sortie à la retraite
 - « Accidents de la vie » (L. 224-4, I-1° à 5°) : décès du conjoint ou partenaire de PACS, invalidité (titulaire, conjoint, enfant), surendettement, **expiration des droits à l'assurance chômage** (ou, pour un dirigeant sans contrat de travail, absence de mandat social et de contrat de travail depuis deux ans), cessation d'activité non salariée après jugement de liquidation judiciaire : versements et gains **exonérés d'IR**, prélèvements sociaux sur les seuls gains (BOI-ANNX-000513)
+- Titulaire de moins de 18 ans à la date de la demande (L. 224-4, I-7°, depuis le 01/01/2024 ; BOI-IR-BASE-20-50-10 § 60) : imposé comme une sortie en capital
 
 Hors ces cas : déblocage impossible (capital bloqué jusqu'à la retraite).
 

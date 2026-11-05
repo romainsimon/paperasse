@@ -13,7 +13,7 @@
 
   "per_individuel": {
     "description": "Plafond de déduction PER pour les versements 2025 (déclaration 2026). Le PASS de référence est celui de l'année qui précède le versement (art. 163 quatervicies, I-2 CGI ; brochure IR 2026, charges déductibles).",
-    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires et allocations de chômage après abattement de 10 %, gains d'actionnariat salarié imposés comme salaires, BIC, BNC, BA professionnels), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83, PERO, Madelin, abondement PERCO exonéré, jours de CET monétisés)",
+    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires et allocations de chômage après abattement de 10 %, gains d'actionnariat salarié imposés comme salaires, BIC, BNC, BA professionnels), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83 2°, PERO ; Madelin et art. 154 bis-0 A pour la seule fraction excédant 15 % du bénéfice compris entre 1 et 8 PASS ; sommes versées par l'entreprise ou le salarié au PERCO ou PERECO et exonérées au titre de l'art. 81, 18°, dont jours de CET monétisés)",
     "plancher_euros": 4637,
     "plancher_base": "10 % × PASS 2024 (46 368 €), garanti même sans revenus professionnels",
     "plafond_absolu_euros": 37094,
@@ -40,7 +40,7 @@
     "capital_gains": "PFU 12,8 % ou barème sur option, case 2TZ, plus PS des produits de placement (17,2 % jusqu'au 31/12/2025, 18,6 % à compter du 01/01/2026)",
     "rente_versements_deduits": "Rente viagère à titre gratuit (barème après abattement de 10 %) ; PS des produits de placement sur la seule fraction imposable d'une rente à titre onéreux (art. L. 136-7, I-4° CSS)",
     "versements_non_deduits": "Capital exonéré d'IR, seuls les gains sont imposés (PFU) ; rente imposée comme rente viagère à titre onéreux",
-    "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale (imposé comme une sortie en capital), accidents de la vie (décès du conjoint, invalidité, surendettement, expiration des droits au chômage, cessation d'activité non salariée après liquidation judiciaire) : versements et gains exonérés d'IR, PS sur les gains"
+    "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale, sauf droits issus des versements obligatoires (imposé comme une sortie en capital) ; accidents de la vie (décès du conjoint ou partenaire de PACS ; invalidité du titulaire, de ses enfants, de son conjoint ou partenaire ; surendettement ; expiration des droits au chômage ou, pour certains anciens mandataires, absence de contrat de travail ou de mandat depuis 2 ans ; cessation d'activité non salariée après liquidation judiciaire ou situation justifiant le retrait selon le président du tribunal de commerce) : versements et gains exonérés d'IR, PS sur les gains ; depuis le 01/01/2024, titulaire de moins de 18 ans (I-7°), imposé comme une sortie en capital"
   },
 
   "arbitrage_per": {

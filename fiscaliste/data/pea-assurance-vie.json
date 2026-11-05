@@ -17,7 +17,7 @@
     "description": "Plan d'Épargne en Actions — enveloppe fiscale actions européennes",
     "plafond_versements": 150000,
     "plafond_enfant_majeur_rattache": 20000,
-    "note_pea_pme": "PEA-PME : 225 000 € de versements ; plafond commun PEA + PEA-PME ≤ 225 000 €, dont PEA ≤ 150 000 € (art. L. 221-32-1 CMF)",
+    "note_pea_pme": "PEA-PME : 225 000 € de versements ; plafond commun PEA + PEA-PME ≤ 225 000 € (art. L. 221-32-1 CMF), dont PEA ≤ 150 000 € (art. L. 221-30 CMF)",
 
     "avant_5_ans": {
       "retrait": "Tout retrait entraîne clôture du plan, sauf les deux exceptions ci-dessous",
@@ -165,6 +165,6 @@
       "2CG_2BH": "revenus déjà soumis aux prélèvements sociaux par l'assureur (sans / avec CSG déductible) : évitent une seconde perception des PS, ne déclarent pas le gain"
     },
 
-    "option_bareme_avantageuse_si": "TMI 0 % ; à TMI 11 %, seulement sur la fraction des produits taxée à 12,8 % (primes > 150 000 €). L'abattement de 4 600 / 9 200 € s'applique dans les deux régimes."
+    "option_bareme_avantageuse_si": "Option globale pour l'ensemble des revenus et gains mobiliers de l'année, à comparer sur le tout (art. 200 A, 2 CGI). Primes versées depuis le 27/09/2017. Contrat de moins de 8 ans (12,8 %) : avantageuse si TMI ≤ 11 % et hors zone de décote. Dans la zone de décote, chaque euro imposé coûte 11 % × 1,4525 ≈ 16 %, plus que 12,8 % : c'est toujours le cas d'une personne seule avec une part à TMI 11 % (impôt brut de la tranche à 11 % sous le seuil de 1 982 €), et d'un couple dont l'impôt brut reste sous 3 277 €. Contrat de 8 ans et plus : avantageuse à TMI 0 % ; à TMI 11 % hors décote, le barème bat 12,8 % mais pas 7,5 %, donc seulement si la fraction à 12,8 % (primes > 150 000 €) l'emporte. Sur les contrats de 8 ans et plus, l'abattement de 4 600 / 9 200 € s'applique dans les deux régimes."
   }
 }

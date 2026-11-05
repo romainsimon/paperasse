@@ -307,6 +307,34 @@ function testBilanComptes419457467() {
   assert.strictEqual(totalPassif, 1300, "total passif attendu 1300: " + totalPassif);
 }
 
+function testBilanTresorerieCreditrice() {
+  // 512 en decouvert et 519 concours bancaires : dettes au passif
+  const { md, totalActif, totalPassif } = runBilan({
+    "411000": { debit: 800, credit: 0 },
+    "512000": { debit: 0, credit: 300 },
+    "512100": { debit: 200, credit: 0 },
+    "519000": { debit: 0, credit: 100 },
+    "101000": { debit: 0, credit: 600 },
+  });
+  assert.strictEqual(bilanSide(md, "512000"), "passif", "512000 crediteur attendu au passif:\n" + md);
+  assert.strictEqual(bilanSide(md, "512100"), "actif", "512100 debiteur attendu a l'actif:\n" + md);
+  assert.strictEqual(bilanSide(md, "519000"), "passif", "519000 crediteur attendu au passif:\n" + md);
+  assert.strictEqual(totalActif, 1000, "total actif attendu 1000: " + totalActif);
+  assert.strictEqual(totalPassif, 1000, "total passif attendu 1000: " + totalPassif);
+}
+
+function testBilanSoldeUnCentime() {
+  // Un solde d'exactement 0,01 doit figurer au bilan, sinon le controle
+  // d'equilibre bloque la cloture sur un ecart fictif
+  const r = runBilan({
+    "512000": { debit: 999.99, credit: 0 },
+    "445660": { debit: 0.01, credit: 0 },
+    "101000": { debit: 0, credit: 1000 },
+  });
+  assert.strictEqual(bilanSide(r.md, "445660"), "actif", "445660 a 0,01 attendu a l'actif:\n" + r.md);
+  assert.doesNotThrow(() => checkBilanEquilibre(r));
+}
+
 function testBilanControleEquilibre() {
   // Un ecart Actif / Passif doit lever une erreur explicite
   assert.doesNotThrow(() => checkBilanEquilibre({ totalActif: 700, totalPassif: 700, ecart: 0 }));
@@ -342,6 +370,8 @@ function main() {
   testBilanDettes42xEt4457x();
   testBilanCompteCourantDebiteur();
   testBilanComptes419457467();
+  testBilanTresorerieCreditrice();
+  testBilanSoldeUnCentime();
   testBilanControleEquilibre();
   console.log("Deterministic calculation tests passed.");
 }

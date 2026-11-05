@@ -63,7 +63,20 @@ Si vous n'utilisez ni agentskill.sh ni un clone Git complet, attention aux liens
 Certains installateurs qui téléchargent les dossiers un par un via l'API GitHub les transforment en petits fichiers texte.
 Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex et les vérifications.
 
-### Option 3 : Grok Bot, installation en un clic
+### Option 3 : Claude Code et Claude Cowork (marketplace de plugins)
+
+Le dépôt est aussi une marketplace de plugins Claude, avec un plugin par skill : `comptable`, `fiscaliste`, `notaire`, `controleur-fiscal`, `commissaire-aux-comptes`, `syndic`.
+
+**Claude Code** :
+
+```
+/plugin marketplace add romainsimon/paperasse
+/plugin install comptable@paperasse
+```
+
+**Claude Cowork** : dans Plugins, choisir **Add marketplace**, saisir `romainsimon/paperasse`, puis cliquer sur **Install** pour chaque skill voulu.
+
+### Option 4 : Grok Bot, installation en un clic
 
 Chaque skill existe en template [Grok Bot](https://x.ai/bot) prêt à l'emploi. Ouvrez le lien, puis cliquez sur **Add to Grok Bot** :
 

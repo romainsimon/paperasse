@@ -62,6 +62,9 @@ jobs:
             esac
           done
 
+      - name: Parseur de factures CII
+        run: npm run test:parse
+
       - name: Connecteurs (Qonto, Pennylane)
         run: |
           npm run test:qonto

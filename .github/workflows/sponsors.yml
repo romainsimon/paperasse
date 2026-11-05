@@ -14,24 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update Founding Sponsors tier ($2000+)
-        uses: JamesIves/github-sponsors-readme-action@v1
-        with:
-          token: ${{ secrets.SPONSORS_PAT }}
-          file: 'README.md'
-          marker: 'sponsors-founding'
-          minimum: 200000
-          template: '<a href="https://github.com/{{{ login }}}" target="_blank" rel="noopener"><img src="{{{ avatarUrl }}}" width="200" alt="{{{ login }}}" /></a>&nbsp;&nbsp;'
-          fallback: '<sub>Become the first <a href="https://github.com/sponsors/romainsimon">Founding Sponsor</a>.</sub>'
-
-      - name: Update Premier Sponsors tier ($500-$1999)
+      - name: Update Premier Sponsors tier ($500+)
         uses: JamesIves/github-sponsors-readme-action@v1
         with:
           token: ${{ secrets.SPONSORS_PAT }}
           file: 'README.md'
           marker: 'sponsors-premier'
           minimum: 50000
-          maximum: 199999
           template: '<a href="https://github.com/{{{ login }}}" target="_blank" rel="noopener"><img src="{{{ avatarUrl }}}" width="160" alt="{{{ login }}}" /></a>&nbsp;&nbsp;'
           fallback: '<sub>Become the first <a href="https://github.com/sponsors/romainsimon">Premier Sponsor</a>.</sub>'
 
@@ -46,25 +35,14 @@ jobs:
           template: '<a href="https://github.com/{{{ login }}}" target="_blank" rel="noopener"><img src="{{{ avatarUrl }}}" width="100" alt="{{{ login }}}" /></a>&nbsp;&nbsp;'
           fallback: '<sub>Become the first <a href="https://github.com/sponsors/romainsimon">Sponsor</a>.</sub>'
 
-      - name: Update Backers tier ($25-$99)
-        uses: JamesIves/github-sponsors-readme-action@v1
-        with:
-          token: ${{ secrets.SPONSORS_PAT }}
-          file: 'README.md'
-          marker: 'sponsors-backer'
-          minimum: 2500
-          maximum: 9999
-          template: '<a href="https://github.com/{{{ login }}}" target="_blank" rel="noopener"><img src="{{{ avatarUrl }}}" width="60" alt="{{{ login }}}" /></a>&nbsp;'
-          fallback: '<sub>Become the first <a href="https://github.com/sponsors/romainsimon">Backer</a>.</sub>'
-
-      - name: Update Supporters tier ($5-$24)
+      - name: Update Supporters tier ($5-$99)
         uses: JamesIves/github-sponsors-readme-action@v1
         with:
           token: ${{ secrets.SPONSORS_PAT }}
           file: 'README.md'
           marker: 'sponsors-supporter'
           minimum: 500
-          maximum: 2499
+          maximum: 9999
           template: '<a href="https://github.com/{{{ login }}}" target="_blank" rel="noopener"><img src="{{{ avatarUrl }}}" width="40" alt="{{{ login }}}" /></a>&nbsp;'
           fallback: '<sub>Become the first <a href="https://github.com/sponsors/romainsimon">Supporter</a>.</sub>'
 

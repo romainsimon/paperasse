@@ -24,7 +24,7 @@
 
 ## Qu'est-ce que Paperasse ?
 
-<b>Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [Codex](https://openai.com/codex/), [Mistral Vibe](https://vibe.mistral.ai), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat)) spécialisés dans la comptabilité, la fiscalité, la facturation, le notariat et l'audit des entreprises françaises.</b>
+<b>Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [ChatGPT](https://chatgpt.com), [Codex](https://openai.com/codex/), [Grok Bot](https://x.ai/bot), [GitHub Copilot](https://github.com/features/copilot), [Gemini CLI](https://geminicli.com), [Mistral Vibe](https://vibe.mistral.ai), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat), [Hermes Agent](https://hermes-agent.nousresearch.com)) spécialisés dans la comptabilité, la fiscalité, la facturation, le notariat et l'audit des entreprises françaises.</b>
 
 Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : comptabilité (PCG, TVA, IS, clôture annuelle, FEC, liasse fiscale), facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées, e-reporting), contrôle fiscal, audit CAC, fiscalité des particuliers (IR, IFI, PFU, PEA, AV, LMNP, RSU, BSPCE, crypto, PER), droit notarial (immobilier, succession, donation), et gestion de copropriété (AG, charges, travaux, impayés). Il connaît les textes (CGI, BOFiP, NEP, loi 1965), les formulaires, les échéances, et ne se trompe pas de case dans la liasse fiscale.
 
@@ -62,6 +62,32 @@ L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui v
 Si vous n'utilisez ni agentskill.sh ni un clone Git complet, attention aux liens symboliques vers les ressources partagées (`data`, `scripts`, `templates`, `integrations`).
 Certains installateurs qui téléchargent les dossiers un par un via l'API GitHub les transforment en petits fichiers texte.
 Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex et les vérifications.
+
+### Option 3 : Claude Code et Claude Cowork (marketplace de plugins)
+
+Le dépôt est aussi une marketplace de plugins Claude, avec un plugin par skill : `comptable`, `fiscaliste`, `notaire`, `controleur-fiscal`, `commissaire-aux-comptes`, `syndic`.
+
+**Claude Code** :
+
+```
+/plugin marketplace add romainsimon/paperasse
+/plugin install comptable@paperasse
+```
+
+**Claude Cowork** : dans Plugins, choisir **Add marketplace**, saisir `romainsimon/paperasse`, puis cliquer sur **Install** pour chaque skill voulu.
+
+### Option 4 : Grok Bot, installation en un clic
+
+Chaque skill existe en template [Grok Bot](https://x.ai/bot) prêt à l'emploi. Ouvrez le lien, puis cliquez sur **Add to Grok Bot** :
+
+| Skill | Template Grok Bot |
+|-------|-------------------|
+| Comptable | [Paperasse · Expert-Comptable](https://x.ai/bot/MmwMdZ7OVKXIKBUfc1dE5) |
+| Fiscaliste | [Paperasse · Fiscaliste Particuliers](https://x.ai/bot/GNroMbol-LOahbXzb8Ovw) |
+| Notaire | [Paperasse · Notaire](https://x.ai/bot/-H7Vc-5QDpqqEbF1PqLxy) |
+| Contrôleur fiscal | [Paperasse · Contrôleur Fiscal](https://x.ai/bot/rGTJjgN2hrX5vJvM4wfis) |
+| Commissaire aux comptes | [Paperasse · Commissaire aux Comptes](https://x.ai/bot/_zuqAPpyDT_WV2zpSvPxK) |
+| Syndic de copropriété | [Paperasse · Syndic de Copropriété](https://x.ai/bot/F1uQVa6SA7p-8YbhGL_y0) |
 
 ---
 
@@ -196,6 +222,8 @@ Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fic
 | **Cursor** | `~/.cursor/skills/` |
 | **Windsurf** | `~/.windsurf/skills/` |
 | **Codex** | `~/.codex/skills/` |
+| **GitHub Copilot** | `~/.copilot/skills/` |
+| **Gemini CLI** | `~/.gemini/skills/` |
 | **Mistral Vibe** | `~/.vibe/skills/` |
 | **Cline** | `~/.cline/skills/` |
 | **Aider** | `~/.aider/skills/` |
@@ -208,6 +236,10 @@ Claude Desktop et claude.ai supportent les skills via upload :
 2. Puis : Customize → Skills → uploader un `.zip` dont le dossier racine contient un `SKILL.md`.
 
 **Limite importante** : certains skills partagent des ressources via des liens symboliques : comptable (`data/`, `scripts/`, `templates/`, `integrations/`), controleur-fiscal et commissaire-aux-comptes (`data/`), notaire (`scripts/`). Un zip d'un seul dossier de skill casse ces liens et le skill ne trouve plus ses ressources. Pour ces skills, préférer [agentskill.sh](https://agentskill.sh) ou un clone Git complet utilisé avec Claude Code. Les skills autonomes (fiscaliste, syndic) s'uploadent sans problème.
+
+### ChatGPT
+
+ChatGPT accepte l'upload d'un skill sur les offres Business, Enterprise, Healthcare et Edu, selon les réglages de l'espace de travail ([aide OpenAI](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)). La même limite s'applique : préférer les skills autonomes (fiscaliste, syndic) pour un upload dossier par dossier.
 
 ---
 
@@ -279,23 +311,15 @@ Ces forks ne sont **pas maintenus par paperasse** : la fraîcheur des référenc
 
 Paperasse est maintenu en open source grâce au soutien de ses sponsors. [Devenir sponsor](https://github.com/sponsors/romainsimon).
 
-### Founding Sponsors
-
-<p align="center"><!-- sponsors-founding --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Founding Sponsor</a>.</sub><!-- sponsors-founding --></p>
-
-### Premier Sponsors
+### Premier Sponsors · 500 $ / mois
 
 <p align="center"><!-- sponsors-premier --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Premier Sponsor</a>.</sub><!-- sponsors-premier --></p>
 
-### Sponsors
+### Sponsors · 100 $ / mois
 
 <p align="center"><!-- sponsors-sponsor --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Sponsor</a>.</sub><!-- sponsors-sponsor --></p>
 
-### Backers
-
-<p align="center"><!-- sponsors-backer --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Backer</a>.</sub><!-- sponsors-backer --></p>
-
-### Supporters
+### Supporters · 5 $ / mois
 
 <p align="center"><!-- sponsors-supporter --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Supporter</a>.</sub><!-- sponsors-supporter --></p>
 

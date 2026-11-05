@@ -1,0 +1,123 @@
+{
+  "name": "paperasse",
+  "description": "Skills pour agents IA spécialisés dans la paperasse française : comptabilité, fiscalité, notariat, audit, copropriété",
+  "owner": {
+    "name": "Romain Simon"
+  },
+  "plugins": [
+    {
+      "name": "comptable",
+      "source": "./",
+      "description": "Expert-Comptable : Comptabilité, TVA, IS, clôture annuelle, FEC, liasse fiscale, facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées, e-reporting)",
+      "version": "1.0.0",
+      "author": {
+        "name": "Romain Simon"
+      },
+      "homepage": "https://github.com/romainsimon/paperasse",
+      "repository": "https://github.com/romainsimon/paperasse",
+      "license": "MIT",
+      "keywords": [
+        "paperasse",
+        "comptable"
+      ],
+      "skills": [
+        "./comptable"
+      ]
+    },
+    {
+      "name": "fiscaliste",
+      "source": "./",
+      "description": "Fiscaliste Particuliers : Fiscalité personnelle : IR (barème, QF, décote, plafonnement), IFI, PFU ou barème, PEA, assurance-vie, LMNP, RSU/BSPCE/stock-options, crypto",
+      "version": "1.0.0",
+      "author": {
+        "name": "Romain Simon"
+      },
+      "homepage": "https://github.com/romainsimon/paperasse",
+      "repository": "https://github.com/romainsimon/paperasse",
+      "license": "MIT",
+      "keywords": [
+        "paperasse",
+        "fiscaliste"
+      ],
+      "skills": [
+        "./fiscaliste"
+      ]
+    },
+    {
+      "name": "notaire",
+      "source": "./",
+      "description": "Notaire : Frais de notaire, successions, donations, SCI, PACS",
+      "version": "1.0.0",
+      "author": {
+        "name": "Romain Simon"
+      },
+      "homepage": "https://github.com/romainsimon/paperasse",
+      "repository": "https://github.com/romainsimon/paperasse",
+      "license": "MIT",
+      "keywords": [
+        "paperasse",
+        "notaire"
+      ],
+      "skills": [
+        "./notaire"
+      ]
+    },
+    {
+      "name": "controleur-fiscal",
+      "source": "./",
+      "description": "Contrôleur Fiscal : Simulation de contrôle DGFIP, chefs de redressement",
+      "version": "1.0.0",
+      "author": {
+        "name": "Romain Simon"
+      },
+      "homepage": "https://github.com/romainsimon/paperasse",
+      "repository": "https://github.com/romainsimon/paperasse",
+      "license": "MIT",
+      "keywords": [
+        "paperasse",
+        "controleur-fiscal"
+      ],
+      "skills": [
+        "./controleur-fiscal"
+      ]
+    },
+    {
+      "name": "commissaire-aux-comptes",
+      "source": "./",
+      "description": "Commissaire aux Comptes : Audit NEP en 7 phases, opinion motivée",
+      "version": "1.0.0",
+      "author": {
+        "name": "Romain Simon"
+      },
+      "homepage": "https://github.com/romainsimon/paperasse",
+      "repository": "https://github.com/romainsimon/paperasse",
+      "license": "MIT",
+      "keywords": [
+        "paperasse",
+        "commissaire-aux-comptes"
+      ],
+      "skills": [
+        "./commissaire-aux-comptes"
+      ]
+    },
+    {
+      "name": "syndic",
+      "source": "./",
+      "description": "Syndic de Copropriété : Gestion complète de copropriété, AG, appels de fonds, comptabilité, travaux, contentieux",
+      "version": "1.0.0",
+      "author": {
+        "name": "Romain Simon"
+      },
+      "homepage": "https://github.com/romainsimon/paperasse",
+      "repository": "https://github.com/romainsimon/paperasse",
+      "license": "MIT",
+      "keywords": [
+        "paperasse",
+        "syndic"
+      ],
+      "skills": [
+        "./syndic"
+      ]
+    }
+  ]
+}

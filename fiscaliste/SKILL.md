@@ -128,9 +128,9 @@ une section par année de revenus sous `annees`, avec les revenus et, une fois l
 | Dividendes (PFU) | 2DC | Aucun |
 | Micro-BNC | 5HQ (activité professionnelle) / 5KU (non professionnelle) — 5TE seulement en versement libératoire | 34 % (plafond 77 700 €) |
 | Micro-foncier (nu) | 4BE | 30 % (plafond 15 000 €) |
-| Micro-BIC LMNP longue durée | 5NI | 50 % (plafond 77 700 €) |
+| Micro-BIC LMNP longue durée (autres locations meublées) | 5NI | 50 % (plafond 77 700 € en 2025, 83 600 € pour 2026-2028) |
 | Micro-BIC LMNP meublé tourisme non classé | 5NH | 30 % (plafond 15 000 €) |
-| Micro-BIC LMNP meublé tourisme classé | 5NG | 50 % (plafond 77 700 €) |
+| Micro-BIC LMNP meublé tourisme classé, chambres d'hôtes | 5NG | 50 % (plafond 77 700 € en 2025, 83 600 € pour 2026-2028) |
 
 ### PFU et prélèvements sociaux
 
@@ -341,6 +341,8 @@ Ces points sont systématiquement vérifiés par les utilisateurs exigeants — 
 - Seuil LMP : recettes > **23 000 €** ET recettes > autres revenus d'activité du foyer, **pensions et rentes viagères comprises** (art. 155 IV 2 CGI, renvoi à l'art. 79).
 - Amortissements au réel : plafonnés au loyer diminué des autres charges, ils **ne peuvent ni créer ni accroître un déficit** (art. 39 C ; BOI-BIC-CHAMP-40-20 § 57).
 - Déficit LMNP au réel : **non imputable sur le revenu global** (reportable 10 ans sur les seuls revenus de location meublée non professionnelle).
+- **Revente** : les amortissements admis en déduction au réel sont retranchés du prix d'acquisition pour la plus-value (art. 150 VB, III, cessions depuis le 15/02/2025), sauf ceux des dépenses de construction, reconstruction, agrandissement ou amélioration (art. 150 VB, III, 1er alinéa) ; les travaux faits soi-même et les matériaux achetés ne majorent jamais le prix d'acquisition (seules les factures d'entreprise, ou le forfait de 15 % après plus de cinq ans).
+- PS sur le résultat LMNP : 18,6 % dès les revenus 2025 (revenus du patrimoine) ; revenus fonciers nus : 17,2 %.
 
 ### Pour un déficit foncier (régime réel)
 

@@ -1,7 +1,7 @@
 ---
 name: comptable
 metadata:
-  last_updated: "2026-11-04"
+  last_updated: "2026-11-05"
 includes:
   - data/**
   - scripts/**
@@ -205,6 +205,7 @@ Consulter selon le besoin :
 | `scripts/validate-facture.js --all <dossier/>` | Valider toutes les factures d'un dossier |
 | `scripts/validate-facture.js --invoice <f.json> --strict` | Traiter les mentions 2026 comme obligatoires |
 | `scripts/validate-facture.js --invoice <f.json> --json` | Sortie JSON (pour CI/agent) |
+| `scripts/parse-einvoice.js --invoice <facture.xml> --json` | Lire une facture CII reçue (EN 16931) : sortie code 1 sans données si un contrôle échoue |
 | `scripts/import-stripe-invoices.js --start <date> --end <date>` | Importer les invoices Stripe payées (multi-compte, conversion EUR, idempotent via `data/invoices/index.json`) |
 | `scripts/import-stripe-invoices.js ... --account <id>` | Filtrer sur un compte Stripe (via `stripe_accounts[].id`) |
 | `scripts/import-stripe-invoices.js ... --dry-run` | Simuler sans écrire |

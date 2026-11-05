@@ -267,7 +267,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) ramène sou
 
 - Si solde à payer > 300 € : étalement automatique sur 4 mois (septembre-décembre)
 - Si solde à payer > 50 % de l'IR N-1 : acomptes recalculés sur N+1
-- En cas de désaccord : réclamation sur impots.gouv.fr dans les 3 ans (délai de reprise DGFIP identique)
+- En cas de désaccord : réclamation sur impots.gouv.fr au plus tard le 31/12 de la 2e année suivant celle de la mise en recouvrement de l'avis (art. R* 196-1, a LPF). Revenus 2025, avis émis en 2026 : jusqu'au 31/12/2028. Ce délai n'est pas celui de l'administration : son droit de reprise court jusqu'au 31/12 de la 3e année suivant celle au titre de laquelle l'imposition est due, c'est-à-dire l'année des revenus (art. L. 169 LPF), soit aussi le 31/12/2028 pour des revenus 2025. Les deux dates coïncident dans le cas courant mais divergent dès que l'avis est mis en recouvrement plus tard (rôle supplémentaire) ou qu'un événement motive la réclamation (R* 196-1, c). En cas de procédure de reprise ou de rectification, le contribuable dispose d'un délai égal à celui de l'administration pour ses propres réclamations (art. R* 196-3 LPF)
 
 ---
 

@@ -44,6 +44,8 @@
  *     règles EN 16931 ; un document non conforme au schéma peut donc passer ces
  *     contrôles métier. Pour une conformité complète, passer par un validateur
  *     dédié ou par une plateforme agréée.
+ *   - Refus prudent : un commentaire qui contient « <? » ou « <![CDATA[ » fait
+ *     refuser le document, même bien formé (cas rare, saisie manuelle).
  *   - Les sous-lignes du profil EXTENDED (lignes imbriquées) ne sont pas lues :
  *     le découpage des lignes est alors faux et les rapprochements de totaux
  *     rejettent la facture (constaté sur un exemplaire réel).
@@ -90,10 +92,15 @@ function nsPattern(name) {
   return `(?:${name.slice(0, separator)}:)?${name.slice(separator + 1)}`;
 }
 
+// Attributs d'une balise ouvrante : une valeur entre guillemets peut contenir
+// « > » (XML valide), jamais « < ». Sans ce motif, schemeID=">X" ferait lire
+// « X"> » suivi du vrai contenu.
+const ATTRS = `(?:[^<>"']|"[^"<]*"|'[^'<]*')*`;
+
 // Contenu texte de la première occurrence d'un tag (avec ou sans attributs).
 function tag(xml, name) {
   const n = nsPattern(name);
-  const m = xml.match(new RegExp(`<${n}[^>]*>([^<]*)<\\/${n}>`));
+  const m = xml.match(new RegExp(`<${n}${ATTRS}>([^<]*)<\\/${n}>`));
   return m ? unescapeXml(m[1].trim()) : null;
 }
 
@@ -101,12 +108,16 @@ function tag(xml, name) {
 // Gère les guillemets simples et doubles.
 function tagAttr(xml, name, attr, value) {
   const n = nsPattern(name);
-  // La valeur vient du document : elle est échappée avant d'entrer dans la
-  // regex, sinon « EUR( » fait planter le script et « .* » passe partout.
-  const v = String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const re = new RegExp(`<${n}[^>]*${attr}=["']${v}["'][^>]*>([^<]*)<\\/${n}>`);
-  const m = xml.match(re);
-  return m ? unescapeXml(m[1].trim()) : null;
+  // Deux temps, sans valeur du document dans la regex : la balise d'abord,
+  // puis ses attributs lus un par un (une valeur entre guillemets n'est
+  // jamais prise pour un autre attribut). Coût linéaire.
+  const re = new RegExp(`<${n}(${ATTRS})>([^<]*)<\\/${n}>`, 'g');
+  for (const m of xml.matchAll(re)) {
+    for (const a of m[1].matchAll(/([^\s=]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+      if (a[1] === attr && (a[2] ?? a[3]) === value) return unescapeXml(m[2].trim());
+    }
+  }
+  return null;
 }
 
 // Balise ouvrante puis première fermante qui suit, cherchées séparément.
@@ -410,7 +421,7 @@ function parseBuyer(agreement, errors) {
   return { name, siret, siren, address: tag(addressBlock, 'ram:LineOne'), vat: findVatNumber(buyerBlock) };
 }
 
-// Seule la catégorie S est taxée dans EN 16931 : son montant de TVA se calcule
+// Seule la catégorie S est taxée en France (L, M et B, taxées aussi dans EN 16931, sont refusées ici) : son montant de TVA se calcule
 // depuis un taux (BR-S-09). Pour toutes les autres (E exonéré, Z taux zéro,
 // AE autoliquidation, K intracommunautaire, G export, O hors champ), les règles
 // BR-E-09, BR-Z-09, BR-AE-09, BR-IC-09, BR-G-09 et BR-O-09 imposent un montant
@@ -649,8 +660,8 @@ function parseCII(xml) {
   const buyer = parseBuyer(agreement, errors);
 
   const currency = readText(tag(settlement, 'ram:InvoiceCurrencyCode'), { id: 'BT-5', label: 'Devise de facturation (BT-5)', required: true }, errors);
-  // La devise entre dans une RegExp (tagAttr, recherche de BT-110 par
-  // currencyID) : elle est d'abord contrainte au code ISO 4217.
+  // La devise sert à retrouver BT-110 par currencyID (tagAttr) : elle est
+  // d'abord contrainte au code ISO 4217.
   if (currency !== null && !/^[A-Z]{3}$/.test(currency)) {
     errors.push({ id: 'BT-5_INVALID', message: `Devise de facturation (BT-5) : code ISO 4217 attendu, reçu « ${currency} »` });
   }
@@ -783,8 +794,10 @@ function readCiiFile(filePath) {
     console.error("DOCTYPE ou déclaration d'entité refusés.");
     process.exit(1);
   }
-  const afterProlog = rawXml.replace(/^\s*<\?xml\b[^?]*\?>/, '');
-  if (/<\?|<!\[CDATA\[/.test(afterProlog)) {
+  // « <?xml » suivi d'un blanc : la déclaration XML seule. Avec \b,
+  // « <?xml-stylesheet ...?> » passait pour la déclaration.
+  const afterProlog = rawXml.replace(/^\s*<\?xml\s[^<>?]*\?>/, '');
+  if (/<\?|<!(?!--)/.test(afterProlog)) {
     console.error('Instructions de traitement et sections CDATA refusées.');
     process.exit(1);
   }

@@ -655,6 +655,43 @@ function testUnclosedCommentsStayCheap() {
   assert.ok(elapsed < 5000, `retrait des commentaires quadratique : ${elapsed} ms pour 1,67 Mo`);
 }
 
+// Une instruction de traitement en tete de document, sans declaration XML, ne
+// doit pas passer pour la declaration : « <?xml-stylesheet » commence par
+// « <?xml » mais c'est une instruction de traitement (bien formee).
+function testLeadingXmlLikeProcessingInstructionIsRejected() {
+  const body = VALID_CII.replace('<?xml version="1.0" encoding="UTF-8"?>\n', "");
+  // Faux ExchangedDocument complet : sans le correctif, le script sort en code 0
+  // avec le numero F-FAKE-999 (libxml2 et expat lisent F-REMISE-001).
+  const fake = VALID_CII.match(/<rsm:ExchangedDocument>[\s\S]*?<\/rsm:ExchangedDocument>/)[0].replace("F-REMISE-001", "F-FAKE-999");
+  parseExpectingRejection(writeFixture("F-PI-TETE", `<?xml-stylesheet ${fake}?>\n${body}`), /Instructions de traitement/);
+  assert.strictEqual(parseInvoice(writeFixture("F-SANS-DECL", body)).number, "F-REMISE-001");
+}
+
+// « > » est permis dans une valeur d'attribut : il ne termine pas la balise.
+function testGreaterThanInAttributeValue() {
+  const xml = mutate(["<ram:ID>F-REMISE-001</ram:ID>", '<ram:ID schemeID=">F-FAKE-999">F-REMISE-001</ram:ID>']);
+  assert.strictEqual(parseInvoice(writeFixture("F-ATTR-GT", xml)).number, "F-REMISE-001");
+  const vat = mutate(['<ram:ID schemeID="VA">FR32123456789</ram:ID>', '<ram:ID x=">FR00999999999" schemeID="VA">FR32123456789</ram:ID>']);
+  assert.strictEqual(parseInvoice(writeFixture("F-ATTR-GT-TVA", vat)).seller.tva_intracom, "FR32123456789");
+}
+
+// Toute declaration « <! » autre qu'un commentaire est refusee (CDATA quelle
+// que soit la casse ecrite).
+function testOtherMarkupDeclarationIsRejected() {
+  const xml = mutate(["<ram:ID>F-REMISE-001</ram:ID>", "<![cdata[<ram:ID>F-FAKE-999</ram:ID>]]><ram:ID>F-REMISE-001</ram:ID>"]);
+  parseExpectingRejection(writeFixture("F-CDATA-CASSE", xml), /sections CDATA/);
+}
+
+// Balise ouvrante jamais terminee : l'extraction d'une valeur reste lineaire.
+function testUnterminatedStartTagsStayCheap() {
+  const padding = "<ram:Name ".repeat(150000) + "<ram:X>"; // ~1,5 Mo
+  const xml = mutate(["<ram:SellerTradeParty>", `<ram:SellerTradeParty>${padding}`]);
+  const started = Date.now();
+  parseInvoice(writeFixture("F-OUVRANTES-NON-TERMINEES", xml));
+  const elapsed = Date.now() - started;
+  assert.ok(elapsed < 5000, `extraction quadratique : ${elapsed} ms pour 1,5 Mo`);
+}
+
 const TESTS = [
   testRoundTripTva20,
   testRoundTripFranchise,
@@ -695,6 +732,10 @@ const TESTS = [
   testUnclosedCommentIsRejected,
   testUnclosedTagsStayCheap,
   testUnclosedCommentsStayCheap,
+  testLeadingXmlLikeProcessingInstructionIsRejected,
+  testGreaterThanInAttributeValue,
+  testOtherMarkupDeclarationIsRejected,
+  testUnterminatedStartTagsStayCheap,
 ];
 
 function main() {

@@ -431,7 +431,7 @@ def _build_run_cache_spec(
     if mode == "with_skill":
         system_prompt_hash = _hash_file(skill_path / "SKILL.md")
 
-    return {
+    spec = {
         "schema_version": CACHE_SCHEMA_VERSION,
         "kind": "run",
         "mode": mode,
@@ -445,6 +445,11 @@ def _build_run_cache_spec(
         ],
         "system_prompt_sha256": system_prompt_hash,
     }
+    # Only added when set, so cache keys of skills without allowed_tools are unchanged.
+    allowed = skill_config.get("allowed_tools", "") if mode == "with_skill" else ""
+    if allowed:
+        spec["allowed_tools"] = allowed
+    return spec
 
 
 def _build_grading_cache_spec(output_text: str, expectations: list[str], model: str) -> dict[str, Any]:
@@ -466,6 +471,7 @@ def run_claude(
     model: str,
     tools: str = "",
     system_prompt_file: Path | None = None,
+    allowed_tools: str = "",
 ) -> dict[str, Any]:
     """Run claude --bare -p and return parsed JSON response."""
     cmd = [
@@ -481,6 +487,9 @@ def run_claude(
     ]
     if tools:
         cmd.extend(["--tools", tools])
+    if allowed_tools:
+        # Pre-approved commands (e.g. "Bash(node:*)"): headless runs deny unapproved Bash calls.
+        cmd.extend(["--allowedTools", allowed_tools])
     if system_prompt_file:
         cmd.extend(["--system-prompt-file", str(system_prompt_file)])
 
@@ -659,10 +668,12 @@ def _run_single(
         baseline = skill_config.get("baseline_prompt", "")
         run_prompt = f"{baseline}\n\n{prompt_with_data}" if baseline else prompt_with_data
         tools = ""
+        allowed_tools = ""
         spf = None
     else:
         run_prompt = prompt_with_data
         tools = skill_config.get("tools", "")
+        allowed_tools = skill_config.get("allowed_tools", "")
         spf = skill_path / "SKILL.md"
 
     run_cache_key = None
@@ -680,7 +691,7 @@ def _run_single(
     if not run_cache_hit:
         tprint(f"  >> {label} ...")
         t0 = time.time()
-        response = run_claude(run_prompt, model=model, tools=tools, system_prompt_file=spf)
+        response = run_claude(run_prompt, model=model, tools=tools, system_prompt_file=spf, allowed_tools=allowed_tools)
         elapsed = time.time() - t0
 
         if "_error" in response:

@@ -37,13 +37,14 @@
     "_commentaire_dividendes": "Case 2DC — dividendes avec droit abattement 40% si option barème",
     "interets_rcm": 0,
     "plus_values_mobilieres": 0,
-    "_commentaire_pv_mobi": "Case 3VG : plus-values de cession de titres. Sous option barème, calc_ir.py n'applique pas l'abattement pour durée de détention (titres acquis avant 2018) : saisir le montant brut (l'abattement ne réduit que la base de l'IR, pas celle des PS) ; l'IR calculé est alors surestimé",
+    "_commentaire_pv_mobi": "Case 3VG : plus-values de cession de titres. Sous option barème, calc_ir.py n'applique pas l'abattement pour durée de détention (titres acquis avant 2018) : saisir le montant brut (l'abattement ne réduit que la base de l'IR, pas celle des PS) ; l'IR calculé est alors surestimé. Une moins-value nette est retenue pour 0 € (reportable sur les plus-values de même nature, art. 150-0 D, 11)",
     "rcm_sans_ps_a_la_source": false,
-    "_commentaire_rcm_source": "true si les dividendes et intérêts n'ont pas supporté les prélèvements sociaux à l'encaissement (établissement payeur hors de France, sans formulaire 2778) : PS établis par voie de rôle au taux des revenus du patrimoine (18,6 % pour les revenus 2025), CSG déductible seulement l'année suivante sous option barème",
+    "_commentaire_rcm_source": "true si les dividendes et intérêts n'ont pas supporté les prélèvements sociaux à l'encaissement (établissement payeur hors de France, sans formulaire 2778), ou le montant de ceux qui ne les ont pas supportés quand le foyer en encaisse aussi en France : PS établis par voie de rôle au taux des revenus du patrimoine (18,6 % pour les revenus 2025), CSG déductible seulement l'année suivante sous option barème",
 
     "revenus_fonciers_micro": 0,
     "revenus_fonciers_reels": 0,
     "deficit_foncier_anterieur": 0,
+    "_commentaire_deficit_foncier_anterieur": "Case 4BD : déficits fonciers des dix années précédentes restant à imputer. calc_ir.py les impute sur le revenu foncier net positif de l'année (réel ou micro), avant l'IR et les PS ; le reste demeure reportable",
 
     "lmnp_reel_resultat": 0,
     "_commentaire_lmnp": "Résultat après amortissements, positif seulement. Imposé au barème et soumis aux PS des revenus du patrimoine (18,6 % pour les revenus 2025), jamais à l'IR forfaitaire de 12,8 %",

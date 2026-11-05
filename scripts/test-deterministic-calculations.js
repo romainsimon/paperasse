@@ -290,7 +290,33 @@ function testCalcIrRevenusCapitalEtPs() {
   assert.strictEqual(sansPs.ps_details.placement.montant, 0);
   assert.strictEqual(sansPs.total_a_payer, 5474);
   const boolTexte = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, dividendes_bruts: 5000, rcm_sans_ps_a_la_source: "false" } });
-  assert.match(boolTexte.refus || "", /booléen JSON attendu/, "un booléen en texte doit être refusé");
+  assert.match(boolTexte.refus || "", /booléen JSON/, "un booléen en texte doit être refusé");
+  // Un montant : seule cette part passe aux revenus du patrimoine ; la CSG déductible
+  // de l'année (option barème) ne porte que sur le reste (6,8 % × 2 000 = 136 €)
+  const mixte = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, dividendes_bruts: 5000, rcm_sans_ps_a_la_source: 3000 }, options_fiscales: { revenus_capital: "bareme" } });
+  assert.strictEqual(mixte.ps_details.patrimoine.montant, 558);
+  assert.strictEqual(mixte.ps_details.placement.montant, 344);
+  assert.strictEqual(mixte.rni, 36000 + 3000 - 136);
+  const tropSansPs = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { dividendes_bruts: 5000, rcm_sans_ps_a_la_source: 6000 } });
+  assert.match(tropSansPs.refus || "", /entre 0 et 5000/, "un montant au-delà des dividendes et intérêts doit être refusé");
+
+  // Déficits fonciers antérieurs (4BD) : imputés sur le foncier net positif, avant l'IR et les PS
+  const deficit = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, revenus_fonciers_reels: 10000, deficit_foncier_anterieur: 4000 } });
+  assert.strictEqual(deficit.rni, 42000);
+  assert.strictEqual(deficit.ps_details.foncier.montant, 1032);
+  const deficitExcedent = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, revenus_fonciers_reels: 3000, deficit_foncier_anterieur: 5000 } });
+  assert.strictEqual(deficitExcedent.rni, 36000);
+  assert.strictEqual(deficitExcedent.prelevements_sociaux, 0);
+  assert.ok((deficitExcedent._avertissements || []).some((a) => a.includes("2000 € restent reportables")), "le reliquat de déficit doit être signalé");
+  const deficitNegatif = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { revenus_fonciers_reels: 3000, deficit_foncier_anterieur: -1000 } });
+  assert.match(deficitNegatif.refus || "", /montant positif attendu/);
+
+  // Moins-values nettes : jamais imputées sur le revenu global ni sur les dividendes
+  const mvBareme = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, plus_values_mobilieres: -5000 }, options_fiscales: { revenus_capital: "bareme" } });
+  assert.strictEqual(mvBareme.rni, 36000);
+  const mvPfu = runCalcIrFoyer({ foyer: { situation: "celibataire" }, revenus: { salaires_declarant1: 40000, dividendes_bruts: 2000, plus_values_mobilieres: -5000, crypto_plus_values: -1000 } });
+  assert.strictEqual(mvPfu.ir_pfu.montant, 256);
+  assert.strictEqual(mvPfu.ps_details.patrimoine.montant, 0);
 
   // Option crypto au barème (art. 200 C) : ouverte aux cessions depuis le 01/01/2023
   const cryptoSeule = { foyer: { situation: "celibataire" }, revenus: { crypto_plus_values: 10000 }, options_fiscales: { crypto: "bareme" } };

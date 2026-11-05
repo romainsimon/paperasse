@@ -17,7 +17,7 @@
       "revenus_du_patrimoine": {
         "taux_global": 0.30,
         "detail_ps": 0.172,
-        "description": "PV mobilières (compte-titres), crypto, LMNP. Base CSS : L. 136-6. PS 17,2 % pour les revenus 2022."
+        "description": "PV mobilières (compte-titres), crypto. Base CSS : L. 136-6, qui vise aussi les revenus LMNP, mais ceux-ci sont des BIC imposés au barème, jamais au PFU. PS 17,2 % pour les revenus 2022."
       },
       "produits_de_placement_2022": {
         "taux_global": 0.30,
@@ -61,7 +61,7 @@
       "note": "En 2022, tous les revenus du capital sont au taux de 17,2 % (aucune hausse en vigueur)"
     },
     "dont_csg_deductible_si_bareme": 0.068,
-    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique qu'aux revenus imposés au barème : sur option globale pour les revenus du capital, ou de plein droit (produits d'assurance-vie sur versements antérieurs au 27/09/2017 sans prélèvement libératoire). Zéro déductible sur les revenus imposés au PFU, sauf ligne 2DF (associés de sociétés à l'IS relevant du régime des non-salariés) : 6,8 % quelle que soit l'option. Déduite du revenu global de l'année de son paiement (art. 154 quinquies, II CGI) : l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts), l'année suivante pour les PS établis par voie de rôle (plus-values mobilières, revenus d'un courtier étranger sans 2778). CSG sur plus-values immobilières non déductible.",
+    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique qu'aux revenus imposés au barème : sur option globale pour les revenus du capital, ou de plein droit (produits d'assurance-vie et de capitalisation attachés à des versements antérieurs au 27/09/2017, sans option pour le prélèvement libératoire : ligne 2DF, 6,8 % quelle que soit l'option globale). Zéro déductible sur les revenus imposés au PFU. Déduite du revenu global de l'année de son paiement (art. 154 quinquies, II CGI) : l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts), l'année suivante pour les PS établis par voie de rôle (plus-values mobilières, revenus d'un courtier étranger sans 2778). CSG sur plus-values immobilières non déductible.",
     "taux_plus_values_immo": 0.172
   },
 

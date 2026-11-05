@@ -687,6 +687,15 @@ def main():
     foyer = load_json(args.foyer) if args.foyer else None
     annee_foyer = annee_du_foyer(foyer, args.annee) if foyer else None
     annee = args.annee if args.annee is not None else annee_foyer
+    if foyer and annee_foyer is None:
+        # Foyer mono-année : _meta.annee_revenus choisit le millésime, comme "annees" pour un multi-année.
+        annee_meta = (foyer.get("_meta") or {}).get("annee_revenus")
+        if annee_meta is not None:
+            if annee is None:
+                annee = int(annee_meta)
+            elif annee != int(annee_meta):
+                sys.exit(f"Le foyer porte _meta.annee_revenus = {annee_meta}, mais --annee {annee} est demandé : "
+                         "calculer une année avec les règles d'une autre est l'erreur que les millésimes évitent.")
     foyer = foyer_de_l_annee(foyer, annee_foyer) if foyer else None
 
     fichiers = fichiers_millesime(annee)

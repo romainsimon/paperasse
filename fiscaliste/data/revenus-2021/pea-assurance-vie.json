@@ -54,7 +54,7 @@
       "versements_apres_27_sept_2017": {
         "description": "PFU sur les gains, modulé selon l'ancienneté du contrat et le montant des primes versées. Le seuil de 150 000 € s'apprécie sur les primes versées et non remboursées au 31/12 de l'année précédant le rachat, tous contrats confondus, par bénéficiaire — pas sur l'encours (BOI-RPPM-RCM-20-15 § 140 à 190)",
         "contrat_moins_8_ans": "PFU 30% (12.8% IR + 17.2% PS)",
-        "contrat_plus_8_ans_encours_moins_150k": "PFU 24.7% (7.5% IR + 17.2% PS) après abattement annuel, si les primes non remboursées n'excèdent pas 150 000 € (seuil ci-dessus)",
+        "contrat_plus_8_ans_encours_moins_150k": "7.5% IR après abattement annuel (4 600 / 9 200 €, qui ne réduit pas la base des PS) + 17.2% PS sur la totalité des produits, si les primes non remboursées n'excèdent pas 150 000 € (seuil ci-dessus)",
         "contrat_plus_8_ans_encours_plus_150k": "PFU 30% (12.8% IR + 17.2% PS) sur la fraction des produits correspondant aux primes post-27/09/2017 qui excèdent le seuil de 150 000 € de primes non remboursées"
       }
     },

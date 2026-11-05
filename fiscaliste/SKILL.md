@@ -1,7 +1,7 @@
 ---
 name: fiscaliste
 metadata:
-  last_updated: "2026-11-04"
+  last_updated: "2026-11-05"
 includes:
   - data/**
   - references/**
@@ -72,8 +72,10 @@ réclamation, un contrôle sur les années non prescrites ou un report de défic
   l'année courante en contient des liens, les années passées des copies figées.
 - **Identifier l'année de revenus** avant tout calcul. Revenus AAAA = déclaration AAAA+1.
 - **Valeur signalée `a_verifier`** : la citer avec cette réserve, ne pas la présenter comme certaine.
-- **Seuils micro (foncier, BIC)** : le régime de l'année N s'apprécie en comparant les recettes
-  de N-1 et N-2 **aux seuils fixés pour N** (BOI-BIC-DECLA-10-10-10).
+- **Seuils micro** : en micro-BIC, le régime de l'année N s'apprécie en comparant les recettes
+  de N-1 et N-2 **aux seuils fixés pour N** (BOI-BIC-DECLA-10-10-10). En micro-foncier, le seuil
+  de 15 000 € s'apprécie sur le revenu brut foncier de l'année N elle-même (art. 32 CGI ;
+  BOI-RFPI-DECLA-10 § 90 et 190).
 
 **Foyer multi-année** ([foyer.multi-annees.example.json](foyer.multi-annees.example.json)) :
 une section par année de revenus sous `annees`, avec les revenus et, une fois l'année déposée,
@@ -228,7 +230,7 @@ python fiscaliste/scripts/calc_ir.py --rni 45000 --parts 1
 python fiscaliste/scripts/calc_ir.py --rni 126000 --parts 3 --parts-base 2
 ```
 
-Le script applique, pour l'année demandée (2025 par défaut) : abattement de 10 % sur les salaires et l'ARE **par déclarant** (plancher et plafond pour chaque membre du foyer), abattement de 10 % sur les pensions (minimum par pensionné, maximum par foyer ; plancher jamais supérieur au revenu), barème de l'année, quotient familial avec plafonnement (enfants en résidence alternée décomptés après ceux à charge exclusive), décote, IR forfaitaire du PFU (12,8 %, art. 200 A CGI) sauf option barème, PS différenciés selon la nature du revenu (18,6 % sur revenus du patrimoine dès 2025 ; 17,2 % sur produits de placement 2025 ; PS sur les revenus fonciers et l'assurance-vie non calculés, taux maintenu à 17,2 %), CEHR (RFR incluant les versements PER déduits, art. 1417, IV CGI). Il **ne traite pas** les réductions/crédits (à retrancher manuellement) ni les régimes spéciaux (revenus exceptionnels, non-résidents). Pour la CDHR (plancher 20 % sur RFR > 250/500 k€), voir [references/cas-speciaux.md](references/cas-speciaux.md) — calculée automatiquement par l'administration.
+Le script applique, pour l'année demandée (`--annee`, sinon `_meta.annee_revenus` du foyer, sinon 2025) : abattement de 10 % sur les salaires et l'ARE **par déclarant** (plancher et plafond pour chaque membre du foyer), abattement de 10 % sur les pensions (minimum par pensionné, maximum par foyer ; plancher jamais supérieur au revenu), barème de l'année, quotient familial avec plafonnement (enfants en résidence alternée décomptés après ceux à charge exclusive), décote, IR forfaitaire du PFU (12,8 %, art. 200 A CGI) sauf option barème, PS différenciés selon la nature du revenu (18,6 % sur revenus du patrimoine dès 2025 ; 17,2 % sur produits de placement 2025 ; PS sur les revenus fonciers et l'assurance-vie non calculés, taux maintenu à 17,2 %), CEHR (RFR incluant les versements PER déduits, art. 1417, IV CGI). Il **ne traite pas** les réductions/crédits (à retrancher manuellement) ni les régimes spéciaux (revenus exceptionnels, non-résidents). Pour la CDHR (plancher 20 % sur RFR > 250/500 k€), voir [references/cas-speciaux.md](references/cas-speciaux.md) — calculée automatiquement par l'administration.
 
 **Réductions, crédits et solde** (exception à la phrase précédente) : si le foyer.json contient le bloc `reductions_credits` (et/ou `prelevement_a_la_source`), le script poursuit au-delà de l'impôt après décote : réductions dons (75 % / 66 %, limite de 20 %, excédent reportable), Pinel (fraction annuelle selon l'année, la durée et la prorogation), scolarité, crédits emploi à domicile et garde d'enfants, plafonnement global des niches (10 000 € / 18 000 €, art. 200-0 A), IR 12,8 % du PFU, impôt net, puis **solde** après retenue à la source, acomptes et **avance RICI de janvier** (art. 1665 bis). Ordre d'imputation de l'art. 197, I-5. Sans ces blocs, la sortie est inchangée. Cette étape n'existe que pour les années dont le millésime porte `parametres_calcul_rici` (2025 à ce jour) : le script refuse les autres plutôt que d'appliquer les plafonds d'une autre année. Détails : [references/deductions-reductions-credits.md](references/deductions-reductions-credits.md).
 

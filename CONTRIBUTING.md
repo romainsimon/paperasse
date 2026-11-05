@@ -11,6 +11,29 @@ Vous avez un métier de la paperasse que vous aimeriez voir automatisé ? Les co
 5. Si possible, ajoutez des evals dans un dossier `evals/` (voir les skills existants pour le format)
 6. Faites une PR
 
+## Ajouter un millésime fiscal (nouvelle année de revenus)
+
+Les données du skill `fiscaliste` sont rangées par année de revenus dans
+`fiscaliste/data/revenus-AAAA/`. Les fichiers `fiscaliste/data/*.json` à la racine restent
+ceux de l'**année courante** (on les modifie comme avant) ; le dossier de l'année courante n'en
+contient que des liens. Pour passer à une nouvelle année après la LFI / LFSS (exemple 2025 → 2026) :
+
+1. Figer l'année qui s'achève : remplacer les liens de `revenus-2025/` par des copies
+   (`cp -L`), qui ne bougeront plus.
+2. Mettre à jour les fichiers de la racine pour 2026 (`git mv bareme-ir-2025.json bareme-ir-2026.json`),
+   avec `_meta.revenus` / `_meta.declaration` ; les clés suffixées par l'année
+   (`taux_revenus_du_patrimoine_AAAA`…) prennent la nouvelle année.
+3. Créer `revenus-2026/` avec des liens vers les fichiers de la racine (`bareme-ir.json` →
+   `../bareme-ir-2026.json`).
+4. Dans `fiscaliste/data/sources.json`, passer les entrées 2025 en `"file": "revenus-2025/…"`,
+   `"update_frequency": "fige"`, et ajouter les entrées 2026. Mettre à jour les valeurs inlinées
+   dans `fiscaliste/SKILL.md`.
+5. Une valeur non encore publiée ou non vérifiée porte `"a_verifier": true` et une
+   `note_verification` : jamais une valeur supposée.
+
+Un `git diff --no-index fiscaliste/data/revenus-2025 fiscaliste/data/revenus-2026` montre alors
+exactement ce que la loi de finances a changé.
+
 ## Convention de nommage
 
 Noms de dossiers en français, en minuscules, avec tirets :

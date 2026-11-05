@@ -126,7 +126,7 @@ Taux dégressif selon ancienneté du contrat. Prélèvement libératoire (PFL) o
 
 ### Option barème
 
-**Avantageuse surtout pour un foyer non imposable (TMI 0 %)**. Après 8 ans, à TMI 11 %, le barème (11 % moins l'économie de CSG déductible, soit environ 10,25 %) reste plus cher que le PFU à 7,5 % ; il ne devient intéressant que sur la fraction des produits taxée à 12,8 % (primes au-delà de 150 000 €). L'option étant globale, chiffrer sur l'ensemble des revenus du capital de l'année.
+**Avantageuse surtout pour un foyer non imposable (TMI 0 %)**. Sur un contrat de moins de 8 ans (12,8 %), elle l'est aussi à TMI 11 %, hors zone de décote : dans cette zone, chaque euro imposé coûte 11 % × 1,4525 ≈ 16 %, ce qui est toujours le cas d'une personne seule avec une part à TMI 11 %. Après 8 ans, à TMI 11 %, le barème (11 % moins l'économie de CSG déductible, soit environ 10,25 %) reste plus cher que le PFU à 7,5 % ; il ne devient intéressant que sur la fraction des produits taxée à 12,8 % (primes au-delà de 150 000 €). L'option étant globale, chiffrer sur l'ensemble des revenus du capital de l'année.
 
 Option **globale** pour l'année (tous les revenus de capitaux mobiliers et plus-values). Irrévocable jusqu'aux revenus 2025 ; la LFI 2026 (loi n° 2026-103, art. 126 ; art. 200 A CGI) a supprimé ce caractère irrévocable (brochure IR 2026, nouveautés).
 

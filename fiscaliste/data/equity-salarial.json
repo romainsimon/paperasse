@@ -39,7 +39,7 @@
     "plus_value_cession": {
       "definition": "Prix de cession converti en euros au taux du jour de la cession (BOI-RPPM-PVBMI-20-10-10-10 § 20) − valeur à la date d'acquisition définitive convertie au taux du jour du vesting (BOI-RSA-ES-20-20-20 § 130) : l'effet de change fait partie de la plus-value ou de la moins-value",
       "imposition": "Régime des plus-values mobilières : PFU 31,4 % (12,8 % IR + 18,6 % PS depuis la LFSS 2026) ou barème sur option globale (case 2OP, CSG déductible de 6,8 points ; pas d'abattement pour durée de détention pour des titres acquis depuis le 01/01/2018, BOI-RSA-ES-20-20-20 § 170) ; moins-values mobilières imputables. À comparer les années à faible revenu.",
-      "note": "Distincte du gain d'acquisition, imposée la même année (celle de la cession)."
+      "note": "Distincte du gain d'acquisition. Imposée l'année de la cession, qui est aussi celle du gain d'acquisition, sauf conversion au porteur, mise en location ou donation antérieures (après donation, la plus-value est imposée au nom du donataire)."
     },
     "piege_classique": "Deux erreurs symétriques : traiter le gain d'acquisition d'un plan qualifiant comme un salaire (cotisations + contribution 10 %, à tort sous 300 000 €), ou le traiter comme une simple plus-value mobilière (à tort : barème après abattement 50 %, PS patrimoine, l'année de la cession)."
   },
@@ -50,8 +50,8 @@
       "imposition": "Salaire au barème l'année de la levée de l'option, 2042 C cases 1TP / 1UP (brochure IR 2026, traitements et salaires)"
     },
     "gain_levee": {
-      "plans_pre_2012": "Options attribuées avant le 28/09/2012 : taux forfaitaires de 18 %, 30 % ou 41 % selon la durée de portage (2042 C cases 3VD, 3VI, 3VF) ou option pour les salaires (3VJ / 3VK) ; contribution salariale de 10 % si attribution depuis le 16/10/2007 (3VN)",
-      "plans_post_2012": "Options attribuées à compter du 28/09/2012 (plans qualifiés) : gain de levée imposé l'année de la cession, de la conversion au porteur ou de la mise en location des titres (CGI art. 80 bis, II bis), comme un salaire au barème (2042 C 1TT / 1UT), CSG/CRDS d'activité 9,7 %, contribution salariale 10 % sur la totalité du gain ; une moins-value de cession sous la valeur à la levée s'impute sur le gain de levée (brochure IR 2026, traitements et salaires). La plus-value au-delà de la valeur à la levée suit le régime des plus-values mobilières (3VG / 3VH).",
+      "plans_pre_2012": "Options attribuées avant le 28/09/2012, titres nominatifs et indisponibles 4 ans (5 ans si attribution avant le 27/04/2000). Attribution du 27/04/2000 au 27/09/2012 : 30 % jusqu'à 152 500 € de gain annuel et 41 % au-delà, taux réduits à 18 % et 30 % si les titres sont conservés deux ans de plus (2042 C cases 3VD, 3VI, 3VF). Attribution du 20/09/1995 au 26/04/2000 : 30 %. Option possible pour les salaires (3VJ / 3VK). Indisponibilité non respectée : salaire. Contribution salariale de 10 % si attribution depuis le 16/10/2007 (3VN).",
+      "plans_post_2012": "Options attribuées à compter du 28/09/2012 (plans qualifiés) : gain de levée imposé l'année de la disposition (à titre onéreux ou gratuit), de la cession, de la conversion au porteur ou de la mise en location des titres (CGI art. 80 bis, II bis), comme un salaire au barème (2042 C 1TT / 1UT), CSG/CRDS d'activité 9,7 %, contribution salariale 10 % sur la totalité du gain ; une moins-value de cession sous la valeur à la levée s'impute sur le gain de levée, dans la limite de ce gain (brochure IR 2026, traitements et salaires). La plus-value au-delà de la valeur à la levée suit le régime des plus-values mobilières (3VG / 3VH).",
       "plans_non_qualifies": "Options d'un plan étranger sans sous-plan conforme au code de commerce : avantage imposé comme salaire de droit commun, en principe l'année de la levée, par la paie (BOI-RSA-ES-20-10-20-50 § 1).",
       "note": "Consulter le plan pour déterminer le régime applicable"
     },
@@ -109,7 +109,7 @@
     },
     "perco_pereco": {
       "description": "PERCO (ancien) et PER d'entreprise collectif (PERECO, loi PACTE) : épargne retraite d'entreprise",
-      "sortie_retraite": "Rente ou capital. Sommes issues de l'intéressement, de la participation et de l'abondement : capital EXONÉRÉ d'IR (versements et gains, art. 81, 18° et 4° bis-b CGI), PS sur les seuls gains (art. L. 136-7, II-7° bis CSS). Seuls les versements volontaires déduits suivent le régime du PER individuel (capital au barème sans abattement de 10 %, gains au PFU). Source : BOI-ANNX-000513.",
+      "sortie_retraite": "Rente ou capital. PER collectif : sommes issues de l'intéressement, de la participation et de l'abondement, capital EXONÉRÉ d'IR (versements et gains, art. 81, 18° et 4° bis-b CGI), PS sur les seuls gains (art. L. 136-7, II-7° bis CSS), rente imposée en RVTO. Versements volontaires déduits et versements obligatoires d'un PERO : régime de sortie en capital du PER individuel lorsqu'elle est possible (barème sans abattement de 10 %, gains au PFU). PERCO historique (art. L. 3334-1 C. trav.) : capital exonéré d'IR, rente en RVTO, PS selon BOI-RSA-ES-10-30-20. Source : BOI-ANNX-000513.",
       "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans le plafond, soumis à CSG/CRDS (plafond distinct du PEE)",
       "plafond_abondement_perco": {
         "2024": 7418.88,

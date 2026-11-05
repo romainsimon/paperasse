@@ -18,11 +18,16 @@
     "source_reductions_compatibles": "BOI-RFPI-DECLA-10, remarque sous le § 60 : les réductions d'impôt Scellier, Duflot, Pinel et Denormandie (art. 199 septvicies et 199 novovicies) et Malraux (art. 199 tervicies) ne font pas obstacle au micro-foncier ; seules les déductions spécifiques Scellier intermédiaire et Scellier ZRR ne s'appliquent pas.",
     "charges_locatives_incluses": false,
     "source_charges_locatives": "BOI-RFPI-DECLA-10 § 100 : il n'est pas tenu compte des sommes versées par les locataires au titre des charges leur incombant ; les dépenses du bailleur mises par convention à la charge des locataires s'ajoutent aux recettes brutes.",
-    "note": "Revenus fonciers bruts du foyer ≤ 15 000 € (sans prorata temporis) → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire ; option pour le réel irrévocable trois ans. Exclusions : voir exclusions et exclusions_sans_immeuble_en_direct (Pinel, Malraux et les autres réductions de reductions_compatibles n'excluent pas le micro)."
+    "note": "Revenus fonciers bruts du foyer ≤ 15 000 € (sans prorata temporis) → micro-foncier éligible, abattement 30% automatique. Au-delà : régime réel obligatoire ; option pour le réel irrévocable trois ans. Exclusions : voir exclusions et exclusions_sans_immeuble_en_direct (Pinel, Malraux et les autres réductions de reductions_compatibles n'excluent pas le micro).",
+    "deficits_anterieurs": "Aucun déficit créé en micro, mais les déficits fonciers antérieurs encore reportables au 1er janvier de la 1re année micro s'imputent sur le revenu net micro-foncier (droit commun, 10 ans). Case 4BD.",
+    "source_deficits_anterieurs": "BOI-RFPI-DECLA-10 § 170 ; brochure IR 2026 p. 158"
   },
 
   "regime_reel_foncier": {
     "description": "Revenus fonciers nets = recettes − charges déductibles",
+    "forfait_frais_gestion": 20,
+    "note_forfait_frais_gestion": "Forfait de 20 € par local pour les frais de gestion non déductibles au réel (déclaration 2044, ligne 222), déductible sans justificatif.",
+    "source_forfait_frais_gestion": "Art. 31 I 1° e CGI ; BOI-RFPI-BASE-20-10 § 210",
     "charges_deductibles": [
       "Intérêts d'emprunt (compensés en priorité par les loyers ; seul leur excédent sur les loyers est cantonné aux revenus fonciers)",
       "Travaux (entretien, réparation, amélioration — pas construction ni agrandissement)",
@@ -34,6 +39,9 @@
     "deficit_foncier": {
       "source": "art. 156, I, 3° CGI ; BOI-RFPI-BASE-30-20 (version du 16/09/2025)",
       "imputation_revenu_global": 10700,
+      "report_annees": 10,
+      "note_report_annees": "Le déficit non imputé sur le revenu global (fraction d'intérêts d'emprunt et excédent du plafond) se reporte sur les revenus fonciers des 10 années suivantes.",
+      "source_report_annees": "Art. 156 I 3° CGI",
       "note_travaux_renovation_energetique": "Sur option (2044), la limite de 10 700 € est rehaussée du montant des dépenses de rénovation énergétique qui font passer un logement d'une classe E, F ou G à une classe A, B, C ou D, sans pouvoir excéder 21 400 € (BOI-RFPI-BASE-30-20 du 16/09/2025 § 35 ; détail § 210 à 310) : devis accepté à compter du 05/11/2022 et dépenses payées à compter du 01/01/2023 (§ 260, qui borne les paiements au 31/12/2025), prorogé pour les dépenses payées jusqu'au 31/12/2027 (LF 2026, loi 2026-103 art. 47) ; deux DPE à fournir (LFR 2022-1499 art. 12). Ce n'est pas un plafond forfaitaire ni un « doublement » : la limite ne monte que du montant des dépenses éligibles.",
       "condition_location": "Le bien doit rester loué nu jusqu'au 31 décembre de la troisième année qui suit l'imputation ; à défaut (vente, reprise pour soi, passage en meublé), le déficit imputé sur le revenu global est réintégré (BOI-RFPI-BASE-30-20 § 20 et § 340 à 370)",
       "ordre_imputation": "Les loyers bruts compensent d'abord les intérêts d'emprunt ; seul l'excédent d'intérêts est cantonné aux revenus fonciers (BOI-RFPI-BASE-30-20 § 110)",
@@ -45,7 +53,7 @@
         "4BC": "Déficit imputable sur le revenu global",
         "4BD": "Déficits antérieurs non encore imputés"
       },
-      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est jamais imputable sur le revenu global, uniquement sur les revenus fonciers. Les loyers compensant d'abord les intérêts, un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 €. Exemple : loyers 15 000, intérêts 6 000, autres charges 22 000 : déficit 13 000 entièrement dû aux autres charges, 10 700 sur le revenu global, 2 300 reportés."
+      "exception_interets": "La part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers n'est pas imputable sur le revenu global, uniquement sur les revenus fonciers (sauf monuments historiques, BOI-RFPI-SPEC-30-20-10 § 80). Les loyers compensant d'abord les intérêts, un déficit dû aux travaux ou aux autres charges reste imputable sur le revenu global dans la limite de 10 700 € (15 300 € pour un logement en amortissement Périssol ou dispositif Cosse ; rehaussée, jusqu'à 21 400 €, pour les travaux de rénovation énergétique : voir note_travaux_renovation_energetique ; brochure IR 2026). Exemple : loyers 15 000, intérêts 6 000, autres charges 22 000 : déficit 13 000 entièrement dû aux autres charges, 10 700 sur le revenu global, 2 300 reportés."
     },
     "amortissement_bailleur_prive_2026_2028": {
       "description": "Nouveau dispositif « bailleur privé » (LFI 2026 art. 47 ; art. 31, I, 1°, i et j CGI) : amortissement déductible des revenus fonciers d'une fraction du prix d'acquisition d'un logement acquis en vue d'une location nue",
@@ -85,7 +93,10 @@
       "note": "Seuil et abattement abaissés par la loi Le Meur. Seuil inchangé pour 2026-2028 (BOI-BAREME-000044)."
     },
 
-    "depassement": "Le micro-BIC s'applique si les recettes de N-1 ou de N-2 n'excèdent pas le seuil : le réel devient obligatoire après deux années consécutives de dépassement (brochure IR 2026, p. 173)."
+    "depassement": "Le micro-BIC s'applique si les recettes de N-1 ou de N-2 n'excèdent pas le seuil : le réel devient obligatoire après deux années consécutives de dépassement (brochure IR 2026, p. 173).",
+
+    "deficits_anterieurs": "Aucun déficit créé en micro-BIC, mais les déficits LMNP des 10 années précédentes non encore imputés (cases 5GA à 5GJ, 2042 C-PRO) s'imputent sur le résultat micro-BIC net (recettes − abattement), dans la limite de ce résultat, les plus anciens d'abord. Jamais sur le revenu global.",
+    "source_deficits_anterieurs": "Art. 156-I-1° ter CGI (« revenus provenant d'une telle activité », sans distinction de régime) ; BOI-BIC-CHAMP-40-20 § 250 ; calculette DGFiP ir-calcul (chap-85, DNPLOCIMPU inclut MLOCNET = micro net). Aucun § BOFiP ne nomme expressément le micro-BIC."
   },
 
   "lmnp_reel": {
@@ -97,7 +108,7 @@
     },
     "limite_amortissements": "Amortissements (immeuble + meubles) déductibles dans la limite du loyer acquis diminué des autres charges : ils ne peuvent ni créer ni accroître un déficit (art. 39 C CGI ; BOI-BIC-CHAMP-40-20 § 57). La part non déduite est reportée sans limite de durée (art. 39 C, II).",
     "resultat_fiscal": "Recettes − charges − amortissements. Souvent nul ; un déficit ne peut provenir que des charges hors amortissements.",
-    "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les seuls bénéfices de location meublée non professionnelle des 10 années suivantes (art. 156, I, 1° ter CGI), pas sur d'autres BIC.",
+    "deficit_lmnp": "NON imputable sur le revenu global (contrairement au LMP). Reportable sur les seuls revenus de location meublée non professionnelle (réel ou micro-BIC) des 10 années suivantes, tant que l'activité reste non professionnelle (art. 156, I, 1° ter CGI), pas sur d'autres BIC. Cases 5GA à 5GJ.",
     "revente": "Pour les cessions depuis le 15/02/2025, les amortissements admis en déduction au réel sont retranchés du prix d'acquisition dans le calcul de la plus-value des particuliers (art. 150 VB, III CGI ; LF 2025 art. 84), sauf les amortissements des dépenses de construction, reconstruction, agrandissement ou amélioration (art. 150 VB, III, 1er alinéa) et sauf résidences étudiantes, seniors et médico-sociales (voir plus-values-immo-abattements.json, reintegration_amortissements) : l'arbitrage micro / réel doit intégrer cette reprise à la revente.",
     "formalites": "Déclaration de début d'activité au guichet unique dans les 15 jours (numéro SIRET à reporter) ; au réel, liasse 2031 et annexes 2033 ; CFE possible (service-public F32744)"
   },

@@ -310,9 +310,9 @@
         "Le skill précise que les PS sont prélevés par l'assureur avant versement du capital",
         "Le skill refuse explicitement de transposer le régime des cryptoactifs à l'assurance-vie en UC",
         "La fiscalité de transmission (990 I / 757 B) est renvoyée au skill notaire"
-        ]
-      },
-      {
+      ]
+    },
+    {
       "id": 21,
       "name": "ir-sortie-capital-per-1ai-sans-abattement",
       "prompt": "Je vis en concubinage (ni marié ni pacsé) et je déclare seul mes 2 enfants à charge (2 parts). Mon salaire net imposable (case 1AJ) est de 100 000 €. J'ai débloqué mon PER en capital pour l'achat de ma résidence principale : 10 000 €, correspondant à des versements qui avaient été déduits à l'entrée. Calcule mon impôt sur le revenu pour les revenus 2025.",
@@ -324,9 +324,9 @@
         "Le RNI total est de 100 000 € (90 000 de salaires nets + 10 000 de 1AI), et non 99 000 €",
         "Le skill distingue explicitement le régime 1AS/1BS (abattement 10 %, minimum 454 € par pensionné, plafond 4 439 € par foyer) du régime 1AI/1BI (aucun abattement)",
         "Le gain de quotient familial est plafonné et le plafonnement est vérifié"
-        ]
-      },
-      {
+      ]
+    },
+    {
       "id": 27,
       "name": "calc-ir-abattement-par-declarant-et-ir-pfu",
       "prompt": "Nous sommes mariés, sans enfant. Chacun de nous a 150 000 € de salaires (cases 1AJ et 1BJ), et nous avons encaissé 5 000 € de dividendes en 2025, au PFU. Aucun autre revenu, aucune déduction. Quel est notre revenu net imposable et combien allons-nous payer au total (impôt au barème, PFU et prélèvements sociaux) ?",
@@ -377,9 +377,9 @@
         "Le RFR est d'environ 285 445 €",
         "La CEHR est d'environ 1 063 €",
         "Le total avant réductions et crédits est d'environ 92 537 €"
-        ]
-      },
-      {
+      ]
+    },
+    {
       "id": 41,
       "name": "plafonnement-global-pinel-garde-emploi-domicile",
       "prompt": "Couple marié, 2 enfants à charge dont un de 3 ans. Revenu net imposable 2025 : 126 000 €, impôt après quotient familial et décote : 20 394 €. Nous avons un Pinel acheté 280 000 € en 2020 (60 m², engagement 9 ans, en métropole), 12 000 € de salarié à domicile (aucune aide) et 5 000 € de crèche pour le petit, dont 1 000 € de CMG. Quel est notre impôt net ?",
@@ -423,9 +423,9 @@
         "Les dons à 75 % ne sont pas comptés dans la limite de 20 %",
         "La réduction totale est de 8 628 € et l'impôt net de 676 €",
         "L'excédent de 1 500 € est reportable sur les 5 années suivantes (art. 200 CGI)"
-        ]
-      },
-      {
+      ]
+    },
+    {
       "id": 54,
       "name": "gerant-art62-montant-1gb",
       "prompt": "Je suis gérant associé unique d'une EURL à l'IS. En 2025, l'EURL m'a versé 48 000 € de rémunération nette et a payé directement à l'URSSAF mes cotisations et contributions personnelles pour 20 000 €, dont 1 104 € de CSG non déductible et 230 € de CRDS d'après le décompte. Quel montant je déclare, dans quelle case, et quel est mon revenu net imposable après abattement ?",
@@ -470,9 +470,9 @@
         "Le skill mentionne la possibilité d'une modulation à la hausse sans seuil minimum (art. 204 J)",
         "Le skill cite l'article 204 C du CGI ou la notice 2041-NOT pour le mécanisme d'acompte",
         "Le skill n'invente pas de taux de prélèvement sans données sur le foyer"
-        ]
-      },
-      {
+      ]
+    },
+    {
       "id": 51,
       "name": "comptes-etrangers-neobanque-iban-fr-et-exchange-crypto",
       "prompt": "Je suis résident fiscal français. J'ai un compte dans une néobanque européenne dont l'IBAN commence par FR, mais l'appli indique que la banque est agréée en Lituanie. J'ai aussi un compte sur une plateforme crypto dont la société est établie à Malte ; je n'ai rien vendu en 2025, j'ai juste acheté et gardé. Est-ce que je dois déclarer quelque chose dans ma déclaration 2026 ?",
@@ -517,9 +517,9 @@
         "Le skill mentionne la majoration de 80 % (art. 1729-0 A) en cas de rectification de revenus liés",
         "Le skill mentionne le délai de reprise de 10 ans (art. L. 169 LPF) et la condition des 50 000 € pour les comptes",
         "Le skill mentionne la présomption de revenus sur les transferts via un compte non déclaré, réfragable (preuve contraire)"
-        ]
-      },
-      {
+      ]
+    },
+    {
       "id": 57,
       "name": "annee-depart-juillet-pinel",
       "prompt": "Je suis parti m'installer à l'étranger le 15 juillet 2025 (je n'ai plus aucun lien avec la France sauf deux appartements loués nus au régime réel). L'un des deux est un Pinel acheté en 2020, quand j'habitais en France. Comment je déclare mes revenus 2025 en 2026, auprès de quel service, et est-ce que je perds ma réduction Pinel ?",
@@ -580,6 +580,98 @@
         "Le skill mentionne l'exception des non-résidents Schumacker (≥ 75 % des revenus de source française) et constate qu'elle ne s'applique pas ici",
         "Le skill distingue le versement effectué avant le départ (période de résidence) de celui effectué après",
         "Le skill NE promet PAS une économie d'impôt au taux marginal sur le versement de novembre 2026"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "deficit-lmnp-anterieur-micro-bic",
+      "prompt": "J'ai 6 000 € de déficits LMNP de 2022 et 2023, constatés au réel et pas encore imputés. En 2025 je suis passé au micro-BIC avec 10 000 € de loyers meublés longue durée. Puis-je imputer ces déficits ?",
+      "expected_output": "Oui. Résultat micro-BIC net = 10 000 × 50 % = 5 000 €. Les déficits antérieurs (cases 5GA à 5GJ) s'imputent sur ce résultat dans sa limite : 5 000 € imputés, résultat LMNP imposable 0 €, 1 000 € restent reportables (jusqu'à 10 ans après l'année du déficit). Aucune imputation sur le revenu global.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que les déficits LMNP antérieurs s'imputent sur le résultat micro-BIC net",
+        "Le résultat micro-BIC net est calculé après abattement de 50 % (5 000 €)",
+        "L'imputation est limitée au résultat LMNP net (5 000 €), le solde de 1 000 € reste reportable",
+        "Le skill rappelle que ces déficits ne s'imputent jamais sur le revenu global",
+        "Le skill cite les cases 5GA à 5GJ et l'art. 156-I-1° ter CGI"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "millesime-bareme-annee-passee",
+      "prompt": "Je prépare une réclamation sur mes revenus 2022. Célibataire, 1 part, revenu net imposable 30 000 €. Quel était mon impôt sur le revenu avant réductions et crédits ?",
+      "expected_output": "Barème des revenus 2022 (LFI 2023) : 0 % jusqu'à 10 777 €, 11 % jusqu'à 27 478 €, 30 % jusqu'à 78 570 €. Impôt = (27 478 − 10 777) × 11 % + (30 000 − 27 478) × 30 % = 1 837,11 + 756,60 = 2 593,71 €, soit environ 2 594 €. Pas de décote (seuil 1 840 € pour un célibataire en 2022).",
+      "files": [],
+      "assertions": [
+        "Le skill utilise le barème des revenus 2022 (tranches 10 777 / 27 478 / 78 570), pas celui de 2025",
+        "L'impôt calculé est d'environ 2 594 €",
+        "Le skill vérifie la décote avec le seuil 2022 (1 840 €) et conclut qu'elle ne s'applique pas",
+        "Le skill indique que les valeurs viennent du millésime revenus 2022"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "millesime-absent",
+      "prompt": "Quel était le plafond du quotient familial pour mes revenus 2015 ?",
+      "expected_output": "Le skill ne dispose pas du millésime revenus 2015 (données de 2020 à 2025). Il le dit, n'applique pas les valeurs d'une autre année, et renvoie à une source officielle (BOFiP daté, impots.gouv.fr) pour cette année.",
+      "files": [],
+      "assertions": [
+        "Le skill indique ne pas disposer des données des revenus 2015",
+        "Le skill ne donne pas le plafond 2025 (1 807 €) ni celui d'une autre année comme réponse pour 2015",
+        "Le skill renvoie à une source officielle pour cette année"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "foyer-declaration-deposee-fait-foi",
+      "prompt": "Mon foyer.json multi-année indique pour 2023 une déclaration déposée avec 4BC = 3 100 € (déficit imputé sur le revenu global) et 4BB = 1 200 € (déficit reportable sur les revenus fonciers), soit un déficit foncier restant de 1 200 € au 31/12/2023. En recalculant 2023 à partir de mes revenus, j'obtiens 3 400 € imputables sur le revenu global au lieu des 3 100 € déclarés. Quel déficit dois-je reporter en 2024 ?",
+      "expected_output": "Pour une année déposée, ce qui a été déclaré fait foi : le report part des 1 200 € restants au 31/12/2023 (4BB), à imputer sur les revenus fonciers 2024 (case 4BD). L'écart entre 3 100 € déclarés et 3 400 € recalculés sur l'imputation au revenu global est une anomalie à examiner (erreur de calcul ou oubli de charge) ; s'il est confirmé, il relève d'une réclamation sur 2023, pas d'un report modifié de sa propre initiative.",
+      "files": [],
+      "assertions": [
+        "Le skill part du déficit déclaré (1 200 €) et non du recalcul pour le report 2024",
+        "Le skill signale l'écart 3 100 / 3 400 comme une anomalie à vérifier",
+        "Le skill oriente vers une réclamation si l'écart est confirmé, sans modifier silencieusement le report",
+        "Le skill mentionne la case 4BD pour l'imputation des déficits antérieurs"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "seuil-micro-annee-n",
+      "prompt": "Location meublée longue durée : 75 000 € de recettes en 2023 et 76 000 € en 2024. Puis-je rester au micro-BIC pour mes revenus 2025 ?",
+      "expected_output": "Le régime de 2025 s'apprécie en comparant les recettes de 2023 et 2024 au seuil fixé pour 2025 (BOI-BIC-DECLA-10-10-10), soit 77 700 € pour la location meublée de longue durée. 75 000 € et 76 000 € ne dépassent pas ce seuil : le micro-BIC reste applicable en 2025, avec un abattement de 50 %, sauf option pour le réel.",
+      "files": [],
+      "assertions": [
+        "Le skill compare les recettes de N-1 et N-2 au seuil de l'année N (2025)",
+        "Le skill retient le seuil de 77 700 € pour la location meublée de longue durée",
+        "Le skill conclut que le micro-BIC reste applicable en 2025",
+        "Le skill mentionne l'abattement de 50 % et la possibilité d'opter pour le réel"
+        ]
+      },
+      {
+      "id": 61,
+      "name": "option-bareme-av-moins-8-ans",
+      "prompt": "Nous sommes mariés, sans enfant, avec 56 000 € de revenu net imposable hors ce gain (tranche à 11 %). J'ai fait un rachat sur une assurance-vie ouverte en 2021, tous mes versements datent de 2021 et le gain est de 2 000 €. C'est notre seul revenu du capital en 2025. Le PFU ou le barème ?",
+      "expected_output": "Contrat de moins de 8 ans : 12,8 % sous PFU, soit 256 €, sans abattement de 4 600 / 9 200 €. Au barème : le gain s'ajoute au revenu imposable diminué de la CSG déductible (6,8 % × 2 000 € = 136 €), soit 1 864 € taxés à 11 %, environ 205 €. Le foyer est hors zone de décote (impôt brut d'environ 3 600 € au-dessus du seuil couple de 3 277 €) : l'option au barème est donc avantageuse. En zone de décote (par exemple une personne seule à TMI 11 %), chaque euro coûterait environ 16 % et le PFU l'emporterait. Les PS de 17,2 % sont dus dans les deux cas. L'option est globale pour tous les revenus et gains mobiliers de l'année.",
+      "files": [],
+      "assertions": [
+        "Le skill applique le taux de 12,8 % au contrat de moins de 8 ans",
+        "Le skill n'applique PAS l'abattement de 4 600 / 9 200 €, réservé aux contrats de 8 ans et plus",
+        "Le skill conclut que l'option au barème est avantageuse ici (environ 205 € contre 256 €)",
+        "Le skill vérifie que le foyer est hors zone de décote, sans quoi le barème coûterait environ 16 % à la marge",
+        "Le skill rappelle que l'option est globale"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "report-excedent-plafond-niches",
+      "prompt": "Nous sommes mariés. En 2025 nous avons déjà 9 000 € d'avantages fiscaux soumis au plafond global (emploi à domicile, Pinel). Nous avons aussi une réduction de 3 000 € pour une souscription directe au capital d'une PME. Perd-on les 2 000 € au-dessus de 10 000 € ? Et si la réduction PME avait été de 12 000 € ?",
+      "expected_output": "Premier cas : oui, les 2 000 € sont perdus. L'excédent reportable s'apprécie sur la seule réduction PME (avec ses reports), sans tenir compte des autres avantages : 3 000 € ne dépassent pas 10 000 €, donc aucun report (BOI-IR-RICI-90-20-10 § 190, exemple 3). Second cas : le total est ramené à 10 000 €, et la fraction de la réduction PME qui dépasse à elle seule 10 000 €, soit 2 000 €, est reportable sur les 5 années suivantes (art. 199 terdecies-0 A, II ; brochure IR 2026 p. 289), le report restant soumis au plafond de l'année d'acquisition. Un FCPI ou un FIP n'ouvrirait aucun report.",
+      "files": [],
+      "assertions": [
+        "Le skill conclut que, dans le premier cas, rien n'est reportable : la réduction PME seule (3 000 €) ne dépasse pas 10 000 €",
+        "Le skill précise que les autres avantages ne comptent pas pour déterminer l'excédent reportable",
+        "Dans le second cas, le skill retient 2 000 € reportables sur 5 ans (12 000 − 10 000)",
+        "Le skill NE présente PAS les 2 000 € du premier cas comme reportables"
       ]
     }
   ]

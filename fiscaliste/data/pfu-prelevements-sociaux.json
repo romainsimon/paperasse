@@ -17,7 +17,7 @@
       "revenus_du_patrimoine": {
         "taux_global": 0.314,
         "detail_ps": 0.186,
-        "description": "PV mobilières (compte-titres), crypto, LMNP. Base CSS : L. 136-6. PS 18,6 % applicable aux revenus 2025 (déclaration 2026)."
+        "description": "PV mobilières (compte-titres), crypto. Base CSS : L. 136-6, qui vise aussi les revenus LMNP, mais ceux-ci sont des BIC imposés au barème, jamais au PFU. PS 18,6 % applicable aux revenus 2025 (déclaration 2026)."
       },
       "produits_de_placement_2025": {
         "taux_global": 0.30,
@@ -63,7 +63,7 @@
       "source": "art. L. 136-8 CSS, IV (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054336623) ; art. L. 136-7 CSS (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053584839)"
     },
     "dont_csg_deductible_si_bareme": 0.068,
-    "note_csg_deductible": "La CSG déductible (6,8 %) ne s'applique QUE si option barème progressif. Zéro déductible sous PFU. Déduite du revenu global de l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts : ligne 2BH, calcul automatique), de l'année suivante pour les PS établis par voie de rôle (plus-values, revenus d'un courtier étranger sans 2778) (brochure IR 2026, RCM).",
+    "note_csg_deductible": "La CSG déductible (6,8 %) suppose une imposition au barème : sur option globale pour les revenus du capital (ligne 2BH, calcul automatique) ou de plein droit (ligne 2DF : produits d'assurance-vie et de capitalisation attachés à des versements antérieurs au 27/09/2017, sans option pour le prélèvement libératoire, 6,8 % quelle que soit l'option ; les produits des fonds en euros déjà soumis aux PS les années précédentes vont en 2CG, sans CSG déductible). Zéro déductible sur les revenus imposés au PFU. Associés de SEL et de sociétés à l'IS relevant du régime des non-salariés : fraction des dividendes et intérêts de compte courant au-delà de 10 % en 2CG (cotisations sociales, pas de CSG déductible), le reste en 2BH (brochure IR 2026 p. 133). Déduite du revenu global de l'année même pour les revenus dont les PS ont été prélevés à la source (dividendes, intérêts), de l'année suivante pour les PS établis par voie de rôle (plus-values mobilières, revenus d'un courtier étranger sans 2778). CSG sur plus-values immobilières non déductible (brochure IR 2026, RCM ; BOI-IR-BASE-20-20 § 210).",
     "taux_plus_values_immo": 0.172
   },
 

@@ -75,7 +75,7 @@
     "taux": 0.10,
     "minimum": 454,
     "maximum": 4439,
-    "description": "Abattement sur pensions et retraites (cases 1AS/1BS) : minimum 454 € par pensionné (limité au montant de sa pension), plafond 4 439 € pour l'ensemble des pensions du foyer (art. 158, 5-a CGI, revenus 2025 ; brochure IR 2026)."
+    "description": "Abattement sur pensions et retraites (lignes 1AS à 1DS) : minimum 454 € par pensionné (limité au montant de sa pension), plafond 4 439 € pour l'ensemble des pensions du foyer (art. 158, 5-a CGI, revenus 2025 ; brochure IR 2026)."
   },
 
   "cehr": {

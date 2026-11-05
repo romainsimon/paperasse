@@ -99,6 +99,12 @@ def check_sources():
                 stale.append((name, f"fichier manquant : {file_name}"))
                 continue
 
+        # Un millésime passé est figé : la loi de cette année ne change plus, son âge
+        # n'est pas un signal de fraîcheur.
+        if freq == "fige":
+            print(f"  {DIM}●{RESET} {name:<52} {DIM}{'figé':>10}{RESET}  {src.get('annee_revenus', '')}")
+            continue
+
         status_color = GREEN
         if age > max_age:
             status_color = RED
@@ -112,6 +118,31 @@ def check_sources():
     return stale, warn
 
 
+def check_millesimes():
+    """Chaque dossier revenus-AAAA contient le même jeu de fichiers que l'année courante,
+    et chaque fichier déclare l'année de son dossier."""
+    problemes = []
+    dossiers = sorted(p for p in DATA_DIR.glob("revenus-*") if p.is_dir())
+    if not dossiers:
+        return problemes
+    # Le jeu de référence est celui de l'année courante (le dossier le plus récent).
+    attendus = {p.name for p in dossiers[-1].glob("*.json") if not p.name.startswith("_")}
+    for dossier in dossiers:
+        annee = int(dossier.name.removeprefix("revenus-"))
+        presents = {p.name for p in dossier.glob("*.json") if not p.name.startswith("_")}
+        for manquant in sorted(attendus - presents):
+            problemes.append((dossier.name, f"fichier manquant : {manquant}"))
+        for fichier in sorted(presents):
+            meta = json.load(open(dossier / fichier)).get("_meta", {})
+            if meta.get("revenus") != annee:
+                problemes.append((dossier.name, f"{fichier} : _meta.revenus = {meta.get('revenus')}"))
+        a_verifier = sum(open(dossier / f).read().count('"a_verifier": true') for f in presents)
+        couleur = YELLOW if a_verifier else GREEN
+        print(f"  {couleur}●{RESET} {dossier.name:<20} {len(presents)} fichiers"
+              + (f", {a_verifier} valeur(s) à vérifier" if a_verifier else ""))
+    return problemes
+
+
 def main():
     print(f"\n{BOLD}FISCALISTE — Fraîcheur des données{RESET}")
     print("=" * 72)
@@ -121,6 +152,9 @@ def main():
 
     print(f"\n{BOLD}Sources de données{RESET}")
     stale, warn = check_sources()
+
+    print(f"\n{BOLD}Millésimes{RESET}")
+    stale += check_millesimes()
 
     print(f"\n{BOLD}Synthèse{RESET}")
     print("=" * 72)

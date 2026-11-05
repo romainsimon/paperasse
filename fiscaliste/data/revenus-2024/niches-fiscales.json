@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "revenus": 2024,
+    "declaration": 2025,
+    "source": "BOI-IR-LIQ-20-20-10 ; brochure pratique IR 2025 (aide-mémoire réductions et crédits d'impôt 2024)"
+  },
+
+  "plafonnement_global": {
+    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est en principe perdu, sauf notamment la fraction qui excède le plafond de 10 000 € pour les réductions au titre des souscriptions directes au capital de PME (art. 199 terdecies-0 A, I et II, souscriptions depuis le 01/01/2013, hors FCPI et FIP) et de sociétés foncières solidaires (art. 199 terdecies-0 AB, I, 2, 3°) : elle est reportable sur les 5 années suivantes. Cet excédent se calcule sur la seule réduction concernée (versements de l'année et reports), sans compter les autres avantages, plafonnés ou non : 9 000 € de réduction PME et 6 000 € de crédit emploi à domicile ne donnent aucun report (BOI-IR-RICI-90-20-10 § 190, exemple 3).",
+    "plafond_metropole": 10000,
+    "plafond_investissements_outre_mer": 18000,
+    "note": "Le plafond s'applique APRÈS calcul de toutes les réductions, pas avant. Piège classique : cumuler Pinel + FCPI + outre-mer sans vérifier le plafond global."
+  },
+
+  "dispositifs_dans_plafond": {
+    "note": "Dispositifs entrant dans le plafond global de 10 000 €",
+    "liste": [
+      "Pinel (réduction d'impôt pour investissement locatif — dernières acquisitions éligibles en 2024, à taux réduits sauf Pinel+)",
+      "Denormandie (prorogé jusqu'au 31/12/2027 par la loi n° 2024-322 du 9/04/2024)",
+      "Loc'Avantages",
+      "FCPI / FIP (souscription)",
+      "Emploi d'un salarié à domicile (crédit d'impôt 50 %, art. 199 sexdecies)",
+      "Frais de garde des jeunes enfants hors du domicile (crédit d'impôt 50 %, art. 200 quater B)",
+      "Malraux pour les opérations engagées avant le 01/01/2013 uniquement",
+      "Travaux de conservation d'objets mobiliers classés monuments historiques (art. 199 duovicies)",
+      "Investissements outre-mer (art. 199 undecies A, B et C, dont Girardin ; seule la fraction non rétrocédée des 199 undecies B et C compte), SOFICA et Pinel / Denormandie outre-mer : plafond majoré à 18 000 €",
+      "Investissement forestier",
+      "Investissement corse"
+    ]
+  },
+
+  "dispositifs_hors_plafond": {
+    "note": "Dispositifs exclus du plafond global (avantages sans contrepartie : dons, mécénat ; avantages liés à la situation personnelle). Source : art. 200-0 A CGI ; BOI-IR-LIQ-20-20-10-10",
+    "liste": [
+      "Dons aux associations (réduction 66% ou 75% selon type)",
+      "Malraux pour les opérations engagées depuis le 01/01/2013",
+      "Monuments historiques : déduction des charges sur le revenu global (art. 156 II 1° ter) — ce n'est pas une réduction d'impôt",
+      "Cotisations syndicales (crédit d'impôt 66%)",
+      "Frais de scolarité des enfants (réduction forfaitaire 7EA/7EC/7EF)"
+    ]
+  },
+
+  "exemples_avantages_classiques": {
+    "dons_associations": {
+      "taux_reduction_standard": 0.66,
+      "taux_reduction_dons_aide_personnes": 0.75,
+      "plafond_assiette_standard": "20% du revenu imposable",
+      "plafond_dons_aide_personnes": 1000,
+      "note_aide_personnes": "Plafond majoré pour dons aux associations venant en aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.)"
+    },
+    "emploi_a_domicile": {
+      "taux_credit": 0.50,
+      "plafond_depenses_general": 12000,
+      "majoration_enfants": "+1 500 € par enfant à charge (plafond max 15 000 €)",
+      "note": "Crédit d'impôt — remboursé même si impôt nul"
+    },
+    "garde_enfant_exterieur": {
+      "taux_credit": 0.50,
+      "plafond_depenses_par_enfant": 3500,
+      "age_limite": "Enfant de moins de 6 ans au 1er janvier"
+    }
+  },
+
+  "frais_scolarite": {
+    "cases": {
+      "college": {
+        "case_enfant_charge": "7EA",
+        "case_garde_alternee": "7EB",
+        "reduction_par_enfant": 61
+      },
+      "lycee": {
+        "case_enfant_charge": "7EC",
+        "case_garde_alternee": "7ED",
+        "reduction_par_enfant": 153
+      },
+      "superieur": {
+        "case_enfant_charge": "7EF",
+        "case_garde_alternee": "7EG",
+        "reduction_par_enfant": 183
+      }
+    },
+    "conditions": "Enfant à charge ou rattaché, scolarisé au 31 décembre de l'année d'imposition",
+    "garde_alternee": "Réduction divisée par deux entre les deux foyers (cases 7EB/7ED/7EG)",
+    "exclusions": ["apprentissage", "congé formation", "contrat d'études avec l'employeur"],
+    "pieges": [
+      "Job étudiant à côté des études (contrat sans lien avec la formation) : éligible — la condition BOFiP vise les contrats structurellement liés à la formation, pas un emploi indépendant",
+      "Stage indemnisé obligatoire intégré au cursus : éligible (prévu explicitement par BOFiP BOI-IR-RICI-30)",
+      "Appréciation au 31/12 : si l'enfant a arrêté ses études en cours d'année et n'est inscrit nulle part au 31/12 → pas de réduction",
+      "Cumul interdit avec pension alimentaire déductible (6EL/6EM pour un enfant majeur, post-2006 ; 6GI/6GJ résiduel si décision de justice antérieure à 2006, formulaire 2042 C avec majoration de 25%) : un enfant pour lequel une pension est déduite ne fait plus partie du foyer → pas de réduction"
+    ],
+    "note": "Montants stables (non indexés annuellement, identiques de 2021 à 2024 selon l'aide-mémoire de la brochure IR 2025). Réduction non remboursable — excédent perdu si impôt < réduction.",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F9/",
+    "bofip": "BOI-IR-RICI-30",
+    "cgi": "art. 199 quater F",
+    "source_verifiee": "2026-10-17"
+  },
+
+  "distinction_mecanismes": {
+    "description": "Distinction fondamentale entre déduction, réduction et crédit",
+    "deduction": {
+      "sapplique_sur": "Revenu imposable (avant calcul de l'impôt)",
+      "remboursable_si_excedent": "Non applicable",
+      "exemples": ["PER", "Pension alimentaire", "CSG déductible"]
+    },
+    "reduction": {
+      "sapplique_sur": "Impôt calculé",
+      "remboursable_si_excedent": "Non — impôt minimum = 0",
+      "exemples": ["Pinel", "Dons", "Malraux", "FCPI"]
+    },
+    "credit": {
+      "sapplique_sur": "Impôt calculé",
+      "remboursable_si_excedent": "Oui — remboursé si > impôt dû",
+      "exemples": ["Emploi à domicile", "Garde d'enfant", "Cotisations syndicales"]
+    }
+  }
+}

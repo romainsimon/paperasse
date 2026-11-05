@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "revenus": 2022,
+    "declaration": 2023,
+    "sources": [
+      "BOI-RPPM-RCM-40-50 (PEA)",
+      "BOI-RPPM-RCM-20-10-20-50 (AV)"
+    ]
+  },
+
+  "pea_classique": {
+    "description": "Plan d'Épargne en Actions — enveloppe fiscale actions européennes",
+    "plafond_versements": 150000,
+    "plafond_enfant_majeur_rattache": 20000,
+    "note_pea_pme": "PEA-PME : 225 000 € de versements ; plafond commun PEA + PEA-PME ≤ 225 000 € (art. L. 221-32-1 CMF), dont PEA ≤ 150 000 € (art. L. 221-30 CMF)",
+
+    "avant_5_ans": {
+      "retrait": "Tout retrait avant 5 ans entraîne la clôture du plan, sauf dans les cas ci-dessous (art. L. 221-32 CMF, rédaction issue de la loi PACTE n° 2019-486 du 22/05/2019 ; BOI-ANNX-000072)",
+      "imposition_gains": "PFU 30% (ou barème sur option)",
+      "exceptions_cloture_sans_penalite": [
+        "Licenciement, invalidité ou mise à la retraite anticipée du titulaire ou de son conjoint / partenaire de PACS : retrait sans clôture, versements toujours possibles ; gain imposé (art. 200 A CGI) et PS",
+        "Création ou reprise d'entreprise (sommes affectées dans les 3 mois) : retrait sans clôture, exonéré d'IR (PS dus), mais plus aucun versement possible"
+      ]
+    },
+
+    "apres_5_ans": {
+      "retrait": "Libre, sans clôture du plan ni blocage des versements (loi PACTE n° 2019-486 du 22/05/2019)",
+      "imposition_ir": "EXONÉRATION TOTALE d'IR sur les gains",
+      "ps_dus": "Prélèvements sociaux 17.2% dus sur les gains à chaque retrait",
+      "note_historique_taux_ps": "Les gains acquis avant certaines dates peuvent bénéficier de taux PS historiques plus faibles (taux par couches)"
+    },
+
+    "comparaison_av": {
+      "pea_avantage": "Fiscalité plus légère après 5 ans (pas d'IR), bon pour performance actions européennes",
+      "av_avantage": "Plus flexible (fonds euros, UC variées), abattement annuel sur gains à la sortie après 8 ans, avantage successoral",
+      "strategie_cumul": "PEA pour performance actions européennes, AV pour diversification et transmission — les deux enveloppes sont complémentaires"
+    }
+  },
+
+  "assurance_vie_rachats": {
+    "description": "Fiscalité des rachats de vivant (distincte de la transmission — voir skill notaire)",
+
+    "principe_proportionnalite": {
+      "formule": "quote_part_gains_imposable = (gains_totaux / valeur_totale_contrat) × montant_racheté",
+      "piege": "Un rachat partiel NE sort PAS d'abord le capital non imposable. La règle de proportionnalité s'applique toujours."
+    },
+
+    "abattement_annuel_apres_8_ans": {
+      "celibataire_veuf_divorce": 4600,
+      "couple_imposition_commune": 9200,
+      "description": "Abattement sur la quote-part de gains dans le rachat. S'applique UNIQUEMENT après 8 ans de détention du contrat (pas des versements).",
+      "renouvelable": "Chaque année civile (pas dans les 12 mois glissants)"
+    },
+
+    "taux_selon_versements": {
+      "versements_avant_27_sept_2017": {
+        "description": "Taux dégressif selon ancienneté du contrat (PFL optionnel ou barème)",
+        "moins_4_ans": "PFL 35% OU barème",
+        "4_a_8_ans": "PFL 15% OU barème",
+        "8_ans_plus": "PFL 7.5% OU barème (après abattement)"
+      },
+      "versements_apres_27_sept_2017": {
+        "description": "PFU sur les gains, modulé selon l'ancienneté du contrat et le montant des primes versées. Le seuil de 150 000 € s'apprécie sur les primes versées et non remboursées au 31/12 de l'année précédant le rachat, tous contrats confondus, par bénéficiaire — pas sur l'encours (BOI-RPPM-RCM-20-15 § 140 à 190)",
+        "contrat_moins_8_ans": "PFU 30% (12.8% IR + 17.2% PS)",
+        "contrat_plus_8_ans_encours_moins_150k": "7.5% IR après abattement annuel (4 600 / 9 200 €, qui ne réduit pas la base des PS) + 17.2% PS sur la totalité des produits, si les primes non remboursées n'excèdent pas 150 000 € (seuil ci-dessus)",
+        "contrat_plus_8_ans_encours_plus_150k": "PFU 30% (12.8% IR + 17.2% PS) sur la fraction des produits correspondant aux primes post-27/09/2017 qui excèdent le seuil de 150 000 € de primes non remboursées"
+      }
+    },
+
+    "option_bareme_avantageuse_si": "Option globale pour l'ensemble des revenus et gains mobiliers de l'année, à comparer sur le tout (art. 200 A, 2 CGI). Primes versées depuis le 27/09/2017. Contrat de moins de 8 ans (12,8 %) : avantageuse si TMI ≤ 11 %. Contrat de 8 ans et plus : avantageuse à TMI 0 % ; à TMI 11 %, le barème bat 12,8 % mais pas 7,5 %, donc seulement si la fraction à 12,8 % (primes > 150 000 €) l'emporte. Sur les contrats de 8 ans et plus, l'abattement de 4 600 / 9 200 € s'applique dans les deux régimes."
+  }
+}

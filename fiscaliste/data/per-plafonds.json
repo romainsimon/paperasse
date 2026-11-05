@@ -13,7 +13,7 @@
 
   "per_individuel": {
     "description": "Plafond de déduction PER pour les versements 2025 (déclaration 2026). Le PASS de référence est celui de l'année qui précède le versement (art. 163 quatervicies, I-2 CGI ; brochure IR 2026, charges déductibles).",
-    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires et allocations de chômage après abattement de 10 %, gains d'actionnariat salarié imposés comme salaires, BIC, BNC, BA professionnels), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83 2°, PERO, PERECO ; Madelin et art. 154 bis-0 A pour la seule fraction excédant 15 % du bénéfice compris entre 1 et 8 PASS ; sommes versées par l'entreprise ou le salarié au PERCO ou PERECO et exonérées au titre de l'art. 81, 18°, dont jours de CET monétisés)",
+    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires et allocations de chômage après abattement de 10 %, gains d'actionnariat salarié imposés comme salaires, BIC, BNC, BA professionnels), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83 2°, PERO ; Madelin et art. 154 bis-0 A pour la seule fraction excédant 15 % du bénéfice compris entre 1 et 8 PASS ; sommes versées par l'entreprise ou le salarié au PERCO ou PERECO et exonérées au titre de l'art. 81, 18°, dont jours de CET monétisés)",
     "plancher_euros": 4637,
     "plancher_base": "10 % × PASS 2024 (46 368 €), garanti même sans revenus professionnels",
     "plafond_absolu_euros": 37094,

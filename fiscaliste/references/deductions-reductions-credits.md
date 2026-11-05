@@ -154,7 +154,7 @@ Voir `data/niches-fiscales.json` → `plafonnement_global`.
 **Mécanique** (art. 200-0 A ; brochure IR 2026, p. 319-320) :
 1. Calculer l'impôt avec **tous** les avantages, puis l'impôt **sans** les avantages plafonnés
 2. La différence est l'avantage effectivement obtenu (une réduction non imputée faute d'impôt ne compte pas)
-3. Si cette différence > 10 000 € → l'excédent est **ajouté à l'impôt** (perdu, pas reportable)
+3. Si cette différence > 10 000 € → l'excédent est **ajouté à l'impôt** (perdu, sauf la fraction d'une réduction PME, ESUS ou SFS qui dépasse à elle seule 10 000 €, reportable 5 ans : voir `plafonnement_global` dans `data/niches-fiscales.json`)
 4. Avantages outre-mer et SOFICA : les avantages du plafond de 10 000 € (retenus dans cette limite) + ces avantages sont comparés à 18 000 €, l'excédent est aussi ajouté
 
 **Pièges fréquents** :

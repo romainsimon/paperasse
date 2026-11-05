@@ -311,23 +311,15 @@ Ces forks ne sont **pas maintenus par paperasse** : la fraîcheur des référenc
 
 Paperasse est maintenu en open source grâce au soutien de ses sponsors. [Devenir sponsor](https://github.com/sponsors/romainsimon).
 
-### Founding Sponsors
-
-<p align="center"><!-- sponsors-founding --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Founding Sponsor</a>.</sub><!-- sponsors-founding --></p>
-
-### Premier Sponsors
+### Premier Sponsors · 500 $ / mois
 
 <p align="center"><!-- sponsors-premier --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Premier Sponsor</a>.</sub><!-- sponsors-premier --></p>
 
-### Sponsors
+### Sponsors · 100 $ / mois
 
 <p align="center"><!-- sponsors-sponsor --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Sponsor</a>.</sub><!-- sponsors-sponsor --></p>
 
-### Backers
-
-<p align="center"><!-- sponsors-backer --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Backer</a>.</sub><!-- sponsors-backer --></p>
-
-### Supporters
+### Supporters · 5 $ / mois
 
 <p align="center"><!-- sponsors-supporter --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Supporter</a>.</sub><!-- sponsors-supporter --></p>
 

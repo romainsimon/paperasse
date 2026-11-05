@@ -241,7 +241,7 @@ Délai pendant lequel la DGFIP peut redresser :
 
 | Impôt | Délai standard |
 |-------|----------------|
-| IR | 3 ans (jusqu'au 31 décembre de la 3e année suivant celle de l'imposition) |
+| IR | 3 ans : jusqu'au 31 décembre de la 3e année suivant celle au titre de laquelle l'imposition est due, c'est-à-dire l'année des revenus (art. L. 169 LPF). Revenus 2025 : jusqu'au 31/12/2028 |
 | IFI | 3 ans si la déclaration déposée révèle suffisamment l'exigibilité (LPF art. L. 180) ; 6 ans sinon (LPF art. L. 186) |
 | Tous impôts | **10 ans** en cas d'activité occulte ou fraude |
 | IR / IS | **10 ans** sur les revenus liés à un compte, un contrat ou un compte d'actifs numériques étranger non déclaré (art. L. 169 LPF ; pour les comptes, si le total des soldes a excédé 50 000 € dans l'année — voir [comptes-etrangers.md](comptes-etrangers.md)) |

@@ -53,7 +53,7 @@ Voir `data/regimes-fonciers-lmnp.json` → `regime_reel_foncier.deficit_foncier`
 - **Condition de maintien** : le bien doit rester loué nu jusqu'au **31 décembre de la troisième année qui suit l'imputation** ; à défaut (vente, reprise pour soi, passage en meublé), le déficit imputé sur le revenu global est réintégré (BOI-RFPI-BASE-30-20 § 20 et § 340 à 370)
 - Au-delà de la limite : reportable sur les revenus fonciers des **10 années suivantes**
 - Si le revenu global ne suffit pas à absorber la part imputable : l'excédent forme un **déficit global reportable 6 ans** sur le revenu global (art. 156-I, 1er alinéa CGI ; BOI-RFPI-BASE-30-20 § 160)
-- **Exception critique** : la part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers **n'est JAMAIS imputable sur le revenu global**, uniquement sur les revenus fonciers
+- **Exception critique** : la part du déficit qui provient de l'excédent des intérêts d'emprunt sur les loyers **n'est pas imputable sur le revenu global**, uniquement sur les revenus fonciers (sauf monuments historiques, BOI-RFPI-SPEC-30-20-10 § 80)
 - Cases 2042 : 4BA (bénéfice), 4BB (déficit imputable sur les revenus fonciers), 4BC (déficit imputable sur le revenu global), 4BD (déficits antérieurs), annexe 2044.
 
 **Exemple** : loyers 15 000 €, charges 4 000 €, travaux 18 000 €, intérêts 6 000 € → déficit 13 000 €. Les loyers (15 000 €) couvrent les intérêts (6 000 €) : tout le déficit vient des autres charges. 10 700 € s'imputent sur le revenu global, 2 300 € se reportent sur les revenus fonciers des 10 années suivantes.

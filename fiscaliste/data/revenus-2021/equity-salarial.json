@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "revenus": 2021,
+    "declaration": 2022,
+    "sources": [
+      "BOI-RSA-ES (actionnariat salarié)",
+      "BOI-RPPM-PVBMI (BSPCE)"
+    ]
+  },
+  "rsu": {
+    "description": "Restricted Stock Units — attributions gratuites d'actions (AGA). Le régime dépend de la date de la décision d'AGE qui a autorisé l'attribution et du caractère qualifiant du plan (C. com. art. L. 225-197-1 et s.).",
+    "gain_acquisition": {
+      "definition": "Valeur de l'action à la date d'acquisition définitive (vesting). Plan qualifiant : gain imposé au titre de l'année de la disposition (cession à titre onéreux ou gratuit, une donation étant un fait générateur), de la conversion au porteur ou de la mise en location des actions, pas de l'année du vesting (art. 80 quaterdecies CGI ; BOI-RSA-ES-20-20-20 § 150). Cession pendant la période de conservation : règles de droit commun des traitements et salaires (BOI-RSA-ES-20-20-20 § 10).",
+      "imposition": "Plans qualifiants, AGE à compter du 01/01/2018 : fraction annuelle du gain ≤ 300 000 € au barème après abattement de 50 % ou, le cas échéant, abattement fixe de l'art. 150-0 D ter (art. 80 quaterdecies et 200 A, 3 CGI) ; fraction > 300 000 € en traitements et salaires, sans abattement (case 1TT ou 1UT). Plans non qualifiants : salaire ordinaire, imposé l'année de l'acquisition définitive.",
+      "cotisations_sociales": "Plans qualifiants : fraction ≤ 300 000 € aux PS des revenus du patrimoine (17,2 %, sur le gain avant abattement), sans contribution salariale ; fraction > 300 000 € : CSG/CRDS d'activité 9,7 % + contribution salariale 10 % (art. L. 137-14 CSS). Plans non qualifiants : cotisations sociales de droit commun, sans contribution salariale de 10 %.",
+      "note_plans_qualifiants": "AGE du 31/12/2016 au 31/12/2017 : même seuil annuel de 300 000 € ; en deçà, abattements pour durée de détention (art. 150-0 D CGI) ou abattement fixe, non cumulables ; au-delà, salaire + contribution salariale 10 %. AGE du 08/08/2015 au 30/12/2016 (loi Macron) : intégralité du gain au barème avec abattements pour durée de détention ou abattement fixe, PS des revenus du patrimoine, pas de contribution salariale."
+    },
+    "plus_value_cession": {
+      "definition": "Valeur cession − valeur vesting",
+      "imposition": "PFU 30% (ou barème sur option)",
+      "note": "Distincte du gain d'acquisition. Imposée l'année de la cession, qui est aussi celle du gain d'acquisition, sauf conversion au porteur, mise en location ou donation antérieures (après donation, la plus-value est imposée au nom du donataire)."
+    },
+    "piege_classique": "Deux erreurs symétriques : traiter le gain d'acquisition d'un plan qualifiant comme un salaire (à tort sous 300 000 €), ou le traiter comme une simple plus-value mobilière (à tort : barème après abattement 50 %, PS des revenus du patrimoine, l'année de la cession)."
+  },
+  "stock_options": {
+    "description": "Options de souscription ou d'achat d'actions",
+    "rabais_excedentaire": {
+      "definition": "Fraction du rabais excédant 5 % de la valeur de l'action à la date d'attribution de l'option (art. 80 bis, II CGI)",
+      "imposition": "Salaire au barème l'année de la levée de l'option"
+    },
+    "gain_levee": {
+      "plans_pre_2012": "Options attribuées avant le 28/09/2012, titres nominatifs et indisponibles 4 ans (5 ans si attribution avant le 27/04/2000). Attribution du 27/04/2000 au 27/09/2012 : 30 % jusqu'à 152 500 € de gain annuel et 41 % au-delà, taux réduits à 18 % et 30 % si les titres sont conservés deux ans de plus. Attribution du 20/09/1995 au 26/04/2000 : 30 %. Option possible pour les salaires. Indisponibilité non respectée : salaire. Contribution salariale de 10 % si attribution depuis le 16/10/2007.",
+      "plans_post_2012": "Options attribuées à compter du 28/09/2012 : gain de levée imposé l'année de la disposition (à titre onéreux ou gratuit), de la cession, de la conversion au porteur ou de la mise en location des titres (art. 80 bis, II bis CGI), comme un salaire au barème (case 1TT ou 1UT), CSG/CRDS d'activité 9,7 %, contribution salariale 10 % sur la totalité du gain ; une moins-value de cession sous la valeur à la levée s'impute sur le gain de levée, dans la limite de ce gain.",
+      "note": "Consulter le plan pour déterminer le régime applicable"
+    },
+    "contribution_salariale": 0.1,
+    "note_contribution": "Contribution salariale de 10 % (art. L. 137-14 CSS) sur le gain de levée des options attribuées depuis le 16/10/2007, sur la totalité du gain : le seuil de 300 000 € ne concerne que les actions gratuites (voir rsu)."
+  },
+  "bspce": {
+    "description": "Bons de Souscription de Parts de Créateur d'Entreprise — réservés aux startups éligibles",
+    "difference_cle_rsu": "Pas de gain d'acquisition imposable comme salaire. Imposition uniquement à la cession.",
+    "gain_cession": {
+      "definition": "Prix de vente des actions − prix d'exercice des BSPCE",
+      "anciennete_3_ans_plus": {
+        "taux": 0.3,
+        "detail": "12.8% IR (bons attribués depuis le 01/01/2018, ou barème sur option globale ; 19 % pour les bons attribués avant, soit 36,2 % PS comprises) + 17.2% PS"
+      },
+      "anciennete_moins_3_ans": {
+        "taux": 0.472,
+        "detail": "30% IR + 17.2% PS — pénalité forte si départ précoce"
+      },
+      "note_anciennete": "Ancienneté du salarié dans la société à la date de cession (art. 163 bis G CGI, version applicable aux cessions 2021)"
+    },
+    "conditions_eligibilite_societe": [
+      "SA ou SAS française",
+      "Immatriculée depuis moins de 15 ans",
+      "Non cotée OU cotée sur compartiment dédié aux PME",
+      "Soumise à l'IS",
+      "Capital détenu à 25% minimum par des personnes physiques",
+      "Non issue d'une restructuration (fusion, scission, reprise d'activité)"
+    ],
+    "requalification_salaire": "Si conditions non remplies : requalification en salaires → imposition barème + cotisations sociales, traitement BEAUCOUP plus défavorable"
+  },
+  "pee_perco": {
+    "description": "Plans d'Épargne Entreprise et Plans d'Épargne Retraite Collective — enveloppes collectives",
+    "pee": {
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans les plafonds, mais soumis à la CSG/CRDS (9,7 %) — art. 81, 18° bis CGI ; service-public F2142. AVANTAGE MAJEUR vs versement direct",
+      "plafond_abondement_pee_2021": 3290.88,
+      "plafond_base": "8% × PASS 2021 (41 136 €) par bénéficiaire",
+      "blocage": "5 ans sauf cas de déblocage anticipé (mariage, naissance 3e enfant, achat RP, divorce avec enfant à charge, fin contrat travail, surendettement, invalidité, décès, violences conjugales)",
+      "sortie": "Après 5 ans : exonération IR, PS sur les gains uniquement",
+      "dividendes_reinvestis": "Exonérés IR tant qu'ils restent dans l'enveloppe"
+    },
+    "perco_pero": {
+      "description": "Équivalent PER collectif",
+      "sortie_retraite": "Rente ou capital. PER collectif : sommes issues de l'intéressement, de la participation et de l'abondement, capital EXONÉRÉ d'IR (versements et gains, art. 81, 18° et 4° bis-b CGI), PS sur les seuls gains (art. L. 136-7, II-7° bis CSS), rente imposée en RVTO. Versements volontaires déduits et versements obligatoires d'un PERO : régime de sortie en capital du PER individuel lorsqu'elle est possible (barème sans abattement de 10 %, gains au PFU). PERCO historique (art. L. 3334-1 C. trav.) : capital exonéré d'IR, rente en RVTO, PS selon BOI-RSA-ES-10-30-20. Source : BOI-ANNX-000513 (doctrine publiée en 2026).",
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans les plafonds (plafond distinct du PEE), mais soumis à la CSG/CRDS (9,7 %)",
+      "plafond_abondement_perco_2021": 6581.76,
+      "plafond_base": "16% × PASS 2021 (41 136 €) par bénéficiaire"
+    },
+    "arbitrage_vs_per_individuel": "PEE / PERCO = abondement employeur (levier immédiat +30% à +300%). PER individuel = déduction du RNI. À combiner : abonder d'abord PEE/PERCO pour capter l'abondement, puis PER individuel."
+  },
+  "quotient_revenus_exceptionnels": {
+    "description": "Lissage fiscal pour revenus ponctuels exceptionnels (vesting massif, prime exceptionnelle, indemnité départ)",
+    "mecanisme": "Revenu exceptionnel divisé par coefficient (généralement 4), ajouté au revenu ordinaire, impôt supplémentaire multiplié par le même coefficient",
+    "coefficient_defaut": 4,
+    "avantage_utile_si": "Le revenu exceptionnel ferait franchir une/plusieurs tranches marginales",
+    "inutile_si": "Foyer déjà au TMI maximum (45%) — coefficient n'apporte rien car taux marginal identique quelle que soit la division",
+    "note": "À mentionner systématiquement en cas de vesting RSU important, cession d'entreprise, ou entrée de revenus très supérieure à l'ordinaire"
+  }
+}

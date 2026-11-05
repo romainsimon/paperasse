@@ -17,7 +17,7 @@
       "revenus_du_patrimoine": {
         "taux_global": 0.314,
         "detail_ps": 0.186,
-        "description": "PV mobilières (compte-titres), crypto, LMNP. Base CSS : L. 136-6. PS 18,6 % applicable aux revenus 2025 (déclaration 2026)."
+        "description": "PV mobilières (compte-titres), crypto. Base CSS : L. 136-6, qui vise aussi les revenus LMNP, mais ceux-ci sont des BIC imposés au barème, jamais au PFU. PS 18,6 % applicable aux revenus 2025 (déclaration 2026)."
       },
       "produits_de_placement_2025": {
         "taux_global": 0.30,

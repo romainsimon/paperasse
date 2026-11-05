@@ -4,7 +4,7 @@
     {
       "id": 1,
       "name": "controle-fec-charges-455",
-      "prompt": "Simule un contrôle fiscal de WebAgency (SASU, développement web) pour l'exercice 2025. Concentre-toi sur les axes FEC, charges déductibles et compte courant associé 455. Le company.json et le FEC de l'exercice sont fournis ci-dessous.",
+      "prompt": "Simule un contrôle fiscal de WebAgency (SASU, développement web) pour l'exercice 2025. Concentre-toi sur les axes FEC, charges déductibles et compte courant associé 455. Le company.json et le FEC de l'exercice sont fournis ci-dessous, et disponibles dans controleur-fiscal/evals/files/ (company-webagency.json, fec-webagency.txt).",
       "expected_output": "Le skill contrôle le FEC, analyse les charges suspectes (Netflix, bureau domicile), et vérifie les mouvements du compte 455.",
       "files": [
         "evals/files/company-webagency.json",
@@ -23,7 +23,7 @@
     {
       "id": 2,
       "name": "controle-revenus-tva-is",
-      "prompt": "Simule un contrôle fiscal de WebAgency pour l'exercice 2025. Concentre-toi sur les axes revenus, TVA, IS et immobilisations. Le company.json et le FEC de l'exercice sont fournis ci-dessous.",
+      "prompt": "Simule un contrôle fiscal de WebAgency pour l'exercice 2025. Concentre-toi sur les axes revenus, TVA, IS et immobilisations. Le company.json et le FEC de l'exercice sont fournis ci-dessous, et disponibles dans controleur-fiscal/evals/files/ (company-webagency.json, fec-webagency.txt).",
       "expected_output": "Le skill vérifie l'exhaustivité des revenus, le seuil de franchise TVA, recalcule l'IS, et contrôle les immobilisations.",
       "files": [
         "evals/files/company-webagency.json",

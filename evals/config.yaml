@@ -18,7 +18,8 @@ skills:
   controleur-fiscal:
     path: controleur-fiscal
     baseline_prompt: "Tu es un inspecteur des impôts. Analyse ces données fiscales et identifie les anomalies."
-    tools: "Read"
+    tools: "Read,Bash"
+    allowed_tools: "Bash(node:*)"  # lets the skill run scripts/analyse-fec.js
     shared_paths:
       - data/
       - company.example.json

@@ -254,6 +254,7 @@ Pour la fraîcheur des données : `python fiscaliste/scripts/update_data.py`.
 | Crypto-actifs | [references/crypto.md](references/crypto.md) |
 | IFI | [references/ifi.md](references/ifi.md) |
 | PER et épargne retraite | [references/per.md](references/per.md) |
+| Pinel en cours (mise en location, plafonds de loyer et de ressources, prorogation, remise en cause, case 7QH) | [references/pinel.md](references/pinel.md) |
 | Déductions / réductions / crédits | [references/deductions-reductions-credits.md](references/deductions-reductions-credits.md) |
 | Départ de France, non-résidents (année du départ, taux minimum, foncier, PS 7,5 %, ex-RP, exit tax) | [references/non-residents.md](references/non-residents.md) |
 | Cas particuliers (revenus exceptionnels, CEHR, DOM, impatriation) | [references/cas-speciaux.md](references/cas-speciaux.md) |

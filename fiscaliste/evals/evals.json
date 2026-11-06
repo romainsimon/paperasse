@@ -673,6 +673,34 @@
         "Dans le second cas, le skill retient 2 000 € reportables sur 5 ans (12 000 − 10 000)",
         "Le skill NE présente PAS les 2 000 € du premier cas comme reportables"
       ]
+    },
+    {
+      "id": 63,
+      "name": "per-deblocage-enfant-malade-2-bis",
+      "prompt": "Mon fils de 8 ans, à ma charge, vient d'être diagnostiqué d'une leucémie. Il n'a aucune reconnaissance d'invalidité. Puis-je débloquer mon PER individuel (versements déduits) pour faire face, et comment serai-je imposé ?",
+      "expected_output": "Oui. Depuis le 14/06/2026, l'affection grave, le handicap ou l'accident d'une particulière gravité chez l'enfant à charge du titulaire est un cas de déblocage anticipé (L. 224-4, I-2° bis CMF, loi n° 2026-492 du 12/06/2026, art. 4), sans reconnaissance d'invalidité de 2e ou 3e catégorie. Par lecture des textes, ce cas s'insère dans la plage des 1° à 5° du I de L. 224-4 visée par l'exonération de l'art. 81, 4° bis-a CGI, que le BOI-RSA-PENS-30-10-20 du 10/08/2026 (§ 200) maintient sans viser le 2° bis : versements et gains exonérés d'IR, prélèvements sociaux sur les seuls gains, comme les autres accidents de la vie (service-public.fr F34982 le range parmi les accidents de la vie). Le skill signale qu'au 05/11/2026 aucun paragraphe du BOFiP ne vise expressément le 2° bis.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que le déblocage est possible au titre du 2° bis de l'article L. 224-4 CMF (loi du 12/06/2026)",
+        "Le skill précise qu'aucune invalidité de 2e ou 3e catégorie n'est exigée pour ce cas",
+        "Le skill retient l'exonération d'IR sur les versements et les gains, avec prélèvements sociaux sur les seuls gains",
+        "Le skill signale qu'aucun paragraphe du BOFiP ne vise expressément le 2° bis",
+        "Le skill N'impose PAS le capital au barème comme une sortie à la retraite ou pour la résidence principale"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "transfert-madelin-perp-vers-per",
+      "prompt": "J'ai un vieux contrat Madelin et un PERP. Si je les transfère sur mon PER individuel, suis-je imposé au moment du transfert ? Et à la retraite, pourrai-je sortir en capital et garder le taux de 7,5 % du PERP ?",
+      "expected_output": "Le transfert (CMF, art. L. 224-40, I) n'est pas un dénouement : rien n'est imposé l'année du transfert (BOI-RSA-PENS-30-10-20 du 10/08/2026, § 30). Les droits transférés sont assimilés à des droits issus de versements volontaires sans option pour la non-déduction (§ 90, remarque). Les droits d'un Madelin ou d'un PERP sont affectés aux versements volontaires (CMF, art. L. 224-40, II) : la sortie en capital devient possible, y compris pour l'ancien Madelin, sauf option irrévocable pour la rente (à vérifier dans les conditions du PER d'accueil). La part versements est imposée au barème sans abattement de 10 % (quotient possible, § 100) et les produits au PFU de 12,8 % ou au barème sur option (§ 130). L'imposition forfaitaire de 7,5 % de l'art. 163 bis, II ne s'applique pas au capital issu de droits transférés (§ 250, remarque).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que le transfert ne déclenche aucune imposition l'année du transfert",
+        "Le skill précise que les droits transférés sont traités comme des versements volontaires sans option pour la non-déduction",
+        "Le skill indique que les droits Madelin et PERP transférés sont affectés aux versements volontaires (L. 224-40, II), ce qui ouvre la sortie en capital",
+        "Le skill précise que le taux forfaitaire de 7,5 % ne s'applique pas au capital issu des droits transférés",
+        "Le skill N'applique PAS l'abattement de 10 % à la part du capital correspondant aux versements"
+      ]
     }
   ]
 }

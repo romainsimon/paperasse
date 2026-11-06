@@ -790,7 +790,7 @@
       "id": 70,
       "name": "pinel-ressources-n2-concubins",
       "prompt": "Je signe un bail Pinel en zone A en mars 2026 avec un couple non marié. Lui a 30 000 € de revenu fiscal de référence 2024, elle 25 000 €. Quel revenu et quel plafond dois-je regarder ? Et si leurs revenus augmentent l'an prochain ?",
-      "expected_output": "On retient le revenu fiscal de référence de l'avant-dernière année avant la signature, donc 2024 (N-1 admis s'il est inférieur et justifié), et des concubins s'apprécient globalement (BOI-IR-RICI-230-40-10 § 320, 330, 360) : 55 000 € à comparer au plafond 2026 « couple » en zone A, 66 276 € (BOI-BAREME-000017 du 10/03/2026 § 270). Conforme. Le contrôle se fait à la signature uniquement : une hausse ultérieure de leurs revenus ne remet pas en cause la réduction (§ 320).",
+      "expected_output": "On retient le revenu fiscal de référence de l'avant-dernière année avant la signature, donc 2024 (N-1 admis s'il est inférieur et justifié), et les revenus de concubins s'apprécient globalement (BOI-IR-RICI-230-40-10 § 320, 330, 360) : 55 000 € à comparer au plafond 2026 « couple » en zone A, 66 276 € (BOI-BAREME-000017 du 10/03/2026 § 270). Conforme. Le contrôle se fait à la signature uniquement : une hausse ultérieure de leurs revenus ne remet pas en cause la réduction (§ 320).",
       "files": [],
       "assertions": [
         "Le skill retient les revenus 2024 (N-2)",

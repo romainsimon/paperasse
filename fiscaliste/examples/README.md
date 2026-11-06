@@ -10,5 +10,6 @@ Jeu de foyers typiques pour illustrer les cas principaux couverts par le skill. 
 | [foyer-ifi-cehr.json](foyer-ifi-cehr.json) | Couple TMI 45 %, IFI, CEHR | Plafonnement IFI 75 %, CEHR progressive, plafond niches 10 k€ |
 | [foyer-expatrie-non-resident.json](foyer-expatrie-non-resident.json) | Non-résident (Portugal) | Taux minimum non-résident, retenue à la source, convention fiscale (exemple de raisonnement : `calc_ir.py` refuse de le chiffrer) |
 | [foyer-reductions-credits.json](foyer-reductions-credits.json) | Couple marié, 2 enfants, Pinel + salarié à domicile + crèche | Plafonnement global des niches (13 350 € > 10 000 €), avance RICI de janvier dans le solde (`calc_ir.py` : bloc `reductions_credits`) |
+| [auteur-plateforme-formateur.json](auteur-plateforme-formateur.json) | Auteur d'essais par abonnement (plateforme sans précompte) + micro-entreprise de formation ; deux années non déclarées (chiffres arrondis, fictifs) | BNC vs TS, deux casquettes, franchise TVA des auteurs, régularisation, chiffrage avec `scripts/calc_artiste_auteur.py` |
 
 Le fichier [`foyer.example.json`](../foyer.example.json) à la racine reste le **template canonique** à copier (structure complète commentée). Ces exemples sont des **scénarios concrets** simplifiés pour évaluer le skill ou démonstration.

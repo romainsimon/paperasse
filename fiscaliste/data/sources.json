@@ -842,6 +842,17 @@
       "last_fetched": "2026-10-17",
       "next_check": null,
       "check_instructions": "Millésime figé. Plafond global 10 000 € / 18 000 €, dons 66 % / 75 % (1 000 €), emploi à domicile 12 000 € + 1 500 € (max 15 000 €), garde 3 500 €, scolarité 61 / 153 / 183 €."
+    },
+    {
+      "id": "artistes-auteurs",
+      "name": "Régime des artistes-auteurs (cotisations, RAAP, TVA, IR, régularisation)",
+      "file": "artistes-auteurs-2026.json",
+      "source_officielle": "urssaf.fr (taux artiste-auteur), IRCEC (mémo 2026), CSS L. 382-1 s. / R. 382-1 s. (décret n° 2026-897), CGI 293 B / 278-0 bis / 279 g / 102 ter / 1727 / 1758 A, BOI-TVA-DECLA-40-30, BOI-BNC-SECT-20-10-20",
+      "verification_manuelle": "https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-de-cotisations-artiste-aute.html",
+      "update_frequency": "annual",
+      "last_fetched": "2026-11-06",
+      "next_check": "2027-01-15",
+      "check_instructions": "Chaque janvier : PASS, SMIC horaire au 1er janvier, taux (vieillesse, CSG, CRDS, CFP), seuil RAAP (IRCEC), plafond accessoires (1 200 SMIC h), seuils 293 B ; au 01/01/2027 : recodification TVA (CIBS), forfait de début d'activité 150 SMIC h (R. 382-24)."
     }
   ]
 }

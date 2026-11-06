@@ -138,7 +138,7 @@ Sources : BOI-RSA-PENS-30-10-20 du 10/08/2026 pour la fiscalité, CMF art. L. 22
 
 ### Décès du titulaire
 
-PER d'assurance : c'est l'âge du titulaire **au décès** qui commande, et non l'âge au versement des primes. Art. 990 I CGI avant 70 ans, art. 757 B après, avec une assiette qui porte alors sur l'intégralité des sommes dues, produits compris. PER compte-titres : sommes intégrées à l'actif successoral. Détail et sources dans [pea-assurance-vie.md](pea-assurance-vie.md) et, pour la succession, dans le skill notaire (`references/succession.md`).
+PER d'assurance : c'est l'âge du titulaire **au décès** qui commande, et non l'âge au versement des primes. L'art. 990 I CGI s'applique avant 70 ans, l'art. 757 B après, avec une assiette qui porte alors sur l'intégralité des sommes dues, produits compris. PER compte-titres : sommes intégrées à l'actif successoral. Détail et sources dans [pea-assurance-vie.md](pea-assurance-vie.md) et, pour la succession, dans le skill notaire (`notaire/references/succession.md`).
 
 ## Priorité absolue : abondement employeur avant PER individuel
 

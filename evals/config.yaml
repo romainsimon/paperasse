@@ -50,3 +50,5 @@ skills:
     tools: "Read"
     shared_paths:
       - fiscaliste/foyer.example.json
+      - data/artistes-auteurs-2026.json
+      - scripts/calc_artiste_auteur.py

@@ -645,9 +645,9 @@
         "Le skill retient le seuil de 77 700 € pour la location meublée de longue durée",
         "Le skill conclut que le micro-BIC reste applicable en 2025",
         "Le skill mentionne l'abattement de 50 % et la possibilité d'opter pour le réel"
-        ]
-      },
-      {
+      ]
+    },
+    {
       "id": 61,
       "name": "option-bareme-av-moins-8-ans",
       "prompt": "Nous sommes mariés, sans enfant, avec 56 000 € de revenu net imposable hors ce gain (tranche à 11 %). J'ai fait un rachat sur une assurance-vie ouverte en 2021, tous mes versements datent de 2021 et le gain est de 2 000 €. C'est notre seul revenu du capital en 2025. Le PFU ou le barème ?",
@@ -672,6 +672,52 @@
         "Le skill précise que les autres avantages ne comptent pas pour déterminer l'excédent reportable",
         "Dans le second cas, le skill retient 2 000 € reportables sur 5 ans (12 000 − 10 000)",
         "Le skill NE présente PAS les 2 000 € du premier cas comme reportables"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "artiste-auteur-ts-vs-bnc-droits-precomptes",
+      "prompt": "Mon éditeur me verse 8 000 € de droits par an avec précompte. Je déclare ça comment aux impôts, et est-ce que j'ai intérêt à passer en BNC ?",
+      "expected_output": "Droits intégralement déclarés par un tiers (éditeur, art. 241) → traitements et salaires par défaut (93, 1 quater), cases 1GF-1JF, abattement 10 % sur brut − cotisations ; option BNC possible pour 3 ans (micro-BNC 34 % ou réel). Intérêt à comparer, sans conclure que c'est toujours avantageux : l'option compte dans le seuil micro-BNC et fait perdre le TS ; retenue de TVA de l'éditeur (285 bis) sauf renonciation (détail dans comptable).",
+      "files": [],
+      "assertions": [
+        "Le régime par défaut traitements et salaires (art. 93 1 quater) est identifié avec les cases 1GF à 1JF",
+        "L'abattement de 10 % en TS est comparé à l'abattement de 34 % en micro-BNC",
+        "L'option BNC est présentée comme valable 3 ans (année + 2 suivantes)",
+        "La retenue de TVA par l'éditeur (285 bis) est mentionnée, ou l'utilisateur est renvoyé au volet TVA",
+        "Le skill nuance (pas de « toujours avantageux ») et renvoie à la situation du foyer"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "artiste-auteur-patreon-bnc-fondement",
+      "prompt": "Je publie des essais payants sur Patreon et Substack, aucun tiers français ne déclare mes revenus. Je les déclare en traitements et salaires ou en BNC ? Et sur quel texte tu t'appuies ? Quelles cases ?",
+      "expected_output": "BNC a priori (micro-BNC si recettes BNC ≤ 83 600 € pour 2026-2028, abattement 34 %, 2042 C PRO case 5HQ pour les recettes encaissées). Fondement : autoédition (l'auteur assure lui-même la vente de ses œuvres, BOI-BNC-CHAMP-10-10-20-20), PAS le § 50 de BOI-BNC-SECT-20-10-20, qui concerne les droits de source étrangère et admet de ne pas les priver, pour ce seul motif, du régime spécial. Point DAC7 non tranché. Seuil apprécié sur le total des activités BNC.",
+      "files": [],
+      "assertions": [
+        "Le BNC est retenu a priori (pas de traitements et salaires faute de tiers déclarant)",
+        "La case 5HQ (micro-BNC professionnel) de la 2042 C PRO est citée",
+        "Le fondement avancé est l'autoédition / l'absence de droits versés par un débiteur",
+        "Le § 50 de BOI-BNC-SECT-20-10-20 n'est pas cité à l'appui du BNC, ou est cité dans le bon sens (droits de source étrangère : ne pas priver du régime spécial pour ce seul motif)",
+        "Le seuil micro-BNC (83 600 € pour 2026-2028) et son appréciation sur le total des activités BNC sont mentionnés",
+        "L'incertitude sur l'effet des données DAC7 est signalée"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "artiste-auteur-regularisation-ir-deux-annees",
+      "prompt": "Je viens de comprendre que Patreon ne déclare rien pour moi. J'ai encaissé environ 14 000 € en 2025 et 14 000 € de janvier à septembre 2026, rien n'a été déclaré aux impôts. Comment je régularise l'IR, avec quelles pénalités, et comment payer en plusieurs fois ?",
+      "expected_output": "Reconstituer les encaissements par année ; déclaration rectificative 2042 + 2042 C PRO (5HQ). 2025 : service « Corriger ma déclaration » jusqu'au 30/11/2026 ; un « ANNULE ET REMPLACE » papier n'est possible qu'avant la date limite de dépôt, ensuite réclamation (messagerie ou courrier). Majoration 1758 A (10 %) écartée en cas de correction spontanée ; le 1758 A couvre aussi retard/défaut de déclaration et exclut le 10 % du 1728 1 a, mais le 40 % (mise en demeure sans effet) et 80 % (activité occulte) du 1728 restent. Intérêt de retard 0,20 %/mois réduit de moitié (1727 V) si dépôt spontané avant l'expiration du délai de reprise et paiement avec la déclaration (impôts de rôle : au plus tard à la date limite de l'avis) ou plan accepté. Délai de paiement via impots.gouv « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer ». Ordre de grandeur de l'IR : ~1 000 € à TMI 11 % pour 14 000 €.",
+      "files": [],
+      "assertions": [
+        "Les encaissements sont reconstitués par année civile avant toute déclaration",
+        "La déclaration rectificative (2042 + 2042 C PRO, case 5HQ) est prévue année par année",
+        "La distinction « ANNULE ET REMPLACE » papier (avant la date limite de dépôt) / réclamation (après) est faite",
+        "La majoration de 10 % du 1758 A est présentée comme écartée en cas de correction spontanée, et le 1758 A est dit couvrir aussi le retard ou défaut de déclaration",
+        "Le 40 % après mise en demeure et le 80 % pour activité occulte (1728, 1 b et c) sont mentionnés comme subsistant",
+        "L'intérêt de retard de 0,20 %/mois et sa réduction de 50 % (1727 V) sont mentionnés avec leurs conditions (avant la fin du délai de reprise, paiement ou plan accepté)",
+        "Le chemin impots.gouv « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer » est donné pour un délai de paiement",
+        "Le skill ne chiffre pas au centime (ordres de grandeur) et ne conseille pas d'emprunter pour payer"
       ]
     }
   ]

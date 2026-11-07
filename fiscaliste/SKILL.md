@@ -338,6 +338,7 @@ Ces points sont systématiquement vérifiés par les utilisateurs exigeants — 
 - Micro-BIC **longue durée** : abattement **50 %**, plafond **77 700 €** (revenus 2025 ; **83 600 €** pour 2026-2028, BOI-BAREME-000044).
 - Micro-BIC **meublé tourisme non classé** : abattement **30 %**, plafond 15 000 € (Loi Le Meur ; inchangé 2026-2028).
 - Micro-BIC **meublé tourisme classé** : abattement 50 %, plafond 77 700 € (83 600 € pour 2026-2028).
+- **Non classé + autres meublés** chez le même déclarant : deux limites séparées (15 000 € et 77 700 / 83 600 €), **pas de plafond commun** ; abattement par catégorie (30 % + 50 %) ; seuils appréciés par membre du foyer (BOI-BIC-DECLA-10-10-20 § 70 et 80).
 - Plafond apprécié sur N-1 ou N-2 : le réel devient obligatoire après **deux années consécutives** de dépassement.
 - Seuil LMP : recettes > **23 000 €** ET recettes > autres revenus d'activité du foyer, **pensions et rentes viagères comprises** (art. 155 IV 2 CGI, renvoi à l'art. 79).
 - Amortissements au réel : plafonnés au loyer diminué des autres charges, ils **ne peuvent ni créer ni accroître un déficit** (art. 39 C ; BOI-BIC-CHAMP-40-20 § 57).

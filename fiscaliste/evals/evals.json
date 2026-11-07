@@ -771,6 +771,19 @@
         "Le chemin impots.gouv « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer » est donné pour un délai de paiement",
         "Le skill ne chiffre pas au centime (ordres de grandeur) et ne conseille pas d'emprunter pour payer"
       ]
+    },
+    {
+      "id": 72,
+      "name": "micro-bic-non-classe-et-longue-duree",
+      "prompt": "En 2026, je loue un studio en meublé de tourisme non classé (12 000 € de recettes) et un appartement meublé à l'année (80 000 € de recettes). En 2025, j'avais les mêmes montants. Puis-je rester au micro-BIC, et quel est mon revenu imposable ?",
+      "expected_output": "Oui. Chaque catégorie a sa propre limite, sans plafond commun : 12 000 € ≤ 15 000 € pour le non classé (art. 50-0, 1, 1° bis), 80 000 € ≤ 83 600 € pour la location meublée longue durée (2°), et le total de 92 000 € respecte la limite du 1° (203 100 €) (BOI-BIC-DECLA-10-10-20 § 70). L'abattement se calcule par catégorie : 30 % × 12 000 = 3 600 € et 50 % × 80 000 = 40 000 €, soit 43 600 € ; résultat micro-BIC 48 400 € (cases 5NH et 5NI). Les seuils s'apprécient pour le seul déclarant, sans globaliser le foyer (§ 80).",
+      "files": [],
+      "assertions": [
+        "Le skill conclut que le micro-BIC reste applicable",
+        "Le skill applique deux limites séparées (15 000 € et 83 600 €) et NE retient PAS un plafond global de 83 600 € dont 15 000 € au plus en non classé",
+        "Le skill calcule l'abattement par catégorie : 3 600 € (30 %) + 40 000 € (50 %) = 43 600 €, résultat 48 400 €",
+        "Le skill NE conclut PAS au passage au régime réel"
+      ]
     }
   ]
 }

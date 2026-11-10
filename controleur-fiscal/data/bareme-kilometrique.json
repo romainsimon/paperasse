@@ -1,0 +1,245 @@
+{
+  "libelle": "Bareme kilometrique fiscal (revenus 2025)",
+  "applicable": "Revenus 2025 (declaration 2026) : valeurs confirmees par l'aide impots.gouv.fr 2026 ; le BOFiP BOI-BAREME-000001 affiche le meme tableau sous l'intitule revenus 2022. Reconduit tant qu'aucun nouvel arrete n'est publie : verifier avant usage.",
+  "texte": "CGI annexe IV art. 6 B ; BOI-BAREME-000001",
+  "sources": [
+    "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm",
+    "https://bofip.impots.gouv.fr/bofip/2185-PGP.html",
+    "https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html"
+  ],
+  "verifie_le": "2026-10-04",
+  "majoration_electrique_pct": 20,
+  "vehicules": {
+    "auto": [
+      {
+        "libelle": "3 CV et moins",
+        "cv_min": null,
+        "cv_max": 3,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 5 000 km",
+            "km_max": 5000,
+            "taux_km": "0.529",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 5 001 a 20 000 km",
+            "km_max": 20000,
+            "taux_km": "0.316",
+            "fixe": "1065"
+          },
+          {
+            "libelle": "au-dela de 20 000 km",
+            "km_max": null,
+            "taux_km": "0.370",
+            "fixe": "0"
+          }
+        ]
+      },
+      {
+        "libelle": "4 CV",
+        "cv_min": 4,
+        "cv_max": 4,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 5 000 km",
+            "km_max": 5000,
+            "taux_km": "0.606",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 5 001 a 20 000 km",
+            "km_max": 20000,
+            "taux_km": "0.340",
+            "fixe": "1330"
+          },
+          {
+            "libelle": "au-dela de 20 000 km",
+            "km_max": null,
+            "taux_km": "0.407",
+            "fixe": "0"
+          }
+        ]
+      },
+      {
+        "libelle": "5 CV",
+        "cv_min": 5,
+        "cv_max": 5,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 5 000 km",
+            "km_max": 5000,
+            "taux_km": "0.636",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 5 001 a 20 000 km",
+            "km_max": 20000,
+            "taux_km": "0.357",
+            "fixe": "1395"
+          },
+          {
+            "libelle": "au-dela de 20 000 km",
+            "km_max": null,
+            "taux_km": "0.427",
+            "fixe": "0"
+          }
+        ]
+      },
+      {
+        "libelle": "6 CV",
+        "cv_min": 6,
+        "cv_max": 6,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 5 000 km",
+            "km_max": 5000,
+            "taux_km": "0.665",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 5 001 a 20 000 km",
+            "km_max": 20000,
+            "taux_km": "0.374",
+            "fixe": "1457"
+          },
+          {
+            "libelle": "au-dela de 20 000 km",
+            "km_max": null,
+            "taux_km": "0.447",
+            "fixe": "0"
+          }
+        ]
+      },
+      {
+        "libelle": "7 CV et plus",
+        "cv_min": 7,
+        "cv_max": null,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 5 000 km",
+            "km_max": 5000,
+            "taux_km": "0.697",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 5 001 a 20 000 km",
+            "km_max": 20000,
+            "taux_km": "0.394",
+            "fixe": "1515"
+          },
+          {
+            "libelle": "au-dela de 20 000 km",
+            "km_max": null,
+            "taux_km": "0.470",
+            "fixe": "0"
+          }
+        ]
+      }
+    ],
+    "moto": [
+      {
+        "libelle": "1 ou 2 CV",
+        "cv_min": null,
+        "cv_max": 2,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 3 000 km",
+            "km_max": 3000,
+            "taux_km": "0.395",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 3 001 a 6 000 km",
+            "km_max": 6000,
+            "taux_km": "0.099",
+            "fixe": "891"
+          },
+          {
+            "libelle": "au-dela de 6 000 km",
+            "km_max": null,
+            "taux_km": "0.248",
+            "fixe": "0"
+          }
+        ]
+      },
+      {
+        "libelle": "3, 4 ou 5 CV",
+        "cv_min": 3,
+        "cv_max": 5,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 3 000 km",
+            "km_max": 3000,
+            "taux_km": "0.468",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 3 001 a 6 000 km",
+            "km_max": 6000,
+            "taux_km": "0.082",
+            "fixe": "1158"
+          },
+          {
+            "libelle": "au-dela de 6 000 km",
+            "km_max": null,
+            "taux_km": "0.275",
+            "fixe": "0"
+          }
+        ]
+      },
+      {
+        "libelle": "plus de 5 CV",
+        "cv_min": 6,
+        "cv_max": null,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 3 000 km",
+            "km_max": 3000,
+            "taux_km": "0.606",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 3 001 a 6 000 km",
+            "km_max": 6000,
+            "taux_km": "0.079",
+            "fixe": "1583"
+          },
+          {
+            "libelle": "au-dela de 6 000 km",
+            "km_max": null,
+            "taux_km": "0.343",
+            "fixe": "0"
+          }
+        ]
+      }
+    ],
+    "cyclo": [
+      {
+        "libelle": "Cyclomoteur 50 cm3 ou moins",
+        "cv_min": null,
+        "cv_max": null,
+        "tranches": [
+          {
+            "libelle": "jusqu'a 3 000 km",
+            "km_max": 3000,
+            "taux_km": "0.315",
+            "fixe": "0"
+          },
+          {
+            "libelle": "de 3 001 a 6 000 km",
+            "km_max": 6000,
+            "taux_km": "0.079",
+            "fixe": "711"
+          },
+          {
+            "libelle": "au-dela de 6 000 km",
+            "km_max": null,
+            "taux_km": "0.198",
+            "fixe": "0"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "sources": [
+    {
+      "id": "pcg",
+      "name": "Plan Comptable Général",
+      "file": "pcg_2026.json",
+      "source_url": "https://raw.githubusercontent.com/arrhes/PCG/main/versions/{year}/pcg_{year}.json",
+      "source_repo": "https://github.com/arrhes/PCG",
+      "license": "Open License v2.0",
+      "provider": "Arrhes (via data.gouv.fr)",
+      "update_frequency": "annual",
+      "last_fetched": "2026-03-23",
+      "version": "2026",
+      "description": "Structure harmonisée du PCG en JSON (tous les comptes et libellés)"
+    },
+    {
+      "id": "nomenclature-liasse",
+      "name": "Nomenclature fiscale du compte de résultat",
+      "file": "nomenclature-liasse-fiscale.csv",
+      "source_url": "https://static.data.gouv.fr/resources/nomenclature-fiscale-du-compte-de-resultat/20231226-123005/nomenc-compte-resultat.csv",
+      "source_page": "https://www.data.gouv.fr/datasets/nomenclature-fiscale-du-compte-de-resultat/",
+      "license": "Open License v2.0",
+      "provider": "icem7 (via data.gouv.fr)",
+      "update_frequency": "unknown",
+      "last_fetched": "2026-03-23",
+      "description": "Paires clé/libellé des cases de la liasse fiscale (2033, 2050, etc.)"
+    },
+    {
+      "id": "bofip",
+      "name": "BOFiP Impôts - publications en vigueur",
+      "file": null,
+      "api_csv": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/bofip-vigueur/exports/csv?use_labels=true",
+      "api_json": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/bofip-vigueur/exports/json",
+      "source_page": "https://www.data.gouv.fr/datasets/bofip-impots-publications-en-vigueur/",
+      "license": "Etalab Open License v2.0",
+      "provider": "DGFIP",
+      "update_frequency": "weekly",
+      "description": "Doctrine fiscale officielle. Trop volumineux pour le repo, mais les URLs permettent de vérifier qu'une référence BOI est toujours en vigueur."
+    },
+    {
+      "id": "sirene",
+      "name": "Base Sirene des entreprises",
+      "file": null,
+      "api_url": "https://api.insee.fr/entreprises/sirene/V3.11/",
+      "alt_api": "https://recherche-entreprises.api.gouv.fr/search?q=test",
+      "source_page": "https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/",
+      "license": "Open License v2.0",
+      "provider": "INSEE",
+      "update_frequency": "monthly",
+      "description": "Utilisé via API par fetch_company.py. Pas de fichier local (base trop volumineuse)."
+    },
+    {
+      "id": "dvf",
+      "name": "Demandes de Valeurs Foncières (DVF)",
+      "file": null,
+      "api_url": "https://apidf-preprod.cerema.fr/dvf_opendata/mutations/",
+      "alt_url": "https://app.dvf.etalab.gouv.fr/",
+      "source_page": "https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres/",
+      "license": "Open License v2.0",
+      "provider": "DGFIP via Cerema/Etalab",
+      "update_frequency": "biannual",
+      "skill": "notaire",
+      "description": "Transactions immobilières depuis 2014. Utilisé pour estimer la valeur vénale d'un bien (comparables). Paramètres: code_insee, nature_mutation, page_size."
+    },
+    {
+      "id": "cadastre",
+      "name": "API Carto Cadastre (IGN)",
+      "file": null,
+      "api_url": "https://apicarto.ign.fr/api/cadastre/parcelle",
+      "source_page": "https://apicarto.ign.fr/api/doc/cadastre",
+      "license": "Open License v2.0",
+      "provider": "IGN",
+      "update_frequency": "annual",
+      "skill": "notaire",
+      "description": "Données cadastrales (parcelles, sections, surfaces). Paramètres: code_insee, section, numero."
+    },
+    {
+      "id": "georisques",
+      "name": "Géorisques API",
+      "file": null,
+      "api_url": "https://www.georisques.gouv.fr/api/v1/",
+      "source_page": "https://www.georisques.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "BRGM / Ministère de la Transition Écologique",
+      "update_frequency": "continuous",
+      "skill": "notaire",
+      "description": "Risques naturels, technologiques, radon, SIS. Utilisé pour l'ERP (État des Risques et Pollutions). Endpoint: /resultats_rapport_risque?latlon={lon},{lat}"
+    },
+    {
+      "id": "gpu",
+      "name": "Géoportail de l'Urbanisme (GPU)",
+      "file": null,
+      "api_url": "https://apicarto.ign.fr/api/gpu/zone-urba",
+      "source_page": "https://www.geoportail-urbanisme.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "IGN / Ministère de la Transition Écologique",
+      "update_frequency": "continuous",
+      "skill": "notaire",
+      "description": "PLU, servitudes d'utilité publique, zonage. Requête par géométrie GeoJSON. Utilisé pour vérifier la constructibilité et le zonage."
+    },
+    {
+      "id": "ban",
+      "name": "Base Adresse Nationale (BAN)",
+      "file": null,
+      "api_url": "https://api-adresse.data.gouv.fr/search/",
+      "source_page": "https://adresse.data.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "DINUM / IGN / La Poste",
+      "update_frequency": "monthly",
+      "skill": "notaire",
+      "description": "Géocodage d'adresses (coordonnées GPS, code INSEE, code postal). Point d'entrée pour enchaîner DVF, cadastre, géorisques, GPU."
+    },
+    {
+      "id": "legifrance",
+      "name": "Légifrance (API PISTE)",
+      "file": null,
+      "api_url": "https://api.piste.gouv.fr/dila/legifrance/lf-engine-app/",
+      "auth": "OAuth 2.0 (client_credentials) via https://oauth.piste.gouv.fr/api/oauth/token",
+      "source_page": "https://developer.aife.economie.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "DILA",
+      "update_frequency": "daily",
+      "skill": "notaire",
+      "description": "Accès aux codes, lois, décrets, jurisprudence. Textes clés: Code civil (LEGITEXT000006070721), CGI (LEGITEXT000006069577), Code urbanisme (LEGITEXT000006074075), CCH (LEGITEXT000006074096)."
+    },
+    {
+      "id": "matchid-deces",
+      "name": "MatchID Fichier des décès",
+      "file": null,
+      "api_url": "https://deces.matchid.io/deces/api/v1/search",
+      "source_page": "https://deces.matchid.io/",
+      "license": "Open License v2.0",
+      "provider": "INSEE via MatchID",
+      "update_frequency": "monthly",
+      "skill": "notaire",
+      "description": "Fichier des personnes décédées (INSEE). Utile pour vérifier un décès dans le cadre d'une succession. Paramètres: q (nom), birthDate, deathDate."
+    },
+    {
+      "id": "bareme-kilometrique",
+      "name": "Barème kilométrique fiscal",
+      "file": "bareme-kilometrique.json",
+      "source_page": "https://bofip.impots.gouv.fr/bofip/2185-PGP.html",
+      "license": "Licence Ouverte v2.0",
+      "provider": "DGFIP (BOI-BAREME-000001, CGI annexe IV art. 6 B)",
+      "update_frequency": "annual",
+      "last_fetched": "2026-10-04",
+      "skill": "comptable",
+      "description": "Barème des indemnités kilométriques (autos, deux-roues, cyclomoteurs) et majoration véhicules électriques. Saisi à la main depuis le BOFiP et l'aide impots.gouv.fr revenus 2025 : vérifier chaque printemps la parution d'un nouvel arrêté."
+    },
+    {
+      "id": "artistes-auteurs",
+      "name": "Régime des artistes-auteurs (cotisations, RAAP, TVA, IR, régularisation)",
+      "file": "artistes-auteurs-2026.json",
+      "source_officielle": "urssaf.fr (taux artiste-auteur), IRCEC (mémo 2026), CSS L. 382-1 s. / R. 382-1 s. (décret n° 2026-897), CGI 293 B / 278-0 bis / 279 g / 102 ter / 1727 / 1758 A, BOI-TVA-DECLA-40-30, BOI-BNC-SECT-20-10-20",
+      "verification_manuelle": "https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-de-cotisations-artiste-aute.html",
+      "update_frequency": "annual",
+      "last_fetched": "2026-11-06",
+      "next_check": "2027-01-15",
+      "check_instructions": "Chaque janvier : PASS, SMIC horaire au 1er janvier, taux (vieillesse, CSG, CRDS, CFP), seuil RAAP (IRCEC), plafond accessoires (1 200 SMIC h), seuils 293 B ; au 01/01/2027 : recodification TVA (CIBS), forfait de début d'activité 150 SMIC h (R. 382-24)."
+    }
+  ]
+}

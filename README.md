@@ -59,9 +59,7 @@ L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui v
 
 #### Installation manuelle
 
-Si vous n'utilisez ni agentskill.sh ni un clone Git complet, attention aux liens symboliques vers les ressources partagées (`data`, `scripts`, `templates`, `integrations`).
-Certains installateurs qui téléchargent les dossiers un par un via l'API GitHub les transforment en petits fichiers texte.
-Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex et les vérifications.
+Chaque dossier de skill est autonome : il contient ses données, scripts et templates. Copier un dossier suffit. Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex.
 
 ### Option 3 : Claude Code et Claude Cowork (marketplace de plugins)
 
@@ -241,11 +239,11 @@ Claude Desktop et claude.ai supportent les skills via upload :
 1. Activer la capacité : Réglages → Capabilities → activer **Code execution and file creation** (sans ça, l'upload échoue).
 2. Puis : Customize → Skills → uploader un `.zip` dont le dossier racine contient un `SKILL.md`.
 
-**Limite importante** : certains skills partagent des ressources via des liens symboliques : comptable (`data/`, `scripts/`, `templates/`, `integrations/`), controleur-fiscal et commissaire-aux-comptes (`data/`), notaire (`scripts/`). Un zip d'un seul dossier de skill casse ces liens et le skill ne trouve plus ses ressources. Pour ces skills, préférer [agentskill.sh](https://agentskill.sh) ou un clone Git complet utilisé avec Claude Code. Les skills autonomes (fiscaliste, syndic) s'uploadent sans problème.
+Chaque dossier de skill est autonome (données, scripts et templates inclus) : un zip d'un seul dossier fonctionne pour les six skills.
 
 ### ChatGPT
 
-ChatGPT accepte l'upload d'un skill sur les offres Business, Enterprise, Healthcare et Edu, selon les réglages de l'espace de travail ([aide OpenAI](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)). La même limite s'applique : préférer les skills autonomes (fiscaliste, syndic) pour un upload dossier par dossier.
+ChatGPT accepte l'upload d'un skill sur les offres Business, Enterprise, Healthcare et Edu, selon les réglages de l'espace de travail ([aide OpenAI](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)). Comme pour Claude, chaque dossier de skill s'uploade seul.
 
 ---
 

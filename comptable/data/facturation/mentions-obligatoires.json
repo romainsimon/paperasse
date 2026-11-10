@@ -1,0 +1,250 @@
+{
+  "version": "2026-04-15",
+  "source": "Art. 242 nonies A CGI, Art. L441-9 C.com, Réforme facturation électronique 2026",
+  "mentions": {
+    "emetteur": [
+      {
+        "id": "nom",
+        "label": "Nom ou dénomination sociale",
+        "base_legale": "Art. 242 nonies A, I-1° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "adresse",
+        "label": "Adresse du siège social",
+        "base_legale": "Art. 242 nonies A, I-1° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "siren",
+        "label": "Numéro SIREN ou SIRET",
+        "base_legale": "Art. 242 nonies A, I-1° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "rcs",
+        "label": "Numéro RCS et ville",
+        "base_legale": "Code de commerce",
+        "obligatoire": true,
+        "depuis": "existant",
+        "condition": "sociétés commerciales"
+      },
+      {
+        "id": "forme_juridique",
+        "label": "Forme juridique et capital social",
+        "base_legale": "Code de commerce",
+        "obligatoire": true,
+        "depuis": "existant",
+        "condition": "sociétés"
+      },
+      {
+        "id": "tva_intracom",
+        "label": "Numéro TVA intracommunautaire",
+        "base_legale": "Art. 242 nonies A, I-2° CGI",
+        "obligatoire": true,
+        "depuis": "existant",
+        "condition": "assujetti redevable (pas franchise)"
+      }
+    ],
+    "client": [
+      {
+        "id": "nom_client",
+        "label": "Nom ou dénomination sociale du client",
+        "base_legale": "Art. 242 nonies A, I-3° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "adresse_client",
+        "label": "Adresse du client",
+        "base_legale": "Art. 242 nonies A, I-3° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "siren_client",
+        "label": "Numéro SIREN du client",
+        "base_legale": "Réforme 2026",
+        "obligatoire": true,
+        "depuis": "2026-09-01",
+        "condition": "B2B domestique"
+      },
+      {
+        "id": "tva_intracom_client",
+        "label": "Numéro TVA intracommunautaire du client",
+        "base_legale": "Art. 242 nonies A, I-4° CGI",
+        "obligatoire": true,
+        "depuis": "existant",
+        "condition": "opération intra-UE"
+      }
+    ],
+    "facture": [
+      {
+        "id": "numero",
+        "label": "Numéro de facture (séquence chronologique unique)",
+        "base_legale": "Art. 242 nonies A, I-5° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "date_emission",
+        "label": "Date d'émission",
+        "base_legale": "Art. 242 nonies A, I-6° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "date_livraison",
+        "label": "Date de livraison ou d'exécution",
+        "base_legale": "Art. 242 nonies A, I-7° CGI",
+        "obligatoire": true,
+        "depuis": "existant",
+        "condition": "si différente de la date d'émission"
+      },
+      {
+        "id": "categorie_operation",
+        "label": "Catégorie d'opération (biens / services / mixte)",
+        "base_legale": "Réforme 2026",
+        "obligatoire": true,
+        "depuis": "2026-09-01"
+      },
+      {
+        "id": "adresse_livraison",
+        "label": "Adresse de livraison",
+        "base_legale": "Réforme 2026",
+        "obligatoire": true,
+        "depuis": "2026-09-01",
+        "condition": "si différente de l'adresse de facturation"
+      },
+      {
+        "id": "option_debits",
+        "label": "Option pour la TVA sur les débits",
+        "base_legale": "Réforme 2026",
+        "obligatoire": true,
+        "depuis": "2026-09-01",
+        "condition": "si l'entreprise a opté pour les débits"
+      }
+    ],
+    "lignes": [
+      {
+        "id": "designation",
+        "label": "Désignation précise des biens ou services",
+        "base_legale": "Art. 242 nonies A, I-8° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "quantite",
+        "label": "Quantité",
+        "base_legale": "Art. 242 nonies A, I-9° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "prix_unitaire_ht",
+        "label": "Prix unitaire hors taxes",
+        "base_legale": "Art. 242 nonies A, I-10° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      }
+    ],
+    "montants": [
+      {
+        "id": "total_ht",
+        "label": "Montant total hors taxes",
+        "base_legale": "Art. 242 nonies A, I-11° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "taux_tva",
+        "label": "Taux de TVA applicable (par taux distinct)",
+        "base_legale": "Art. 242 nonies A, I-12° CGI",
+        "obligatoire": true,
+        "depuis": "existant",
+        "condition": "si redevable TVA"
+      },
+      {
+        "id": "montant_tva",
+        "label": "Montant de TVA (par taux distinct)",
+        "base_legale": "Art. 242 nonies A, I-12° CGI",
+        "obligatoire": true,
+        "depuis": "existant",
+        "condition": "si redevable TVA"
+      },
+      {
+        "id": "total_ttc",
+        "label": "Montant total TTC",
+        "base_legale": "Art. 242 nonies A, I-13° CGI",
+        "obligatoire": true,
+        "depuis": "existant"
+      }
+    ],
+    "paiement": [
+      {
+        "id": "date_echeance",
+        "label": "Date d'échéance du paiement",
+        "base_legale": "Art. L441-9 C.com",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "conditions_escompte",
+        "label": "Conditions d'escompte pour paiement anticipé",
+        "base_legale": "Art. L441-9 C.com",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "penalites_retard",
+        "label": "Taux de pénalités de retard",
+        "base_legale": "Art. L441-10 C.com",
+        "obligatoire": true,
+        "depuis": "existant"
+      },
+      {
+        "id": "indemnite_recouvrement",
+        "label": "Indemnité forfaitaire de recouvrement (40 EUR)",
+        "base_legale": "Art. L441-10, D441-5 C.com",
+        "obligatoire": true,
+        "depuis": "existant",
+        "valeur_fixe": 40
+      }
+    ]
+  },
+  "mentions_speciales": [
+    {
+      "id": "franchise_tva",
+      "condition": "Entreprise en franchise en base de TVA",
+      "texte": "TVA non applicable, article 293 B du Code général des impôts"
+    },
+    {
+      "id": "autoliquidation_intra_ue",
+      "condition": "Prestation de services intra-UE B2B",
+      "texte": "Autoliquidation - TVA due par le preneur, article 283-2 du CGI"
+    },
+    {
+      "id": "export",
+      "condition": "Export hors UE",
+      "texte": "Exonération de TVA, article 262 I du CGI"
+    },
+    {
+      "id": "livraison_intra_ue",
+      "condition": "Livraison intracommunautaire de biens",
+      "texte": "Exonération de TVA, article 262 ter I du CGI"
+    },
+    {
+      "id": "sous_traitance_btp",
+      "condition": "Sous-traitance dans le BTP",
+      "texte": "Autoliquidation de la TVA par le preneur, article 283 2 nonies du CGI"
+    },
+    {
+      "id": "autofacturation",
+      "condition": "Le client émet la facture pour le compte du fournisseur",
+      "texte": "Autofacturation"
+    }
+  ]
+}

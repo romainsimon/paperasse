@@ -33,7 +33,7 @@ Taille : {{taille}} (micro / PME / ETI / GE)
 - [ ] Configurer la réception sur la PA
 - [ ] Tester la réception d'une facture de test
 - [ ] Informer les fournisseurs principaux de votre PA de réception
-- [ ] Vérifier que la PA archive les factures reçues (6 ans minimum)
+- [ ] Vérifier que la PA archive les factures reçues (10 ans, LPF art. L. 102 B)
 ```
 
 ## Étape 3 : Émission (avant sept. 2026 ou 2027)
@@ -77,6 +77,6 @@ Taille : {{taille}} (micro / PME / ETI / GE)
 - [ ] Factures émises conformes (toutes les mentions obligatoires)
 - [ ] Factures reçues accessibles et archivées
 - [ ] E-reporting configuré et testé
-- [ ] Conservation 6 ans en format informatique assurée
+- [ ] Conservation 10 ans en format informatique assurée (LPF art. L. 102 B)
 - [ ] Numérotation continue et sans trous
 ```

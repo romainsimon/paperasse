@@ -54,7 +54,7 @@
       "couvre": ["mêmes revenus que produits_de_placement_2020, mais encaissés en 2021"],
       "base_legale": "art. L. 136-7 CSS"
     },
-    "taux_inchanges_17_2": {
+    "taux_fonciers_assurance_vie": {
       "valeur": 0.172,
       "couvre": ["assurance-vie", "contrats de capitalisation", "foncier nu", "SCPI", "PEL/CEL anciens", "PEP"],
       "note": "En 2020, tous les revenus du capital sont soumis au même taux de 17,2 % (aucune différenciation par nature)."

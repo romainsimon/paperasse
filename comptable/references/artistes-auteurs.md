@@ -65,7 +65,7 @@ En déclaration contrôlée, le réel coûte plus cher socialement dès que les 
 
 ## 5. Retraite complémentaire RAAP (IRCEC)
 
-Obligatoire si l'assiette ≥ **900 SMIC h** (10 692 € pour les revenus 2025 ; ≈ 10 818 € attendus pour 2026). Taux **8 %**, **option 4 %** possible avant le 30 novembre si l'assiette ≤ 32 076 € (IRCEC, « mon mémo » 2026 : « opter avant le 30 novembre pour un taux réduit à 4 % si votre assiette sociale ne dépasse pas 32 076 euros » — https://www.ircec.fr/wp-content/uploads/2026/02/mon-memo-ircec.pdf) ; plafond 3 PASS (144 180 €). Appel en octobre N+1 sur l'assiette transmise par l'URSSAF. Cotisation volontaire possible sous le seuil. **Ne pas l'oublier dans un chiffrage** : c'est souvent la deuxième ligne la plus lourde.
+Obligatoire si l'assiette ≥ **900 SMIC h** (10 692 € pour les revenus 2025 ; ≈ 10 818 € attendus pour 2026). Taux **8 %**, **option 4 %** possible avant le 30 novembre si l'assiette ≤ 32 076 € (IRCEC, « mon mémo » 2026 : « opter avant le 30 novembre pour un taux réduit à 4 % si votre assiette sociale ne dépasse pas 32 076 euros » — https://www.ircec.fr/wp-content/uploads/2026/02/mon-memo-ircec.pdf) ; plafond 3 PASS (144 180 €). L'assiette se déclare dans l'espace adhérent IRCEC au 2e trimestre de N+1, puis la cotisation est appelée (mémo IRCEC 2026). Cotisation volontaire possible sous le seuil. **Ne pas l'oublier dans un chiffrage** : c'est souvent la deuxième ligne la plus lourde.
 
 ## 6. Droits ouverts
 

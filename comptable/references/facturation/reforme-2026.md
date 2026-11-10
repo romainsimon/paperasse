@@ -122,7 +122,7 @@ En plus des mentions existantes (voir [mentions-obligatoires.md](mentions-obliga
 
 ## Conservation
 
-Les factures électroniques doivent être conservées **6 ans** à compter de la date d'établissement, **en format informatique** (pas de simple impression papier). Un cachet électronique qualifié est recommandé pour authentifier l'origine et garantir l'intégrité.
+Les factures électroniques doivent être conservées **10 ans** à compter de la date d'établissement (LPF art. L. 102 B, modifié par la loi n° 2026-534 du 25/06/2026, art. 36, pour les pièces dont le délai expire après le 01/01/2027), **en format informatique** (pas de simple impression papier). Un cachet électronique qualifié est recommandé pour authentifier l'origine et garantir l'intégrité.
 
 ## Sanctions
 

@@ -67,7 +67,7 @@ Les auteurs relèvent d'**une seule franchise** (CGI 293 B, I bis) à **deux pla
 | Élément | Règle | Texte |
 |---|---|---|
 | Impôt | recalcul de l'IR de chaque année non prescrite | — |
-| Majoration — omission, **retard ou défaut** de déclaration d'IR | **10 %** (portée à 20 % en cas de dépôt tardif après mise en demeure) ; **écartée** si correction spontanée ou dans les 30 jours d'une demande de l'administration | 1758 A, I et II a |
+| Majoration — omission, **retard ou défaut** de déclaration d'IR | **10 %** (portée à 20 % en cas de dépôt tardif effectué dans les trente jours d'une mise en demeure) ; **écartée** si correction spontanée ou dans les 30 jours d'une demande de l'administration | 1758 A, I et II a |
 | Articulation avec le 1728 | le 1758 A **exclut le 10 % du 1728, 1 a** (III). Restent ceux du **1728, 1 b et c** : **40 %** après mise en demeure restée sans effet, **80 %** en cas d'activité occulte (cités au 1758 A, II b) | 1758 A, III ; 1728 |
 | Manquement délibéré / manœuvres frauduleuses | 40 % / 80 % | 1729 |
 | Intérêt de retard | **0,20 %/mois** depuis le 1er juillet N+1 | 1727 |

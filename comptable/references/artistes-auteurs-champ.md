@@ -41,7 +41,7 @@ Admis dans le régime, à titre accessoire, **quatre catégories seulement** :
 3. participation à l'œuvre d'un autre artiste-auteur sans création originale ;
 4. représentation dans les instances de gouvernance (non plafonnée).
 
-Conditions : avoir des revenus artistiques principaux l'année en cours ou l'une des deux précédentes ; **plafond 1 200 × SMIC horaire au 1er janvier = 14 424 € en 2026** (14 256 € en 2025). Au-delà, selon le R. 382-1-2, « ces revenus sont soumis au premier euro » aux cotisations de droit commun **« selon leur nature »** (renvoi aux L. 136-1-1 et L. 242-1) : ce n'est **pas toujours** le régime des indépendants — il faut qualifier la nature du revenu (activité indépendante, salaire…). Déclaration obligatoirement en BNC. https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054906971
+Conditions : avoir des revenus artistiques principaux l'année en cours ou l'une des deux précédentes ; **plafond 1 200 × SMIC horaire au 1er janvier = 14 424 € en 2026** (14 256 € en 2025). Au-delà, selon le R. 382-1-2, « ces revenus sont soumis au premier euro » aux cotisations de droit commun **« selon leur nature »** (renvoi aux L. 136-1-1 et L. 242-1) : ce n'est **pas toujours** le régime des indépendants — il faut qualifier la nature du revenu (activité indépendante, salaire…). https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054906971
 
 **Point d'attention sur la catégorie 2** : un canal réservé à des abonnés (Telegram, Discord, Q&R en groupe) n'est **pas** une « rencontre publique » au sens du R. 382-1-2, I 2° : c'est une **prestation de service**, donc **micro-entreprise**.
 

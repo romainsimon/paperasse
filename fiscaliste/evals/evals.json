@@ -673,6 +673,58 @@
         "Dans le second cas, le skill retient 2 000 € reportables sur 5 ans (12 000 − 10 000)",
         "Le skill NE présente PAS les 2 000 € du premier cas comme reportables"
       ]
+    },
+    {
+      "id": 63,
+      "name": "calc-ir-option-bareme-csg-deductible-annee",
+      "prompt": "Nous sommes mariés, sans enfant : 40 000 € et 30 000 € de salaires (1AJ / 1BJ) en 2025, 20 000 € de dividendes et 2 000 € d'intérêts encaissés en France, prélèvements sociaux retenus par la banque. Vaut-il mieux cocher la case 2OP (option pour le barème) ou rester au PFU ? Chiffrez les deux.",
+      "expected_output": "Au PFU : RNI = 36 000 + 27 000 = 63 000 €, impôt au barème 5 108 €, IR forfaitaire 12,8 % × 22 000 = 2 816 €, PS 17,2 % × 22 000 = 3 784 € (encaissements 2025), total 11 708 €. Option barème : dividendes après abattement de 40 % (12 000 €) + intérêts (2 000 €) entrent au revenu global, et la CSG déductible de 6,8 % des dividendes et intérêts dont les PS ont été prélevés à la source (ligne 2BH) se déduit du revenu global de l'année même : 6,8 % × 22 000 = 1 496 € (brochure IR 2026, RCM, p. 132). RNI = 63 000 + 14 000 − 1 496 = 75 504 €, impôt 8 859 €, PS 3 784 €, total 12 643 €. Le PFU est plus favorable de 935 €.",
+      "files": [],
+      "assertions": [
+        "Le skill applique l'abattement de 40 % aux dividendes sous option barème",
+        "Le skill déduit la CSG déductible (6,8 % × 22 000 = 1 496 €) du revenu global de 2025 même, et non l'année suivante",
+        "Le RNI sous option barème est d'environ 75 504 €",
+        "Le total est d'environ 12 643 € au barème contre 11 708 € au PFU",
+        "Le skill conclut que le PFU est plus favorable ici"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "calc-ir-lmnp-et-foncier-ps",
+      "prompt": "Je suis célibataire : 50 000 € de salaires (1AJ), un meublé au réel avec un résultat de 6 000 € après amortissements, et une location nue au micro-foncier avec 10 000 € de loyers. Combien vais-je payer au total, prélèvements sociaux compris, pour mes revenus 2025 ?",
+      "expected_output": "Salaires nets 45 000 € ; micro-foncier 10 000 × 70 % = 7 000 € ; LMNP 6 000 € : RNI 58 000 €, impôt au barème 10 504 €. Le résultat LMNP est au barème et supporte les PS des revenus du patrimoine, 18,6 % dès les revenus 2025 = 1 116 €, sans IR forfaitaire de 12,8 % ; les revenus fonciers nus restent à 17,2 % (CSG maintenue à 9,2 %, art. L. 136-8, IV CSS) = 1 204 €. Total 12 824 € avant réductions et crédits.",
+      "files": [],
+      "assertions": [
+        "Le résultat LMNP est imposé au barème et non à l'IR forfaitaire de 12,8 %",
+        "Les PS sur le LMNP sont de 18,6 % (1 116 €)",
+        "Les PS sur les revenus fonciers nus sont de 17,2 % (1 204 €)",
+        "Le RNI est d'environ 58 000 € et le total d'environ 12 824 €"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "calc-ir-crypto-bareme-sans-2op",
+      "prompt": "Célibataire, 40 000 € de salaires (1AJ), 2 000 € de dividendes laissés au PFU, et 10 000 € de plus-values sur crypto-actifs que je veux imposer au barème (je ne coche pas la case 2OP). Est-ce possible, et combien vais-je payer ?",
+      "expected_output": "Oui : l'option pour le barème des actifs numériques (case 3CN, art. 200 C CGI) est indépendante de la 2OP, qui ne couvre que les RCM et les plus-values mobilières (notice 2086). RNI = 36 000 + 10 000 = 46 000 €, impôt au barème 6 904 €. Dividendes au PFU : IR 12,8 % = 256 €, PS 17,2 % = 344 €. PS sur la crypto : 18,6 % = 1 860 €. Total 9 364 € avant réductions et crédits. La CSG déductible sur la crypto au barème ne se déduira que l'année suivante.",
+      "files": [],
+      "assertions": [
+        "Le skill explique que l'option 3CN est indépendante de la 2OP",
+        "La crypto entre au revenu global (RNI d'environ 46 000 €) tandis que les dividendes restent au PFU (256 € d'IR forfaitaire)",
+        "Les PS sur la crypto sont de 18,6 % et ceux sur les dividendes de 17,2 %",
+        "Le total est d'environ 9 364 €"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "calc-ir-rcm-sans-ps-a-la-source",
+      "prompt": "Célibataire, 40 000 € de salaires (1AJ). J'ai touché 5 000 € de dividendes sur un compte-titres chez un courtier étranger, qui n'a prélevé aucun prélèvement social (je n'ai pas fait de 2778). Je reste au PFU. Combien vais-je payer ?",
+      "expected_output": "Les dividendes n'ont pas supporté les PS à l'encaissement : ils sont établis par voie de rôle au titre des revenus du patrimoine, au taux de 18,6 % pour les revenus 2025, soit 930 € (et non 17,2 %). IR forfaitaire 12,8 % = 640 €. Salaires nets 36 000 €, impôt au barème 3 904 €. Total 5 474 € avant réductions et crédits.",
+      "files": [],
+      "assertions": [
+        "Le skill applique 18,6 % de PS (revenus du patrimoine, voie de rôle) et non 17,2 %",
+        "Les PS sont d'environ 930 € et l'IR forfaitaire de 640 €",
+        "Le total est d'environ 5 474 €"
+      ]
     }
   ]
 }

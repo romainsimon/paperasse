@@ -93,7 +93,7 @@ Pour recommander une PA, demander :
 | Conformité | Vérifie le format (Factur-X, UBL, CII) et les mentions obligatoires |
 | Statuts | Gère le cycle de vie (émise, reçue, acceptée, rejetée, payée) |
 | E-reporting | Transmet les données de facturation, transaction et paiement au PPF |
-| Conservation | Archive les factures 6 ans minimum |
+| Conservation | Archive les factures 10 ans (LPF art. L. 102 B depuis la loi n° 2026-534) |
 
 ## Devenir PA
 

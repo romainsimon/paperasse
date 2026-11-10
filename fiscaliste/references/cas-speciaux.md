@@ -247,7 +247,7 @@ Délai pendant lequel la DGFIP peut redresser :
 | IR / IS | **10 ans** sur les revenus liés à un compte, un contrat ou un compte d'actifs numériques étranger non déclaré (art. L. 169 LPF ; pour les comptes, si le total des soldes a excédé 50 000 € dans l'année — voir [comptes-etrangers.md](comptes-etrangers.md)) |
 | TVA | 3 ans |
 
-**Conservation des documents** : minimum 6 ans (conseil : 10 ans pour couvrir tous les cas).
+**Conservation des documents** : 10 ans pour les pièces dont le délai de conservation expire après le 01/01/2027 (LPF art. L. 102 B, modifié par la loi n° 2026-534 du 25/06/2026, art. 36) ; 6 ans auparavant.
 
 ## PUMA (Protection universelle maladie) — cotisation subsidiaire maladie
 

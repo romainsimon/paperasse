@@ -1,1 +1,122 @@
-../bareme-ir-2025.json
+{
+  "_meta": {
+    "revenus": 2025,
+    "declaration": 2026,
+    "lfi": "Loi n°2026-103 du 19 février 2026",
+    "indexation_bareme_ir": "+0.9%",
+    "sources": [
+      "https://bofip.impots.gouv.fr/bofip/14954-PGP.html/ACTU-2026-00022",
+      "https://www.service-public.gouv.fr/particuliers/actualites/A18045"
+    ],
+    "a_mettre_a_jour": "Chaque année après publication de la LFI (décembre-janvier). Remplacer ce fichier par bareme-ir-XXXX.json."
+  },
+
+  "bareme_ir": {
+    "description": "Tranches appliquées par part de quotient familial (revenus 2025, déclaration 2026)",
+    "tranches": [
+      { "jusqu_a": 11600, "taux": 0.00 },
+      { "de": 11600, "a": 29579, "taux": 0.11 },
+      { "de": 29579, "a": 84577, "taux": 0.30 },
+      { "de": 84577, "a": 181917, "taux": 0.41 },
+      { "au_dela": 181917, "taux": 0.45 }
+    ]
+  },
+
+  "quotient_familial": {
+    "plafond_gain_par_demi_part": 1807,
+    "description": "Avantage fiscal maximum par demi-part supplémentaire liée aux enfants à charge (1 807 € / 2 par quart de part en résidence alternée). Au-delà du seuil de revenu, le gain QF stagne.",
+    "plafond_parent_isole_premier_enfant": 4262,
+    "plafond_parent_isole_note": "Case T : avantage des deux premières demi-parts (part du premier enfant) limité à 4 262 € (4 262 € / 2 en résidence alternée).",
+    "reduction_complementaire_veuf_enfant_a_charge": 2011,
+    "reduction_complementaire_veuf_note": "Veuf avec enfant à charge : quand le plafonnement de 1 807 € par demi-part s'applique aux deux premières demi-parts (3 614 €), réduction d'impôt complémentaire de 2 011 € au maximum.",
+    "plafond_demi_part_case_L": 1079,
+    "plafond_demi_part_case_L_note": "Demi-part des personnes seules ayant élevé seules un enfant pendant au moins cinq ans (case L).",
+    "base_legale": "art. 197, I-2 CGI (LFI 2026, loi n° 2026-103, art. 4) ; brochure IR 2026, calcul de l'impôt"
+  },
+
+  "rattachement_majeur_marie": {
+    "description": "Abattement sur RNI pour enfant majeur marié, pacsé ou ayant un enfant à charge rattaché (art. 196 B CGI). Pas de demi-part QF — abattement forfaitaire à la place.",
+    "abattement_par_personne": 6855,
+    "base_legale": "art. 196 B CGI",
+    "note": "L'abattement s'applique à chaque personne rattachée (conjoint + enfants le cas échéant). Case N (2042)."
+  },
+
+  "pension_alimentaire": {
+    "description": "Plafonds de déduction pour pension alimentaire versée à un enfant majeur (art. 156-II-2° CGI) — revenus 2025",
+    "base_legale": "art. 156-II-2° CGI",
+    "bofip": "BOI-IR-BASE-20-30-20-20",
+    "enfant_celibataire_non_domicilie": 6855,
+    "enfant_marie_ou_charge_de_famille": 13710,
+    "forfait_domicilie_sans_ressources": {
+      "enfant_celibataire": 4075,
+      "enfant_marie_ou_pacse": 8150
+    },
+    "note": "Pension déductible en espèces ou en nature (loyer, frais d'inscription…) dans le même plafond. Exclusif avec le rattachement pour le même enfant."
+  },
+
+  "decote": {
+    "seuil_celibataire": 1982,
+    "seuil_couple": 3277,
+    "plafond_celibataire": 897,
+    "plafond_couple": 1483,
+    "formule_celibataire": "décote = 897 - (0.4525 × impôt_brut) si impôt_brut < 1982",
+    "formule_couple": "décote = 1483 - (0.4525 × impôt_brut) si impôt_brut < 3277",
+    "note": "La décote ne peut pas rendre l'impôt négatif. Source : BOI-IR-LIQ-20-20-30."
+  },
+
+  "abattement_salaires_10pct": {
+    "taux": 0.10,
+    "minimum": 509,
+    "maximum": 14555,
+    "description": "Abattement forfaitaire automatique sur traitements et salaires (case 1AJ) ET sur les allocations chômage / ARE (case 1AP), qui sont des revenus de remplacement imposés selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20). Plancher/plafond communs au total salaires + ARE par membre du foyer. ATTENTION terminologie : 1AJ = salaire net imposable du bulletin, AVANT cet abattement. Le RNI = 1AJ × 0.9 (dans la plage standard)."
+  },
+
+  "abattement_pensions_10pct": {
+    "taux": 0.10,
+    "minimum": 454,
+    "maximum": 4439,
+    "description": "Abattement sur pensions et retraites (lignes 1AS à 1DS) : minimum 454 € par pensionné (limité au montant de sa pension), plafond 4 439 € pour l'ensemble des pensions du foyer (art. 158, 5-a CGI, revenus 2025 ; brochure IR 2026)."
+  },
+
+  "cehr": {
+    "description": "Contribution Exceptionnelle sur les Hauts Revenus — basée sur le RFR, pas le RNI. S'ajoute à l'IR net.",
+    "base_legale": "art. 223 sexies CGI",
+    "seuils_celibataire": [
+      { "de": 250000, "a": 500000, "taux": 0.03 },
+      { "au_dela": 500000, "taux": 0.04 }
+    ],
+    "seuils_couple": [
+      { "de": 500000, "a": 1000000, "taux": 0.03 },
+      { "au_dela": 1000000, "taux": 0.04 }
+    ],
+    "note": "Valeurs de référence — vérifier en cas de LFI modifiant le dispositif."
+  },
+
+  "cdhr": {
+    "description": "Contribution Différentielle sur les Hauts Revenus, distincte de la CEHR. Impose un plancher d'imposition à 20 % d'un revenu de référence retraité. Calcul automatique par l'administration après dépôt de la 2042.",
+    "base_legale": "Art. 224 CGI, créé par l'art. 10 LFI 2025 (loi n° 2025-127 du 14/02/2025) pour les revenus 2025, prorogé et modifié par l'art. 2 LFI 2026 (loi n° 2026-103 du 19/02/2026). Doctrine : BOI-IR-CDHR-10 (30/06/2026).",
+    "plancher_imposition": 0.20,
+    "seuils_revenu_de_reference": {
+      "celibataire_veuf_separe_divorce": 250000,
+      "couple_marie_pacse": 500000
+    },
+    "decote_jusqu_a": {
+      "celibataire_veuf_separe_divorce": 330000,
+      "couple_marie_pacse": 660000,
+      "formule": "cotisation de 20 % diminuée de max(0, 20 % × RREF − 82,5 % × (RREF − seuil))"
+    },
+    "majorations_imputees": {
+      "par_personne_a_charge": 1500,
+      "imposition_commune": 12500
+    },
+    "mecanisme": "CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € si imposition commune), si positif. RREF = RFR sans quotient, revenus exceptionnels retenus pour le quart, hors abattement de 40 % sur dividendes, abattement de 50 % sur gains d'actions gratuites et abattement fixe dirigeant (les abattements pour durée de détention restent réintégrés). IR retraité = IR après réductions et crédits, majoré de certains crédits et réductions réintégrés, diminué des 3/4 de l'impôt sur les revenus exceptionnels au quotient. Les deux contributions peuvent s'appliquer simultanément.",
+    "calendrier": {
+      "acompte": "95 % du montant estimé, à verser entre le 1er et le 15 décembre de l'année des revenus (1er au 15 décembre 2025 pour les revenus 2025), via le service 'Gérer mon prélèvement à la source' sur impots.gouv.fr ; reporté en 8HR / 8HS",
+      "penalite": "20 % en cas de défaut ou de retard de paiement de l'acompte, ou si l'acompte est inférieur de plus de 20 % à 95 % de la contribution due (LFI 2025, art. 10, III-C)",
+      "revenus_2026": "acompte et pénalités reconduits (LFI 2026, art. 2) ; dates de l'acompte 2026 à confirmer sur impots.gouv.fr",
+      "solde": "calculé automatiquement par l'administration après dépôt de la 2042 au printemps suivant"
+    },
+    "duree": "Première année : revenus 2025. Due jusqu'à l'imposition des revenus de l'année pour laquelle la loi d'approbation des comptes constate un déficit du budget général inférieur à 3 % du PIB (brochure IR 2026, nouveautés ; BOFiP ACTU-2026-00104).",
+    "source": "https://bofip.impots.gouv.fr/bofip/15095-PGP.html/identifiant=BOI-IR-CDHR-10-20260630"
+  }
+}

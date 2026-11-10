@@ -1,0 +1,41 @@
+{
+  "_comment": "Schema de reference pour une facture Paperasse. Toutes les cles obligatoires sont presentes. Copier ce fichier puis le renommer en F-YYYY-NNN.json.",
+  "number": "F-2026-001",
+  "date": "2026-01-15",
+  "due_date": "2026-02-14",
+  "year": 2026,
+  "type": "invoice",
+  "category": "services",
+  "client": {
+    "name": "Nom du client SARL",
+    "email": "contact@client.com",
+    "address": "10 rue Example",
+    "line2": "",
+    "postcode": "75001",
+    "city": "Paris",
+    "state": "",
+    "country": "FR",
+    "siren": "123456789"
+  },
+  "lines": [
+    {
+      "description": "Prestation de service",
+      "quantity": 1,
+      "unit": "mois",
+      "unit_price": 99.00
+    }
+  ],
+  "payment": {
+    "terms": "30 jours date de facture",
+    "method": "virement"
+  },
+  "_optional_stripe_fields": {
+    "stripe_id": "in_1234...",
+    "stripe_charge": "ch_5678...",
+    "stripe_product": "SaaS",
+    "stripe_original_amount": 99.00,
+    "stripe_original_currency": "eur",
+    "eur_amount": 99.00,
+    "exchange_rate": null
+  }
+}

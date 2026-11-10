@@ -1,0 +1,442 @@
+[
+  {
+    "num": 1,
+    "date": "2025-01-01",
+    "journal": "AN",
+    "ref": "AN-001",
+    "label": "A-nouveaux - Capital social",
+    "lines": [
+      { "account": "5121", "debit": 1000.00, "credit": 0 },
+      { "account": "101", "debit": 0, "credit": 1000.00 }
+    ]
+  },
+  {
+    "num": 2,
+    "date": "2025-01-01",
+    "journal": "AN",
+    "ref": "AN-002",
+    "label": "A-nouveaux - Solde Stripe (balance transactions anterieures)",
+    "lines": [
+      { "account": "5113", "debit": 9387.21, "credit": 0 },
+      { "account": "110", "debit": 0, "credit": 9387.21 }
+    ]
+  },
+  {
+    "num": 3,
+    "date": "2025-01-01",
+    "journal": "AN",
+    "ref": "AN-003",
+    "label": "A-nouveaux - Compte courant associe Marie MARTIN",
+    "lines": [
+      { "account": "5121", "debit": 200.00, "credit": 0 },
+      { "account": "455", "debit": 0, "credit": 200.00 }
+    ]
+  },
+  {
+    "num": 4,
+    "date": "2025-01-10",
+    "journal": "VE",
+    "ref": "txn_001",
+    "label": "Abonnement mensuel - Client A (brut)",
+    "lines": [
+      { "account": "5113", "debit": 29.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 5,
+    "date": "2025-01-10",
+    "journal": "OD",
+    "ref": "txn_001-fee",
+    "label": "Frais Stripe - Client A jan",
+    "lines": [
+      { "account": "6278", "debit": 1.18, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 1.18 }
+    ]
+  },
+  {
+    "num": 6,
+    "date": "2025-01-10",
+    "journal": "VE",
+    "ref": "txn_002",
+    "label": "Abonnement annuel - Client B (brut)",
+    "lines": [
+      { "account": "5113", "debit": 290.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 290.00 }
+    ]
+  },
+  {
+    "num": 7,
+    "date": "2025-01-10",
+    "journal": "OD",
+    "ref": "txn_002-fee",
+    "label": "Frais Stripe - Client B",
+    "lines": [
+      { "account": "6278", "debit": 8.41, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 8.41 }
+    ]
+  },
+  {
+    "num": 8,
+    "date": "2025-01-15",
+    "journal": "VE",
+    "ref": "txn_003",
+    "label": "Abonnement mensuel - Client C (brut)",
+    "lines": [
+      { "account": "5113", "debit": 29.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 9,
+    "date": "2025-01-15",
+    "journal": "OD",
+    "ref": "txn_003-fee",
+    "label": "Frais Stripe - Client C jan",
+    "lines": [
+      { "account": "6278", "debit": 1.18, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 1.18 }
+    ]
+  },
+  {
+    "num": 10,
+    "date": "2025-01-15",
+    "journal": "BQ",
+    "ref": "qto-001",
+    "label": "Hetzner Cloud - Hebergement serveur",
+    "lines": [
+      { "account": "6135", "debit": 29.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 11,
+    "date": "2025-01-20",
+    "journal": "VE",
+    "ref": "txn_004",
+    "label": "Abonnement annuel - Client D (brut)",
+    "lines": [
+      { "account": "5113", "debit": 540.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 540.00 }
+    ]
+  },
+  {
+    "num": 12,
+    "date": "2025-01-20",
+    "journal": "OD",
+    "ref": "txn_004-fee",
+    "label": "Frais Stripe - Client D",
+    "lines": [
+      { "account": "6278", "debit": 12.84, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 12.84 }
+    ]
+  },
+  {
+    "num": 13,
+    "date": "2025-01-20",
+    "journal": "BQ",
+    "ref": "qto-002",
+    "label": "GitHub Team - Outils developpement",
+    "lines": [
+      { "account": "6135", "debit": 49.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 49.00 }
+    ]
+  },
+  {
+    "num": 14,
+    "date": "2025-02-03",
+    "journal": "BQ",
+    "ref": "qto-003",
+    "label": "Stripe Payout po_stripe_001",
+    "lines": [
+      { "account": "5121", "debit": 850.00, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 850.00 }
+    ]
+  },
+  {
+    "num": 15,
+    "date": "2025-02-10",
+    "journal": "VE",
+    "ref": "txn_005",
+    "label": "Abonnement mensuel - Client A fev (brut)",
+    "lines": [
+      { "account": "5113", "debit": 29.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 16,
+    "date": "2025-02-10",
+    "journal": "OD",
+    "ref": "txn_005-fee",
+    "label": "Frais Stripe - Client A fev",
+    "lines": [
+      { "account": "6278", "debit": 1.18, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 1.18 }
+    ]
+  },
+  {
+    "num": 17,
+    "date": "2025-02-10",
+    "journal": "BQ",
+    "ref": "qto-004",
+    "label": "OVH Domaine techflow.io",
+    "lines": [
+      { "account": "651", "debit": 15.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 15.00 }
+    ]
+  },
+  {
+    "num": 18,
+    "date": "2025-02-15",
+    "journal": "VE",
+    "ref": "txn_006",
+    "label": "Abonnement mensuel - Client C fev (brut)",
+    "lines": [
+      { "account": "5113", "debit": 29.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 19,
+    "date": "2025-02-15",
+    "journal": "OD",
+    "ref": "txn_006-fee",
+    "label": "Frais Stripe - Client C fev",
+    "lines": [
+      { "account": "6278", "debit": 1.18, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 1.18 }
+    ]
+  },
+  {
+    "num": 20,
+    "date": "2025-02-20",
+    "journal": "VE",
+    "ref": "txn_007",
+    "label": "Abonnement annuel - Client E (brut)",
+    "lines": [
+      { "account": "5113", "debit": 1650.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 1650.00 }
+    ]
+  },
+  {
+    "num": 21,
+    "date": "2025-02-20",
+    "journal": "OD",
+    "ref": "txn_007-fee",
+    "label": "Frais Stripe - Client E",
+    "lines": [
+      { "account": "6278", "debit": 37.65, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 37.65 }
+    ]
+  },
+  {
+    "num": 22,
+    "date": "2025-03-01",
+    "journal": "BQ",
+    "ref": "qto-005",
+    "label": "Hetzner Cloud - Hebergement serveur",
+    "lines": [
+      { "account": "6135", "debit": 29.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 23,
+    "date": "2025-03-05",
+    "journal": "BQ",
+    "ref": "qto-006",
+    "label": "Stripe Payout po_stripe_002",
+    "lines": [
+      { "account": "5121", "debit": 1620.00, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 1620.00 }
+    ]
+  },
+  {
+    "num": 24,
+    "date": "2025-03-10",
+    "journal": "VE",
+    "ref": "txn_008",
+    "label": "Abonnement mensuel - Client A mars (brut)",
+    "lines": [
+      { "account": "5113", "debit": 29.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 25,
+    "date": "2025-03-10",
+    "journal": "OD",
+    "ref": "txn_008-fee",
+    "label": "Frais Stripe - Client A mars",
+    "lines": [
+      { "account": "6278", "debit": 1.18, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 1.18 }
+    ]
+  },
+  {
+    "num": 26,
+    "date": "2025-03-15",
+    "journal": "BQ",
+    "ref": "qto-007",
+    "label": "Frais bancaires Qonto Q1",
+    "lines": [
+      { "account": "627", "debit": 5.90, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 5.90 }
+    ]
+  },
+  {
+    "num": 27,
+    "date": "2025-04-02",
+    "journal": "BQ",
+    "ref": "qto-008",
+    "label": "Remboursement compte courant associe - Marie MARTIN",
+    "lines": [
+      { "account": "455", "debit": 200.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 200.00 }
+    ]
+  },
+  {
+    "num": 28,
+    "date": "2025-05-01",
+    "journal": "BQ",
+    "ref": "qto-009",
+    "label": "Hetzner Cloud - Hebergement serveur",
+    "lines": [
+      { "account": "6135", "debit": 29.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 29,
+    "date": "2025-05-05",
+    "journal": "VE",
+    "ref": "txn_009",
+    "label": "Remboursement - Client A (mai)",
+    "lines": [
+      { "account": "706", "debit": 29.00, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 30,
+    "date": "2025-06-05",
+    "journal": "BQ",
+    "ref": "qto-010",
+    "label": "Stripe Payout po_stripe_003",
+    "lines": [
+      { "account": "5121", "debit": 2430.00, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 2430.00 }
+    ]
+  },
+  {
+    "num": 31,
+    "date": "2025-07-01",
+    "journal": "BQ",
+    "ref": "qto-011",
+    "label": "Hetzner Cloud - Hebergement serveur",
+    "lines": [
+      { "account": "6135", "debit": 29.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 29.00 }
+    ]
+  },
+  {
+    "num": 32,
+    "date": "2025-09-10",
+    "journal": "BQ",
+    "ref": "qto-012",
+    "label": "Stripe Payout po_stripe_004",
+    "lines": [
+      { "account": "5121", "debit": 3200.00, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 3200.00 }
+    ]
+  },
+  {
+    "num": 33,
+    "date": "2025-10-01",
+    "journal": "BQ",
+    "ref": "qto-013",
+    "label": "MacBook Air M3 reconditionne - Immobilisation",
+    "lines": [
+      { "account": "2183", "debit": 599.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 599.00 }
+    ]
+  },
+  {
+    "num": 34,
+    "date": "2025-10-01",
+    "journal": "VE",
+    "ref": "txn_010",
+    "label": "Abonnement annuel - Client F oct 2025 - sept 2026 (brut)",
+    "lines": [
+      { "account": "5113", "debit": 290.00, "credit": 0 },
+      { "account": "706", "debit": 0, "credit": 290.00 }
+    ]
+  },
+  {
+    "num": 35,
+    "date": "2025-10-01",
+    "journal": "OD",
+    "ref": "txn_010-fee",
+    "label": "Frais Stripe - Client F",
+    "lines": [
+      { "account": "6278", "debit": 8.41, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 8.41 }
+    ]
+  },
+  {
+    "num": 36,
+    "date": "2025-11-15",
+    "journal": "BQ",
+    "ref": "qto-014",
+    "label": "Stripe Payout po_stripe_005",
+    "lines": [
+      { "account": "5121", "debit": 4100.00, "credit": 0 },
+      { "account": "5113", "debit": 0, "credit": 4100.00 }
+    ]
+  },
+  {
+    "num": 37,
+    "date": "2025-12-20",
+    "journal": "BQ",
+    "ref": "qto-015",
+    "label": "GitHub Team - Outils developpement",
+    "lines": [
+      { "account": "6135", "debit": 49.00, "credit": 0 },
+      { "account": "5121", "debit": 0, "credit": 49.00 }
+    ]
+  },
+  {
+    "num": 38,
+    "date": "2025-12-31",
+    "journal": "OD",
+    "ref": "AMORT-001",
+    "label": "Dotation amortissement MacBook Air M3 (3 ans, prorata 92j/365)",
+    "lines": [
+      { "account": "6811", "debit": 50.33, "credit": 0 },
+      { "account": "28183", "debit": 0, "credit": 50.33 }
+    ]
+  },
+  {
+    "num": 39,
+    "date": "2025-12-31",
+    "journal": "OD",
+    "ref": "PCA-001",
+    "label": "PCA Abonnement annuel Client F (273j/365 x 290 EUR = part N+1)",
+    "lines": [
+      { "account": "706", "debit": 216.90, "credit": 0 },
+      { "account": "487", "debit": 0, "credit": 216.90 }
+    ]
+  },
+  {
+    "num": 40,
+    "date": "2025-12-31",
+    "journal": "OD",
+    "ref": "IS-001",
+    "label": "Impot sur les societes exercice 2025 (taux reduit 15%)",
+    "lines": [
+      { "account": "695", "debit": 346.60, "credit": 0 },
+      { "account": "444", "debit": 0, "credit": 346.60 }
+    ]
+  }
+]

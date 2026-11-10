@@ -53,26 +53,15 @@ Un skill représente un **métier** (ou un rôle professionnel identifiable) et 
 
 Les **canaux, APIs, outils transverses** (guichet unique INPI, API Entreprise, portails URSSAF/DGFiP, etc.) ne sont pas des skills. Ce sont des briques utilisées par plusieurs métiers.
 
-### Code partagé via symlinks
+### Ressources partagées : source à la racine, copies dans les skills
 
-Pour éviter la duplication tout en gardant les skills self-contained, le code partagé vit à la racine du repo et les skills le référencent par symlink :
+Les ressources communes à plusieurs skills vivent à la racine du repo : `data/`, `scripts/`, `integrations/`, `templates/`, `company.example.json`. Chaque skill qui en a besoin en contient une **copie réelle**, pour rester autonome : le répertoire de plugins Claude refuse les liens symboliques dans les dossiers de skills, et un skill zippé seul doit fonctionner.
 
-```
-paperasse/
-├── integrations/
-│   └── guichet-unique/        # client API INPI, soumission formalités
-├── data/
-│   └── formes-juridiques.json # codes INPI partagés
-├── scripts/
-│   └── submit-depot-comptes.js
-├── comptable/
-│   ├── SKILL.md
-│   ├── integrations/guichet-unique -> ../../integrations/guichet-unique
-│   └── data/formes-juridiques.json -> ../../data/formes-juridiques.json
-└── notaire/
-    ├── SKILL.md
-    └── integrations/guichet-unique -> ../../integrations/guichet-unique
-```
+- Modifiez toujours la **source à la racine**, jamais la copie dans un skill.
+- Lancez ensuite `npm run sync:skills` pour mettre les copies à jour, et committez les deux.
+- `npm run test:skills` échoue si une copie a divergé de sa source.
+
+La liste des copies est dans `scripts/sync-skill-copies.js` : `data/` dans comptable, controleur-fiscal et commissaire-aux-comptes ; `scripts/`, `integrations/` et `templates/` dans comptable ; `company.example.json` dans ces trois skills ; les scripts notaire dans `notaire/scripts/` ; le millésime 2025 du fiscaliste (`fiscaliste/data/revenus-2025/`) copié depuis `fiscaliste/data/`.
 
 **Chevauchement ≠ duplication** : si `notaire` et un futur `avocat` font tous les deux des modifications statutaires, c'est fidèle à la réalité (les deux professions le font). La *logique* est partagée via les symlinks, le *framing métier* diffère dans chaque `SKILL.md` (le notaire rédige un acte authentique, l'avocat un acte SSP).
 

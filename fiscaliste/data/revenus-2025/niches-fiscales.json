@@ -1,1 +1,192 @@
-../niches-fiscales.json
+{
+  "_meta": {
+    "revenus": 2025,
+    "declaration": 2026,
+    "source": "BOI-IR-LIQ-20-20-10"
+  },
+
+  "plafonnement_global": {
+    "description": "Cap annuel sur l'ensemble des avantages fiscaux (réductions et crédits) issus de dispositifs de défiscalisation. Au-delà du plafond, l'excédent est en principe perdu. Exception : lorsque la réduction pour souscription au capital de PME ou d'ESUS (versements depuis le 01/01/2013, en direct ou via une holding éligible, hors FCPI et FIP ; art. 199 terdecies-0 A, II et 199 terdecies-0 AA) ou de sociétés foncières solidaires (art. 199 terdecies-0 AB, I, 2, 3°) dépasse à elle seule, avec ses reports, le plafond de 10 000 €, cette fraction est reportable sur les 5 années suivantes. Les autres avantages du foyer, plafonnés ou non, ne comptent pas pour apprécier cet excédent : une réduction PME de 9 000 € plus 7 700 € d'autres crédits ne donne aucun report (BOI-IR-RICI-90-20-10 § 190, exemple 3 ; brochure IR 2026 p. 289 et 291).",
+    "plafond_metropole": 10000,
+    "plafond_investissements_outre_mer": 18000,
+    "note": "Le plafond s'applique APRÈS calcul de toutes les réductions, pas avant. Piège classique : cumuler Pinel + FCPI + outre-mer sans vérifier le plafond global."
+  },
+
+  "dispositifs_dans_plafond": {
+    "note": "Dispositifs entrant dans le plafond global de 10 000 €",
+    "liste": [
+      "Pinel (réduction d'impôt pour investissement locatif)",
+      "Denormandie",
+      "Loc'Avantages",
+      "FCPI / FIP (souscription)",
+      "Emploi d'un salarié à domicile (crédit d'impôt 50 %, art. 199 sexdecies)",
+      "Frais de garde des jeunes enfants hors du domicile (crédit d'impôt 50 %, art. 200 quater B)",
+      "Malraux pour les opérations engagées avant le 01/01/2013 uniquement",
+      "Travaux de conservation d'objets mobiliers classés monuments historiques (art. 199 duovicies)",
+      "Investissements outre-mer (art. 199 undecies A, B et C, dont Girardin ; seule la fraction non rétrocédée des 199 undecies B et C compte), SOFICA et Pinel / Denormandie outre-mer : plafond majoré à 18 000 €",
+      "Investissement forestier",
+      "Investissement corse"
+    ]
+  },
+
+  "dispositifs_hors_plafond": {
+    "note": "Dispositifs exclus du plafond global (avantages sans contrepartie : dons, mécénat ; avantages liés à la situation personnelle). Source : art. 200-0 A CGI, brochure pratique IR 2026 p. 319-320",
+    "liste": [
+      "Dons aux associations (réduction 66% ou 75% selon type)",
+      "Malraux pour les opérations engagées depuis le 01/01/2013",
+      "Monuments historiques : déduction des charges sur le revenu global (art. 156 II 1° ter) — ce n'est pas une réduction d'impôt",
+      "Cotisations syndicales (crédit d'impôt 66%)",
+      "Frais de scolarité des enfants (réduction forfaitaire 7EA/7EC/7EF)"
+    ]
+  },
+
+  "exemples_avantages_classiques": {
+    "dons_associations": {
+      "taux_reduction_standard": 0.66,
+      "taux_reduction_dons_aide_personnes": 0.75,
+      "plafond_assiette_standard": "20% du revenu imposable",
+      "plafond_dons_aide_personnes": 1000,
+      "plafond_dons_aide_personnes_depuis_14_10_2025": 2000,
+      "note_aide_personnes": "Plafond majoré pour dons aux associations venant en aide aux personnes en difficulté (Restos du Cœur, Secours Populaire, etc.). Limite portée à 2 000 € (y compris les versements antérieurs) pour les versements du 14/10 au 31/12/2025 : voir parametres_calcul_rici.dons."
+    },
+    "emploi_a_domicile": {
+      "taux_credit": 0.50,
+      "plafond_depenses_general": 12000,
+      "majoration_enfants": "+1 500 € par enfant à charge (plafond max 15 000 €)",
+      "note": "Crédit d'impôt — remboursé même si impôt nul"
+    },
+    "garde_enfant_exterieur": {
+      "taux_credit": 0.50,
+      "plafond_depenses_par_enfant": 3500,
+      "age_limite": "Enfant de moins de 6 ans au 1er janvier"
+    }
+  },
+
+  "frais_scolarite": {
+    "cases": {
+      "college":   { "case_enfant_charge": "7EA", "case_garde_alternee": "7EB", "reduction_par_enfant": 61 },
+      "lycee":     { "case_enfant_charge": "7EC", "case_garde_alternee": "7ED", "reduction_par_enfant": 153 },
+      "superieur": { "case_enfant_charge": "7EF", "case_garde_alternee": "7EG", "reduction_par_enfant": 183 }
+    },
+    "conditions": "Enfant à charge ou rattaché, scolarisé au 31 décembre de l'année d'imposition",
+    "garde_alternee": "Réduction divisée par deux entre les deux foyers (cases 7EB/7ED/7EG)",
+    "exclusions": ["apprentissage", "congé formation", "contrat d'études avec l'employeur"],
+    "pieges": [
+      "Job étudiant à côté des études (contrat sans lien avec la formation) : éligible — la condition BOFiP vise les contrats structurellement liés à la formation, pas un emploi indépendant",
+      "Stage indemnisé obligatoire intégré au cursus : éligible (prévu explicitement par BOFiP BOI-IR-RICI-30)",
+      "Appréciation au 31/12 : si l'enfant a arrêté ses études en cours d'année et n'est inscrit nulle part au 31/12 → pas de réduction",
+      "Cumul interdit avec pension alimentaire déductible (6EL/6EM pour un enfant majeur, post-2006 ; 6GI/6GJ résiduel si décision de justice antérieure à 2006, formulaire 2042 C avec majoration de 25%) : un enfant pour lequel une pension est déduite ne fait plus partie du foyer → pas de réduction"
+    ],
+    "note": "Montants stables (non indexés annuellement). Réduction non remboursable — excédent perdu si impôt < réduction.",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F9/",
+    "bofip": "BOI-IR-RICI-30",
+    "cgi": "art. 199 quater F",
+    "source_verifiee": "2026-05-18"
+  },
+
+  "distinction_mecanismes": {
+    "description": "Distinction fondamentale entre déduction, réduction et crédit",
+    "deduction": {
+      "sapplique_sur": "Revenu imposable (avant calcul de l'impôt)",
+      "remboursable_si_excedent": "Non applicable",
+      "exemples": ["PER", "Pension alimentaire", "CSG déductible"]
+    },
+    "reduction": {
+      "sapplique_sur": "Impôt calculé",
+      "remboursable_si_excedent": "Non — impôt minimum = 0",
+      "exemples": ["Pinel", "Dons", "Malraux", "FCPI"]
+    },
+    "credit": {
+      "sapplique_sur": "Impôt calculé",
+      "remboursable_si_excedent": "Oui — remboursé si > impôt dû",
+      "exemples": ["Emploi à domicile", "Garde d'enfant", "Cotisations syndicales"]
+    }
+  },
+
+  "parametres_calcul_rici": {
+    "description": "Paramètres lus par scripts/calc_ir.py (bloc reductions_credits du foyer.json) pour passer de l'impôt après décote à l'impôt net, puis au solde. Les plafonds du plafonnement global sont lus dans plafonnement_global, les montants de scolarité dans frais_scolarite.",
+    "ordre_imputation": {
+      "etapes": [
+        "1. Impôt du barème après plafonnement du QF et décote",
+        "2. − réductions d'impôt, dans la limite de cet impôt (excédent perdu, non remboursable)",
+        "3. + impositions à taux proportionnel (IR forfaitaire 12,8 % du PFU…)",
+        "4. + excédent du plafonnement global des avantages fiscaux",
+        "5. − crédits d'impôt et prélèvement forfaitaire non libératoire déjà versé (2CK), restituables",
+        "6. = impôt sur le revenu net ; la CEHR et les prélèvements sociaux s'y ajoutent à part"
+      ],
+      "source": "CGI art. 197, I-5 (réductions imputées sur l'impôt du barème avant crédits et prélèvements non libératoires, sans remboursement) ; brochure pratique IR 2026, fiche de calculs p. 382 (lignes C − D = E, puis E + l + n + o, puis − crédits) ; art. 200-0 A, 4 (excédent ajouté à l'impôt)",
+      "source_verifiee": "2026-10-29"
+    },
+    "dons": {
+      "taux_interet_general": 0.66,
+      "taux_aide_personnes": 0.75,
+      "plafond_75_avant_14_10_2025": 1000,
+      "plafond_75_depuis_14_10_2025": 2000,
+      "note_plafond_75": "Versements du 01/01 au 13/10/2025 (7UD) : 75 % dans la limite de 1 000 €. Versements du 14/10 au 31/12/2025 (7UQ) : limite portée à 2 000 €, y compris les versements de la première période (LFI 2026, loi n° 2026-103 du 19/02/2026, art. 28). L'excédent passe au taux de 66 %.",
+      "limite_revenu_imposable": 0.20,
+      "duree_report_excedent_ans": 5,
+      "note_report": "Base à 66 % (7UF + excédent des dons à 75 % + reports 7XS à 7XY) retenue dans la limite de 20 % du revenu imposable ; l'excédent se reporte sur les 5 années suivantes, les reports les plus anciens s'imputant avant les versements de l'année. Les dons à 75 % ne comptent pas dans la limite de 20 %.",
+      "cgi": "art. 200",
+      "bofip": "BOI-IR-RICI-250",
+      "source": "Brochure pratique IR 2026, p. 241-245",
+      "source_verifiee": "2026-10-29"
+    },
+    "emploi_a_domicile": {
+      "taux_credit": 0.50,
+      "plafond_base": 12000,
+      "majoration_par_personne": 1500,
+      "plafond_majore_max": 15000,
+      "plafond_premiere_annee_emploi_direct": 15000,
+      "plafond_premiere_annee_majore_max": 18000,
+      "plafond_invalidite": 20000,
+      "note": "Majoration de 1 500 € par enfant à charge (750 € en résidence alternée), par membre du foyer de plus de 65 ans, par ascendant de plus de 65 ans bénéficiaire de l'APA. Plafond de 20 000 € (sans majoration) si un membre du foyer est titulaire de la carte d'invalidité. Les aides perçues (7DR) viennent en déduction des dépenses (7DB). L'avance immédiate perçue en cours d'année (7HB) est ajoutée au solde.",
+      "cgi": "art. 199 sexdecies",
+      "bofip": "BOI-IR-RICI-150",
+      "source": "Brochure pratique IR 2026, p. 237-239",
+      "source_verifiee": "2026-10-29"
+    },
+    "garde_enfants_moins_6_ans": {
+      "taux_credit": 0.50,
+      "plafond_par_enfant": 3500,
+      "plafond_par_enfant_alternee": 1750,
+      "note": "Enfants nés après le 31/12/2018 pour les revenus 2025. Dépenses retenues après déduction des aides perçues (CMG, aide de l'employeur ou du CSE).",
+      "cgi": "art. 200 quater B",
+      "bofip": "BOI-IR-RICI-300",
+      "source": "Brochure pratique IR 2026, p. 247",
+      "source_verifiee": "2026-10-29"
+    },
+    "pinel": {
+      "plafond_base_annuel": 300000,
+      "plafond_prix_m2": 5500,
+      "duree_imputation_ans": { "6": 6, "9": 9, "prorogation": 3 },
+      "taux": {
+        "_lecture": "taux[zone][periode][engagement] = [taux initial, 1re prorogation triennale, 2e prorogation triennale]. Pinel+ et QPV acquis en 2023-2024 gardent les taux 2014-2022.",
+        "metropole": {
+          "2014-2022": { "6": [0.12, 0.06, 0.03], "9": [0.18, 0.03] },
+          "2023":      { "6": [0.105, 0.045, 0.025], "9": [0.15, 0.025] },
+          "2024":      { "6": [0.09, 0.03, 0.02], "9": [0.12, 0.02] }
+        },
+        "outre_mer": {
+          "2014-2022": { "6": [0.23, 0.06, 0.03], "9": [0.29, 0.03] },
+          "2023":      { "6": [0.215, 0.045, 0.025], "9": [0.26, 0.025] },
+          "2024":      { "6": [0.20, 0.03, 0.02], "9": [0.23, 0.02] }
+        }
+      },
+      "excedent_reportable": false,
+      "note": "Réduction répartie par sixièmes (engagement 6 ans) ou neuvièmes (9 ans), puis par tiers sur chaque période triennale de prorogation. La fraction annuelle qui excède l'impôt est perdue. Pinel outre-mer : plafond global majoré à 18 000 €.",
+      "cgi": "art. 199 novovicies",
+      "bofip": "BOI-IR-RICI-360",
+      "source": "Brochure pratique IR 2026, p. 262-263",
+      "source_verifiee": "2026-10-29"
+    },
+    "avance_rici": {
+      "taux": 0.60,
+      "versement": "mi-janvier de l'année de la déclaration, calculée sur les réductions et crédits de l'avant-dernière année (revenus 2024 pour l'avance de janvier 2026)",
+      "regularisation": "L'avance perçue (8EA, préremplie) est ajoutée au solde lors de la liquidation de l'impôt : elle diminue le remboursement ou augmente le reste à payer.",
+      "dispositifs": ["dons (art. 200)", "accueil en établissement pour personnes dépendantes (art. 199 quindecies)", "Pinel, Duflot, Denormandie (art. 199 novovicies)", "Loc'Avantages (art. 199 tricies)", "Scellier (art. 199 septvicies)", "Censi-Bouvard LMNP (art. 199 sexvicies)", "investissements locatifs DOM (art. 199 undecies A)", "services à la personne (art. 199 sexdecies)", "garde des jeunes enfants (art. 200 quater B)", "cotisations syndicales (art. 199 quater C)"],
+      "cgi": "art. 1665 bis",
+      "source": "Brochure pratique IR 2026, p. 237",
+      "source_verifiee": "2026-10-29"
+    }
+  }
+}

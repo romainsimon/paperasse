@@ -6,7 +6,8 @@
   "scripts": {
     "calc": "node scripts/calc.js",
     "test:calc": "node scripts/test-deterministic-calculations.js",
-    "test:skills": "node scripts/check-skill-descriptions.js",
+    "test:skills": "node scripts/check-skill-descriptions.js && node scripts/sync-skill-copies.js",
+    "sync:skills": "node scripts/sync-skill-copies.js --write",
     "fec": "node scripts/generate-fec.js",
     "statements": "node scripts/generate-statements.js",
     "pdfs": "node scripts/generate-pdfs.js",

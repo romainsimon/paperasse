@@ -9,6 +9,7 @@
   "homepage": "https://romainsimon.com/paperasse",
   "repository": "https://github.com/romainsimon/paperasse",
   "license": "MIT",
+  "privacyPolicyUrl": "https://github.com/romainsimon/paperasse/blob/master/PRIVACY.md",
   "keywords": [
     "paperasse",
     "comptabilité",

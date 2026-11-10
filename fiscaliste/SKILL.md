@@ -19,10 +19,10 @@ description: |
   déficit, LMNP, SCI IR), l'equity startup (RSU, BSPCE, stock-options, PEE/PERCO),
   la fiscalité crypto (PAMC, 2086), l'IFI et les déductions (PER, pension alimentaire).
 
-  Triggers: impôt sur le revenu, IR, 2042, quotient familial, décote, PAS, PFU,
+  Triggers: impôt sur le revenu, 2042, quotient familial, décote, PFU,
   flat tax, PEA, assurance-vie, LMNP, revenus fonciers, déficit foncier, SCI IR, RSU,
   BSPCE, stock-options, PEE/PERCO, crypto, 2086, IFI, PER, plafond PER, niche fiscale,
-  optimisation fiscale, simulation IR, TMI, compte étranger, 3916, 3916-bis, 8UU.
+  simulation IR, TMI, compte étranger, 3916, 3916-bis, 8UU.
 
   Hors scope : succession/donation (notaire), IS/SASU/arbitrage dividende-salaire/SCI IS
   (comptable).

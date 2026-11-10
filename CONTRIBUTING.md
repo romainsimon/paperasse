@@ -103,7 +103,7 @@ includes:
 ```
 
 - `name` : nom affiché
-- `description` : une ligne
+- `description` : 1024 caractères maximum, mots-clés « Triggers » compris. L'app Claude refuse de synchroniser la marketplace au-delà (#128). Vérifiez avec `npm run test:skills`.
 - `last_updated` : date de dernière mise à jour (les skills de plus de 6 mois affichent un avertissement)
 - `includes` : fichiers à inclure depuis la racine du repo (pour les données partagées)
 

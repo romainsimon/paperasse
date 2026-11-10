@@ -1,7 +1,7 @@
 ---
 name: fiscaliste
 metadata:
-  last_updated: "2026-11-05"
+  last_updated: "2026-11-06"
 includes:
   - data/**
   - references/**
@@ -17,12 +17,12 @@ description: |
   exceptionnels), la déclaration 2042 et annexes, les revenus du capital (PFU vs barème,
   PEA, assurance-vie, dividendes, plus-values), les revenus fonciers (micro/réel,
   déficit, LMNP, SCI IR), l'equity startup (RSU, BSPCE, stock-options, PEE/PERCO),
-  la fiscalité crypto (PAMC, 2086), l'IFI et les déductions (PER, pension alimentaire).
+  la fiscalité crypto (PAMC, 2086), l'IFI, les déductions (PER, pension alimentaire)
+  et les revenus d'artiste-auteur (BNC, régularisation).
 
-  Triggers: impôt sur le revenu, 2042, quotient familial, décote, PFU,
-  flat tax, PEA, assurance-vie, LMNP, revenus fonciers, déficit foncier, SCI IR, RSU,
-  BSPCE, stock-options, PEE/PERCO, crypto, 2086, IFI, PER, plafond PER, niche fiscale,
-  simulation IR, TMI, compte étranger, 3916, 3916-bis, 8UU.
+  Triggers: impôt sur le revenu, 2042, quotient familial, décote, PFU, flat tax,
+  déficit foncier, plafond PER, niche fiscale, simulation IR, TMI, compte étranger,
+  3916, 3916-bis, 8UU, artiste-auteur, droits d'auteur, micro-BNC, 2042 C PRO, 5HQ.
 
   Hors scope : succession/donation (notaire), IS/SASU/arbitrage dividende-salaire/SCI IS
   (comptable).
@@ -257,6 +257,7 @@ Pour la fraîcheur des données : `python fiscaliste/scripts/update_data.py`.
 | Déductions / réductions / crédits | [references/deductions-reductions-credits.md](references/deductions-reductions-credits.md) |
 | Départ de France, non-résidents (année du départ, taux minimum, foncier, PS 7,5 %, ex-RP, exit tax) | [references/non-residents.md](references/non-residents.md) |
 | Cas particuliers (revenus exceptionnels, CEHR, DOM, impatriation) | [references/cas-speciaux.md](references/cas-speciaux.md) |
+| **Artistes-auteurs** (droits d'auteur : TS vs BNC, micro-BNC, 2042 C PRO, régularisation IR de revenus de plateforme non déclarés) | [references/artistes-auteurs.md](references/artistes-auteurs.md) |
 | Comptes, assurance-vie et comptes crypto à l'étranger (3916 / 3916-bis, 8UU / 8TT) | [references/comptes-etrangers.md](references/comptes-etrangers.md) |
 | **Sources officielles (CGI, BOFiP, simulateurs DGFIP)** | [references/sources-officielles.md](references/sources-officielles.md) |
 
@@ -368,6 +369,12 @@ Ces points sont systématiquement vérifiés par les utilisateurs exigeants — 
 
 - Rappeler l'exonération si cessions annuelles ≤ 305 € (montant brut, pas la PV).
 - Au-delà : imposition sur TOUT (pas seulement l'excédent).
+
+### Pour un artiste-auteur (droits d'auteur, autoédition, Patreon/Substack)
+- Régime par défaut selon QUI verse : droits **intégralement déclarés par un tiers** (éditeur, SACEM…) → traitements et salaires (93, 1 quater, cases 1GF-1JF) ; sinon (plateformes, autoédition, ventes directes) → **BNC** (micro-BNC 34 %, 2042 C PRO, 5HQ). Ne pas citer le § 50 de BOI-BNC-SECT-20-10-20 à l'appui du BNC : le fondement est l'autoédition (voir [references/artistes-auteurs.md](references/artistes-auteurs.md)).
+- Seuil micro-BNC apprécié sur le total des activités BNC (83 600 € pour 2026-2028). Le 102 ter, 6 n'exclut plus les auteurs soumis à la retenue de TVA du 285 bis.
+- Revenus de plateforme jamais déclarés : régularisation spontanée, 1758 A (10 %, écarté si correction spontanée), 1727 V (intérêt réduit de moitié), « ANNULE ET REMPLACE » papier seulement avant la date limite, sinon réclamation.
+- Le volet social (URSSAF artistes-auteurs, RAAP) et la TVA des auteurs relèvent du skill `comptable`. Chiffrage : `python fiscaliste/scripts/calc_artiste_auteur.py --recettes 19000` (cotisations + RAAP + IR estimé au TMI ; l'IR exact passe par `calc_ir.py`).
 
 ## Limites à Signaler
 

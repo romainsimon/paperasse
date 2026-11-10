@@ -1,0 +1,475 @@
+{
+  "_meta": {
+    "description": "Données partagées (fiscaliste + comptable) — régime des artistes-auteurs, valeurs 2026 : cotisations URSSAF/RAAP, TVA, IR, régularisation. Fichier unique ; fiscaliste/data/artistes-auteurs-2026.json est un lien symbolique.",
+    "last_fetched": "2026-11-06",
+    "avertissement": "Lecture de textes officiels à date ; ne constitue pas un conseil. Validation par expert-comptable / administration par écrit.",
+    "a_verifier_chaque_janvier": "PASS, SMIC horaire au 1er janvier, taux de cotisations, seuil RAAP (IRCEC), plafond des revenus accessoires (1 200 SMIC h), seuils 293 B, forfait de début d'activité (150 SMIC h à partir de 2027)"
+  },
+  "cotisations": {
+    "parametres_2026": {
+      "pass_annuel": 48060,
+      "pass_mensuel": 4005,
+      "smic_horaire_1er_janvier": 12.02,
+      "smic_horaire_1er_juin": 12.31,
+      "note_smic": "Les seuils du régime se calculent sur le SMIC au 1er janvier (R. 382-1-2, R. 382-24). service-public et l'Afdas affichent parfois des valeurs calculées sur le SMIC de juin (ex. 7 386 € au lieu de 7 212 €)."
+    },
+    "assiette": {
+      "regle": "revenu artistique (BNC) majoré de 15 % (CSS L. 382-3)",
+      "micro_bnc": {
+        "formule": "recettes_brutes_HT × (1 − 0,34) × 1,15",
+        "coefficient": 0.759
+      },
+      "declaration_controlee": {
+        "formule": "(recettes − frais réels) × 1,15"
+      },
+      "traitements_et_salaires": {
+        "formule": "100 % des droits bruts ; CSG/CRDS sur 98,25 %",
+        "note": "régime des droits précomptés par un diffuseur français"
+      }
+    },
+    "taux_2026": {
+      "note": "Taux sur l'assiette BNC majorée. L'État prend en charge 1,15 point de cotisation vieillesse (compensation de la hausse de CSG de 2018).",
+      "vieillesse_deplafonnee": {
+        "taux": 0.004,
+        "prise_en_charge_etat": 0.004,
+        "taux_du": 0.0
+      },
+      "vieillesse_plafonnee": {
+        "taux": 0.069,
+        "prise_en_charge_etat": 0.0075,
+        "taux_du": 0.0615,
+        "plafond_assiette": 48060,
+        "cotisation_max": 2955.69
+      },
+      "csg": {
+        "taux": 0.092,
+        "deductible": 0.068,
+        "non_deductible": 0.024
+      },
+      "crds": {
+        "taux": 0.005
+      },
+      "contribution_formation_professionnelle": {
+        "taux": 0.0035
+      },
+      "total_du_sur_assiette": 0.162,
+      "total_du_en_pourcentage_des_recettes_micro_bnc": 0.123,
+      "contribution_diffuseur": {
+        "taux": 0.011,
+        "due_par": "le diffuseur (1 % + 0,10 %) sur la rémunération brute HT",
+        "non_due_pour": [
+          "auto-édition / auto-diffusion",
+          "financement participatif",
+          "revenus accessoires",
+          "sociétés domiciliées à l'étranger"
+        ]
+      }
+    },
+    "retraite_complementaire_raap": {
+      "organisme": "IRCEC",
+      "seuil_assujettissement_assiette": {
+        "regle": "900 × SMIC horaire",
+        "valeur_revenus_2025": 10692,
+        "valeur_revenus_2026_attendue": 10818
+      },
+      "taux": 0.08,
+      "taux_reduit_sur_option": {
+        "taux": 0.04,
+        "condition_assiette_max": 32076,
+        "option_avant": "30 novembre",
+        "source": "IRCEC, « mon mémo » 2026 : « opter avant le 30 novembre pour un taux réduit à 4 % si votre assiette sociale ne dépasse pas 32 076 euros » — https://www.ircec.fr/wp-content/uploads/2026/02/mon-memo-ircec.pdf"
+      },
+      "plafond_assiette": 144180,
+      "appel": "assiette déclarée dans l'espace adhérent IRCEC au 2e trimestre de N+1, puis appels de cotisation (mémo IRCEC 2026)",
+      "cotisation_volontaire": "possible sous le seuil"
+    },
+    "ouverture_de_droits": {
+      "soins_et_prestations_familiales": "dès le premier euro",
+      "un_trimestre_retraite_base": {
+        "regle": "150 × SMIC h d'assiette",
+        "valeur_2026": 1803
+      },
+      "quatre_trimestres_et_indemnites_journalieres": {
+        "regle": "600 × SMIC h d'assiette",
+        "valeur_2026": 7212,
+        "valeur_affichee_service_public": 7386
+      },
+      "surcotisation_forfaitaire": "option à la déclaration pour cotiser vieillesse sur 600 SMIC h si l'assiette est inférieure (ouvre IJ + 4 trimestres)",
+      "indemnites_journalieres_maladie": "50 % du gain journalier (revenu annuel / 365, plafonné à 1,4 SMIC), carence 3 jours, 6 mois d'affiliation",
+      "formation_afdas": {
+        "condition": "recettes des 3 dernières années ≥ 600 SMIC h (7 386 € affiché)",
+        "plafond_annuel_ht": 4200,
+        "taux_horaire": {
+          "metier": 60,
+          "transversale": 40
+        }
+      },
+      "non_couvert": [
+        "accidents du travail / maladies professionnelles (assurance volontaire possible)",
+        "chômage"
+      ]
+    },
+    "revenus_accessoires": {
+      "texte": "CSS R. 382-1-2 (version 27/09/2026)",
+      "categories": [
+        "cours dans l'atelier ou le studio de l'auteur, ateliers artistiques ou d'écriture",
+        "rencontres publiques et débats hors présentation de l'œuvre (celle-ci = revenu principal) — un canal réservé à des abonnés n'est PAS une « rencontre publique » (R. 382-1-2, I 2°) : prestation de service, donc micro-entreprise",
+        "participation à l'œuvre d'un autre artiste-auteur sans création originale",
+        "représentation dans les instances de gouvernance (non plafonnée)"
+      ],
+      "condition": "avoir des revenus artistiques principaux l'année en cours ou l'une des deux précédentes",
+      "plafond": {
+        "regle": "1 200 × SMIC horaire au 1er janvier",
+        "valeur_2026": 14424,
+        "valeur_2025": 14256
+      },
+      "au_dela": "au-delà de 1 200 SMIC horaires, « ces revenus sont soumis au premier euro » aux cotisations de droit commun « selon leur nature » (R. 382-1-2, renvoi aux L. 136-1-1 et L. 242-1) : ce n'est pas toujours le régime des indépendants — qualifier la nature du revenu (activité indépendante, salaire…)",
+      "source": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054906971"
+    },
+    "paiement": {
+      "echeances_provisionnelles": [
+        "15 janvier",
+        "15 avril",
+        "15 juillet",
+        "15 octobre"
+      ],
+      "base_provisionnelle": "assiette de l'avant-dernière année (N-2), régularisée en juin N+1 après la déclaration annuelle",
+      "debut_activite": {
+        "forfait_2026": "600 × SMIC horaire",
+        "forfait_a_partir_de_2027": "150 × SMIC horaire (R. 382-24, décret n° 2026-897)",
+        "note": "Chiffres à vérifier chaque année"
+      },
+      "modulation": "sur revenu estimé, au moins 15 jours avant une échéance, au plus tard le 30 septembre",
+      "declaration_annuelle": {
+        "ou": "artistes-auteurs.urssaf.fr, rubrique Déclaration (dématérialisation obligatoire depuis le 01/01/2026)",
+        "campagne_2026": "27 avril → 19 juin 2026 (revenus 2025)",
+        "modification": "possible pendant l'année en cours et les trois suivantes"
+      }
+    },
+    "retard_et_regularisation": {
+      "evaluation_office": {
+        "texte": "CSS R. 382-28 (version en vigueur depuis le 27/09/2026, décret n° 2026-897)",
+        "regle": "à défaut de déclaration (ou de validation de la déclaration préremplie) à la date fixée par arrêté, évaluation d'office : cotisations calculées à titre provisoire et forfaitaire sur la moyenne des revenus artistiques des deux années précédentes, assiette majorée de 25 % dès la première année et pour chaque année consécutive non déclarée",
+        "source": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037854516",
+        "note": "Une règle de radiation après trois taxations d'office a été RETIRÉE : le R. 382-28 n'en contient pas et aucune source primaire n'a été trouvée."
+      },
+      "majorations_de_retard": {
+        "texte": "CSS R. 243-16 s.",
+        "fixe": 0.05,
+        "mensuelle": 0.002,
+        "droit_a_l_erreur": "pas de majoration si obligations déclaratives respectées, aucun retard dans les 24 mois, montant < PASS mensuel, paiement sous 30 jours ou délai accordé"
+      },
+      "remise_gracieuse": "après paiement intégral ou plan d'apurement, demande motivée depuis la messagerie (« Situation contentieuse et contrôle »)",
+      "echeancier": {
+        "duree_max_mois": 12,
+        "statut": "règle générale URSSAF, non spécifique aux artistes-auteurs : la page urssaf.fr « Demander un délai de paiement » évoque un échéancier d'une durée maximale de 12 mois ; d'autres durées existent pour les indépendants. À confirmer auprès de l'URSSAF pour un artiste-auteur.",
+        "sources": [
+          "https://www.urssaf.fr/accueil/aide-cas-difficultes/demander-un-delai-de-paiement.html",
+          "https://www.urssaf.fr/accueil/services/services-artisteauteur-diffuseur/service-artiste-auteur/demande-delai-paiement.html"
+        ],
+        "demande": "motivée, depuis la messagerie de l'espace en ligne"
+      },
+      "prescription": {
+        "texte": "CSS L. 244-3",
+        "duree_ans": 3,
+        "point_de_depart": "fin de l'année civile au titre de laquelle les cotisations sont dues"
+      },
+      "affiliation_retroactive": "au guichet unique, indiquer la date réelle de début : les cotisations sont appelées depuis cette date (tutoriel urssaf) ; aucune limite d'antériorité fixée par les textes"
+    }
+  },
+  "cotisations_meta": {
+    "description": "Cotisations et contributions sociales des artistes-auteurs — taux et seuils 2026 (inchangés par rapport à 2025)",
+    "textes": "CSS art. L. 382-1 (version 01/04/2026), L. 382-3 (majoration 15 %), R. 382-1 à R. 382-37 (décret n° 2026-897 du 24/09/2026 pour R. 382-1-2, R. 382-24, R. 382-28)",
+    "sources": [
+      "https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-de-cotisations-artiste-aute.html",
+      "https://www.secu-artistes-auteurs.fr/baremes-sociaux",
+      "https://www.secu-artistes-auteurs.fr/actu-ce-qui-change-2026",
+      "https://www.urssaf.fr/accueil/actualites/plafond-annuel-securite-sociale.html",
+      "https://www.ircec.fr/actualite/memo-des-valeurs-2026/",
+      "https://www.afdas.com/particulier/connaitre-les-dispositifs-et-les-modalites-dacces-a-la-formation/artistes-auteurs/quelles-conditions.html"
+    ],
+    "last_fetched": "2026-10-03",
+    "a_verifier": "Chaque janvier : PASS, SMIC horaire au 1er janvier, taux (page urssaf « Taux artiste-auteur »), seuil RAAP (IRCEC), plafond des revenus accessoires. À partir de 2027 : forfait de début d'activité ramené à 150 SMIC h (R. 382-24 nouvelle rédaction)."
+  },
+  "tva": {
+    "franchise_specifique_auteurs": {
+      "description": "CGI 293 B, I bis : UNE SEULE franchise, à DEUX plafonds. Le I bis dit que les auteurs « bénéficient d'une franchise » ; chaque plafond est comparé à sa propre catégorie d'opérations. S'applique aux auteurs d'œuvres de l'esprit (hors architectes) pour la livraison de leurs œuvres (CPI L. 112-2, 1° à 12° — logiciels, 13°, exclus) et la cession de leurs droits patrimoniaux.",
+      "oeuvres_et_droits": {
+        "plafond_annee_precedente": 50000,
+        "plafond_majore_annee_en_cours": 55000
+      },
+      "autres_operations": {
+        "plafond_annee_precedente": 35000,
+        "plafond_majore_annee_en_cours": 38500,
+        "exemples": [
+          "formation",
+          "conseil",
+          "ateliers",
+          "conférences",
+          "prestations de services annexes"
+        ]
+      },
+      "regle_non_cumul": "Un auteur relevant du I bis ne peut PAS invoquer les plafonds de droit commun du I (37 500 / 41 250 €) pour ses autres activités : seuls les plafonds spécifiques s'appliquent (BOI-TVA-DECLA-40-30 §1, §250).",
+      "exclus_du_ca_oeuvres": [
+        "rémunération pour copie privée",
+        "droit de suite",
+        "rémunération équitable",
+        "recettes exceptionnelles (BOI-TVA-DECLA-40-30 §210)"
+      ]
+    },
+    "franchise_droit_commun": {
+      "description": "CGI 293 B, I — pour mémoire (assujettis NON auteurs, ou auteurs n'ayant aucune opération du I bis B).",
+      "prestations_de_services": {
+        "plafond_annee_precedente": 37500,
+        "plafond_majore_annee_en_cours": 41250
+      },
+      "ventes_hebergement": {
+        "plafond_annee_precedente": 85000,
+        "plafond_majore_annee_en_cours": 93500
+      }
+    },
+    "mecanique_des_seuils": {
+      "acces": "La franchise s'applique si le CA de l'année civile précédente (N-1) ne dépasse pas le plafond bas.",
+      "depassement_plafond_bas_en_N": "Franchise conservée pour toute l'année N ; TVA due à compter du 1er janvier N+1.",
+      "depassement_plafond_majore_en_N": "La franchise cesse pour les opérations intervenant à compter de la DATE du dépassement (293 B, II) — pas de rétroactivité au 1er janvier ni au 1er du mois.",
+      "effet_croise": {
+        "texte_legal": "CGI 293 B, II : « la franchise cesse de s'appliquer pour les opérations intervenant à compter de la date du dépassement », sans restriction : c'est la lecture PRUDENTE (le dépassement d'un plafond ferait cesser la franchise pour l'ensemble des opérations).",
+        "nuance_doctrine": "BOI-TVA-DECLA-40-30 §190 et §250 : « en cours d'année, pour ces mêmes opérations » — ouvre une lecture plus étroite (chaque plafond ne ferait cesser la franchise que pour sa propre catégorie).",
+        "posture": "Signaler systématiquement l'incertitude, retenir la lecture prudente, faire trancher par un expert-comptable. L'annexe BOI-ANNX-000189 a été retirée le 01/07/2026 sans remplacement.",
+        "sources": [
+          "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052488142",
+          "https://bofip.impots.gouv.fr/doctrine/BOI-TVA-DECLA-40-30"
+        ]
+      }
+    },
+    "taux": {
+      "cession_droits_auteur": {
+        "taux": 0.1,
+        "texte": "CGI 279 g (version 01/03/2026) — ne vise que les CESSIONS de droits",
+        "exclusions": [
+          "œuvres d'architecture",
+          "logiciels",
+          "séances de l'art. L. 214-1 du code du cinéma (séances non commerciales, hors exploitants de salles) et festivals — et non la projection en salle en général"
+        ],
+        "source_exclusion": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053562872"
+      },
+      "livraisons_oeuvres_par_leur_auteur": {
+        "taux": 0.055,
+        "texte": "CGI 278-0 bis, I (œuvres d'art livrées par leur auteur) ; 278-0 bis, A 3° (livres, y compris numériques)",
+        "sources": [
+          "https://bofip.impots.gouv.fr/doctrine/BOI-TVA-SECT-90-40",
+          "https://bofip.impots.gouv.fr/doctrine/BOI-TVA-LIQ-30-10-40"
+        ],
+        "note": "Ne signifie PAS que l'abonnement Patreon est à 5,5 % : sa qualification (livraison, cession de droits, service électronique) reste ouverte."
+      },
+      "prestations_de_services_droit_commun": {
+        "taux": 0.2,
+        "note": "Taux normal : formation, conseil, services électroniques non qualifiés en livraison/cession."
+      }
+    },
+    "retenue_tva_tiers_payeurs": {
+      "texte": "CGI 285 bis (version depuis 01/03/2025)",
+      "qui": [
+        "éditeurs",
+        "organismes de gestion collective",
+        "producteurs"
+      ],
+      "regle": "Retenue de la TVA due par l'auteur, acquittée au Trésor par le tiers payeur, présumée même pour les auteurs en franchise ; renonciation possible (tous les droits, notifiée à chaque payeur et au SIE, effet le 1er du mois suivant, 5 ans).",
+      "deduction_forfaitaire_auteur": 0.008,
+      "plateformes": "Une plateforme d'abonnement (Patreon, Substack, Ko-fi) n'est ni éditeur, ni OGC, ni producteur : aucune retenue. L'auteur gère seul sa TVA."
+    },
+    "option_tva": {
+      "effet": "1er jour du mois de la déclaration d'option",
+      "duree": "2 ans, reconduction tacite",
+      "interet": "Déduire la TVA d'amont ; facturer les droits à 10 % à des clients assujettis qui la récupèrent."
+    },
+    "plateformes_qualification_ouverte": "Abonnement à des écrits via plateforme : livraison de livres numériques (5,5 %), cession de droits (10 %) ou service par voie électronique (20 %) ? Pas de doctrine publiée.",
+    "frais_de_plateforme": "Auteur en franchise payant des frais à une plateforme étrangère : en principe n° de TVA intracommunautaire + autoliquidation (service-public F37527) — à poser au comptable."
+  },
+  "tva_meta": {
+    "description": "Franchise en base de TVA et taux applicables aux auteurs d'œuvres de l'esprit — valeurs 2026",
+    "texte": "CGI art. 293 B (version en vigueur du 01/03/2025 au 01/01/2027), art. 279 g, art. 285 bis",
+    "doctrine": "BOI-TVA-DECLA-40-30-20260701 (franchise spécifique auteurs), BOI-TVA-DECLA-40-10-10-20260701 (droit commun)",
+    "sources": [
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052488142",
+      "https://bofip.impots.gouv.fr/bofip/148-PGP.html/identifiant=BOI-TVA-DECLA-40-30-20260701",
+      "https://www.impots.gouv.fr/sites/default/files/media/3_Documentation/depliants/pro_fiche_regimes_reserves_aux_petites_entreprises_2026.pdf",
+      "https://entreprendre.service-public.gouv.fr/vosdroits/F21746",
+      "https://bofip.impots.gouv.fr/doctrine/BOI-TVA-DECLA-40-30",
+      "https://bofip.impots.gouv.fr/doctrine/BOI-TVA-SECT-90-40",
+      "https://bofip.impots.gouv.fr/doctrine/BOI-TVA-LIQ-30-10-40",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053562872"
+    ],
+    "last_fetched": "2026-10-03",
+    "a_verifier": "Au 01/01/2027 l'art. 293 B est recodifié dans le code des impositions sur les biens et services (ordonnance n° 2025-1247 du 17/12/2025) ; l'ordonnance n° 2026-671 du 27/07/2026 (art. 17) a reporté cette entrée en vigueur du 01/09/2026 au 01/01/2027. Vérifier la nouvelle numérotation et la continuité de fond. Le seuil unique de 25 000 € (LF 2025) a été abrogé par la loi n° 2025-1044 du 03/11/2025 : ne pas l'appliquer."
+  },
+  "impot_revenu": {
+    "regime_par_defaut": {
+      "droits_declares_par_des_tiers": {
+        "regime": "traitements et salaires",
+        "texte": "CGI 93, 1 quater",
+        "condition": "droits INTÉGRALEMENT déclarés par des tiers tenus à la déclaration de l'art. 241 (éditeurs, SACEM, SACD, producteurs…)",
+        "abattement": "10 % pour frais sur (brut − cotisations sociales obligatoires), ou frais réels",
+        "cases_2042": [
+          "1GF",
+          "1HF",
+          "1IF",
+          "1JF"
+        ],
+        "option_bnc": "possible, 3 ans (année + 2 suivantes), via 2042 C PRO"
+      },
+      "droits_non_declares_par_des_tiers": {
+        "regime": "bénéfices non commerciaux (BNC)",
+        "exemples": [
+          "plateformes d'abonnement (Patreon, Substack)",
+          "autoédition",
+          "ventes directes"
+        ],
+        "note": "BNC a priori. Fondement : ces recettes viennent de l'AUTOÉDITION (l'auteur assure lui-même la vente de ses œuvres — BOI-BNC-CHAMP-10-10-20-20), pas de droits versés par un débiteur. Le § 50 de BOI-BNC-SECT-20-10-20 ne dit pas le contraire : pour des droits de source étrangère, l'administration admet de « ne pas les priver, pour ce seul motif, du bénéfice du régime spécial ». Effet des données DAC7 : pas de position administrative connue."
+      }
+    },
+    "micro_bnc": {
+      "texte": "CGI 102 ter",
+      "seuil_recettes": {
+        "revenus_2023_2025": 77700,
+        "revenus_2026_2028": 83600,
+        "appreciation": "recettes HT de N-1 ou N-2 ; actualisation triennale",
+        "pluralite_activites_bnc": "TOTAL des recettes de toutes les activités BNC (droits d'auteur en BNC + consulting…) ; dépassement → exclusion pour l'ensemble (BOI-BNC-DECLA-20-10 §170-180). Les droits imposés en TS ne comptent pas, sauf option BNC."
+      },
+      "abattement_forfaitaire": 0.34,
+      "abattement_minimum": 305,
+      "maintien_apres_depassement": "les deux premières années de dépassement",
+      "cases_2042_c_pro_2026": {
+        "professionnel": [
+          "5HQ",
+          "5IQ",
+          "5JQ"
+        ],
+        "non_professionnel": [
+          "5KU",
+          "5LU",
+          "5MU"
+        ],
+        "note": "Recettes brutes encaissées ; l'abattement est appliqué par l'administration."
+      },
+      "exclusion": "L'art. 102 ter, 6 en vigueur n'exclut PLUS les auteurs soumis à la retenue de TVA de l'art. 285 bis (« b. (Abrogé) »). La fiche DGFiP 2026 le mentionne encore : elle est en retard sur le code. https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622381"
+    },
+    "declaration_controlee": {
+      "formulaire": "2035",
+      "cases_2042_c_pro_2026": [
+        "5QC",
+        "5RC",
+        "5SC"
+      ],
+      "option": "au titre de 2026 jusqu'au 20/05/2027, reconduction tacite (fiche DGFiP 2026)"
+    },
+    "versement_liberatoire": {
+      "texte": "CGI 151-0",
+      "taux_bnc": 0.022,
+      "conditions_cumulatives": [
+        "relever du micro (50-0 ou 102 ter)",
+        "RFR du foyer de N-2 ≤ limite supérieure de la 2e tranche du barème par part (pour 2026 : RFR 2024 ≤ 29 315 € par part, +50 % par demi-part, +25 % par quart de part)",
+        "être soumis au régime micro-social de l'art. L. 613-7 CSS (micro-entrepreneur)"
+      ],
+      "artistes_auteurs": "Affiliés au régime général au titre de L. 382-1 CSS, PAS au micro-social L. 613-7 → le versement libératoire ne peut couvrir que les recettes de la micro-entreprise, pas les droits d'auteur (lecture des textes, à confirmer par l'expert-comptable).",
+      "option": "auprès de l'URSSAF avant le 30/09 de N pour N+1",
+      "cases_2042_c_pro_2026": [
+        "5TE",
+        "5UE",
+        "5VE"
+      ]
+    }
+  },
+  "impot_revenu_meta": {
+    "description": "Impôt sur le revenu des droits d'auteur — régimes, seuils, cases — revenus 2025 (déclaration 2026) et revenus 2026",
+    "textes": "CGI art. 93 1 quater ; art. 102 ter (version 01/07/2026, décret n° 2026-562 du 29/06/2026) ; art. 151-0 (version 19/06/2025) ; art. 241",
+    "doctrine": "BOI-BNC-SECT-20-10-20 ; BOI-BNC-DECLA-20-10-20260819 ; BOI-BAREME-000044-20260819",
+    "sources": [
+      "https://www.impots.gouv.fr/particulier/droits-dauteur",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469152/",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622381",
+      "https://bofip.impots.gouv.fr/bofip/4807-PGP.html",
+      "https://entreprendre.service-public.gouv.fr/actualites/A18813",
+      "https://www.impots.gouv.fr/sites/default/files/formulaires/2042/2026/2042_5474.pdf"
+    ],
+    "last_fetched": "2026-10-03"
+  },
+  "regularisation": {
+    "interet_de_retard": {
+      "taux_mensuel": 0.002,
+      "point_de_depart_ir": "1er juillet de l'année suivant celle au titre de laquelle l'imposition est établie",
+      "reduction_depot_spontane": {
+        "taux": 0.5,
+        "conditions": [
+          "déclaration rectificative déposée spontanément AVANT l'expiration du délai de reprise de l'administration",
+          "bonne foi (pas d'infraction exclusive de bonne foi)",
+          "paiement des droits simples avec la déclaration ; pour les impôts de rôle, au plus tard à la date limite figurant sur l'avis d'imposition ; ou plan de règlement accepté par le comptable public"
+        ],
+        "texte": "CGI 1727, V",
+        "source": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051213330"
+      }
+    },
+    "majorations": {
+      "omission_dans_declaration_deposee": {
+        "texte": "CGI 1758 A, I",
+        "taux": 0.1,
+        "portee": "couvre l'omission, le RETARD et le DÉFAUT de déclaration d'IR",
+        "taux_si_tardif_apres_mise_en_demeure": 0.2,
+        "taux_20_condition": "dépôt tardif effectué dans les trente jours d'une mise en demeure (1758 A, I)",
+        "non_applicable_si": "correction spontanée ou dans les 30 jours d'une demande de l'administration (II a) ; ou si les majorations 1728 1 b et c, 1729 ou 1732 a s'appliquent (II b)",
+        "exclusion_du_1728_1a": "le 1758 A exclut le 10 % du 1728, 1 a (III)",
+        "source": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033815281"
+      },
+      "defaut_ou_retard_de_depot": {
+        "texte": "CGI 1728",
+        "note": "Le 10 % du 1728, 1 a est exclu par le 1758 A (III) pour l'IR. Restent applicables : 40 % après mise en demeure restée sans effet (1728, 1 b) et 80 % en cas d'activité occulte (1728, 1 c) — cités au 1758 A, II b.",
+        "apres_mise_en_demeure_sans_effet": 0.4,
+        "activite_occulte": 0.8
+      },
+      "manquement_delibere": {
+        "texte": "CGI 1729",
+        "taux": 0.4,
+        "manoeuvres_frauduleuses": 0.8
+      }
+    },
+    "prescription_ir": {
+      "texte": "LPF L. 169",
+      "regle": "jusqu'à la fin de la 3e année suivant celle au titre de laquelle l'imposition est due",
+      "exemple": "revenus 2023 → reprise possible jusqu'au 31/12/2026",
+      "activite_occulte": "10 ans"
+    },
+    "procedure_correction": {
+      "en_ligne": "service « Corriger ma déclaration » ouvert du 29/07 au 30/11 de l'année de déclaration (2026 pour les revenus 2025)",
+      "papier": "déclaration papier portant « ANNULE ET REMPLACE », à envoyer AVANT la date limite de dépôt",
+      "apres_date_limite": "réclamation (messagerie sécurisée impots.gouv ou courrier)",
+      "annees_anterieures": "déclaration rectificative pour chaque année non prescrite (2042 + 2042 C PRO), via réclamation",
+      "source": "https://www.impots.gouv.fr/particulier/questions/je-veux-corriger-la-declaration-que-jai-deja-deposee-comment-proceder"
+    },
+    "delais_de_paiement": {
+      "cadre": "accordés « à titre exceptionnel »",
+      "demande": "impots.gouv.fr : « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer » ; formulaire 4805-S-SD + RIB + justificatifs",
+      "criteres": [
+        "perte d'emploi ou baisse de revenus",
+        "événement exceptionnel",
+        "endettement disproportionné",
+        "antécédents de paiement"
+      ],
+      "reponse": "2 mois (4 si complexité) ; silence = rejet ; recours au conciliateur fiscal départemental",
+      "note": "Un échéancier accepté par le comptable public maintient la réduction de 50 % de l'intérêt de retard (1727 V) en cas de dépôt spontané.",
+      "source": "https://www.impots.gouv.fr/particulier/delai-de-paiement"
+    }
+  },
+  "regularisation_meta": {
+    "description": "Régularisation d'omissions (IR) : majorations, intérêts, prescription, délais de paiement — valeurs 2026",
+    "textes": "CGI art. 1727 (version 16/02/2025 → 01/01/2027), 1728 (version 21/02/2026), 1729, 1758 A ; LPF art. L. 169 (version 01/07/2026) ; ordonnance n° 2026-671 du 27/07/2026 (report de la recodification TVA au 01/01/2027, sans effet sur les articles IR ci-dessous)",
+    "sources": [
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051213330",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428656/",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033815281",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051759330",
+      "https://www.impots.gouv.fr/particulier/questions/je-veux-corriger-la-declaration-que-jai-deja-deposee-comment-proceder",
+      "https://www.impots.gouv.fr/particulier/delai-de-paiement"
+    ],
+    "last_fetched": "2026-10-03"
+  }
+}

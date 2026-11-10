@@ -216,6 +216,28 @@ Prérequis : `npm install`, puis `cp company.example.json company.json` et rempl
 
 ---
 
+## Données et services externes
+
+Paperasse n'a pas de serveur : rien n'est envoyé à Paperasse, rien n'est conservé par Paperasse. Voir la [politique de confidentialité (Privacy)](PRIVACY.md). Les skills et scripts tournent chez vous, dans votre agent.
+
+**Données lues et stockées localement** : le contexte de l'entreprise (`company.json` : raison sociale, SIREN, adresse, coordonnées bancaires), le foyer fiscal (`foyer.json`), les relevés bancaires, les factures et le FEC que vous fournissez. Les scripts écrivent leurs résultats sur votre machine (`data/transactions/`, `data/invoices/`, `output/`).
+
+**Services tiers appelés par les scripts**, uniquement quand vous lancez la commande concernée :
+
+| Service | Script | Données envoyées |
+|---------|--------|------------------|
+| Qonto (`thirdparty.qonto.com`) | `integrations/qonto`, `upload-qonto-attachments.js` | Votre clé API ; envoi de justificatifs seulement si vous lancez l'upload |
+| Stripe (`api.stripe.com`) | `integrations/stripe`, `import-stripe-invoices.js` | Votre clé API |
+| Pennylane (`app.pennylane.com`) | `integrations/pennylane` | Votre jeton API |
+| Base adresse nationale (`api-adresse.data.gouv.fr`) | `fetch_notaire_data.py` | Adresse recherchée |
+| IGN API Carto (`apicarto.ign.fr`) | `fetch_notaire_data.py` | Code INSEE, parcelle, coordonnées |
+| Géorisques (`georisques.gouv.fr`) | `fetch_notaire_data.py` | Coordonnées du bien |
+| DVF, Cerema (`apidf-preprod.cerema.fr`) | `fetch_notaire_data.py` | Code INSEE |
+| Recherche d'entreprises (`recherche-entreprises.api.gouv.fr`) | `fetch_company.py`, `fetch_notaire_data.py` | SIREN ou nom de l'entreprise |
+| Fichier des décès, matchID (`deces.matchid.io`) | `fetch_notaire_data.py` | Nom, prénom et date de naissance recherchés |
+
+Les connecteurs Qonto, Stripe et Pennylane sont désactivés par défaut et utilisent vos propres clés. Enfin, ce que l'agent envoie au modèle d'IA dépend de l'agent que vous utilisez, pas de Paperasse.
+
 ## Installation manuelle (par plateforme)
 
 Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fichiers.

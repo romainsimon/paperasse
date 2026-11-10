@@ -65,16 +65,22 @@ Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex 
 
 ### Option 3 : Claude Code et Claude Cowork (marketplace de plugins)
 
-Le dépôt est aussi une marketplace de plugins Claude, avec un plugin par skill : `comptable`, `fiscaliste`, `notaire`, `controleur-fiscal`, `commissaire-aux-comptes`, `syndic`.
+Le dépôt est aussi une marketplace de plugins Claude. Le plugin `paperasse` installe les six skills d'un coup : `comptable`, `fiscaliste`, `notaire`, `controleur-fiscal`, `commissaire-aux-comptes`, `syndic`. Chaque skill ne se charge que lorsque votre question le concerne.
 
-**Claude Code** :
+**Claude Code** (2.1.275 ou plus récent) :
+
+```
+/plugin install paperasse --marketplace romainsimon/paperasse
+```
+
+Avec une version plus ancienne :
 
 ```
 /plugin marketplace add romainsimon/paperasse
-/plugin install comptable@paperasse
+/plugin install paperasse@paperasse
 ```
 
-**Claude Cowork** : dans Plugins, choisir **Add marketplace**, saisir `romainsimon/paperasse`, puis cliquer sur **Install** pour chaque skill voulu.
+**Claude Cowork** : dans Plugins, choisir **Add marketplace**, saisir `romainsimon/paperasse`, puis cliquer sur **Install** sur le plugin `paperasse`.
 
 ### Option 4 : Grok Bot, installation en un clic
 

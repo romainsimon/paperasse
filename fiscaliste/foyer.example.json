@@ -60,7 +60,7 @@
     "per_declarant2": 2000,
     "pension_alimentaire_enfant_majeur": 0,
     "csg_deductible_n1": 0,
-    "_commentaire_csg": "CSG déductible uniquement si option barème en N-1, pas sous PFU"
+    "_commentaire_csg": "Fraction déductible de la CSG payée en N sur les revenus de N-1 (PS par voie de rôle) : option barème en N-1 pour les dividendes, intérêts et plus-values mobilières relevant du PFU ; revenus fonciers et LMNP soumis aux PS du patrimoine : barème de plein droit, sans option. Déduction du revenu global de N, année du paiement (art. 154 quinquies, II CGI), aucune sur les revenus imposés au PFU"
   },
 
   "options_fiscales": {

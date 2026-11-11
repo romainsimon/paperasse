@@ -165,6 +165,22 @@
       ]
     },
     {
+      "id": 78,
+      "name": "cdhr-revenu-exceptionnel-pfu-et-cessions-recurrentes",
+      "prompt": "Cas fictif pour les revenus 2026 : je vends en une fois l'entreprise que j'ai fondée vingt ans auparavant, sans autre cession passée ou prévue. La plus-value nette est de 2 000 000 EUR, imposée au PFU, dont 256 000 EUR d'IR afférent. Mes revenus nets imposables des trois années précédentes sont de 100 000, 120 000 et 140 000 EUR ; ma situation familiale est inchangée. Pour la seule CDHR, faut-il refuser tout traitement exceptionnel parce que je ne peux pas demander le quotient IR sur ce gain au PFU ? Quelles fractions du gain et de l'IR afférent faut-il retenir si la nature exceptionnelle de cette cession unique est établie ? Et si ces mêmes montants provenaient au contraire de ventes de titres effectuées chaque année ? Ne calculez pas la contribution totale, il manque les autres données du foyer.",
+      "expected_output": "Le PFU n'exclut pas le traitement exceptionnel propre à la CDHR : les revenus au barème et à taux proportionnel sont concernés sous conditions cumulatives de nature et de montant. La moyenne des trois années est de 120 000 EUR, dépassée par 2 000 000 EUR. Sous réserve de la qualification par nature de la cession unique, retenir 500 000 EUR de revenu et 64 000 EUR d'IR afférent pour la CDHR, sans réduire l'IR réellement dû au PFU et sans appliquer le quotient IR. Des ventes annuelles récurrentes ne deviennent pas exceptionnelles du seul fait de leur montant. Sources : art. 224, II et IV CGI ; BOI-IR-CDHR-20 § 20 à 70, 130 et 190 (https://bofip.impots.gouv.fr/bofip/15108-PGP.html/identifiant=BOI-IR-CDHR-20-20260630).",
+      "files": [],
+      "assertions": [
+        "Le skill n'exige pas un revenu taxé au quotient IR : un revenu au PFU peut être exceptionnel pour la CDHR",
+        "Les conditions de nature et de montant sont vérifiées séparément ; la moyenne des trois revenus nets imposables vaut 120 000 EUR",
+        "Sous réserve de la nature exceptionnelle établie, le revenu est retenu pour 2 000 000 / 4 = 500 000 EUR",
+        "L'IR proportionnel afférent est retenu pour 256 000 / 4 = 64 000 EUR dans le calcul CDHR, sans modifier l'IR effectivement dû au PFU",
+        "Le skill refuse d'étendre automatiquement ce traitement au cas de cessions de titres récurrentes",
+        "Le skill distingue la méthode propre à la CDHR du quotient IR et cite l'article 224 CGI ou le BOI-IR-CDHR-20",
+        "Le skill ne calcule pas de CDHR totale en l'absence des autres données du foyer"
+      ]
+    },
+    {
       "id": 12,
       "name": "deficit-foncier-imputation",
       "prompt": "Foncier nu au réel : loyers bruts 15 000 €, charges courantes 4 000 €, travaux déductibles 18 000 €, intérêts d'emprunt 6 000 €. Quel est mon déficit foncier et combien s'impute sur mon revenu global ?",
@@ -377,6 +393,22 @@
         "Le RFR est d'environ 285 445 €",
         "La CEHR est d'environ 1 063 €",
         "Le total avant réductions et crédits est d'environ 92 537 €"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "per-baisse-ir-compensee-par-cdhr",
+      "prompt": "Cas fictif pour les revenus 2026 : couple marié, sans personne à charge, revenu de référence CDHR de 800 000 EUR avant et après un versement PER déductible. Aucun revenu exceptionnel, prélèvement libératoire ou décote. Le total IR retraité + CEHR, déjà ajusté selon les règles de la CDHR, passe de 130 000 EUR avant versement à 125 000 EUR après ; toutes les autres données sont inchangées. Puisque le PER ne change pas le RFR, puis-je conclure que ma CDHR reste inchangée et que j'économise 5 000 EUR d'impôt au total ?",
+      "expected_output": "Non. Le maintien du revenu de référence ne garantit pas une CDHR inchangée. Plancher : 800 000 × 20 % = 160 000 EUR ; majoration pour imposition commune : 12 500 EUR. Avant : 160 000 - (130 000 + 12 500) = 17 500 EUR. Après : 160 000 - (125 000 + 12 500) = 22 500 EUR. La hausse de CDHR de 5 000 EUR absorbe ici toute la baisse d'IR : IR retraité + CEHR + CDHR vaut 147 500 EUR dans les deux cas. L'effet est conditionnel, une compensation intégrale n'est pas une règle générale pour tout versement PER. Sources : art. 1417, IV et art. 224, III et IV CGI (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11).",
+      "files": [],
+      "assertions": [
+        "Le skill distingue revenu de référence inchangé et montant de CDHR susceptible d'augmenter lorsque l'IR retenu baisse",
+        "Le plancher de 160 000 EUR et la majoration de 12 500 EUR pour le couple sont utilisés sans personne à charge ni décote",
+        "La CDHR avant versement est de 17 500 EUR",
+        "La CDHR après versement est de 22 500 EUR",
+        "La hausse de CDHR de 5 000 EUR absorbe ici la baisse d'IR de 5 000 EUR ; le total comparé reste de 147 500 EUR",
+        "Le skill ne présente ni le gain TMI seul comme une économie nette garantie ni la compensation intégrale comme applicable à tous les PER",
+        "Les montants IR retraité + CEHR fournis sont utilisés comme déjà ajustés, sans recalculer une autre CEHR"
       ]
     },
     {

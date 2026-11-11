@@ -59,7 +59,11 @@ Depuis le 1er janvier 2026, les versements volontaires sur un PER dont le titula
 
 ### Effet sur le RFR : aucun
 
-Le versement déduit réduit le RNI, pas le revenu fiscal de référence : les cotisations d'épargne retraite déduites du revenu global sont réintégrées dans le RFR (art. 1417, IV CGI ; brochure IR 2026, « Revenu fiscal de référence »). Le PER ne diminue donc ni la CEHR, ni la CDHR, ni les seuils de CSG sur l'ARE et les pensions, ni les aides conditionnées au RFR.
+Le versement déduit réduit le RNI, pas le revenu fiscal de référence : les cotisations d'épargne retraite déduites du revenu global sont réintégrées dans le RFR (art. 1417, IV CGI ; brochure IR 2026, « Revenu fiscal de référence »). Le PER ne réduit donc pas la CEHR et ne modifie pas les seuils de CSG sur l'ARE et les pensions ni les aides conditionnées au RFR.
+
+**CDHR : une base inchangée ne signifie pas une contribution inchangée.** Le versement ne diminue pas le revenu de référence CDHR. Si l'IR retenu dans son calcul baisse, la CDHR peut augmenter et absorber tout ou partie de l'économie d'IR attendue. Comparer le total IR + CEHR + CDHR avant et après versement, pas seulement le TMI (voir [cas-speciaux.md](cas-speciaux.md)). Cette conséquence découle de la formule de l'[art. 224, III et IV CGI](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11).
+
+Exemple fictif, toutes les autres données inchangées : couple sans personne à charge, revenu de référence CDHR de 800 000 EUR, sans revenu exceptionnel, sans prélèvement libératoire ni décote. Le total IR retraité + CEHR, déjà ajusté pour la CDHR, passe de 130 000 à 125 000 EUR après versement. La contribution passe de `160 000 - (130 000 + 12 500) = 17 500 EUR` à `160 000 - (125 000 + 12 500) = 22 500 EUR`. La hausse de 5 000 EUR absorbe ici toute la baisse d'IR. Selon la situation du foyer, la compensation peut être partielle ou absente.
 
 ## Arbitrage : le PER est-il vraiment utile ?
 

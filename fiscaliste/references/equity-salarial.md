@@ -63,7 +63,7 @@ Fraction du rabais qui excède 5 % de la valeur de référence de l'action à la
 
 ### Gain de levée
 
-Selon date d'attribution :
+Selon date d'attribution, hors levée financée par le PEE décrite ci-dessous :
 
 | Options attribuées | Régime |
 |------|--------|
@@ -72,6 +72,18 @@ Selon date d'attribution :
 | Plan non qualifié (options étrangères sans sous-plan conforme au code de commerce) | Salaire de droit commun, en principe l'année de la levée, par la paie (BOI-RSA-ES-20-10-20-50 § 1) |
 
 La contribution salariale frappe la totalité du gain de levée des plans qualifiés : le seuil de 300 000 € n'existe que pour les actions gratuites. Toujours consulter le plan pour déterminer le régime applicable.
+
+### Cas particulier : levée financée par le PEE
+
+Des avoirs du PEE, même indisponibles, peuvent financer la levée d'options qualifiées ; les actions obtenues entrent alors dans le plan. Ce dispositif ne vise pas un simple apport d'actions déjà détenues.
+
+- **Nouveau blocage de cinq ans** à compter de l'entrée des actions dans le PEE, sans déblocage anticipé ordinaire : une rupture du contrat de travail ne le lève pas. En cas de décès, les héritiers peuvent disposer des titres après dépôt de la déclaration de succession.
+- Sous les conditions du dispositif, **gain net exonéré d'IR, gain de levée compris**. Le rabais excédentaire reste imposé séparément comme salaire à la levée.
+- Pour les options attribuées depuis le **16/10/2007**, la **contribution salariale de 10 %** sur le gain de levée reste due lors de la cession des actions dans le PEE, même sans retrait du plan.
+- Les **PS à la délivrance des avoirs** sont distincts de cette contribution. La liquidation des anciens avoirs pour financer la levée déclenche elle-même les PS sur leurs gains.
+- L'apport des actions à un FCP ou une société dont l'actif est exclusivement composé de titres de l'employeur ou de son groupe conserve la durée de blocage restant à courir. Pour dater une éventuelle cession des actions sous-jacentes, vérifier les opérations et relevés ; le seul changement de support ne suffit pas.
+
+Sources : [C. trav. L. 3332-25](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042340834/2026-11-11), [BOI-RSA-ES-10-30-10 § 120 à 180](https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728) et [BOI-RSA-ES-20-30 § 120 et 150](https://bofip.impots.gouv.fr/bofip/2389-PGP.html/identifiant=BOI-RSA-ES-20-30-20260521).
 
 ## Plan d'achat d'actions avec décote (ESPP non qualifié, société étrangère, hors PEE)
 
@@ -122,6 +134,8 @@ Demander à la société :
 ### PEE (Plan d'Épargne Entreprise)
 
 Enveloppe collective distincte du PER individuel.
+
+**Exception au blocage et aux sorties ci-dessous** : les actions issues d'options levées avec les avoirs du PEE relèvent du cas particulier ci-dessus, sans déblocage anticipé ordinaire.
 
 - **Abondement employeur** : exonéré d'IR et de cotisations sociales dans le plafond, mais **soumis à la CSG et à la CRDS** (9,7 %, revenus d'activité ; service-public F2142) et, côté employeur, au forfait social le cas échéant. **Avantage majeur** malgré tout : un abondement de 100 % reste un rendement immédiat de ~90 % net de CSG/CRDS.
 - **Plafond d'abondement** : 8 % du PASS **de l'année** par bénéficiaire, sans dépasser 3 fois le versement du salarié : 3 709 € en 2024, **3 768 € en 2025**, **3 844,80 € en 2026** (PASS 48 060 €) ; 14,4 % du PASS si l'abondement est investi en titres de l'entreprise.

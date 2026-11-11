@@ -99,6 +99,35 @@
       ]
     },
     {
+      "id": 76,
+      "name": "options-levees-pee-demission-avant-cinq-ans",
+      "prompt": "Cas fictif : j'ai utilisé des avoirs de mon PEE pour lever des stock-options qualifiées en juin 2024 et les actions obtenues ont été inscrites directement au PEE. Je démissionne en juin 2026. Le gestionnaire indique que mes autres avoirs sont déblocables. Puis-je aussi retirer ces actions dès mon départ ?",
+      "expected_output": "Non : les actions issues de cette levée ont un blocage spécial de cinq ans depuis leur entrée au PEE, donc jusqu'en juin 2029. La démission ne permet pas leur déblocage anticipé ordinaire. Distinguer ces actions des autres avoirs du PEE et d'un simple apport d'actions déjà détenues. Sources : C. trav. L. 3332-25 ; BOI-RSA-ES-10-30-10 § 120 à 150 (https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728).",
+      "files": [],
+      "assertions": [
+        "Le skill identifie la levée financée par les avoirs du PEE et l'inscription des actions dans le plan",
+        "Le délai spécial de cinq ans part de l'entrée des actions en juin 2024, pas de l'ancienneté des avoirs utilisés",
+        "Le skill refuse un déblocage de ces actions en juin 2026 au seul motif de la démission",
+        "La disponibilité des autres avoirs n'est pas étendue à ces actions ; l'échéance de juin 2029 est identifiée",
+        "Le skill cite l'article L. 3332-25 du code du travail ou le BOI-RSA-ES-10-30-10"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "options-levees-pee-exoneration-ir-et-contribution-cession",
+      "prompt": "Cas fictif : des options qualifiées attribuées en 2018 ont été levées en octobre 2020 avec des avoirs du PEE ; les actions obtenues y sont entrées à cette date et y sont restées en détention directe. Le délai spécial de cinq ans est respecté. En novembre 2026 je vends ces actions dans le PEE, sans retirer l'argent. Le gain de levée est de 30 000 EUR, sans rabais excédentaire ; le gain net total est de 40 000 EUR. Le gain de levée est-il forcément un salaire au barème ? L'absence de retrait évite-t-elle toute contribution ? Ne calculez pas les PS sans le relevé du gestionnaire.",
+      "expected_output": "Sous les conditions du dispositif, les 40 000 EUR de gain net, gain de levée compris, sont exonérés d'IR. La contribution salariale de 10 % sur les 30 000 EUR de gain de levée reste due lors de la vente des actions dans le PEE : 3 000 EUR, même sans retrait. Distinguer les PS à la délivrance des avoirs ; ne pas leur appliquer automatiquement un taux uniforme sans le relevé. Sources : BOI-RSA-ES-10-30-10 § 140 à 180 (https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728) ; BOI-RSA-ES-20-30 § 120 et 150 (https://bofip.impots.gouv.fr/bofip/2389-PGP.html/identifiant=BOI-RSA-ES-20-30-20260521).",
+      "files": [],
+      "assertions": [
+        "Le skill applique le régime spécial de levée financée par le PEE, pas automatiquement le salaire des options postérieures à septembre 2012",
+        "L'exonération d'IR porte sur le gain net de 40 000 EUR, gain de levée compris, sous les conditions indiquées",
+        "La contribution salariale est calculée sur le gain de levée : 30 000 × 10 % = 3 000 EUR",
+        "Le fait générateur de cette contribution est la cession des actions dans le PEE, sans attendre un retrait",
+        "Le skill distingue contribution salariale et PS sur les gains à la délivrance des avoirs, sans chiffrer ces derniers sans relevé",
+        "Le skill cite le BOI-RSA-ES-10-30-10 et le BOI-RSA-ES-20-30"
+      ]
+    },
+    {
       "id": 7,
       "name": "crypto-pamc-exoneration",
       "prompt": "J'ai vendu 250 € de Bitcoin cette année avec une PV de 40 €. Je dois déclarer ?",

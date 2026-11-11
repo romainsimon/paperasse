@@ -4,6 +4,8 @@
     "declaration": 2026,
     "sources": [
       "BOI-RPPM-RCM-40-50 (PEA)",
+      "art. L. 221-31 CMF : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218125/2026-11-11",
+      "Fiche émetteur d'un ETF synthétique MSCI World conçu pour le PEA, consultée le 11/11/2026 : https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
       "BOI-RPPM-RCM-20-10-20-50 (AV, rachats)",
       "BOI-TCAS-AUT-60 (prélèvement art. 990 I) — https://bofip.impots.gouv.fr/bofip/1335-PGP.html",
       "BOI-ENR-DMTG-10-10-20-20 (art. 757 B) — https://bofip.impots.gouv.fr/bofip/3456-PGP.html",
@@ -14,7 +16,12 @@
   },
 
   "pea_classique": {
-    "description": "Plan d'Épargne en Actions — enveloppe fiscale actions européennes",
+    "description": "Plan d'Épargne en Actions : titres et fonds éligibles, avec exposition mondiale possible via certains ETF synthétiques",
+    "composition_eligible": {
+      "titres_directs": "Actions de sociétés de l'UE ou de l'EEE sous les conditions de l'art. L. 221-31 CMF ; les actions américaines ou asiatiques détenues directement ne sont pas éligibles",
+      "fonds": "Fonds respectant les critères légaux d'éligibilité, notamment le quota de plus de 75 % de titres éligibles pour les OPCVM concernés ; tous les ETF ne sont pas éligibles",
+      "exposition": "Certains ETF éligibles à réplication synthétique suivent des indices mondiaux ou américains via des swaps. Distinguer l'éligibilité des titres ou du fonds et l'exposition économique de l'indice ; une cotation en euros ne prouve pas l'éligibilité au PEA"
+    },
     "plafond_versements": 150000,
     "plafond_enfant_majeur_rattache": 20000,
     "note_pea_pme": "PEA-PME : 225 000 € de versements ; plafond commun PEA + PEA-PME ≤ 225 000 € (art. L. 221-32-1 CMF), dont PEA ≤ 150 000 € (art. L. 221-30 CMF)",
@@ -38,9 +45,9 @@
     },
 
     "comparaison_av": {
-      "pea_avantage": "Fiscalité plus légère après 5 ans (pas d'IR), bon pour performance actions européennes",
+      "pea_avantage": "Exonération d'IR après 5 ans, investissement en actions via les titres et fonds éligibles, y compris exposition mondiale via certains ETF synthétiques",
       "av_avantage": "Plus flexible (fonds euros, UC variées), abattement annuel sur gains à la sortie après 8 ans, avantage successoral",
-      "strategie_cumul": "PEA pour performance actions européennes, AV pour diversification et transmission — les deux enveloppes sont complémentaires"
+      "strategie_cumul": "PEA pour les actions via les titres et fonds éligibles, avec exposition mondiale possible ; AV pour d'autres supports, notamment fonds euros et obligations selon le contrat, et pour la transmission"
     }
   },
 

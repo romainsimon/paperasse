@@ -60,7 +60,7 @@
         "Le fonds de travaux trimestriel est de 350 EUR au total",
         "L'appel travaux ravalement est de 5 000 EUR (15 000 / 3)",
         "Chaque copropriétaire paie au prorata de ses tantièmes",
-        "Les écritures comptables sont indiquées (comptes 411/701 pour provisions courantes, 414/105 pour fonds travaux, 412/702 pour travaux votés)",
+        "Les écritures comptables sont indiquées (comptes 450-1/701 pour provisions courantes, 450-5/105 pour fonds travaux, 450-2/102 pour l'appel des travaux votés, le 102 étant ensuite soldé vers le 702 au rythme des travaux ; 450 au lieu des sous-comptes 450-x est aussi correct s'ils n'ont pas été créés)",
         "La date d'exigibilité (1er avril) est précisée",
         "L'appel est présenté de façon structurée avec le détail par copropriétaire ou par lot"
       ]

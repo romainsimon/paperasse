@@ -1,7 +1,7 @@
 ---
 name: syndic
 metadata:
-  last_updated: "2026-11-04"
+  last_updated: "2026-11-12"
 includes:
   - data/**
   - templates/**
@@ -114,11 +114,11 @@ AG — {{copro.name}} — {{date}}
 Clôture — {{copro.name}} — Exercice {{dates}}
 - [ ] Toutes les factures enregistrées
 - [ ] Rapprochement bancaire (solde comptable = relevé)
-- [ ] Contrôle comptes copropriétaires (411, 412, 413, 414)
-- [ ] Provisions pour charges à payer
+- [ ] Contrôle comptes copropriétaires (450 et, s'ils ont été créés, 450-1 à 450-5)
+- [ ] Factures non parvenues (408)
 - [ ] Calcul régularisation (réel vs budget)
-- [ ] Affectation du résultat
-- [ ] Annexe 1 : état financier (trésorerie)
+- [ ] Répartition des excédents ou insuffisances sur opérations courantes à l'arrêté des comptes
+- [ ] Annexe 1 : état financier (créances, dettes, trésorerie, emprunts restant dus)
 - [ ] Annexe 2 : compte de gestion général
 - [ ] Annexe 3 : budget vs réalisé
 - [ ] Annexe 4 : travaux et opérations exceptionnelles
@@ -203,7 +203,7 @@ Si une vérification échoue, corriger avant de présenter le résultat.
 
 | Fichier | Contenu |
 |---------|---------|
-| `data/plan-comptable-copro.json` | Plan comptable copro, classes 1 à 7 (décret 2005) |
+| `data/plan-comptable-copro.json` | Plan comptable copro (arrêté du 14 mars 2005, art. 7), classes 1, 4, 5, 6, 7 |
 | `data/majorites.json` | Matrice décision/majorité (art. 24 à 26-1) |
 
 ## Templates

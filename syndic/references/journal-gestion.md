@@ -46,7 +46,7 @@ Un fichier par année. Classé par mois, du plus ancien au plus récent dans cha
 |--------|---------|
 | Envoi de courrier (email, LRAR) | Envoi LRAR mise en demeure lot 7 (n° suivi 1A XXX) |
 | Réception de document | Réception AR LRAR convocation AG (lot 12, signé 15/03) |
-| Appel téléphonique | Appel Veolia (contestation facture, interlocuteur M. Dupont) |
+| Appel téléphonique | Appel au fournisseur d'eau (contestation facture, interlocuteur M. Dupont) |
 | Paiement effectué | Règlement facture du prestataire de nettoyage, février (395,00 EUR, virement) |
 | Paiement reçu | Paiement lot 7 reçu (1 400 EUR, virement, solde impayé) |
 | Devis reçu | Réception devis ravalement ABC Façades (42 000 EUR) |

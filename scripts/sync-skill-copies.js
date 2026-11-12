@@ -30,7 +30,7 @@ const MIRRORS = [
   ['templates', 'comptable/templates'],
 ];
 // Never copied by a mirror (repo tooling, not skill content)
-const MIRROR_SKIP = new Set(['scripts/sync-skill-copies.js']);
+const MIRROR_SKIP = new Set(['scripts/sync-skill-copies.js', 'scripts/test-syndic-plan.js']);
 
 // Single files: [source, destination]
 const FILES = [

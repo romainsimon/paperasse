@@ -6,7 +6,7 @@
   "derniere_modification_du_texte": "2020-12-31",
   "verifie_le": "2026-11-12",
   "verifie_contre": "texte intégral des articles 7, 8 et 10 lus sur Légifrance ; libellés repris à l'identique de l'article 7",
-  "avertissement": "Nomenclature fermée. Article 8 : les classes de comptes et comptes de l'article 7 sont les seuls utilisables par le syndic, et le plan comptable général ne peut pas servir à les détailler. Si ces comptes ne suffisent pas à enregistrer distinctement toutes les opérations, le syndic peut ouvrir toute subdivision nécessaire : un sous-compte ouvert par le syndic n'est donc pas, à lui seul, hors nomenclature. Les sous-comptes 450-1 à 450-5 s'ouvrent sur décision d'assemblée générale. Avant d'affirmer qu'un compte est hors nomenclature, vérifier ici ET sur le texte de l'article 8 : https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006501225",
+  "avertissement": "Nomenclature fermée. Article 8 : les classes de comptes et comptes de l'article 7 sont les seuls utilisables par le syndic, et le plan comptable général ne peut pas servir à les détailler. Si ces comptes ne suffisent pas au syndicat pour enregistrer distinctement toutes ses opérations, il peut ouvrir toute subdivision nécessaire : un sous-compte n'est donc pas, à lui seul, hors nomenclature. Les sous-comptes 450-1 à 450-5 s'ouvrent sur décision d'assemblée générale. Avant d'affirmer qu'un compte est hors nomenclature, vérifier ici ET sur le texte de l'article 8 : https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006501225",
   "classes": [
     {
       "class": 1,
@@ -41,6 +41,11 @@
           "number": "106",
           "label": "Provisions pour travaux au titre de la délégation de pouvoirs accordée au conseil syndical en application de l'article 21-1 de la loi susvisée",
           "groupe": "10 Provisions et avances"
+        },
+        {
+          "number": "12",
+          "label": "Solde en attente sur travaux et opérations exceptionnelles",
+          "note": "Fonctionne lui-même (art. 10) : il reçoit en fin d'exercice le solde des travaux et opérations exceptionnelles non clôturés, puis l'écriture est contrepassée à l'ouverture. Le 12-1 et le 12-2 en sont les subdivisions."
         },
         {
           "number": "12-1",
@@ -502,5 +507,5 @@
       ]
     }
   ],
-  "note": "Nomenclature reprise intégralement de l'article 7 de l'arrêté (le 1032 y figure comme « (Supprimé) » et n'est pas repris ici). Le champ groupe reprend l'intitulé du compte à deux chiffres sous lequel l'article 7 range le compte. Avant la correction de 2026, ce fichier reprenait le plan comptable général adapté : les copropriétaires y figuraient en 411 à 414 (inexistants en copropriété, le compte est le 450), le 450 était donné comme compte d'attente (ce sont les 471 et 472) et le 671 comme créances irrécouvrables (c'est le compte des travaux votés, les créances irrécouvrables sont au 677)."
+  "note": "Nomenclature reprise intégralement de l'article 7 de l'arrêté (le 1032 y figure comme « (Supprimé) » et n'est pas repris ici). Le champ groupe reprend l'intitulé du compte à deux chiffres sous lequel l'article 7 range le compte. Les intitulés à deux chiffres ne sont pas repris comme comptes, sauf ceux qui n'ont pas de subdivision (53, 65, 68, 78) et le 12, que l'article 10 fait fonctionner lui-même. Avant la correction de 2026, ce fichier reprenait le plan comptable général adapté : les copropriétaires y figuraient en 411 à 414 (inexistants en copropriété, le compte est le 450), le 450 était donné comme compte d'attente (ce sont les 471 et 472) et le 671 comme créances irrécouvrables (c'est le compte des travaux votés, les créances irrécouvrables sont au 677)."
 }

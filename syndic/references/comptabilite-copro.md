@@ -7,7 +7,7 @@
 **Arrêté du 14 mars 2005, article 7** : fixe la nomenclature des comptes (texte en vigueur depuis le 31/12/2020) :
 https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042413155
 
-**Article 8** : la nomenclature est **fermée**. Les classes de comptes et comptes de l'article 7 sont les seuls utilisables par le syndic, et le plan comptable général ne peut pas servir à les détailler. Si ces comptes ne permettent pas d'enregistrer distinctement toutes les opérations, le syndic peut ouvrir **toute subdivision nécessaire** : un sous-compte ouvert par le syndic n'est donc pas, à lui seul, hors nomenclature. Les sous-comptes 450-1 à 450-5 s'ouvrent sur décision d'assemblée générale.
+**Article 8** : la nomenclature est **fermée**. Les classes de comptes et comptes de l'article 7 sont les seuls utilisables par le syndic, et le plan comptable général ne peut pas servir à les détailler. Si ces comptes ne suffisent pas au syndicat pour enregistrer distinctement toutes ses opérations, il peut ouvrir **toute subdivision nécessaire** : un sous-compte n'est donc pas, à lui seul, hors nomenclature. Les sous-comptes 450-1 à 450-5 s'ouvrent sur décision d'assemblée générale.
 https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006501225
 
 **Article 10** : fonctionnement des comptes (102, 105, 12, 49, etc.) :
@@ -17,7 +17,7 @@ Ce n'est pas le plan comptable général. Les numéros ne se recoupent pas : en 
 
 ## Plan Comptable des Copropriétés
 
-Libellés repris de l'article 7. La liste complète, avec l'intitulé de chaque groupe, est dans `data/plan-comptable-copro.json`.
+Libellés adaptés de l'article 7 : l'intitulé du groupe est ajouté quand le libellé seul est ambigu (« Fournisseurs : factures parvenues »). Le texte exact de chaque libellé, et l'intitulé de chaque groupe, sont dans `data/plan-comptable-copro.json`.
 
 ### Classe 1 : Provisions, avances, subventions et emprunts
 
@@ -29,8 +29,9 @@ Libellés repris de l'article 7. La liste complète, avec l'intitulé de chaque 
 | 1033 | Autres avances |
 | 105 | Fonds de travaux (art. 14-2-1 de la loi) |
 | 106 | Provisions pour travaux au titre de la délégation de pouvoirs accordée au conseil syndical (art. 21-1 de la loi) |
-| 12-1 | Solde en attente sur travaux et opérations exceptionnelles : travaux décidés par l'assemblée générale |
-| 12-2 | Solde en attente sur travaux et opérations exceptionnelles : travaux délégués au conseil syndical (art. 21-1 de la loi) |
+| 12 | Solde en attente sur travaux et opérations exceptionnelles |
+| 12-1 | Solde en attente : travaux décidés par l'assemblée générale |
+| 12-2 | Solde en attente : travaux délégués au conseil syndical (art. 21-1 de la loi) |
 | 131 | Subventions accordées en instance de versement |
 
 Le 1032 figure à l'article 7 avec la seule mention « (Supprimé) » : il n'est plus utilisable.
@@ -64,7 +65,7 @@ Le 1032 figure à l'article 7 avec la seule mention « (Supprimé) » : il n'est
 | 491 | Dépréciation des comptes de tiers : copropriétaires |
 | 492 | Dépréciation des comptes de tiers : personnes autres que les copropriétaires |
 
-Trois pièges. Le compte du copropriétaire est le **450**, pas le 411 : les comptes 411 à 414 appartiennent au plan comptable général et n'existent pas ici. Les **comptes d'attente sont les 471 et 472**, le 450 n'en est pas un. Les subdivisions 450-1 à 450-5 ne s'ouvrent que **sur décision d'assemblée générale**. La classe 48 s'arrête au 487 : il n'existe ni 488 ni 489.
+Quatre pièges. Le compte du copropriétaire est le **450**, pas le 411 : les comptes 411 à 414 appartiennent au plan comptable général et n'existent pas ici. Les **comptes d'attente sont les 471 et 472**, le 450 n'en est pas un. Les subdivisions 450-1 à 450-5 ne s'ouvrent que **sur décision d'assemblée générale**. La classe 48 s'arrête au 487 : il n'existe ni 488 ni 489.
 
 ### Classe 5 : Comptes financiers
 
@@ -80,7 +81,7 @@ Le compte bancaire courant du syndicat est au **512**, pas au 501 : le 501 est u
 
 ### Classe 6 : Comptes de charges
 
-Les comptes 60 à 66 portent les **charges courantes** du budget prévisionnel (art. 14-1, I de la loi). Les comptes 67 portent les **travaux et opérations exceptionnelles**, hors budget prévisionnel (art. 14-1, II), qui font l'objet d'un vote propre. Les libellés officiels du 450-2 et du 702 citent encore l'ancien article 14-2 : on les garde tels quels, mais la base légale à citer est l'article 14-1, II. La distinction commande la base légale, l'appel de fonds, la clé de répartition et l'annexe : ne jamais loger l'un dans l'autre.
+Les comptes 60 à 65 portent les **charges courantes** couvertes par le budget prévisionnel (art. 14-1, I de la loi). Le 661 (annuités d'emprunt) est appelé à part : le 450-4 est débité par le crédit du 704, puis l'annuité est payée par le 661 (art. 10). Les comptes 671 à 674 portent les **travaux** hors budget prévisionnel (art. 14-1, II), décidés par l'assemblée générale ou délégués au conseil syndical ; les 677 et 678 les autres charges exceptionnelles. Les libellés officiels du 450-2 et du 702 citent encore l'ancien article 14-2 : on les garde tels quels, mais la base légale à citer est l'article 14-1, II. La distinction commande la base légale, l'appel de fonds, la clé de répartition et l'annexe : ne jamais loger l'un dans l'autre.
 
 | Compte | Libellé |
 |--------|---------|
@@ -124,7 +125,7 @@ Les comptes 60 à 66 portent les **charges courantes** du budget prévisionnel (
 | 678 | Charges exceptionnelles |
 | 68 | Dotations aux dépréciations sur créances douteuses |
 
-Des travaux non clôturés en fin d'exercice ne sont pas une anomalie, mais leur solde ne reste pas simplement dans le 671. L'article 10 le fait passer par le **compte 12** : en fin d'exercice, le 12 est débité par le crédit des comptes de charges pour travaux, puis l'écriture est contrepassée à l'ouverture de l'exercice suivant.
+Des travaux non clôturés en fin d'exercice ne sont pas une anomalie, mais leur solde ne reste pas simplement dans les comptes 67 et 70. L'article 10 le fait passer par le **compte 12** : en fin d'exercice, le 12 est débité par le crédit des comptes de charges pour travaux et crédité par le débit des comptes de produits sur travaux ; les deux écritures sont contrepassées à l'ouverture de l'exercice suivant. Le détail du 12 figure à l'annexe 5, son solde est repris à l'annexe 1 (état financier).
 
 ### Classe 7 : Comptes de produits
 
@@ -150,7 +151,7 @@ Le **701 reçoit l'appel de charges courantes**. Pour les travaux, l'appel ne pa
 
 ## Écritures Types
 
-Le copropriétaire est toujours le **450**, subdivisé selon la nature de l'appel.
+Le copropriétaire est au **450**. Si l'assemblée générale a créé les sous-comptes, on utilise celui qui correspond à l'appel (450-1 budget, 450-2 travaux, 450-4 emprunts, 450-5 fonds de travaux) : l'article 10 vise « le compte 450 [...] ou, s'il a été créé, le sous-compte ». Les écritures ci-dessous montrent les sous-comptes ; sans eux, remplacer 450-x par 450.
 
 ### Appel de fonds trimestriel (charges courantes, art. 14-1, I)
 
@@ -175,7 +176,7 @@ Débit  6xx - Charge correspondante                       X
 Crédit 401 - Fournisseurs, factures parvenues                X
 ```
 
-La charge entre par le compte fournisseur, puis elle est répartie entre les copropriétaires selon les tantièmes. Un crédit ultérieur sur le compte 6xx signifie que la dépense **sort de cette répartition** : la contrepartie en donne la raison, et il ne faut pas la qualifier d'annulation sans l'avoir lue.
+La facture est enregistrée au débit du compte de charge par le crédit du 401, puis la charge est répartie entre les copropriétaires selon la clé applicable. Un crédit ultérieur sur un compte 6xx (avoir, refacturation, imputation à un copropriétaire) n'est pas forcément une annulation : lire la contrepartie avant de le qualifier.
 
 ### Appel pour travaux votés (art. 14-1, II)
 
@@ -214,7 +215,7 @@ Débit  701   - Provisions sur opérations courantes       X
 Crédit 450-1 - Copropriétaire, budget prévisionnel           X
 ```
 
-Le solde du 450-1 devient créditeur. Il n'est exigible ou restituable qu'après approbation des comptes en assemblée.
+Les excédents ou insuffisances sur opérations courantes sont répartis entre les copropriétaires à l'arrêté des comptes, selon les quotes-parts de chaque lot (décret n° 2005-240, art. 8).
 
 ### Régularisation annuelle (insuffisance)
 
@@ -233,7 +234,19 @@ Débit  68  - Dotations aux dépréciations sur créances douteuses   X
 Crédit 491 - Dépréciation des comptes de tiers, copropriétaires       X
 ```
 
-Pour le 491, le montant à déprécier résulte de la décision de l'assemblée générale de procéder à la saisie immobilière (art. 10). Si la créance est définitivement perdue, elle passe au **677**, pas au 671.
+Pour le 491, le montant à déprécier résulte de la décision de l'assemblée générale de procéder à la saisie immobilière (art. 10). Quand la dépréciation n'a plus d'objet, le 49 est débité par le crédit du **78** (art. 10).
+
+Si la créance est définitivement perdue, la perte va au **677** « Pertes sur créances irrécouvrables », pas au 671 :
+
+```
+Débit  677 - Pertes sur créances irrécouvrables          X
+Crédit 459 - Copropriétaire, créances douteuses              X
+
+Débit  491 - Dépréciation des comptes de tiers           X
+Crédit 78  - Reprises de dépréciations                       X
+```
+
+La seconde écriture reprend la dépréciation devenue sans objet.
 
 ## Clôture Annuelle
 
@@ -241,50 +254,35 @@ Pour le 491, le montant à déprécier résulte de la décision de l'assemblée 
 
 1. Vérifier l'exhaustivité des écritures (toutes les factures enregistrées)
 2. Rapprochement bancaire (solde comptable vs relevé bancaire)
-3. Contrôler les comptes copropriétaires (450 et ses subdivisions 450-1 a 450-5)
-4. Provisions pour charges à payer (factures reçues après clôture)
+3. Contrôler les comptes copropriétaires (450 et, s'ils ont été créés, ses sous-comptes 450-1 à 450-5)
+4. Factures non parvenues : charges de l'exercice dont la facture arrive après la clôture, au 408
 5. Calcul de la régularisation (réel vs budget prévisionnel)
-6. Affectation du résultat (report, remboursement, ou appel complémentaire)
+6. Répartition des excédents ou insuffisances sur opérations courantes entre les copropriétaires, à l'arrêté des comptes (décret n° 2005-240, art. 8)
 7. Préparer les 5 annexes comptables obligatoires
 8. Soumettre les comptes au conseil syndical puis à l'AG
 
-### Les 5 Annexes Comptables Obligatoires (art. 35-2 décret 1967)
+### Les 5 Annexes Comptables Obligatoires (décret n° 2005-240, art. 8 et annexes n° 1 à 5)
+
+Les comptes sont présentés selon les modèles obligatoires des annexes n° 1 à 5 du décret : https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006239516. L'art. 35-2 du décret de 1967 porte sur les avis d'appel de fonds, pas sur les annexes.
 
 #### Annexe 1 : État financier
 
-Situation de trésorerie au jour de la clôture :
-- Soldes bancaires (compte courant, livret, placements)
-- Fonds de travaux
-- Total trésorerie disponible
+Présente l'état des créances et des dettes du syndicat et la situation de trésorerie à la clôture, avec le montant des emprunts restant dus (décret n° 2005-240, art. 8). Le solde du compte 12 y est repris (arrêté, art. 10).
 
 #### Annexe 2 : Compte de gestion général
 
-Toutes les charges et tous les produits de l'exercice, hors budget :
-- Charges de l'exercice par nature (classes 6)
-- Produits de l'exercice par nature (classes 7)
-- Résultat de l'exercice
+Présente les charges et les produits de l'exercice : il comprend le compte de gestion pour opérations courantes et le compte de gestion pour travaux et opérations exceptionnelles (décret n° 2005-240, art. 8).
 
 #### Annexe 3 : Compte de gestion pour opérations courantes
 
-Comparaison budget voté vs charges réelles :
-- Budget voté par poste
-- Charges réelles par poste
-- Écart (montant et %)
-- Explication des écarts significatifs
+Charges et produits des opérations courantes de l'exercice, présentés face au budget prévisionnel voté, selon le modèle de l'annexe n° 3. Les écarts significatifs se commentent pour l'assemblée.
 
 #### Annexe 4 : Compte de gestion pour travaux et opérations exceptionnelles
 
-Pour chaque opération de travaux votée :
-- Montant voté
-- Montant engagé
-- Montant réglé
-- Solde restant
+Charges et produits des travaux et opérations exceptionnelles de l'exercice, opération par opération, selon le modèle de l'annexe n° 4.
 
 #### Annexe 5 : État des travaux et opérations exceptionnelles votés non clôturés
 
-Suivi des travaux en cours ou non encore soldés :
-- Description de l'opération
-- Date du vote et AG de référence
-- Budget voté
-- État d'avancement
-- Montants appelés et versés
+Fait apparaître en fin d'exercice le réalisé et le prévisionnel de chaque opération non clôturée (décret n° 2005-240, art. 8), avec le détail du compte 12 (arrêté, art. 10).
+
+Les modèles des annexes ne sont pas reproduits sur Légifrance : se reporter au décret n° 2005-240 publié au Journal officiel pour la présentation exacte des colonnes.

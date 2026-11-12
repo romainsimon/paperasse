@@ -1,39 +1,29 @@
 # Intégration Qonto
 
-Le connecteur Qonto existant (`integrations/qonto/fetch.js`) récupère automatiquement les transactions du compte bancaire d'une copropriété.
+Le connecteur Qonto du skill comptable (`comptable/integrations/qonto/fetch.js`, ou `integrations/qonto/fetch.js` à la racine du repo Paperasse) récupère les transactions de tous les comptes d'une organisation Qonto, en lecture seule. Il ne fait ni catégorisation ni écriture : la table ci-dessous sert à l'agent pour proposer les imputations, à valider par le syndic.
 
 ## Configuration
 
-Ajouter un bloc `qonto` dans le fichier JSON de la copro (`copros/{slug}.json`) :
+Le compte bancaire est ouvert au nom du syndicat (art. 18 II de la loi de 1965) : l'organisation Qonto interrogée est donc celle du syndicat, avec ses propres clés API (Dashboard Qonto, Settings, Integrations, API). Le connecteur lit deux variables d'environnement :
 
-```json
-{
-  "qonto": {
-    "enabled": true,
-    "env_id": "QONTO_OLIVIERS_ID",
-    "env_secret": "QONTO_OLIVIERS_SECRET"
-  }
-}
+```bash
+export QONTO_ID="slug-de-l-organisation"
+export QONTO_API_SECRET="cle-secrete"
 ```
 
-Chaque copro peut avoir son propre compte Qonto (variables d'environnement distinctes). Pour un syndic gérant plusieurs copros avec un seul compte Qonto multi-IBAN, partager les mêmes variables.
-
-Clés API Qonto : Dashboard Qonto → Settings → Integrations → API.
+Le bloc `qonto` de `copros/{slug}.json` (voir `copros.example.json`) sert de mémo : `env_id` et `env_secret` indiquent quelles variables exporter pour cette copropriété. Le script ne lit pas ce fichier : pour plusieurs copropriétés, le lancer une fois par copropriété, avec les clés de son organisation.
 
 ## Usage
 
 ```bash
-# Transactions d'une copro
-node integrations/qonto/fetch.js --copro les-oliviers
+# Toutes les transactions des comptes de l'organisation
+node comptable/integrations/qonto/fetch.js
 
-# Toutes les copros
-node integrations/qonto/fetch.js --all-copros
-
-# Filtrer par date (exercice comptable)
-node integrations/qonto/fetch.js --copro les-oliviers --start 2025-07-01 --end 2026-06-30
+# Exercice comptable de la copropriété
+node comptable/integrations/qonto/fetch.js --start 2025-07-01 --end 2026-06-30
 ```
 
-Transactions enregistrées dans `data/transactions/qonto-{slug}.json`.
+Les transactions sont enregistrées dans `data/transactions/qonto-{compte}.json`, un fichier par compte bancaire de l'organisation. Le dossier `data/` est celui qui contient `integrations/` : `comptable/data/transactions/` pour la copie du skill comptable. Le script signale les ruptures de solde, signe de transactions manquantes.
 
 ## Catégorisation
 
@@ -44,10 +34,13 @@ Les transactions sont catégorisées selon le plan comptable des copropriétés 
 | Nettoyage (prestataire de nettoyage) | 611 Nettoyage des locaux |
 | Espaces verts | 614 Contrats de maintenance si contrat annuel, sinon 615 Entretien et petites réparations |
 | Assurance immeuble | 616 Primes d'assurances |
-| Chauffage (Engie, etc.) | 603 Chauffage, énergie et combustibles |
-| Eau (Veolia, etc.) | 601 Eau |
-| Électricité (EDF, etc.) | 602 Electricité |
-| Honoraires du syndic | 6211 Rémunération du syndic |
+| Chauffage : combustible, énergie, réseau de chaleur | 603 Chauffage, énergie et combustibles |
+| Contrat d'entretien (chaudière, ascenseur, etc.) | 614 Contrats de maintenance |
+| Eau | 601 Eau |
+| Électricité des parties communes | 602 Electricité |
+| Honoraires du syndic (forfait de gestion) | 6211 Rémunération du syndic |
+| Honoraires du syndic sur travaux | 6221 Honoraires travaux |
+| Prestations particulières du syndic | 6222 Prestations particulières |
 | Frais postaux | 6213 Frais postaux |
 | Frais bancaires | 662 Autres charges financières et agios |
 

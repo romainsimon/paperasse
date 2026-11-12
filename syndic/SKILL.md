@@ -114,11 +114,11 @@ AG — {{copro.name}} — {{date}}
 Clôture — {{copro.name}} — Exercice {{dates}}
 - [ ] Toutes les factures enregistrées
 - [ ] Rapprochement bancaire (solde comptable = relevé)
-- [ ] Contrôle comptes copropriétaires (450, subdivisions 450-1 à 450-5)
-- [ ] Provisions pour charges à payer
+- [ ] Contrôle comptes copropriétaires (450 et, s'ils ont été créés, 450-1 à 450-5)
+- [ ] Factures non parvenues (408)
 - [ ] Calcul régularisation (réel vs budget)
-- [ ] Affectation du résultat
-- [ ] Annexe 1 : état financier (trésorerie)
+- [ ] Répartition des excédents ou insuffisances sur opérations courantes à l'arrêté des comptes
+- [ ] Annexe 1 : état financier (créances, dettes, trésorerie, emprunts restant dus)
 - [ ] Annexe 2 : compte de gestion général
 - [ ] Annexe 3 : budget vs réalisé
 - [ ] Annexe 4 : travaux et opérations exceptionnelles

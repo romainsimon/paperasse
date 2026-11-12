@@ -137,7 +137,7 @@ RÉCEPTION DES DOCUMENTS (cocher au fur et à mesure)
 - [ ] Contrats en cours :
       • Assurance multirisques (n° contrat, échéance, franchise)
       • Maintenance (nettoyage, chauffage, ascenseur, espaces verts)
-      • Énergie (EDF, gaz, eau)
+      • Énergie (électricité, gaz, eau)
       • Autres (interphone, portail, désinsectisation, extincteurs)
       • Pour chaque contrat : échéance, préavis de résiliation, clause de révision
 - [ ] Clés et codes :

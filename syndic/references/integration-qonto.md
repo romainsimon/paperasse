@@ -37,28 +37,30 @@ Transactions enregistrées dans `data/transactions/qonto-{slug}.json`.
 
 ## Catégorisation
 
-Les transactions sont catégorisées selon le plan comptable des copropriétés (classe 6) :
+Les transactions sont catégorisées selon le plan comptable des copropriétés (arrêté du 14 mars 2005, art. 7 ; liste complète dans `data/plan-comptable-copro.json`) :
 
-| Fournisseur type | Compte PCG copro |
-|------------------|-----------------|
-| Nettoyage (prestataire de nettoyage) | 612 |
-| Espaces verts | 613 |
-| Assurance immeuble | 611 |
-| Chauffage (Engie, etc.) | 616/617 |
-| Eau (Veolia, etc.) | 618 |
-| Électricité (EDF, etc.) | 619 |
-| Honoraires syndic | 621 |
-| Frais postaux | 625 |
-| Frais bancaires | 662 |
+| Fournisseur type | Compte copro |
+|------------------|--------------|
+| Nettoyage (prestataire de nettoyage) | 611 Nettoyage des locaux |
+| Espaces verts | 614 Contrats de maintenance si contrat annuel, sinon 615 Entretien et petites réparations |
+| Assurance immeuble | 616 Primes d'assurances |
+| Chauffage (Engie, etc.) | 603 Chauffage, énergie et combustibles |
+| Eau (Veolia, etc.) | 601 Eau |
+| Électricité (EDF, etc.) | 602 Electricité |
+| Honoraires du syndic | 6211 Rémunération du syndic |
+| Frais postaux | 6213 Frais postaux |
+| Frais bancaires | 662 Autres charges financières et agios |
+
+Les comptes 617, 618, 619 et 625 n'existent pas dans ce plan : ils viennent du plan comptable général.
 
 ## Rapprochement bancaire
 
 Croiser les transactions Qonto avec :
 1. Les appels de fonds émis (comptes 450-1, 450-2, 450-5)
 2. Les paiements fournisseurs (compte 401)
-3. Le solde comptable (compte 501)
+3. Le solde comptable de la banque (compte 512)
 
-Vérification : solde Qonto au jour J = solde du compte 501.
+Vérification : solde Qonto au jour J = solde du compte 512. Le 501 est un compte à terme (fonds placés), jamais le compte courant.
 
 ## Données ouvertes (RNC)
 

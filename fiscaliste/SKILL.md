@@ -158,7 +158,7 @@ La LFSS 2026 (loi n° 2025-1403 du 30/12/2025, art. 12) a porté la CSG sur les 
 - **Report** : plafonds non utilisés des 3 années précédentes (2022 à 2024 pour les versements 2025) ; **5 ans pour les reliquats nés à partir de 2026** (LFI 2026, art. 9 et 10 ; BOI-IR-BASE-20-50-30 § 80) : les versements 2026 n'utilisent que les reliquats 2023 à 2025, la fenêtre complète de cinq ans n'est atteinte qu'en 2031. Imputation sur le plafond de l'année d'abord, puis sur les reliquats du plus ancien au plus récent
 - **Mutualisation couple** : case 6QR sur la 2042 ; sans objet l'année qui suit les 70 ans d'un conjoint
 - **70 ans et plus** : versements non déductibles à compter du 01/01/2026 (LFI 2026, art. 9)
-- **RFR** : le versement déduit est réintégré dans le RFR (art. 1417, IV CGI) : sans effet sur la CEHR, la CDHR et les seuils de CSG sur l'ARE ou les pensions
+- **RFR** : le versement déduit est réintégré dans le RFR (art. 1417, IV CGI) : sans effet sur la CEHR et les seuils de CSG sur l'ARE ou les pensions. La base CDHR reste inchangée, mais la baisse d'IR peut augmenter la CDHR et absorber tout ou partie de l'économie attendue si le plancher s'applique (voir `references/per.md`).
 
 ### IFI
 

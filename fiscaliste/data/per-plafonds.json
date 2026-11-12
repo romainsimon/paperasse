@@ -29,7 +29,7 @@
     },
     "mutualisation_couple": "Les époux/pacsés soumis à imposition commune peuvent mutualiser leurs plafonds (case 6QR de la 2042) ; sans objet l'année qui suit les 70 ans d'un conjoint",
     "age_70_ans": "Versements non déductibles lorsque le titulaire a 70 ans ou plus à la date du versement, à compter du 01/01/2026 (LFI 2026, art. 9)",
-    "effet_rfr": "Les cotisations déduites sont réintégrées dans le revenu fiscal de référence (art. 1417, IV CGI) : le PER ne réduit ni la CEHR, ni la CDHR, ni les seuils de CSG sur revenus de remplacement",
+    "effet_rfr": "Les cotisations déduites sont réintégrées dans le revenu fiscal de référence (art. 1417, IV CGI) : le PER ne réduit pas la CEHR et ne modifie pas les seuils de CSG sur revenus de remplacement. Le revenu de référence CDHR reste inchangé, mais une baisse de l'IR retenu peut augmenter la CDHR et absorber tout ou partie de l'économie d'IR si le plancher s'applique (art. 224, III et IV CGI ; https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11). Comparer IR + CEHR + CDHR avant et après versement",
     "excedent": "La fraction versée au-delà du plafond n'est ni déductible ni reportable (brochure IR 2026, exemple)",
     "cases_2042": "6NS / 6NT / 6NU (versements), 6QR (mutualisation), 6PS / 6PT / 6PU (plafond à corriger)"
   },
@@ -44,7 +44,7 @@
   },
 
   "arbitrage_per": {
-    "description": "Le PER est un report d'imposition, pas une exonération. L'avantage net dépend du différentiel TMI entrée / sortie.",
+    "description": "Le PER est un report d'imposition, pas une exonération. L'avantage net dépend du différentiel TMI entrée / sortie, sous réserve de l'effet CDHR décrit dans per_individuel.effet_rfr.",
     "gagnant": "TMI entrée > TMI sortie → gain net",
     "perdant": "TMI entrée < TMI sortie → perte nette (rare mais possible si carrière ascendante ou sortie en capital massif)",
     "neutre": "TMI égaux → gain = seulement la capitalisation sur l'économie d'impôt (effet levier)",

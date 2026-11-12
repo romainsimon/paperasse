@@ -42,11 +42,13 @@ Pour un plan ouvert avant 2018, la fraction du gain acquise avant le 01/01/2018 
 
 ### Composition éligible
 
-- Actions européennes (UE + EEE)
-- OPCVM investis à 75% minimum en actions européennes
-- Certaines ETF européens (vérifier l'éligibilité)
+- Actions de sociétés de l'UE ou de l'EEE respectant les conditions de l'art. L. 221-31 CMF
+- Fonds éligibles, notamment OPCVM respectant le quota légal de plus de 75 % de titres éligibles
+- Certains ETF éligibles à réplication synthétique peuvent suivre des indices mondiaux ou américains via des contrats d'échange (swaps). L'exposition de l'indice est distincte des titres détenus par le fonds : vérifier l'éligibilité du fonds, pas seulement sa devise de cotation ni son indice.
 
-**Non éligibles** : actions américaines, asiatiques, obligations, or, crypto.
+**Non éligibles en détention directe** : actions américaines, asiatiques, obligations, or, crypto. L'éligibilité au PEA ne signifie donc pas une exposition limitée à la zone euro, et un ETF coté en euros n'est pas automatiquement éligible.
+
+Sources : [art. L. 221-31 CMF](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218125/2026-11-11) ; [fiche émetteur iShares MSCI World Swap PEA UCITS ETF](https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf), consultée le 11/11/2026, qui décrit une exposition MSCI World par swaps conçue pour le PEA (exemple de mécanisme, pas une recommandation).
 
 ### Arbitrage PEA vs assurance-vie
 
@@ -54,14 +56,14 @@ Pour un plan ouvert avant 2018, la fraction du gain acquise avant le 01/01/2018 
 |---------|-----|-----|
 | Exonération IR | **Oui** après 5 ans | Non (abattement seulement) |
 | PS sur gains | 17,2 % puis 18,6 % à partir du 01/01/2026, à chaque retrait | 17,2 % inchangé (cas exclu de la hausse LFSS 2026) |
-| Composition | Actions EUR uniquement | Libre (actions, obligations, fonds €) |
+| Composition | Titres et fonds éligibles ; exposition mondiale possible via certains ETF synthétiques | Actions, obligations, fonds €, selon le contrat |
 | Retrait avant échéance | Clôture avant 5 ans | Libre à tout moment |
 | Transmission | Dans succession classique | Régime spécifique (voir notaire) |
 | Plafond | 150 000 € | Aucun |
 
 **Stratégie de cumul** :
-- PEA pour la performance actions européennes (fiscalité imbattable après 5 ans)
-- AV pour la diversification (fonds €, UC mondiales) et la transmission
+- PEA pour l'investissement en actions via les titres et fonds éligibles, y compris une exposition mondiale via certains ETF synthétiques (exonération d'IR après 5 ans)
+- AV pour d'autres supports, notamment fonds € et obligations, selon le contrat, et pour la transmission
 
 ## Assurance-Vie : fiscalité des rachats
 

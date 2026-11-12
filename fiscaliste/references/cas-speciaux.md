@@ -58,7 +58,7 @@ Foyer célibataire, RNI habituel 40 000 € (TMI 30%), vesting RSU 80 000 € im
 - Supplément × 4 : (11 104 − 5 104) × 4 = 24 000 €
 - Impôt total : 5 104 + 24 000 = 29 104 €
 
-Gain : environ 3 900 €, parce que le quart du revenu exceptionnel (20 000 €) reste dans la tranche à 30 % au lieu de faire monter 35 423 € dans la tranche à 41 %. Le gain est nul si le revenu ordinaire est déjà dans la dernière tranche, et il ne joue que sur l'IR : la CEHR est calculée sur le RFR sans quotient ; pour la CDHR, les revenus exceptionnels au sens de l'art. 163-0 A sont retenus pour le quart de leur montant (art. 224 CGI ; brochure IR 2026, « Divers », CDHR, note 2).
+Gain : environ 3 900 €, parce que le quart du revenu exceptionnel (20 000 €) reste dans la tranche à 30 % au lieu de faire monter 35 423 € dans la tranche à 41 %. Le gain est nul si le revenu ordinaire est déjà dans la dernière tranche, et il ne joue que sur l'IR : la CEHR est calculée sur le RFR sans quotient ; pour la CDHR, le traitement au quart relève des conditions propres de l'art. 224 CGI, qui exigent un revenu exceptionnel par nature et par montant, indépendamment de l'application du quotient IR (voir la section CDHR ci-dessous).
 
 **Règle** : chiffrer systématiquement les deux scénarios avant de recommander le quotient.
 
@@ -105,11 +105,15 @@ CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libér
 ```
 (retenue si positive)
 
-- **RREF** (revenu de référence) : le RFR calculé sans le quotient, dans lequel les revenus exceptionnels taxés au quotient sont retenus pour le quart, et diminué des abattements réintégrés dans le RFR autres que les abattements pour durée de détention : l'abattement de 40 % sur les dividendes, l'abattement de 50 % sur les gains d'acquisition d'actions gratuites (art. 200 A, 3) et l'abattement fixe des dirigeants n'y sont donc pas réintégrés.
-- **IR retraité** : IR après réductions et crédits, majoré de certains crédits et réductions d'impôt réintégrés, diminué des trois quarts de l'impôt afférent aux revenus exceptionnels taxés au quotient.
+- **RREF** (revenu de référence) : le RFR calculé sans le quotient, dans lequel les revenus exceptionnels au sens de l'art. 224 CGI sont retenus pour le quart, qu'ils soient imposés au barème ou à un taux proportionnel, et diminué des abattements réintégrés dans le RFR autres que les abattements pour durée de détention : l'abattement de 40 % sur les dividendes, l'abattement de 50 % sur les gains d'acquisition d'actions gratuites (art. 200 A, 3) et l'abattement fixe des dirigeants n'y sont donc pas réintégrés.
+- **IR retraité** : IR après les retraitements prévus par l'art. 224, IV CGI, dont la réintégration de certains crédits et réductions d'impôt. Pour les revenus exceptionnels au barème, calculer les droits simples sans quotient IR, puis leur fraction afférente au revenu exceptionnel au prorata du revenu exceptionnel net sur le revenu net global imposable : cette fraction n'est retenue que pour le quart. Pour les revenus exceptionnels à taux proportionnel, retenir le quart de l'IR correspondant (BOI-IR-CDHR-20 § 160 à 190), pas les trois quarts retranchés de l'impôt réellement acquitté au quotient.
 - **Décote** : si le RREF est inférieur ou égal à 330 000 € (personne seule) ou 660 000 € (couple), la cotisation de 20 % est diminuée de la différence, si elle est positive, entre cette cotisation et 82,5 % × (RREF − 250 000 € ou 500 000 €).
 
 Un foyer dont les revenus sont surtout des salaires au barème dépasse en général le plancher de 20 % et n'en paie rien ; la CDHR touche ceux dont l'IR effectif est faible au regard du RFR (revenus au PFU à 12,8 %, dividendes, plus-values, abattements importants). Elle est calculée par l'administration après dépôt de la 2042 ; les cases 8KD à 8KG servent à ventiler les revenus exceptionnels et les revenus à taux proportionnel.
+
+Le traitement au quart suppose un revenu exceptionnel **par nature et par montant** : non susceptible d'être recueilli annuellement et supérieur à la moyenne des revenus nets imposables des trois années précédentes. Il est propre à la CDHR et ne suppose pas l'application du quotient IR. Des cessions mobilières récurrentes ne deviennent pas exceptionnelles par leur seul montant ; ne pas qualifier automatiquement une vente d'actions gratuites d'exceptionnelle.
+
+Sources : [art. 224, II et IV CGI](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11), [BOI-IR-CDHR-10 § 140 et 250](https://bofip.impots.gouv.fr/bofip/15095-PGP.html/identifiant=BOI-IR-CDHR-10-20260630) et [BOI-IR-CDHR-20 § 20 à 70 et 130 à 190](https://bofip.impots.gouv.fr/bofip/15108-PGP.html/identifiant=BOI-IR-CDHR-20-20260630).
 
 ### Distinction CEHR vs CDHR
 
@@ -241,7 +245,7 @@ Délai pendant lequel la DGFIP peut redresser :
 
 | Impôt | Délai standard |
 |-------|----------------|
-| IR | 3 ans (jusqu'au 31 décembre de la 3e année suivant celle de l'imposition) |
+| IR | 3 ans : jusqu'au 31 décembre de la 3e année suivant celle au titre de laquelle l'imposition est due, c'est-à-dire l'année des revenus (art. L. 169 LPF). Revenus 2025 : jusqu'au 31/12/2028 |
 | IFI | 3 ans si la déclaration déposée révèle suffisamment l'exigibilité (LPF art. L. 180) ; 6 ans sinon (LPF art. L. 186) |
 | Tous impôts | **10 ans** en cas d'activité occulte ou fraude |
 | IR / IS | **10 ans** sur les revenus liés à un compte, un contrat ou un compte d'actifs numériques étranger non déclaré (art. L. 169 LPF ; pour les comptes, si le total des soldes a excédé 50 000 € dans l'année — voir [comptes-etrangers.md](comptes-etrangers.md)) |

@@ -106,7 +106,7 @@ Indépendamment de toute cession, chaque compte d'actifs numériques ouvert, dé
 
 ## Documentation à conserver
 
-Pour 6 ans minimum (délai de reprise) :
+Au moins 10 ans à compter de la dernière opération ou de l'établissement de la pièce (art. L. 102 B LPF, modifié par la loi n° 2026-534 du 25/06/2026, art. 36, pour les pièces dont le délai de conservation expire après le 01/01/2027 ; 6 ans auparavant ; durée distincte du délai de reprise), et surtout tant que le délai de reprise court et que les pièces servent à calculer le prix total d'acquisition du portefeuille. Le droit de reprise est de 3 ans en principe, porté à 10 ans, sans seuil, sur les revenus liés à un compte d'actifs numériques à l'étranger non déclaré (art. L. 169 LPF, renvoi à l'art. 1649 bis C CGI, voir [comptes-etrangers.md](comptes-etrangers.md)) :
 - Historique complet des transactions (exports exchanges)
 - Preuves des dates et prix d'acquisition
 - Détail des échanges crypto-to-crypto (même non imposables)

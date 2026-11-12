@@ -99,6 +99,35 @@
       ]
     },
     {
+      "id": 76,
+      "name": "options-levees-pee-demission-avant-cinq-ans",
+      "prompt": "Cas fictif : j'ai utilisé des avoirs de mon PEE pour lever des stock-options qualifiées en juin 2024 et les actions obtenues ont été inscrites directement au PEE. Je démissionne en juin 2026. Le gestionnaire indique que mes autres avoirs sont déblocables. Puis-je aussi retirer ces actions dès mon départ ?",
+      "expected_output": "Non : les actions issues de cette levée ont un blocage spécial de cinq ans depuis leur entrée au PEE, donc jusqu'en juin 2029. La démission ne permet pas leur déblocage anticipé ordinaire. Distinguer ces actions des autres avoirs du PEE et d'un simple apport d'actions déjà détenues. Sources : C. trav. L. 3332-25 ; BOI-RSA-ES-10-30-10 § 120 à 150 (https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728).",
+      "files": [],
+      "assertions": [
+        "Le skill identifie la levée financée par les avoirs du PEE et l'inscription des actions dans le plan",
+        "Le délai spécial de cinq ans part de l'entrée des actions en juin 2024, pas de l'ancienneté des avoirs utilisés",
+        "Le skill refuse un déblocage de ces actions en juin 2026 au seul motif de la démission",
+        "La disponibilité des autres avoirs n'est pas étendue à ces actions ; l'échéance de juin 2029 est identifiée",
+        "Le skill cite l'article L. 3332-25 du code du travail ou le BOI-RSA-ES-10-30-10"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "options-levees-pee-exoneration-ir-et-contribution-cession",
+      "prompt": "Cas fictif : des options qualifiées attribuées en 2018 ont été levées en octobre 2020 avec des avoirs du PEE ; les actions obtenues y sont entrées à cette date et y sont restées en détention directe. Le délai spécial de cinq ans est respecté. En novembre 2026 je vends ces actions dans le PEE, sans retirer l'argent. Le gain de levée est de 30 000 EUR, sans rabais excédentaire ; le gain net total est de 40 000 EUR. Le gain de levée est-il forcément un salaire au barème ? L'absence de retrait évite-t-elle toute contribution ? Ne calculez pas les PS sans le relevé du gestionnaire.",
+      "expected_output": "Sous les conditions du dispositif, les 40 000 EUR de gain net, gain de levée compris, sont exonérés d'IR. La contribution salariale de 10 % sur les 30 000 EUR de gain de levée reste due lors de la vente des actions dans le PEE : 3 000 EUR, même sans retrait. Distinguer les PS à la délivrance des avoirs ; ne pas leur appliquer automatiquement un taux uniforme sans le relevé. Sources : BOI-RSA-ES-10-30-10 § 140 à 180 (https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728) ; BOI-RSA-ES-20-30 § 120 et 150 (https://bofip.impots.gouv.fr/bofip/2389-PGP.html/identifiant=BOI-RSA-ES-20-30-20260521).",
+      "files": [],
+      "assertions": [
+        "Le skill applique le régime spécial de levée financée par le PEE, pas automatiquement le salaire des options postérieures à septembre 2012",
+        "L'exonération d'IR porte sur le gain net de 40 000 EUR, gain de levée compris, sous les conditions indiquées",
+        "La contribution salariale est calculée sur le gain de levée : 30 000 × 10 % = 3 000 EUR",
+        "Le fait générateur de cette contribution est la cession des actions dans le PEE, sans attendre un retrait",
+        "Le skill distingue contribution salariale et PS sur les gains à la délivrance des avoirs, sans chiffrer ces derniers sans relevé",
+        "Le skill cite le BOI-RSA-ES-10-30-10 et le BOI-RSA-ES-20-30"
+      ]
+    },
+    {
       "id": 7,
       "name": "crypto-pamc-exoneration",
       "prompt": "J'ai vendu 250 € de Bitcoin cette année avec une PV de 40 €. Je dois déclarer ?",
@@ -165,6 +194,22 @@
       ]
     },
     {
+      "id": 78,
+      "name": "cdhr-revenu-exceptionnel-pfu-et-cessions-recurrentes",
+      "prompt": "Cas fictif pour les revenus 2026 : je vends en une fois l'entreprise que j'ai fondée vingt ans auparavant, sans autre cession passée ou prévue. La plus-value nette est de 2 000 000 EUR, imposée au PFU, dont 256 000 EUR d'IR afférent. Mes revenus nets imposables des trois années précédentes sont de 100 000, 120 000 et 140 000 EUR ; ma situation familiale est inchangée. Pour la seule CDHR, faut-il refuser tout traitement exceptionnel parce que je ne peux pas demander le quotient IR sur ce gain au PFU ? Quelles fractions du gain et de l'IR afférent faut-il retenir si la nature exceptionnelle de cette cession unique est établie ? Et si ces mêmes montants provenaient au contraire de ventes de titres effectuées chaque année ? Ne calculez pas la contribution totale, il manque les autres données du foyer.",
+      "expected_output": "Le PFU n'exclut pas le traitement exceptionnel propre à la CDHR : les revenus au barème et à taux proportionnel sont concernés sous conditions cumulatives de nature et de montant. La moyenne des trois années est de 120 000 EUR, dépassée par 2 000 000 EUR. Sous réserve de la qualification par nature de la cession unique, retenir 500 000 EUR de revenu et 64 000 EUR d'IR afférent pour la CDHR, sans réduire l'IR réellement dû au PFU et sans appliquer le quotient IR. Des ventes annuelles récurrentes ne deviennent pas exceptionnelles du seul fait de leur montant. Sources : art. 224, II et IV CGI ; BOI-IR-CDHR-20 § 20 à 70, 130 et 190 (https://bofip.impots.gouv.fr/bofip/15108-PGP.html/identifiant=BOI-IR-CDHR-20-20260630).",
+      "files": [],
+      "assertions": [
+        "Le skill n'exige pas un revenu taxé au quotient IR : un revenu au PFU peut être exceptionnel pour la CDHR",
+        "Les conditions de nature et de montant sont vérifiées séparément ; la moyenne des trois revenus nets imposables vaut 120 000 EUR",
+        "Sous réserve de la nature exceptionnelle établie, le revenu est retenu pour 2 000 000 / 4 = 500 000 EUR",
+        "L'IR proportionnel afférent est retenu pour 256 000 / 4 = 64 000 EUR dans le calcul CDHR, sans modifier l'IR effectivement dû au PFU",
+        "Le skill refuse d'étendre automatiquement ce traitement au cas de cessions de titres récurrentes",
+        "Le skill distingue la méthode propre à la CDHR du quotient IR et cite l'article 224 CGI ou le BOI-IR-CDHR-20",
+        "Le skill ne calcule pas de CDHR totale en l'absence des autres données du foyer"
+      ]
+    },
+    {
       "id": 12,
       "name": "deficit-foncier-imputation",
       "prompt": "Foncier nu au réel : loyers bruts 15 000 €, charges courantes 4 000 €, travaux déductibles 18 000 €, intérêts d'emprunt 6 000 €. Quel est mon déficit foncier et combien s'impute sur mon revenu global ?",
@@ -192,6 +237,22 @@
         "Le skill recommande d'attendre 5 ans pour économiser 12,8 % d'IR",
         "Le skill précise qu'après 5 ans les PS (18,6 % depuis 2026) restent dus (pas d'exonération totale)",
         "Le skill signale la réserve sur la clause transitoire de la LFSS 2026 (gains acquis avant 2026)"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "pea-exposition-mondiale-et-etf-synthetiques",
+      "prompt": "Je veux une exposition diversifiée aux actions mondiales dans mon PEA. On me dit que le PEA impose des actions EUR uniquement et qu'il faut obligatoirement une assurance-vie pour suivre un indice World ou américain. Est-ce exact ? Un ETF coté en euros suffit-il à garantir son éligibilité ? Puis-je aussi y acheter directement des actions américaines ? Je demande le mécanisme et les conditions, pas une recommandation de fonds.",
+      "expected_output": "Non : distinguer titres détenus directement, éligibilité juridique du fonds et exposition économique. Des ETF éligibles au PEA à réplication synthétique peuvent suivre des indices mondiaux ou américains via des swaps, sans rendre éligibles les actions américaines détenues directement. Tous les ETF ne sont pas éligibles et la cotation en euros ne le prouve pas ; vérifier la documentation du fonds et l'éligibilité indiquée par le teneur de plan. L'assurance-vie n'est donc pas obligatoire pour une exposition mondiale. Sources : art. L. 221-31 CMF (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218125/2026-11-11) ; fiche émetteur d'un ETF MSCI World synthétique conçu pour le PEA (https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf).",
+      "files": [],
+      "assertions": [
+        "Le skill réfute une limitation de l'exposition du PEA aux seules actions de la zone euro",
+        "Le skill explique qu'un fonds éligible peut fournir une exposition mondiale ou américaine par réplication synthétique via des swaps",
+        "Le skill distingue titres détenus par le fonds, conditions d'éligibilité du fonds et indice suivi",
+        "Le skill maintient l'inéligibilité des actions américaines détenues directement dans le PEA",
+        "Le skill ne déclare ni tous les ETF World ni tous les ETF cotés en euros éligibles au PEA",
+        "Le skill ne présente pas l'assurance-vie comme obligatoire pour obtenir une exposition mondiale et ne recommande pas de fonds",
+        "Le skill renvoie aux critères légaux et à la documentation du fonds pour vérifier son éligibilité"
       ]
     },
     {
@@ -377,6 +438,22 @@
         "Le RFR est d'environ 285 445 €",
         "La CEHR est d'environ 1 063 €",
         "Le total avant réductions et crédits est d'environ 92 537 €"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "per-baisse-ir-compensee-par-cdhr",
+      "prompt": "Cas fictif pour les revenus 2026 : couple marié, sans personne à charge, revenu de référence CDHR de 800 000 EUR avant et après un versement PER déductible. Aucun revenu exceptionnel, prélèvement libératoire ou décote. Le total IR retraité + CEHR, déjà ajusté selon les règles de la CDHR, passe de 130 000 EUR avant versement à 125 000 EUR après ; toutes les autres données sont inchangées. Puisque le PER ne change pas le RFR, puis-je conclure que ma CDHR reste inchangée et que j'économise 5 000 EUR d'impôt au total ?",
+      "expected_output": "Non. Le maintien du revenu de référence ne garantit pas une CDHR inchangée. Plancher : 800 000 × 20 % = 160 000 EUR ; majoration pour imposition commune : 12 500 EUR. Avant : 160 000 - (130 000 + 12 500) = 17 500 EUR. Après : 160 000 - (125 000 + 12 500) = 22 500 EUR. La hausse de CDHR de 5 000 EUR absorbe ici toute la baisse d'IR : IR retraité + CEHR + CDHR vaut 147 500 EUR dans les deux cas. L'effet est conditionnel, une compensation intégrale n'est pas une règle générale pour tout versement PER. Sources : art. 1417, IV et art. 224, III et IV CGI (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11).",
+      "files": [],
+      "assertions": [
+        "Le skill distingue revenu de référence inchangé et montant de CDHR susceptible d'augmenter lorsque l'IR retenu baisse",
+        "Le plancher de 160 000 EUR et la majoration de 12 500 EUR pour le couple sont utilisés sans personne à charge ni décote",
+        "La CDHR avant versement est de 17 500 EUR",
+        "La CDHR après versement est de 22 500 EUR",
+        "La hausse de CDHR de 5 000 EUR absorbe ici la baisse d'IR de 5 000 EUR ; le total comparé reste de 147 500 EUR",
+        "Le skill ne présente ni le gain TMI seul comme une économie nette garantie ni la compensation intégrale comme applicable à tous les PER",
+        "Les montants IR retraité + CEHR fournis sont utilisés comme déjà ajustés, sans recalculer une autre CEHR"
       ]
     },
     {
@@ -727,6 +804,34 @@
       ]
     },
     {
+      "id": 67,
+      "name": "per-deblocage-enfant-malade-2-bis",
+      "prompt": "Mon fils de 8 ans, à ma charge, vient d'être diagnostiqué d'une leucémie. Il n'a aucune reconnaissance d'invalidité. Puis-je débloquer mon PER individuel (versements déduits) pour faire face, et comment serai-je imposé ?",
+      "expected_output": "Oui. Depuis le 14/06/2026, l'affection grave, le handicap ou l'accident d'une particulière gravité chez l'enfant à charge du titulaire est un cas de déblocage anticipé (L. 224-4, I-2° bis CMF, loi n° 2026-492 du 12/06/2026, art. 4), sans reconnaissance d'invalidité de 2e ou 3e catégorie. Par lecture des textes, ce cas s'insère dans la plage des 1° à 5° du I de L. 224-4 visée par l'exonération de l'art. 81, 4° bis-a CGI, que le BOI-RSA-PENS-30-10-20 du 10/08/2026 (§ 200) maintient sans viser le 2° bis : versements et gains exonérés d'IR, prélèvements sociaux sur les seuls gains, comme les autres accidents de la vie (service-public.fr F34982 le range parmi les accidents de la vie). Le skill signale qu'au 05/11/2026 aucun paragraphe du BOFiP ne vise expressément le 2° bis.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que le déblocage est possible au titre du 2° bis de l'article L. 224-4 CMF (loi du 12/06/2026)",
+        "Le skill précise qu'aucune invalidité de 2e ou 3e catégorie n'est exigée pour ce cas",
+        "Le skill retient l'exonération d'IR sur les versements et les gains, avec prélèvements sociaux sur les seuls gains",
+        "Le skill signale qu'aucun paragraphe du BOFiP ne vise expressément le 2° bis",
+        "Le skill N'impose PAS le capital au barème comme une sortie à la retraite ou pour la résidence principale"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "transfert-madelin-perp-vers-per",
+      "prompt": "J'ai un vieux contrat Madelin et un PERP. Si je les transfère sur mon PER individuel, suis-je imposé au moment du transfert ? Et à la retraite, pourrai-je sortir en capital et garder le taux de 7,5 % du PERP ?",
+      "expected_output": "Le transfert (CMF, art. L. 224-40, I) n'est pas un dénouement : rien n'est imposé l'année du transfert (BOI-RSA-PENS-30-10-20 du 10/08/2026, § 30). Les droits transférés sont assimilés à des droits issus de versements volontaires sans option pour la non-déduction (§ 90, remarque). Les droits d'un Madelin ou d'un PERP sont affectés aux versements volontaires (CMF, art. L. 224-40, II) : la sortie en capital devient possible, y compris pour l'ancien Madelin, sauf option irrévocable pour la rente (à vérifier dans les conditions du PER d'accueil). La part versements est imposée au barème sans abattement de 10 % (quotient possible, § 100) et les produits au PFU de 12,8 % ou au barème sur option (§ 130). L'imposition forfaitaire de 7,5 % de l'art. 163 bis, II ne s'applique pas au capital issu de droits transférés (§ 250, remarque).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que le transfert ne déclenche aucune imposition l'année du transfert",
+        "Le skill précise que les droits transférés sont traités comme des versements volontaires sans option pour la non-déduction",
+        "Le skill indique que les droits Madelin et PERP transférés sont affectés aux versements volontaires (L. 224-40, II), ce qui ouvre la sortie en capital",
+        "Le skill précise que le taux forfaitaire de 7,5 % ne s'applique pas au capital issu des droits transférés",
+        "Le skill N'applique PAS l'abattement de 10 % à la part du capital correspondant aux versements"
+      ]
+    },
+    {
       "id": 73,
       "name": "artiste-auteur-ts-vs-bnc-droits-precomptes",
       "prompt": "Mon éditeur me verse 8 000 € de droits par an avec précompte. Je déclare ça comment aux impôts, et est-ce que j'ai intérêt à passer en BNC ?",
@@ -770,6 +875,49 @@
         "L'intérêt de retard de 0,20 %/mois et sa réduction de 50 % (1727 V) sont mentionnés avec leurs conditions (avant la fin du délai de reprise, paiement ou plan accepté)",
         "Le chemin impots.gouv « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer » est donné pour un délai de paiement",
         "Le skill ne chiffre pas au centime (ordres de grandeur) et ne conseille pas d'emprunter pour payer"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "pinel-plafond-loyer-annexes-parking",
+      "prompt": "J'ai un Pinel en zone A : 42 m² habitables, une cave de 6 m² et une place de parking louée dans le même bail. La commune n'est soumise à aucune modulation préfectorale. Nouveau locataire en avril 2026, loyer de 725 € hors charges parking compris. Suis-je sous le plafond ?",
+      "expected_output": "Oui. Surface retenue = 42 + 6/2 = 45 m² (moitié des annexes dans la limite de 8 m², parking exclu, BOI-IR-RICI-230-20-20 § 320 à 360). Coefficient 0,7 + 19/45 = 1,12 (arrondi à deux décimales, plafonné à 1,2, BOI-IR-RICI-360-20-30 § 120). Plafond 2026 zone A 14,64 €/m² (BOI-BAREME-000017 du 10/03/2026) × 1,12 = 16,40 €/m², × 45 = 738,00 €. Le parking étant loué dans le même bail, c'est le loyer total de 725 € qui est comparé (§ 440) : conforme, marge 13 €. Sans la cave, le plafond serait de 707,28 € et le loyer le dépasserait.",
+      "files": [],
+      "assertions": [
+        "Le skill retient une surface de 45 m² (moitié de la cave ajoutée, parking exclu)",
+        "Le skill applique le coefficient 1,12 et le plafond 2026 de 14,64 €/m² en zone A",
+        "Le skill obtient un plafond de 738 € et conclut que 725 € est conforme",
+        "Le skill compare le loyer parking compris parce que le parking est dans le même bail",
+        "Le skill N'utilise PAS la seule surface habitable de 42 m², qui donnerait à tort un dépassement"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "pinel-ressources-n2-concubins",
+      "prompt": "Je signe un bail Pinel en zone A en mars 2026 avec un couple non marié. Lui a 30 000 € de revenu fiscal de référence 2024, elle 25 000 €. Quel revenu et quel plafond dois-je regarder ? Et si leurs revenus augmentent l'an prochain ?",
+      "expected_output": "On retient le revenu fiscal de référence de l'avant-dernière année avant la signature, donc 2024 (N-1 admis s'il est inférieur et justifié), et les revenus de concubins s'apprécient globalement (BOI-IR-RICI-230-40-10 § 320, 330, 360) : 55 000 € à comparer au plafond 2026 « couple » en zone A, 66 276 € (BOI-BAREME-000017 du 10/03/2026 § 270). Conforme. Le contrôle se fait à la signature uniquement : une hausse ultérieure de leurs revenus ne remet pas en cause la réduction (§ 320).",
+      "files": [],
+      "assertions": [
+        "Le skill retient les revenus 2024 (N-2)",
+        "Le skill additionne les revenus des deux concubins",
+        "Le skill compare 55 000 € au plafond couple zone A 2026 de 66 276 €",
+        "Le skill précise qu'une hausse ultérieure des revenus ne fait pas perdre la réduction",
+        "Le skill N'exige PAS que chaque concubin respecte seul un plafond de personne seule"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "pinel-prorogation-meme-locataire-expatriation",
+      "prompt": "Mon engagement Pinel de 6 ans (investissement 2021, métropole) se termine en avril 2028. Mon locataire reste. Comment proroger, dois-je revérifier les plafonds, et est-ce possible alors que je vis à l'étranger depuis début 2026 ?",
+      "expected_output": "La prorogation (2 périodes triennales, complément de 6 % puis 3 %, imputé par tiers sur l'année de prorogation et les deux suivantes, sans report de l'excédent) est constatée au dépôt de la déclaration des revenus 2028, année du terme de la période initiale, (BOI-IR-RICI-360-60 § 40, 60, 110), la rubrique « engagement de location prorogé » de la 2042-RICI n'étant remplie que la première année (brochure pratique IR 2024). Sans changement de locataire, les plafonds ne sont pas réappréciés (§ 190). Condition : aucun cas de remise en cause sur la période initiale (§ 30). Pour un investissement réalisé depuis 2019, le transfert du domicile hors de France n'empêche pas la prorogation (§ 15). En tant que non-résident, cocher la case 7QH de la 2042-RICI, le complément ne s'imputant que sur l'impôt dû, sans remboursement. La prorogation ne peut être ni tacite ni anticipée et suppose de joindre la note prévue par l'administration (§ 270, 310 à 330).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que la prorogation se fait sur la déclaration des revenus 2028",
+        "Le skill précise que les plafonds ne sont pas réappréciés sans changement de locataire",
+        "Le skill retient 6 % puis 3 % imputés par tiers sur trois ans",
+        "Le skill confirme que l'expatriation n'empêche pas la prorogation pour un investissement réalisé depuis 2019",
+        "Le skill mentionne la case 7QH",
+        "Le skill précise que la prorogation est expresse (note jointe à la déclaration), ni tacite ni anticipée"
       ]
     },
     {

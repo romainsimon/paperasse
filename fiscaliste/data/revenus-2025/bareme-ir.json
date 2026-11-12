@@ -109,7 +109,16 @@
       "par_personne_a_charge": 1500,
       "imposition_commune": 12500
     },
-    "mecanisme": "CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € si imposition commune), si positif. RREF = RFR sans quotient, revenus exceptionnels retenus pour le quart, hors abattement de 40 % sur dividendes, abattement de 50 % sur gains d'actions gratuites et abattement fixe dirigeant (les abattements pour durée de détention restent réintégrés). IR retraité = IR après réductions et crédits, majoré de certains crédits et réductions réintégrés, diminué des 3/4 de l'impôt sur les revenus exceptionnels au quotient. Les deux contributions peuvent s'appliquer simultanément.",
+    "mecanisme": "CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € si imposition commune), si positif. RREF = RFR sans quotient, revenus exceptionnels au sens de l'art. 224 CGI retenus pour le quart, au barème comme à un taux proportionnel, hors abattement de 40 % sur dividendes, abattement de 50 % sur gains d'actions gratuites et abattement fixe dirigeant (les abattements pour durée de détention restent réintégrés). IR retraité = IR après réductions et crédits, majoré de certains crédits et réductions réintégrés, selon l'art. 224, IV CGI. Pour les revenus exceptionnels au barème, droits simples sans quotient IR, fractionnés au prorata revenu exceptionnel net / revenu net global imposable ; cette fraction est retenue pour le quart. Pour les revenus exceptionnels à taux proportionnel, retenir le quart de l'IR correspondant. Ne pas partir de l'impôt acquitté au quotient pour en retrancher simplement les 3/4. Les deux contributions peuvent s'appliquer simultanément.",
+    "revenus_exceptionnels": {
+      "conditions": "Revenu non susceptible d'être recueilli annuellement et dont le montant dépasse la moyenne des revenus nets imposables des trois années précédentes ; conditions de nature et de montant cumulatives, y compris pour les revenus à taux proportionnel",
+      "independance_quotient_ir": "Traitement au quart propre à la CDHR, sans application du quotient IR ; les cessions mobilières récurrentes et les ventes d'actions gratuites ne sont pas automatiquement exceptionnelles",
+      "sources": [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11",
+        "https://bofip.impots.gouv.fr/bofip/15095-PGP.html/identifiant=BOI-IR-CDHR-10-20260630",
+        "https://bofip.impots.gouv.fr/bofip/15108-PGP.html/identifiant=BOI-IR-CDHR-20-20260630"
+      ]
+    },
     "calendrier": {
       "acompte": "95 % du montant estimé, à verser entre le 1er et le 15 décembre de l'année des revenus (1er au 15 décembre 2025 pour les revenus 2025), via le service 'Gérer mon prélèvement à la source' sur impots.gouv.fr ; reporté en 8HR / 8HS",
       "penalite": "20 % en cas de défaut ou de retard de paiement de l'acompte, ou si l'acompte est inférieur de plus de 20 % à 95 % de la contribution due (LFI 2025, art. 10, III-C)",

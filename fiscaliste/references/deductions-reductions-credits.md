@@ -47,7 +47,7 @@ Voir `data/niches-fiscales.json` → `dispositifs_dans_plafond`.
 
 | Dispositif | Taux / mécanisme | Particularité |
 |-----------|------------------|---------------|
-| **Pinel** | Réduction étalée sur 6/9/12 ans | En extinction — dernier millésime 2024 |
+| **Pinel** | Réduction étalée sur 6/9/12 ans | En extinction, dernier millésime 2024. Conditions en cours d'engagement : [pinel.md](pinel.md) |
 | **Denormandie** | Similaire Pinel, ancien avec travaux | Ciblé centres-villes dégradés |
 | **Loc'Avantages** | Selon conventionnement et loyer | Alternative au Pinel |
 | **FCPI / FIP** | 18% à 25% des versements | Plafond versements distinct |

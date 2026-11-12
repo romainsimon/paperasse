@@ -876,6 +876,49 @@
         "Le chemin impots.gouv « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer » est donné pour un délai de paiement",
         "Le skill ne chiffre pas au centime (ordres de grandeur) et ne conseille pas d'emprunter pour payer"
       ]
+    },
+    {
+      "id": 69,
+      "name": "pinel-plafond-loyer-annexes-parking",
+      "prompt": "J'ai un Pinel en zone A : 42 m² habitables, une cave de 6 m² et une place de parking louée dans le même bail. La commune n'est soumise à aucune modulation préfectorale. Nouveau locataire en avril 2026, loyer de 725 € hors charges parking compris. Suis-je sous le plafond ?",
+      "expected_output": "Oui. Surface retenue = 42 + 6/2 = 45 m² (moitié des annexes dans la limite de 8 m², parking exclu, BOI-IR-RICI-230-20-20 § 320 à 360). Coefficient 0,7 + 19/45 = 1,12 (arrondi à deux décimales, plafonné à 1,2, BOI-IR-RICI-360-20-30 § 120). Plafond 2026 zone A 14,64 €/m² (BOI-BAREME-000017 du 10/03/2026) × 1,12 = 16,40 €/m², × 45 = 738,00 €. Le parking étant loué dans le même bail, c'est le loyer total de 725 € qui est comparé (§ 440) : conforme, marge 13 €. Sans la cave, le plafond serait de 707,28 € et le loyer le dépasserait.",
+      "files": [],
+      "assertions": [
+        "Le skill retient une surface de 45 m² (moitié de la cave ajoutée, parking exclu)",
+        "Le skill applique le coefficient 1,12 et le plafond 2026 de 14,64 €/m² en zone A",
+        "Le skill obtient un plafond de 738 € et conclut que 725 € est conforme",
+        "Le skill compare le loyer parking compris parce que le parking est dans le même bail",
+        "Le skill N'utilise PAS la seule surface habitable de 42 m², qui donnerait à tort un dépassement"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "pinel-ressources-n2-concubins",
+      "prompt": "Je signe un bail Pinel en zone A en mars 2026 avec un couple non marié. Lui a 30 000 € de revenu fiscal de référence 2024, elle 25 000 €. Quel revenu et quel plafond dois-je regarder ? Et si leurs revenus augmentent l'an prochain ?",
+      "expected_output": "On retient le revenu fiscal de référence de l'avant-dernière année avant la signature, donc 2024 (N-1 admis s'il est inférieur et justifié), et les revenus de concubins s'apprécient globalement (BOI-IR-RICI-230-40-10 § 320, 330, 360) : 55 000 € à comparer au plafond 2026 « couple » en zone A, 66 276 € (BOI-BAREME-000017 du 10/03/2026 § 270). Conforme. Le contrôle se fait à la signature uniquement : une hausse ultérieure de leurs revenus ne remet pas en cause la réduction (§ 320).",
+      "files": [],
+      "assertions": [
+        "Le skill retient les revenus 2024 (N-2)",
+        "Le skill additionne les revenus des deux concubins",
+        "Le skill compare 55 000 € au plafond couple zone A 2026 de 66 276 €",
+        "Le skill précise qu'une hausse ultérieure des revenus ne fait pas perdre la réduction",
+        "Le skill N'exige PAS que chaque concubin respecte seul un plafond de personne seule"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "pinel-prorogation-meme-locataire-expatriation",
+      "prompt": "Mon engagement Pinel de 6 ans (investissement 2021, métropole) se termine en avril 2028. Mon locataire reste. Comment proroger, dois-je revérifier les plafonds, et est-ce possible alors que je vis à l'étranger depuis début 2026 ?",
+      "expected_output": "La prorogation (2 périodes triennales, complément de 6 % puis 3 %, imputé par tiers sur l'année de prorogation et les deux suivantes, sans report de l'excédent) est constatée au dépôt de la déclaration des revenus 2028, année du terme de la période initiale, (BOI-IR-RICI-360-60 § 40, 60, 110), la rubrique « engagement de location prorogé » de la 2042-RICI n'étant remplie que la première année (brochure pratique IR 2024). Sans changement de locataire, les plafonds ne sont pas réappréciés (§ 190). Condition : aucun cas de remise en cause sur la période initiale (§ 30). Pour un investissement réalisé depuis 2019, le transfert du domicile hors de France n'empêche pas la prorogation (§ 15). En tant que non-résident, cocher la case 7QH de la 2042-RICI, le complément ne s'imputant que sur l'impôt dû, sans remboursement. La prorogation ne peut être ni tacite ni anticipée et suppose de joindre la note prévue par l'administration (§ 270, 310 à 330).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que la prorogation se fait sur la déclaration des revenus 2028",
+        "Le skill précise que les plafonds ne sont pas réappréciés sans changement de locataire",
+        "Le skill retient 6 % puis 3 % imputés par tiers sur trois ans",
+        "Le skill confirme que l'expatriation n'empêche pas la prorogation pour un investissement réalisé depuis 2019",
+        "Le skill mentionne la case 7QH",
+        "Le skill précise que la prorogation est expresse (note jointe à la déclaration), ni tacite ni anticipée"
+      ]
     }
   ]
 }

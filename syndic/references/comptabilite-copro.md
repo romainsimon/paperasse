@@ -81,7 +81,7 @@ Le compte bancaire courant du syndicat est au **512**, pas au 501 : le 501 est u
 
 ### Classe 6 : Comptes de charges
 
-Les comptes 60 à 65 portent les **charges courantes** couvertes par le budget prévisionnel (art. 14-1, I de la loi). Le 661 (annuités d'emprunt) est appelé à part : le 450-4 est débité par le crédit du 704, puis l'annuité est payée par le 661 (art. 10). Les comptes 671 à 674 portent les **travaux** hors budget prévisionnel (art. 14-1, II), décidés par l'assemblée générale ou délégués au conseil syndical ; les 677 et 678 les autres charges exceptionnelles. Les libellés officiels du 450-2 et du 702 citent encore l'ancien article 14-2 : on les garde tels quels, mais la base légale à citer est l'article 14-1, II. La distinction commande la base légale, l'appel de fonds, la clé de répartition et l'annexe : ne jamais loger l'un dans l'autre.
+Les comptes 60 à 66 portent les **charges courantes** couvertes par le budget prévisionnel (art. 14-1, I de la loi), à une exception près : l'annuité d'emprunt est appelée à part, au débit du 450 (ou du 450-4 s'il a été créé) par le crédit du 704, puis payée au débit du 661 (art. 10). Les comptes 67 portent les opérations **hors budget prévisionnel** (art. 14-1, II) : travaux décidés par l'assemblée générale (671), travaux urgents que le syndic peut faire exécuter de sa propre initiative pour la sauvegarde de l'immeuble (672, art. 18 I), études techniques (673), travaux délégués au conseil syndical (674), puis pertes sur créances irrécouvrables et charges exceptionnelles (677, 678). Les libellés officiels du 450-2 et du 702 citent encore l'ancien article 14-2 : on les garde tels quels, mais la base légale à citer est l'article 14-1, II. La distinction commande la base légale, l'appel de fonds, la clé de répartition et l'annexe : ne jamais loger l'un dans l'autre.
 
 | Compte | Libellé |
 |--------|---------|
@@ -231,7 +231,7 @@ Débit  459 - Copropriétaire, créances douteuses          X
 Crédit 450 - Copropriétaire individualisé                    X
 
 Débit  68  - Dotations aux dépréciations sur créances douteuses   X
-Crédit 491 - Dépréciation des comptes de tiers, copropriétaires       X
+Crédit 491 - Copropriétaires (dépréciation des comptes de tiers)      X
 ```
 
 Pour le 491, le montant à déprécier résulte de la décision de l'assemblée générale de procéder à la saisie immobilière (art. 10). Quand la dépréciation n'a plus d'objet, le 49 est débité par le crédit du **78** (art. 10).
@@ -242,8 +242,8 @@ Si la créance est définitivement perdue, la perte va au **677** « Pertes sur 
 Débit  677 - Pertes sur créances irrécouvrables          X
 Crédit 459 - Copropriétaire, créances douteuses              X
 
-Débit  491 - Dépréciation des comptes de tiers           X
-Crédit 78  - Reprises de dépréciations                       X
+Débit  491 - Copropriétaires (dépréciation des comptes de tiers)   X
+Crédit 78  - Reprises de dépréciations sur créances douteuses          X
 ```
 
 La seconde écriture reprend la dépréciation devenue sans objet.
@@ -285,4 +285,4 @@ Charges et produits des travaux et opérations exceptionnelles de l'exercice, op
 
 Fait apparaître en fin d'exercice le réalisé et le prévisionnel de chaque opération non clôturée (décret n° 2005-240, art. 8), avec le détail du compte 12 (arrêté, art. 10).
 
-Les modèles des annexes ne sont pas reproduits sur Légifrance : se reporter au décret n° 2005-240 publié au Journal officiel pour la présentation exacte des colonnes.
+Les modèles des annexes ne sont pas reproduits sur Légifrance : se reporter aux annexes du décret n° 2005-240 au Journal officiel, dans leur version modifiée (l'annexe n° 1 l'a été par le décret n° 2020-1229 du 7 octobre 2020, en vigueur le 31/12/2020, pour le compte 106 : https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042412731).

@@ -23,7 +23,7 @@ node comptable/integrations/qonto/fetch.js
 node comptable/integrations/qonto/fetch.js --start 2025-07-01 --end 2026-06-30
 ```
 
-Les transactions sont enregistrées dans `data/transactions/qonto-{compte}.json`, un fichier par compte bancaire de l'organisation. Le dossier `data/` est celui qui contient `integrations/` : `comptable/data/transactions/` pour la copie du skill comptable. Le script signale les ruptures de solde, signe de transactions manquantes.
+Les transactions sont enregistrées dans `data/transactions/qonto-{compte}.json`, un fichier par compte bancaire de l'organisation. Le dossier `data/` est celui qui contient `integrations/` : `comptable/data/transactions/` pour la copie du skill comptable. Le script signale les ruptures de solde, signe de transactions manquantes. Il s'arrête sans rien récupérer si le `company.json` placé à côté du dossier `integrations/` contient `"qonto": { "enabled": false }`.
 
 ## Catégorisation
 

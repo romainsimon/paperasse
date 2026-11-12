@@ -211,6 +211,73 @@ function testBilanCollisionRacines() {
   assert.strictEqual(totalActif, 11800, "total actif attendu 11800: " + totalActif);
 }
 
+function testBilanDepreciationsCirculant() {
+  // Issue #119 : 39x, 49x et 59x deduits dans la colonne Amort./Deprec. de l'actif circulant
+  const cas = [
+    ["370000", "397000"],
+    ["411000", "491000"],
+    ["503000", "590000"],
+  ];
+  for (const [brut, dep] of cas) {
+    const r = runBilan({
+      [brut]: { debit: 1000, credit: 0 },
+      [dep]: { debit: 0, credit: 100 },
+      "101000": { debit: 0, credit: 900 },
+    });
+    assert.deepStrictEqual(rowCells(r.md, dep), ["", "100,00", "-100,00"],
+      dep + " doit etre deduit dans la colonne des depreciations:\n" + r.md);
+    assert.strictEqual(r.totalActif, 900, dep + " : total actif attendu 900: " + r.totalActif);
+    assert.strictEqual(r.ecart, 0, dep + " : bilan desequilibre:\n" + r.md);
+    assert.deepStrictEqual(r.unpresented, []);
+    assert.doesNotThrow(() => checkBilanEquilibre(r));
+  }
+}
+
+function testBilanPrimesRemboursement169() {
+  // Issue #119 : 169 a solde debiteur a l'actif, pas en moins des dettes ni ignore
+  const r = runBilan({
+    "512000": { debit: 1000, credit: 0 },
+    "169000": { debit: 100, credit: 0 },
+    "163000": { debit: 0, credit: 1100 },
+  });
+  assert.deepStrictEqual(rowCells(r.md, "169000"), ["100,00", "", "100,00"],
+    "169000 doit figurer a l'actif:\n" + r.md);
+  assert.ok(r.md.includes("PRIMES DE REMBOURSEMENT DES EMPRUNTS"), "rubrique 169 absente:\n" + r.md);
+  assert.strictEqual(r.totalActif, 1100);
+  assert.strictEqual(r.totalPassif, 1100);
+  assert.doesNotThrow(() => checkBilanEquilibre(r));
+}
+
+function testBilanEcartsConversion() {
+  // 476 et 477 dans leurs rubriques propres, pas en creances ou dettes
+  const r = runBilan({
+    "512000": { debit: 1000, credit: 0 },
+    "476000": { debit: 50, credit: 0 },
+    "477000": { debit: 0, credit: 30 },
+    "401000": { debit: 0, credit: 1020 },
+  });
+  const actif = r.md.split("## PASSIF")[0];
+  const passif = r.md.split("## PASSIF")[1].split("## Verification")[0];
+  assert.ok(/ECARTS DE CONVERSION[^\n]*ACTIF[\s\S]*476000/.test(actif), "476000 hors rubrique actif:\n" + r.md);
+  assert.ok(/ECARTS DE CONVERSION[^\n]*PASSIF[\s\S]*477000/.test(passif), "477000 hors rubrique passif:\n" + r.md);
+  assert.ok(!/DETTES[\s\S]*477000[\s\S]*Total dettes/.test(passif), "477000 ne doit pas etre une dette:\n" + r.md);
+  assert.strictEqual(r.totalActif, 1050);
+  assert.strictEqual(r.totalPassif, 1050);
+  assert.strictEqual(r.ecart, 0);
+}
+
+function testBilanComptesNonRepris() {
+  // Un compte de bilan absent de l'actif et du passif est nomme dans l'erreur
+  const r = runBilan({
+    "512000": { debit: 1000, credit: 0 },
+    "164000": { debit: 100, credit: 0 },
+    "101000": { debit: 0, credit: 1100 },
+  });
+  assert.deepStrictEqual(r.unpresented, [["164000", 100]]);
+  assert.ok(r.md.includes("Comptes de la balance non repris au bilan"), "liste absente du bilan:\n" + r.md);
+  assert.throws(() => checkBilanEquilibre(r), /164000 \(solde debiteur 100,00\)/);
+}
+
 function testCalcIrDecoteArrondie() {
   // Impôt et décote arrondis à l'euro : l'impôt après décote doit être entier (art. 1657, 1 CGI)
   let out;
@@ -474,6 +541,10 @@ function main() {
   testBilanTresorerieCreditrice();
   testBilanSoldeUnCentime();
   testBilanControleEquilibre();
+  testBilanDepreciationsCirculant();
+  testBilanPrimesRemboursement169();
+  testBilanEcartsConversion();
+  testBilanComptesNonRepris();
   console.log("Deterministic calculation tests passed.");
 }
 

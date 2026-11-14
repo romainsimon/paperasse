@@ -7,7 +7,11 @@
     "pass_2026": 48060,
     "sources": [
       "https://www.urssaf.fr/accueil/actualites/plafond-annuel-securite-sociale.html",
-      "BOI-IR-BASE-20-50-20"
+      "BOI-IR-BASE-20-50-20",
+      "art. 757 B CGI",
+      "art. 990 I CGI",
+      "BOI-TCAS-AUT-60 § 55, § 180 et § 190",
+      "BOI-ENR-DMTG-10-10-20-20 § 155 et § 197"
     ]
   },
 
@@ -41,6 +45,44 @@
     "rente_versements_deduits": "Rente viagère à titre gratuit (barème après abattement de 10 %) ; PS des produits de placement sur la seule fraction imposable d'une rente à titre onéreux (art. L. 136-7, I-4° CSS)",
     "versements_non_deduits": "Capital exonéré d'IR, seuls les gains sont imposés (PFU) ; rente imposée comme rente viagère à titre onéreux",
     "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale, sauf droits issus des versements obligatoires (imposé comme une sortie en capital) ; accidents de la vie (décès du conjoint ou partenaire de PACS ; invalidité du titulaire, de ses enfants, de son conjoint ou partenaire ; surendettement ; expiration des droits au chômage ou, pour certains anciens mandataires, absence de contrat de travail ou de mandat depuis 2 ans ; cessation d'activité non salariée après liquidation judiciaire ou situation justifiant le retrait selon le président du tribunal de commerce) : versements et gains exonérés d'IR, PS sur les gains ; depuis le 01/01/2024, titulaire de moins de 18 ans (I-7°), imposé comme une sortie en capital"
+  },
+
+  "transmission_deces": {
+    "description": "Transmission du PER au décès du titulaire. Le régime dépend de l'âge du titulaire AU DÉCÈS, et non de l'âge au versement des primes comme en assurance-vie.",
+    "base_legale": ["art. 757 B CGI", "art. 990 I CGI", "art. L. 224-1 CoMoFi", "art. L. 225-1 CoMoFi"],
+    "critere_age": "Âge du titulaire au décès — BOI-ENR-DMTG-10-10-20-20 § 155 : l'âge auquel les primes ont été versées n'est pas pris en compte",
+    "deces_avant_70_ans": {
+      "regime": "art. 990 I CGI — prélèvement",
+      "abattement_par_beneficiaire": 152500,
+      "taux": 0.20,
+      "seuil_part_taxable": 700000,
+      "taux_au_dela": 0.3125,
+      "source": "BOI-TCAS-AUT-60 § 55 — les sommes versées au titre d'un PER relèvent du 990 I lorsque le 757 B ne s'applique pas, soit un décès avant 70 ans ; tous les PER sont concernés (individuel, collectif, obligatoire)",
+      "assiette": "Plan réputé rachetable au décès (âge de liquidation atteint ou cas de déblocage anticipé ouvert) : sommes dues au jour du décès, comme la valeur de rachat d'un contrat rachetable (BOI-TCAS-AUT-60 § 180, remarque 2) ; à défaut, règles des contrats non rachetables (§ 180). Dans tous les cas, l'assiette ne peut excéder le capital réellement versé au bénéficiaire (§ 190)"
+    },
+    "deces_a_partir_de_70_ans": {
+      "regime": "art. 757 B CGI — droits de mutation par décès selon le lien de parenté",
+      "abattement_global": 30500,
+      "assiette": "Intégralité des sommes dues par l'assureur, produits compris",
+      "source": "BOI-ENR-DMTG-10-10-20-20 § 197 — contrairement aux autres contrats, la totalité des sommes dues est comprise dans l'assiette, les primes comme les produits"
+    },
+    "rentes_viageres_exclues_990I": {
+      "base_legale": "art. 990 I, I, 2e alinéa CGI",
+      "plans_vises": ["activité professionnelle", "PERP (art. L. 144-2 C. ass.)", "PER (art. L. 224-28 CoMoFi)", "sous-compte français du PEPP (art. L. 225-1 CoMoFi)"],
+      "conditions_cumulatives": [
+        "primes versées régulièrement, dans leur montant et leur périodicité, pendant au moins quinze ans",
+        "entrée en jouissance au plus tôt à la liquidation de la pension dans un régime obligatoire d'assurance vieillesse, ou à l'âge fixé en application de l'art. L. 351-1 CSS"
+      ],
+      "note": "Rarement rempli sur un PER individuel alimenté par versements libres. BOI-TCAS-AUT-60 § 55 réserve l'exception aux PER individuels dénoués en rente remplissant ces conditions."
+    },
+    "contraste_assurance_vie": {
+      "age_retenu_av": "Âge de l'ASSURÉ au versement de chaque prime, et non du souscripteur, qui peut être une autre personne (BOI-ENR-DMTG-10-10-20-20 § 140)",
+      "age_retenu_per": "Âge du titulaire au décès",
+      "assiette_757B_av": "Seules les primes versées après 70 ans ; produits exonérés (BOI-ENR-DMTG-10-10-20-20 § 160 à 170)",
+      "assiette_757B_per": "Intégralité des sommes dues, produits compris (§ 197)",
+      "piege": "Ne pas transposer le régime de l'assurance-vie au PER : ni le critère d'âge ni l'assiette ne coïncident."
+    },
+    "per_compte_titres": "Le PER bancaire (compte-titres) est intégré à l'actif successoral et relève des droits de succession de droit commun ; les art. 990 I et 757 B ne valent que pour le PER assurance (service-public F34982)."
   },
 
   "arbitrage_per": {

@@ -853,6 +853,20 @@
       "last_fetched": "2026-11-06",
       "next_check": "2027-01-15",
       "check_instructions": "Chaque janvier : PASS, SMIC horaire au 1er janvier, taux (vieillesse, CSG, CRDS, CFP), seuil RAAP (IRCEC), plafond accessoires (1 200 SMIC h), seuils 293 B ; au 01/01/2027 : recodification TVA (CIBS), forfait de début d'activité 150 SMIC h (R. 382-24)."
+    },
+    {
+      "id": "per-transmission",
+      "name": "PER — transmission au décès du titulaire (990 I / 757 B)",
+      "file": "per-plafonds.json",
+      "annee_revenus": 2025,
+      "source_officielle": "Art. 757 B et 990 I CGI dans leur version issue de la loi n° 2023-171 du 9 mars 2023 (art. 3), en vigueur depuis le 11/03/2023",
+      "article_cgi": "art. 757 B CGI ; art. 990 I CGI (I, 2e alinéa pour les rentes viagères exclues)",
+      "bofip": "BOI-TCAS-AUT-60 § 55 ; BOI-ENR-DMTG-10-10-20-20 § 155 et § 197",
+      "verification_manuelle": "https://www.service-public.gouv.fr/particuliers/vosdroits/F34982",
+      "update_frequency": "on_legislative_change",
+      "last_fetched": "2026-10-31",
+      "next_check": "2027-04-30",
+      "check_instructions": "Vérifier que l'art. 757 B CGI vise toujours le PER de l'art. L. 224-1 CoMoFi et le sous-compte français du PEPP pour le décès du titulaire après 70 ans, que l'assiette reste l'intégralité des sommes dues (BOI-ENR-DMTG-10-10-20-20 § 197) et que le § 155 maintient l'âge au décès comme seul critère. Contrôler aussi les deux conditions des rentes exclues du 990 I (quinze ans de versements réguliers, entrée en jouissance à la liquidation de la retraite)."
     }
   ]
 }

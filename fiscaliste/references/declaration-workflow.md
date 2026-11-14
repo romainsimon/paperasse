@@ -167,7 +167,7 @@ Au **réel**, l'amortissement du bien (hors terrain, sur ~25-30 ans) ramène sou
 
 **Ordre de priorité** :
 
-1. **Saturer l'abondement employeur PEE / PERCO** en priorité absolue (l'abondement est un match gratuit, rendement immédiat 50 % à 300 %).
+1. **Examiner d'abord l'abondement employeur PEE / PERECO** s'il existe (l'employeur ajoute 50 % à 300 % du versement, sous réserve du blocage et des frais).
 2. **Ensuite** envisager un versement PER individuel si :
    - TMI actuel ≥ 30 % (économie immédiate significative)
    - TMI estimé à la retraite < TMI actuel (gain net en report d'imposition)

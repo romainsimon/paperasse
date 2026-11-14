@@ -45,7 +45,7 @@ Par la présente, **nous vous mettons en demeure de régler la somme de {{montan
 2. **Engager une procédure judiciaire** de recouvrement (injonction de payer ou assignation devant le tribunal judiciaire)
 3. **Les frais de recouvrement** (frais d'huissier, frais de procédure, honoraires d'avocat) seront à votre charge exclusive, conformément à l'article 10-1 de la loi du 10 juillet 1965
 
-Nous vous rappelons que le syndicat des copropriétaires bénéficie d'un **privilège immobilier spécial** sur votre lot, garantissant le recouvrement des charges (article 19-2 de la loi du 10 juillet 1965).
+Nous vous rappelons que le syndicat des copropriétaires bénéficie d'une **hypothèque légale** sur votre lot, garantissant le recouvrement des charges (articles 19 et 19-1 de la loi du 10 juillet 1965).
 
 ## Modalités de règlement
 

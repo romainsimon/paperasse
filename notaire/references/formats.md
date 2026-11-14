@@ -16,10 +16,10 @@ DROITS DE MUTATION (DMTO)
   Total DMTO                            XX XXX,XX EUR
 
 ÉMOLUMENTS DU NOTAIRE
-  Tranche 0 - 6 500 (3,945%)              XXX,XX EUR
-  Tranche 6 501 - 17 000 (1,627%)         XXX,XX EUR
-  Tranche 17 001 - 60 000 (1,085%)        XXX,XX EUR
-  Tranche > 60 000 (0,814%)               XXX,XX EUR
+  Tranche 0 - 6 500 (3,870%)              XXX,XX EUR
+  Tranche 6 501 - 17 000 (1,596%)         XXX,XX EUR
+  Tranche 17 001 - 60 000 (1,064%)        XXX,XX EUR
+  Tranche > 60 000 (0,799%)               XXX,XX EUR
   ─────────────────────────────────────────────────────
   Total émoluments HT                    X XXX,XX EUR
   TVA (20%)                                XXX,XX EUR

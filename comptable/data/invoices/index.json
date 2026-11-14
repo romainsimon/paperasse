@@ -1,0 +1,6 @@
+{
+  "_comment": "Piste d'audit stripe_id -> invoice_number. Maintenu automatiquement par scripts/import-stripe-invoices.js. Garantit l'idempotence des imports et permet a upload-qonto-attachments.js de matcher payouts -> factures.",
+  "invoices": {},
+  "stripe_map": {},
+  "last_sync": null
+}

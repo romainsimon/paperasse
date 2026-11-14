@@ -6,16 +6,23 @@
   "scripts": {
     "calc": "node scripts/calc.js",
     "test:calc": "node scripts/test-deterministic-calculations.js",
+    "test:skills": "node scripts/check-skill-descriptions.js && node scripts/sync-skill-copies.js",
+    "sync:skills": "node scripts/sync-skill-copies.js --write",
     "fec": "node scripts/generate-fec.js",
     "statements": "node scripts/generate-statements.js",
     "pdfs": "node scripts/generate-pdfs.js",
     "closing": "node scripts/generate-fec.js && node scripts/generate-statements.js && node scripts/generate-pdfs.js",
     "facture": "node scripts/generate-facturx.js",
     "validate:facture": "node scripts/validate-facture.js",
+    "parse:facture": "node scripts/parse-einvoice.js",
+    "test:parse": "node scripts/test-parse-einvoice.js",
     "fetch": "node integrations/stripe/fetch.js; node integrations/qonto/fetch.js",
     "fetch:qonto": "node integrations/qonto/fetch.js",
     "test:qonto": "node integrations/qonto/fetch.test.js",
-    "fetch:stripe": "node integrations/stripe/fetch.js"
+    "fetch:stripe": "node integrations/stripe/fetch.js",
+    "fetch:pennylane": "node integrations/pennylane/fetch.js",
+    "test:pennylane": "node integrations/pennylane/fetch.test.js",
+    "test:syndic": "node scripts/test-syndic-plan.js"
   },
   "dependencies": {
     "marked": "^15.0.0",

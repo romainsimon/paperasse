@@ -50,7 +50,7 @@ Dans les deux cas, la séquence doit être chronologique et continue.
 | Type de document | Durée de conservation | Base légale |
 |-----------------|----------------------|-------------|
 | Factures émises et reçues | **10 ans** (comptable) | Art. L123-22 C.com |
-| Factures émises et reçues | **6 ans** (fiscal) | Art. L102 B du LPF |
+| Factures émises et reçues | **10 ans** (fiscal), pour les pièces dont le délai expire après le 01/01/2027 ; 6 ans auparavant | Art. L. 102 B du LPF, modifié par la loi n° 2026-534 du 25/06/2026 (art. 36) |
 | Pièces justificatives | **10 ans** | Art. L123-22 C.com |
 
 **En pratique** : conserver 10 ans pour couvrir les deux obligations.
@@ -58,7 +58,7 @@ Dans les deux cas, la séquence doit être chronologique et continue.
 ### Format de conservation
 
 Depuis la réforme 2026 :
-- Les factures électroniques doivent être conservées **en format informatique** pendant au moins 6 ans
+- Les factures électroniques doivent être conservées **en format informatique** pendant 10 ans (6 ans pour les pièces dont le délai expirait avant le 01/01/2027)
 - L'impression papier d'une facture électronique n'a pas de valeur probante
 - Le format de conservation doit garantir **l'intégrité** et **la lisibilité** du document
 

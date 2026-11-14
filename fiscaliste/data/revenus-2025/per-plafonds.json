@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "revenus": 2025,
+    "declaration": 2026,
+    "pass_2024": 46368,
+    "pass_2025": 47100,
+    "pass_2026": 48060,
+    "sources": [
+      "https://www.urssaf.fr/accueil/actualites/plafond-annuel-securite-sociale.html",
+      "BOI-IR-BASE-20-50-20",
+      "art. 757 B CGI",
+      "art. 990 I CGI",
+      "BOI-TCAS-AUT-60 § 55, § 180 et § 190",
+      "BOI-ENR-DMTG-10-10-20-20 § 155 et § 197"
+    ]
+  },
+
+  "per_individuel": {
+    "description": "Plafond de déduction PER pour les versements 2025 (déclaration 2026). Le PASS de référence est celui de l'année qui précède le versement (art. 163 quatervicies, I-2 CGI ; brochure IR 2026, charges déductibles).",
+    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires et allocations de chômage après abattement de 10 %, gains d'actionnariat salarié imposés comme salaires, BIC, BNC, BA professionnels), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83 2°, PERO ; Madelin et art. 154 bis-0 A pour la seule fraction excédant 15 % du bénéfice compris entre 1 et 8 PASS ; sommes versées par l'entreprise ou le salarié au PERCO ou PERECO et exonérées au titre de l'art. 81, 18°, dont jours de CET monétisés)",
+    "plancher_euros": 4637,
+    "plancher_base": "10 % × PASS 2024 (46 368 €), garanti même sans revenus professionnels",
+    "plafond_absolu_euros": 37094,
+    "plafond_absolu_base": "10 % × 8 × PASS 2024",
+    "bornes_par_annee_de_versement": {
+      "2025": { "plancher": 4637, "plafond": 37094, "pass_reference": 46368 },
+      "2026": { "plancher": 4710, "plafond": 37680, "pass_reference": 47100 },
+      "2027": { "plancher": 4806, "plafond": 38448, "pass_reference": 48060 }
+    },
+    "report": {
+      "description": "Versements 2025 : reliquats des 3 années précédentes (2022 à 2024). Reliquats nés à partir de 2026 : reportables 5 ans (LFI 2026, loi n° 2026-103, art. 9 et 10 ; art. 163 quatervicies, I-2-b CGI ; BOI-IR-BASE-20-50-30 § 40 et § 80) ; les versements 2026 n'utilisent que les reliquats 2023 à 2025, la fenêtre complète de cinq ans n'est atteinte qu'en 2031.",
+      "ordre": "Imputer sur le plafond de l'année N en premier, puis sur les reliquats des années précédentes en commençant par le plus ancien (BOI-IR-BASE-20-50-30 § 50)"
+    },
+    "mutualisation_couple": "Les époux/pacsés soumis à imposition commune peuvent mutualiser leurs plafonds (case 6QR de la 2042) ; sans objet l'année qui suit les 70 ans d'un conjoint",
+    "age_70_ans": "Versements non déductibles lorsque le titulaire a 70 ans ou plus à la date du versement, à compter du 01/01/2026 (LFI 2026, art. 9)",
+    "effet_rfr": "Les cotisations déduites sont réintégrées dans le revenu fiscal de référence (art. 1417, IV CGI) : le PER ne réduit pas la CEHR et ne modifie pas les seuils de CSG sur revenus de remplacement. Le revenu de référence CDHR reste inchangé, mais une baisse de l'IR retenu peut augmenter la CDHR et absorber tout ou partie de l'économie d'IR si le plancher s'applique (art. 224, III et IV CGI ; https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11). Comparer IR + CEHR + CDHR avant et après versement",
+    "excedent": "La fraction versée au-delà du plafond n'est ni déductible ni reportable (brochure IR 2026, exemple)",
+    "cases_2042": "6NS / 6NT / 6NU (versements), 6QR (mutualisation), 6PS / 6PT / 6PU (plafond à corriger)"
+  },
+
+  "sortie_per": {
+    "source": "BOI-ANNX-000513 (version du 10/08/2026)",
+    "capital_versements_deduits": "Barème progressif sans abattement de 10 % (art. 158, 5-b quinquies-1° CGI), case 1AI",
+    "capital_gains": "PFU 12,8 % ou barème sur option, case 2TZ, plus PS des produits de placement (17,2 % jusqu'au 31/12/2025, 18,6 % à compter du 01/01/2026)",
+    "rente_versements_deduits": "Rente viagère à titre gratuit (barème après abattement de 10 %) ; PS des produits de placement sur la seule fraction imposable d'une rente à titre onéreux (art. L. 136-7, I-4° CSS)",
+    "versements_non_deduits": "Capital exonéré d'IR, seuls les gains sont imposés (PFU) ; rente imposée comme rente viagère à titre onéreux",
+    "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale, sauf droits issus des versements obligatoires (imposé comme une sortie en capital) ; accidents de la vie (décès du conjoint ou partenaire de PACS ; invalidité du titulaire, de ses enfants, de son conjoint ou partenaire ; surendettement ; expiration des droits au chômage ou, pour certains anciens mandataires, absence de contrat de travail ou de mandat depuis 2 ans ; cessation d'activité non salariée après liquidation judiciaire ou situation justifiant le retrait selon le président du tribunal de commerce) : versements et gains exonérés d'IR, PS sur les gains ; depuis le 01/01/2024, titulaire de moins de 18 ans (I-7°), imposé comme une sortie en capital"
+  },
+
+  "transmission_deces": {
+    "description": "Transmission du PER au décès du titulaire. Le régime dépend de l'âge du titulaire AU DÉCÈS, et non de l'âge au versement des primes comme en assurance-vie.",
+    "base_legale": ["art. 757 B CGI", "art. 990 I CGI", "art. L. 224-1 CoMoFi", "art. L. 225-1 CoMoFi"],
+    "critere_age": "Âge du titulaire au décès — BOI-ENR-DMTG-10-10-20-20 § 155 : l'âge auquel les primes ont été versées n'est pas pris en compte",
+    "deces_avant_70_ans": {
+      "regime": "art. 990 I CGI — prélèvement",
+      "abattement_par_beneficiaire": 152500,
+      "taux": 0.20,
+      "seuil_part_taxable": 700000,
+      "taux_au_dela": 0.3125,
+      "source": "BOI-TCAS-AUT-60 § 55 — les sommes versées au titre d'un PER relèvent du 990 I lorsque le 757 B ne s'applique pas, soit un décès avant 70 ans ; tous les PER sont concernés (individuel, collectif, obligatoire)",
+      "assiette": "Plan réputé rachetable au décès (âge de liquidation atteint ou cas de déblocage anticipé ouvert) : sommes dues au jour du décès, comme la valeur de rachat d'un contrat rachetable (BOI-TCAS-AUT-60 § 180, remarque 2) ; à défaut, règles des contrats non rachetables (§ 180). Dans tous les cas, l'assiette ne peut excéder le capital réellement versé au bénéficiaire (§ 190)"
+    },
+    "deces_a_partir_de_70_ans": {
+      "regime": "art. 757 B CGI — droits de mutation par décès selon le lien de parenté",
+      "abattement_global": 30500,
+      "assiette": "Intégralité des sommes dues par l'assureur, produits compris",
+      "source": "BOI-ENR-DMTG-10-10-20-20 § 197 — contrairement aux autres contrats, la totalité des sommes dues est comprise dans l'assiette, les primes comme les produits"
+    },
+    "rentes_viageres_exclues_990I": {
+      "base_legale": "art. 990 I, I, 2e alinéa CGI",
+      "plans_vises": ["activité professionnelle", "PERP (art. L. 144-2 C. ass.)", "PER (art. L. 224-28 CoMoFi)", "sous-compte français du PEPP (art. L. 225-1 CoMoFi)"],
+      "conditions_cumulatives": [
+        "primes versées régulièrement, dans leur montant et leur périodicité, pendant au moins quinze ans",
+        "entrée en jouissance au plus tôt à la liquidation de la pension dans un régime obligatoire d'assurance vieillesse, ou à l'âge fixé en application de l'art. L. 351-1 CSS"
+      ],
+      "note": "Rarement rempli sur un PER individuel alimenté par versements libres. BOI-TCAS-AUT-60 § 55 réserve l'exception aux PER individuels dénoués en rente remplissant ces conditions."
+    },
+    "contraste_assurance_vie": {
+      "age_retenu_av": "Âge de l'ASSURÉ au versement de chaque prime, et non du souscripteur, qui peut être une autre personne (BOI-ENR-DMTG-10-10-20-20 § 140)",
+      "age_retenu_per": "Âge du titulaire au décès",
+      "assiette_757B_av": "Seules les primes versées après 70 ans ; produits exonérés (BOI-ENR-DMTG-10-10-20-20 § 160 à 170)",
+      "assiette_757B_per": "Intégralité des sommes dues, produits compris (§ 197)",
+      "piege": "Ne pas transposer le régime de l'assurance-vie au PER : ni le critère d'âge ni l'assiette ne coïncident."
+    },
+    "per_compte_titres": "Le PER bancaire (compte-titres) est intégré à l'actif successoral et relève des droits de succession de droit commun ; les art. 990 I et 757 B ne valent que pour le PER assurance (service-public F34982)."
+  },
+
+  "arbitrage_per": {
+    "description": "Le PER est un report d'imposition, pas une exonération. L'avantage net dépend du différentiel TMI entrée / sortie, sous réserve de l'effet CDHR décrit dans per_individuel.effet_rfr.",
+    "gagnant": "TMI entrée > TMI sortie → gain net",
+    "perdant": "TMI entrée < TMI sortie → perte nette (rare mais possible si carrière ascendante ou sortie en capital massif)",
+    "neutre": "TMI égaux → gain = seulement la capitalisation sur l'économie d'impôt (effet levier)",
+    "piege_sortie_capital": "Sortie en capital = imposition du capital versé + imposition séparée des gains au PFU. Bien distinguer versements (barème) et gains (PFU)."
+  }
+}

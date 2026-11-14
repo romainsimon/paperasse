@@ -32,23 +32,33 @@
     "residence_principale_note": "Abattement de 30% sur la valeur vénale de la résidence principale",
     "biens_professionnels": "Exonérés s'ils constituent l'outil de travail (conditions strictes : fonction de direction, rémunération >50% revenus pro)",
     "bois_forets_terres_agricoles": "Exonération partielle sous engagement (25% imposable avec engagement de 30 ans)",
-    "lmp": "Les biens LMP peuvent être exonérés comme biens professionnels sous conditions de recettes et revenus",
+    "lmp": "Locaux loués meublés exonérés comme actifs professionnels sous des critères propres à l'IFI (art. 975, V, 1° CGI ; BOI-PAT-IFI-30-10-10-10 § 60) : recettes > 23 000 €, bénéfice commercial net > 50 % des revenus nets d'activité du foyer (ce bénéfice compris), profession principale. Le statut LMP à l'IR ne suffit pas (voir regimes-fonciers-lmnp.json, lmp_vs_lmnp.consequences_lmp.ifi)",
     "location_longue_duree_bail_rural": "Exonération partielle sous conditions"
   },
 
   "passif_deductible": {
     "emprunts_immobiliers": "Capital restant dû au 1er janvier",
     "emprunts_travaux": "Dettes liées à des travaux sur immeubles taxables",
-    "impots_afferents_immobilier": "Taxe foncière, droits de succession/donation, IFI N-1",
+    "impots_afferents_immobilier": "Impositions dues à raison des biens au 1er janvier : taxes foncières de l'année, taxe sur les locaux vacants, droits de mutation à titre gratuit afférents à des actifs taxables, et IFI théorique de l'année lui-même (calculé sur le patrimoine net avant sa propre déduction ; 2042-IFI ligne 9GH « Autres dettes dont IFI théorique ») (art. 974, I, 4° CGI ; BOI-PAT-IFI-20-40-10). L'IFI de l'année précédente, déjà payé, n'est plus une dette.",
+    "emprunts_in_fine": "Art. 974, II CGI : passif admis = capital × années restantes / durée totale (capital − capital × années écoulées depuis la souscription / durée totale)",
+    "emprunts_sans_terme": "Art. 974, II CGI : capital diminué de 1/20 par année écoulée depuis la souscription",
+    "prets_familiaux": "Art. 974, III CGI : déductibles si le caractère normal du prêt est justifié (ascendant, descendant hors enfant mineur, frère/sœur, société contrôlée par le redevable seul ou conjointement avec son foyer fiscal ou son cercle familial, au sens de l'art. 150-0 B ter, III, 2°, BOI-PAT-IFI-20-40-30 § 50) ; exclus sans dérogation s'ils viennent du redevable, de son conjoint, partenaire, concubin ou enfants mineurs",
+    "plafonnement_passif": "Si la valeur vénale des actifs taxables excède 5 M€ et que les dettes déductibles excèdent 60 % de cette valeur, la fraction des dettes au-delà de 60 % n'est déductible qu'à hauteur de 50 %, sauf dettes sans objectif principalement fiscal (art. 974, IV CGI)",
     "non_deductible": [
-      "Emprunts in fine → amortissement fictif appliqué (déduction limitée)",
       "Dettes personnelles non liées à l'immobilier",
-      "Emprunts familiaux sans formalisme (article 885 T)"
+      "Dettes se rapportant à des biens totalement exonérés",
+      "Prêts du redevable, de son conjoint, partenaire de PACS, concubin notoire ou enfants mineurs (art. 974, III, 1° CGI)",
+      "Prêts familiaux (ascendant, descendant majeur, frère/sœur, société contrôlée) sans justification du caractère normal (art. 974, III, 2° et 3° CGI)"
     ]
   },
 
   "plafonnement": {
-    "description": "Plafonnement IR + IFI + PS à 75% des revenus de l'année N-1",
-    "note": "Si le total IR + IFI + PS dépasse 75% des revenus, l'IFI est réduit de l'excédent"
-  }
+    "description": "Plafonnement IR + IFI + PS à 75% des revenus de l'année N-1 (art. 979 CGI)",
+    "note": "Si le total IR + IFI + PS dépasse 75% des revenus mondiaux nets de frais professionnels de l'année précédente, revenus exonérés d'IR et produits soumis à prélèvement libératoire COMPRIS, l'IFI est réduit de l'excédent (brochure IR 2026, IFI)",
+    "revenus_pris_en_compte": "Revenus mondiaux N-1, revenus exonérés d'IR compris ; plus-values sans abattement ni exonération (BOI-PAT-IFI-40-30-10, § 160 à 190)"
+  },
+
+  "foyer_ifi": "Couple marié, pacsé ou concubins notoires et enfants mineurs ; un enfant majeur rattaché à l'IR forme son propre foyer IFI (brochure IR 2026, IFI)",
+  "declaration": "2042-IFI (annexes 1 à 6) déposée avec la déclaration de revenus, case 0IF cochée sur la 2042 ; 2042-IFI-COV sans déclaration de revenus ; avis en août, paiement au 15 septembre",
+  "references": "art. 964 et s. CGI : 965 (assiette), 968 (démembrement), 973 (évaluation, abattement RP 30 %), 974 (passif), 975 (actifs professionnels), 977 (barème), 979 (plafonnement). Les articles 885 et suivants (ISF) sont abrogés."
 }

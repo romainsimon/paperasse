@@ -24,14 +24,14 @@
 
   "equity_salarial": {
     "rsu_gain_acquisition": 120000,
-    "_commentaire_rsu_acq": "Case 1TT — salaire à imposer au barème, ouvre droit au quotient revenus exceptionnels (R > 1,5 × salaire habituel)",
+    "_commentaire_rsu_acq": "Plan qualifiant, AGE postérieure au 31/12/2017, actions cédées en 2025 après la période de conservation : 120 000 € imposés au barème après abattement de 50 % (1TZ = 60 000, 1WZ = 60 000), PS 18,6 % sur 120 000 €, CSG déductible en 2026 à hauteur de 6,8 % × 60 000 €. Quotient : seulement si le gain est exceptionnel par nature et par montant (voir cas-speciaux). Non pris en compte par calc_ir.py.",
     "rsu_plus_value_cession": 15000,
-    "_commentaire_rsu_pv": "PFU 30 % sur la plus-value vesting → cession"
+    "_commentaire_rsu_pv": "PFU 31,4 % (12,8 % + 18,6 %) ou barème sur option globale, sur la plus-value vesting → cession (valeurs converties aux taux de change du jour du vesting et du jour de la cession)"
   },
 
   "deductions": {
     "per_declarant1": 10000,
-    "_commentaire_per": "Plafond personnalisé = 10 % des 95 000 € = 9 500 € + reliquat N-1 éventuel"
+    "_commentaire_per": "Plafond = 10 % des revenus d'activité N-1 nets de frais (8 550 € si le salaire 2024 était aussi de 95 000 €, après abattement de 10 %) + reliquats des 3 années précédentes ; à lire sur l'avis N-1. Le script déduit le versement sans contrôler ce plafond."
   },
 
   "options_fiscales": {

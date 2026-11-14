@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>2065-SD — Déclaration IS</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 7.5pt;
+      line-height: 1.35;
+      color: #111;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      padding: 10mm 12mm 8mm 12mm;
+      position: relative;
+      page-break-after: always;
+      overflow: hidden;
+    }
+    .page:last-child { page-break-after: avoid; }
+
+    /* Header */
+    .form-hdr {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+    .form-hdr .left {
+      width: 24%;
+      font-size: 7pt;
+      line-height: 1.3;
+    }
+    .form-hdr .left .rf {
+      font-size: 9pt;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .form-hdr .center {
+      width: 44%;
+      text-align: center;
+    }
+    .form-hdr .center .sub {
+      font-size: 7pt;
+      font-style: italic;
+    }
+    .form-hdr .center .title {
+      font-size: 12pt;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+    .form-hdr .right {
+      width: 32%;
+      text-align: right;
+      font-size: 7pt;
+      line-height: 1.4;
+    }
+    .form-hdr .right .num {
+      font-size: 11pt;
+      font-weight: bold;
+    }
+    .form-hdr .right .year {
+      font-size: 11pt;
+      font-weight: bold;
+    }
+    .form-hdr .right .cerfa {
+      font-style: italic;
+      font-size: 8pt;
+    }
+
+    /* Sections */
+    .sec {
+      background: #d9d9d9;
+      border: 0.5pt solid #555;
+      padding: 2px 6px;
+      font-weight: bold;
+      font-size: 7.5pt;
+      margin-top: 3px;
+    }
+    .sec-letter {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.5pt;
+    }
+    td, th {
+      border: 0.5pt solid #888;
+      padding: 2px 4px;
+      vertical-align: middle;
+    }
+    .bg { background: #eee; }
+    .bgg { background: #d9d9d9; }
+
+    /* Values — placeholders shown in blue */
+    .val {
+      color: #0033aa;
+      font-weight: bold;
+      font-size: 8pt;
+    }
+    .r { text-align: right; }
+    .c { text-align: center; }
+    .sm { font-size: 6.5pt; }
+    .xs { font-size: 6pt; }
+    .bold { font-weight: bold; }
+    .it { font-style: italic; }
+
+    .subsec {
+      background: #eee;
+      font-weight: bold;
+      padding: 2px 4px;
+      border: 0.5pt solid #888;
+    }
+
+    .warning {
+      border: 1pt solid #333;
+      padding: 3px 6px;
+      margin-top: 3px;
+      font-size: 6.5pt;
+      line-height: 1.3;
+    }
+
+    .sig-table td { border: 0.5pt solid #888; padding: 2px 5px; height: 16px; }
+
+    .p2-hdr {
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .p2-hdr .title { font-size: 12pt; font-weight: bold; }
+    .p2-hdr .sub { font-size: 8pt; font-weight: bold; margin-top: 2px; }
+    .p2-hdr .right-info {
+      position: absolute;
+      top: 10mm;
+      right: 12mm;
+      text-align: right;
+      font-size: 7pt;
+    }
+    .p2-hdr .right-info .num { font-size: 10pt; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PAGE 1 : 2065-SD                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="form-hdr">
+    <div class="left">
+      <div class="rf">RÉPUBLIQUE<br>FRANÇAISE</div>
+      <div style="margin-top:2px;font-size:6.5pt;font-style:italic;">
+        Liberté<br>Égalité<br>Fraternité
+      </div>
+    </div>
+    <div class="center">
+      <div class="sub">Formulaire à déposer en double exemplaire</div>
+      <div class="title">IMPÔT SUR LES SOCIÉTÉS</div>
+    </div>
+    <div class="right">
+      <div class="num">N° 2065-SD</div>
+      <div class="year">{{fiscal_year_declaration}}</div>
+      <div class="cerfa">cerfa</div>
+      <div>N° 11084*28</div>
+      <div class="xs">Formulaire obligatoire<br>(art. 223 du Code général des impôts)</div>
+    </div>
+  </div>
+
+  <!-- EXERCISE ROW -->
+  <table>
+    <tr>
+      <td style="width:18%">Exercice ouvert le</td>
+      <td style="width:14%" class="val c">{{fiscal_year_start}}</td>
+      <td style="width:9%" class="c">et clos le</td>
+      <td style="width:14%" class="val c">{{fiscal_year_end}}</td>
+      <td style="width:22%">{{regime_simplifie}} Régime simplifié d'imposition</td>
+      <td style="width:23%">{{regime_normal}} Régime réel normal</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:77%">Déclaration souscrite pour le résultat d'ensemble du groupe &#9744;</td>
+      <td style="width:23%">Si PME innovantes, cocher &#9744;</td>
+    </tr>
+  </table>
+
+  <!-- A - IDENTIFICATION -->
+  <div class="sec"><span class="sec-letter">A</span> IDENTIFICATION DE L'ENTREPRISE</div>
+  <table>
+    <tr>
+      <td style="width:15%" class="bg">Désignation de la société :</td>
+      <td style="width:50%" class="val">{{company_name}}</td>
+      <td style="width:15%" class="bg">Adresse du siège social :</td>
+      <td style="width:20%" class="val" style="font-size:7pt">{{company_address}}</td>
+    </tr>
+    <tr>
+      <td class="bg">SIRET</td>
+      <td class="val">{{company_siret}}</td>
+      <td class="bg">Mél :</td>
+      <td class="val">{{company_email}}</td>
+    </tr>
+    <tr>
+      <td class="bg">Adresse du principal établissement :</td>
+      <td class="val it sm">Idem siège social</td>
+      <td class="bg sm">Ancienne adresse en cas de changement :</td>
+      <td></td>
+    </tr>
+  </table>
+
+  <!-- B - ACTIVITE -->
+  <div class="sec"><span class="sec-letter">B</span> ACTIVITÉ</div>
+  <table>
+    <tr>
+      <td class="bg" style="width:18%">Activités exercées</td>
+      <td class="val" style="width:57%">{{company_activity}}</td>
+      <td style="width:25%">Si vous avez changé d'activité, cochez &#9744;</td>
+    </tr>
+  </table>
+
+  <!-- C - RECAPITULATION -->
+  <div class="sec"><span class="sec-letter">C</span> RÉCAPITULATION DES ÉLÉMENTS D'IMPOSITION</div>
+
+  <div class="subsec">1. Résultat fiscal</div>
+  <table>
+    <tr>
+      <td rowspan="2" style="width:24%">Bénéfice imposable à 15 %</td>
+      <td rowspan="2" style="width:14%" class="val r">{{benefice_15}}</td>
+      <td style="width:24%">Bénéfice imposable au taux normal</td>
+      <td style="width:14%" class="val r">{{benefice_normal}}</td>
+      <td style="width:10%">Déficit</td>
+      <td style="width:14%" class="val r">{{deficit}}</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="sm">Résultat net de cession, concession ou sous-concession des brevets imposable au taux de 10 %</td>
+      <td colspan="2" class="val r">{{brevets_10}}</td>
+    </tr>
+  </table>
+
+  <div class="subsec">2. Plus-values</div>
+  <table>
+    <tr>
+      <td style="width:24%">PV à long terme imposables à 15 %</td>
+      <td style="width:14%" class="r">{{pv_15}}</td>
+      <td style="width:24%">PV à long terme imposables à 19 %</td>
+      <td style="width:14%" class="r">{{pv_19}}</td>
+      <td style="width:24%" class="sm">PV exonérées (art. 238 quindecies)</td>
+      <td style="width:14%" class="r">{{pv_exo}}</td>
+    </tr>
+  </table>
+
+  <div class="subsec">3. Abattements sur le bénéfice et exonérations</div>
+  <table>
+    <tr>
+      <td style="width:33%">Entreprise nouvelle, art. 44 sexies</td>
+      <td style="width:34%">Jeunes entreprises innovantes, art. 44 sexies-0 A</td>
+      <td style="width:33%">Autres dispositifs</td>
+    </tr>
+  </table>
+
+  <!-- F - CES -->
+  <div class="sec"><span class="sec-letter">F</span> CONTRIBUTION EXCEPTIONNELLE SUR LES BÉNÉFICES (CES)</div>
+  <table>
+    <tr>
+      <td class="bg sm" style="width:30%">Base d'imposition :</td>
+      <td style="width:20%" class="val r it sm">{{ces_base}}</td>
+      <td class="bg sm" style="width:20%">Chiffre d'affaires :</td>
+      <td style="width:15%">{{ces_ca}}</td>
+      <td class="bg sm" style="width:15%">Taux :</td>
+    </tr>
+  </table>
+
+  <!-- D - IMPUTATIONS -->
+  <div class="sec"><span class="sec-letter">D</span> IMPUTATIONS</div>
+  <table>
+    <tr>
+      <td class="sm">1. Au titre des revenus mobiliers de source française ou étrangère</td>
+      <td style="width:15%" class="r">{{imputation_1}}</td>
+    </tr>
+    <tr>
+      <td class="sm">2. Au titre des revenus avec crédit d'impôt convention fiscale</td>
+      <td style="width:15%" class="r">{{imputation_2}}</td>
+    </tr>
+  </table>
+
+  <!-- E - REVENUS LOCATIFS -->
+  <div class="sec"><span class="sec-letter">E</span> CONTRIBUTION ANNUELLE SUR LES REVENUS LOCATIFS</div>
+  <table>
+    <tr>
+      <td class="sm">Recettes nettes soumises à la contribution de 2,5 %</td>
+      <td style="width:15%" class="r">{{revenus_locatifs}}</td>
+    </tr>
+  </table>
+
+  <!-- F - COMPTABILITE -->
+  <div class="sec"><span class="sec-letter">F</span> COMPTABILITÉ INFORMATISÉE</div>
+  <table>
+    <tr>
+      <td style="width:50%">L'entreprise dispose-t-elle d'une comptabilité informatisée ?</td>
+      <td style="width:8%" class="c val">{{compta_oui}}</td>
+      <td style="width:8%" class="c">{{compta_non}}</td>
+      <td class="bg sm">Si oui, logiciel utilisé</td>
+      <td class="val sm" style="width:22%">{{compta_logiciel}}</td>
+    </tr>
+  </table>
+
+  <!-- WARNING -->
+  <div class="warning">
+    <strong>Vous devez obligatoirement souscrire le formulaire n° 2065-SD par voie dématérialisée.</strong>
+    Le non respect de cette obligation est sanctionné par l'application de la majoration de 0,2 %
+    prévue par l'article 1738 du CGI.
+  </div>
+
+  <!-- SIGNATURE BLOCK -->
+  <table class="sig-table" style="margin-top:4px;">
+    <tr>
+      <td class="bg" style="width:50%">Nom et adresse du professionnel de l'expertise comptable :</td>
+      <td class="bg" style="width:50%">Nom et adresse du conseil :</td>
+    </tr>
+    <tr>
+      <td style="height:12px">{{expert_comptable}}</td>
+      <td>{{conseil}}</td>
+    </tr>
+    <tr>
+      <td class="bg sm">Tél :</td>
+      <td class="bg sm">Identité du déclarant :</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><span class="val">{{president_name}}</span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="bg sm" style="height:14px;">
+        Date : <span class="val sm">......../......../{{fiscal_year_declaration}}</span>
+        <span style="margin-left:30px;">Lieu : <span class="val sm">{{company_city}}</span></span>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="bg sm">
+        Qualité et nom du signataire : <span class="val">{{president_title}} — {{president_name}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="height:18px;">Signature :</td>
+    </tr>
+  </table>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PAGE 2 : 2065 bis-SD                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="p2-hdr">
+    <div class="right-info">
+      <div class="num">N° 2065 <em>bis</em>-SD</div>
+      <div style="font-size:10pt;font-weight:bold;">{{fiscal_year_declaration}}</div>
+    </div>
+    <div class="sm it">Formulaire obligatoire (art. 223 du Code général des impôts)</div>
+    <div class="title">IMPÔT SUR LES SOCIÉTÉS</div>
+    <div class="sub">ANNEXE AU FORMULAIRE N° 2065-SD</div>
+  </div>
+
+  <!-- G - DISTRIBUTIONS -->
+  <div class="sec"><span class="sec-letter">G</span> RÉPARTITION DES PRODUITS DES ACTIONS ET PARTS SOCIALES</div>
+  <table>
+    <tr>
+      <td style="width:55%">Montant global brut des distributions</td>
+      <td class="bg sm">payées par la société</td>
+      <td class="bold c" style="width:5%">a</td>
+      <td class="val r" style="width:10%">{{distrib_a}}</td>
+      <td class="bg sm">payées par un établissement</td>
+      <td class="bold c" style="width:5%">b</td>
+      <td class="val r" style="width:10%">{{distrib_b}}</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="sm">Distributions dont la société ne désigne pas le(s) bénéficiaire(s)</td>
+      <td class="bold c">c</td>
+      <td class="val r">{{distrib_c}}</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="sm">Prêts, avances ou acomptes aux associés</td>
+      <td class="bold c">d</td>
+      <td class="val r">{{distrib_d}}</td>
+    </tr>
+    <tr>
+      <td colspan="5"></td>
+      <td class="bold c bg">Total</td>
+      <td class="val r bold">{{distrib_total}}</td>
+    </tr>
+  </table>
+
+  <!-- H - REMUNERATIONS -->
+  <div class="sec"><span class="sec-letter">H</span> RÉMUNÉRATIONS NETTES VERSÉES AUX MEMBRES DE CERTAINES SOCIÉTÉS (SARL, SCA, SNC, SCS, SEP)</div>
+  <table>
+    <tr>
+      <td class="bg c sm" style="width:22%">Nom, prénoms, domicile et qualité</td>
+      <td class="bg c sm" style="width:12%">Nombre de parts</td>
+      <td class="bg c sm" style="width:10%">Année</td>
+      <td class="bg c sm" style="width:14%">Traitements</td>
+      <td class="bg c sm" style="width:14%">Indemnités forfaitaires</td>
+      <td class="bg c sm" style="width:14%">Remboursements frais</td>
+      <td class="bg c sm" style="width:14%">Avantages en nature</td>
+    </tr>
+    <tr>
+      <td colspan="7" class="val c it sm" style="height:40px;vertical-align:middle;">
+        {{remunerations_note}}
+      </td>
+    </tr>
+  </table>
+
+  <!-- I - DIVERS -->
+  <div class="sec"><span class="sec-letter">I</span> DIVERS</div>
+  <table>
+    <tr>
+      <td class="bg sm">* NOM ET ADRESSE DU PROPRIÉTAIRE DU FONDS (en cas de gérance libre)</td>
+    </tr>
+    <tr><td style="height:14px;" class="val it sm">{{proprietaire_fonds}}</td></tr>
+    <tr>
+      <td class="bg sm">* ADRESSES DES AUTRES ÉTABLISSEMENTS</td>
+    </tr>
+    <tr><td style="height:14px;" class="val it sm">{{autres_etablissements}}</td></tr>
+  </table>
+
+  <!-- J - RSI -->
+  <div class="sec"><span class="sec-letter">J</span> CADRE NE CONCERNANT QUE LES ENTREPRISES PLACÉES SOUS LE RÉGIME SIMPLIFIÉ D'IMPOSITION</div>
+  <table>
+    <tr>
+      <td class="bgg bold" colspan="2">RÉMUNÉRATIONS</td>
+      <td class="bgg bold" colspan="4">MOINS-VALUES À LONG TERME</td>
+    </tr>
+    <tr>
+      <td class="sm" style="width:42%">Montant brut des salaires (hors apprentis/handicapés)</td>
+      <td style="width:12%" class="val r">{{salaires_brut}}</td>
+      <td class="sm" style="width:22%">MVLT restant à reporter</td>
+      <td class="r">{{mvlt_report}}</td>
+      <td class="r"></td>
+      <td class="r"></td>
+    </tr>
+    <tr>
+      <td class="sm">Rétrocessions d'honoraires, commissions et courtages</td>
+      <td class="val r">{{retrocessions}}</td>
+      <td class="sm">MVLT imputée sur PVLT</td>
+      <td class="r"></td>
+      <td class="r"></td>
+      <td class="r"></td>
+    </tr>
+  </table>
+
+  <!-- K - DONS -->
+  <div class="sec"><span class="sec-letter">K</span> ORGANISMES BÉNÉFICIAIRES DE DONS (article 222 bis du CGI)</div>
+  <table>
+    <tr>
+      <td class="sm">Montant cumulé des dons et versements</td>
+      <td style="width:15%" class="val r it sm">{{dons_montant}}</td>
+    </tr>
+    <tr>
+      <td class="sm">Nombre de reçus délivrés</td>
+      <td class="val r it sm">{{dons_nombre}}</td>
+    </tr>
+  </table>
+
+</div>
+
+</body>
+</html>

@@ -334,7 +334,7 @@ Acquéreur → Notaire (séquestre) → Ventilation :
 
 ### Vendeur non-résident
 
-- Représentant fiscal obligatoire si plus-value > 150 000 EUR et résidence hors UE/EEE
+- Représentant fiscal accrédité obligatoire si le prix de cession dépasse 150 000 EUR et que le cédant réside hors UE/EEE (dispense automatique si le prix est inférieur ou égal à 150 000 EUR : BOI-RFPI-PVINR-30-20 § 180)
 - Prélèvement de 19% + PS par le notaire
 - Vérifier les conventions fiscales bilatérales
 

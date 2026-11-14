@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Facture {{invoice.number}}</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+      color: #1a1a1a;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm 22mm 18mm 22mm;
+      position: relative;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12mm;
+    }
+
+    .company {
+      max-width: 55%;
+    }
+
+    .company-name {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .company-detail {
+      font-size: 8pt;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .invoice-badge {
+      text-align: right;
+    }
+
+    .invoice-badge .label {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #999;
+      margin-bottom: 2px;
+    }
+
+    .invoice-badge .number {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 8px;
+    }
+
+    .invoice-meta {
+      font-size: 8.5pt;
+      color: #555;
+      line-height: 1.8;
+      text-align: right;
+    }
+
+    .invoice-meta strong {
+      color: #333;
+    }
+
+    /* ── Client ── */
+    .client-block {
+      background: #f7f7f7;
+      padding: 14px 18px;
+      margin-bottom: 10mm;
+      border-radius: 2px;
+    }
+
+    .client-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .client-name {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 3px;
+    }
+
+    .client-detail {
+      font-size: 8.5pt;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* ── Catégorie ── */
+    .category {
+      font-size: 8pt;
+      color: #888;
+      margin-bottom: 6mm;
+    }
+
+    /* ── Table ── */
+    .lines-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8mm;
+    }
+
+    .lines-table thead th {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #999;
+      padding: 8px 0;
+      border-bottom: 1.5px solid #ddd;
+      text-align: left;
+    }
+
+    .lines-table thead th.right {
+      text-align: right;
+    }
+
+    .lines-table thead th.center {
+      text-align: center;
+    }
+
+    .lines-table tbody td {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 9pt;
+      vertical-align: top;
+    }
+
+    .lines-table tbody td.right {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lines-table tbody td.center {
+      text-align: center;
+    }
+
+    .lines-table tbody td.description {
+      max-width: 55%;
+      color: #333;
+    }
+
+    /* ── Totaux ── */
+    .totals-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10mm;
+    }
+
+    .totals {
+      width: 200px;
+    }
+
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 9pt;
+    }
+
+    .totals-row .label {
+      color: #666;
+    }
+
+    .totals-row .value {
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .totals-row.total {
+      border-top: 2px solid #111;
+      margin-top: 4px;
+      padding-top: 8px;
+      font-weight: 700;
+      font-size: 12pt;
+    }
+
+    .totals-row.total .label,
+    .totals-row.total .value {
+      color: #111;
+    }
+
+    /* ── Mention TVA ── */
+    .tax-notice {
+      font-size: 8pt;
+      font-style: italic;
+      color: #888;
+      margin-bottom: 8mm;
+      text-align: right;
+    }
+
+    /* ── Paiement ── */
+    .payment {
+      border-top: 1px solid #eee;
+      padding-top: 5mm;
+      margin-bottom: 6mm;
+    }
+
+    .payment-title {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+
+    .payment-grid {
+      display: flex;
+      gap: 30px;
+      font-size: 8.5pt;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .payment-grid strong {
+      color: #333;
+    }
+
+    /* ── Coordonnées bancaires ── */
+    .bank {
+      background: #f7f7f7;
+      padding: 10px 14px;
+      border-radius: 2px;
+      font-size: 8.5pt;
+      color: #555;
+      margin-bottom: 6mm;
+      display: inline-block;
+    }
+
+    .bank strong {
+      color: #333;
+    }
+
+    /* ── Legal ── */
+    .legal {
+      font-size: 7.5pt;
+      color: #999;
+      line-height: 1.6;
+      margin-top: auto;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: absolute;
+      bottom: 12mm;
+      left: 22mm;
+      right: 22mm;
+      border-top: 1px solid #eee;
+      padding-top: 4mm;
+      font-size: 7pt;
+      color: #bbb;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="company">
+      <div class="company-name">{{company.name}}</div>
+      <div class="company-detail">
+        {{company.legal_form}} au capital de {{company.capital}} EUR<br>
+        {{company.address}}<br>
+        SIRET : {{company.siret}}<br>
+        RCS : {{company.rcs}}<br>
+        {{#if company.tva_intracom}}TVA intracom : {{company.tva_intracom}}{{/if}}
+      </div>
+    </div>
+    <div class="invoice-badge">
+      <div class="label">Facture</div>
+      <div class="number">{{invoice.number}}</div>
+      <div class="invoice-meta">
+        <strong>Date :</strong> {{invoice.date}}<br>
+        <strong>Echéance :</strong> {{invoice.due_date}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Client -->
+  <div class="client-block">
+    <div class="client-label">Client</div>
+    <div class="client-name">{{client.name}}</div>
+    <div class="client-detail">
+      {{client.address}}<br>
+      {{#if client.email}}{{client.email}}<br>{{/if}}
+      {{#if client.siren}}SIREN : {{client.siren}}<br>{{/if}}
+      {{#if client.tva_intracom}}TVA intracom : {{client.tva_intracom}}{{/if}}
+    </div>
+  </div>
+
+  <!-- Catégorie d'opération (2026) -->
+  {{#if invoice.category}}
+  <div class="category">Catégorie : {{invoice.category_label}}</div>
+  {{/if}}
+
+  <!-- Lignes -->
+  <table class="lines-table">
+    <thead>
+      <tr>
+        <th>Désignation</th>
+        <th class="center">Quantité</th>
+        <th class="right">Prix unitaire HT</th>
+        <th class="right">Montant HT</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each lines}}
+      <tr>
+        <td class="description">{{this.description}}</td>
+        <td class="center">{{this.quantity}}{{#if this.unit}} {{this.unit}}{{/if}}</td>
+        <td class="right">{{this.unit_price}} EUR</td>
+        <td class="right">{{this.total}} EUR</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <!-- Totaux -->
+  <div class="totals-wrapper">
+    <div class="totals">
+      <div class="totals-row">
+        <span class="label">Total HT</span>
+        <span class="value">{{totals.totalHT}} EUR</span>
+      </div>
+      {{#unless totals.isFranchise}}
+      <div class="totals-row">
+        <span class="label">TVA ({{totals.tvaRateLabel}})</span>
+        <span class="value">{{totals.totalTVA}} EUR</span>
+      </div>
+      {{/unless}}
+      <div class="totals-row total">
+        <span class="label">{{#if totals.isFranchise}}Total{{else}}Total TTC{{/if}}</span>
+        <span class="value">{{totals.totalTTC}} EUR</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mention franchise TVA -->
+  {{#if totals.isFranchise}}
+  <div class="tax-notice">TVA non applicable, article 293 B du Code général des impôts</div>
+  {{/if}}
+
+  <!-- Devise originale (Stripe multi-devises) -->
+  {{#if invoice.original_currency}}
+  <div class="tax-notice">{{invoice.original_currency_label}}</div>
+  {{/if}}
+
+  <!-- Paiement -->
+  <div class="payment">
+    <div class="payment-title">Conditions de règlement</div>
+    <div class="payment-grid">
+      <div>
+        <strong>Délai :</strong> {{payment.terms}}<br>
+        <strong>Mode :</strong> {{payment.method}}<br>
+        <strong>Escompte :</strong> {{payment.escompte_label}}
+      </div>
+      <div>
+        <strong>Pénalités de retard :</strong> {{payment.penalty_label}}<br>
+        <strong>Indemnité forfaitaire :</strong> 40 EUR
+      </div>
+    </div>
+  </div>
+
+  <!-- Coordonnées bancaires -->
+  {{#if payment.iban}}
+  <div class="bank">
+    <strong>IBAN :</strong> {{payment.iban}} &nbsp; <strong>BIC :</strong> {{payment.bic}}
+  </div>
+  {{/if}}
+
+  <!-- Legal -->
+  <div class="legal">
+    En cas de retard de paiement, une pénalité de {{payment.penalty_label}} sera appliquée,
+    ainsi qu'une indemnité forfaitaire de recouvrement de 40 EUR
+    (articles L441-10 et D441-5 du Code de commerce).
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    {{company.name}} &middot; {{company.legal_form}} au capital de {{company.capital}} EUR &middot; SIRET {{company.siret}} &middot; RCS {{company.rcs}}
+  </div>
+
+</div>
+</body>
+</html>

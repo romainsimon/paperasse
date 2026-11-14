@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "revenus": 2021,
+    "declaration": 2022,
+    "source": "BOI-RFPI-PVI"
+  },
+
+  "regime_general": {
+    "description": "Plus-value immobilière des particuliers — deux grilles distinctes (IR et PS) avec durées différentes",
+    "taux_ir": 0.19,
+    "taux_ps": 0.172,
+    "taux_total_sans_abattement": 0.362,
+    "formule": "Plus-value imposable = prix_cession (net des frais de cession) − prix_acquisition_majoré (frais acquisition + travaux) avec application des abattements durée de détention"
+  },
+
+  "abattements_ir": {
+    "description": "Abattement pour durée de détention sur l'IR (19%)",
+    "note": "La détention se compte depuis la date d'acquisition jusqu'à la cession. Exonération totale IR à 22 ans.",
+    "tranches": [
+      { "annees": "0 à 5", "taux_par_annee": 0.00 },
+      { "annees": "6 à 21", "taux_par_annee": 0.06 },
+      { "annees": "22", "taux_par_annee": 0.04 },
+      { "exoneration_totale_annees": 22 }
+    ]
+  },
+
+  "abattements_ps": {
+    "description": "Abattement pour durée de détention sur les prélèvements sociaux (17.2%)",
+    "note": "Grille plus progressive. Exonération totale PS à 30 ans.",
+    "tranches": [
+      { "annees": "0 à 5", "taux_par_annee": 0.00 },
+      { "annees": "6 à 21", "taux_par_annee": 0.0165 },
+      { "annees": "22", "taux_par_annee": 0.016 },
+      { "annees": "23 à 30", "taux_par_annee": 0.09 },
+      { "exoneration_totale_annees": 30 }
+    ]
+  },
+
+  "exonerations": {
+    "residence_principale": "Exonération totale IR + PS à condition d'occuper effectivement le bien à la date de cession (pas de mise en location préalable)",
+    "premiere_cession_logement_autre_que_rp": "Exonération sous conditions de remploi (construction/acquisition d'une RP dans les 24 mois), pas de détention d'une RP dans les 4 ans",
+    "expatries": "Non-résidents, sous conditions : exonération totale de l'immeuble qui était la résidence principale à la date du transfert du domicile fiscal, cédé au plus tard le 31/12 de l'année suivant ce transfert, sans mise à disposition de tiers entre-temps, après un départ vers l'UE ou un État lié par une convention d'assistance administrative et une convention d'assistance au recouvrement, non coopératif exclu (art. 244 bis A, I-1 ; BOI-RFPI-PVINR-10-20 § 440 à 540). À défaut, et sans cumul avec l'exonération précédente : exonération d'un logement, limitée à une résidence par contribuable et à 150 000 € de plus-value nette, pour un ressortissant UE / EEE domicilié en France au moins 2 ans de manière continue, cession au plus tard le 31/12 de la 10e année suivant le départ ou, sans délai, si le cédant a la libre disposition du bien depuis le 1er janvier de l'année précédente (art. 150 U, II, 2° ; BOI § 220 à 430).",
+    "petit_prix": "Exonération si prix ≤ 15 000 € (par quote-part si indivision)",
+    "duree_detention": "≥ 22 ans pour l'IR, ≥ 30 ans pour les PS"
+  },
+
+  "prix_acquisition_majore": {
+    "description": "Le prix d'acquisition peut être majoré pour réduire la PV taxable",
+    "frais_acquisition": "Acquisition à titre onéreux : frais réels justifiés (droits d'enregistrement, honoraires du notaire ou du rédacteur de l'acte, commission d'agence à la charge de l'acquéreur) OU forfait de 7,5 % du prix stipulé dans l'acte (art. 150 VB, II, 3° CGI). Acquisition à titre gratuit (succession, donation) : frais réels seulement, pas de forfait (BOI-RFPI-PVI-20-10-20-20 § 80).",
+    "travaux": "Réels : dépenses de construction, reconstruction, agrandissement ou amélioration RÉALISÉES PAR UNE ENTREPRISE, justifiées par ses factures, non déjà déduites pour l'IR et non incluses dans la base d'une réduction ou d'un crédit d'impôt (sauf tempéraments, § 240, 265, 310) ; exclus : entretien et réparations, travaux faits par le vendeur, matériaux achetés par lui (la pose facturée par l'entreprise reste retenue) (art. 150 VB, II, 4° ; BOI-RFPI-PVI-20-10-20-20 § 120 à 340). OU forfait de 15 % du prix d'acquisition, sans justificatif, pour un immeuble bâti cédé PLUS de cinq ans après son acquisition, non applicable aux terrains nus (§ 350 à 400)."
+  },
+
+  "surtaxe_pv_importantes": {
+    "description": "Surtaxe sur les plus-values immobilières imposables > 50 000 €",
+    "seuil_declenchement": 50000,
+    "application": "Cumulative avec IR + PS",
+    "taux_progressif": "2% à 6% selon le montant de la PV nette imposable à l'IR, après abattement pour durée de détention IR (pas l'abattement PS), appréciée par cédant ; terrains à bâtir hors champ (art. 1609 nonies G CGI ; BOI-RFPI-TPVIE-20 § 10 à 50 ; BOI-RFPI-TPVIE-10 § 120)"
+  }
+}

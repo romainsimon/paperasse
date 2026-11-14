@@ -33,15 +33,18 @@
 - Mention obligatoire sur factures: "TVA non applicable, art. 293 B du CGI"
 
 **Dépassement du seuil:**
-- TVA applicable dès le 1er jour du mois de dépassement
-- Devenir redevable immédiatement
+- Dépassement du seuil de base (85 000 € / 37 500 €) sans dépasser le seuil majoré : franchise maintenue jusqu'au 31 décembre, TVA due à compter du 1er janvier suivant
+- Dépassement du seuil majoré (93 500 € / 41 250 €) : TVA applicable dès le jour du dépassement (et non plus au 1er jour du mois de dépassement, règle en vigueur depuis le 1er janvier 2025)
 - Demander un numéro de TVA intracommunautaire
+- Source : https://entreprendre.service-public.gouv.fr/vosdroits/F21746 (vérifié le 01/01/2026)
 
 ### 2. Régime Réel Simplifié
 
 **Seuils (2026):**
-- Services: 37 500 € à 254 000 €
-- Ventes: 85 000 € à 840 000 €
+- Services (dont location meublée): 37 500 € à 286 000 € (seuil majoré en cours d'année : 323 000 €)
+- Ventes, restauration, fourniture de logement: 85 000 € à 945 000 € (seuil majoré en cours d'année : 1 040 000 €)
+- Et TVA due au titre de N-1 inférieure à 15 000 €
+- Source : https://entreprendre.service-public.gouv.fr/vosdroits/F23575 (vérifié le 17/02/2026)
 
 **Obligations:**
 - Déclaration annuelle CA12 (avant le 2ème jour ouvré suivant le 1er mai)
@@ -66,8 +69,9 @@ Régularisation annuelle (TVA à payer):
 ### 3. Régime Réel Normal
 
 **Seuils:**
-- Services: > 254 000 €
-- Ventes: > 840 000 €
+- Services: > 286 000 € (ou > 323 000 € en cours d'année, bascule rétroactive au 1er janvier)
+- Ventes: > 945 000 € (ou > 1 040 000 € en cours d'année, bascule rétroactive au 1er janvier)
+- Ou TVA due N-1 ≥ 15 000 €
 - Ou sur option
 
 **Obligations:**
@@ -98,7 +102,7 @@ Option pour être au réel normal pour la TVA tout en restant au réel simplifi�
 ```
 Achat intracommunautaire 1000€:
   Débit 604/607 Achats             1 000,00
-  Débit 4452 TVA due intracom        200,00
+  Débit 445662 TVA déductible intracom 200,00
   Crédit 401 Fournisseur           1 000,00
   Crédit 4452 TVA due intracom       200,00
 ```
@@ -130,7 +134,7 @@ Note: La TVA due et la TVA déductible s'annulent si droit à déduction total.
 ```
 Prestation service intra-UE 500€:
   Débit 604 Achats prestations       500,00
-  Débit 4452 TVA due intracom        100,00
+  Débit 445662 TVA déductible intracom 100,00
   Crédit 401 Fournisseur             500,00
   Crédit 4452 TVA due intracom       100,00
 ```
@@ -292,15 +296,18 @@ Achat intra-UE ou import sans autoliquidation = TVA non déductible.
 
 ### 2. TVA sur acomptes
 
-- **Biens:** TVA exigible à la livraison, pas à l'acompte
+- **Biens:** TVA exigible à l'encaissement de l'acompte, à hauteur du montant encaissé (acomptes encaissés depuis le 1er janvier 2023, art. 269, 2-a CGI ; BOI-TVA-BASE-20-10), puis à la livraison pour le solde. L'acompte ne déclenche l'exigibilité que si les éléments de la livraison (biens désignés avec précision) sont connus à son versement
 - **Services:** TVA exigible à l'encaissement de l'acompte
 
 ### 3. Déduction TVA non admise
 
 TVA non déductible sur:
 - Véhicules de tourisme (sauf véhicules utilitaires)
-- Carburant essence (déductible à 80%)
-- Gazole (déductible à 100%)
+- Carburant (art. 298, 4-1° a et c CGI, version en vigueur depuis le 01/01/2022 ; abrogé au 01/01/2027 par l'ord. n° 2025-1247 et repris à droit constant dans le CIBS) :
+  - Véhicules exclus du droit à déduction (véhicules conçus pour transporter des personnes ou à usage mixte, y compris pick-up N1 double cabine, et véhicules pris en location sans déduction de la TVA sur le loyer) : gazole, essence, E85 → 20 % de la TVA non déductible (soit 80 % déductible) ; GPL, GNV → 50 % non déductible (soit 50 % déductible)
+  - Véhicules non exclus (utilitaires, taxis de transport public, auto-écoles, loueurs) : TVA sur carburant déductible en totalité
+  - Électricité d'un véhicule exclu fonctionnant exclusivement à l'électricité : déductible en totalité (art. 273 septies B CGI)
+  - Usage privé (dirigeant, salariés) : non déductible ; si la TVA a été déduite à l'achat, régulariser par livraison à soi-même (art. 257, II-1-2° CGI ; BOI-TVA-DED-30-30-40 § 70-80)
 - Cadeaux > 73 € TTC par bénéficiaire/an
 - Dépenses de logement pour dirigeants
 - Services liés à des opérations exonérées sans droit à déduction

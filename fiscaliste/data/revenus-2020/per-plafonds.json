@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "revenus": 2020,
+    "declaration": 2021,
+    "pass_2019": 40524,
+    "pass_2020": 41136,
+    "pass_2021": 41136,
+    "sources": [
+      "Arrêté du 11 décembre 2018 (PASS 2019 = 40 524 €), arrêté du 2 décembre 2019 (PASS 2020 = 41 136 €), PASS 2021 inchangé à 41 136 €",
+      "https://bofip.impots.gouv.fr/bofip/1124-PGP.html/identifiant=BOI-IR-BASE-20-50-20-20260217 (§ 80 : PASS de l'année civile précédant celle du versement)"
+    ]
+  },
+
+  "per_individuel": {
+    "description": "Plafond de déduction PER (et autres produits d'épargne retraite de l'art. 163 quatervicies) pour les versements 2020 (déclaration 2021)",
+    "calcul": "10 % des revenus d'activité professionnelle de l'année N-1 nets de frais (salaires après abattement 10 %, BNC, BIC), retenus dans la limite de 8 PASS de N-1, sous déduction des versements déjà déduits en N-1 (article 83 2°, PERO, PERECO ; Madelin et art. 154 bis-0 A pour la seule fraction excédant 15 % du bénéfice compris entre 1 et 8 PASS ; sommes versées par l'entreprise ou le salarié au PERCO ou PERECO et exonérées au titre de l'art. 81, 18°)",
+    "plancher_euros": 4052,
+    "plancher_base": "10% × PASS 2019 (40 524 €) — garanti même sans revenus. BOI-IR-BASE-20-50-20 § 80 : PASS de l'année précédant le versement.",
+    "plafond_absolu_euros": 32419,
+    "plafond_absolu_base": "10% × 8 × PASS 2019",
+    "report": {
+      "description": "Plafonds non utilisés des 3 années précédentes mobilisables",
+      "ordre": "Utiliser le plafond N en premier, puis les plafonds N-3, N-2, N-1 (ordre FIFO le plus ancien en premier)"
+    },
+    "mutualisation_couple": "Les époux/pacsés soumis à imposition commune peuvent mutualiser leurs plafonds (case à cocher sur 2042)"
+  },
+
+  "sortie_per": {
+    "versements_deduits_entree": "Capital : barème sans abattement de 10 % (art. 158, 5-b quinquies CGI) ; gains au PFU 12,8 % ou barème sur option, plus PS. Rente : rente viagère à titre gratuit (barème après abattement de 10 %).",
+    "versements_non_deduits": "Capital exonéré d'IR, seuls les gains sont imposés (PFU) ; rente imposée comme rente viagère à titre onéreux",
+    "cas_sortie_anticipee": "Art. L. 224-4 CMF : achat de la résidence principale, sauf droits issus des versements obligatoires (imposé comme une sortie en capital) ; accidents de la vie (décès du conjoint ou partenaire de PACS ; invalidité du titulaire, de ses enfants, de son conjoint ou partenaire ; surendettement ; expiration des droits au chômage ou, pour certains anciens mandataires, absence de contrat de travail ou de mandat depuis 2 ans ; cessation d'activité non salariée après liquidation judiciaire ou situation justifiant le retrait selon le président du tribunal de commerce) : versements et gains exonérés d'IR, PS sur les gains"
+  },
+
+  "arbitrage_per": {
+    "description": "Le PER (créé par la loi PACTE, commercialisé depuis le 01/10/2019) est un report d'imposition, pas une exonération. L'avantage net dépend du différentiel TMI entrée / sortie.",
+    "gagnant": "TMI entrée > TMI sortie → gain net",
+    "perdant": "TMI entrée < TMI sortie → perte nette (rare mais possible si carrière ascendante ou sortie en capital massif)",
+    "neutre": "TMI égaux → gain = seulement la capitalisation sur l'économie d'impôt (effet levier)",
+    "piege_sortie_capital": "Sortie en capital = imposition du capital versé + imposition séparée des gains au PFU. Bien distinguer versements (barème) et gains (PFU)."
+  }
+}

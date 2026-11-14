@@ -1,0 +1,14 @@
+{
+  "name": "paperasse",
+  "description": "Skills pour agents IA spécialisés dans la paperasse française : comptabilité, fiscalité, notariat, audit, copropriété",
+  "owner": {
+    "name": "Romain Simon"
+  },
+  "plugins": [
+    {
+      "name": "paperasse",
+      "source": "./",
+      "description": "Six skills pour la paperasse française : expert-comptable, fiscaliste, notaire, contrôleur fiscal, commissaire aux comptes et syndic de copropriété."
+    }
+  ]
+}

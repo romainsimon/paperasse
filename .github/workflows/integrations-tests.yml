@@ -1,0 +1,71 @@
+name: Tests
+
+on:
+  pull_request:
+    paths:
+      - "integrations/**"
+      - "scripts/**"
+      - "fiscaliste/**"
+      - "comptable/**"
+      - "controleur-fiscal/**"
+      - "data/**"
+      - "package.json"
+      - ".github/workflows/integrations-tests.yml"
+  push:
+    branches: [master]
+    paths:
+      - "integrations/**"
+      - "scripts/**"
+      - "fiscaliste/**"
+      - "comptable/**"
+      - "controleur-fiscal/**"
+      - "data/**"
+      - "package.json"
+      - ".github/workflows/integrations-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests déterministes et connecteurs
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Calculs déterministes (calc.js, bilan, calc_ir)
+        run: npm run test:calc
+
+      - name: calc_ir.py sur les foyers d'exemple
+        run: |
+          set -e
+          for f in fiscaliste/foyer.example.json fiscaliste/examples/*.json; do
+            case "$f" in
+              *non-resident*)
+                if python3 fiscaliste/scripts/calc_ir.py --foyer "$f" --json > /dev/null 2>&1; then
+                  echo "calc_ir.py aurait dû refuser le foyer non-résident : $f"; exit 1
+                fi
+                echo "refus attendu : $f" ;;
+              *)
+                python3 fiscaliste/scripts/calc_ir.py --foyer "$f" --json > /dev/null
+                echo "ok : $f" ;;
+            esac
+          done
+
+      - name: Parseur de factures CII
+        run: npm run test:parse
+
+      - name: Connecteurs (Qonto, Pennylane)
+        run: |
+          npm run test:qonto
+          npm run test:pennylane

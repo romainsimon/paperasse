@@ -258,32 +258,116 @@ function generateBilan(accounts, company, pcgNames, plData) {
   md += '| Poste | Brut | Amort./Deprec. | Net |\n';
   md += '|-------|-----:|---------------:|----:|\n';
 
+  // Comptes effectivement repris au bilan : le controle final liste les
+  // comptes des classes 1 a 5 a solde non nul qui n'y figurent pas.
+  const presented = new Set();
+
+  // Depreciations de l'actif circulant (39x, 49x, 59x) : deduites dans la
+  // colonne "Amort./Deprec.", sur une ligne propre (PCG, art. 821-1).
+  function depreciationLines(prefix) {
+    let total = 0;
+    for (const [acct, bal] of Object.entries(accounts)
+      .filter(([a]) => a.startsWith(prefix))
+      .sort(([a], [b]) => a.localeCompare(b))) {
+      const dep = round2(bal.credit - bal.debit);
+      if (Math.abs(dep) >= 0.01) {
+        const name = pcgNames[acct] || acct;
+        md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | | ' + fmt(dep) + ' | ' + fmt(round2(-dep)) + ' |\n';
+        total += dep;
+        presented.add(acct);
+      }
+    }
+    return round2(total);
+  }
+
+  // Rubrique propre (169, 476 a l'actif, 477 au passif) : titre, une ligne
+  // par compte a solde non nul, ligne vide. Montant positif = solde normal.
+  function rubrique(prefix, title, side) {
+    const rows = Object.entries(accounts)
+      .filter(([a]) => a.startsWith(prefix))
+      .map(([a, bal]) => [a, round2(side === 'actif' ? bal.debit - bal.credit : bal.credit - bal.debit)])
+      .filter(([, amount]) => Math.abs(amount) >= 0.01)
+      .sort(([a], [b]) => a.localeCompare(b));
+    if (rows.length === 0) return 0;
+    const blank = side === 'actif' ? '| | | |' : '|';
+    md += '| **' + title + '** ' + blank + '\n';
+    let total = 0;
+    for (const [acct, amount] of rows) {
+      const name = pcgNames[acct] || acct;
+      md += side === 'actif'
+        ? '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' | | ' + fmt(amount) + ' |\n'
+        : '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
+      total += amount;
+      presented.add(acct);
+    }
+    md += '| ' + blank + '\n';
+    return round2(total);
+  }
+
   // Immobilisations (class 2, excluding 28x amortissements and 29x depreciations)
   const immoAccounts = Object.entries(accounts)
     .filter(([a]) => a.startsWith('2') && !a.startsWith('28') && !a.startsWith('29'))
     .sort(([a], [b]) => a.localeCompare(b));
 
   const amortAccounts = Object.entries(accounts)
-    .filter(([a]) => a.startsWith('28'))
+    .filter(([a]) => a.startsWith('28') || a.startsWith('29'))
     .sort(([a], [b]) => a.localeCompare(b));
 
   let totalImmoBrut = 0;
   let totalAmort = 0;
 
-  if (immoAccounts.length > 0) {
+  // Les 28x/29x suivent la meme ventilation que le compte d'immobilisation
+  // (PCG), mais les exports completent les numeros a 6 chiffres : 281000
+  // amortit 210000, 281830 amortit 218300, 28183 amortit 2183. On apparie
+  // donc par racine (zeros finaux retires, 8/9 en 2e position retire).
+  // Sans appariement sur : '28'/'29' nus (non ventiles dans le PCG) et
+  // racines ambigues (ex. 21 et 210000 dans la meme balance) -> ligne propre.
+  const rootOf = (acct) => acct.replace(/0+$/, '') || acct;
+  const immoByRoot = new Map();
+  const ambiguousRoots = new Set();
+  for (const [acct] of immoAccounts) {
+    const root = rootOf(acct);
+    if (immoByRoot.has(root)) ambiguousRoots.add(root);
+    else immoByRoot.set(root, acct);
+  }
+  const amortByImmo = new Map();
+  const orphanAmort = [];
+  for (const [acct, bal] of amortAccounts) {
+    const amount = round2(bal.credit - bal.debit);
+    const targetRoot = '2' + rootOf(acct).substring(2);
+    const target = (acct === '28' || acct === '29' || ambiguousRoots.has(targetRoot))
+      ? undefined
+      : immoByRoot.get(targetRoot);
+    if (target !== undefined) {
+      amortByImmo.set(target, round2((amortByImmo.get(target) || 0) + amount));
+      presented.add(acct);
+    } else if (Math.abs(amount) >= 0.01) {
+      orphanAmort.push([acct, amount]);
+    }
+  }
+
+  if (immoAccounts.length > 0 || orphanAmort.length > 0) {
     md += '| **ACTIF IMMOBILISE** | | | |\n';
 
     for (const [acct, bal] of immoAccounts) {
       const brut = round2(bal.debit - bal.credit);
-      // Find corresponding amortization account (28 + suffix)
-      const amortAcct = '28' + acct.substring(1);
-      const amort = accounts[amortAcct] ? round2(accounts[amortAcct].credit - accounts[amortAcct].debit) : 0;
+      const amort = amortByImmo.get(acct) || 0;
       const net = round2(brut - amort);
       const name = pcgNames[acct] || acct;
 
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(brut) + ' | ' + fmt(amort) + ' | ' + fmt(net) + ' |\n';
       totalImmoBrut += brut;
       totalAmort += amort;
+      presented.add(acct);
+    }
+
+    // 28x/29x sans immobilisation brute appariee : ligne propre pour que la
+    // depreciation reste visible et que le total actif reste exact
+    for (const [acct, amort] of orphanAmort) {
+      const name = pcgNames[acct] || acct;
+      md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | | ' + fmt(amort) + ' | ' + fmt(round2(-amort)) + ' |\n';
+      totalAmort += amort;
+      presented.add(acct);
     }
 
     md += '| **Total actif immobilise** | **' + fmt(totalImmoBrut) + '** | **' + fmt(totalAmort) + '** | **' + fmt(round2(totalImmoBrut - totalAmort)) + '** |\n';
@@ -301,54 +385,67 @@ function generateBilan(accounts, company, pcgNames, plData) {
   let totalStocks = 0;
   for (const [acct, bal] of stockAccounts) {
     const amount = round2(bal.debit - bal.credit);
-    if (Math.abs(amount) > 0.01) {
+    if (Math.abs(amount) >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' | | ' + fmt(amount) + ' |\n';
       totalStocks += amount;
+      presented.add(acct);
     }
   }
+  const totalDepStocks = depreciationLines('39');
 
-  // Creances (411, 416, 418, 44566, etc.)
+  // Creances : comptes de tiers (classe 4, hors 49x) a solde debiteur.
+  // Chaque compte est classe selon le sens de son solde, quel que soit son
+  // numero (455 debiteur, 467, 4456, 486 CCA...) : un compte debiteur a
+  // l'actif, un compte crediteur au passif (dettes ci-dessous).
+  const isEcartConversion = (a) => a.startsWith('476') || a.startsWith('477');
   const creanceAccounts = Object.entries(accounts)
-    .filter(([a]) => {
-      if (a.startsWith('41') && !a.startsWith('419')) return true;
-      if (a.startsWith('44') && (a.startsWith('445') || a.startsWith('4456'))) return true;
-      if (a.startsWith('486')) return true; // CCA
-      return false;
-    })
+    .filter(([a]) => a.startsWith('4') && !a.startsWith('49') && !isEcartConversion(a))
     .sort(([a], [b]) => a.localeCompare(b));
 
   let totalCreances = 0;
   for (const [acct, bal] of creanceAccounts) {
     const amount = round2(bal.debit - bal.credit);
-    if (amount > 0.01) {
+    if (amount >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' | | ' + fmt(amount) + ' |\n';
       totalCreances += amount;
+      presented.add(acct);
     }
   }
+  const totalDepCreances = depreciationLines('49');
 
   // Tresorerie (class 5)
   md += '| | | | |\n';
   md += '| **TRESORERIE** | | | |\n';
 
   const tresoAccounts = Object.entries(accounts)
-    .filter(([a]) => a.startsWith('5'))
+    .filter(([a]) => a.startsWith('5') && !a.startsWith('59'))
     .sort(([a], [b]) => a.localeCompare(b));
 
   let totalTreso = 0;
   for (const [acct, bal] of tresoAccounts) {
     const amount = round2(bal.debit - bal.credit);
-    if (amount > 0.01) {
+    if (amount >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' | | ' + fmt(amount) + ' |\n';
       totalTreso += amount;
+      presented.add(acct);
     }
   }
-  md += '| **Total tresorerie** | **' + fmt(totalTreso) + '** | | **' + fmt(totalTreso) + '** |\n';
+  const totalDepTreso = depreciationLines('59');
+  const tresoNet = round2(totalTreso - totalDepTreso);
+  const depCell = totalDepTreso ? ' **' + fmt(totalDepTreso) + '** ' : ' ';
+  md += '| **Total tresorerie** | **' + fmt(totalTreso) + '** |' + depCell + '| **' + fmt(tresoNet) + '** |\n';
   md += '| | | | |\n';
 
-  const totalActif = round2(totalImmoBrut - totalAmort + totalStocks + totalCreances + totalTreso);
+  // Primes de remboursement des emprunts (169, solde debiteur) et ecarts de
+  // conversion actif (476) : rubriques propres de l'actif (PCG, art. 821-1)
+  const totalPrimes = rubrique('169', 'PRIMES DE REMBOURSEMENT DES EMPRUNTS', 'actif');
+  const totalEcartsActif = rubrique('476', 'ECARTS DE CONVERSION ET DIFFERENCES D\'EVALUATION - ACTIF', 'actif');
+
+  const totalActif = round2(totalImmoBrut - totalAmort + totalStocks - totalDepStocks
+    + totalCreances - totalDepCreances + tresoNet + totalPrimes + totalEcartsActif);
   md += '| **TOTAL ACTIF** | | | **' + fmt(totalActif) + '** |\n';
   md += '\n---\n\n';
 
@@ -367,10 +464,11 @@ function generateBilan(accounts, company, pcgNames, plData) {
   let totalCP = 0;
   for (const [acct, bal] of cpAccounts) {
     const amount = round2(bal.credit - bal.debit);
-    if (Math.abs(amount) > 0.01) {
+    if (Math.abs(amount) >= 0.01) {
       const name = pcgNames[acct] || acct;
       md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
       totalCP += amount;
+      presented.add(acct);
     }
   }
 
@@ -390,57 +488,50 @@ function generateBilan(accounts, company, pcgNames, plData) {
     md += '| **PROVISIONS** | |\n';
     for (const [acct, bal] of provAccounts) {
       const amount = round2(bal.credit - bal.debit);
-      if (Math.abs(amount) > 0.01) {
+      if (Math.abs(amount) >= 0.01) {
         const name = pcgNames[acct] || acct;
         md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
         totalProvisions += amount;
+        presented.add(acct);
       }
     }
     md += '| **Total provisions** | **' + fmt(totalProvisions) + '** |\n';
     md += '| | |\n';
   }
 
-  // Dettes (class 4 credit balances, 16x emprunts, 455 compte courant, 487 PCA)
+  // Dettes (16x emprunts, comptes de tiers a solde crediteur : 40x, 42x,
+  // 43x, 44x dont TVA collectee, 455, 419, 457, 467, 487 PCA..., et comptes
+  // financiers a solde crediteur : 512 en decouvert, 519 concours bancaires)
   md += '| **DETTES** | |\n';
 
   const detteAccounts = Object.entries(accounts)
-    .filter(([a]) => {
-      if (a.startsWith('16')) return true; // Emprunts
-      if (a.startsWith('40')) return true; // Fournisseurs
-      if (a === '455') return true; // Compte courant associe
-      if (a.startsWith('43')) return true; // Organismes sociaux
-      if (a.startsWith('44') && !a.startsWith('445') && !a.startsWith('4456')) return true; // Etat (IS, TVA collectee)
-      if (a === '487') return true; // PCA
-      return false;
-    })
+    .filter(([a]) => (a.startsWith('16') && !a.startsWith('169'))
+      || (a.startsWith('4') && !a.startsWith('49') && !isEcartConversion(a))
+      || (a.startsWith('5') && !a.startsWith('59')))
     .sort(([a], [b]) => a.localeCompare(b));
 
   let totalDettes = 0;
   for (const [acct, bal] of detteAccounts) {
     const amount = round2(bal.credit - bal.debit);
-    if (amount > 0.01) {
+    if (amount >= 0.01) {
       const name = pcgNames[acct] || acct;
-      md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' | ' + fmt(amount) + ' |\n';
+      // Client crediteur (411 en avance, hors 419) ou banque en decouvert
+      // (51x hors 519) : signale
+      const suffix = (acct.startsWith('41') && !acct.startsWith('419'))
+        || (acct.startsWith('51') && !acct.startsWith('519')) ? ' (solde crediteur)' : '';
+      md += '| &nbsp;&nbsp;' + acct + ' — ' + name + suffix + ' | ' + fmt(amount) + ' |\n';
       totalDettes += amount;
-    }
-  }
-
-  // Handle 411 credit balance (unusual, but possible)
-  for (const [acct, bal] of Object.entries(accounts)) {
-    if (acct.startsWith('41') && !acct.startsWith('419')) {
-      const amount = round2(bal.credit - bal.debit);
-      if (amount > 0.01) {
-        const name = pcgNames[acct] || acct;
-        md += '| &nbsp;&nbsp;' + acct + ' — ' + name + ' (solde crediteur) | ' + fmt(amount) + ' |\n';
-        totalDettes += amount;
-      }
+      presented.add(acct);
     }
   }
 
   md += '| **Total dettes** | **' + fmt(totalDettes) + '** |\n';
   md += '| | |\n';
 
-  const totalPassif = round2(totalCP + totalProvisions + totalDettes);
+  // Ecarts de conversion passif (477) : rubrique propre du passif
+  const totalEcartsPassif = rubrique('477', 'ECARTS DE CONVERSION ET DIFFERENCES D\'EVALUATION - PASSIF', 'passif');
+
+  const totalPassif = round2(totalCP + totalProvisions + totalDettes + totalEcartsPassif);
   md += '| **TOTAL PASSIF** | **' + fmt(totalPassif) + '** |\n';
   md += '\n---\n\n';
 
@@ -460,7 +551,33 @@ function generateBilan(accounts, company, pcgNames, plData) {
     md += '**Ecart de ' + fmt(Math.abs(ecart)) + ' EUR. A investiguer.**\n';
   }
 
-  return { md, totalActif, totalPassif, ecart };
+  // Comptes de bilan (classes 1 a 5) a solde non nul absents de l'actif et du passif
+  const unpresented = Object.entries(accounts)
+    .filter(([a]) => /^[1-5]/.test(a) && !presented.has(a))
+    .map(([a, bal]) => [a, round2(bal.debit - bal.credit)])
+    .filter(([, solde]) => Math.abs(solde) >= 0.01)
+    .sort(([a], [b]) => a.localeCompare(b));
+  if (unpresented.length > 0) {
+    md += '\nComptes de la balance non repris au bilan :\n\n';
+    for (const [a, solde] of unpresented) {
+      md += '- ' + a + ' — ' + (pcgNames[a] || a) + ' : solde ' + (solde > 0 ? 'debiteur ' : 'crediteur ') + fmt(Math.abs(solde)) + ' EUR\n';
+    }
+  }
+
+  return { md, totalActif, totalPassif, ecart, unpresented };
+}
+
+// Controle final : un compte repris ni a l'actif ni au passif ne doit pas
+// passer inapercu.
+function checkBilanEquilibre({ totalActif, totalPassif, ecart, unpresented = [] }) {
+  if (Math.abs(ecart) >= 0.01) {
+    const absents = unpresented.length > 0
+      ? ' Comptes de la balance non repris au bilan : '
+        + unpresented.map(([a, solde]) => a + ' (solde ' + (solde > 0 ? 'debiteur ' : 'crediteur ') + fmt(Math.abs(solde)) + ')').join(', ') + '.'
+      : ' Tous les comptes des classes 1 a 5 sont repris : verifier l\'equilibre des ecritures et le resultat.';
+    throw new Error('Bilan desequilibre : Actif ' + fmt(totalActif) + ' EUR, Passif '
+      + fmt(totalPassif) + ' EUR, ecart ' + fmt(ecart) + ' EUR.' + absents);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -559,9 +676,16 @@ function main() {
   console.log('  Actif    : ' + fmt(bilanResult.totalActif) + ' EUR');
   console.log('  Passif   : ' + fmt(bilanResult.totalPassif) + ' EUR');
 
-  if (Math.abs(bilanResult.ecart) > 0.01) {
-    console.log('\n  ATTENTION : bilan desequilibre de ' + fmt(bilanResult.ecart) + ' EUR');
+  try {
+    checkBilanEquilibre(bilanResult);
+  } catch (err) {
+    console.error('\nErreur : ' + err.message);
+    process.exit(1);
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = { computeBalances, generatePL, generateBilan, checkBilanEquilibre, generateBalance };

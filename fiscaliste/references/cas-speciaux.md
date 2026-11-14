@@ -2,24 +2,9 @@
 
 ## Non-résidents fiscaux
 
-### Définition résidence fiscale
+Départ de France, année du départ (2042 + 2042-NR), taux minimum 20 % / 30 % (art. 197 A CGI) et option pour le taux moyen, non-résidents « Schumacker », revenus fonciers et prélèvements sociaux (7,5 % pour les affiliés à un régime de sécurité sociale de l'EEE, de la Suisse ou du Royaume-Uni), Pinel après le départ, vente de l'ancienne résidence principale et exit tax : voir [non-residents.md](non-residents.md).
 
-Un contribuable est résident fiscal français si l'un de ces critères est rempli (article 4 B CGI) :
-- Foyer ou lieu de séjour principal en France
-- Exercice d'une activité professionnelle principale en France
-- Centre des intérêts économiques en France
-
-**La nationalité n'est pas un critère.**
-
-### Règles applicables aux non-résidents
-
-- Imposés uniquement sur les **revenus de source française** (article 164 A CGI)
-- Taux minimum : 20% sur la fraction ≤ 27 519 € et 30% au-delà (revenus 2025)
-- Pas de quotient familial au-delà de 2 parts
-- Pas de décote
-- Application des conventions fiscales bilatérales (crédit d'impôt, exonérations)
-
-**Ce skill ne couvre PAS la fiscalité des non-résidents en détail.** Pour les cas complexes, orienter vers un avocat fiscaliste spécialisé en fiscalité internationale.
+Critères du domicile fiscal : article 4 B CGI (foyer ou lieu de séjour principal, activité professionnelle principale, centre des intérêts économiques). La nationalité n'est pas un critère. Les conventions fiscales priment sur le droit interne : pour les cas complexes (double résidence, revenus d'activité, dirigeants), orienter vers un avocat fiscaliste spécialisé en fiscalité internationale.
 
 ## Revenus exceptionnels : quotient
 
@@ -32,22 +17,23 @@ Lissage fiscal pour éviter qu'un revenu ponctuel ne fasse franchir artificielle
 Impôt_supplémentaire = [IR(revenu_ordinaire + revenu_exceptionnel / coefficient) − IR(revenu_ordinaire)] × coefficient
 ```
 
-**Coefficient par défaut : 4**. Peut être différent selon la nature du revenu.
+**Coefficient : toujours 4 pour les revenus exceptionnels** (art. 163-0 A CGI ; brochure IR 2026, « Divers »). Pour les revenus différés (arriérés de salaire, rappels de pension), le coefficient est le nombre d'années civiles d'échéance normale plus un.
 
 ### Revenus éligibles
 
 - Prime exceptionnelle (non pérennisable)
-- Indemnité de départ volontaire ou licenciement (fraction imposable)
+- Indemnité de départ volontaire, de licenciement, de mise à la retraite ou de préretraite (fraction imposable) : **sans condition de montant** pour ces indemnités de rupture
 - Gratification de fin d'activité
-- Vesting RSU massif (exceptionnellement élevé vs revenus habituels)
-- Régularisation d'arriérés de salaire
-- Plus-value de cession d'entreprise (cas spécifiques)
+- Gain d'acquisition d'actions gratuites ou gain de levée d'options imposé au barème, exceptionnellement élevé par rapport aux revenus habituels
+- Régularisation d'arriérés de salaire ou de pension (revenus différés)
+
+Sont **exclus** les revenus taxés à un taux proportionnel (PFU 12,8 %, plus-values mobilières ou crypto non soumises à l'option barème).
 
 ### Conditions d'application
 
-- Revenu > **moyenne des revenus imposables des 3 années précédentes**
-- Caractère exceptionnel avéré (non récurrent)
-- Demande expresse du contribuable sur la déclaration
+- Revenu exceptionnel > **moyenne des revenus nets imposables des 3 années précédentes** (sauf indemnités de rupture du contrat de travail, dispensées de cette condition)
+- Caractère exceptionnel avéré (non récurrent par nature)
+- Demande expresse du contribuable : montant en ligne 0XX de la 2042 C, avec sa nature et son année de perception
 
 ### Nuance critique
 
@@ -61,18 +47,18 @@ Impôt_supplémentaire = [IR(revenu_ordinaire + revenu_exceptionnel / coefficien
 
 Foyer célibataire, RNI habituel 40 000 € (TMI 30%), vesting RSU 80 000 € imposé comme salaire.
 
-**Sans quotient** :
+**Sans quotient** (barème revenus 2025, 1 part) :
 - RNI total : 120 000 €
-- Impôt approximatif : ~32 000 €
+- Impôt : 33 001 € (dont 35 423 € taxés à 41 %)
 
 **Avec quotient (coefficient 4)** :
 - Revenu fractionné : 40 000 + 80 000/4 = 60 000 €
-- Impôt sur 60 000 € : ~12 000 €
-- Impôt sur 40 000 € : ~5 100 €
-- Supplément × 4 : (12 000 − 5 100) × 4 = 27 600 €
-- Impôt total : 5 100 + 27 600 = ~32 700 €
+- Impôt sur 60 000 € : 11 104 €
+- Impôt sur 40 000 € : 5 104 €
+- Supplément × 4 : (11 104 − 5 104) × 4 = 24 000 €
+- Impôt total : 5 104 + 24 000 = 29 104 €
 
-Dans cet exemple, peu de gain car le revenu ordinaire est déjà en tranche 30%. L'intérêt est marginal.
+Gain : environ 3 900 €, parce que le quart du revenu exceptionnel (20 000 €) reste dans la tranche à 30 % au lieu de faire monter 35 423 € dans la tranche à 41 %. Le gain est nul si le revenu ordinaire est déjà dans la dernière tranche, et il ne joue que sur l'IR : la CEHR est calculée sur le RFR sans quotient ; pour la CDHR, le traitement au quart relève des conditions propres de l'art. 224 CGI, qui exigent un revenu exceptionnel par nature et par montant, indépendamment de l'application du quotient IR (voir la section CDHR ci-dessous).
 
 **Règle** : chiffrer systématiquement les deux scénarios avant de recommander le quotient.
 
@@ -87,12 +73,12 @@ Voir `data/bareme-ir-2025.json` → `cehr`. Base légale : art. 223 sexies CGI.
 | Célibataire | 250 000 € à 500 000 € | > 500 000 € |
 | Couple | 500 000 € à 1 000 000 € | > 1 000 000 € |
 
-**Base de calcul : RFR** (pas RNI). Le RFR inclut des éléments exonérés d'IR normal (certains revenus capital, abattements réintégrés).
+**Base de calcul : RFR** (pas RNI), retenu **sans application du quotient** des revenus exceptionnels (art. 223 sexies, I CGI). Le RFR inclut des éléments exonérés d'IR normal (revenus au PFU, abattements réintégrés dont les cotisations PER déduites, art. 1417, IV CGI).
 
 ### À ne pas oublier
 
-- S'ajoute à l'IR net (ne se déduit pas)
-- Lissage possible sur la moyenne des 2 années précédentes (article 223 sexies CGI)
+- S'ajoute à l'IR net (ne se déduit pas) ; le quotient des revenus exceptionnels allège l'IR, pas la CEHR
+- **Lissage** (art. 223 sexies, II CGI ; brochure IR 2026, case 8TD) : si le RFR de l'année est au moins égal à 1,5 fois la moyenne des RFR des deux années précédentes, si chacun de ces deux RFR est resté sous le seuil d'assujettissement (250 000 € ou 500 000 €), et si les revenus passibles de l'IR en France ont excédé la moitié du RFR mondial de chacune de ces deux années (sinon cocher 8TD : calcul de droit commun), la fraction du RFR qui dépasse cette moyenne est divisée par deux pour le calcul, puis la contribution supplémentaire obtenue est multipliée par deux. Cas d'usage : une année isolée de grosses cessions. Mariage, Pacs, divorce, séparation ou décès dans l'année ou les deux années précédentes : les RFR retenus sont ceux des foyers successifs auxquels le contribuable a appartenu, et le lissage passe par une réclamation (brochure IR 2026, « Divers », p. 326).
 
 ## CDHR (Contribution Différentielle sur les Hauts Revenus)
 
@@ -102,21 +88,32 @@ Mécanisme **distinct de la CEHR** : impose un **plancher d'imposition à 20 %**
 
 ### Base légale
 
-- Art. 224 CGI, créé par l'**art. 10 de la LFI 2025** (loi n° 2025-127 du 14/02/2025)
-- **Pérennisée par la LFI 2026** jusqu'au retour du déficit public sous 3 % du PIB (donc applicable aux revenus 2025+ jusqu'à condition de fin)
+- **Art. 224 CGI**, créé par l'art. 10 de la LFI 2025 (loi n° 2025-127 du 14/02/2025 ; revenus 2025, première année d'application), prorogé et modifié par la LFI 2026 (loi n° 2026-103 du 19/02/2026, art. 2) : applicable jusqu'à l'imposition des revenus de l'année pour laquelle le projet de loi d'approbation des comptes constate un déficit du budget général inférieur à 3 % du PIB (brochure IR 2026, nouveautés ; BOFiP ACTU-2026-00104)
+- Doctrine : BOI-IR-CDHR-10 (version du 30/06/2026)
 
-### Seuils RFR
+### Seuils de revenu de référence
 
-| Situation | Seuil de déclenchement |
-|---|---|
-| Célibataire, veuf, séparé, divorcé | RFR > 250 000 € |
-| Couple marié ou pacsé (imposition commune) | RFR > 500 000 € |
+| Situation | Seuil de déclenchement | Zone de décote |
+|---|---|---|
+| Célibataire, veuf, séparé, divorcé | > 250 000 € | jusqu'à 330 000 € |
+| Couple marié ou pacsé (imposition commune) | > 500 000 € | jusqu'à 660 000 € |
 
-### Mécanisme
+### Mécanisme (BOI-IR-CDHR-10 § 100 à 370 ; brochure IR 2026, « Divers »)
 
-La CDHR s'applique lorsque le **taux moyen d'imposition** (IR + CEHR, après réductions et crédits d'impôt) reste **inférieur à 20 % du RFR retraité**. Elle vient combler la différence pour atteindre ce plancher de 20 %.
+```
+CDHR = 20 % × RREF − décote − (IR retraité + CEHR + prélèvements libératoires + 1 500 € par personne à charge + 12 500 € si imposition commune)
+```
+(retenue si positive)
 
-Calcul automatique par l'administration après dépôt de la 2042. Pas de case spécifique à remplir manuellement.
+- **RREF** (revenu de référence) : le RFR calculé sans le quotient, dans lequel les revenus exceptionnels au sens de l'art. 224 CGI sont retenus pour le quart, qu'ils soient imposés au barème ou à un taux proportionnel, et diminué des abattements réintégrés dans le RFR autres que les abattements pour durée de détention : l'abattement de 40 % sur les dividendes, l'abattement de 50 % sur les gains d'acquisition d'actions gratuites (art. 200 A, 3) et l'abattement fixe des dirigeants n'y sont donc pas réintégrés.
+- **IR retraité** : IR après les retraitements prévus par l'art. 224, IV CGI, dont la réintégration de certains crédits et réductions d'impôt. Pour les revenus exceptionnels au barème, calculer les droits simples sans quotient IR, puis leur fraction afférente au revenu exceptionnel au prorata du revenu exceptionnel net sur le revenu net global imposable : cette fraction n'est retenue que pour le quart. Pour les revenus exceptionnels à taux proportionnel, retenir le quart de l'IR correspondant (BOI-IR-CDHR-20 § 160 à 190), pas les trois quarts retranchés de l'impôt réellement acquitté au quotient.
+- **Décote** : si le RREF est inférieur ou égal à 330 000 € (personne seule) ou 660 000 € (couple), la cotisation de 20 % est diminuée de la différence, si elle est positive, entre cette cotisation et 82,5 % × (RREF − 250 000 € ou 500 000 €).
+
+Un foyer dont les revenus sont surtout des salaires au barème dépasse en général le plancher de 20 % et n'en paie rien ; la CDHR touche ceux dont l'IR effectif est faible au regard du RFR (revenus au PFU à 12,8 %, dividendes, plus-values, abattements importants). Elle est calculée par l'administration après dépôt de la 2042 ; les cases 8KD à 8KG servent à ventiler les revenus exceptionnels et les revenus à taux proportionnel.
+
+Le traitement au quart suppose un revenu exceptionnel **par nature et par montant** : non susceptible d'être recueilli annuellement et supérieur à la moyenne des revenus nets imposables des trois années précédentes. Il est propre à la CDHR et ne suppose pas l'application du quotient IR. Des cessions mobilières récurrentes ne deviennent pas exceptionnelles par leur seul montant ; ne pas qualifier automatiquement une vente d'actions gratuites d'exceptionnelle.
+
+Sources : [art. 224, II et IV CGI](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11), [BOI-IR-CDHR-10 § 140 et 250](https://bofip.impots.gouv.fr/bofip/15095-PGP.html/identifiant=BOI-IR-CDHR-10-20260630) et [BOI-IR-CDHR-20 § 20 à 70 et 130 à 190](https://bofip.impots.gouv.fr/bofip/15108-PGP.html/identifiant=BOI-IR-CDHR-20-20260630).
 
 ### Distinction CEHR vs CDHR
 
@@ -131,7 +128,9 @@ Les deux peuvent s'appliquer simultanément : la CEHR est toujours due au-delà 
 
 ### Calendrier
 
-- **Acompte** : 95 % du montant estimé à verser entre le **1er et le 15 décembre** de l'année des revenus, via le service "Prélèvement à la source" sur impots.gouv.fr
+- **Acompte** : 95 % du montant estimé, à verser entre le **1er et le 15 décembre** de l'année des revenus (du 1er au 15 décembre 2025 pour les revenus 2025), via le service « Gérer mon prélèvement à la source » sur impots.gouv.fr ; reporté dans les cases 8HR / 8HS de la déclaration préremplie et déduit de la contribution due
+- **Pénalité de 20 %** en cas de défaut ou de retard de paiement de l'acompte, ou si l'acompte versé s'avère inférieur de plus de 20 % à 95 % de la contribution finalement due (LFI 2025, art. 10, III-C)
+- **Revenus 2026** : l'acompte et les pénalités sont reconduits (LFI 2026, art. 2) ; dates exactes de l'acompte 2026 à confirmer sur impots.gouv.fr
 - **Solde** : calculé automatiquement par l'administration après dépôt de la 2042 au printemps suivant
 
 ### Cas typiques touchés
@@ -173,11 +172,7 @@ Les deux peuvent s'appliquer simultanément : la CEHR est toujours due au-delà 
 
 ### Exit tax
 
-Article 167 bis CGI — imposition immédiate des plus-values latentes sur titres détenus lors du départ à l'étranger, si :
-- Résidence fiscale française pendant au moins 6 ans sur les 10 dernières années
-- Détention de titres > seuils (plusieurs catégories de seuils)
-
-Sursis de paiement possible dans certains cas. Régime complexe.
+Article 167 bis CGI — imposition des plus-values latentes sur titres lors du transfert du domicile fiscal hors de France (6 ans de domicile sur les 10 dernières années ; participations ≥ 50 % des bénéfices sociaux ou valeur globale > 800 000 €). Seuils, sursis, dégrèvement et formulaires 2074-ETD / 2074-ETS : voir [non-residents.md](non-residents.md) § 7.
 
 ### Retour en France
 
@@ -200,10 +195,11 @@ Déclarées case **1AP / 1BP** (pas 1AJ). Bien vérifier le pré-rempli France T
 
 **Points critiques** :
 - **Abattement 10 % applicable** : l'ARE est un revenu de remplacement imposé selon les règles des traitements et salaires (BOI-RSA-BASE-30-50-20). La déduction forfaitaire de 10 % s'applique sur le total salaires + ARE (plafond commun 14 555 €/membre). La déclarer en 1AP au lieu de 1AJ ne supprime PAS l'abattement.
-- CSG prélevée à taux réduit à la source
-- La fraction de CSG prélevée à taux réduit n'est pas déductible du revenu imposable
+- **CSG/CRDS sur l'ARE** (art. L. 136-8, II et III CSS ; brochure IR 2026, « Divers », tableau des contributions sociales) : assiette 98,25 % de l'allocation ; CSG à 6,2 % (taux normal), 3,8 % (taux réduit) ou exonération, selon le RFR des deux années précédentes (le taux normal ne s'applique que si le RFR a dépassé le seuil du taux réduit deux années consécutives : RFR 2022 et 2023 pour les allocations de 2025) ; CRDS 0,5 %. Un ancien cadre relève en général du taux normal de 6,2 %.
+- **CSG déductible : 3,8 points** dans tous les cas (taux normal comme taux réduit), déjà retranchés du net imposable prérempli. Le prélèvement ne peut pas ramener l'allocation sous le SMIC brut (écrêtement, France Travail).
+- **ARCE** (aide à la reprise ou à la création d'entreprise, 60 % des droits ARE restants versés en deux fois) : imposable comme l'ARE dans la catégorie des traitements et salaires, soumise à CSG/CRDS ; case et éligibilité au quotient à vérifier sur la notice 2042 de l'année (non vérifié). Seule l'aide NACRE est exclue des revenus imposables.
 
-**Pourquoi 1AP et pas 1AJ ?** L'ARE n'est pas un revenu d'*activité* mais de *remplacement* : la distinction compte pour les calculs fondés sur les seuls revenus d'activité (plafond de déduction PER, certaines prestations sociales), pas pour l'abattement de 10 %.
+**Pourquoi 1AP et pas 1AJ ?** L'ARE n'est pas un revenu d'*activité* mais de *remplacement* : la distinction sert au prélèvement à la source et aux calculs fondés sur les seuls revenus d'activité (certaines prestations sociales), pas à l'abattement de 10 %. Elle compte en revanche pour le **plafond de déduction PER** de l'année suivante, comme les salaires (brochure IR 2026, charges déductibles : les « allocations de chômage » figurent parmi les revenus retenus).
 
 ## Professions médicales conventionnées secteur 1
 
@@ -249,40 +245,47 @@ Délai pendant lequel la DGFIP peut redresser :
 
 | Impôt | Délai standard |
 |-------|----------------|
-| IR | 3 ans (jusqu'au 31 décembre de la 3e année suivant celle de l'imposition) |
-| IFI | 6 ans (cas général) |
+| IR | 3 ans : jusqu'au 31 décembre de la 3e année suivant celle au titre de laquelle l'imposition est due, c'est-à-dire l'année des revenus (art. L. 169 LPF). Revenus 2025 : jusqu'au 31/12/2028 |
+| IFI | 3 ans si la déclaration déposée révèle suffisamment l'exigibilité (LPF art. L. 180) ; 6 ans sinon (LPF art. L. 186) |
 | Tous impôts | **10 ans** en cas d'activité occulte ou fraude |
+| IR / IS | **10 ans** sur les revenus liés à un compte, un contrat ou un compte d'actifs numériques étranger non déclaré (art. L. 169 LPF ; pour les comptes, si le total des soldes a excédé 50 000 € dans l'année — voir [comptes-etrangers.md](comptes-etrangers.md)) |
 | TVA | 3 ans |
 
-**Conservation des documents** : minimum 6 ans (conseil : 10 ans pour couvrir tous les cas).
+**Conservation des documents** : 10 ans pour les pièces dont le délai de conservation expire après le 01/01/2027 (LPF art. L. 102 B, modifié par la loi n° 2026-534 du 25/06/2026, art. 36) ; 6 ans auparavant.
 
 ## PUMA (Protection universelle maladie) — cotisation subsidiaire maladie
 
 Concerne les personnes **affiliées à l'assurance maladie française** qui tirent peu ou pas de revenus d'activité professionnelle mais disposent d'un **patrimoine générateur de revenus du capital significatifs**.
 
-### Conditions d'assujettissement cumulatives
+### Conditions d'assujettissement cumulatives (art. L. 380-2 CSS)
 
-- Rattachement à un régime d'assurance maladie français
-- Revenus d'activité professionnelle **< 20 % du PASS** (≈ 9 420 € pour 2025)
-- Revenus du capital (RCM, PV, revenus fonciers) > **50 % du PASS** (≈ 23 550 € pour 2025)
+- Rattachement à l'assurance maladie française (art. L. 160-1 CSS)
+- Revenus d'activité professionnelle de l'année **< 20 % du PASS** (9 420 € pour 2025, 9 612 € pour 2026) ; pour une personne mariée ou pacsée, les revenus d'activité **de l'autre membre du couple** doivent aussi rester sous ce seuil
+- **Aucune pension de retraite ou d'invalidité, aucune rente, aucune allocation de chômage perçue dans l'année**, ni par la personne ni par l'autre membre du couple : une année avec de l'ARE, même un seul mois, n'est pas assujettie
+- Revenus du capital (revenus fonciers, RCM, plus-values, BIC et BNC non professionnels, au sens de l'art. 1417, IV CGI) > **50 % du PASS** (23 550 € pour 2025, 24 030 € pour 2026)
 
-### Calcul
+### Calcul (art. D. 380-1 CSS)
 
-Assiette = revenus du patrimoine − abattement (50 % du PASS).
-Taux : **6,5 %** appliqué à l'assiette (taux plafonné à 8 × PASS = ~376 k€ de base pour 2025).
+```
+cotisation = 6,5 % × (A − 0,5 × PASS) × (1 − R / (0,2 × PASS))
+```
+- A = revenus du capital de l'année, retenus dans la limite de 8 PASS (376 800 € pour 2025, 384 480 € pour 2026)
+- R = revenus d'activité (le taux décroît linéairement et s'annule quand R atteint 20 % du PASS)
+- PASS de l'année des revenus
 
-Recouvrement : URSSAF, pas DGFIP. Avis distinct de l'avis IR.
+Recouvrement : URSSAF, l'année suivante, d'après les données transmises par la DGFiP. Avis distinct de l'avis IR.
 
 ### À vérifier systématiquement
 
-- Retraités avec patrimoine significatif (dividendes, loyers) → potentiellement concernés
-- Rentiers avant retraite → souvent concernés
-- Personnes en congé sabbatique avec revenus du capital → vérifier
+- Retraités : **non concernés** dès qu'une pension de retraite est perçue dans l'année
+- Rentiers avant retraite (FIRE) sans ARE ni pension → souvent concernés
+- Année de fin de droits au chômage : l'année où les derniers jours d'ARE sont versés reste exemptée ; la première année civile entière sans ARE ni pension devient assujettie
+- Personnes en congé sabbatique avec revenus du capital → vérifier (salaire résiduel sous 20 % du PASS ?)
 
 ### Nuance
 
 - **Non déductible** de l'IR (contrairement à la CSG sur revenus d'activité)
-- Cumul avec les prélèvements sociaux 17,2 % sur les mêmes revenus du capital (pas de double comptage, mais additionne à la pression fiscale globale)
+- Cumul avec les prélèvements sociaux sur les mêmes revenus du capital (18,6 % sur les revenus mobiliers dès 2025 ou 2026 selon leur nature, 17,2 % sur les revenus fonciers et l'assurance-vie) : pas de double comptage, mais la pression globale s'additionne
 
 **Piège fréquent** : oublier la PUMA dans la simulation globale d'un FIRE / rentier → sous-estimation de ~6,5 % sur les revenus du capital hors seuil.
 
@@ -298,7 +301,7 @@ Recouvrement : URSSAF, pas DGFIP. Avis distinct de l'avis IR.
 ## Références CGI / BOFiP
 
 - Résidence fiscale : art. 4 B CGI
-- Non-résidents : art. 164 A à 165 CGI
+- Non-résidents : art. 164 A à 165 et 197 A CGI (détail : [non-residents.md](non-residents.md))
 - Revenus exceptionnels : art. 163-0 A CGI
 - CEHR : art. 223 sexies CGI
 - Exit tax : art. 167 bis CGI

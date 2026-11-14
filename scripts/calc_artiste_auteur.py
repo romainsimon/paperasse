@@ -1,0 +1,1 @@
+../fiscaliste/scripts/calc_artiste_auteur.py

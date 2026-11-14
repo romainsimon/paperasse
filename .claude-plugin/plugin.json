@@ -1,0 +1,32 @@
+{
+  "name": "paperasse",
+  "version": "1.1.0",
+  "description": "Six skills pour la paperasse française : expert-comptable, fiscaliste, notaire, contrôleur fiscal, commissaire aux comptes et syndic de copropriété. Chaque skill demande le contexte manquant, montre ses calculs et cite les sources officielles (CGI, BOFiP, Légifrance).",
+  "author": {
+    "name": "Romain Simon",
+    "url": "https://romainsimon.com"
+  },
+  "homepage": "https://romainsimon.com/paperasse",
+  "repository": "https://github.com/romainsimon/paperasse",
+  "license": "MIT",
+  "privacyPolicyUrl": "https://github.com/romainsimon/paperasse/blob/master/PRIVACY.md",
+  "keywords": [
+    "paperasse",
+    "comptabilité",
+    "fiscalité",
+    "impôts",
+    "notaire",
+    "contrôle fiscal",
+    "audit",
+    "copropriété",
+    "france"
+  ],
+  "skills": [
+    "./comptable",
+    "./fiscaliste",
+    "./notaire",
+    "./controleur-fiscal",
+    "./commissaire-aux-comptes",
+    "./syndic"
+  ]
+}

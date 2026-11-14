@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse" alt="GitHub stars"></a>
-  <img src="https://img.shields.io/badge/evals-88%25_with_skill_%7C_75%25_without_%7C_%2B13%25_delta-brightgreen" alt="Evals: 88% with skill | 75% without | +13% delta">
+  <img src="https://img.shields.io/badge/evals-84%25_with_skill_%7C_65%25_without_%7C_%2B19%25_delta-brightgreen" alt="Evals: 84% with skill | 65% without | +19% delta">
   <a href="https://github.com/romainsimon/paperasse/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romainsimon/paperasse?style=flat&color=blue" alt="License"></a>
 </p>
 
@@ -24,7 +24,7 @@
 
 ## Qu'est-ce que Paperasse ?
 
-<b>Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [Codex](https://openai.com/codex/), [Mistral Vibe](https://vibe.mistral.ai), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat)) spécialisés dans la comptabilité, la fiscalité, la facturation, le notariat et l'audit des entreprises françaises.</b>
+<b>Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [ChatGPT](https://chatgpt.com), [Codex](https://openai.com/codex/), [Grok Bot](https://x.ai/bot), [GitHub Copilot](https://github.com/features/copilot), [Gemini CLI](https://geminicli.com), [Mistral Vibe](https://vibe.mistral.ai), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat), [Hermes Agent](https://hermes-agent.nousresearch.com)) spécialisés dans la comptabilité, la fiscalité, la facturation, le notariat et l'audit des entreprises françaises.</b>
 
 Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : comptabilité (PCG, TVA, IS, clôture annuelle, FEC, liasse fiscale), facturation (mentions obligatoires, facturation électronique 2026, plateformes agréées, e-reporting), contrôle fiscal, audit CAC, fiscalité des particuliers (IR, IFI, PFU, PEA, AV, LMNP, RSU, BSPCE, crypto, PER), droit notarial (immobilier, succession, donation), et gestion de copropriété (AG, charges, travaux, impayés). Il connaît les textes (CGI, BOFiP, NEP, loi 1965), les formulaires, les échéances, et ne se trompe pas de case dans la liasse fiscale.
 
@@ -59,9 +59,39 @@ L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui v
 
 #### Installation manuelle
 
-Si vous n'utilisez ni agentskill.sh ni un clone Git complet, attention aux liens symboliques vers les ressources partagées (`data`, `scripts`, `templates`, `integrations`).
-Certains installateurs qui téléchargent les dossiers un par un via l'API GitHub les transforment en petits fichiers texte.
-Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex et les vérifications.
+Chaque dossier de skill est autonome : il contient ses données, scripts et templates. Copier un dossier suffit. Voir [l'installation manuelle](docs/manual-install.md) pour les commandes Codex.
+
+### Option 3 : Claude Code et Claude Cowork (marketplace de plugins)
+
+Le dépôt est aussi une marketplace de plugins Claude. Le plugin `paperasse` installe les six skills d'un coup : `comptable`, `fiscaliste`, `notaire`, `controleur-fiscal`, `commissaire-aux-comptes`, `syndic`. Chaque skill ne se charge que lorsque votre question le concerne.
+
+**Claude Code** (2.1.275 ou plus récent) :
+
+```
+/plugin install paperasse --marketplace romainsimon/paperasse
+```
+
+Avec une version plus ancienne :
+
+```
+/plugin marketplace add romainsimon/paperasse
+/plugin install paperasse@paperasse
+```
+
+**Claude Cowork** : dans Plugins, choisir **Add marketplace**, saisir `romainsimon/paperasse`, puis cliquer sur **Install** sur le plugin `paperasse`.
+
+### Option 4 : Grok Bot, installation en un clic
+
+Chaque skill existe en template [Grok Bot](https://x.ai/bot) prêt à l'emploi. Ouvrez le lien, puis cliquez sur **Add to Grok Bot** :
+
+| Skill | Template Grok Bot |
+|-------|-------------------|
+| Comptable | [Paperasse · Expert-Comptable](https://x.ai/bot/MmwMdZ7OVKXIKBUfc1dE5) |
+| Fiscaliste | [Paperasse · Fiscaliste Particuliers](https://x.ai/bot/GNroMbol-LOahbXzb8Ovw) |
+| Notaire | [Paperasse · Notaire](https://x.ai/bot/-H7Vc-5QDpqqEbF1PqLxy) |
+| Contrôleur fiscal | [Paperasse · Contrôleur Fiscal](https://x.ai/bot/rGTJjgN2hrX5vJvM4wfis) |
+| Commissaire aux comptes | [Paperasse · Commissaire aux Comptes](https://x.ai/bot/_zuqAPpyDT_WV2zpSvPxK) |
+| Syndic de copropriété | [Paperasse · Syndic de Copropriété](https://x.ai/bot/F1uQVa6SA7p-8YbhGL_y0) |
 
 ---
 
@@ -135,17 +165,18 @@ Les 4 skills s'enchaînent pour couvrir tout le cycle comptable :
 
 ---
 
-## Intégrations (Qonto, Stripe)
+## Intégrations (Qonto, Stripe, Pennylane)
 
 Des connecteurs pour récupérer automatiquement les transactions bancaires et les paiements. Configuration dans `company.json`, clés API en variables d'environnement.
 
 ```bash
-npm run fetch          # Récupère Qonto + Stripe
-npm run fetch:qonto    # Qonto seulement
-npm run fetch:stripe   # Stripe seulement
+npm run fetch           # Récupère Qonto + Stripe
+npm run fetch:qonto     # Qonto seulement
+npm run fetch:stripe    # Stripe seulement
+npm run fetch:pennylane # Transactions bancaires Pennylane seulement
 ```
 
-Supporte plusieurs comptes Stripe et Stripe Connect. Voir `integrations/` pour le détail de la configuration.
+Supporte plusieurs comptes Stripe, Stripe Connect et les transactions bancaires Pennylane. Voir `integrations/` pour le détail de la configuration.
 
 ---
 
@@ -185,6 +216,28 @@ Prérequis : `npm install`, puis `cp company.example.json company.json` et rempl
 
 ---
 
+## Données et services externes
+
+Paperasse n'a pas de serveur : rien n'est envoyé à Paperasse, rien n'est conservé par Paperasse. Voir la [politique de confidentialité (Privacy)](PRIVACY.md). Les skills et scripts tournent chez vous, dans votre agent.
+
+**Données lues et stockées localement** : le contexte de l'entreprise (`company.json` : raison sociale, SIREN, adresse, coordonnées bancaires), le foyer fiscal (`foyer.json`), les relevés bancaires, les factures et le FEC que vous fournissez. Les scripts écrivent leurs résultats sur votre machine (`data/transactions/`, `data/invoices/`, `output/`).
+
+**Services tiers appelés par les scripts**, uniquement quand vous lancez la commande concernée :
+
+| Service | Script | Données envoyées |
+|---------|--------|------------------|
+| Qonto (`thirdparty.qonto.com`) | `integrations/qonto`, `upload-qonto-attachments.js` | Votre clé API ; envoi de justificatifs seulement si vous lancez l'upload |
+| Stripe (`api.stripe.com`) | `integrations/stripe`, `import-stripe-invoices.js` | Votre clé API |
+| Pennylane (`app.pennylane.com`) | `integrations/pennylane` | Votre jeton API |
+| Base adresse nationale (`api-adresse.data.gouv.fr`) | `fetch_notaire_data.py` | Adresse recherchée |
+| IGN API Carto (`apicarto.ign.fr`) | `fetch_notaire_data.py` | Code INSEE, parcelle, coordonnées |
+| Géorisques (`georisques.gouv.fr`) | `fetch_notaire_data.py` | Coordonnées du bien |
+| DVF, Cerema (`apidf-preprod.cerema.fr`) | `fetch_notaire_data.py` | Code INSEE |
+| Recherche d'entreprises (`recherche-entreprises.api.gouv.fr`) | `fetch_company.py`, `fetch_notaire_data.py` | SIREN ou nom de l'entreprise |
+| Fichier des décès, matchID (`deces.matchid.io`) | `fetch_notaire_data.py` | Nom, prénom et date de naissance recherchés |
+
+Les connecteurs Qonto, Stripe et Pennylane sont désactivés par défaut et utilisent vos propres clés. Enfin, ce que l'agent envoie au modèle d'IA dépend de l'agent que vous utilisez, pas de Paperasse.
+
 ## Installation manuelle (par plateforme)
 
 Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fichiers.
@@ -195,6 +248,8 @@ Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fic
 | **Cursor** | `~/.cursor/skills/` |
 | **Windsurf** | `~/.windsurf/skills/` |
 | **Codex** | `~/.codex/skills/` |
+| **GitHub Copilot** | `~/.copilot/skills/` |
+| **Gemini CLI** | `~/.gemini/skills/` |
 | **Mistral Vibe** | `~/.vibe/skills/` |
 | **Cline** | `~/.cline/skills/` |
 | **Aider** | `~/.aider/skills/` |
@@ -206,7 +261,11 @@ Claude Desktop et claude.ai supportent les skills via upload :
 1. Activer la capacité : Réglages → Capabilities → activer **Code execution and file creation** (sans ça, l'upload échoue).
 2. Puis : Customize → Skills → uploader un `.zip` dont le dossier racine contient un `SKILL.md`.
 
-**Limite importante** : certains skills partagent des ressources via des liens symboliques : comptable (`data/`, `scripts/`, `templates/`, `integrations/`), controleur-fiscal et commissaire-aux-comptes (`data/`), notaire (`scripts/`). Un zip d'un seul dossier de skill casse ces liens et le skill ne trouve plus ses ressources. Pour ces skills, préférer [agentskill.sh](https://agentskill.sh) ou un clone Git complet utilisé avec Claude Code. Les skills autonomes (fiscaliste, syndic) s'uploadent sans problème.
+Chaque dossier de skill est autonome (données, scripts et templates inclus) : un zip d'un seul dossier fonctionne pour les six skills.
+
+### ChatGPT
+
+ChatGPT accepte l'upload d'un skill sur les offres Business, Enterprise, Healthcare et Edu, selon les réglages de l'espace de travail ([aide OpenAI](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)). Comme pour Claude, chaque dossier de skill s'uploade seul.
 
 ---
 
@@ -233,17 +292,19 @@ python evals/generate_review.py evals-workspace/iteration-xxx/
 
 Pour les PRs, un workflow GitHub Actions `Evals Smoke` résout les skills impactés par rapport à la branche de base, restaure le cache `evals-workspace/cache`, et exécute uniquement la sélection nécessaire.
 
-**Derniers résultats** (claude-sonnet-4-6, grading haiku) :
+**Derniers résultats** (4 novembre 2026, 70 scénarios, un passage par scénario, claude-sonnet-4-6, grading haiku) :
 
 | Skill | With Skill | Without Skill | Delta |
 |-------|-----------|--------------|-------|
-| commissaire-aux-comptes | 100% | 75% | **+25%** |
-| notaire | 96% | 92% | +4% |
-| controleur-fiscal | 91% | 87% | +4% |
-| comptable | 89% | 77% | **+12%** |
-| fiscaliste | 84% | 64% | **+20%** |
-| syndic | 83% | 68% | **+16%** |
-| **Aggregate** | **88%** | **75%** | **+13%** |
+| commissaire-aux-comptes | 100% | 69% | **+31%** |
+| fiscaliste | 87% | 59% | **+29%** |
+| comptable | 88% | 66% | **+22%** |
+| syndic | 76% | 64% | **+12%** |
+| notaire | 82% | 79% | +3% |
+| controleur-fiscal | 66% | 73% | -7% |
+| **Aggregate** | **84%** | **65%** | **+19%** |
+
+Le jeu d'evals a beaucoup grossi depuis avril (scénarios plus difficiles, sans skill comme avec) : les chiffres ne se comparent pas directement aux résultats précédents. `controleur-fiscal` passe sous la baseline sur ce passage (un scénario en timeout, un autre à 3/7) et fait l'objet d'un travail de suivi.
 
 Le format `evals.json` est compatible avec le [framework officiel anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/skill-creator).
 
@@ -276,23 +337,15 @@ Ces forks ne sont **pas maintenus par paperasse** : la fraîcheur des référenc
 
 Paperasse est maintenu en open source grâce au soutien de ses sponsors. [Devenir sponsor](https://github.com/sponsors/romainsimon).
 
-### Founding Sponsors
-
-<p align="center"><!-- sponsors-founding --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Founding Sponsor</a>.</sub><!-- sponsors-founding --></p>
-
-### Premier Sponsors
+### Premier Sponsors · 500 $ / mois
 
 <p align="center"><!-- sponsors-premier --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Premier Sponsor</a>.</sub><!-- sponsors-premier --></p>
 
-### Sponsors
+### Sponsors · 100 $ / mois
 
 <p align="center"><!-- sponsors-sponsor --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Sponsor</a>.</sub><!-- sponsors-sponsor --></p>
 
-### Backers
-
-<p align="center"><!-- sponsors-backer --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Backer</a>.</sub><!-- sponsors-backer --></p>
-
-### Supporters
+### Supporters · 5 $ / mois
 
 <p align="center"><!-- sponsors-supporter --><sub>Become the first <a href="https://github.com/sponsors/romainsimon">Supporter</a>.</sub><!-- sponsors-supporter --></p>
 

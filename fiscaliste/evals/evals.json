@@ -45,7 +45,7 @@
         "Le skill explique que c'est un REPORT d'imposition, pas une exonération",
         "Le TMI futur à la retraite est mentionné comme variable clé",
         "Le plafond PER 10% des revenus professionnels nets est correctement appliqué (72 000 × 10% = 7 200 €, donc 800 € non déductibles sur les 8 000 versés)",
-        "Le skill rappelle qu'il faut saturer l'abondement employeur PEE/PERCO en priorité si disponible",
+        "Le skill invite à examiner un abondement employeur PEE/PERECO disponible avant un PER individuel",
         "La réponse nuance : pas toujours avantageux, dépend de la situation"
       ]
     },
@@ -53,7 +53,7 @@
       "id": 4,
       "name": "pfu-vs-bareme-dividendes",
       "prompt": "Célibataire, salaires 30 000 € net imposable. Je reçois 5 000 € de dividendes. Je choisis PFU ou barème ?",
-      "expected_output": "Calcul des deux scénarios. Sous PFU : 5 000 × 30% = 1 500 €. Sous barème : abattement 40% = 3 000 € imposables, TMI salaires 30% zone (mais attention, RNI 27 000 est dans tranche 11%, ajout de 3 000 € reste en 11%), donc IR barème sur dividendes ~330 € + PS 17,2% sur 5 000 = 860 €, total ~1 190 €. Barème plus favorable ici. Plus CSG déductible 6,8% × 5 000 × 11% = 37 € en N+1.",
+      "expected_output": "Calcul des deux scénarios. Sous PFU : 5 000 × 30 % = 1 500 € (12,8 % d'IR + 17,2 % de PS, dividende payé par un établissement français en 2025). Sous barème : abattement de 40 %, 3 000 € imposables ; la CSG déductible (6,8 % × 5 000 = 340 €) se déduit du revenu global de 2025 lui-même, car les PS ont été prélevés à la source en 2025 (case 2BH ; brochure IR 2026, RCM) : RNI 27 000 + 3 000 − 340 = 29 660 €. Sans dividendes, l'impôt brut sur 27 000 € est de 1 694 €, sous le seuil de 1 982 € : décote 897 − 45,25 % × 1 694 ≈ 130 €, impôt 1 564 €. Avec les dividendes, impôt brut 2 002 € (la limite de 29 579 € est franchie), sans décote : IR supplémentaire ≈ 438 €, plus PS 17,2 % × 5 000 = 860 €, total ≈ 1 300 € contre 1 500 € au PFU. Barème plus favorable ici.",
       "files": [],
       "assertions": [
         "Les deux scénarios (PFU et barème) sont chiffrés",
@@ -61,21 +61,24 @@
         "Le TMI du foyer après ajout des dividendes est correctement identifié",
         "Les PS 17,2% sont calculés dans les deux cas",
         "Le skill rappelle que l'option barème est GLOBALE (tous revenus du capital)",
-        "La recommandation est cohérente avec le TMI : à TMI 11%, le barème est souvent meilleur pour les dividendes"
+        "La recommandation est cohérente avec le TMI : à TMI 11%, le barème est souvent meilleur pour les dividendes",
+        "La décote est appliquée au calcul sans dividendes (impôt brut 1 694 €, décote ≈ 130 €)",
+        "La CSG déductible (340 €) est déduite du revenu global de 2025 (PS prélevés à la source), pas de l'année suivante"
       ]
     },
     {
       "id": 5,
       "name": "lmnp-micro-vs-reel",
       "prompt": "J'ai un appartement loué meublé, recettes 18 000 €/an (longue durée). Je suis au micro-BIC avec abattement 50%. Un ami me dit que je devrais passer au réel. Bonne idée ?",
-      "expected_output": "Micro-BIC = 18 000 × 50% = 9 000 € imposables. Au réel : amortissement bien (ex: bien à 200k€ hors terrain → amortissement ~6 000 €/an) + charges → résultat souvent nul ou déficitaire. Nuance : déficit LMNP non imputable sur revenu global. Évoquer bascule LMP si recettes > 23 000 € ET > 50% autres revenus pro.",
+      "expected_output": "Micro-BIC = 18 000 × 50% = 9 000 € imposables. Au réel : amortissement bien (ex: bien à 200k€ hors terrain → amortissement ~6 000 €/an) + charges → résultat souvent ramené à zéro (les amortissements ne peuvent pas créer de déficit, art. 39 C). Nuance : déficit LMNP non imputable sur revenu global. Contrepartie : pour une cession depuis le 15/02/2025, les amortissements admis en déduction sont retranchés du prix d'acquisition dans le calcul de la plus-value (art. 150 VB, III), sauf ceux des dépenses de construction, reconstruction, agrandissement ou amélioration (1er alinéa). Évoquer la bascule LMP si recettes > 23 000 € ET recettes > total des autres revenus d'activité du foyer (pensions comprises).",
       "files": [],
       "assertions": [
-        "Le skill reconnaît le régime micro-BIC LMNP longue durée (abattement 50%, seuil 77 700 €)",
+        "Le skill reconnaît le régime micro-BIC LMNP longue durée (abattement 50%, seuil 77 700 € pour 2025, 83 600 € pour 2026-2028)",
         "Le calcul micro est donné (18 000 × 50% = 9 000 € de base imposable)",
-        "Le skill explique le principe du réel : amortissements + charges",
+        "Le skill explique le principe du réel : amortissements + charges, sans que les amortissements créent un déficit",
         "Le skill rappelle que le déficit LMNP n'est PAS imputable sur le revenu global",
-        "La règle de bascule LMP (23 000 € ET > 50% autres revenus pro) est mentionnée",
+        "Le skill signale que les amortissements déduits au réel minorent le prix d'acquisition à la revente (art. 150 VB, III), hors amortissements de travaux de construction, reconstruction, agrandissement ou amélioration",
+        "La règle de bascule LMP (23 000 € ET recettes > total des autres revenus d'activité du foyer, pensions comprises, pas 50 %) est mentionnée",
         "La recommandation est nuancée : ça dépend de la valeur du bien et des charges réelles"
       ]
     },
@@ -83,16 +86,45 @@
       "id": 6,
       "name": "rsu-vesting-quotient",
       "prompt": "J'ai reçu un vesting RSU de 100 000 € cette année. Mon salaire habituel est 60 000 €. Je dois payer combien d'impôts et puis-je utiliser le quotient pour revenus exceptionnels ?",
-      "expected_output": "Gain acquisition 100 000 € = imposé comme salaire (1TT). Total imposable salaires : 160 000 € + abattement 10%. CSG 9,7% sur RSU + contribution salariale 10% éventuelle. Quotient : comparer impôt avec/sans quotient (coefficient 4). À 160k€ on est en TMI 41%, quotient peut lisser si on revient en 30% sans RSU. La PV ultérieure (cession après vesting) sera imposée séparément au PFU.",
+      "expected_output": "Demander la date de l'AGE et le caractère qualifiant du plan. Cas courant (plan qualifiant, AGE après 2017) : rien n'est dû au titre du vesting, le gain d'acquisition de 100 000 € est imposé l'année de la cession des actions. Cette année-là : barème après abattement de 50 % (50 000 € s'ajoutent aux 60 000 € de salaire ; 2042 C cases 1TZ + 1WZ), PS 18,6 % sur les 100 000 € (18 600 €), ni CSG d'activité ni contribution salariale sous 300 000 €. Quotient (coefficient 4) : possible seulement si le gain est exceptionnel par nature et par montant (le BOFiP exclut les revenus du cadre normal de l'activité), comparer l'impôt avec/sans. La PV de cession (prix de vente − valeur au vesting) est imposée séparément au PFU 31,4 % ou au barème sur option. Fraction > 300 000 € : salaire (1TT), CSG 9,7 %, contribution salariale 10 %. Plan non qualifiant : salaire ordinaire l'année du vesting, via la paie, sans contribution de 10 %. Vérifier que la période de conservation du plan est échue avant la vente.",
       "files": [],
       "assertions": [
-        "Le skill identifie le gain RSU comme SALAIRE (pas comme PV mobilière)",
-        "L'abattement 10% salaire s'applique sur le total salaires + RSU",
-        "La CSG 9,7% sur le gain RSU est mentionnée",
-        "La contribution salariale 10% sur plans qualifiants est évoquée",
-        "Le mécanisme du quotient (coefficient 4) est expliqué",
+        "Le skill ne taxe rien au vesting : le gain d'acquisition est imposé l'année de la cession",
+        "Le skill ne traite PAS le gain d'un plan qualifiant comme un salaire ordinaire sous 300 000 € : barème après abattement de 50 %",
+        "Les prélèvements sociaux de 18,6 % (revenus du patrimoine) sur le gain avant abattement sont mentionnés, sans CSG d'activité ni contribution salariale",
+        "Le régime salaire avec contribution de 10 % (1TT, CSG 9,7 %) est réservé à la fraction > 300 000 € ; un plan non qualifiant est un salaire ordinaire de l'année du vesting, sans contribution de 10 %",
+        "Le mécanisme du quotient (coefficient 4) est expliqué, avec la réserve sur son caractère exceptionnel",
         "Le skill chiffre (ou explique comment chiffrer) les 2 scénarios avec/sans quotient",
-        "Le skill distingue gain d'acquisition (salaire) et future PV de cession (PFU)"
+        "Le skill distingue gain d'acquisition (barème après abattement) et future PV de cession (PFU 31,4 %)"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "options-levees-pee-demission-avant-cinq-ans",
+      "prompt": "Cas fictif : j'ai utilisé des avoirs de mon PEE pour lever des stock-options qualifiées en juin 2024 et les actions obtenues ont été inscrites directement au PEE. Je démissionne en juin 2026. Le gestionnaire indique que mes autres avoirs sont déblocables. Puis-je aussi retirer ces actions dès mon départ ?",
+      "expected_output": "Non : les actions issues de cette levée ont un blocage spécial de cinq ans depuis leur entrée au PEE, donc jusqu'en juin 2029. La démission ne permet pas leur déblocage anticipé ordinaire. Distinguer ces actions des autres avoirs du PEE et d'un simple apport d'actions déjà détenues. Sources : C. trav. L. 3332-25 ; BOI-RSA-ES-10-30-10 § 120 à 150 (https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728).",
+      "files": [],
+      "assertions": [
+        "Le skill identifie la levée financée par les avoirs du PEE et l'inscription des actions dans le plan",
+        "Le délai spécial de cinq ans part de l'entrée des actions en juin 2024, pas de l'ancienneté des avoirs utilisés",
+        "Le skill refuse un déblocage de ces actions en juin 2026 au seul motif de la démission",
+        "La disponibilité des autres avoirs n'est pas étendue à ces actions ; l'échéance de juin 2029 est identifiée",
+        "Le skill cite l'article L. 3332-25 du code du travail ou le BOI-RSA-ES-10-30-10"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "options-levees-pee-exoneration-ir-et-contribution-cession",
+      "prompt": "Cas fictif : des options qualifiées attribuées en 2018 ont été levées en octobre 2020 avec des avoirs du PEE ; les actions obtenues y sont entrées à cette date et y sont restées en détention directe. Le délai spécial de cinq ans est respecté. En novembre 2026 je vends ces actions dans le PEE, sans retirer l'argent. Le gain de levée est de 30 000 EUR, sans rabais excédentaire ; le gain net total est de 40 000 EUR. Le gain de levée est-il forcément un salaire au barème ? L'absence de retrait évite-t-elle toute contribution ? Ne calculez pas les PS sans le relevé du gestionnaire.",
+      "expected_output": "Sous les conditions du dispositif, les 40 000 EUR de gain net, gain de levée compris, sont exonérés d'IR. La contribution salariale de 10 % sur les 30 000 EUR de gain de levée reste due lors de la vente des actions dans le PEE : 3 000 EUR, même sans retrait. Distinguer les PS à la délivrance des avoirs ; ne pas leur appliquer automatiquement un taux uniforme sans le relevé. Sources : BOI-RSA-ES-10-30-10 § 140 à 180 (https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728) ; BOI-RSA-ES-20-30 § 120 et 150 (https://bofip.impots.gouv.fr/bofip/2389-PGP.html/identifiant=BOI-RSA-ES-20-30-20260521).",
+      "files": [],
+      "assertions": [
+        "Le skill applique le régime spécial de levée financée par le PEE, pas automatiquement le salaire des options postérieures à septembre 2012",
+        "L'exonération d'IR porte sur le gain net de 40 000 EUR, gain de levée compris, sous les conditions indiquées",
+        "La contribution salariale est calculée sur le gain de levée : 30 000 × 10 % = 3 000 EUR",
+        "Le fait générateur de cette contribution est la cession des actions dans le PEE, sans attendre un retrait",
+        "Le skill distingue contribution salariale et PS sur les gains à la délivrance des avoirs, sans chiffrer ces derniers sans relevé",
+        "Le skill cite le BOI-RSA-ES-10-30-10 et le BOI-RSA-ES-20-30"
       ]
     },
     {
@@ -162,30 +194,65 @@
       ]
     },
     {
+      "id": 78,
+      "name": "cdhr-revenu-exceptionnel-pfu-et-cessions-recurrentes",
+      "prompt": "Cas fictif pour les revenus 2026 : je vends en une fois l'entreprise que j'ai fondée vingt ans auparavant, sans autre cession passée ou prévue. La plus-value nette est de 2 000 000 EUR, imposée au PFU, dont 256 000 EUR d'IR afférent. Mes revenus nets imposables des trois années précédentes sont de 100 000, 120 000 et 140 000 EUR ; ma situation familiale est inchangée. Pour la seule CDHR, faut-il refuser tout traitement exceptionnel parce que je ne peux pas demander le quotient IR sur ce gain au PFU ? Quelles fractions du gain et de l'IR afférent faut-il retenir si la nature exceptionnelle de cette cession unique est établie ? Et si ces mêmes montants provenaient au contraire de ventes de titres effectuées chaque année ? Ne calculez pas la contribution totale, il manque les autres données du foyer.",
+      "expected_output": "Le PFU n'exclut pas le traitement exceptionnel propre à la CDHR : les revenus au barème et à taux proportionnel sont concernés sous conditions cumulatives de nature et de montant. La moyenne des trois années est de 120 000 EUR, dépassée par 2 000 000 EUR. Sous réserve de la qualification par nature de la cession unique, retenir 500 000 EUR de revenu et 64 000 EUR d'IR afférent pour la CDHR, sans réduire l'IR réellement dû au PFU et sans appliquer le quotient IR. Des ventes annuelles récurrentes ne deviennent pas exceptionnelles du seul fait de leur montant. Sources : art. 224, II et IV CGI ; BOI-IR-CDHR-20 § 20 à 70, 130 et 190 (https://bofip.impots.gouv.fr/bofip/15108-PGP.html/identifiant=BOI-IR-CDHR-20-20260630).",
+      "files": [],
+      "assertions": [
+        "Le skill n'exige pas un revenu taxé au quotient IR : un revenu au PFU peut être exceptionnel pour la CDHR",
+        "Les conditions de nature et de montant sont vérifiées séparément ; la moyenne des trois revenus nets imposables vaut 120 000 EUR",
+        "Sous réserve de la nature exceptionnelle établie, le revenu est retenu pour 2 000 000 / 4 = 500 000 EUR",
+        "L'IR proportionnel afférent est retenu pour 256 000 / 4 = 64 000 EUR dans le calcul CDHR, sans modifier l'IR effectivement dû au PFU",
+        "Le skill refuse d'étendre automatiquement ce traitement au cas de cessions de titres récurrentes",
+        "Le skill distingue la méthode propre à la CDHR du quotient IR et cite l'article 224 CGI ou le BOI-IR-CDHR-20",
+        "Le skill ne calcule pas de CDHR totale en l'absence des autres données du foyer"
+      ]
+    },
+    {
       "id": 12,
       "name": "deficit-foncier-imputation",
       "prompt": "Foncier nu au réel : loyers bruts 15 000 €, charges courantes 4 000 €, travaux déductibles 18 000 €, intérêts d'emprunt 6 000 €. Quel est mon déficit foncier et combien s'impute sur mon revenu global ?",
-      "expected_output": "Résultat foncier = 15 000 − 4 000 − 18 000 − 6 000 = −13 000 €. Le déficit foncier s'impute sur le revenu global dans la limite de 10 700 €, hors intérêts d'emprunt. Part intérêts (6 000 €) reste imputable uniquement sur les revenus fonciers des 10 années suivantes. Part hors intérêts : 13 000 − 6 000 = 7 000 € ≤ 10 700 € → entièrement imputable sur le revenu global. Solde sur revenus fonciers futurs : 6 000 €.",
+      "expected_output": "Résultat foncier = 15 000 − 4 000 − 18 000 − 6 000 = −13 000 €. Les loyers bruts (15 000 €) s'imputent d'abord sur les intérêts d'emprunt (6 000 €), qu'ils couvrent entièrement : tout le déficit de 13 000 € provient des autres charges (BOI-RFPI-BASE-30-20 § 110). 10 700 € s'imputent sur le revenu global (case 4BC), les 2 300 € restants se reportent sur les revenus fonciers des 10 années suivantes (4BB), sous réserve de louer nu le bien jusqu'au 31 décembre de la troisième année suivant l'imputation.",
       "files": [],
       "assertions": [
         "Le déficit foncier est calculé correctement (−13 000 €)",
-        "Le skill distingue la part intérêts d'emprunt et le reste",
+        "Le skill impute les loyers d'abord sur les intérêts d'emprunt et conclut qu'aucune part du déficit ne provient des intérêts",
         "La limite de 10 700 € d'imputation sur revenu global est citée",
-        "Les intérêts d'emprunt sont exclus de l'imputation sur revenu global",
-        "Le report 10 ans sur revenus fonciers uniquement est mentionné pour la part non imputée"
+        "Le skill impute 10 700 € sur le revenu global et reporte 2 300 € sur les revenus fonciers",
+        "Le report 10 ans sur revenus fonciers uniquement est mentionné pour la part non imputée",
+        "La condition de location nue jusqu'au 31 décembre de la troisième année suivant l'imputation est rappelée"
       ]
     },
     {
       "id": 13,
       "name": "pea-retrait-avant-5-ans",
-      "prompt": "J'ai ouvert mon PEA il y a 3 ans, valorisation 40 000 € pour 30 000 € de versements. Si je retire maintenant, quelle fiscalité ?",
-      "expected_output": "Retrait avant 5 ans : clôture du PEA + imposition des gains (10 000 €) au PFU 30 % (12,8 % IR + 17,2 % PS), soit 3 000 €. Conseil : attendre 5 ans si possible pour exonération IR (seuls PS 17,2 % restent dus).",
+      "prompt": "J'ai ouvert mon PEA il y a 3 ans, valorisation 40 000 € pour 30 000 € de versements. Si je retire maintenant (en 2026), quelle fiscalité ?",
+      "expected_output": "Retrait avant 5 ans : clôture du PEA + imposition des gains (10 000 €) à 12,8 % d'IR + 18,6 % de PS (produits de placement, taux applicable aux retraits depuis le 01/01/2026, LFSS 2026), soit 3 140 € (3 000 € pour un retrait effectué en 2025). Exceptions sans clôture : retrait affecté dans les 3 mois à la création ou reprise d'une entreprise (gain exonéré d'IR, PS dus, plus de versements possibles) ; licenciement, invalidité ou retraite anticipée du titulaire ou de son conjoint (gain imposable, versements toujours possibles). Conseil : attendre 5 ans si possible pour l'exonération d'IR (seuls les PS, 18,6 %, restent dus). Réserve : la LFSS 2026 (art. 12, II-2°) exclut de la hausse les produits « acquis ou constatés avant le 1er janvier 2026 » ; si cette clause vaut pour les gains de PEA, la fraction du gain acquise avant 2026 resterait à 17,2 %. Non commenté au BOFiP à ce jour : se fier au décompte de l'établissement.",
       "files": [],
       "assertions": [
-        "Le skill identifie le retrait avant 5 ans comme entraînant clôture du PEA",
-        "L'imposition au PFU 30 % sur les gains (10 000 €) est calculée",
+        "Le skill identifie le retrait avant 5 ans comme entraînant clôture du PEA, hors exceptions",
+        "L'imposition à 12,8 % + 18,6 % (31,4 %) sur les gains (10 000 €) est calculée pour un retrait en 2026",
+        "Le skill mentionne au moins l'exception création ou reprise d'entreprise (exonération d'IR sans clôture)",
         "Le skill recommande d'attendre 5 ans pour économiser 12,8 % d'IR",
-        "Le skill précise qu'après 5 ans les PS 17,2 % restent dus (pas d'exonération totale)"
+        "Le skill précise qu'après 5 ans les PS (18,6 % depuis 2026) restent dus (pas d'exonération totale)",
+        "Le skill signale la réserve sur la clause transitoire de la LFSS 2026 (gains acquis avant 2026)"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "pea-exposition-mondiale-et-etf-synthetiques",
+      "prompt": "Je veux une exposition diversifiée aux actions mondiales dans mon PEA. On me dit que le PEA impose des actions EUR uniquement et qu'il faut obligatoirement une assurance-vie pour suivre un indice World ou américain. Est-ce exact ? Un ETF coté en euros suffit-il à garantir son éligibilité ? Puis-je aussi y acheter directement des actions américaines ? Je demande le mécanisme et les conditions, pas une recommandation de fonds.",
+      "expected_output": "Non : distinguer titres détenus directement, éligibilité juridique du fonds et exposition économique. Des ETF éligibles au PEA à réplication synthétique peuvent suivre des indices mondiaux ou américains via des swaps, sans rendre éligibles les actions américaines détenues directement. Tous les ETF ne sont pas éligibles et la cotation en euros ne le prouve pas ; vérifier la documentation du fonds et l'éligibilité indiquée par le teneur de plan. L'assurance-vie n'est donc pas obligatoire pour une exposition mondiale. Sources : art. L. 221-31 CMF (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218125/2026-11-11) ; fiche émetteur d'un ETF MSCI World synthétique conçu pour le PEA (https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf).",
+      "files": [],
+      "assertions": [
+        "Le skill réfute une limitation de l'exposition du PEA aux seules actions de la zone euro",
+        "Le skill explique qu'un fonds éligible peut fournir une exposition mondiale ou américaine par réplication synthétique via des swaps",
+        "Le skill distingue titres détenus par le fonds, conditions d'éligibilité du fonds et indice suivi",
+        "Le skill maintient l'inéligibilité des actions américaines détenues directement dans le PEA",
+        "Le skill ne déclare ni tous les ETF World ni tous les ETF cotés en euros éligibles au PEA",
+        "Le skill ne présente pas l'assurance-vie comme obligatoire pour obtenir une exposition mondiale et ne recommande pas de fonds",
+        "Le skill renvoie aux critères légaux et à la documentation du fonds pour vérifier son éligibilité"
       ]
     },
     {
@@ -206,12 +273,12 @@
       "id": 15,
       "name": "bspce-anciennete-penalite",
       "prompt": "J'ai exercé des BSPCE et cédé les actions avec 50 000 € de plus-value. Je suis dans la société depuis 2 ans seulement. Quelle fiscalité ?",
-      "expected_output": "Ancienneté < 3 ans → pénalité : 30 % IR + 20 % PS = 50 % global. 50 000 × 50 % = 25 000 €. Si l'utilisateur attend 1 an de plus (≥ 3 ans), taux 30 % global = 15 000 €. Gain à attendre : 10 000 € (si les BSPCE sont encore valables).",
+      "expected_output": "Ancienneté < 3 ans : 30 % d'IR sans option pour le barème (CGI art. 163 bis G) + 18,6 % de PS (revenus du patrimoine, LFSS 2026) = 48,6 %, soit 24 300 € sur 50 000 €. À 3 ans d'ancienneté (bons attribués depuis 2018) : 12,8 % ou barème sur option + 18,6 % = 31,4 %, soit 15 700 €. Écart : 8 600 € (si les BSPCE sont encore valables). Cases 2042 C : 3SK (moins de 3 ans) ou 3TJ (au moins 3 ans) pour des titres souscrits jusqu'au 31/12/2024.",
       "files": [],
       "assertions": [
         "Le skill identifie l'ancienneté < 3 ans comme déclenchant la pénalité",
-        "Le taux 50 % (30 % IR + 20 % PS) est appliqué",
-        "Le skill chiffre l'écart avec le régime favorable (30 %)",
+        "Le taux de 48,6 % (30 % IR + 18,6 % PS) est appliqué, sans prélèvement de 20 %",
+        "Le skill chiffre l'écart avec le régime à 31,4 % (12,8 % + 18,6 %)",
         "Le skill suggère d'attendre 3 ans d'ancienneté si possible",
         "Le skill rappelle les conditions d'éligibilité société (SAS/SA française, < 15 ans, IS, 25 % personnes physiques)"
       ]
@@ -219,13 +286,13 @@
     {
       "id": 16,
       "name": "per-mutualisation-couple",
-      "prompt": "Mon conjoint ne travaille pas (parent au foyer), moi je gagne 70 000 € (salaire net imposable). Mon plafond PER est déjà bien utilisé. Peut-il verser sur son PER et déduire quand même ?",
-      "expected_output": "Oui via la mutualisation couple (case à cocher sur 2042). Le conjoint sans revenu pro a un plafond plancher de 4 637 € pour les versements 2025 (10 % × PASS 2024, PASS de l'année précédant le versement). Mutualisation = les plafonds des deux conjoints sont additionnés. Économie selon TMI : 4 637 × 30 % = 1 391 €. Le versement peut être fait sur le PER du conjoint sans revenu pro et déduit du revenu imposable commun.",
+      "prompt": "Mon conjoint ne travaille pas (parent au foyer), moi je gagne 70 000 € (salaire net imposable). Mon plafond PER est déjà bien utilisé. Peut-il verser sur son PER en 2025 et déduire quand même ?",
+      "expected_output": "Oui. Le conjoint sans revenu professionnel a son propre plafond plancher de 4 637 € pour les versements 2025 (10 % du PASS 2024 ; 4 710 € pour les versements 2026), augmenté de ses reliquats 2022 à 2024 non utilisés : il peut verser et déduire jusqu'à ce montant sur son propre PER, sans mutualisation (brochure IR 2026, charges déductibles, exemple ; BOI-IR-BASE-20-50-30). La mutualisation des plafonds du couple (case 6QR) ne sert qu'au-delà, pour utiliser le reliquat de plafond de l'autre conjoint ; comme le plafond du déclarant est déjà bien utilisé, elle n'apporte rien ou presque ici. Économie au TMI 30 % : 4 637 × 30 % = 1 391 €. Le versement est déduit du revenu imposable commun ; le RFR n'est pas réduit (art. 1417, IV, 1°, a).",
       "files": [],
       "assertions": [
-        "Le skill identifie la possibilité de mutualisation couple",
-        "Le plafond plancher 4 637 € (versements 2025, PASS 2024) est cité",
-        "Le skill précise qu'il faut COCHER la case de mutualisation sur 2042",
+        "Le skill identifie le plafond propre du conjoint sans revenu (plancher), déductible sans mutualisation",
+        "Le plafond plancher 4 637 € (versements 2025, PASS 2024) est cité, et non 4 710 €",
+        "Le skill situe correctement la mutualisation (case 6QR) : utile seulement au-delà du plafond propre du conjoint",
         "L'économie d'impôt est chiffrée en appliquant le TMI du foyer",
         "Le skill recommande de vérifier l'avis d'imposition N-1 pour le plafond officiel DGFIP"
       ]
@@ -264,13 +331,13 @@
       "id": 19,
       "name": "plafond-niches-global",
       "prompt": "En 2025 j'ai : 4 000 € de dons (réduction 66 %), 6 000 € d'emploi à domicile (crédit 50 %), 3 000 € de versements FCPI (réduction 25 %), 5 000 € de réduction Pinel. Ai-je un problème avec le plafond global ?",
-      "expected_output": "Calcul des niches : dons (hors plafond : 2 640 €), emploi à domicile (hors plafond, crédit 3 000 €), FCPI (DANS plafond : 750 €), Pinel (DANS plafond : 5 000 €). Total DANS plafond = 750 + 5 000 = 5 750 € ≤ 10 000 € → pas de dépassement. Total hors plafond = 5 640 €. Total économie fiscale = 11 390 €. Attention : seules les niches DANS le plafond (Pinel + FCPI) sont comptabilisées pour le plafond 10 000 €.",
+      "expected_output": "Calcul des niches : dons (hors plafond : 2 640 €), emploi à domicile (DANS plafond, crédit 3 000 €), FCPI (DANS plafond : 750 €), Pinel (DANS plafond : 5 000 €). Total DANS plafond = 750 + 3 000 + 5 000 = 8 750 € ≤ 10 000 € → pas de dépassement, mais il ne reste que 1 250 € de marge. Total hors plafond = 2 640 € (dons). Total économie fiscale = 11 390 €. Attention : le crédit emploi à domicile entre dans le plafond global (art. 200-0 A CGI) ; seuls les dons sont exclus ici.",
       "files": [],
       "assertions": [
-        "Le skill distingue niches DANS plafond (Pinel, FCPI) et HORS plafond (dons, emploi à domicile)",
+        "Le skill distingue niches DANS plafond (Pinel, FCPI, emploi à domicile) et HORS plafond (dons)",
         "Les montants des réductions/crédits sont correctement calculés",
         "Le skill additionne uniquement les niches dans le plafond pour vérifier les 10 000 €",
-        "Le skill conclut correctement sur le respect du plafond (5 750 € < 10 000 €)",
+        "Le skill conclut correctement sur le respect du plafond (8 750 € < 10 000 €)",
         "Le skill rappelle que l'excédent au-delà du plafond serait perdu (non reportable)"
       ]
     },
@@ -290,7 +357,584 @@
       ]
     },
     {
+      "id": 25,
+      "name": "av-pv-latentes-uc-deces-ps-dus",
+      "prompt": "Mon oncle est décédé en 2026. Son assurance-vie en unités de compte valait 800 000 EUR pour 500 000 EUR de primes versées, soit 300 000 EUR de plus-values latentes. Comme pour les cryptos, le décès purge tout, non ? Je n'ai rien à payer sur ces gains ?",
+      "expected_output": "Le skill corrige la prémisse : le décès n'est pas un fait générateur de l'IR, donc l'IR est définitivement purgé sur les 300 000 EUR de gains — mais les prélèvements sociaux restent dus. Depuis la LFSS 2010 (art. L. 136-7, II, 3° CSS), l'assureur prélève les PS sur les gains UC au dénouement par décès, nets des PS déjà acquittés, et les déduit du capital avant versement : environ 51 600 EUR à 17,2 %. Le taux reste 17,2 % et non 18,6 % car les produits du 3° du II de l'art. L. 136-7 CSS sont visés par la dérogation à 9,2 % du IV de l'art. L. 136-8 CSS, malgré la hausse de CSG de la LFSS 2026. Le raisonnement crypto (où IR ET PS sont purgés) ne se transpose pas. La fiscalité de transmission (990 I / 757 B) relève du skill notaire.",
+      "files": [],
+      "assertions": [
+        "Le skill corrige la prémisse de l'utilisateur : les PS ne sont pas purgés au décès sur les UC",
+        "L'IR est identifié comme définitivement purgé (le décès n'est pas un fait générateur)",
+        "Les PS sont calculés à 17,2 % sur les gains UC, soit environ 51 600 EUR",
+        "Le skill ne retient pas le taux de 18,6 % de la LFSS 2026 pour l'assurance-vie",
+        "Le skill cite l'art. L. 136-7 II 3° CSS comme base du prélèvement par l'assureur",
+        "Le skill précise que les PS sont prélevés par l'assureur avant versement du capital",
+        "Le skill refuse explicitement de transposer le régime des cryptoactifs à l'assurance-vie en UC",
+        "La fiscalité de transmission (990 I / 757 B) est renvoyée au skill notaire"
+      ]
+    },
+    {
       "id": 21,
+      "name": "ir-sortie-capital-per-1ai-sans-abattement",
+      "prompt": "Je vis en concubinage (ni marié ni pacsé) et je déclare seul mes 2 enfants à charge (2 parts). Mon salaire net imposable (case 1AJ) est de 100 000 €. J'ai débloqué mon PER en capital pour l'achat de ma résidence principale : 10 000 €, correspondant à des versements qui avaient été déduits à l'entrée. Calcule mon impôt sur le revenu pour les revenus 2025.",
+      "expected_output": "Les 100 000 € de salaire subissent l'abattement 10 % (RNI salaires 90 000 €). Les 10 000 € de sortie en capital se déclarent en case 1AI et entrent EN ENTIER dans le RNI, SANS abattement de 10 % — contrairement aux pensions 1AS. RNI total 100 000 €. Barème, plafonnement du quotient familial, décote le cas échéant.",
+      "files": [],
+      "assertions": [
+        "Le skill identifie la case 1AI (et non 1AS) pour une sortie en capital de PER correspondant à des versements déduits",
+        "AUCUN abattement de 10 % n'est appliqué sur les 10 000 € : ils entrent en entier dans le RNI",
+        "Le RNI total est de 100 000 € (90 000 de salaires nets + 10 000 de 1AI), et non 99 000 €",
+        "Le skill distingue explicitement le régime 1AS/1BS (abattement 10 %, minimum 454 € par pensionné, plafond 4 439 € par foyer) du régime 1AI/1BI (aucun abattement)",
+        "Le gain de quotient familial est plafonné et le plafonnement est vérifié"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "calc-ir-abattement-par-declarant-et-ir-pfu",
+      "prompt": "Nous sommes mariés, sans enfant. Chacun de nous a 150 000 € de salaires (cases 1AJ et 1BJ), et nous avons encaissé 5 000 € de dividendes en 2025, au PFU. Aucun autre revenu, aucune déduction. Quel est notre revenu net imposable et combien allons-nous payer au total (impôt au barème, PFU et prélèvements sociaux) ?",
+      "expected_output": "L'abattement de 10 % est plafonné à 14 555 € pour chaque membre du foyer (CGI art. 83, 3°) : 150 000 − 14 555 = 135 445 € par conjoint, soit un RNI de 270 890 € (et non 285 445 € avec un seul plafond). Impôt au barème 2025 sur 2 parts : environ 78 666 €. Dividendes au PFU : IR forfaitaire de 12,8 % = 640 € (art. 200 A CGI) et prélèvements sociaux de 17,2 % = 860 € (encaissement 2025). Total ≈ 80 166 € avant réductions et crédits. Pas de CEHR (RFR ≈ 275 890 € < 500 000 € pour un couple).",
+      "files": [],
+      "assertions": [
+        "Le skill applique le plafond de 14 555 € à chaque déclarant, et non une seule fois pour le foyer",
+        "Le RNI est d'environ 270 890 €",
+        "Le skill compte l'IR forfaitaire du PFU (12,8 % × 5 000 = 640 €) en plus des prélèvements sociaux",
+        "Les prélèvements sociaux sur les dividendes encaissés en 2025 sont de 17,2 % (860 €)",
+        "Le total avant réductions et crédits est d'environ 80 166 €",
+        "Le skill indique qu'aucune CEHR n'est due"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "calc-ir-abattement-pensions-minimum-par-pensionne",
+      "prompt": "Nous sommes mariés, retraités, sans enfant. Mon conjoint perçoit 3 000 € de pension (case 1AS) et moi 4 000 € (case 1BS) en 2025. Aucun autre revenu. Quel est notre revenu net imposable ?",
+      "expected_output": "L'abattement de 10 % sur les pensions ne peut être inférieur à 454 € pour chaque pensionné, le maximum de 4 439 € s'appréciant pour le foyer (CGI art. 158, 5-a ; brochure IR 2026). 10 % de 3 000 € et de 4 000 € étant inférieurs au minimum, chacun bénéficie de 454 € : abattement total 908 €, RNI = 7 000 − 908 = 6 092 € (et non 6 300 € en appliquant le minimum une seule fois au total du foyer). Aucun impôt dû.",
+      "files": [],
+      "assertions": [
+        "Le skill applique le minimum de 454 € à chaque pensionné, et non une seule fois pour le foyer",
+        "Le skill précise que le maximum de 4 439 € s'apprécie par foyer",
+        "Le RNI est de 6 092 €",
+        "Le skill indique qu'aucun impôt n'est dû"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "calc-ir-abattement-plancher-limite-au-revenu",
+      "prompt": "Nous sommes pacsés, sans enfant. J'ai 100 000 € de salaires (case 1AJ) et mon partenaire a perçu 300 € d'ARE (case 1BP) en 2025. Aucun autre revenu. Quel est notre revenu net imposable et notre impôt ?",
+      "expected_output": "Abattement de 10 % calculé par déclarant : 10 000 € pour le déclarant 1 (RNI salaires 90 000 €). Pour le déclarant 2, le plancher de 509 € ne peut excéder le revenu : abattement limité à 300 €, net 0 € (et non −209 €). RNI = 90 000 €. Impôt au barème sur 2 parts : environ 13 208 €.",
+      "files": [],
+      "assertions": [
+        "Le skill limite l'abattement du déclarant 2 au montant de son ARE (net de 0 €, jamais négatif)",
+        "Le RNI est de 90 000 € (et non 89 791 €)",
+        "L'impôt au barème est d'environ 13 208 €"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "calc-ir-rfr-reintegre-per-cehr",
+      "prompt": "Je suis célibataire, sans enfant, avec 300 000 € de salaires (case 1AJ) en 2025. J'ai versé 30 000 € sur mon PER, entièrement déductibles. Aucun autre revenu. Quel est mon impôt, CEHR comprise ?",
+      "expected_output": "Abattement de 10 % plafonné à 14 555 € : 285 445 €, moins 30 000 € de PER = RNI 255 445 €. Impôt au barème sur 1 part : environ 91 474 €. Les versements PER déduits sont réintégrés dans le revenu fiscal de référence (CGI art. 1417, IV-1°-a) : RFR = 285 445 €, CEHR = 3 % × (285 445 − 250 000) ≈ 1 063 € (et non 163 € sur un RFR de 255 445 €). Total ≈ 92 537 € avant réductions et crédits.",
+      "files": [],
+      "assertions": [
+        "Le skill réintègre les versements PER déduits dans le RFR (art. 1417, IV CGI)",
+        "Le RFR est d'environ 285 445 €",
+        "La CEHR est d'environ 1 063 €",
+        "Le total avant réductions et crédits est d'environ 92 537 €"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "per-baisse-ir-compensee-par-cdhr",
+      "prompt": "Cas fictif pour les revenus 2026 : couple marié, sans personne à charge, revenu de référence CDHR de 800 000 EUR avant et après un versement PER déductible. Aucun revenu exceptionnel, prélèvement libératoire ou décote. Le total IR retraité + CEHR, déjà ajusté selon les règles de la CDHR, passe de 130 000 EUR avant versement à 125 000 EUR après ; toutes les autres données sont inchangées. Puisque le PER ne change pas le RFR, puis-je conclure que ma CDHR reste inchangée et que j'économise 5 000 EUR d'impôt au total ?",
+      "expected_output": "Non. Le maintien du revenu de référence ne garantit pas une CDHR inchangée. Plancher : 800 000 × 20 % = 160 000 EUR ; majoration pour imposition commune : 12 500 EUR. Avant : 160 000 - (130 000 + 12 500) = 17 500 EUR. Après : 160 000 - (125 000 + 12 500) = 22 500 EUR. La hausse de CDHR de 5 000 EUR absorbe ici toute la baisse d'IR : IR retraité + CEHR + CDHR vaut 147 500 EUR dans les deux cas. L'effet est conditionnel, une compensation intégrale n'est pas une règle générale pour tout versement PER. Sources : art. 1417, IV et art. 224, III et IV CGI (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053561826/2026-11-11).",
+      "files": [],
+      "assertions": [
+        "Le skill distingue revenu de référence inchangé et montant de CDHR susceptible d'augmenter lorsque l'IR retenu baisse",
+        "Le plancher de 160 000 EUR et la majoration de 12 500 EUR pour le couple sont utilisés sans personne à charge ni décote",
+        "La CDHR avant versement est de 17 500 EUR",
+        "La CDHR après versement est de 22 500 EUR",
+        "La hausse de CDHR de 5 000 EUR absorbe ici la baisse d'IR de 5 000 EUR ; le total comparé reste de 147 500 EUR",
+        "Le skill ne présente ni le gain TMI seul comme une économie nette garantie ni la compensation intégrale comme applicable à tous les PER",
+        "Les montants IR retraité + CEHR fournis sont utilisés comme déjà ajustés, sans recalculer une autre CEHR"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "plafonnement-global-pinel-garde-emploi-domicile",
+      "prompt": "Couple marié, 2 enfants à charge dont un de 3 ans. Revenu net imposable 2025 : 126 000 €, impôt après quotient familial et décote : 20 394 €. Nous avons un Pinel acheté 280 000 € en 2020 (60 m², engagement 9 ans, en métropole), 12 000 € de salarié à domicile (aucune aide) et 5 000 € de crèche pour le petit, dont 1 000 € de CMG. Quel est notre impôt net ?",
+      "expected_output": "Réduction Pinel : 280 000 × 18 % / 9 = 5 600 €. Crédit emploi à domicile : plafond 12 000 + 2 × 1 500 = 15 000 €, dépenses 12 000 € → 6 000 €. Crédit garde : (5 000 − 1 000) limité à 3 500 € → 1 750 €. Les trois avantages entrent dans le plafonnement global (art. 200-0 A) : 13 350 € > 10 000 €, donc 3 350 € réintégrés. Impôt net = 20 394 − 5 600 + 3 350 − 6 000 − 1 750 = 10 394 €. Vérifiable avec calc_ir.py --foyer examples/foyer-reductions-credits.json.",
+      "files": [],
+      "assertions": [
+        "La réduction Pinel annuelle est de 5 600 € (18 % sur 9 ans, soit 2 % par an de 280 000 €)",
+        "Le crédit emploi à domicile est de 6 000 € (plafond 15 000 € non atteint)",
+        "Le crédit garde est calculé sur 3 500 € après déduction du CMG, soit 1 750 €",
+        "Le skill inclut l'emploi à domicile ET la garde d'enfants dans le plafonnement global de 10 000 € (art. 200-0 A)",
+        "L'excédent de 3 350 € est ajouté à l'impôt",
+        "L'impôt net final est de 10 394 €",
+        "La réduction Pinel s'impute avant les crédits, qui sont restituables"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "solde-avance-rici-janvier",
+      "prompt": "Couple marié, 1 enfant. Impôt 2025 après quotient familial et décote : 6 001 €. 1 000 € de dons à une association d'intérêt général et 8 000 € de ménage à domicile en 2025. Le prélèvement à la source a retenu 6 000 € en 2025 et nous avons reçu 2 796 € d'avance de réductions et crédits d'impôt en janvier 2026. Combien allons-nous être remboursés cet été ?",
+      "expected_output": "Réduction dons : 66 % × 1 000 = 660 €. Crédit emploi à domicile : 50 % × 8 000 = 4 000 € (plafond 13 500 €). Impôt net = 6 001 − 660 − 4 000 = 1 341 €. Solde = 1 341 − 6 000 (PAS) + 2 796 (avance de janvier déjà perçue, art. 1665 bis) = −1 863 € : remboursement de 1 863 €. Oublier l'avance conduirait à attendre 4 659 €.",
+      "files": [],
+      "assertions": [
+        "La réduction pour dons est de 660 € (66 %)",
+        "Le crédit emploi à domicile est de 4 000 €",
+        "L'impôt net est de 1 341 €",
+        "Le skill réintègre l'avance de 60 % perçue en janvier (2 796 €) dans le solde (art. 1665 bis CGI)",
+        "Le remboursement annoncé est de 1 863 €, et non 4 659 €",
+        "Le skill explique que l'avance de janvier est une avance sur le remboursement, pas un gain supplémentaire"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "dons-au-dela-20-pct-et-plafond-75",
+      "prompt": "Célibataire, revenu net imposable 2025 : 54 000 €, impôt après décote : 9 304 €. J'ai donné 12 000 € à une fondation d'intérêt général, 800 € aux Restos du cœur en mars et 1 500 € en novembre 2025. Quelle réduction pour mes dons et que devient l'excédent ?",
+      "expected_output": "Dons aux organismes d'aide aux personnes en difficulté : 75 % dans la limite de 1 000 € pour les versements jusqu'au 13/10/2025, limite portée à 2 000 € (y compris les versements antérieurs) pour les versements du 14/10 au 31/12/2025 (LFI 2026, art. 28). Retenus : 800 + 1 200 = 2 000 € → 1 500 €. Les 300 € restants passent au taux de 66 %. Base à 66 % = 12 000 + 300 = 12 300 €, limitée à 20 % du revenu imposable = 10 800 € → 7 128 €. Réduction totale 8 628 €, impôt net 676 €. Excédent de 1 500 € reportable sur les 5 années suivantes.",
+      "files": [],
+      "assertions": [
+        "Le skill applique la limite de 2 000 € pour les dons à 75 % versés à partir du 14/10/2025 (1 000 € auparavant)",
+        "La fraction des dons à 75 % au-delà du plafond (300 €) bascule au taux de 66 %",
+        "La limite de 20 % du revenu imposable (10 800 €) est appliquée à la base à 66 %",
+        "Les dons à 75 % ne sont pas comptés dans la limite de 20 %",
+        "La réduction totale est de 8 628 € et l'impôt net de 676 €",
+        "L'excédent de 1 500 € est reportable sur les 5 années suivantes (art. 200 CGI)"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "gerant-art62-montant-1gb",
+      "prompt": "Je suis gérant associé unique d'une EURL à l'IS. En 2025, l'EURL m'a versé 48 000 € de rémunération nette et a payé directement à l'URSSAF mes cotisations et contributions personnelles pour 20 000 €, dont 1 104 € de CSG non déductible et 230 € de CRDS d'après le décompte. Quel montant je déclare, dans quelle case, et quel est mon revenu net imposable après abattement ?",
+      "expected_output": "La rémunération relève de l'art. 62 CGI (associé unique d'EURL à l'IS, BOI-RSA-GER-10-10-20 § 80) : case 1GB (déclarant 1), pas 1AJ. Montant brut fiscal = rémunération nette + cotisations prises en charge par la société (avantage en espèces, BOI-RSA-GER-10-20 § 10) = 48 000 + 20 000 = 68 000 €. Déductible : cotisations obligatoires (art. 62 → 154 bis) et CSG déductible (6,8 pts, art. 154 quinquies) ; la CSG non déductible (2,4 pts) et la CRDS (0,5 %) restent imposables. Déductible = 20 000 − 1 104 − 230 = 18 666 €. Case 1GB = 68 000 − 18 666 = 49 334 € (= 48 000 + 1 104 + 230). L'abattement de 10 % est appliqué par l'administration (ne pas le retrancher) : 4 933 €, dans les bornes 509 € / 14 555 € ; revenu net catégoriel 44 401 €. Le montant brut déclaré en DSEC (volet social) est différent du montant 1GB.",
+      "files": [],
+      "assertions": [
+        "Le skill indique la case 1GB (et non 1AJ) pour la rémunération du gérant associé unique d'EURL à l'IS",
+        "Le skill rattache cette rémunération à l'article 62 du CGI",
+        "Le montant déclaré en 1GB est 49 334 € (rémunération nette 48 000 € + CSG non déductible 1 104 € + CRDS 230 €)",
+        "Le skill explique que la CSG non déductible et la CRDS ne sont pas déductibles (seuls 6,8 points de CSG le sont, art. 154 quinquies)",
+        "Le skill ne demande PAS de retrancher soi-même l'abattement de 10 % du montant porté en 1GB",
+        "L'abattement de 10 % est chiffré à environ 4 933 € et le revenu net catégoriel à environ 44 401 €",
+        "Le skill ne déclare PAS en 1GB le brut social (68 000 €) ni la seule rémunération nette (48 000 €)"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "sas-vs-eurl-case-1aj-1gb",
+      "prompt": "Ma sœur est présidente d'une SAS dont elle détient 100 % des actions, je suis gérant associé unique d'une EURL à l'IS, et mon frère est gérant d'une SARL où il détient exactement 50 % des parts (l'autre associé, non gérant et sans lien familial avec lui, détient l'autre moitié). Dans quelle case de la 2042 chacun déclare sa rémunération, et est-ce que l'impôt est prélevé sur la fiche de paie ?",
+      "expected_output": "Présidente de SAS : dirigeant relevant du régime fiscal des salariés (art. 80 ter ; les dirigeants de SA/SAS n'entrent jamais dans l'art. 62, BOI-RSA-GER-10-30 § 90 et § 180), quel que soit le pourcentage détenu → case 1AJ, retenue à la source par la société. Gérant associé unique d'EURL à l'IS : art. 62 (BOI-RSA-GER-10-10-20 § 80) → case 1GB, pas de retenue par la société, acomptes prélevés par l'administration fiscale (art. 204 C ; notice 2041-NOT). Gérant détenant exactement 50 % : la gérance n'est pas majoritaire (BOI-RSA-GER-10-10-10 § 40) → traitements et salaires (art. 80 ter), case 1AJ. La majorité s'apprécie en ajoutant les parts du conjoint, du partenaire de PACS soumis à imposition commune et des enfants non émancipés (art. 211 CGI ; BOI-RSA-GER-10-10-10-10). Les trois bénéficient de la déduction de 10 % ou des frais réels.",
+      "files": [],
+      "assertions": [
+        "Le skill place la rémunération de la présidente de SAS en case 1AJ (traitements et salaires, art. 80 ter), même avec 100 % du capital",
+        "Le skill place la rémunération du gérant associé unique d'EURL à l'IS en case 1GB (art. 62)",
+        "Le skill indique qu'un gérant détenant exactement 50 % des parts n'est pas majoritaire et relève de la case 1AJ",
+        "Le skill précise que la SAS applique une retenue à la source alors que la rémunération art. 62 donne lieu à des acomptes prélevés par l'administration",
+        "Le skill mentionne que les parts du conjoint / partenaire de PACS / enfants non émancipés comptent pour apprécier la majorité",
+        "Le skill NE dit PAS que la rémunération du président de SAS majoritaire relève de l'article 62"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "gerant-art62-pas-acomptes-hausse",
+      "prompt": "Je suis gérant majoritaire de SARL à l'IS. J'ai déclaré 40 000 € en case 1GB pour 2025. En 2026, ma rémunération passe à environ 110 000 €. Mon expert-comptable dit que la société ne prélève pas d'impôt sur ma rémunération. Comment fonctionne mon prélèvement à la source et que se passe-t-il si je ne fais rien ?",
+      "expected_output": "Les rémunérations art. 62 ne sont pas soumises à la retenue à la source : elles donnent lieu à un acompte prélevé par l'administration fiscale sur le compte bancaire, mensuellement ou trimestriellement (art. 204 C, B, 1° CGI ; notice 2041-NOT 2026 p. 2 et p. 8). La société ne prélève donc rien. Les acomptes de septembre 2026 à août 2027 sont calculés sur les revenus 2025 déclarés (40 000 €), ils ne reflètent pas la hausse. Sans action, l'impôt supplémentaire sur 2026 sera réclamé en solde à l'été/automne 2027 après la déclaration des revenus 2026, en plus des acomptes en cours. Le contribuable peut augmenter l'assiette de l'acompte ou son taux sans seuil minimum (art. 204 J, II, modulation à la hausse sur impots.gouv.fr « Gérer mon prélèvement à la source ») ; la modulation à la baisse n'est possible qu'au-delà d'un écart de plus de 5 % (art. 204 J, III). Le skill chiffre ou invite à chiffrer l'écart avec les autres revenus du foyer, sans inventer de taux.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que la rémunération art. 62 n'est pas soumise à la retenue à la source mais à un acompte prélevé par l'administration fiscale",
+        "Le skill confirme que la société n'a pas à prélever l'impôt sur la rémunération du gérant majoritaire",
+        "Le skill explique que les acomptes en cours reposent sur la dernière déclaration (revenus 2025) et ne tiennent pas compte de la hausse",
+        "Le skill indique que, sans action, l'insuffisance sera régularisée en solde l'année suivante après la déclaration",
+        "Le skill mentionne la possibilité d'une modulation à la hausse sans seuil minimum (art. 204 J)",
+        "Le skill cite l'article 204 C du CGI ou la notice 2041-NOT pour le mécanisme d'acompte",
+        "Le skill n'invente pas de taux de prélèvement sans données sur le foyer"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "comptes-etrangers-neobanque-iban-fr-et-exchange-crypto",
+      "prompt": "Je suis résident fiscal français. J'ai un compte dans une néobanque européenne dont l'IBAN commence par FR, mais l'appli indique que la banque est agréée en Lituanie. J'ai aussi un compte sur une plateforme crypto dont la société est établie à Malte ; je n'ai rien vendu en 2025, j'ai juste acheté et gardé. Est-ce que je dois déclarer quelque chose dans ma déclaration 2026 ?",
+      "expected_output": "Oui, a priori deux comptes à déclarer sur le formulaire 3916-3916 bis, en cochant la case 8UU de la 2042. Néobanque : l'art. 1649 A al. 2 CGI vise les comptes ouverts hors de France auprès d'un établissement (BOI-CF-CPF-30-20 § 120) ; le critère est l'établissement teneur du compte, pas le préfixe de l'IBAN. La doctrine ne traite pas expressément le cas de l'IBAN FR : vérifier l'entité contractante dans les conditions générales et, en cas de doute, déclarer par prudence. Amende en cas d'omission : 1 500 € par compte et par année (art. 1736 IV-2). Plateforme crypto : compte d'actifs numériques ouvert auprès d'une entité établie à l'étranger, à déclarer même sans cession (art. 1649 bis C, rubrique 4 du 3916-bis) ; amende 750 € par compte non déclaré (1 500 € si la valeur des comptes a dépassé 50 000 € dans l'année), art. 1736 X. Aucune annexe 2086 n'est due en l'absence de cession.",
+      "files": [],
+      "assertions": [
+        "Le skill conclut que les deux comptes sont a priori à déclarer sur le formulaire 3916-3916 bis",
+        "Le skill indique la case 8UU de la 2042",
+        "Le skill explique que le critère est l'établissement auprès duquel le compte est ouvert, et non le préfixe de l'IBAN",
+        "Le skill signale que la doctrine ne tranche pas expressément le cas de l'IBAN FR et recommande de vérifier l'entité contractante / de déclarer par prudence",
+        "Le skill indique que le compte crypto à l'étranger se déclare même en l'absence de cession (art. 1649 bis C)",
+        "Le skill cite l'amende de 1 500 € par compte bancaire non déclaré (art. 1736 IV) et celle de 750 € par compte d'actifs numériques non déclaré (art. 1736 X)",
+        "Le skill NE dit PAS qu'une annexe 2086 est due alors qu'aucune cession n'a eu lieu"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "comptes-etrangers-compte-clos-dans-annee",
+      "prompt": "J'avais un compte bancaire en Allemagne ouvert pendant un ancien job, je l'ai fermé en mars 2025. Il était presque vide et je ne l'utilisais plus depuis des années. Je n'ai jamais rempli de 3916. Pour ma déclaration des revenus 2025 je n'ai plus de compte à l'étranger, donc rien à faire ?",
+      "expected_output": "Non. La déclaration est due au titre de chaque année au cours de laquelle le compte a été ouvert, détenu, utilisé ou clos (BOI-CF-CPF-30-20 § 180) : le compte clos en mars 2025 doit figurer sur le 3916 joint à la déclaration des revenus 2025 (case 8UU), avec sa date de clôture. Depuis le 01/01/2019, même un compte non utilisé est à déclarer, sans seuil de solde (§ 120). Pour les années antérieures non prescrites, l'amende de 1 500 € par compte et par année est encourue (art. 1736 IV-2, BOI-CF-INF-20-10-50 § 20) ; on peut régulariser en déposant les 3916 manquants et solliciter une remise gracieuse (art. L. 247 LPF), sans barème d'atténuation publié. À partir de la déclaration des revenus 2026, le compte n'est plus à déclarer.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que le compte clos en 2025 doit être déclaré au titre de 2025 (année de clôture)",
+        "Le skill indique la case 8UU et le formulaire 3916-3916 bis, avec la date de clôture",
+        "Le skill précise qu'un compte inactif ou presque vide reste à déclarer (pas de seuil, comptes non utilisés inclus depuis 2019)",
+        "Le skill mentionne l'exposition à l'amende de 1 500 € par compte et par année non prescrite pour les années antérieures non déclarées",
+        "Le skill propose une régularisation (dépôt des 3916 manquants) et mentionne la possibilité de demande gracieuse (art. L. 247 LPF) sans inventer de barème de réduction",
+        "Le skill indique que le compte n'est plus à déclarer à partir des revenus 2026"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "comptes-etrangers-foyer-assurance-vie-sanctions",
+      "prompt": "Nous sommes pacsés avec un enfant à charge. Ma partenaire a un compte courant en Belgique, notre fils (17 ans, rattaché) a un compte jeune ouvert pendant un échange scolaire en Espagne, et j'ai un contrat d'assurance-vie souscrit auprès d'un assureur luxembourgeois. Qu'est-ce qu'on déclare, et qu'est-ce qu'on risque si on oublie ?",
+      "expected_output": "La déclaration porte sur les comptes du déclarant, des membres du foyer fiscal et des personnes rattachées (BOI-CF-CPF-30-20 § 120) : le compte belge de la partenaire et le compte espagnol de l'enfant sont à déclarer (un 3916 par compte, case 8UU). Le contrat d'assurance-vie luxembourgeois relève de l'art. 1649 AA (case 8TT, même formulaire 3916-3916 bis, avec références du contrat, versements et rachats de l'année, valeur de rachat au 1er janvier). Sanctions : 1 500 € par compte non déclaré (art. 1736 IV-2) et 1 500 € par contrat (art. 1766), portés à 10 000 € pour un État sans convention d'assistance administrative (ce qui n'est pas le cas a priori de la Belgique, de l'Espagne ou du Luxembourg, à vérifier au BOI-ANNX-000270), pour chaque année non prescrite. Si des revenus liés à ces comptes ou contrats sont rectifiés : majoration de 80 % (art. 1729-0 A, plancher égal à l'amende, sans cumul) et délai de reprise porté à 10 ans (art. L. 169 LPF ; pour les comptes, si les soldes cumulés ont dépassé 50 000 € dans l'année). Les sommes transférées via un compte non déclaré sont présumées être des revenus, sauf preuve contraire (art. 1649 A al. 3).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que les comptes de la partenaire et de l'enfant rattaché sont à déclarer (comptes du foyer fiscal)",
+        "Le skill indique un formulaire 3916 par compte et la case 8UU",
+        "Le skill indique que le contrat d'assurance-vie étranger se déclare au titre de l'art. 1649 AA avec la case 8TT",
+        "Le skill cite l'amende de 1 500 € par compte (art. 1736 IV) et par contrat (art. 1766), portée à 10 000 € pour un État sans convention d'assistance administrative",
+        "Le skill mentionne la majoration de 80 % (art. 1729-0 A) en cas de rectification de revenus liés",
+        "Le skill mentionne le délai de reprise de 10 ans (art. L. 169 LPF) et la condition des 50 000 € pour les comptes",
+        "Le skill mentionne la présomption de revenus sur les transferts via un compte non déclaré, réfragable (preuve contraire)"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "annee-depart-juillet-pinel",
+      "prompt": "Je suis parti m'installer à l'étranger le 15 juillet 2025 (je n'ai plus aucun lien avec la France sauf deux appartements loués nus au régime réel). L'un des deux est un Pinel acheté en 2020, quand j'habitais en France. Comment je déclare mes revenus 2025 en 2026, auprès de quel service, et est-ce que je perds ma réduction Pinel ?",
+      "expected_output": "Année du départ = une seule imposition sur deux périodes (art. 167 CGI, BOI-IR-DOMIC-20) : une déclaration 2042 pour l'ensemble des revenus du 01/01 au 15/07/2025, et une 2042-NR pour les revenus de source française perçus après le départ (date de départ indiquée sur la 2042-NR). Une seule 2044 pour l'année entière, résultat ventilé au prorata entre la 2042 et la 2042-NR (lignes 4BA/4BB/4BC). Dépôt auprès du dernier service des impôts des particuliers ; le SIPNR devient gestionnaire ensuite. Pas de déclaration provisoire au départ. Pinel : investissement réalisé à compter du 01/01/2019 alors que le contribuable était domicilié en France, le départ n'entraîne pas de remise en cause et la réduction continue de s'imputer sur l'impôt calculé selon l'art. 197 A, sans remboursement de l'excédent (BOI-IR-RICI-360-40 § 90 ; brochure IR 2026 p. 65). Les revenus fonciers restent soumis aux acomptes du PAS. Impôt de la période non-résident : taux minimum 20 %/30 % (seuil 29 579 € pour 2025) ou taux moyen sur option. Réserve sur l'application d'une convention fiscale.",
+      "files": [],
+      "assertions": [
+        "Le skill indique deux déclarations l'année du départ : 2042 (revenus du 1er janvier à la date de départ) et 2042-NR (revenus de source française après le départ)",
+        "Le skill précise qu'il s'agit d'une seule imposition et non de deux avis distincts",
+        "Le skill indique une seule 2044 pour l'année entière dont le résultat est réparti au prorata entre 2042 et 2042-NR",
+        "Le skill indique le dépôt auprès du dernier service des impôts, le SIPNR devenant gestionnaire ensuite",
+        "Le skill indique que la réduction Pinel n'est pas remise en cause par le départ et reste imputable pour un investissement réalisé à compter du 01/01/2019, sans remboursement",
+        "Le skill NE dit PAS que le départ entraîne la reprise de la réduction Pinel",
+        "Le skill mentionne le taux minimum de l'article 197 A et l'option pour le taux moyen",
+        "Le skill renvoie à la convention fiscale applicable sans en détailler une"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "foncier-non-resident-ps-7-5",
+      "prompt": "Je vis en Espagne depuis 2023, je suis affilié à la sécurité sociale espagnole et je ne cotise plus à aucun régime français. Mon seul revenu en France : un appartement loué nu, 12 000 € de revenu foncier net (réel) en 2025. Combien je paie d'impôt et de prélèvements sociaux en France ?",
+      "expected_output": "Revenus fonciers d'un immeuble situé en France : imposables en France (art. 164 B CGI ; principe de l'art. 6 du modèle OCDE, convention à vérifier). IR : barème mais taux minimum de 20 % jusqu'à 29 579 € (revenus 2025, art. 197 A) → 12 000 × 20 % = 2 400 €, sauf option pour le taux moyen (case 8TM + 2041-TM, revenu mondial) s'il est plus favorable. Pas de décote. Prélèvements sociaux : personne affiliée à un régime de sécurité sociale d'un État de l'EEE et non à la charge d'un régime français → exonérée de CSG et CRDS (art. L. 136-6 I ter CSS), reste redevable du prélèvement de solidarité de 7,5 % (art. 235 ter CGI) → 900 € au lieu de 17,2 % (2 064 €). L'exonération n'est pas automatique : cocher 8SH/8SI sur la 2042-C, affiliation effective au 31/12. Les revenus fonciers restent soumis aux acomptes du PAS.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que les revenus fonciers d'un immeuble situé en France sont imposables en France",
+        "Le skill applique le taux minimum de 20 % (revenu ≤ 29 579 € pour les revenus 2025), soit 2 400 €",
+        "Le skill mentionne l'option pour le taux moyen calculé sur le revenu mondial (8TM / 2041-TM) si plus favorable",
+        "Le skill applique 7,5 % de prélèvement de solidarité (900 €) et non 17,2 % ni 18,6 %",
+        "Le skill indique que l'exonération de CSG/CRDS suppose une affiliation à un régime EEE/Suisse/Royaume-Uni et l'absence de prise en charge par un régime français",
+        "Le skill indique les cases 8SH/8SI et que l'exonération n'est pas automatique",
+        "Le skill NE fait PAS bénéficier le non-résident de la décote"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "vente-ex-rp-14-mois-apres-depart",
+      "prompt": "J'ai quitté la France pour le Portugal fin juin 2025. Mon ancienne résidence principale à Lyon est restée vide depuis, je la vends en août 2026 (14 mois après mon départ). Est-ce que je paie une plus-value en France ? Et si je l'avais louée entre-temps ?",
+      "expected_output": "Cession par un non-résident : régime de l'art. 244 bis A CGI (19 % + PS). Exonération de l'ancienne résidence principale (art. 244 bis A I-1, cessions depuis 2019 ; BOI-RFPI-PVINR-10-20 § 440 à 530) si : logement = résidence principale au jour du transfert ; départ vers un État de l'UE ou lié par conventions d'assistance administrative et de recouvrement ; cession au plus tard le 31/12 de l'année suivant le transfert (ici 31/12/2026 → août 2026 respecte le délai) ; pas de mise à disposition de tiers entre le départ et la vente ; pas de bénéfice antérieur de l'art. 150 U II 2°. Ici exonération totale. Si le bien a été loué (ou prêté) entre-temps : exonération perdue ; reste l'exonération de l'art. 150 U II 2° plafonnée à 150 000 € de plus-value nette (ressortissant UE/EEE, 2 ans de domicile continu en France, cession dans les 10 ans), non cumulable. Excédent : 19 % + PS (7,5 % seulement si affilié à un régime de sécurité sociale UE/EEE/Suisse et non à la charge d'un régime français).",
+      "files": [],
+      "assertions": [
+        "Le skill identifie l'exonération de l'ancienne résidence principale des non-résidents (art. 244 bis A CGI)",
+        "Le skill cite la condition de cession au plus tard le 31 décembre de l'année suivant celle du départ et conclut qu'une vente en août 2026 la respecte",
+        "Le skill cite la condition d'absence de mise à disposition de tiers entre le départ et la cession",
+        "Le skill cite la condition de transfert vers un État de l'UE ou lié par des conventions d'assistance",
+        "Le skill indique que la location entre-temps fait perdre cette exonération",
+        "Le skill mentionne l'exonération alternative de 150 000 € (art. 150 U II 2°) et son caractère non cumulable",
+        "Le skill NE dit PAS que l'exonération de la résidence principale de droit commun (vendeur résident) s'applique telle quelle"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "versement-per-apres-depart",
+      "prompt": "Je pars vivre à l'étranger en mars 2026. Je garde un appartement loué en France (environ 10 000 €/an de loyers nets) et mon nouveau salaire sera payé à l'étranger. Si je verse 10 000 € sur mon PER en novembre 2026, est-ce que je pourrai le déduire ?",
+      "expected_output": "Après le départ, le contribuable est non-résident : aucune charge du revenu global ne peut être déduite de ses revenus de source française (art. 164 A CGI ; brochure IR 2026 p. 65). La déduction des versements PER (art. 163 quatervicies) est une déduction du revenu global → non admise pour un versement effectué pendant la période de non-résidence. La 2042-NR ne comporte pas de case de versements d'épargne retraite (rubrique 6 limitée à la CSG déductible). Exception : non-résident « Schumacker » (revenus de source française ≥ 75 % du revenu mondial, BOI-IR-DOMIC-40 § 30 et 90) — non rempli ici puisque le salaire est étranger. Un versement effectué avant la date de départ relève de la période de résidence (2042) : traitement à vérifier, la doctrine consultée n'étant pas explicite. Pas de conseil d'optimisation au-delà.",
+      "files": [],
+      "assertions": [
+        "Le skill indique qu'un versement PER effectué après le départ n'est pas déductible pour un non-résident (art. 164 A CGI)",
+        "Le skill explique que la déduction PER est une charge du revenu global",
+        "Le skill mentionne l'exception des non-résidents Schumacker (≥ 75 % des revenus de source française) et constate qu'elle ne s'applique pas ici",
+        "Le skill distingue le versement effectué avant le départ (période de résidence) de celui effectué après",
+        "Le skill NE promet PAS une économie d'impôt au taux marginal sur le versement de novembre 2026"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "deficit-lmnp-anterieur-micro-bic",
+      "prompt": "J'ai 6 000 € de déficits LMNP de 2022 et 2023, constatés au réel et pas encore imputés. En 2025 je suis passé au micro-BIC avec 10 000 € de loyers meublés longue durée. Puis-je imputer ces déficits ?",
+      "expected_output": "Oui. Résultat micro-BIC net = 10 000 × 50 % = 5 000 €. Les déficits antérieurs (cases 5GA à 5GJ) s'imputent sur ce résultat dans sa limite : 5 000 € imputés, résultat LMNP imposable 0 €, 1 000 € restent reportables (jusqu'à 10 ans après l'année du déficit). Aucune imputation sur le revenu global.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que les déficits LMNP antérieurs s'imputent sur le résultat micro-BIC net",
+        "Le résultat micro-BIC net est calculé après abattement de 50 % (5 000 €)",
+        "L'imputation est limitée au résultat LMNP net (5 000 €), le solde de 1 000 € reste reportable",
+        "Le skill rappelle que ces déficits ne s'imputent jamais sur le revenu global",
+        "Le skill cite les cases 5GA à 5GJ et l'art. 156-I-1° ter CGI"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "millesime-bareme-annee-passee",
+      "prompt": "Je prépare une réclamation sur mes revenus 2022. Célibataire, 1 part, revenu net imposable 30 000 €. Quel était mon impôt sur le revenu avant réductions et crédits ?",
+      "expected_output": "Barème des revenus 2022 (LFI 2023) : 0 % jusqu'à 10 777 €, 11 % jusqu'à 27 478 €, 30 % jusqu'à 78 570 €. Impôt = (27 478 − 10 777) × 11 % + (30 000 − 27 478) × 30 % = 1 837,11 + 756,60 = 2 593,71 €, soit environ 2 594 €. Pas de décote (seuil 1 840 € pour un célibataire en 2022).",
+      "files": [],
+      "assertions": [
+        "Le skill utilise le barème des revenus 2022 (tranches 10 777 / 27 478 / 78 570), pas celui de 2025",
+        "L'impôt calculé est d'environ 2 594 €",
+        "Le skill vérifie la décote avec le seuil 2022 (1 840 €) et conclut qu'elle ne s'applique pas",
+        "Le skill indique que les valeurs viennent du millésime revenus 2022"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "millesime-absent",
+      "prompt": "Quel était le plafond du quotient familial pour mes revenus 2015 ?",
+      "expected_output": "Le skill ne dispose pas du millésime revenus 2015 (données de 2020 à 2025). Il le dit, n'applique pas les valeurs d'une autre année, et renvoie à une source officielle (BOFiP daté, impots.gouv.fr) pour cette année.",
+      "files": [],
+      "assertions": [
+        "Le skill indique ne pas disposer des données des revenus 2015",
+        "Le skill ne donne pas le plafond 2025 (1 807 €) ni celui d'une autre année comme réponse pour 2015",
+        "Le skill renvoie à une source officielle pour cette année"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "foyer-declaration-deposee-fait-foi",
+      "prompt": "Mon foyer.json multi-année indique pour 2023 une déclaration déposée avec 4BC = 3 100 € (déficit imputé sur le revenu global) et 4BB = 1 200 € (déficit reportable sur les revenus fonciers), soit un déficit foncier restant de 1 200 € au 31/12/2023. En recalculant 2023 à partir de mes revenus, j'obtiens 3 400 € imputables sur le revenu global au lieu des 3 100 € déclarés. Quel déficit dois-je reporter en 2024 ?",
+      "expected_output": "Pour une année déposée, ce qui a été déclaré fait foi : le report part des 1 200 € restants au 31/12/2023 (4BB), à imputer sur les revenus fonciers 2024 (case 4BD). L'écart entre 3 100 € déclarés et 3 400 € recalculés sur l'imputation au revenu global est une anomalie à examiner (erreur de calcul ou oubli de charge) ; s'il est confirmé, il relève d'une réclamation sur 2023, pas d'un report modifié de sa propre initiative.",
+      "files": [],
+      "assertions": [
+        "Le skill part du déficit déclaré (1 200 €) et non du recalcul pour le report 2024",
+        "Le skill signale l'écart 3 100 / 3 400 comme une anomalie à vérifier",
+        "Le skill oriente vers une réclamation si l'écart est confirmé, sans modifier silencieusement le report",
+        "Le skill mentionne la case 4BD pour l'imputation des déficits antérieurs"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "seuil-micro-annee-n",
+      "prompt": "Location meublée longue durée : 75 000 € de recettes en 2023 et 76 000 € en 2024. Puis-je rester au micro-BIC pour mes revenus 2025 ?",
+      "expected_output": "Le régime de 2025 s'apprécie en comparant les recettes de 2023 et 2024 au seuil fixé pour 2025 (BOI-BIC-DECLA-10-10-10), soit 77 700 € pour la location meublée de longue durée. 75 000 € et 76 000 € ne dépassent pas ce seuil : le micro-BIC reste applicable en 2025, avec un abattement de 50 %, sauf option pour le réel.",
+      "files": [],
+      "assertions": [
+        "Le skill compare les recettes de N-1 et N-2 au seuil de l'année N (2025)",
+        "Le skill retient le seuil de 77 700 € pour la location meublée de longue durée",
+        "Le skill conclut que le micro-BIC reste applicable en 2025",
+        "Le skill mentionne l'abattement de 50 % et la possibilité d'opter pour le réel"
+      ]
+    },
+    {
+      "id": 61,
+      "name": "option-bareme-av-moins-8-ans",
+      "prompt": "Nous sommes mariés, sans enfant, avec 56 000 € de revenu net imposable hors ce gain (tranche à 11 %). J'ai fait un rachat sur une assurance-vie ouverte en 2021, tous mes versements datent de 2021 et le gain est de 2 000 €. C'est notre seul revenu du capital en 2025. Le PFU ou le barème ?",
+      "expected_output": "Contrat de moins de 8 ans : 12,8 % sous PFU, soit 256 €, sans abattement de 4 600 / 9 200 €. Au barème : le gain s'ajoute au revenu imposable diminué de la CSG déductible (6,8 % × 2 000 € = 136 €), soit 1 864 € taxés à 11 %, environ 205 €. Le foyer est hors zone de décote (impôt brut d'environ 3 600 € au-dessus du seuil couple de 3 277 €) : l'option au barème est donc avantageuse. En zone de décote (par exemple une personne seule à TMI 11 %), chaque euro coûterait environ 16 % et le PFU l'emporterait. Les PS de 17,2 % sont dus dans les deux cas. L'option est globale pour tous les revenus et gains mobiliers de l'année.",
+      "files": [],
+      "assertions": [
+        "Le skill applique le taux de 12,8 % au contrat de moins de 8 ans",
+        "Le skill n'applique PAS l'abattement de 4 600 / 9 200 €, réservé aux contrats de 8 ans et plus",
+        "Le skill conclut que l'option au barème est avantageuse ici (environ 205 € contre 256 €)",
+        "Le skill vérifie que le foyer est hors zone de décote, sans quoi le barème coûterait environ 16 % à la marge",
+        "Le skill rappelle que l'option est globale"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "report-excedent-plafond-niches",
+      "prompt": "Nous sommes mariés. En 2025 nous avons déjà 9 000 € d'avantages fiscaux soumis au plafond global (emploi à domicile, Pinel). Nous avons aussi une réduction de 3 000 € pour une souscription directe au capital d'une PME. Perd-on les 2 000 € au-dessus de 10 000 € ? Et si la réduction PME avait été de 12 000 € ?",
+      "expected_output": "Premier cas : oui, les 2 000 € sont perdus. L'excédent reportable s'apprécie sur la seule réduction PME (avec ses reports), sans tenir compte des autres avantages : 3 000 € ne dépassent pas 10 000 €, donc aucun report (BOI-IR-RICI-90-20-10 § 190, exemple 3). Second cas : le total est ramené à 10 000 €, et la fraction de la réduction PME qui dépasse à elle seule 10 000 €, soit 2 000 €, est reportable sur les 5 années suivantes (art. 199 terdecies-0 A, II ; brochure IR 2026 p. 289), le report restant soumis au plafond de l'année d'acquisition. Un FCPI ou un FIP n'ouvrirait aucun report.",
+      "files": [],
+      "assertions": [
+        "Le skill conclut que, dans le premier cas, rien n'est reportable : la réduction PME seule (3 000 €) ne dépasse pas 10 000 €",
+        "Le skill précise que les autres avantages ne comptent pas pour déterminer l'excédent reportable",
+        "Dans le second cas, le skill retient 2 000 € reportables sur 5 ans (12 000 − 10 000)",
+        "Le skill NE présente PAS les 2 000 € du premier cas comme reportables"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "calc-ir-option-bareme-csg-deductible-annee",
+      "prompt": "Nous sommes mariés, sans enfant : 40 000 € et 30 000 € de salaires (1AJ / 1BJ) en 2025, 20 000 € de dividendes et 2 000 € d'intérêts encaissés en France, prélèvements sociaux retenus par la banque. Vaut-il mieux cocher la case 2OP (option pour le barème) ou rester au PFU ? Chiffrez les deux.",
+      "expected_output": "Au PFU : RNI = 36 000 + 27 000 = 63 000 €, impôt au barème 5 108 €, IR forfaitaire 12,8 % × 22 000 = 2 816 €, PS 17,2 % × 22 000 = 3 784 € (encaissements 2025), total 11 708 €. Option barème : dividendes après abattement de 40 % (12 000 €) + intérêts (2 000 €) entrent au revenu global, et la CSG déductible de 6,8 % des dividendes et intérêts dont les PS ont été prélevés à la source (ligne 2BH) se déduit du revenu global de l'année même : 6,8 % × 22 000 = 1 496 € (brochure IR 2026, RCM, p. 132). RNI = 63 000 + 14 000 − 1 496 = 75 504 €, impôt 8 859 €, PS 3 784 €, total 12 643 €. Le PFU est plus favorable de 935 €.",
+      "files": [],
+      "assertions": [
+        "Le skill applique l'abattement de 40 % aux dividendes sous option barème",
+        "Le skill déduit la CSG déductible (6,8 % × 22 000 = 1 496 €) du revenu global de 2025 même, et non l'année suivante",
+        "Le RNI sous option barème est d'environ 75 504 €",
+        "Le total est d'environ 12 643 € au barème contre 11 708 € au PFU",
+        "Le skill conclut que le PFU est plus favorable ici"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "calc-ir-lmnp-et-foncier-ps",
+      "prompt": "Je suis célibataire : 50 000 € de salaires (1AJ), un meublé au réel avec un résultat de 6 000 € après amortissements, et une location nue au micro-foncier avec 10 000 € de loyers. Combien vais-je payer au total, prélèvements sociaux compris, pour mes revenus 2025 ?",
+      "expected_output": "Salaires nets 45 000 € ; micro-foncier 10 000 × 70 % = 7 000 € ; LMNP 6 000 € : RNI 58 000 €, impôt au barème 10 504 €. Le résultat LMNP est au barème et supporte les PS des revenus du patrimoine, 18,6 % dès les revenus 2025 = 1 116 €, sans IR forfaitaire de 12,8 % ; les revenus fonciers nus restent à 17,2 % (CSG maintenue à 9,2 %, art. L. 136-8, IV CSS) = 1 204 €. Total 12 824 € avant réductions et crédits.",
+      "files": [],
+      "assertions": [
+        "Le résultat LMNP est imposé au barème et non à l'IR forfaitaire de 12,8 %",
+        "Les PS sur le LMNP sont de 18,6 % (1 116 €)",
+        "Les PS sur les revenus fonciers nus sont de 17,2 % (1 204 €)",
+        "Le RNI est d'environ 58 000 € et le total d'environ 12 824 €"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "calc-ir-crypto-bareme-sans-2op",
+      "prompt": "Célibataire, 40 000 € de salaires (1AJ), 2 000 € de dividendes laissés au PFU, et 10 000 € de plus-values sur crypto-actifs que je veux imposer au barème (je ne coche pas la case 2OP). Est-ce possible, et combien vais-je payer ?",
+      "expected_output": "Oui : l'option pour le barème des actifs numériques (case 3CN, art. 200 C CGI) est indépendante de la 2OP, qui ne couvre que les RCM et les plus-values mobilières (notice 2086). RNI = 36 000 + 10 000 = 46 000 €, impôt au barème 6 904 €. Dividendes au PFU : IR 12,8 % = 256 €, PS 17,2 % = 344 €. PS sur la crypto : 18,6 % = 1 860 €. Total 9 364 € avant réductions et crédits. La CSG déductible sur la crypto au barème ne se déduira que l'année suivante.",
+      "files": [],
+      "assertions": [
+        "Le skill explique que l'option 3CN est indépendante de la 2OP",
+        "La crypto entre au revenu global (RNI d'environ 46 000 €) tandis que les dividendes restent au PFU (256 € d'IR forfaitaire)",
+        "Les PS sur la crypto sont de 18,6 % et ceux sur les dividendes de 17,2 %",
+        "Le total est d'environ 9 364 €"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "calc-ir-rcm-sans-ps-a-la-source",
+      "prompt": "Célibataire, 40 000 € de salaires (1AJ). J'ai touché 5 000 € de dividendes sur un compte-titres chez un courtier étranger, qui n'a prélevé aucun prélèvement social (je n'ai pas fait de 2778). Je reste au PFU. Combien vais-je payer ?",
+      "expected_output": "Les dividendes n'ont pas supporté les PS à l'encaissement : ils sont établis par voie de rôle au titre des revenus du patrimoine, au taux de 18,6 % pour les revenus 2025, soit 930 € (et non 17,2 %). IR forfaitaire 12,8 % = 640 €. Salaires nets 36 000 €, impôt au barème 3 904 €. Total 5 474 € avant réductions et crédits.",
+      "files": [],
+      "assertions": [
+        "Le skill applique 18,6 % de PS (revenus du patrimoine, voie de rôle) et non 17,2 %",
+        "Les PS sont d'environ 930 € et l'IR forfaitaire de 640 €",
+        "Le total est d'environ 5 474 €"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "per-deblocage-enfant-malade-2-bis",
+      "prompt": "Mon fils de 8 ans, à ma charge, vient d'être diagnostiqué d'une leucémie. Il n'a aucune reconnaissance d'invalidité. Puis-je débloquer mon PER individuel (versements déduits) pour faire face, et comment serai-je imposé ?",
+      "expected_output": "Oui. Depuis le 14/06/2026, l'affection grave, le handicap ou l'accident d'une particulière gravité chez l'enfant à charge du titulaire est un cas de déblocage anticipé (L. 224-4, I-2° bis CMF, loi n° 2026-492 du 12/06/2026, art. 4), sans reconnaissance d'invalidité de 2e ou 3e catégorie. Par lecture des textes, ce cas s'insère dans la plage des 1° à 5° du I de L. 224-4 visée par l'exonération de l'art. 81, 4° bis-a CGI, que le BOI-RSA-PENS-30-10-20 du 10/08/2026 (§ 200) maintient sans viser le 2° bis : versements et gains exonérés d'IR, prélèvements sociaux sur les seuls gains, comme les autres accidents de la vie (service-public.fr F34982 le range parmi les accidents de la vie). Le skill signale qu'au 05/11/2026 aucun paragraphe du BOFiP ne vise expressément le 2° bis.",
+      "files": [],
+      "assertions": [
+        "Le skill confirme que le déblocage est possible au titre du 2° bis de l'article L. 224-4 CMF (loi du 12/06/2026)",
+        "Le skill précise qu'aucune invalidité de 2e ou 3e catégorie n'est exigée pour ce cas",
+        "Le skill retient l'exonération d'IR sur les versements et les gains, avec prélèvements sociaux sur les seuls gains",
+        "Le skill signale qu'aucun paragraphe du BOFiP ne vise expressément le 2° bis",
+        "Le skill N'impose PAS le capital au barème comme une sortie à la retraite ou pour la résidence principale"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "transfert-madelin-perp-vers-per",
+      "prompt": "J'ai un vieux contrat Madelin et un PERP. Si je les transfère sur mon PER individuel, suis-je imposé au moment du transfert ? Et à la retraite, pourrai-je sortir en capital et garder le taux de 7,5 % du PERP ?",
+      "expected_output": "Le transfert (CMF, art. L. 224-40, I) n'est pas un dénouement : rien n'est imposé l'année du transfert (BOI-RSA-PENS-30-10-20 du 10/08/2026, § 30). Les droits transférés sont assimilés à des droits issus de versements volontaires sans option pour la non-déduction (§ 90, remarque). Les droits d'un Madelin ou d'un PERP sont affectés aux versements volontaires (CMF, art. L. 224-40, II) : la sortie en capital devient possible, y compris pour l'ancien Madelin, sauf option irrévocable pour la rente (à vérifier dans les conditions du PER d'accueil). La part versements est imposée au barème sans abattement de 10 % (quotient possible, § 100) et les produits au PFU de 12,8 % ou au barème sur option (§ 130). L'imposition forfaitaire de 7,5 % de l'art. 163 bis, II ne s'applique pas au capital issu de droits transférés (§ 250, remarque).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que le transfert ne déclenche aucune imposition l'année du transfert",
+        "Le skill précise que les droits transférés sont traités comme des versements volontaires sans option pour la non-déduction",
+        "Le skill indique que les droits Madelin et PERP transférés sont affectés aux versements volontaires (L. 224-40, II), ce qui ouvre la sortie en capital",
+        "Le skill précise que le taux forfaitaire de 7,5 % ne s'applique pas au capital issu des droits transférés",
+        "Le skill N'applique PAS l'abattement de 10 % à la part du capital correspondant aux versements"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "artiste-auteur-ts-vs-bnc-droits-precomptes",
+      "prompt": "Mon éditeur me verse 8 000 € de droits par an avec précompte. Je déclare ça comment aux impôts, et est-ce que j'ai intérêt à passer en BNC ?",
+      "expected_output": "Droits intégralement déclarés par un tiers (éditeur, art. 241) → traitements et salaires par défaut (93, 1 quater), cases 1GF-1JF, abattement 10 % sur brut − cotisations ; option BNC possible pour 3 ans (micro-BNC 34 % ou réel). Intérêt à comparer, sans conclure que c'est toujours avantageux : l'option compte dans le seuil micro-BNC et fait perdre le TS ; retenue de TVA de l'éditeur (285 bis) sauf renonciation (détail dans comptable).",
+      "files": [],
+      "assertions": [
+        "Le régime par défaut traitements et salaires (art. 93 1 quater) est identifié avec les cases 1GF à 1JF",
+        "L'abattement de 10 % en TS est comparé à l'abattement de 34 % en micro-BNC",
+        "L'option BNC est présentée comme valable 3 ans (année + 2 suivantes)",
+        "La retenue de TVA par l'éditeur (285 bis) est mentionnée, ou l'utilisateur est renvoyé au volet TVA",
+        "Le skill nuance (pas de « toujours avantageux ») et renvoie à la situation du foyer"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "artiste-auteur-patreon-bnc-fondement",
+      "prompt": "Je publie des essais payants sur Patreon et Substack, aucun tiers français ne déclare mes revenus. Je les déclare en traitements et salaires ou en BNC ? Et sur quel texte tu t'appuies ? Quelles cases ?",
+      "expected_output": "BNC a priori (micro-BNC si recettes BNC ≤ 83 600 € pour 2026-2028, abattement 34 %, 2042 C PRO case 5HQ pour les recettes encaissées). Fondement : autoédition (l'auteur assure lui-même la vente de ses œuvres, BOI-BNC-CHAMP-10-10-20-20), PAS le § 50 de BOI-BNC-SECT-20-10-20, qui concerne les droits de source étrangère et admet de ne pas les priver, pour ce seul motif, du régime spécial. Point DAC7 non tranché. Seuil apprécié sur le total des activités BNC.",
+      "files": [],
+      "assertions": [
+        "Le BNC est retenu a priori (pas de traitements et salaires faute de tiers déclarant)",
+        "La case 5HQ (micro-BNC professionnel) de la 2042 C PRO est citée",
+        "Le fondement avancé est l'autoédition / l'absence de droits versés par un débiteur",
+        "Le § 50 de BOI-BNC-SECT-20-10-20 n'est pas cité à l'appui du BNC, ou est cité dans le bon sens (droits de source étrangère : ne pas priver du régime spécial pour ce seul motif)",
+        "Le seuil micro-BNC (83 600 € pour 2026-2028) et son appréciation sur le total des activités BNC sont mentionnés",
+        "L'incertitude sur l'effet des données DAC7 est signalée"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "artiste-auteur-regularisation-ir-deux-annees",
+      "prompt": "Je viens de comprendre que Patreon ne déclare rien pour moi. J'ai encaissé environ 14 000 € en 2025 et 14 000 € de janvier à septembre 2026, rien n'a été déclaré aux impôts. Comment je régularise l'IR, avec quelles pénalités, et comment payer en plusieurs fois ?",
+      "expected_output": "Reconstituer les encaissements par année ; déclaration rectificative 2042 + 2042 C PRO (5HQ). 2025 : service « Corriger ma déclaration » jusqu'au 30/11/2026 ; un « ANNULE ET REMPLACE » papier n'est possible qu'avant la date limite de dépôt, ensuite réclamation (messagerie ou courrier). Majoration 1758 A (10 %) écartée en cas de correction spontanée ; le 1758 A couvre aussi retard/défaut de déclaration et exclut le 10 % du 1728 1 a, mais le 40 % (mise en demeure sans effet) et 80 % (activité occulte) du 1728 restent. Intérêt de retard 0,20 %/mois réduit de moitié (1727 V) si dépôt spontané avant l'expiration du délai de reprise et paiement avec la déclaration (impôts de rôle : au plus tard à la date limite de l'avis) ou plan accepté. Délai de paiement via impots.gouv « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer ». Ordre de grandeur de l'IR : ~1 000 € à TMI 11 % pour 14 000 €.",
+      "files": [],
+      "assertions": [
+        "Les encaissements sont reconstitués par année civile avant toute déclaration",
+        "La déclaration rectificative (2042 + 2042 C PRO, case 5HQ) est prévue année par année",
+        "La distinction « ANNULE ET REMPLACE » papier (avant la date limite de dépôt) / réclamation (après) est faite",
+        "La majoration de 10 % du 1758 A est présentée comme écartée en cas de correction spontanée, et le 1758 A est dit couvrir aussi le retard ou défaut de déclaration",
+        "Le 40 % après mise en demeure et le 80 % pour activité occulte (1728, 1 b et c) sont mentionnés comme subsistant",
+        "L'intérêt de retard de 0,20 %/mois et sa réduction de 50 % (1727 V) sont mentionnés avec leurs conditions (avant la fin du délai de reprise, paiement ou plan accepté)",
+        "Le chemin impots.gouv « J'ai un problème concernant le paiement de mon impôt > J'ai des difficultés pour payer » est donné pour un délai de paiement",
+        "Le skill ne chiffre pas au centime (ordres de grandeur) et ne conseille pas d'emprunter pour payer"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "pinel-plafond-loyer-annexes-parking",
+      "prompt": "J'ai un Pinel en zone A : 42 m² habitables, une cave de 6 m² et une place de parking louée dans le même bail. La commune n'est soumise à aucune modulation préfectorale. Nouveau locataire en avril 2026, loyer de 725 € hors charges parking compris. Suis-je sous le plafond ?",
+      "expected_output": "Oui. Surface retenue = 42 + 6/2 = 45 m² (moitié des annexes dans la limite de 8 m², parking exclu, BOI-IR-RICI-230-20-20 § 320 à 360). Coefficient 0,7 + 19/45 = 1,12 (arrondi à deux décimales, plafonné à 1,2, BOI-IR-RICI-360-20-30 § 120). Plafond 2026 zone A 14,64 €/m² (BOI-BAREME-000017 du 10/03/2026) × 1,12 = 16,40 €/m², × 45 = 738,00 €. Le parking étant loué dans le même bail, c'est le loyer total de 725 € qui est comparé (§ 440) : conforme, marge 13 €. Sans la cave, le plafond serait de 707,28 € et le loyer le dépasserait.",
+      "files": [],
+      "assertions": [
+        "Le skill retient une surface de 45 m² (moitié de la cave ajoutée, parking exclu)",
+        "Le skill applique le coefficient 1,12 et le plafond 2026 de 14,64 €/m² en zone A",
+        "Le skill obtient un plafond de 738 € et conclut que 725 € est conforme",
+        "Le skill compare le loyer parking compris parce que le parking est dans le même bail",
+        "Le skill N'utilise PAS la seule surface habitable de 42 m², qui donnerait à tort un dépassement"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "pinel-ressources-n2-concubins",
+      "prompt": "Je signe un bail Pinel en zone A en mars 2026 avec un couple non marié. Lui a 30 000 € de revenu fiscal de référence 2024, elle 25 000 €. Quel revenu et quel plafond dois-je regarder ? Et si leurs revenus augmentent l'an prochain ?",
+      "expected_output": "On retient le revenu fiscal de référence de l'avant-dernière année avant la signature, donc 2024 (N-1 admis s'il est inférieur et justifié), et les revenus de concubins s'apprécient globalement (BOI-IR-RICI-230-40-10 § 320, 330, 360) : 55 000 € à comparer au plafond 2026 « couple » en zone A, 66 276 € (BOI-BAREME-000017 du 10/03/2026 § 270). Conforme. Le contrôle se fait à la signature uniquement : une hausse ultérieure de leurs revenus ne remet pas en cause la réduction (§ 320).",
+      "files": [],
+      "assertions": [
+        "Le skill retient les revenus 2024 (N-2)",
+        "Le skill additionne les revenus des deux concubins",
+        "Le skill compare 55 000 € au plafond couple zone A 2026 de 66 276 €",
+        "Le skill précise qu'une hausse ultérieure des revenus ne fait pas perdre la réduction",
+        "Le skill N'exige PAS que chaque concubin respecte seul un plafond de personne seule"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "pinel-prorogation-meme-locataire-expatriation",
+      "prompt": "Mon engagement Pinel de 6 ans (investissement 2021, métropole) se termine en avril 2028. Mon locataire reste. Comment proroger, dois-je revérifier les plafonds, et est-ce possible alors que je vis à l'étranger depuis début 2026 ?",
+      "expected_output": "La prorogation (2 périodes triennales, complément de 6 % puis 3 %, imputé par tiers sur l'année de prorogation et les deux suivantes, sans report de l'excédent) est constatée au dépôt de la déclaration des revenus 2028, année du terme de la période initiale, (BOI-IR-RICI-360-60 § 40, 60, 110), la rubrique « engagement de location prorogé » de la 2042-RICI n'étant remplie que la première année (brochure pratique IR 2024). Sans changement de locataire, les plafonds ne sont pas réappréciés (§ 190). Condition : aucun cas de remise en cause sur la période initiale (§ 30). Pour un investissement réalisé depuis 2019, le transfert du domicile hors de France n'empêche pas la prorogation (§ 15). En tant que non-résident, cocher la case 7QH de la 2042-RICI, le complément ne s'imputant que sur l'impôt dû, sans remboursement. La prorogation ne peut être ni tacite ni anticipée et suppose de joindre la note prévue par l'administration (§ 270, 310 à 330).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que la prorogation se fait sur la déclaration des revenus 2028",
+        "Le skill précise que les plafonds ne sont pas réappréciés sans changement de locataire",
+        "Le skill retient 6 % puis 3 % imputés par tiers sur trois ans",
+        "Le skill confirme que l'expatriation n'empêche pas la prorogation pour un investissement réalisé depuis 2019",
+        "Le skill mentionne la case 7QH",
+        "Le skill précise que la prorogation est expresse (note jointe à la déclaration), ni tacite ni anticipée"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "micro-bic-non-classe-et-longue-duree",
+      "prompt": "En 2026, je loue un studio en meublé de tourisme non classé (12 000 € de recettes) et un appartement meublé à l'année (80 000 € de recettes). En 2025, j'avais les mêmes montants. Puis-je rester au micro-BIC, et quel est mon revenu imposable ?",
+      "expected_output": "Oui. Chaque catégorie a sa propre limite, sans plafond commun : 12 000 € ≤ 15 000 € pour le non classé (art. 50-0, 1, 1° bis), 80 000 € ≤ 83 600 € pour la location meublée longue durée (2°), et le total de 92 000 € respecte la limite du 1° (203 100 €) (BOI-BIC-DECLA-10-10-20 § 70). L'abattement se calcule par catégorie : 30 % × 12 000 = 3 600 € et 50 % × 80 000 = 40 000 €, soit 43 600 € ; résultat micro-BIC 48 400 € (cases 5NH et 5NI). Les biens lui étant propres, les seuils s'apprécient pour le seul déclarant, sans globaliser le foyer (§ 80, 1er alinéa).",
+      "files": [],
+      "assertions": [
+        "Le skill conclut que le micro-BIC reste applicable",
+        "Le skill applique deux limites séparées (15 000 € et 83 600 €) et NE retient PAS un plafond global de 83 600 € dont 15 000 € au plus en non classé",
+        "Le skill calcule l'abattement par catégorie : 3 600 € (30 %) + 40 000 € (50 %) = 43 600 €, résultat 48 400 €",
+        "Le skill NE conclut PAS au passage au régime réel"
+      ]
+    },
+    {
+      "id": 31,
       "name": "tns-dirigeant-seul-pee-refuse",
       "prompt": "Je suis gérant associé unique de mon EURL à l'IS, sans aucun salarié. Je veux mettre en place un PEE et un PERECO dans ma société pour me faire abonder au maximum. Combien puis-je me verser d'abondement exonéré en 2026 ?",
       "expected_output": "Impossible : le PEE et le PERECO ne sont ouverts au chef d'entreprise ou au mandataire social que si l'entreprise emploie au moins un salarié en plus du dirigeant et moins de 250 salariés (art. L. 3332-2 C. trav. ; service-public F2142). Un dirigeant seul ne peut pas non plus conclure d'accord d'intéressement (art. L. 3312-3). Aucun abondement exonéré n'est donc possible. Alternatives : déduction des cotisations PER au titre de l'art. 154 bis CGI (10 % du bénéfice dans la limite de 8 PASS + 15 % de la fraction entre 1 et 8 PASS, plancher 10 % du PASS) puis PER individuel (163 quatervicies). Si un salarié réel est embauché (le conjoint compte), le plan devient possible, ouvert à tous les salariés avec le même abondement.",
@@ -298,7 +942,7 @@
       "assertions": [
         "Le skill refuse le PEE et le PERECO pour un dirigeant sans aucun salarié",
         "Le skill cite la condition d'au moins un salarié en plus du dirigeant (art. L. 3332-2 du Code du travail ou fiche service-public F2142)",
-        "Le skill NE propose PAS de montant d'abondement exonéré (3 845 € / 7 690 €) pour ce cas",
+        "Le skill NE propose PAS de montant d'abondement exonéré (3 844,80 € / 7 689,60 €) pour ce cas",
         "Le skill NE prétend PAS que la loi Pacte a supprimé la condition de salarié",
         "Le skill mentionne aussi l'impossibilité d'un accord d'intéressement pour un dirigeant seul salarié",
         "Le skill oriente vers le PER (art. 154 bis pour le TNS, puis 163 quatervicies)",
@@ -306,21 +950,21 @@
       ]
     },
     {
-      "id": 22,
+      "id": 32,
       "name": "tns-sarl-avec-conjoint-salarie-pee",
       "prompt": "Je suis gérant majoritaire d'une SARL à l'IS qui emploie ma femme comme salariée. Puis-je bénéficier d'un PEE avec abondement, et à quelles conditions ?",
-      "expected_output": "Oui : l'entreprise emploie au moins un salarié en plus du dirigeant et moins de 250, le gérant peut donc adhérer au PEE (art. L. 3332-2). Le plan doit être ouvert à tous les salariés ; l'abondement suit les mêmes règles pour tous, dans la limite de 3 fois le versement et 8 % du PASS (3 845 € en 2026). L'abondement est déductible du résultat, exonéré d'IR et de cotisations, mais soumis à la CSG/CRDS (9,7 %) ; forfait social nul sous 50 salariés. Les versements du gérant sont plafonnés au quart du revenu professionnel imposé l'année précédente. L'emploi de la conjointe doit être réel.",
+      "expected_output": "Oui : l'entreprise emploie au moins un salarié en plus du dirigeant et moins de 250, le gérant peut donc adhérer au PEE (art. L. 3332-2). Le plan doit être ouvert à tous les salariés ; l'abondement suit les mêmes règles pour tous, dans la limite de 3 fois le versement et 8 % du PASS (3 844,80 € en 2026). L'abondement est déductible du résultat, exonéré d'IR et de cotisations, mais soumis à la CSG/CRDS (9,7 %) ; forfait social nul sous 50 salariés. Les versements du gérant sont plafonnés au quart du revenu professionnel imposé l'année précédente. L'emploi de la conjointe doit être réel.",
       "files": [],
       "assertions": [
         "Le skill confirme l'éligibilité grâce à la présence d'un salarié en plus du dirigeant",
         "Le skill rappelle que le plan doit être ouvert à tous les salariés avec les mêmes règles d'abondement",
-        "Le plafond d'abondement PEE 2026 est correct (8 % × 48 060 € ≈ 3 845 €) avec la limite de 3 fois le versement",
+        "Le plafond d'abondement PEE 2026 est correct (8 % × 48 060 € = 3 844,80 €) avec la limite de 3 fois le versement",
         "Le skill mentionne la CSG/CRDS due sur l'abondement (pas d'exonération totale des prélèvements sociaux)",
         "Le skill rappelle que l'emploi du conjoint doit être réel"
       ]
     },
     {
-      "id": 23,
+      "id": 33,
       "name": "per-deces-age-au-versement-mauvaise-premisse",
       "prompt": "Mon père a 72 ans et détient un PER assurance ouvert à 55 ans, sur lequel il n'a plus rien versé depuis ses 68 ans. C'est comme l'assurance-vie : comme toutes les primes ont été versées avant 70 ans, mes frères et moi aurons chacun l'abattement de 152 500 € et seuls les versements seront taxés, pas les gains. Confirmez-vous ?",
       "expected_output": "Non, la prémisse est fausse sur les deux points. Sur un PER, c'est l'âge du titulaire AU DÉCÈS qui détermine le régime, pas l'âge au versement des primes : l'art. 757 B CGI vise le décès après 70 ans du titulaire d'un plan de l'art. L. 224-1 CoMoFi, et le BOI-ENR-DMTG-10-10-20-20 § 155 précise que l'âge auquel les primes ont été versées n'est pas pris en compte. Un décès à 72 ans relève donc de l'art. 757 B : abattement global de 30 500 € pour l'ensemble des bénéficiaires, puis droits de succession selon le lien de parenté — et non 152 500 € par bénéficiaire. Second point : l'assiette porte sur l'intégralité des sommes dues par l'assureur, produits compris (§ 197), et non sur les seules primes comme pour une assurance-vie ordinaire (§ 160 à 170). Les gains accumulés depuis l'ouverture à 55 ans sont donc taxables. L'arrêt des versements à 68 ans ne change rien.",
@@ -339,7 +983,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 34,
       "name": "per-deces-avant-70-ans-et-rente-exclue-990i",
       "prompt": "Titulaire d'un PER assurance décédé à 64 ans, capital de 400 000 € réparti entre deux bénéficiaires désignés. Quel régime ? Et si le plan avait été dénoué en rente viagère, l'exonération du 990 I serait-elle automatique ?",
       "expected_output": "Décès avant 70 ans : le prélèvement de l'art. 990 I CGI s'applique (BOI-TCAS-AUT-60 § 55 — les sommes versées au titre d'un PER relèvent du 990 I lorsque l'art. 757 B ne s'applique pas). Chaque bénéficiaire dispose de l'abattement de 152 500 €, soit 200 000 € − 152 500 € = 47 500 € de part taxable chacun, taxée à 20 % (le seuil de 700 000 € de part taxable n'est pas atteint), soit 9 500 € par bénéficiaire. L'exonération des rentes viagères n'est pas automatique : le deuxième alinéa du I de l'art. 990 I la réserve aux rentes issues notamment d'un PER (art. L. 224-28 CoMoFi) sous deux conditions cumulatives — des primes versées régulièrement, dans leur montant et leur périodicité, pendant au moins quinze ans, et une entrée en jouissance au plus tôt à la liquidation de la pension dans un régime obligatoire d'assurance vieillesse ou à l'âge de l'art. L. 351-1 CSS. Il faut donc vérifier l'historique des versements avant de conclure.",

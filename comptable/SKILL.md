@@ -1,7 +1,7 @@
 ---
 name: comptable
 metadata:
-  last_updated: 2026-04-18
+  last_updated: "2026-11-06"
 includes:
   - data/**
   - scripts/**
@@ -9,7 +9,7 @@ includes:
   - integrations/**
   - company.example.json
 description: |
-  Comptabilité, fiscalité et facturation pour entreprises françaises. Gère écritures PCG, déclarations TVA, IS/IR, clôture annuelle, liasse fiscale (2033/2065), FEC, états financiers, et chaîne facturation (mentions obligatoires, numérotation, Factur-X/UBL/CII, plateformes agréées PDP/PA, e-reporting, réforme 2026, PEPPOL). Utiliser dès qu'une question porte sur comptabilité française, TVA, impôts, bilan, compte de résultat, amortissement, PCA, clôture, facture, avoir, devis, acompte, facturation électronique, ou e-invoicing.
+  Comptabilité, fiscalité et facturation pour entreprises françaises. Gère écritures PCG, déclarations TVA, IS/IR, clôture annuelle, liasse fiscale (2033/2065), FEC, états financiers, et chaîne facturation (mentions obligatoires, numérotation, Factur-X/UBL/CII, plateformes agréées PDP/PA, e-reporting, réforme 2026, PEPPOL). Utiliser dès qu'une question porte sur comptabilité française, TVA, impôts, bilan, compte de résultat, amortissement, PCA, clôture, notes de frais, indemnités kilométriques, facture, avoir, devis, acompte, facturation électronique, ou e-invoicing. Couvre aussi le social et la TVA des artistes-auteurs : affiliation URSSAF, cotisations, RAAP/IRCEC, revenus sans précompte, franchise de TVA des auteurs (293 B I bis), régularisation. Triggers : artiste-auteur, droits d'auteur, précompte, URSSAF Limousin, Maison des artistes, IRCEC, RAAP, Patreon, Substack, autoédition, franchise auteurs, 293 B.
 ---
 
 # Expert-Comptable IA
@@ -151,6 +151,7 @@ Clarifier : nature de l'opération, documents disponibles, montants, dates, part
 | `data/pcg_YYYY.json` | Plan Comptable Général complet | [Arrhes/PCG](https://github.com/arrhes/PCG) |
 | `data/nomenclature-liasse-fiscale.csv` | Cases de la liasse fiscale (2033, 2050) | [data.gouv.fr](https://www.data.gouv.fr/datasets/nomenclature-fiscale-du-compte-de-resultat/) |
 | `data/facturation/mentions-obligatoires.json` | Mentions obligatoires des factures (CGI, C. com., réforme 2026) | Art. 242 nonies A CGI, Art. L441-9 C.com |
+| `data/artistes-auteurs-2026.json` | Artistes-auteurs : cotisations, RAAP, TVA, IR, régularisation (partagé avec `fiscaliste`) | CSS L. 382-1 s., CGI 293 B, urssaf.fr, IRCEC |
 
 Pour trouver un compte PCG : lire `data/pcg_YYYY.json` → chercher dans le tableau `flat` par `number`.
 
@@ -176,6 +177,11 @@ Consulter selon le besoin :
 | [references/closing.md](references/closing.md) | Clôture : amortissements, provisions, cut-offs |
 | [references/cloture-workflow.md](references/cloture-workflow.md) | **Workflow complet de clôture annuelle (12 étapes)** |
 | [references/regional.md](references/regional.md) | DOM-TOM, Alsace-Moselle, Corse |
+| [references/frais-professionnels.md](references/frais-professionnels.md) | Notes de frais, IK (barème kilométrique), allocations forfaitaires URSSAF, TVA sur frais, cas du dirigeant |
+| [references/artistes-auteurs.md](references/artistes-auteurs.md) | **Artistes-auteurs : affiliation URSSAF, cotisations 2026, RAAP, droits, retard et régularisation sociale** |
+| [references/artistes-auteurs-champ.md](references/artistes-auteurs-champ.md) | Artistes-auteurs : qui relève du régime, revenus accessoires, zones grises |
+| [references/artistes-auteurs-tva.md](references/artistes-auteurs-tva.md) | Artistes-auteurs : franchise de TVA (une franchise, deux plafonds), taux 5,5 / 10 %, 285 bis |
+| [references/artistes-auteurs-plateformes.md](references/artistes-auteurs-plateformes.md) | Artistes-auteurs : Patreon, Substack, autoédition (qualification, TVA, DAC7, pièces) |
 | [references/facturation/setup-facturation.md](references/facturation/setup-facturation.md) | Setup des champs facturation dans company.json |
 | [references/facturation/reforme-2026.md](references/facturation/reforme-2026.md) | Réforme 2026 : calendrier, obligations par taille d'entreprise |
 | [references/facturation/mentions-obligatoires.md](references/facturation/mentions-obligatoires.md) | Mentions obligatoires (factures, avoirs), bases légales |
@@ -193,10 +199,11 @@ Consulter selon le besoin :
 |--------|-------|
 | `scripts/fetch_company.py <SIREN>` | Recherche info entreprise via API |
 | `scripts/update_data.py` | Vérifier fraîcheur des données et télécharger MAJ |
-| `scripts/calc.js` | Calculs déterministes (CCA, amortissement, IS, acomptes TVA simplifié, prorata) |
+| `scripts/calc.js` | Calculs déterministes (CCA, amortissement, IS, acomptes TVA simplifié, prorata, IK) |
 | `scripts/generate-statements.js` | Générer Bilan, Compte de résultat, Balance |
 | `scripts/generate-fec.js` | Générer le FEC |
 | `scripts/generate-pdfs.js` | Convertir les états financiers en PDFs |
+| `scripts/calc_artiste_auteur.py --recettes N` | Artistes-auteurs : cotisations URSSAF + RAAP + IR estimé (micro-BNC ou réel) |
 | `scripts/generate-facturx.js --invoice <facture.json>` | Générer une facture Factur-X (XML CII + PDF) |
 | `scripts/generate-facturx.js --invoice <f.json> --xml-only` | Générer uniquement le XML CII |
 | `scripts/generate-facturx.js --invoice <f.json> --validate` | Valider sans générer |
@@ -204,6 +211,7 @@ Consulter selon le besoin :
 | `scripts/validate-facture.js --all <dossier/>` | Valider toutes les factures d'un dossier |
 | `scripts/validate-facture.js --invoice <f.json> --strict` | Traiter les mentions 2026 comme obligatoires |
 | `scripts/validate-facture.js --invoice <f.json> --json` | Sortie JSON (pour CI/agent) |
+| `scripts/parse-einvoice.js --invoice <facture.xml> --json` | Lire une facture CII reçue (EN 16931) : sortie code 1 sans données si un contrôle échoue |
 | `scripts/import-stripe-invoices.js --start <date> --end <date>` | Importer les invoices Stripe payées (multi-compte, conversion EUR, idempotent via `data/invoices/index.json`) |
 | `scripts/import-stripe-invoices.js ... --account <id>` | Filtrer sur un compte Stripe (via `stripe_accounts[].id`) |
 | `scripts/import-stripe-invoices.js ... --dry-run` | Simuler sans écrire |
@@ -214,7 +222,7 @@ Commandes npm équivalentes :
 - `npm run facture -- --invoice <facture.json>` : générer Factur-X
 - `npm run validate:facture -- --invoice <facture.json>` : valider
 
-Règle de calcul : pour tout calcul chiffré (TVA, IS, amortissement, prorata, CCA), utiliser `node scripts/calc.js` plutôt qu'un calcul mental.
+Règle de calcul : pour tout calcul chiffré (TVA, IS, amortissement, prorata, CCA, IK), utiliser `node scripts/calc.js` plutôt qu'un calcul mental. Les IK se calculent sur le kilométrage **annuel** cumulé (`node scripts/calc.js ik --km <annuel> --cv <cv> [--deja-verse <montant>]`), jamais trajet par trajet.
 
 ## Templates
 
@@ -294,7 +302,7 @@ Pour déterminer la taille de l'entreprise et l'échéance d'émission : [refere
 Faits à remonter systématiquement dès qu'ils sont pertinents — pièges fréquents :
 
 - **Validation facture** : "description", "quantité" et "prix unitaire" sont **trois mentions distinctes obligatoires**. Une description correcte ne vaut pas pour les deux autres. Flagger chacune séparément.
-- **Nouvelles mentions obligatoires 2026** (factures B2B domestiques) : **SIREN du client** ET **catégorie d'opération** (biens / services / mixte). Ce sont **deux obligations distinctes**, à citer séparément. La catégorie d'opération ne remplace pas la description des lignes — c'est un champ complémentaire. Toujours vérifier les deux pour les factures émises à partir du 1er septembre 2026.
+- **Nouvelles mentions obligatoires 2026** (factures B2B domestiques) : **quatre nouvelles données** : **SIREN du client**, **catégorie d'opération** (biens / services / mixte), **option pour le paiement de la TVA d'après les débits** (le cas échéant) et **adresse de livraison** complète si différente de l'adresse du client. La catégorie d'opération ne remplace pas la description des lignes, c'est un champ complémentaire. Toujours vérifier les quatre pour les factures émises à partir du 1er septembre 2026.
 - **PPF (Portail Public de Facturation)** : depuis octobre 2024, le PPF **ne sert plus à émettre ni recevoir** de factures. Il ne reste qu'annuaire central + concentrateur d'e-reporting. Toute entreprise assujettie TVA doit passer par une PA.
 - **E-reporting** : ne concerne **pas les ventes B2B domestiques entre assujettis** (déjà transmises via e-facturation). Il couvre uniquement B2C, international et encaissements. Un e-commerçant 100% B2B FR n'a donc pas d'e-reporting séparé.
 
@@ -306,6 +314,15 @@ Cas particuliers :
 - Pipeline Stripe/Qonto détaillé : [references/facturation/stripe-sync.md](references/facturation/stripe-sync.md)
 - Réforme 2026 (calendrier, obligations par taille) : [references/facturation/reforme-2026.md](references/facturation/reforme-2026.md)
 - E-reporting (B2C, international) : [references/facturation/e-reporting.md](references/facturation/e-reporting.md)
+
+## Artistes-auteurs (écrivains, illustrateurs, photographes, compositeurs…)
+
+Quand le client est un artiste-auteur (droits d'auteur, autoédition, Patreon/Substack), le volet **social et TVA** relève de ce skill ; le volet **IR / BNC / régularisation fiscale** de `fiscaliste` (`references/artistes-auteurs.md`).
+
+- Toujours dérouler la séquence : recettes → bénéfice (−34 % ou frais réels) → assiette (+15 %) → cotisations ligne à ligne → RAAP → IR. Chiffrer avec `scripts/calc_artiste_auteur.py`, jamais de tête.
+- Une plateforme ne précompte ni ne déclare rien : tout est à la charge de l'auteur. Formation/conseil = autre structure (micro-entreprise), jamais revenu d'artiste-auteur.
+- TVA : **une seule franchise, deux plafonds** (50 000 / 55 000 € œuvres ; 35 000 / 38 500 € autres opérations), pas de cumul avec 37 500 € ; effet croisé : lecture prudente du 293 B II, nuance de la doctrine à signaler.
+- Nommer les incertitudes (qualification TVA des abonnements, case de déclaration, brut/net) et renvoyer à l'expert-comptable ou à l'URSSAF par écrit.
 
 ## Langue
 

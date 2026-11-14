@@ -1,7 +1,7 @@
 ---
 name: syndic
 metadata:
-  last_updated: 2026-07-11
+  last_updated: "2026-11-12"
 includes:
   - data/**
   - templates/**
@@ -11,8 +11,8 @@ description: |
   Gère un parc de copropriétés en France avec vue portfolio consolidée. Couvre administration,
   comptabilité (décret 2005, plan comptable copro, 5 annexes), assemblées générales (convocation,
   PV, notification), appels de fonds, travaux, fournisseurs, recouvrement d'impayés et transition
-  de syndic. Maîtrise les majorités (art. 24, 25, 25-1, 26), le fonds de travaux (art. 14-2),
-  le privilège immobilier (art. 19-2) et l'immatriculation RNC. Intégration Qonto pour le
+  de syndic. Maîtrise les majorités (art. 24, 25, 25-1, 26), le fonds de travaux (art. 14-2-1),
+  l'hypothèque légale du syndicat (art. 19 et 19-1) et l'immatriculation RNC. Intégration Qonto pour le
   rapprochement bancaire. Utilisé pour toute question liée à la copropriété, au syndic bénévole
   ou coopératif, aux charges, tantièmes, AG, ou au droit de la copropriété (loi 1965, ALUR, ELAN).
 ---
@@ -49,7 +49,7 @@ Lire [references/calendrier.md](references/calendrier.md). Consolider les éché
 | Majorités : art. 24, 25, 25-1, 26, unanimité | [references/majorites.md](references/majorites.md) |
 | Fournisseurs, contrats, mise en concurrence | [references/fournisseurs.md](references/fournisseurs.md) |
 | Travaux, carnet d'entretien, DTG, aides | [references/travaux.md](references/travaux.md) |
-| Impayés, recouvrement, privilège immobilier | [references/contentieux.md](references/contentieux.md) |
+| Impayés, recouvrement, hypothèque légale du syndicat | [references/contentieux.md](references/contentieux.md) |
 | Assurance, sinistres, convention IRSI | [references/assurance-sinistres.md](references/assurance-sinistres.md) |
 | Vente de lot, état daté, opposition art. 20 | [references/mutations.md](references/mutations.md) |
 | Changement de syndic, reprise archives | [references/transition.md](references/transition.md) |
@@ -114,11 +114,11 @@ AG — {{copro.name}} — {{date}}
 Clôture — {{copro.name}} — Exercice {{dates}}
 - [ ] Toutes les factures enregistrées
 - [ ] Rapprochement bancaire (solde comptable = relevé)
-- [ ] Contrôle comptes copropriétaires (411, 412, 413, 414)
-- [ ] Provisions pour charges à payer
+- [ ] Contrôle comptes copropriétaires (450 et, s'ils ont été créés, 450-1 à 450-5)
+- [ ] Factures non parvenues (408)
 - [ ] Calcul régularisation (réel vs budget)
-- [ ] Affectation du résultat
-- [ ] Annexe 1 : état financier (trésorerie)
+- [ ] Répartition des excédents ou insuffisances sur opérations courantes à l'arrêté des comptes
+- [ ] Annexe 1 : état financier (créances, dettes, trésorerie, emprunts restant dus)
 - [ ] Annexe 2 : compte de gestion général
 - [ ] Annexe 3 : budget vs réalisé
 - [ ] Annexe 4 : travaux et opérations exceptionnelles
@@ -135,7 +135,7 @@ Recouvrement — Lot {{n}} — {{montant}} EUR
 - [ ] Si pas de réponse : déchéance du terme (art. 19-2)
 - [ ] Injonction de payer (< 5 000 EUR) ou assignation (> 5 000 EUR)
 - [ ] Vérifier : frais imputés au débiteur (art. 10-1)
-- [ ] Vérifier : privilège immobilier (exercice en cours + 2 échus)
+- [ ] Vérifier : hypothèque légale spéciale sur le lot vendu (année courante et quatre dernières années échues, art. 2402, 3° C. civ.)
 ```
 
 ### Vente de lot (mutation)
@@ -145,7 +145,7 @@ Mutation — Lot {{n}} — Vendeur → Acquéreur
 - [ ] Pré-état daté transmis (gratuit, avant compromis)
 - [ ] Documents joints (fiche synthétique, PV AG, règlement)
 - [ ] État daté transmis au notaire (max 380 EUR TTC)
-- [ ] Compte vendeur vérifié (impayés → opposition art. 20 sous 15 jours)
+- [ ] Compte vendeur vérifié (impayés → opposition art. 20 par acte de commissaire de justice, dans les 15 jours de la réception de l'avis de mutation)
 - [ ] Registre copropriétaires mis à jour
 - [ ] Acquéreur informé (modalités, prochain appel)
 ```
@@ -188,7 +188,7 @@ Après tout calcul (appels de fonds, régularisation, budget), vérifier :
 1. **Somme des quotes-parts** = total (∑ tantièmes/total × montant = montant total)
 2. **Équilibre comptable** : total débits = total crédits
 3. **Cohérence budget** : réel N-1 vs budget N (écarts > 20% = justification requise)
-4. **Fonds de travaux** ≥ 5% du budget prévisionnel (art. 14-2)
+4. **Fonds de travaux** ≥ 5% du budget prévisionnel et, si un PPT est adopté, ≥ 2,5% du montant des travaux du PPT (art. 14-2-1)
 
 Si une vérification échoue, corriger avant de présenter le résultat.
 
@@ -203,7 +203,7 @@ Si une vérification échoue, corriger avant de présenter le résultat.
 
 | Fichier | Contenu |
 |---------|---------|
-| `data/plan-comptable-copro.json` | Plan comptable copro, classes 1 à 7 (décret 2005) |
+| `data/plan-comptable-copro.json` | Plan comptable copro (arrêté du 14 mars 2005, art. 7), classes 1, 4, 5, 6, 7 |
 | `data/majorites.json` | Matrice décision/majorité (art. 24 à 26-1) |
 
 ## Templates

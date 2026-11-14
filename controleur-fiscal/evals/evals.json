@@ -4,7 +4,7 @@
     {
       "id": 1,
       "name": "controle-fec-charges-455",
-      "prompt": "Simule un contrôle fiscal de WebAgency (SASU, développement web) pour l'exercice 2025. Concentre-toi sur les axes FEC, charges déductibles et compte courant associé 455. Le company.json est en place. Le FEC est dans data/fec-2025.txt.",
+      "prompt": "Simule un contrôle fiscal de WebAgency (SASU, développement web) pour l'exercice 2025. Concentre-toi sur les axes FEC, charges déductibles et compte courant associé 455. Le company.json et le FEC de l'exercice sont fournis ci-dessous, et disponibles dans controleur-fiscal/evals/files/ (company-webagency.json, fec-webagency.txt).",
       "expected_output": "Le skill contrôle le FEC, analyse les charges suspectes (Netflix, bureau domicile), et vérifie les mouvements du compte 455.",
       "files": [
         "evals/files/company-webagency.json",
@@ -23,7 +23,7 @@
     {
       "id": 2,
       "name": "controle-revenus-tva-is",
-      "prompt": "Simule un contrôle fiscal de WebAgency pour l'exercice 2025. Concentre-toi sur les axes revenus, TVA, IS et immobilisations. Le company.json est en place. Le FEC est dans data/fec-2025.txt.",
+      "prompt": "Simule un contrôle fiscal de WebAgency pour l'exercice 2025. Concentre-toi sur les axes revenus, TVA, IS et immobilisations. Le company.json et le FEC de l'exercice sont fournis ci-dessous, et disponibles dans controleur-fiscal/evals/files/ (company-webagency.json, fec-webagency.txt).",
       "expected_output": "Le skill vérifie l'exhaustivité des revenus, le seuil de franchise TVA, recalcule l'IS, et contrôle les immobilisations.",
       "files": [
         "evals/files/company-webagency.json",
@@ -33,7 +33,7 @@
         "Axe 2 (IS) : le résultat fiscal est recalculé, le taux réduit PME est vérifié",
         "Axe 5 (Revenus) : l'abonnement annuel Client Alpha (12 000 EUR) est identifié comme PCA potentiel",
         "Axe 5 (Revenus) : le CA total est recoupé avec les payouts Stripe",
-        "Axe 6 (TVA) : le seuil franchise en base (36 800 EUR) est vérifié contre le CA total",
+        "Axe 6 (TVA) : le seuil de franchise en base applicable à l'exercice contrôlé (37 500 EUR pour les services en 2026) est vérifié contre le CA total",
         "Axe 7 (Immobilisations) : le MacBook Pro (1 800 EUR) est vérifié pour usage professionnel",
         "Un rapport est produit avec des chefs de redressement au format standardisé",
         "La synthèse inclut le total des droits rappelés potentiels"
@@ -54,6 +54,48 @@
         "Le billet avion est accepté sous condition de justificatif du RDV client",
         "Les 4 conditions de déductibilité (art. 39-1 CGI) sont mentionnées",
         "Les risques de redressement sont quantifiés avec le montant des droits rappelés potentiels"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "penalites-is-bonne-foi-pas-1758a",
+      "prompt": "Ma SAS à l'IS a été contrôlée sur 2024. Le vérificateur a trouvé une erreur de bonne foi : 8 000 EUR d'IS insuffisamment déclarés, déclaration déposée à temps. Il parle d'une majoration de 10 % de l'article 1758 A. Est-ce correct ? Quelles pénalités je risque ?",
+      "expected_output": "Non : l'art. 1758 A (majoration de 10 % pour insuffisance de bonne foi) ne vise que les déclarations d'impôt sur le revenu, pas l'IS. Pour une insuffisance de bonne foi à l'IS, seul l'intérêt de retard de 0,20 % par mois est dû (art. 1727 CGI). La majoration de 40 % ne s'applique qu'en cas de manquement délibéré, que l'administration doit prouver (art. 1729 a). Le 10 % de l'art. 1728 vise le dépôt tardif, pas le cas présent.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que la majoration de 10 % de l'art. 1758 A ne s'applique pas à l'IS (elle vise l'impôt sur le revenu)",
+        "Le skill retient l'intérêt de retard de 0,20 % par mois (art. 1727 CGI) sur les 8 000 EUR",
+        "Le skill précise que la majoration de 40 % suppose un manquement délibéré prouvé par l'administration (art. 1729 a CGI)",
+        "Le skill n'applique pas le 10 % de l'art. 1728 à une déclaration déposée dans les délais",
+        "Le skill recommande de contester la majoration de 10 % dans la réponse au vérificateur"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "interets-compte-courant-taux-39-1-3",
+      "prompt": "Je suis associé unique de ma SASU (capital entièrement libéré). J'ai 50 000 EUR en compte courant, rémunéré à 6 % en 2025, soit 3 000 EUR d'intérêts déduits. Mon expert-comptable dit que le plafond est le taux BCE + 2 points. Le vérificateur peut-il réintégrer une partie de ces intérêts ?",
+      "expected_output": "Le plafond n'est pas « BCE + 2 points » : c'est le taux de l'art. 39-1-3° CGI, moyenne des taux effectifs moyens pratiqués par les établissements de crédit pour les prêts à taux variable aux entreprises d'une durée initiale supérieure à deux ans, publié par l'administration pour chaque exercice. Les intérêts au-delà de ce taux sont réintégrés au résultat fiscal, sauf si la société prouve qu'elle aurait pu obtenir ce taux d'établissements financiers indépendants (art. 212 CGI), ce qui ne joue pas pour un associé simple apporteur de capitaux. Le capital entièrement libéré est une condition de déduction.",
+      "files": [],
+      "assertions": [
+        "Le skill corrige la prémisse : le plafond n'est pas « BCE + 2 points »",
+        "Le skill cite le taux de l'art. 39-1-3° CGI (moyenne des taux effectifs moyens des prêts à taux variable de plus de deux ans), publié chaque exercice",
+        "Le skill indique que les intérêts excédant ce taux sont réintégrés au résultat fiscal",
+        "Le skill mentionne la possibilité d'un taux supérieur justifié par des conditions de marché (art. 212 CGI) et son champ limité",
+        "Le skill rappelle que la libération intégrale du capital conditionne la déduction"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "franchise-tva-2026-seuil-majore",
+      "prompt": "Je prépare un éventuel contrôle de ma SASU de conseil, sous franchise en base de TVA. Chiffre d'affaires 2025 : 30 000 EUR. Chiffre d'affaires 2026 : 39 000 EUR de prestations de services. Le vérificateur peut-il me réclamer de la TVA sur 2026 ? Et ensuite ?",
+      "expected_output": "En 2026, le seuil de franchise pour les prestations de services est de 37 500 EUR, majoré à 41 250 EUR. 39 000 EUR dépasse le seuil de base sans dépasser le seuil majoré, et le CA 2025 était sous 37 500 EUR : la franchise reste applicable pour 2026, aucune TVA n'est due sur 2026. Elle est perdue à compter du 1er janvier 2027. Si le CA avait dépassé 41 250 EUR, la TVA aurait été due dès le jour du dépassement (art. 293 B CGI).",
+      "files": [],
+      "assertions": [
+        "Le skill retient les seuils 2026 pour les services : 37 500 EUR et seuil majoré 41 250 EUR",
+        "Le skill conclut qu'aucune TVA n'est due sur 2026 (seuil majoré non dépassé, CA 2025 sous le seuil de base)",
+        "Le skill indique que la franchise est perdue à compter du 1er janvier 2027",
+        "Le skill précise qu'un dépassement du seuil majoré rend la TVA exigible dès le jour du dépassement",
+        "Le skill cite l'art. 293 B CGI"
       ]
     }
   ]

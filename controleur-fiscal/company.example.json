@@ -1,1 +1,87 @@
-../company.example.json
+{
+  "name": "EXEMPLE DE SOCIETE A COMPLETER",
+  "legal_form": "SASU",
+  "capital": 1000,
+  "address": "1 Rue de la Paix, 75001 Paris",
+  "siren": "123456789",
+  "siret": "12345678900014",
+  "rcs": "RCS Paris",
+  "naf": "6201Z",
+  "president": {
+    "title": "President",
+    "first_name": "Jean",
+    "last_name": "DUPONT",
+    "civility": "M.",
+    "_comment": "Utiliser 'President' pour SAS/SASU, 'Gerant' pour SARL/EURL"
+  },
+  "fiscal_year": {
+    "start": "2025-01-01",
+    "end": "2025-12-31",
+    "is_first_year": false
+  },
+  "tax": {
+    "regime_tva": "franchise",
+    "regime_is": "reel_simplifie",
+    "tva_rate": 0.20
+  },
+  "banks": [
+    {
+      "id": "bank-1",
+      "name": "Banque Principale",
+      "account": "5121",
+      "fec_account": "51211"
+    }
+  ],
+  "qonto": {
+    "enabled": false,
+    "_comment": "Mettre enabled a true si vous utilisez Qonto. Env vars: QONTO_ID, QONTO_API_SECRET"
+  },
+  "pennylane": {
+    "enabled": false,
+    "_comment": "Mettre enabled a true si vous utilisez Pennylane. Env var: PENNYLANE_API_TOKEN (scope transactions:readonly)"
+  },
+  "stripe_accounts": [
+    {
+      "id": "main",
+      "name": "Mon Produit SaaS",
+      "env_key": "STRIPE_SECRET",
+      "_comment": "Definir STRIPE_SECRET avec votre cle Stripe (sk_live_... ou sk_test_...). Pour Stripe Connect, ajouter: stripe_account_id: acct_xxx"
+    }
+  ],
+  "city": "Paris",
+  "invoicing": {
+    "prefix": "F",
+    "separator": "-",
+    "year_format": "YYYY",
+    "next_numbers": {
+      "2025": 1,
+      "2026": 1
+    },
+    "avoir_prefix": "AV",
+    "_comment": "Format: F-2026-001. next_numbers par annee (reset au 1er janvier). Modifier prefix et separateur selon besoins."
+  },
+  "einvoicing": {
+    "pa": "",
+    "pa_name": "",
+    "peppol_id": "",
+    "reception_ready": false,
+    "emission_ready": false,
+    "ereporting_ready": false,
+    "_comment": "Plateforme agreee (ex: qonto, indy, pennylane, dext). peppol_id format iso6523:siret, ex '0225:12345678900014'. reception_ready obligatoire a partir de sept. 2026."
+  },
+  "payment": {
+    "default_terms": "net_30",
+    "default_terms_label": "30 jours date de facture",
+    "methods": ["virement"],
+    "bank_details": {
+      "iban": "",
+      "bic": ""
+    },
+    "late_penalty_rate": "3x_legal",
+    "late_penalty_label": "3 fois le taux d'interet legal",
+    "escompte": "none",
+    "escompte_label": "Pas d'escompte pour paiement anticipe",
+    "recovery_fee": 40,
+    "_comment": "late_penalty_rate: '3x_legal' (defaut legal si non precise) ou taux fixe (ex 10.15). escompte: 'none' ou taux en %. recovery_fee fixe a 40 EUR par la loi."
+  }
+}

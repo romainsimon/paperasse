@@ -1,0 +1,53 @@
+﻿id;lib
+FL;Chiffre d'affaires nets
+FM;Production stockée
+FN;Production immobilisée
+FO;Subvention d'exploitation
+FP;Reprises sur amortissements et provisions, transfert de charges
+FQ;Autres produits
+FR;Total des produits d'exploitation
+FS;Achats de marchandises (y compris droits de douane)
+FT;Variation de stock (marchandises)
+FU;Achats de matières premières et autres approvisionnements (y compris droits de douane)
+FV;Variation de stock (matières premières et approvisionnements)
+FW;Autres achats et charges externes 
+FX;Impôts, taxes, versements assimilés
+FY;Salaires et traitements
+FZ;Charges sociales 
+GA;DOTATIONS D'EXPLOITATION
+GB;
+GC;
+GD;
+GE;Autres charges
+GF;Total des charges d'exploitation
+GG;RÉSULTAT D'EXPLOITATION 
+GH;Bénéfice attribué ou perte transférée
+GI;Perte supportée ou bénéfice transféré
+GJ;Produits financiers de participations
+GK;Produits des autres valeurs mobilières et créances de l'actif immobilisé
+GL;Autres intérêts et produits assimilés
+GM;Reprises sur provisions et transfert de charges
+GN;Différences positives de change
+GO;Produits nets sur cessions de valeurs mobilières de placement
+GP;Total des produits financiers
+GQ;Dotations financières aux amortissements et provisions
+GR;Intérêts et charges assimilées
+GS;Différence négative de change
+GT;Charges nettes sur cession de valeurs mobilières de placement
+GU;Total des charges financières
+GV;RÉSULTAT FINANCIER
+GW;RÉSULTAT COURANT AVANT IMPÔTS
+HA;Produits exceptionnels sur opérations de gestion
+HB;Produits exceptionnels sur opérations en capital
+HC;Reprises sur provisions et transfert de charges
+HD;Total des produits exceptionnels
+HE;Charges exceptionnelles sur opérations de gestion 
+HF;Charges exceptionnelles sur opérations en capital
+HG;Dotations exceptionnelles aux amortissements et provisions
+HH;Total des charges exceptionnelles 
+HI;RÉSULTAT EXCEPTIONNEL
+HJ; Participation des salariés aux résultats de l'entreprise
+HK; Impôts sur les bénéfices
+HL;TOTAL DES PRODUITS
+HM;TOTAL DES CHARGES
+HN;BÉNÉFICE OU PERTE (Total des produits - total des charges)

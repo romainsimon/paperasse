@@ -70,21 +70,19 @@ Cela inclut :
 
 **Exception** : les frais d'action en justice engagée par le syndic au nom du syndicat (honoraires d'avocat, frais d'huissier) restent à la charge du syndicat en premier lieu, puis sont récupérés auprès du débiteur.
 
-## Privilège Immobilier Spécial (art. 19-2 loi 1965)
+## Hypothèque légale spéciale du syndicat (art. 19-1 loi 1965 ; art. 2402, 3° C. civ.)
 
-Le syndicat des copropriétaires bénéficie d'un **privilège immobilier spécial** sur le lot du copropriétaire débiteur.
+Depuis la réforme des sûretés (ordonnance n° 2021-1192 du 15/09/2021, en vigueur le 01/01/2022), l'ancien privilège immobilier spécial du syndicat est remplacé par une **hypothèque légale spéciale** : l'art. 19-1 de la loi de 1965 renvoie à « l'hypothèque légale prévue à l'article 2402 du code civil ».
 
-**Portée** : le privilège garantit le paiement de l'exercice en cours et des deux derniers exercices échus.
+**Portée** : les créances de toute nature du syndicat relatives à l'année courante et aux quatre dernières années échues, garanties sur le lot vendu du copropriétaire débiteur (art. 2402, 3° C. civ.).
 
-**Rang** : le privilège prime les hypothèques et les privilèges du prêteur de deniers (sauf hypothèques inscrites antérieurement à l'acte de copropriété).
+**Rang et inscription** : vérifier les art. 2402 et suivants du Code civil en vigueur avant de conclure ; ne pas reprendre les règles de l'ancien privilège (privilège occulte, deux exercices échus).
 
-**Inscription** : pas d'inscription nécessaire pour l'opposabilité (privilège occulte), mais inscription possible au service de la publicité foncière pour renforcer la protection.
-
-## Hypothèque Légale (art. 19-1 loi 1965)
+## Hypothèque légale (art. 19 loi 1965)
 
 Le syndic peut prendre une hypothèque légale sur le lot du copropriétaire débiteur, sans autorisation de l'AG.
 
-**Utilité** : sécuriser la créance au-delà du privilège immobilier (qui ne couvre que l'exercice en cours + 2 exercices échus).
+**Utilité** : sécuriser la créance sans attendre une vente du lot, l'hypothèque légale spéciale de l'art. 19-1 ne jouant que sur le lot vendu.
 
 ## Plan d'Apurement
 
@@ -97,14 +95,14 @@ Le syndic peut accorder un **échelonnement de paiement** au copropriétaire en 
 - Clause de déchéance en cas de non-respect
 - Information du conseil syndical
 
-## Vente du Lot : Opposition et Privilège
+## Vente du Lot : Opposition et hypothèque légale
 
 En cas de vente d'un lot par un copropriétaire débiteur :
 
 **Opposition** (art. 20 loi 1965) :
 - Le syndic peut faire opposition au versement du prix de vente au vendeur
-- L'opposition doit être notifiée au notaire dans les 15 jours de la notification de la mutation
-- Le notaire doit verser au syndicat les sommes dues avant de libérer le solde au vendeur
+- L'opposition est formée par acte extrajudiciaire (commissaire de justice) dans les 15 jours de la réception de l'avis de mutation, en énonçant à peine de nullité le montant et les causes de la créance
+- Le notaire retient les sommes visées et les verse au syndicat dès l'accord du syndic et du vendeur ou, à défaut, dans les 3 mois de l'opposition régulière, sauf contestation en justice
 
 **Pré-état daté** : document que le syndic remet au notaire avant la vente, indiquant les sommes dues par le vendeur.
 

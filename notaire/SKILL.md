@@ -1,7 +1,7 @@
 ---
 name: notaire
 metadata:
-  last_updated: 2026-03-24
+  last_updated: "2026-11-04"
 includes:
   - scripts/fetch_notaire_data.py
   - scripts/test_fetch_notaire_data.py
@@ -14,7 +14,7 @@ description: |
   immobilière, les droits de succession et donation, le démembrement, les contrats de mariage,
   les PACS, les SCI, et la rédaction de projets d'actes (compromis, statuts, testaments).
 
-  Triggers: notaire, frais de notaire, acte de vente, compromis, succession, donation, héritage, testament, PACS, contrat de mariage, SCI, plus-value immobilière, droits de mutation, DMTO, usufruit, nue-propriété, partage successoral, réserve héréditaire, viager, donation-partage, diagnostics immobilier, droit de préemption, acte notarié, droit immobilier
+  Triggers: notaire, frais de notaire, acte de vente, compromis, succession, donation, héritage, testament, PACS, contrat de mariage, SCI, plus-value immobilière, droits de mutation, DMTO, usufruit, nue-propriété, partage successoral, réserve héréditaire, viager, donation-partage, PER, plan épargne retraite, assurance-vie succession, diagnostics immobilier, droit de préemption, acte notarié, droit immobilier
 ---
 
 # Notaire IA
@@ -104,8 +104,13 @@ Déterminer le domaine et le workflow applicable :
 - Situation matrimoniale (régime matrimonial, conjoint survivant)
 - Héritiers (enfants, conjoint, parents, frères/soeurs)
 - Existence d'un testament ou donation au dernier vivant
-- Composition du patrimoine (immobilier, mobilier, comptes, assurance-vie)
+- Composition du patrimoine (immobilier, mobilier, comptes, assurance-vie, PER)
 - Donations antérieures (< 15 ans)
+
+**Points de calcul à ne pas oublier (succession) :**
+- **Assurance-vie et PER** : hors succession civile mais taxés (990 I / 757 B). Appliquer [references/succession.md](references/succession.md), sections « Assurance-Vie et Succession » (statut des bénéficiaires exonérés d'abord, matrice des régimes, prélèvements sociaux sur les unités de compte) et « Plan d'Épargne Retraite (PER) et Succession ».
+- **Passif** : forfait de 1 500 EUR de frais funéraires sans justificatif (art. 775 CGI), ou le montant réel s'il est supérieur et justifié.
+- **Frais** : estimer les émoluments (acte de notoriété, attestation immobilière, déclaration de succession) avec [references/tarifs-emoluments.md](references/tarifs-emoluments.md), section « Émoluments Proportionnels (Succession) ».
 
 **Pour une donation :**
 - Lien de parenté donateur/donataire
@@ -223,7 +228,7 @@ Les templates utilisent des placeholders `{{variable}}` à remplir selon le cont
 |---------|---------|
 | [references/immobilier.md](references/immobilier.md) | Vente immobilière : DMTO, diagnostics, urbanisme, préemption, copropriété |
 | [references/plus-value.md](references/plus-value.md) | Plus-value immobilière : calcul, abattements, surtaxe, exonérations |
-| [references/succession.md](references/succession.md) | Successions : dévolution, droits, abattements, partage, conjoint survivant |
+| [references/succession.md](references/succession.md) | Successions : dévolution, droits, abattements, partage, conjoint survivant, assurance-vie et PER au décès (990 I / 757 B : pour un PER, l'âge du titulaire au décès décide, et après 70 ans l'assiette inclut les produits) |
 | [references/donation.md](references/donation.md) | Donations : droits, abattements, démembrement, donation-partage, Dutreil |
 | [references/famille.md](references/famille.md) | Famille : mariage, PACS, régimes matrimoniaux, testament, protection |
 | [references/societes.md](references/societes.md) | Sociétés : SCI, apport immobilier, cession de parts, fiscalité |

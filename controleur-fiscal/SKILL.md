@@ -1,14 +1,14 @@
 ---
 name: controleur-fiscal
 metadata:
-  last_updated: 2026-03-23
+  last_updated: "2026-11-04"
 includes:
   - data/**
   - company.example.json
 description: |
   Inspecteur des finances publiques IA. Simule un contrôle fiscal DGFIP complet sur les comptes d'une
   entreprise française (SASU, EURL, SAS, SARL). Analyse le FEC, la liasse fiscale, les charges déduites,
-  le compte courant d'associé, la TVA, l'IS selon 8 axes de vérification. Identifie les chefs de
+  le compte courant d'associé, la TVA, l'IS selon 9 axes de vérification. Identifie les chefs de
   redressement potentiels avec montants, base légale et niveaux de risque.
 
   Triggers: contrôle fiscal, redressement, vérification comptabilité, DGFIP, FEC, déductibilité, audit fiscal, tax audit
@@ -30,7 +30,7 @@ Adopter la posture d'un inspecteur des finances publiques en vérification de co
 
 **Ne jamais démarrer le contrôle sans les informations minimales.** Si elles manquent, les demander à l'utilisateur avant toute autre action.
 
-Si un fichier `company.json` existe, le lire pour obtenir le contexte automatiquement.
+Si un fichier `company.json` existe ou que son contenu est fourni dans la conversation, **le lire en premier** et reprendre en tête du rapport ce qu'il donne : forme juridique, régime IS / IR, régime TVA (réel ou franchise), dates et durée de l'exercice, dirigeant.
 
 Informations requises :
 
@@ -42,13 +42,21 @@ Informations requises :
 
 ## Programme de vérification
 
-Exécuter les 8 axes de contrôle séquentiellement. Pour chaque anomalie, rédiger un **chef de redressement** au format standardisé.
+**Périmètre** : si l'utilisateur cible certains axes (« concentre-toi sur… »), ne traiter que ceux-là et lister les autres en une ligne « non examinés ». Sinon, traiter les 9 axes. Pour chaque anomalie, rédiger un **chef de redressement** au format standardisé.
+
+**Si tu peux exécuter des commandes, commencer par le script d'analyse du FEC** (ne pas en réécrire un, ne pas charger `data/pcg_*.json` en entier) :
+
+```bash
+node scripts/analyse-fec.js --fec <FEC> --company company.json
+```
+
+Sinon (lecture seule, ou FEC et `company.json` collés dans la conversation), faire les mêmes contrôles directement sur les données fournies, sans chercher d'autres fichiers. Le script fait les contrôles de l'axe 1, la balance par compte, le détail du compte 455 (mouvements, solde, intérêts) et liste les écritures à examiner (libellés personnels, déplacements le week-end, montants ronds). Ses résultats sont des constats : la qualification (chef de redressement, base légale, montant, risque) reste à faire dans le rapport. Ajouter `--json` pour une sortie structurée.
 
 ---
 
 ### Axe 1 : Examen du FEC (art. L. 47 A-I LPF)
 
-Lire le fichier FEC.
+Lancer `scripts/analyse-fec.js` si possible (contrôles 1 à 8 ci-dessous), puis lire le FEC seulement pour les lignes signalées. Sans exécution possible, faire ces contrôles sur le FEC fourni.
 
 **Contrôles obligatoires :**
 1. Conformité format (18 colonnes, séparateur `|`)
@@ -81,7 +89,7 @@ Lire la déclaration IS et le compte de résultat.
 
 ### Axe 3 : Déductibilité des charges (art. 39-1 CGI)
 
-Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilité** :
+Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilité**, et les rappeler dans le rapport avant de classer les charges :
 1. Engagée dans l'intérêt de l'exploitation
 2. Se rattacher à une gestion normale
 3. Être appuyée de justificatifs (factures)
@@ -92,7 +100,7 @@ Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilit
 | Compte | Questionnement fiscal |
 |--------|----------------------|
 | 604 (Achats sous-traitance, API) | Usage exclusivement professionnel ? Factures au nom de la société ? |
-| 6132 (Bureau domicile) | Quote-part justifiée ? Calcul conforme BOFiP ? Convention ? |
+| 6132 (Bureau domicile) | Quote-part justifiée (surface du bureau / surface du logement) ? Base de calcul (loyer, charges) ? Bail ou convention écrite avec le dirigeant ? Comptabilisé tous les mois ou de façon irrégulière ? Si c'est un loyer versé au dirigeant, est-il déclaré chez lui en revenus fonciers ? |
 | 6135 (SaaS/hosting) | Abonnements 100% pro ? Pas de consommation personnelle ? |
 | 6181 (Documentation) | Lien avec l'activité ? |
 | 622 (Intermédiaires) | Nature et justificatif ? |
@@ -125,7 +133,7 @@ Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilit
 
 4. **Intérêts du compte courant** (art. 39-1-3° et 212 CGI)
    - Pas d'intérêts versés = OK
-   - Si intérêts : plafond = TMPV BCE (taux moyen des prêts à taux variable)
+   - Si intérêts : plafond = taux de l'art. 39-1-3° (moyenne des taux effectifs moyens des prêts à taux variable de plus de 2 ans, BOI-BIC-CHG-50-50-30), ou taux de marché justifié (art. 212) ; capital entièrement libéré
 
 ### Axe 5 : Revenus (art. 38-2 CGI)
 
@@ -155,7 +163,10 @@ Pour chaque catégorie de charges, vérifier les **4 conditions de déductibilit
 ### Axe 6 : TVA
 
 **Si franchise en base (art. 293 B CGI) :**
-1. Seuil franchise en base services : 36 800 (tolérance 39 100)
+1. Seuil franchise en base services : 37 500 € (tolérance 41 250 €) en 2026 ; ventes : 85 000 € (tolérance 93 500 €) (art. 293 B CGI, service-public F21746). Pour un exercice antérieur, appliquer le seuil de l'année contrôlée
+   - La franchise s'applique à l'année N si le CA de N-1 ne dépasse pas le seuil de base **et** si le CA de N ne dépasse pas le seuil majoré (art. 293 B, I).
+   - CA de N entre le seuil de base et le seuil majoré : franchise maintenue pour N, **perdue au 1er janvier N+1** (le CA de N-1 dépasse alors le seuil de base).
+   - CA de N au-delà du seuil majoré : TVA due sur les opérations réalisées à compter de la date du dépassement (art. 293 B, II).
 2. Annualisation si exercice < 12 mois
 3. Mention sur les factures : « TVA non applicable, art. 293 B du CGI »
 4. Cessions d'immobilisations : soumises à TVA ou exonérées ?
@@ -237,6 +248,8 @@ Lire [references/cir-cii.md](references/cir-cii.md) pour les textes complets, la
 
 ## Format du rapport de contrôle
 
+**Rendre le rapport complet dans le message final, en une seule fois** (pas réparti sur plusieurs messages) : contexte de `company.json`, chefs de redressement, synthèse, opinion. Chaque chef porte sa base légale et son niveau de risque, sans exception.
+
 Pour chaque anomalie identifiée, rédiger un chef de redressement :
 
 ```markdown
@@ -276,18 +289,18 @@ Terminer par un tableau récapitulatif :
 ```markdown
 ## Synthèse des chefs de redressement
 
-| # | Nature | Impôt | Base | Droits | Risque |
-|---|--------|-------|-----:|-------:|--------|
-| 1 | ... | IS | ... | ... | 🔴/🟡/🟢 |
-| 2 | ... | TVA | ... | ... | 🔴/🟡/🟢 |
-| | **TOTAL** | | | **X** | |
+| # | Nature | Impôt | Base légale | Base | Droits | Risque |
+|---|--------|-------|-------------|-----:|-------:|--------|
+| 1 | ... | IS | art. ... CGI | ... | ... | 🔴/🟡/🟢 |
+| 2 | ... | TVA | art. ... CGI | ... | ... | 🔴/🟡/🟢 |
+| | **TOTAL** | | | | **X** | |
 
 ### Pénalités potentielles
 - Intérêts de retard : 0,2%/mois (art. 1727 CGI)
-- Insuffisance déclarative : 10% (art. 1758 A CGI)
+- Dépôt tardif ou défaut de déclaration : 10% (art. 1728, 1-a CGI ; le 10% de l'art. 1758 A ne vise que l'impôt sur le revenu)
 - Manquement délibéré : 40% (art. 1729 a CGI)
-- Manoeuvres frauduleuses : 80% (art. 1729 b CGI)
-- Abus de droit : 80% (art. 1729 b CGI)
+- Abus de droit : 80% (art. 1729 b CGI), ramenée à 40% s'il n'est pas établi que le contribuable a eu l'initiative principale des actes ou en a été le principal bénéficiaire
+- Manoeuvres frauduleuses : 80% (art. 1729 c CGI)
 
 ### Opinion du vérificateur
 [Conclusion : comptabilité probante ou non, régularité, sincérité]

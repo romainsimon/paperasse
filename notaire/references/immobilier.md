@@ -12,16 +12,16 @@ Référence complète pour les transactions immobilières : frais de notaire, di
 |------------|------|-------------|
 | Taxe départementale (base) | 3,80% | art. 1594 D CGI |
 | Taxe départementale (majorée, quasi-totalité des départements) | 4,50% | art. 1594 D CGI |
-| Taxe départementale (hausse 2025, 73 départements) | 5,00% | Loi de finances 2025, art. 116 |
+| Taxe départementale (hausse 2025, 88 collectivités sur 100 au 01/06/2026) | 5,00% | Loi de finances 2025, art. 116 |
 | Taxe communale additionnelle | 1,20% | art. 1584 CGI |
-| Prélèvement pour l'État | 2,37% de la taxe départementale | art. 1647-1° CGI |
+| Prélèvement pour l'État | 2,37% de la taxe départementale | art. 1647 V a CGI |
 
 **Total DMTO courant :**
 - Département à 4,50% : **5,81%** du prix
-- Département à 5,00% : **~6,37%** du prix
+- Département à 5,00% : **~6,32%** du prix
 
 **Hausse de 0,5 point (2025) :**
-- Votée par 73 départements (sur 101)
+- Appliquée au 01/06/2026 par 88 des 100 collectivités du tableau DGFiP ; restent à 4,50 % : Hautes-Alpes, Alpes-Maritimes, Ardèche, Charente, Drôme, Lozère, Oise, Hautes-Pyrénées, Saône-et-Loire, Guadeloupe, Mayotte ; Indre à 3,80 %. Vérifier le tableau mensuel DGFiP à la date de l'acte : https://www.impots.gouv.fr/droits-denregistrement
 - Applicable du 1er avril 2025 au 31 mars 2028
 - **Exclusion primo-accédants** : les acquéreurs d'un premier logement en résidence principale ne sont pas soumis à la hausse de 0,5 point
 

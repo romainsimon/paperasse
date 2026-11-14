@@ -84,6 +84,10 @@ Déclaration obligatoire détaillant **chaque cession** :
 - Case 3AN : plus-value nette annuelle (gain)
 - Case 3BN : moins-value nette annuelle (perte)
 
+## Comptes sur plateformes étrangères (3916-bis)
+
+Indépendamment de toute cession, chaque compte d'actifs numériques ouvert, détenu, utilisé ou clos dans l'année auprès d'une entité établie à l'étranger se déclare sur le formulaire 3916-3916 bis (rubrique 4) avec la case 8UU de la 2042 (art. 1649 bis C CGI ; BOI-RPPM-PVBMC-30-30 § 70). Amende de 750 € par compte non déclaré ou 125 € par omission ou inexactitude, dans la limite de 10 000 € par déclaration ; 1 500 € / 250 € si la valeur des comptes étrangers a dépassé 50 000 € dans l'année (art. 1736 X CGI ; § 80). Le critère est le lieu d'établissement de l'entité contractante de la plateforme. Détail : [comptes-etrangers.md](comptes-etrangers.md).
+
 ## Staking, mining, airdrops
 
 **Régime distinct des PV** — imposition selon la nature :
@@ -102,7 +106,7 @@ Déclaration obligatoire détaillant **chaque cession** :
 
 ## Documentation à conserver
 
-Pour 6 ans minimum (délai de reprise) :
+Au moins 10 ans à compter de la dernière opération ou de l'établissement de la pièce (art. L. 102 B LPF, modifié par la loi n° 2026-534 du 25/06/2026, art. 36, pour les pièces dont le délai de conservation expire après le 01/01/2027 ; 6 ans auparavant ; durée distincte du délai de reprise), et surtout tant que le délai de reprise court et que les pièces servent à calculer le prix total d'acquisition du portefeuille. Le droit de reprise est de 3 ans en principe, porté à 10 ans, sans seuil, sur les revenus liés à un compte d'actifs numériques à l'étranger non déclaré (art. L. 169 LPF, renvoi à l'art. 1649 bis C CGI, voir [comptes-etrangers.md](comptes-etrangers.md)) :
 - Historique complet des transactions (exports exchanges)
 - Preuves des dates et prix d'acquisition
 - Détail des échanges crypto-to-crypto (même non imposables)
@@ -150,4 +154,5 @@ Ce mécanisme est fondé sur l'absence du décès dans les faits générateurs d
 - Sursis échange crypto-crypto : art. 150 VH bis-I-2 CGI
 - Déclaration de succession (actifs numériques) : art. 750 ter CGI
 - BOFiP PV crypto : BOI-RPPM-PVBMC-30
+- Comptes d'actifs numériques à l'étranger (3916-bis) : art. 1649 bis C, 1736 X CGI ; BOI-RPPM-PVBMC-30-30 § 70-80
 - BOFiP BNC staking/mining : BOI-BNC-CHAMP-10-10-20-40

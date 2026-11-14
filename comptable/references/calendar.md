@@ -7,9 +7,8 @@
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | DSN décembre N-1 | DSN |
-| 15 | CFE solde si > 3 000 € (2ème échéance) | - |
-| 25 | TVA décembre (régime réel normal) | CA3 |
-| 25 | TVS (taxe sur véhicules de société) | Annexe CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA décembre (régime réel normal) | CA3 |
+| 15 au 24 (date dans l'espace pro) | TVS (taxe sur véhicules de société) | Annexe CA3 |
 | 31 | Taxe sur les salaires (régularisation annuelle) | 2502 |
 
 ### Février
@@ -17,7 +16,7 @@
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | DSN janvier | DSN |
-| 25 | TVA janvier | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA janvier | CA3 |
 
 ### Mars
 
@@ -25,27 +24,27 @@
 |------|------------|------------|
 | 15 | **Acompte IS n°1** | 2571 |
 | 15 | DSN février | DSN |
-| 25 | TVA février | CA3 |
-| 31 | DAS2 (honoraires versés > 1 200 €/bénéficiaire) | DAS2 |
+| 15 au 24 (date dans l\'espace pro) | TVA février | CA3 |
 
 ### Avril
 
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | DSN mars | DSN |
-| 25 | TVA mars | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA mars | CA3 |
 | 30 | Déclaration revenus (papier) | 2042 |
 
 ### Mai
 
 | Date | Obligation | Formulaire |
 |------|------------|------------|
+| 2ème jour ouvré | **CVAE** : déclaration 1330-CVAE et solde 1329-DEF | 1330-CVAE / 1329-DEF |
+| 2ème jour ouvré | **DAS2** (honoraires versés > 2 400 €/bénéficiaire/an ; exercice décalé : 3 mois après la clôture) | DAS2 |
 | 2ème jour ouvré | **Liasse fiscale** (clôture 31/12) | 2065 (IS) / 2031 (BIC) |
 | 2ème jour ouvré | **CA12** TVA régime simplifié | CA12 |
 | 15 | **Solde IS** (clôture 31/12) | 2572 |
-| 15 | **CVAE** solde + déclaration | 1330-CVAE |
 | 15 | DSN avril | DSN |
-| 25 | TVA avril | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA avril | CA3 |
 | Mi-mai | Déclaration revenus (internet) - Zone 1 | 2042 |
 | Fin mai | Déclaration revenus (internet) - Zone 2 | 2042 |
 
@@ -55,9 +54,10 @@
 |------|------------|------------|
 | Début juin | Déclaration revenus (internet) - Zone 3 | 2042 |
 | 15 | **Acompte IS n°2** | 2571 |
-| 15 | **CVAE acompte n°1** (50%) | 1329-AC |
+| 15 | **Acompte CFE** (50 % de la CFE N-1, si CFE N-1 ≥ 3 000 €) | - |
+| 15 | **CVAE acompte n°1** (50 %, si CVAE N-1 > 1 500 €) | 1329-AC |
 | 15 | DSN mai | DSN |
-| 25 | TVA mai | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA mai | CA3 |
 
 ### Juillet
 
@@ -65,47 +65,47 @@
 |------|------------|------------|
 | 15 | DSN juin | DSN |
 | 15-24 | **Acompte TVA n°1** (régime simplifié) | 3514 |
-| 25 | TVA juin | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA juin | CA3 |
 
 ### Août
 
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | DSN juillet | DSN |
-| 25 | TVA juillet | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA juillet | CA3 |
 
 ### Septembre
 
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | **Acompte IS n°3** | 2571 |
-| 15 | **CVAE acompte n°2** (50%) | 1329-AC |
+| 15 | **CVAE acompte n°2** (50 %, si CVAE N-1 > 1 500 €) | 1329-AC |
 | 15 | DSN août | DSN |
-| 25 | TVA août | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA août | CA3 |
 
 ### Octobre
 
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | DSN septembre | DSN |
-| 25 | TVA septembre | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA septembre | CA3 |
 
 ### Novembre
 
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | DSN octobre | DSN |
-| 25 | TVA octobre | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA octobre | CA3 |
 
 ### Décembre
 
 | Date | Obligation | Formulaire |
 |------|------------|------------|
 | 15 | **Acompte IS n°4** | 2571 |
-| 15 | **CFE** (ou 1ère échéance si > 3 000 €) | - |
+| 15 | **CFE** (ou solde, acompte de juin déduit) | - |
 | 15 | DSN novembre | DSN |
 | 15-24 | **Acompte TVA n°2** (régime simplifié) | 3514 |
-| 25 | TVA novembre | CA3 |
+| 15 au 24 (date dans l\'espace pro) | TVA novembre | CA3 |
 
 ---
 
@@ -131,7 +131,7 @@
 **Régime réel normal:**
 | Période | Échéance CA3 |
 |---------|--------------|
-| Mois M | 24 (ou 25) du mois M+1 |
+| Mois M | Entre le 15 et le 24 du mois M+1, à la date indiquée dans l'espace professionnel (service-public F23566) |
 
 **Régime réel simplifié:**
 | Événement | Échéance |
@@ -145,8 +145,8 @@
 **CFE:**
 | Événement | Échéance |
 |-----------|----------|
-| Paiement (ou 1ère échéance) | 15 décembre |
-| 2ème échéance (si > 3 000 €) | 15 janvier N+1 |
+| Acompte (si CFE N-1 ≥ 3 000 €, 50 %) | 15 juin |
+| Paiement ou solde | 15 décembre |
 
 **CVAE:**
 | Événement | Échéance |
@@ -154,6 +154,8 @@
 | Acompte 1 | 15 juin |
 | Acompte 2 | 15 septembre |
 | Solde + déclaration | 2ème jour ouvré après 1er mai |
+
+Suppression progressive de la CVAE reportée à 2030 (loi n° 2025-127 du 14/02/2025, art. 62 ; BOFiP ACTU-2025-00145).
 
 ---
 

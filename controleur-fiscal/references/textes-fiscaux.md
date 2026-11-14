@@ -45,8 +45,7 @@ Pour un exercice de moins de 12 mois :
 
 **Art. 293 B CGI** — Franchise en base
 > Les assujettis établis en France [...] dont le chiffre d'affaires annuel n'excède pas :
-> - 36 800 pour les prestations de services
-> (seuil majoré : 39 100)
+> - 37 500 € pour les prestations de services (seuil majoré : 41 250 €) et 85 000 € pour les ventes (seuil majoré : 93 500 €), seuils 2026
 
 **Art. 283-2 CGI** — Autoliquidation
 > Lorsque le prestataire n'est pas établi en France, la taxe est acquittée par le preneur.
@@ -56,8 +55,8 @@ Pour un exercice de moins de 12 mois :
 **Art. 39-1-3° CGI** — Intérêts des comptes courants
 > Les intérêts servis aux associés à raison des sommes qu'ils laissent ou mettent à la disposition de la société, en sus de leur part du capital [...] dans la limite du taux moyen des prêts à taux variable.
 
-**Art. 212 CGI** — Plafonnement intérêts
-> Les intérêts servis aux associés [...] ne sont déductibles que dans la mesure où le capital a été entièrement libéré.
+**Art. 212 CGI** : intérêts entre entreprises liées et associées
+> Les intérêts servis au-delà du taux de l'art. 39-1-3° restent déductibles si l'entreprise prouve qu'elle aurait pu obtenir ce taux d'établissements financiers indépendants (I-a) ; extension aux entreprises associées non liées pour les exercices clos à compter du 31/12/2025 (LF 2026, art. 14). La condition de capital entièrement libéré relève de l'art. 39-1-3°.
 
 ### Pénalités
 
@@ -67,11 +66,12 @@ Pour un exercice de moins de 12 mois :
 
 **Art. 1729 CGI** — Majorations
 > a) Manquement délibéré : majoration de 40%
-> b) Manoeuvres frauduleuses : majoration de 80%
-> c) Abus de droit : majoration de 80%
+> b) Abus de droit (art. L. 64 LPF) : majoration de 80%, ramenée à 40% s'il n'est pas établi que le contribuable a eu l'initiative principale des actes ou en a été le principal bénéficiaire
+> c) Manoeuvres frauduleuses, dissimulation d'une partie du prix ou application de l'art. 792 bis : majoration de 80%
+> (Rédaction en vigueur depuis le 01/01/2009, LEGIARTI000020051904, vérifiée le 19/10/2026.)
 
-**Art. 1758 A CGI** — Insuffisance de déclaration
-> 10% en cas d'insuffisance de déclaration de bonne foi.
+**Art. 1758 A CGI** : Insuffisance de déclaration (impôt sur le revenu UNIQUEMENT)
+> 10% en cas d'insuffisance de déclaration de bonne foi, pour les déclarations déposées en vue de l'établissement de l'impôt sur le revenu. Ne s'applique pas à l'IS : pour une société à l'IS, le taux de 10% relève de l'art. 1728, 1-a (dépôt tardif ou défaut de déclaration).
 
 ---
 

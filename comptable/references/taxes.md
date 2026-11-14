@@ -35,7 +35,7 @@ Résultat comptable
 | Taxe sur véhicules de société | Non déductible |
 | Dépenses somptuaires | Non déductibles (chasse, pêche, yachts) |
 | Rémunération excessive | Partie excessive non déductible |
-| Intérêts compte courant | Plafonnés (taux BCE + 2 points) |
+| Intérêts compte courant | Plafonnés au taux moyen des prêts bancaires à taux variable de plus de 2 ans (art. 39-1-3° ; 4,33 % pour un exercice clos du 30/06 au 29/09/2026, BOI-BIC-CHG-50-50-30) |
 
 ### Acomptes IS
 

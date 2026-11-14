@@ -111,7 +111,7 @@ L'ordre du jour de l'AG annuelle doit au minimum comporter :
 4. **Quitus au syndic** (facultatif mais courant)
 5. **Élection ou renouvellement du syndic** (si mandat arrive à échéance)
 6. **Élection ou renouvellement du conseil syndical**
-7. **Cotisation au fonds de travaux** (art. 14-2, minimum 5% du budget prévisionnel)
+7. **Cotisation au fonds de travaux** (art. 14-2-1 ; minimum 5% du budget prévisionnel et 2,5% des travaux du PPT s'il est adopté ; un montant supérieur se vote à l'art. 25, passerelle 25-1)
 8. **Questions diverses** inscrites par les copropriétaires (notification au syndic dans le délai)
 
 ## Inscription de Questions à l'Ordre du Jour

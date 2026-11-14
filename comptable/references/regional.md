@@ -40,7 +40,7 @@ Achat avec octroi de mer:
 
 #### ~~Exonérations ZFA (Zone Franche d'Activité)~~ — REMPLACÉ par ZFANG depuis 2019
 
-> ⚠️ La ZFA est éteinte. Le dispositif applicable depuis le 1er janvier 2019 est la **ZFANG** (art. 19 Loi de finances 2018). Ne pas appliquer les anciens taux ZFA.
+> ⚠️ La ZFA est éteinte. Le dispositif applicable depuis le 1er janvier 2019 est la **ZFANG** (art. 19 de la loi n° 2018-1317 du 28 décembre 2018 de finances pour 2019). Ne pas appliquer les anciens taux ZFA.
 
 #### ZFANG — Zone Franche d'Activité Nouvelle Génération
 
@@ -58,7 +58,7 @@ Deux régimes selon le secteur d'activité. Les taux sont **fixes** (pas de dég
 |--------|-----------|---------------------------|
 | **Standard** (droit commun) | **50%** | 150 000 € |
 | **Majoré** (secteurs prioritaires) | **80%** | 300 000 € (dont 150 000 € max sur base standard) |
-| **Mayotte uniquement** 2025-2029 | **100%** | — (temporaire, régime exceptionnel) |
+| **Mayotte uniquement** (IR 2025 à 2029 ; IS des exercices clos à compter du 31/12/2025) | **100%** | Zone franche globale temporaire : loi n° 2025-797 du 11/08/2025, art. 38 ; BOFiP ACTU-2025-00136 du 04/02/2026 (plafond : vérifier BOI-BIC-CHAMP-80-10-85) |
 
 **Secteurs prioritaires** (régime majoré 80%) applicables à La Réunion :
 - Recherche et développement

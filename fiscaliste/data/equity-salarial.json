@@ -3,56 +3,96 @@
     "revenus": 2025,
     "declaration": 2026,
     "sources": [
-      "BOI-RSA-ES (actionnariat salarié)",
-      "BOI-RPPM-PVBMI (BSPCE)"
-    ]
+      "BOI-RSA-ES-20-20-20 (actions gratuites, régime fiscal des bénéficiaires, version du 21/05/2026)",
+      "BOI-RSA-ES-20-30 (contribution salariale)",
+      "BOI-RSA-ES-20-40-30 (BSPCE, titres souscrits jusqu'au 31/12/2024, version du 12/08/2025)",
+      "BOI-RSA-ES-20-20-10-20 (plans de sociétés étrangères, version du 21/05/2026)",
+      "BOI-IR-CDHR-10 (version du 30/06/2026)",
+      "formulaire 2042 C millésime 2026 et brochure pratique IR 2026 (DGFiP)"
+    ],
+    "last_fetched": "2026-10-17"
   },
-
   "rsu": {
-    "description": "Restricted Stock Units — attributions gratuites d'actions",
-    "gain_acquisition": {
-      "definition": "Valeur de l'action à la date d'acquisition (vesting)",
-      "imposition": "Traitements et salaires, au barème progressif, case 1TT ou 1UT",
-      "cotisations_sociales": "Oui : CSG/CRDS 9.7% sur les revenus d'activité + contribution salariale 10% (plafond d'attribution à vérifier)",
-      "note_plans_qualifiants": "Plans qualifiants (loi Macron) : régime de faveur pour la fraction ≤ plafond annuel (PASS/2 puis PASS selon régime) — imposition comme PV mobilière au PFU + abattement 50% possible"
+    "description": "Restricted Stock Units — attributions gratuites d'actions (AGA). Le régime dépend de la date de la décision d'AGE qui a autorisé l'attribution et du caractère qualifiant du plan (C. com. art. L. 225-197-1 et s. ; plans étrangers : BOI-RSA-ES-20-20-10-20).",
+    "date_age_societe_etrangere": "Pour un plan de société étrangère, la « date de l'AGE » est celle de la décision d'autorisation de l'attribution par l'organe habilité de la société (en pratique l'assemblée des actionnaires qui approuve le plan), pas celle de l'adoption d'un sous-plan français : un sous-plan adopté après le 31/12/2017 pour une autorisation antérieure ne relève pas du régime de la LF 2018 (BOI-RSA-ES-20-20-10-20 § 460, remarques 1 à 3). NYSE et NASDAQ sont assimilés à des marchés réglementés (§ 400).",
+    "fait_generateur": "Le gain d'acquisition est imposé au titre de l'année de la CESSION (ou disposition, conversion au porteur, mise en location) des actions, à titre onéreux ou gratuit, pas de l'année du vesting (CGI art. 80 quaterdecies ; BOI-RSA-ES-20-20-20 § 150). Une donation est donc un fait générateur : le gain d'acquisition est imposé au nom du donateur l'année de la donation, la plus-value latente n'est pas imposée et le donataire repart de la valeur retenue pour les droits de donation (§ 185).",
+    "periode_conservation": "Le plan fixe une période d'acquisition d'au moins un an et une durée cumulée acquisition + conservation d'au moins deux ans (C. com. art. L. 225-197-1, I). Une cession, une donation ou une mise en location pendant la période de conservation prévue par le plan, même plus longue que le minimum légal, fait imposer le gain d'acquisition selon les règles de droit commun des traitements et salaires (BOI-RSA-ES-20-20-20 § 10 ; interdictions au BOI-RSA-ES-20-20-10-20 § 90). Vérifier la date de fin de conservation de chaque lot avant toute vente.",
+    "identification_lots": "Quand le portefeuille contient des titres de la même société de plusieurs origines (lots d'actions gratuites de dates différentes, plan d'achat d'actions, achats), le gain d'acquisition et la plus-value se calculent lot par lot si les titres cédés sont individualisables (sous-comptes ou comptes distincts chez le courtier, registre nominatif) ; à défaut, l'administration admet une répartition proportionnelle des titres cédés entre catégories (BOI-RSA-ES-20-10-20-20 § 90 à 120, rédigé pour les options et transposé par analogie aux actions gratuites). Conserver les relevés de lots du courtier.",
+    "valeur_acquisition": "Premier cours coté du jour de l'attribution définitive (vesting) ; cotation en devise convertie au taux de change de ce même jour (BOI-RSA-ES-20-20-20 § 120 et § 130).",
+    "plans_qualifiants_age_apres_2017": {
+      "champ": "Actions gratuites dont l'attribution a été autorisée par une AGE postérieure au 31/12/2017 (LF 2018 art. 28). Régime le plus courant pour les RSU de sociétés cotées aujourd'hui.",
+      "fraction_jusqu_a_300000": "Barème progressif après abattement de 50 % (CGI art. 200 A, 3), le cas échéant abattement fixe 150-0 D ter ; prélèvements sociaux sur les REVENUS DU PATRIMOINE (CSS L. 136-6 I e ; 18,6 % depuis la LFSS 2026, sans abattement) ; PAS de contribution salariale. CSG DÉDUCTIBLE l'année de son paiement à hauteur de 6,8 points, proratisée par le rapport gain imposable à l'IR / gain soumis à la CSG, soit 3,4 % du gain avec l'abattement de 50 % (CGI art. 154 quinquies, II ; brochure IR 2026, charges déductibles, CSG déductible). Seule la CSG des AGA attribuées du 01/01/2005 au 27/09/2012 est non déductible (BOI-RSA-ES-20-20-20 § 46).",
+      "fraction_au_dela_300000": "Traitements et salaires de droit commun : barème sans abattement, CSG/CRDS d'activité (9,7 %), contribution salariale 10 % (CSS L. 137-14 ; BOI-RSA-ES-20-30), due l'année de la cession (§ 90) et non déductible de l'IR (§ 190).",
+      "limite_annuelle": 300000,
+      "note_limite": "Limite annuelle appréciée par attributaire (CGI art. 80 quaterdecies, I : « entre les mains de l'attributaire »), sur l'ensemble de ses gains d'acquisition de plans postérieurs au 30/12/2016 cédés dans l'année, après imputation d'une éventuelle moins-value de cession, non reportable (BOI-RSA-ES-20-20-20 § 44 et § 190). Le BOFiP ne tranche pas expressément le cas de deux conjoints attributaires.",
+      "rfr_cehr_cdhr": "Le gain d'acquisition entre dans le RFR pour son montant AVANT abattement de 50 % (CGI art. 1417, IV, 1°, a bis) : il compte en totalité pour la CEHR et les seuils liés au RFR. Pour la CDHR, cet abattement est retranché du revenu de référence : seul le gain imposable après abattement compte (BOI-IR-CDHR-10 § 150 et § 160).",
+      "moins_value_cession": "Une cession sous la valeur d'acquisition réduit le gain d'acquisition correspondant, dans la limite de ce montant, AVANT abattement (CGI art. 80 quaterdecies V ; § 190). Les moins-values sur d'autres titres ne s'imputent jamais sur le gain d'acquisition.",
+      "cases_2042": "2042 C millésime 2026 : fraction ≤ 300 000 € en 1TZ (gain imposable après abattement) avec l'abattement en 1WZ (50 %) ou 1VZ (abattement fixe) ; fraction > 300 000 € en 1TT / 1UT (salaires). AGE du 08/08/2015 au 31/12/2017 : abattement pour durée de détention en 1UZ. À revérifier chaque millésime.",
+      "piege_notice_2026": "La notice 2041-NOT du millésime 2026 imprime encore « prélèvements sociaux de 17,2 % » sur le gain d'acquisition et « PFU 30 % » ; la loi (LFSS 2026 art. 12, II : L. 136-6 « à compter de l'imposition des revenus de l'année 2025 ») donne 18,6 % et 31,4 % pour les revenus 2025. Citer la loi, pas la brochure."
+    },
+    "plans_qualifiants_age_2016_2017": "AGE entre le 31/12/2016 et le 31/12/2017 : même seuil de 300 000 €, mais abattements pour durée de détention (ancien 150-0 D) ou abattement fixe, non cumulables ; au-delà, salaire + contribution salariale 10 %.",
+    "plans_qualifiants_age_2015_2016": "AGE entre le 08/08/2015 et le 30/12/2016 (loi Macron) : intégralité du gain au barème avec abattements pour durée de détention, PS patrimoine, pas de contribution salariale.",
+    "plans_non_qualifiants": {
+      "imposition": "Salaire ordinaire au barème, imposé l'année de l'acquisition définitive, intégré à la paie avec les cotisations sociales de droit commun (en principe pré-rempli en 1AJ), SANS contribution salariale de 10 % (BOI-RSA-ES-20-20-20 § 10 ; BOI-RSA-ES-20-30 § 20 : la contribution ne vise que les gains ouvrant droit au régime de faveur). Pas de case 1TT.",
+      "piege": "C'est ce régime, et lui seul, qui traite le gain d'acquisition comme un salaire ordinaire. Ne pas l'appliquer par défaut à des RSU de plan qualifiant."
     },
     "plus_value_cession": {
-      "definition": "Valeur cession − valeur vesting",
-      "imposition": "PFU 30% (ou barème sur option)",
-      "note": "Distincte du gain d'acquisition. Seulement si la cession se fait après le vesting."
+      "definition": "Prix de cession converti en euros au taux du jour de la cession (BOI-RPPM-PVBMI-20-10-10-10 § 20) − valeur à la date d'acquisition définitive convertie au taux du jour du vesting (BOI-RSA-ES-20-20-20 § 130) : l'effet de change fait partie de la plus-value ou de la moins-value",
+      "imposition": "Régime des plus-values mobilières : PFU 31,4 % (12,8 % IR + 18,6 % PS depuis la LFSS 2026) ou barème sur option globale (case 2OP, CSG déductible de 6,8 points ; pas d'abattement pour durée de détention pour des titres acquis depuis le 01/01/2018, BOI-RSA-ES-20-20-20 § 170) ; moins-values mobilières imputables. À comparer les années à faible revenu.",
+      "note": "Distincte du gain d'acquisition. Imposée l'année de la cession, qui est aussi celle du gain d'acquisition, sauf conversion au porteur, mise en location ou donation antérieures (après donation, la plus-value est imposée au nom du donataire)."
     },
-    "piege_classique": "Traiter le gain RSU comme une PV mobilière classique — erreur majeure : il est d'abord soumis à cotisations sociales et IR comme du salaire."
+    "piege_classique": "Deux erreurs symétriques : traiter le gain d'acquisition d'un plan qualifiant comme un salaire (cotisations + contribution 10 %, à tort sous 300 000 €), ou le traiter comme une simple plus-value mobilière (à tort : barème après abattement 50 %, PS patrimoine, l'année de la cession)."
   },
-
   "stock_options": {
     "description": "Options de souscription ou d'achat d'actions",
     "rabais_excedentaire": {
-      "definition": "Différence entre prix de marché à l'attribution et prix d'exercice, au-delà de 5%",
-      "imposition": "Salaire à l'acquisition"
+      "definition": "Fraction du rabais excédant 5 % de la valeur de référence de l'action à l'attribution (moyenne des cours ou cours moyen d'achat, CGI art. 80 bis, II)",
+      "imposition": "Salaire au barème l'année de la levée de l'option, 2042 C cases 1TP / 1UP (brochure IR 2026, traitements et salaires)"
     },
     "gain_levee": {
-      "plans_pre_2012": "Régime spécifique (barème de faveur selon durée détention)",
-      "plans_post_2012": "Salaire avec régime spécifique — contribution salariale 10%",
-      "note": "Consulter le plan pour déterminer le régime applicable"
+      "plans_pre_2012": "Options attribuées avant le 28/09/2012, titres nominatifs et indisponibles 4 ans (5 ans si attribution avant le 27/04/2000). Attribution du 27/04/2000 au 27/09/2012 : 30 % jusqu'à 152 500 € de gain annuel et 41 % au-delà, taux réduits à 18 % et 30 % si les titres sont conservés deux ans de plus (2042 C cases 3VD, 3VI, 3VF). Attribution du 20/09/1995 au 26/04/2000 : 30 %. Option possible pour les salaires (3VJ / 3VK). Indisponibilité non respectée : salaire. Contribution salariale de 10 % si attribution depuis le 16/10/2007 (3VN).",
+      "plans_post_2012": "Options attribuées à compter du 28/09/2012 (plans qualifiés) : gain de levée imposé l'année de la disposition (à titre onéreux ou gratuit), de la cession, de la conversion au porteur ou de la mise en location des titres (CGI art. 80 bis, II bis), comme un salaire au barème (2042 C 1TT / 1UT), CSG/CRDS d'activité 9,7 %, contribution salariale 10 % sur la totalité du gain ; une moins-value de cession sous la valeur à la levée s'impute sur le gain de levée, dans la limite de ce gain (brochure IR 2026, traitements et salaires). La plus-value au-delà de la valeur à la levée suit le régime des plus-values mobilières (3VG / 3VH).",
+      "plans_non_qualifies": "Options d'un plan étranger sans sous-plan conforme au code de commerce : avantage imposé comme salaire de droit commun, en principe l'année de la levée, par la paie (BOI-RSA-ES-20-10-20-50 § 1).",
+      "note": "Consulter le plan pour déterminer le régime applicable ; exception aux régimes ci-dessus pour une levée financée par le PEE : voir levee_financee_pee"
     },
-    "contribution_salariale": 0.10,
-    "note_contribution": "Taux 10% sur les gains d'acquisition des plans qualifiants"
+    "levee_financee_pee": {
+      "condition": "Levée d'options qualifiées financée par des avoirs du PEE, même indisponibles, et inscription des actions obtenues au plan ; ne vise pas un simple apport d'actions déjà détenues",
+      "indisponibilite": "Cinq ans à compter de l'entrée des actions au PEE, sans déblocage anticipé ordinaire, même après rupture du contrat de travail ; en cas de décès, les héritiers peuvent disposer des titres après dépôt de la déclaration de succession (§ 150)",
+      "impot_revenu": "Sous les conditions du dispositif, gain net exonéré d'IR, gain de levée compris ; le rabais excédentaire reste imposé séparément comme salaire à la levée",
+      "contribution_salariale": "Options attribuées depuis le 16/10/2007 : contribution de 10 % sur le gain de levée, due lors de la cession des actions dans le plan, même sans retrait du PEE (BOI-RSA-ES-20-30 § 120 et 150)",
+      "prelevements_sociaux": "PS à la délivrance des avoirs, distincts de la contribution salariale ; la liquidation des anciens avoirs du PEE pour financer la levée déclenche les PS sur leurs gains (BOI-RSA-ES-10-30-10 § 120 et 180)",
+      "apport_fcpe": "L'apport des actions à un FCP ou une société dont l'actif est exclusivement composé de titres de l'employeur ou de son groupe conserve la durée de blocage restant à courir (§ 160 et 170). Vérifier les opérations et relevés pour dater une cession des actions sous-jacentes, sans la déduire du seul changement de support",
+      "sources": [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042340834/2026-11-11",
+        "https://bofip.impots.gouv.fr/bofip/5639-PGP.html/identifiant=BOI-RSA-ES-10-30-10-20200728",
+        "https://bofip.impots.gouv.fr/bofip/2389-PGP.html/identifiant=BOI-RSA-ES-20-30-20260521"
+      ]
+    },
+    "contribution_salariale": 0.1,
+    "note_contribution": "Contribution salariale de 10 % (CSS L. 137-14 ; BOI-RSA-ES-20-30 § 30 et § 150) sur le gain de levée des options attribuées depuis le 16/10/2007, sur la totalité du gain : le seuil de 300 000 € ne concerne que les actions gratuites (voir rsu). Options et actions gratuites attribuées avant le 28/09/2012 : case 3VN."
   },
-
+  "espp_non_qualifie": {
+    "description": "Plan d'achat d'actions avec décote d'une société étrangère (ESPP), hors PEE et hors dispositifs légaux d'actionnariat salarié",
+    "decote": "Valeur réelle des titres au jour de l'achat moins le prix payé (y compris l'effet d'une clause de lookback) : avantage salarial imposable au barème dans la catégorie des traitements et salaires au titre de l'année de l'achat (BOI-RSA-ES-20-10-20-50 § 10 et § 20 ; CE 13/07/2021 n° 435452, cité au BOI-RSA-ES-20-60 § 180). Ni abattement de 50 %, ni seuil de 300 000 €, ni contribution salariale de 10 % (BOI-RSA-ES-20-30 § 20). En pratique intégrée à la paie du mois de l'achat par l'employeur français (1AJ, prélèvement à la source, cotisations) : vérifier le bulletin du mois de l'achat.",
+    "plus_value_cession": "Régime des plus-values mobilières (CGI art. 150-0 A ; PFU 31,4 % ou barème sur option). Prix de revient = valeur réelle au jour de l'achat (prix payé majoré de la décote déjà imposée), sinon la décote serait imposée deux fois ; prix de cession converti au taux de change du jour de la cession, valeur d'achat au taux du jour de l'achat (BOI-RPPM-PVBMI-20-10-10-10 § 20). Réserve : ce prix de revient est déduit du principe d'imposition de l'avantage et de l'analogie avec les options (BOI-RSA-ES-20-10-20-20 § 10 et § 30), aucun paragraphe BOFiP propre aux ESPP n'a été trouvé.",
+    "management_packages": "La décote seule ne fait pas relever la plus-value du régime de l'art. 163 bis H (BOI-RSA-ES-20-60 § 170 à § 190).",
+    "seuil_300000_et_conservation": "Les titres ESPP ne consomment pas le seuil de 300 000 € des actions gratuites et n'ont pas de période de conservation légale ; ils se mêlent aux lots d'actions gratuites chez le courtier : identifier les lots cédés (voir rsu.identification_lots)."
+  },
   "bspce": {
     "description": "Bons de Souscription de Parts de Créateur d'Entreprise — réservés aux startups éligibles",
     "difference_cle_rsu": "Pas de gain d'acquisition imposable comme salaire. Imposition uniquement à la cession.",
     "gain_cession": {
       "definition": "Prix de vente des actions − prix d'exercice des BSPCE",
       "anciennete_3_ans_plus": {
-        "taux": 0.30,
-        "detail": "12.8% IR + 17.2% PS (équivalent PFU)"
+        "taux": 0.314,
+        "detail": "12.8% IR (bons attribués depuis le 01/01/2018 ; 19 % avant, case 3SJ) ou barème sur option globale + 18.6% PS revenus du patrimoine depuis la LFSS 2026 (17.2% jusqu'aux revenus 2024), soit 31.4% ; BOI-RSA-ES-20-40-30 § 30 à 50 et § 120"
       },
       "anciennete_moins_3_ans": {
-        "taux": 0.50,
-        "detail": "30% IR + 20% PS — pénalité forte si départ précoce"
+        "taux": 0.486,
+        "detail": "30% IR (CGI art. 163 bis G, sans option pour le barème ; BOI-RSA-ES-20-40-30 § 70) + 18.6% PS revenus du patrimoine (§ 120, dès le premier euro), soit 48.6% ; il n'existe aucun prélèvement spécifique à 20 %. Pénalité forte si départ précoce."
       },
-      "note_anciennete": "Anciennete du salarié dans la société à la date de cession"
+      "note_anciennete": "Anciennete du salarié dans la société à la date de cession",
+      "note_bspce_2025": "Titres souscrits en exercice de bons à compter du 01/01/2025 (loi 2025-127 art. 92) : l'avantage salarial issu de l'exercice (12,8 % ou 30 % selon l'ancienneté) est séparé du gain de cession (plus-values mobilières, case 3TL) ; cases dédiées sur la 2042 C 2026."
     },
     "conditions_eligibilite_societe": [
       "SA ou SAS française",
@@ -64,53 +104,35 @@
     ],
     "requalification_salaire": "Si conditions non remplies : requalification en salaires → imposition barème + cotisations sociales, traitement BEAUCOUP plus défavorable"
   },
-
   "pee_perco": {
     "description": "Plans d'Épargne Entreprise et Plans d'Épargne Retraite Collective — enveloppes collectives",
+    "sources": "service-public F2142 (vérifiée le 01/01/2026), art. L. 3332-11 et R. 3324-22 C. trav., art. L. 136-7, II-7° CSS, LFSS 2026 art. 12, BOI-ANNX-000513 (PER d'entreprise)",
     "pee": {
-      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans les plafonds ; CSG/CRDS 9,7 % dues à l'entrée ; forfait social 0 % sous 50 salariés, 20 % au-delà",
-      "plafond_base": "8% × PASS de l'année de versement — voir per-plafonds.json → epargne_salariale_abondement.pee",
-      "blocage_duree": "5 ans",
-      "deblocage_anticipe_reference": "Art. R. 3332-28 C. trav. (renvoi à R. 3324-22) ; délai de demande 6 mois, sauf rupture du contrat, décès, invalidité, violences conjugales, surendettement et proche aidant : à tout moment (R. 3324-23)",
-      "deblocage_anticipe_cas": [
-        "Mariage ou PACS du bénéficiaire",
-        "Naissance ou adoption d'un enfant, le foyer comptant déjà au moins 2 enfants à charge",
-        "Divorce / séparation / dissolution PACS avec résidence habituelle d'au moins un enfant chez le bénéficiaire",
-        "Violences conjugales (ordonnance de protection ou poursuite pénale)",
-        "Invalidité du bénéficiaire, d'un enfant, du conjoint/PACS (incapacité ≥ 80 %, sans activité professionnelle)",
-        "Décès du bénéficiaire ou du conjoint/PACS",
-        "Rupture du contrat de travail, cessation d'activité de l'entrepreneur individuel, fin du mandat social, perte du statut de conjoint collaborateur ou associé",
-        "Création ou reprise d'entreprise (bénéficiaire, enfant, conjoint/PACS)",
-        "Acquisition, agrandissement ou remise en état après catastrophe naturelle de la résidence principale",
-        "Rénovation énergétique de la résidence principale",
-        "Surendettement (commission de surendettement ou juge)",
-        "Activité de proche aidant",
-        "Achat d'un véhicule propre neuf (électrique, hydrogène, hybride rechargeable, vélo à assistance électrique)"
-      ],
-      "sortie": "Après 5 ans : exonération IR, PS sur les gains uniquement (taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026)",
-      "dividendes_reinvestis": "Exonérés IR tant qu'ils restent dans l'enveloppe"
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans le plafond, mais SOUMIS à la CSG et à la CRDS (revenus d'activité, 9,7 %) et, côté employeur, au forfait social le cas échéant. Avantage majeur vs versement direct.",
+      "plafond_abondement_pee": {
+        "2024": 3709.44,
+        "2025": 3768,
+        "2026": 3844.80,
+        "base": "8 % du PASS de l'année (46 368 € en 2024, 47 100 € en 2025, 48 060 € en 2026), sans dépasser 3 fois le versement du salarié ; porté à 14,4 % du PASS si l'abondement est investi en titres de l'entreprise"
+      },
+      "blocage": "5 ans, sauf déblocage anticipé (art. R. 3324-22 C. trav.) : mariage ou PACS ; naissance ou adoption du 3e enfant ; divorce, séparation ou dissolution de PACS avec garde d'au moins un enfant ; violences conjugales ; invalidité (titulaire, conjoint ou partenaire, enfant) ; décès (titulaire, conjoint ou partenaire) ; rupture du contrat de travail, cessation d'activité de l'entrepreneur individuel, fin du mandat social ; création ou reprise d'entreprise (titulaire, conjoint ou partenaire, enfant), acquisition de parts de SCOP ; acquisition ou agrandissement de la résidence principale ; remise en état de la résidence principale après catastrophe naturelle ; rénovation énergétique de la résidence principale ; surendettement ; activité de proche aidant ; achat d'un véhicule propre ou d'un vélo à assistance électrique. Demande dans les 6 mois de l'événement, sauf rupture du contrat, décès, invalidité, violences, surendettement et proche aidant (à tout moment).",
+      "sortie": "Après 5 ans ou déblocage anticipé : versements et gains exonérés d'IR ; prélèvements sociaux sur les seuls gains (produits de placement, art. L. 136-7, II-7° CSS) : 17,2 % jusqu'au 31/12/2025, 18,6 % à compter du 01/01/2026 (LFSS 2026), sous réserve des taux historiques pour les gains issus de versements antérieurs à 2018. La LFSS 2026 (art. 12, II, 2°) exclut aussi de la hausse les produits acquis ou constatés avant le 01/01/2026 mentionnés au V de l'art. 8 de la LFSS 2018 ; portée à confirmer au BOFiP. Ce n'est pas un PFU : pas d'IR à la sortie.",
+      "exception_levee_options": "Le blocage et les sorties ordinaires ci-dessus ne s'appliquent pas aux actions issues d'options levées avec les avoirs du PEE : voir stock_options.levee_financee_pee, sans déblocage anticipé ordinaire",
+      "dividendes_reinvestis": "Exonérés IR tant qu'ils restent dans l'enveloppe",
+      "participation_interessement": "Exonérés d'IR s'ils sont affectés au PEE ou au PERCO dans les 15 jours (soumis à CSG/CRDS 9,7 %) ; imposés comme salaire s'ils sont perçus directement. Plafond d'exonération de chacun : 75 % du PASS (36 045 € pour 2026, service-public.fr F2142 ; 35 325 € pour 2025)."
     },
     "perco_pereco": {
-      "description": "Équivalent PER collectif — PERCO remplacé par le PERECO (PER d'entreprise collectif) par la loi Pacte ; plus de nouveau PERCO depuis le 01/10/2020",
-      "sortie_retraite": {
-        "compartiment_2_capital": "Capital exonéré IR (seuls les gains soumis aux PS, taux en vigueur — cf. SKILL.md, 18,6% depuis LFSS 2026) — régime distinct du PER individuel",
-        "compartiment_2_rente": "RVCTO (Rente Viagère à Titre Onéreux) — fraction imposable : <50 ans=70%, 50-59=50%, 60-69=40%, 70+=30%",
-        "compartiment_1_capital": "Versements volontaires déduits → imposés au barème comme PER individuel ; gains au PFU",
-        "compartiment_1_rente": "Régime des pensions (barème, abattement 10 %) ; PS au taux en vigueur sur la seule fraction imposable de la rente viagère à titre onéreux (BOI-ANNX-000513)",
-        "note": "Compartiment 2 (intéressement/participation/abondement) bénéficie d'un régime fiscal plus favorable que le PER individuel"
+      "description": "PERCO (ancien) et PER d'entreprise collectif (PERECO, loi PACTE) : épargne retraite d'entreprise",
+      "sortie_retraite": "Rente ou capital. PER collectif : sommes issues de l'intéressement, de la participation et de l'abondement, capital EXONÉRÉ d'IR (versements et gains, art. 81, 18° et 4° bis-b CGI), PS sur les seuls gains (art. L. 136-7, II-7° bis CSS), rente imposée en RVTO. Versements volontaires déduits et versements obligatoires d'un PERO : régime de sortie en capital du PER individuel lorsqu'elle est possible (barème sans abattement de 10 %, gains au PFU). PERCO historique (art. L. 3334-1 C. trav.) : capital exonéré d'IR, rente en RVTO, PS selon BOI-RSA-ES-10-30-20. Source : BOI-ANNX-000513.",
+      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans le plafond, soumis à CSG/CRDS (plafond distinct du PEE)",
+      "plafond_abondement_perco": {
+        "2024": 7418.88,
+        "2025": 7536,
+        "2026": 7689.60,
+        "base": "16 % du PASS de l'année, sans dépasser 3 fois le versement du salarié"
       },
-      "abondement_employeur": "Exonéré d'IR et de cotisations sociales dans les plafonds (plafond distinct du PEE) ; CSG/CRDS 9,7 % dues",
-      "plafond_base": "16% × PASS de l'année de versement — voir per-plafonds.json → epargne_salariale_abondement.pereco",
-      "deblocage_anticipe_reference": "Art. L. 224-4 CMF ; service-public F34982",
-      "deblocage_anticipe_cas": [
-        "Décès du conjoint/PACS",
-        "Invalidité (bénéficiaire, enfants, conjoint/PACS)",
-        "Surendettement",
-        "Expiration des droits à l'assurance chômage",
-        "Cessation d'activité non salariée suite à liquidation judiciaire",
-        "Acquisition résidence principale (versements volontaires et épargne salariale ; les versements obligatoires restent bloqués)"
-      ],
-      "note_pero_vs_pee": "Cas de déblocage beaucoup plus restreints que le PEE. Mariage, naissance, divorce, rupture contrat travail, création entreprise : NON déblocables sur PERCO/PERECO."
+      "deblocage_anticipe": "Art. L. 224-4 CMF : mêmes cas que le PER individuel (voir per-plafonds.json → sortie_per.cas_sortie_anticipee et references/per.md)",
+      "note_pero_vs_pee": "Cas de déblocage beaucoup plus restreints que le PEE : mariage, naissance, divorce, rupture du contrat de travail ou création d'entreprise ne permettent PAS de débloquer un PERCO ou un PERECO."
     },
     "arbitrage_vs_per_individuel": "PEE / PERECO = abondement employeur (levier immédiat +30% à +300%). PER individuel = déduction du RNI. À combiner : abonder d'abord PEE/PERECO pour capter l'abondement, puis PER individuel."
   },
@@ -134,7 +156,7 @@
       "eligibilite_mandataires": "Art. L. 3332-2 Code du travail — chef d'entreprise et mandataires sociaux bénéficiaires si l'entreprise emploie au moins un salarié et moins de 250",
       "plafond_versements": "Art. L. 3332-10 C. trav. — un quart de la rémunération ou du revenu professionnel imposé à l'IR de l'année précédente",
       "exoneration_ir": "Art. 81-18° CGI — exonération IR sur abondement dans les plafonds",
-      "dividendes_tns": "Art. L. 131-6 CSS — dividendes SARL > 10% capital+CC soumis aux cotisations TNS",
+      "dividendes_tns": "Art. L. 136-3 CSS, auquel renvoie l'art. L. 131-6 pour l'assiette des cotisations des indépendants depuis la réforme de la LFSS 2024 (art. 18) — dividendes SARL > 10% capital+CC soumis aux cotisations TNS ; rédaction consolidée à vérifier sur Légifrance",
       "per_tns_madelin": "Art. 154 bis CGI — PER TNS (ex-Madelin), déduction cotisations du revenu professionnel",
       "bofip": "BOI-RSA-ES-10-10-20 — épargne salariale, abondement"
     },
@@ -172,7 +194,9 @@
       }
     },
     "plafonds": {
-      "source": "per-plafonds.json → epargne_salariale_abondement (PASS de l'année de versement)",
+      "source": "equity-salarial.json → pee_perco.pee.plafond_abondement_pee et pee_perco.perco_pereco.plafond_abondement_perco (PASS de l'année de versement) — seule source des montants",
+      "cumul_2025": 11304,
+      "cumul_2026": 11534.40,
       "formule_pee": "8% × PASS",
       "formule_pereco": "16% × PASS",
       "ratio_max_abondement": 3,
@@ -181,7 +205,7 @@
     },
     "fiscalite_abondement": {
       "deductibilite_is": "Charge déductible du résultat de la société (IS 25% ou 15% PME sur les 42 500 premiers €)",
-      "exoneration_cotisations_tns": "Abondement exonéré d'IR, donc absent du revenu professionnel servant d'assiette TNS ; L. 3332-27 C. trav. ne vise expressément que l'assiette salariale (L. 242-1 CSS) — à faire confirmer par l'URSSAF",
+      "exoneration_cotisations_tns": "Abondement exonéré d'IR, donc absent du revenu professionnel servant d'assiette TNS ; L. 3332-27 C. trav. ne vise expressément que l'assiette salariale (L. 242-1 CSS) — à faire confirmer par l'URSSAF, notamment depuis la réforme de l'assiette des indépendants (LFSS 2024, art. 18)",
       "csg_crds": "9,7 % dues sur l'abondement",
       "forfait_social": "0 % sous 50 salariés",
       "cout_salaries": "Le même abondement est dû à chaque salarié qui effectue le même versement",
@@ -197,10 +221,10 @@
       ],
       "per_tns_avantages": [
         "Plafond potentiellement plus élevé pour les forts bénéfices",
-        "Déduction du revenu professionnel pour l'IR (les cotisations restent dans l'assiette des cotisations sociales TNS — art. L. 131-6 CSS)",
+        "Déduction du revenu professionnel pour l'IR (les cotisations restent dans l'assiette des cotisations sociales TNS — art. L. 136-3 CSS, auquel renvoie l'art. L. 131-6)",
         "Adapté à l'horizon retraite long"
       ],
-      "ordre_examen_avec_salarie": "1. PEE + PERECO (11 304 € d'abondement maximum en 2025), en intégrant le coût de l'abondement versé aux salariés / 2. PER TNS (art. 154 bis) pour le surplus / 3. PER individuel 163 quatervicies en complément",
+      "ordre_examen_avec_salarie": "1. PEE + PERECO (11 304 € d'abondement maximum en 2025, 11 534,40 € en 2026), en intégrant le coût de l'abondement versé aux salariés / 2. PER TNS (art. 154 bis) pour le surplus / 3. PER individuel 163 quatervicies en complément",
       "ordre_examen_sans_salarie": "PEE/PERECO impossibles : PER TNS (art. 154 bis) puis PER individuel",
       "tmi_30_41": "PEE/PERECO souvent intéressants si l'entreprise a un salarié — exonération de l'abondement + liquidité du PEE",
       "tmi_45": "PEE reste intéressant (à la sortie, seuls les PS frappent les gains) ; PER moins pertinent si TMI retraite reste élevé"
@@ -212,9 +236,11 @@
         "references_legales": "Loi n° 2022-1158 du 16 août 2022 ; loi n° 2023-1107 du 29 novembre 2023",
         "beneficiaires": "Salariés uniquement (le gérant TNS ne peut pas en bénéficier directement)",
         "plafond_standard": 3000,
-        "plafond_avec_accord_interessement": 6000,
-        "exoneration_cotisations": "Totale (patronales + salariales) dans le plafond",
-        "exoneration_ir": "Réservée aux entreprises de moins de 50 salariés, pour salariés < 3 SMIC brut/mois (≈ 5 405 €/mois en 2025) — jusqu'au 31/12/2026. Entreprises ≥ 50 salariés : exonération de cotisations sociales maintenue mais PPV imposable à l'IR dès le premier euro.",
+        "plafond_avec_accord_interessement_ou_participation": 6000,
+        "exoneration_cotisations": "Totale (patronales + salariales) dans le plafond, quels que soient le salaire et l'effectif",
+        "exoneration_ir_csg_crds": "Salarié < 3 SMIC (≈ 5 405 €/mois brut en 2025) dans une entreprise de moins de 50 salariés, versements jusqu'au 31/12/2026 : exonérée aussi d'IR et de CSG/CRDS. Salarié ≥ 3 SMIC ou entreprise de 50 salariés et plus : seuls l'IR et la CSG/CRDS sont dus.",
+        "au_dela_plafond": "Fraction excédentaire traitée comme une prime ordinaire (cotisations, CSG/CRDS, IR)",
+        "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F35235",
         "mise_en_place": "Décision unilatérale de l'employeur (DUE) — pas d'accord requis",
         "piege_reduction_generale": {
           "applicable_depuis": "2025-01-01",
@@ -225,7 +251,8 @@
       },
       "interessement_participation": {
         "interessement_pee_plafond_2025": 35325,
-        "interessement_pee_base": "75% × PASS de l'année de versement — voir per-plafonds.json",
+        "interessement_pee_plafond_2026": 36045,
+        "interessement_pee_base": "75% × PASS de l'année de versement",
         "exoneration_cotisations": "Oui (si versement direct ou placement PEE) ; CSG/CRDS dues",
         "exoneration_ir_si_place_pee": true,
         "exoneration_ir_si_non_place": false,
@@ -259,7 +286,7 @@
       {
         "id": 3,
         "piege": "Dividendes SARL et seuil 10% capital",
-        "detail": "Dividendes > 10% (capital + CC + primes) soumis aux cotisations TNS (art. L. 131-6 CSS). Indépendant du PEE mais impact l'optimisation globale."
+        "detail": "Dividendes > 10% (capital + CC + primes) soumis aux cotisations TNS (art. L. 136-3 CSS, auquel renvoie l'art. L. 131-6). Indépendant du PEE mais impact l'optimisation globale."
       },
       {
         "id": 4,
@@ -283,7 +310,6 @@
       }
     ]
   },
-
   "quotient_revenus_exceptionnels": {
     "description": "Lissage fiscal pour revenus ponctuels exceptionnels (vesting massif, prime exceptionnelle, indemnité départ)",
     "mecanisme": "Revenu exceptionnel divisé par coefficient (généralement 4), ajouté au revenu ordinaire, impôt supplémentaire multiplié par le même coefficient",

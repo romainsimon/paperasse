@@ -90,7 +90,7 @@ Voir [foyer.example.json](../foyer.example.json) pour la structure. Champs criti
 | LMNP micro-BIC longue durée | 5NI / 5OI / 5PI | — |
 | LMNP micro-BIC meublé de tourisme non classé | 5NH / 5OH / 5PH | — |
 | LMNP micro-BIC meublé de tourisme classé, chambres d'hôtes | 5NG / 5OG / 5PG | — |
-| LMNP réel (bénéfice) | 5NA / 5OA / 5PA | **2031 + 2033-A à D** |
+| LMNP réel (bénéfice) | 5NA / 5OA / 5PA | **2031 + 2033-A à D** (2033-E si recettes > 152 500 € HT) |
 | LMNP réel (déficit de l'année) | 5NY / 5OY / 5PY | **2031 + 2033-A à D** |
 | LMNP déficits antérieurs non encore déduits | 5GA à 5GJ (déficits 2015 à 2024, une case par année, au niveau du foyer) | — |
 | Dividendes (PFU ou barème) | 2DC | — |

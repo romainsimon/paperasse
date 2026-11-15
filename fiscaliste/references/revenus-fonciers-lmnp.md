@@ -49,7 +49,7 @@ Voir `data/regimes-fonciers-lmnp.json` → `regime_reel_foncier.deficit_foncier`
 **Mécanisme** :
 - Charges > recettes → déficit
 - **Ordre d'imputation** : les loyers bruts compensent **d'abord les intérêts d'emprunt**, puis les autres charges (BOI-RFPI-BASE-30-20 § 110). Seul l'excédent d'intérêts sur les loyers est cantonné aux revenus fonciers ; tant que les loyers couvrent les intérêts, tout le déficit provient des autres charges.
-- **Imputable sur le revenu global dans la limite de 10 700 €** par an (art. 156, I, 3° CGI). Sur option (déclaration 2044), cette limite est **rehaussée du montant des dépenses** de rénovation énergétique qui font passer un logement d'une classe E, F ou G à une classe A, B, C ou D, **sans pouvoir excéder 21 400 €** (BOI-RFPI-BASE-30-20 du 16/09/2025 § 35 ; détail § 210 à 310) : ce n'est ni un plafond forfaitaire ni un « doublement ». Devis accepté à compter du 05/11/2022 et dépenses payées à compter du 01/01/2023 (§ 260, qui borne les paiements au 31/12/2025), prorogé pour les dépenses payées jusqu'au 31/12/2027 (LF 2026, loi 2026-103 art. 47) ; deux DPE à fournir (avant et après travaux)
+- **Imputable sur le revenu global dans la limite de 10 700 €** par an (art. 156, I, 3° CGI). Sur option (déclaration 2044), cette limite est **rehaussée du montant des dépenses** de rénovation énergétique qui font passer un logement d'une classe E, F ou G à une classe A, B, C ou D, **sans pouvoir excéder 21 400 €** (BOI-RFPI-BASE-30-20 du 16/09/2025 § 35 ; détail § 210 à 310) : ce n'est ni un plafond forfaitaire ni un « doublement ». Devis accepté à compter du 05/11/2022 et dépenses payées à compter du 01/01/2023 (§ 260, qui borne les paiements au 31/12/2025), prorogé pour les dépenses payées jusqu'au 31/12/2027 (LF 2026, loi 2026-103 art. 47) ; travaux réalisés par des professionnels, avec le signe de qualité exigé pour l'éco-PTZ ou, à défaut, pour MaPrimeRénov' (§ 250) ; deux DPE à fournir (avant et après travaux). Sur la 2044, ces dépenses vont ligne 224 bis et non ligne 224
 - **Condition de maintien** : le bien doit rester loué nu jusqu'au **31 décembre de la troisième année qui suit l'imputation** ; à défaut (vente, reprise pour soi, passage en meublé), le déficit imputé sur le revenu global est réintégré (BOI-RFPI-BASE-30-20 § 20 et § 340 à 370)
 - Au-delà de la limite : reportable sur les revenus fonciers des **10 années suivantes**
 - Si le revenu global ne suffit pas à absorber la part imputable : l'excédent forme un **déficit global reportable 6 ans** sur le revenu global (art. 156-I, 1er alinéa CGI ; BOI-RFPI-BASE-30-20 § 160)
@@ -87,6 +87,8 @@ Seuils 2026-2028 : BOI-BAREME-000044 (version du 19/08/2026). Le micro reste app
 - **Par membre du foyer, pour les biens propres** : quand chaque époux loue des biens qui lui sont propres, les seuils s'apprécient pour chacun pris isolément, sans globaliser le foyer (§ 80, 1er alinéa). Un bien **indivis entre époux**, cas le plus courant chez les LMNP en couple, est en revanche regardé comme exploité en société de fait ou en indivision (§ 80, 2e alinéa ; BOI-BIC-CHAMP-70-20-60), structures en principe exclues du micro-BIC (art. 50-0, 2, c et d) : résultat au réel. La dérogation du même alinéa (bien réputé exploité par le seul époux immatriculé au RCS ou au répertoire des métiers, sauf si les deux le sont) est rédigée pour les fonds de commerce ; sa transposition à la location meublée n'est pas commentée par le BOFiP.
 - **Lecture, non tranchée par le BOFiP** : si le seul non classé dépasse 15 000 €, le § 70 subordonne le micro-BIC au respect des deux limites, donc toute l'activité passe au réel, longue durée comprise. Restent aussi ouverts le décompte des deux années consécutives de dépassement catégorie par catégorie et l'application du minimum de 305 € par catégorie ou sur le total.
 
+**Option pour le réel** (art. 50-0, 4 CGI ; BOI-BIC-DECLA-10-30 du 11/05/2022, § 10, 80, 110 et 130) : sous les seuils, le réel est une option, **valable un an et reconduite tacitement** chaque année. Elle s'exerce dans le délai de dépôt de la déclaration de résultats de l'année qui précède : pour être au réel sur les revenus N, au plus tard à la date limite de la déclaration déposée en N. La renonciation suit le même délai et le retour au micro-BIC se fait au 31 décembre. Aucune forme imposée : papier libre daté et signé ou messagerie sécurisée du compte professionnel, au service des impôts des entreprises. À ne pas confondre avec la location nue, où l'option pour le réel engage trois ans.
+
 **Déficits LMNP antérieurs (constatés au réel)** : le micro-BIC ne crée jamais de déficit, mais les déficits LMNP des 10 années précédentes non encore imputés (cases **5GA à 5GJ**) s'imputent sur le résultat micro-BIC net (recettes − abattement), comme en micro-foncier. Imputation limitée au revenu LMNP net de l'année (pas de déficit créé, rien sur le revenu global), les plus anciens d'abord.
 - Fondement : art. 156-I-1° ter CGI (imputation sur « les revenus provenant d'une telle activité », sans distinction de régime) ; BOI-BIC-CHAMP-40-20 § 250. La calculette officielle DGFiP (`ir-calcul`, chap-85 : `DNPLOCIMPU = min(déficits 5GA-5GJ, BIC LMNP réel + micro net)`) applique bien ces déficits au résultat micro.
 - Nuance : aucun § BOFiP ne nomme expressément le micro-BIC (contrairement au micro-foncier, BOI-RFPI-DECLA-10 § 170).
@@ -106,7 +108,7 @@ Seuils 2026-2028 : BOI-BAREME-000044 (version du 19/08/2026). Le micro reste app
 
 **Déficit LMNP** : NON imputable sur le revenu global (contrairement au LMP). Reportable sur les seuls revenus de location meublée non professionnelle (réel **ou micro-BIC**) des **10 années suivantes**, tant que l'activité reste non professionnelle (art. 156, I, 1° ter CGI ; BOI-BIC-CHAMP-40-20 § 240-250), pas sur d'autres BIC. Report : cases 5GA à 5GJ de la 2042 C-PRO.
 
-**Formalités** : déclaration de début d'activité au guichet unique dans les 15 jours (numéro SIRET) ; au réel, liasse 2031 et annexes 2033 ; CFE possible (service-public F32744).
+**Formalités** : déclaration de début d'activité au guichet unique dans les 15 jours (numéro SIRET) ; au réel, liasse 2031 et annexes 2033-A à 2033-D (le 2033-E seulement si les recettes dépassent 152 500 € HT ; 2033-F et 2033-G sans objet pour un loueur individuel : notice 2033-NOT-SD) ; CFE due, sauf exonération de cotisation minimum quand les recettes de la période de référence n'excèdent pas 5 000 € (art. 1647 D, I, 1 CGI ; BOI-IF-CFE-20-20-40-10 § 133).
 
 ### Cession d'un bien LMNP
 
@@ -173,6 +175,39 @@ Voir `data/regimes-fonciers-lmnp.json` → `sci_ir`.
 | Réel LMNP / LMP | 2031 + 2033 (liasse BIC) + 2042 C-PRO |
 | Réel LMNP — cases 2042 C-PRO | Bénéfice 5NA / 5OA / 5PA ; déficit de l'année 5NY / 5OY / 5PY ; déficits antérieurs non encore déduits 5GA à 5GJ (années 2015 à 2024, 10 ans de report) |
 | SCI IR | Déclaration 2072 (SCI) + report sur 2044 (associés) |
+
+### Lignes de la 2044 (formulaire des revenus 2025, déposé en 2026)
+
+Les numéros changent peu d'une année à l'autre, mais se vérifient sur la notice du millésime. La 2044 spéciale a sa propre numérotation.
+
+| Ligne | Contenu |
+|-------|---------|
+| 211 | Loyers bruts encaissés (hors charges récupérables) |
+| 212 | Dépenses du bailleur mises par convention à la charge du locataire |
+| 213 | Recettes brutes diverses (dont le dépôt de garantie conservé) |
+| 214 | Valeur locative des propriétés dont le bailleur se réserve la jouissance |
+| 215 | Total des recettes |
+| 221 | Frais d'administration et de gestion (montant réel) |
+| 222 | Autres frais de gestion : forfait de 20 € par local |
+| 223 | Primes d'assurance |
+| 224 | Dépenses de réparation, d'entretien et d'amélioration |
+| 224 bis | Dépenses de rénovation énergétique, sur option pour la limite rehaussée du déficit (jamais aussi en 224) |
+| 225 | Charges récupérables non récupérées au départ du locataire |
+| 226 | Indemnités d'éviction, frais de relogement |
+| 227 | Taxes foncières et taxes annexes (hors TEOM) |
+| 228 | Déductions spécifiques (Borloo ancien, Cosse) |
+| 229 | Provisions pour charges de copropriété payées dans l'année, pour leur total |
+| 230 | Régularisation des provisions déduites l'année précédente (part non déductible, part récupérable, excédent), à retrancher |
+| 240 | Total des frais et charges |
+| 250 | Intérêts d'emprunt et frais d'emprunt |
+| 261 à 263 | Revenus fonciers taxables ; 262 : réintégration du supplément de déduction ; 263 : bénéfice ou déficit |
+| 420 | Résultat : un bénéfice se reporte case 4BA |
+| 431 à 434 | Total des revenus bruts, des intérêts d'emprunt, des autres frais et charges, dont rénovation énergétique |
+| 436 et 439 | Intérêts supérieurs aux revenus bruts : 436 vers la case 4BC, 439 vers la case 4BB |
+| 441 et 442 | Intérêts inférieurs ou égaux aux revenus bruts : 441 vers la case 4BC, 442 vers la case 4BB |
+| 451 | Déficits antérieurs restant à imputer, case 4BD |
+
+Source : notice n° 2044 des revenus 2025 (impots.gouv.fr).
 
 ## Références CGI / BOFiP
 

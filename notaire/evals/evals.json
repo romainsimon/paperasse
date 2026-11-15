@@ -116,6 +116,21 @@
         "Le skill cite l'art. 757 B CGI et le BOI-ENR-DMTG-10-10-20-20 (§ 155 pour l'âge retenu, § 197 pour l'assiette)",
         "Le skill invite à vérifier la forme du plan (assurance ou compte-titres)"
       ]
+    },
+    {
+      "id": 7,
+      "name": "vente-maison-classe-d-audit-et-dpe-ancien",
+      "prompt": "Je vends en 2026 une maison individuelle près de Nantes. J'ai un DPE réalisé en mars 2020 qui la classe D. Comme il a moins de dix ans, je peux le réutiliser ? Et dois-je faire faire un audit énergétique en plus ?",
+      "expected_output": "Deux réponses distinctes. (1) Le DPE de mars 2020 n'est plus valable : les DPE réalisés du 1er janvier 2018 au 30 juin 2021 ont cessé d'être valables le 31 décembre 2024, même s'ils ont moins de dix ans. Seuls les DPE réalisés depuis le 1er juillet 2021 valent dix ans. Il faut donc en faire établir un nouveau avant la promesse de vente, et la classe peut changer avec la nouvelle méthode. (2) L'audit énergétique (art. L. 126-28-1 CCH) vise en métropole les maisons individuelles et immeubles en monopropriété classés E, F ou G ; la classe D n'entre dans l'obligation qu'à partir du 1er janvier 2034. Si le nouveau DPE confirme la classe D, aucun audit n'est exigé pour une vente en 2026 ; s'il classe la maison E, F ou G, l'audit devient obligatoire et doit être remis à l'acquéreur.",
+      "files": [],
+      "assertions": [
+        "Le skill indique que le DPE de mars 2020 n'est plus valable (DPE du 01/01/2018 au 30/06/2021 valables jusqu'au 31/12/2024) et qu'il faut en refaire un",
+        "Le skill ne se contente pas de la règle des dix ans",
+        "Le skill indique que l'audit énergétique ne vise en métropole que les classes E, F et G pour une vente en 2026",
+        "Le skill indique que la classe D n'est concernée qu'à partir du 1er janvier 2034",
+        "Le skill n'affirme pas qu'un audit est obligatoire pour une maison classée D vendue en 2026",
+        "Le skill signale que le nouveau DPE peut aboutir à une autre classe, ce qui changerait la réponse sur l'audit"
+      ]
     }
   ]
 }

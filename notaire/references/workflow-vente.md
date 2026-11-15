@@ -79,7 +79,7 @@ Consulter [references/immobilier.md](immobilier.md) section "Diagnostics Obligat
 | Le bien est-il en zone à risques ? | ERP |
 | Le bien est-il non raccordé au tout-à-l'égout ? | Assainissement |
 | Le bien est-il proche d'un aéroport (PEB) ? | Bruit |
-| Le DPE est-il classé E, F ou G (maison) ? | Audit énergétique |
+| Maison individuelle ou immeuble en monopropriété : le DPE est-il classé E, F ou G (D à partir du 01/01/2034 ; outre-mer : F ou G, E à partir du 01/01/2028) ? | Audit énergétique |
 
 **Vérifier les risques automatiquement :**
 
@@ -91,7 +91,7 @@ curl "https://www.georisques.gouv.fr/api/v1/resultats_rapport_risque?latlon=LON,
 curl "https://www.georisques.gouv.fr/api/v1/resultats_rapport_risque?adresse=ADRESSE"
 ```
 
-**Le DPE est TOUJOURS obligatoire.** Validité : 10 ans.
+**Le DPE est TOUJOURS obligatoire.** Validité : 10 ans pour un DPE réalisé depuis le 1er juillet 2021. Les DPE réalisés avant cette date ne sont plus valables (ceux de 2013 à 2017 depuis le 1er janvier 2023, ceux du 1er janvier 2018 au 30 juin 2021 depuis le 1er janvier 2025) : les refaire.
 
 **Délai** : Commander les diagnostics 2 à 4 semaines avant la mise en vente. Certains diagnostics ont une validité courte (termites : 6 mois, ERP : 6 mois).
 

@@ -89,7 +89,7 @@ Le Dossier de Diagnostic Technique (DDT) doit être annexé à la promesse de ve
 
 | Diagnostic | Condition | Validité | Base légale |
 |-----------|-----------|---------|-------------|
-| **DPE** (Performance énergétique) | Toujours | 10 ans | art. L126-26 CCH |
+| **DPE** (Performance énergétique) | Toujours | 10 ans, sauf DPE réalisés avant le 01/07/2021 (voir ci-dessous) | art. L126-26 CCH |
 | **ERP** (État des Risques et Pollutions) | Zone à risques | 6 mois | art. L125-5 C. env. |
 | **Loi Carrez** | Lots de copropriété | Illimitée | Loi n°96-1107 du 18/12/1996 |
 
@@ -97,7 +97,7 @@ Le Dossier de Diagnostic Technique (DDT) doit être annexé à la promesse de ve
 
 | Diagnostic | Condition | Validité | Base légale |
 |-----------|-----------|---------|-------------|
-| **Audit énergétique** | Maisons DPE E, F ou G | 5 ans | art. L126-28-1 CCH |
+| **Audit énergétique** | Maisons individuelles et immeubles en monopropriété DPE E, F ou G (D à partir du 01/01/2034) ; outre-mer : F ou G (E à partir du 01/01/2028) | 5 ans | art. L126-28-1 CCH |
 | **Amiante** (DAPP) | Permis avant 01/07/1997 | Illimitée si négatif | art. R1334-14 CSP |
 | **Plomb** (CREP) | Construction avant 01/01/1949 | Illimitée si négatif, 1 an si positif | art. L1334-5 CSP |
 | **Électricité** | Installation > 15 ans | 3 ans | art. L134-7 CCH |
@@ -107,13 +107,25 @@ Le Dossier de Diagnostic Technique (DDT) doit être annexé à la promesse de ve
 | **Bruit** | Proximité aéroport (zone PEB) | Informatif | art. L112-11 C. urb. |
 | **Mérule** | Zone déclarée par arrêté préfectoral | Informatif | art. L133-8 CCH |
 
+### Validité des DPE réalisés avant le 1er juillet 2021
+
+| DPE réalisé | Validité |
+|-------------|----------|
+| Du 1er janvier 2013 au 31 décembre 2017 | Jusqu'au 31 décembre 2022 : plus valable |
+| Du 1er janvier 2018 au 30 juin 2021 | Jusqu'au 31 décembre 2024 : plus valable |
+| Depuis le 1er juillet 2021 | 10 ans |
+
+Un DPE de 2019 ou de 2020 a moins de dix ans mais n'est plus valable : il faut le refaire avant la promesse de vente.
+
 ### Passoires thermiques (interdiction de location)
 
-| DPE | Interdiction de location | Base légale |
-|-----|-------------------------|-------------|
-| G | Depuis le 1er janvier 2025 | Loi Climat et Résilience, art. 160 |
-| F | À partir du 1er janvier 2028 | Loi Climat et Résilience, art. 160 |
-| E | À partir du 1er janvier 2034 | Loi Climat et Résilience, art. 160 |
+| DPE | Métropole | Guadeloupe, Martinique, Guyane, La Réunion, Mayotte | Base légale |
+|-----|-----------|------------------------------------------------------|-------------|
+| G | Depuis le 1er janvier 2025 | À partir du 1er janvier 2028 | Loi Climat et Résilience, art. 160 |
+| F | À partir du 1er janvier 2028 | À partir du 1er janvier 2031 | Loi Climat et Résilience, art. 160 |
+| E | À partir du 1er janvier 2034 | Pas d'échéance | Loi Climat et Résilience, art. 160 |
+
+Le critère vise les baux signés, renouvelés ou reconduits tacitement à compter de chaque date.
 
 **Impact sur la vente** : un acquéreur doit être informé de l'interdiction actuelle ou future de louer le bien.
 

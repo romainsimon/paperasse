@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Matrice des diagnostics immobiliers obligatoires pour une vente",
-    "last_updated": "2026-03-24",
+    "last_updated": "2026-11-15",
     "source": "Art. L271-4 à L271-6 CCH, art. L125-5 C. env., art. L126-33 C. construction",
     "notes": "Le DDT (Dossier de Diagnostic Technique) doit être annexé à la promesse de vente ou, à défaut, à l'acte authentique"
   },
@@ -13,6 +13,12 @@
       "condition": "Tous les biens bâtis (sauf exceptions)",
       "exceptions": ["Bâtiments indépendants < 50 m²", "Constructions provisoires < 2 ans", "Monuments historiques", "Lieux de culte"],
       "validite_annees": 10,
+      "validite_dpe_anciens": {
+        "realise_2013-01-01_a_2017-12-31": "valable jusqu'au 2022-12-31",
+        "realise_2018-01-01_a_2021-06-30": "valable jusqu'au 2024-12-31",
+        "realise_depuis_2021-07-01": "10 ans"
+      },
+      "note_validite": "Les DPE réalisés avant le 1er juillet 2021 (ancienne méthode) ne sont plus valables depuis le 1er janvier 2025 au plus tard : à refaire avant une vente ou une mise en location, même s'ils ont moins de 10 ans.",
       "base_legale": "Art. L126-26 CCH",
       "sanctions": "Annulation de la vente ou diminution du prix possible si absent",
       "classe_interdiction_location": {
@@ -20,7 +26,12 @@
         "F": "2028-01-01",
         "E": "2034-01-01"
       },
-      "note": "Audit énergétique obligatoire en complément pour maisons individuelles ou immeubles en monopropriété classés F ou G (depuis 2023), puis E (depuis 2025)"
+      "classe_interdiction_location_outre_mer": {
+        "G": "2028-01-01",
+        "F": "2031-01-01"
+      },
+      "note_interdiction_location": "classe_interdiction_location vaut pour la France métropolitaine. Guadeloupe, Martinique, Guyane, La Réunion et Mayotte suivent classe_interdiction_location_outre_mer (pas d'échéance pour la classe E). Le critère s'applique aux baux signés, renouvelés ou reconduits tacitement à compter de chaque date.",
+      "note": "Audit énergétique obligatoire en complément pour maisons individuelles ou immeubles en monopropriété classés F ou G (depuis le 1er avril 2023), puis E (depuis le 1er janvier 2025) et D (à partir du 1er janvier 2034) ; calendrier propre à l'outre-mer, voir audit_energetique"
     },
     {
       "id": "amiante",
@@ -118,8 +129,8 @@
       "id": "audit_energetique",
       "nom": "Audit énergétique",
       "obligatoire": true,
-      "condition": "Maison individuelle ou immeuble en monopropriété classé F ou G (depuis 2023), E (depuis 2025), D (depuis 2034)",
-      "condition_technique": "maison_ou_monopropriete AND dpe_classe IN ['D','E','F','G']",
+      "condition": "Maison individuelle ou immeuble en monopropriété classé F ou G (depuis le 1er avril 2023), E (depuis le 1er janvier 2025), D (à partir du 1er janvier 2034). Outre-mer : F ou G (depuis le 1er juillet 2024), E (à partir du 1er janvier 2028)",
+      "condition_technique": "maison_ou_monopropriete AND dpe_classe IN ['E','F','G'] en métropole (ajouter 'D' à partir du 2034-01-01) ; dpe_classe IN ['F','G'] en Guadeloupe, Martinique, Guyane, à La Réunion et à Mayotte (ajouter 'E' à partir du 2028-01-01)",
       "validite_annees": 5,
       "base_legale": "Art. L126-28-1 CCH (loi Climat et Résilience)",
       "contenu": "Propositions de travaux par étapes, coût estimé, aides financières mobilisables",
@@ -127,6 +138,10 @@
         "F_et_G": "2023-04-01",
         "E": "2025-01-01",
         "D": "2034-01-01"
+      },
+      "calendrier_outre_mer": {
+        "F_et_G": "2024-07-01",
+        "E": "2028-01-01"
       }
     }
   ],

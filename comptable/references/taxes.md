@@ -125,9 +125,10 @@ Revalorisation de +0,9% par rapport à 2025.
 
 **Base:** Valeur locative des biens passibles de taxe foncière.
 
-**Cotisation minimum:** Fixée par la commune (entre 237 € et 7 349 € selon CA).
+**Cotisation minimum:** due quand la base de l'établissement principal est inférieure à une base minimum, fixée par la commune ou l'EPCI dans un barème par tranche de chiffre d'affaires (entre 237 € et 7 349 € de **base**, pas de cotisation : BOI-IF-CFE-20-20-40-10 du 28/06/2023). La cotisation est cette base multipliée par le taux local.
 
 **Exonérations:**
+- Chiffre d'affaires ou recettes hors taxes de la période de référence ≤ 5 000 € : exonération de cotisation minimum (art. 1647 D, I, 1, 3e alinéa CGI ; BOI-IF-CFE-20-20-40-10 § 133 et 170), depuis les impositions de 2019. Cas courant du loueur en meublé ou du micro-entrepreneur à faibles recettes
 - Première année de création
 - Artisans (sous conditions)
 - Certaines zones (ZRR, ZFU, QPV)

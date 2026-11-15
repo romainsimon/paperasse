@@ -932,6 +932,20 @@
         "Le skill calcule l'abattement par catégorie : 3 600 € (30 %) + 40 000 € (50 %) = 43 600 €, résultat 48 400 €",
         "Le skill NE conclut PAS au passage au régime réel"
       ]
+    },
+    {
+      "id": 76,
+      "name": "lmnp-option-reel-un-an-delai",
+      "prompt": "Je loue un studio meublé à l'année, 9 000 € de recettes par an, au micro-BIC depuis 2023. Je viens d'acheter un deuxième meublé à crédit et je voudrais passer au réel pour mes revenus de 2027. Jusqu'à quand puis-je opter, et est-ce que je suis engagé pour trois ans comme en location nue ?",
+      "expected_output": "L'option pour un régime réel en location meublée (art. 50-0, 4 CGI ; BOI-BIC-DECLA-10-30) s'exerce dans le délai de dépôt de la déclaration de résultats de l'année précédant celle à laquelle elle s'applique : pour être au réel sur les revenus 2027, il faut opter au plus tard à la date limite de la déclaration déposée au printemps 2027 (au titre de 2026). Elle n'a pas de forme imposée : un courrier daté et signé ou un message depuis la messagerie sécurisée du compte professionnel, adressé au service des impôts des entreprises. Elle vaut un an et se reconduit tacitement chaque année ; on peut y renoncer dans le même délai, le retour au micro-BIC se faisant au 31 décembre. Les trois ans irrévocables concernent l'option pour le réel en location nue (revenus fonciers), pas la location meublée. Rappeler qu'au réel il faut déposer une liasse 2031 et ses tableaux 2033 et reporter le résultat sur la 2042 C PRO, et que les amortissements déduits seront repris dans la plus-value à la revente (art. 150 VB, III).",
+      "files": [],
+      "assertions": [
+        "Le skill indique que l'option doit être exercée au plus tard à la date limite de la déclaration déposée au printemps 2027 pour s'appliquer aux revenus 2027",
+        "Le skill indique que l'option vaut un an et se reconduit tacitement",
+        "Le skill n'affirme pas que l'option engage trois ans en location meublée",
+        "Le skill distingue la location nue, où l'option pour le réel est irrévocable trois ans",
+        "Le skill mentionne que la renonciation est possible dans le même délai"
+      ]
     }
   ]
 }

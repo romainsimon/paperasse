@@ -315,10 +315,11 @@ Utiliser le template `templates/liasse-fiscale-2033.md` pour préparer :
 - **2033-B** : Compte de résultat simplifié
 - **2033-C** : Immobilisations et amortissements
 - **2033-D** : Provisions et déficits
+- **2033-E** : Valeur ajoutée, seulement si le chiffre d'affaires dépasse 152 500 € HT
 
 **Vérification croisée** :
 - 2033-A actif = 2033-A passif
-- 2033-B résultat = 2033-A résultat (case DI)
+- 2033-B bénéfice ou perte (ligne 310) = 2033-A résultat de l'exercice (ligne 136)
 - 2033-C valeurs fin = 2033-A immobilisations brutes
 - 2065 résultat fiscal cohérent avec 2033-B + réintégrations
 

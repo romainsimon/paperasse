@@ -62,80 +62,110 @@
 
 ## 2033-A — Bilan Simplifié
 
+Numéros de ligne du formulaire n° 2033-A-SD (millésime 2026). Pour l'actif : ligne de la colonne « Brut » / ligne de la colonne « Amortissements – Provisions » ; la colonne « Net » n'a pas de numéro.
+
 ### Actif
 
-| Case | Libellé | Brut | Amort. | Net |
+| Ligne | Libellé | Brut | Amort. | Net |
 |---|---|---:|---:|---:|
-| AA | Immobilisations incorporelles | | | |
-| AB | Immobilisations corporelles | | | |
+| 010 / 012 | Fonds commercial | | | |
+| 014 / 016 | Autres immobilisations incorporelles | | | |
+| 028 / 030 | Immobilisations corporelles | | | |
 | | dont matériel informatique | | | |
-| AX | Total actif immobilisé | | | |
+| 040 / 042 | Immobilisations financières | | | |
+| 044 / 048 | Total I (actif immobilisé) | | | |
 | | | | | |
-| BB | Stocks et en-cours | | | |
-| BH | Créances clients | | | |
-| BJ | Autres créances | | | |
-| BN | Disponibilités | | | |
-| BP | Charges constatées d'avance | | | |
-| BT | **Total actif** | | | |
+| 050 / 052 | Matières premières, approvisionnements, en-cours de production | | | |
+| 060 / 062 | Marchandises | | | |
+| 064 / 066 | Avances et acomptes versés sur commandes | | | |
+| 068 / 070 | Clients et comptes rattachés | | | |
+| 072 / 074 | Autres créances | | | |
+| 080 / 082 | Valeurs mobilières de placement | | | |
+| 084 / 086 | Disponibilités | | | |
+| 092 / 094 | Charges constatées d'avance | | | |
+| 096 / 098 | Total II (actif circulant) | | | |
+| 110 / 112 | **Total général (I + II)** | | | |
 
 ### Passif
 
-| Case | Libellé | Montant |
+| Ligne | Libellé | Montant |
 |---|---|---:|
-| DA | Capital social | |
-| DC | Réserve légale | |
-| DF | Report à nouveau | |
-| DI | Résultat de l'exercice | |
-| DL | Total capitaux propres | |
+| 120 | Capital social ou individuel | |
+| 126 | Réserve légale | |
+| 132 | Autres réserves | |
+| 134 | Report à nouveau | |
+| 136 | Résultat de l'exercice | |
+| 142 | Total I (capitaux propres) | |
 | | | |
-| DN | Provisions | |
-| DQ | Emprunts | |
-| DS | Fournisseurs | |
-| DT | Dettes fiscales et sociales | |
-| DV | Compte courant d'associé | |
-| DW | Produits constatés d'avance | |
-| DX | **Total passif** | |
+| 154 | Total II (provisions pour risques et charges) | |
+| 156 | Emprunts et dettes assimilées | |
+| 166 | Fournisseurs et comptes rattachés | |
+| 172 | Dettes fiscales et sociales (dont TVA : case 169) | |
+| 173 | Comptes courants d'associés | |
+| 175 | Autres dettes | |
+| 174 | Produits constatés d'avance | |
+| 176 | Total III (dettes) | |
+| 180 | **Total général (I + II + III)** | |
 
 ---
 
 ## 2033-B — Compte de Résultat Simplifié
 
-| Case | Libellé | Montant |
+Numéros de ligne du formulaire n° 2033-B-SD (millésime 2026). Les sous-totaux sans numéro (chiffre d'affaires net, résultat financier, résultat exceptionnel) ne figurent pas sur le formulaire : ils servent au contrôle.
+
+### A. Résultat comptable
+
+| Ligne | Libellé | Montant |
 |---|---|---:|
-| FA | Ventes de marchandises | |
-| FB | Production vendue (biens) | |
-| FC | Production vendue (services) | |
-| FD | Chiffre d'affaires net (FA+FB+FC) | |
-| FE | Production stockée | |
-| FF | Production immobilisée | |
-| FG | Subventions d'exploitation | |
-| FH | Autres produits | |
-| FI | **Total produits d'exploitation** | |
+| 210 | Ventes de marchandises | |
+| 214 | Production vendue (biens) | |
+| 218 | Production vendue (services) | |
+| | Chiffre d'affaires net (210 + 214 + 218) | |
+| 222 | Production stockée | |
+| 224 | Production immobilisée | |
+| 226 | Subventions d'exploitation reçues | |
+| 230 | Autres produits | |
+| 232 | **Total des produits d'exploitation hors TVA (I)** | |
 | | | |
-| FJ | Achats de marchandises | |
-| FK | Variation de stocks (marchandises) | |
-| FL | Achats de matières et fournitures | |
-| FM | Variation de stocks (matières) | |
-| FN | Autres charges externes | |
-| FO | Impôts et taxes | |
-| FP | Salaires et traitements | |
-| FQ | Charges sociales | |
-| FR | Dotations aux amortissements | |
-| FS | Dotations aux provisions | |
-| FT | Autres charges | |
-| FU | **Total charges d'exploitation** | |
-| FV | **Résultat d'exploitation** (FI-FU) | |
+| 234 | Achats de marchandises | |
+| 236 | Variation de stocks (marchandises) | |
+| 238 | Achats de matières premières et autres approvisionnements | |
+| 240 | Variation de stock (matières premières et approvisionnements) | |
+| 242 | Autres charges externes | |
+| 244 | Impôts, taxes et versements assimilés (dont CFE et CVAE : case 243) | |
+| 250 | Rémunérations du personnel | |
+| 252 | Cotisations sociales | |
+| 254 | Dotations aux amortissements | |
+| 256 | Dotations aux dépréciations | |
+| 262 | Autres charges | |
+| 264 | **Total des charges d'exploitation (II)** | |
+| 270 | **Résultat d'exploitation** (I - II) | |
 | | | |
-| FW | Produits financiers | |
-| FX | Charges financières | |
-| FY | **Résultat financier** (FW-FX) | |
+| 280 | Produits financiers (III) | |
+| 294 | Charges financières (V) | |
+| | Résultat financier (280 - 294) | |
 | | | |
-| GA | Produits exceptionnels | |
-| GB | Charges exceptionnelles | |
-| GC | **Résultat exceptionnel** (GA-GB) | |
+| 290 | Produits exceptionnels (IV) | |
+| 300 | Charges exceptionnelles (VI) | |
+| | Résultat exceptionnel (290 - 300) | |
 | | | |
-| GD | IS | |
-| GE | **Résultat net** | |
+| 306 | Impôt sur les bénéfices (VII) | |
+| 310 | **Bénéfice ou perte** : produits (I + III + IV) - charges (II + V + VI + VII) | |
+
+### B. Résultat fiscal
+
+| Ligne | Libellé | Montant |
+|---|---|---:|
+| 312 / 314 | Report du bénéfice comptable (col. 1) ou du déficit comptable (col. 2) | |
+| 316 | Rémunérations et avantages personnels non déductibles | |
+| 318 | Amortissements excédentaires (art. 39-4 CGI) et autres amortissements non déductibles | |
+| 322 | Provisions non déductibles | |
+| 324 | Impôts et taxes non déductibles | |
+| 330 | Divers à réintégrer | |
+| 350 | Divers à déduire | |
+| 352 / 354 | Résultat fiscal avant imputation des déficits antérieurs : bénéfice (col. 1) ou déficit (col. 2) | |
+| 360 | Déficits antérieurs imputés sur le résultat (entreprises à l'IS uniquement) | |
+| 370 / 372 | **Résultat fiscal après imputation des déficits** : bénéfice (col. 1) ou déficit (col. 2) | |
 
 ---
 
@@ -179,10 +209,18 @@
 
 ---
 
+## 2033-E — Valeur ajoutée (si chiffre d'affaires > 152 500 € HT)
+
+Le tableau n° 2033-E-SD est à fournir lorsque le chiffre d'affaires de l'exercice, ramené le cas échéant à douze mois, dépasse 152 500 € hors taxes (notice n° 2033-NOT-SD). En dessous, il n'est pas à remplir.
+
+Les tableaux n° 2033-F-SD (composition du capital) et 2033-G-SD (filiales et participations) concernent les sociétés : une entreprise individuelle n'a pas à les servir.
+
+---
+
 ## Vérification
 
 - [ ] 2033-A actif = 2033-A passif
-- [ ] 2033-B résultat net = 2033-A résultat de l'exercice (case DI)
+- [ ] 2033-B bénéfice ou perte (ligne 310) = 2033-A résultat de l'exercice (ligne 136)
 - [ ] 2033-C valeur fin = 2033-A immobilisations brutes
 - [ ] 2033-C amort. fin = 2033-A amortissements
 - [ ] 2065 résultat fiscal cohérent avec 2033-B + réintégrations/déductions
